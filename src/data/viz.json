@@ -1,0 +1,15 @@
+{
+  "smogglage_port": {
+    "chapter": "smogglage",
+    "scripts": [
+      "smogglage.py"
+    ],
+    "description": "Statistiques générales sur les ports smoggleurs.",
+    "inputs": [
+      "navigo_all_flows_1787.csv"
+    ],
+    "outputs": [
+      "smogglage_ports_stats.csv"
+    ]
+  }
+}
