@@ -18,10 +18,8 @@ with requests.Session() as s:
     download = s.get(GDOC_URL)
     decoded_content = download.content.decode('utf-8')
 
-    # Unescape tags
+    # Unescape tags and their quotes
     decoded_content = re.sub(r"&lt;(.*?)/&gt;", r"<\1>", decoded_content).replace('”', '"').replace('“', '"')
-    # Unescape quotes
-    # decoded_content = (r"”|“", '"', decoded_content)
 
     soup = BeautifulSoup(decoded_content, 'html.parser')
     title = soup.title.get_text()
@@ -31,15 +29,6 @@ with requests.Session() as s:
     for styleTag in soup.select('style'):
         styleTag.extract()
 
-    # for caller in soup.find_all('caller'):
-    #     if caller.has_attr('id') == False:
-            # new_tag = BeautifulSoup('<div className="centered-part"></div>', 'html.parser')
-            # new_tag = new_tag.div
-            # caller.parent.append(new_tag)
-            # print(new_tag)
-            # print(caller.parent.parent.parent)
-
-
     for link in soup.find_all('a'):
         # Google tracked link to clean link
         link['href'] = re.search(r"q=(.*)&sa", link['href']).group(1)
@@ -47,13 +36,35 @@ with requests.Session() as s:
         link['target'] = '_blank'
         link['rel'] = 'noopener noreferrer'
 
-    content = soup.prettify()
-
+    content = soup.prettify() # Beautify HTML
+    # Remove useless tags and attributes
     content = sanitizer.sanitize(content)
+
+    # Second edition of HTML
+    soup = BeautifulSoup(content, 'html.parser')
+
+    # Each <caller> tag is extracted from its <p> parent
+    for caller in soup.find_all('caller'):
+        caller.parent.insert_after(caller)
+        caller.parent.extract() # Delete <p>
+    # Each <caller> tag without id is follow by a <div>
+    for caller in soup.find_all('caller'):
+        if caller.has_attr('id') == False:
+            new_tag = BeautifulSoup('<div class="centered-part"></div>', 'html.parser')
+            new_tag = new_tag.div
+            caller.insert_after(new_tag)
+            # Store each element is not a <h1> or another <caller> in the <div>
+            for next_tag in new_tag.find_all_next():
+                if next_tag.name not in {'h1', 'caller'}:
+                    new_tag.append(next_tag)
+                else:
+                    break
+
+    content = soup.prettify()
     md = html2markdown.convert(content)
 
+    # Analyse each Markdown line to find first level titles and split parts
     md_lines = md.split('\n')
-
     for line in md_lines:
         if line == '':
             pass
@@ -64,8 +75,9 @@ with requests.Session() as s:
             # Append other lines into the last part array
             parts[-1].append(line)
 
+    # Each part became a MDX file
     for i, part in enumerate(parts):
         part = '\n'.join(part)
-        f = open(title + str(i) + '.mdx', "w")
+        f = open('partie-' + str(i) + '.mdx', "w")
         f.write(part)
         f.close()
