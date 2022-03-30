@@ -12,7 +12,7 @@ sanitizer = Sanitizer({
 
 GDOC_URL = 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub'
 
-parts = []
+parts = [[]]
 
 with requests.Session() as s:
     download = s.get(GDOC_URL)
@@ -31,16 +31,13 @@ with requests.Session() as s:
     for styleTag in soup.select('style'):
         styleTag.extract()
 
-    # for toto in soup.find_all('h1'):
-    #     print(toto)
-
-    for caller in soup.find_all('caller'):
-        if caller.has_attr('id') == False:
+    # for caller in soup.find_all('caller'):
+    #     if caller.has_attr('id') == False:
             # new_tag = BeautifulSoup('<div className="centered-part"></div>', 'html.parser')
             # new_tag = new_tag.div
             # caller.parent.append(new_tag)
             # print(new_tag)
-            print(caller.parent)
+            # print(caller.parent.parent.parent)
 
 
     for link in soup.find_all('a'):
@@ -55,6 +52,20 @@ with requests.Session() as s:
     content = sanitizer.sanitize(content)
     md = html2markdown.convert(content)
 
-    f = open(title + '.mdx', "w")
-    f.write(md)
-    f.close()
+    md_lines = md.split('\n')
+
+    for line in md_lines:
+        if line == '':
+            pass
+        if re.match(r"^#\s.*?$", line):
+            # Match '# Title 1'
+            parts.append([line])
+        else:
+            # Append other lines into the last part array
+            parts[-1].append(line)
+
+    for i, part in enumerate(parts):
+        part = '\n'.join(part)
+        f = open(title + str(i) + '.mdx', "w")
+        f.write(part)
+        f.close()
