@@ -27,7 +27,7 @@ const VisualizationContainer = ({
   const datasets = useContext(DatasetsContext);
 
   const relevantDatasets = useMemo(() => {
-    const viz = visualizationsList.find(v => v.id === id);
+    const viz = Object.values(visualizationsList).find(v => v.id === id);
     if (viz) {
       const datasetsIds = viz.datasets && viz.datasets.split(',').map(d => d.trim());
       if (datasetsIds.length && datasets) {
@@ -40,13 +40,16 @@ const VisualizationContainer = ({
   }, [id, datasets]);
 
   const hasData = Object.keys(relevantDatasets || {}).length && !Object.entries(relevantDatasets).find(([id, payload]) => !payload);
-  if (!hasData) {
-    return null;
-  }
+  // @todo uncomment this when data retrieval is set up
+  // if (!hasData) {
+  //   return null;
+  // }
   switch (id) {
-    case 'test':
     default:
-      return null;
+      return <div>
+        <h1>Visualisation par encore développée (ou id invalide dans le google docs) : <code>{id}</code></h1>
+        <pre><code>{JSON.stringify(props)}</code></pre>
+        </div>;
   }
 }
 

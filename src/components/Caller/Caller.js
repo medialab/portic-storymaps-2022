@@ -3,7 +3,7 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import cx from 'classnames';
 import {v4 as genId} from 'uuid';
 
-import {VisualizationControlContext} from '../../helpers/contexts';
+import {VisualizationControlContext} from '../../utils/contexts';
 
 /**
  * Visulization caller to place in contents

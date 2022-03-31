@@ -6,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 
 import VisualizationController from '../../components/VisualizationController';
 import VisualizationFocus from '../../components/VisualizationFocus';
+import Caller from '../../components/Caller';
 import { VisualizationControlContext } from '../../utils/contexts';
 
 import { buildPageTitle } from '../../utils/misc';
@@ -80,7 +81,7 @@ const ScrollyPage = ({
         if (ref.current.parentNode.className === 'centered-part-contents') {
           visY += ref.current.parentNode.parentNode.getBoundingClientRect().y;
         }
-        if (!visualization.visualizationId && scrollY + window.innerHeight * .8 > visY) {
+        if (!visualization.visualizationId && scrollY + DISPLACE_Y > visY) {
           found = true;
           setActiveVisualization(undefined);
           break;
@@ -157,7 +158,7 @@ const ScrollyPage = ({
       </Helmet>
       <div className="ScrollyPage">
         <section ref={sectionRef} className={cx({ 'is-focused': !focusOnViz })}>
-          <Content />
+          <Content components={{Caller}} />
         </section>
         <aside className={cx({ 'is-focused': focusOnViz })}>
           <VisualizationController lang={lang} activeVisualization={activeVisualization} />
