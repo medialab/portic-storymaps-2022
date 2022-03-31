@@ -11,22 +11,23 @@ import { Link } from "react-router-dom";
 
 export default function Header({
     willOpenNav,
-    langagesFlag,
-    langController,
+    langagesFlag = ['fr', 'en'],
+    onLangChange,
+    lang,
 }) {
     /**
      * @type {['loading'|'failed'|'success', Function]}
      * @typedef {Function} setLoadingState Set the app state of fetch
      */
     const [isOpen, setIsOpen] = useState(willOpenNav);
-    const [lang, setLang] = langController;
+    // const [lang, setLang] = langController;
 
     function onClickOpen () {
         setIsOpen(!isOpen);
     }
 
     function onClickLang (langFlag) {
-        setLang(langFlag);
+        // setLang(langFlag);
     }
 
     return (
@@ -42,9 +43,9 @@ export default function Header({
             <div className={'navbar-menu' + (isOpen === true ? ' is-active' : '')}>
                 <div className="navbar-start">
                     <Link to='/' className="navbar-item">Accueil</Link>
-                    <Link to='partie-0' className="navbar-item">Intro</Link>
-                    <Link to='partie-1' className="navbar-item">Partie 1</Link>
-                    <Link to='partie-2' className="navbar-item">Partie 2</Link>
+                    <Link to='/fr/page/partie-0' className="navbar-item">Intro</Link>
+                    <Link to='/fr/page/partie-1' className="navbar-item">Partie 1</Link>
+                    <Link to='/fr/page/partie-2' className="navbar-item">Partie 2</Link>
                     <Link to='about' className="navbar-item">À propos</Link>
                 </div>
             </div>
@@ -55,7 +56,7 @@ export default function Header({
                         <button
                             key={i}
                             className={'button is-small is-white' + (lang === flag ? 'is-active' : '')}
-                            onClick={() => onClickLang(flag)}
+                            onClick={onLangChange}
                         >{flag}</button>)
                 }
             </div>

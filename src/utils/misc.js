@@ -7,15 +7,15 @@ import { csvParse } from 'd3-dsv';
 import get from 'axios';
 import iwanthue from 'iwanthue';
 /* import other assets */
-// import metadataFr from '../contents/fr/metadata'
-// import metadataEn from '../contents/en/metadata'
+import metadataFr from '../content/fr/metadata'
+import metadataEn from '../content/en/metadata'
 import palettes from './colorPalettes';
 
 const { generic } = palettes;
-// const metadata = {
-//   fr: metadataFr,
-//   en: metadataEn
-// }
+const metadata = {
+  fr: metadataFr,
+  en: metadataEn
+}
 
 const DEFAULT_COLOR_SPACE = {
   cmin: 25.59,
@@ -33,10 +33,10 @@ const SINGLE_COLOR_PALETTE = ['#999'];
  * @param {string} lang='fr'
  * @returns {string}
  */
-// export function buildPageTitle(title, lang = 'fr') {
-//   const currentMetadata = metadata[lang] || metadataFr;
-//   return `${title} | ${currentMetadata.title} | PORTIC`;
-// }
+export function buildPageTitle(title, lang = 'fr') {
+  const currentMetadata = metadata[lang] || metadataFr;
+  return `${title} | ${currentMetadata.title} | PORTIC`;
+}
 
 /**
  * Trims a text given a certain length limit/maximum

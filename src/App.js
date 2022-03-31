@@ -1,49 +1,77 @@
 import React, { useState } from 'react';
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter, Navigate } from "react-router-dom";
 
 import Layout from './components/Layout';
 import Home from './components/Home'
 import About from './components/About'
-import ScrollyPage from './components/ScrollyPage'
+import Atlas from './components/Atlas'
 
-import Partie0 from './content/partie-0.mdx'
-import Partie1 from './content/partie-1.mdx'
-import Partie2 from './content/partie-2.mdx'
+import Partie0 from './content/fr/partie-0.mdx'
+import Partie1 from './content/fr/partie-1.mdx'
+import Partie2 from './content/fr/partie-2.mdx'
 
-import { SettingsContext } from './utils/contexts';
+import routes from './summary';
 
 import './styles/app.scss'
+
+
+const LANGUAGES = ['fr', 'en'];
 
 export default function App() {
   /**
    * @type {['fr'|'en', Function]}
    * @typedef {Function} setLang Set the app langage for i18n
    */
-  const [lang, setLang] = useState('fr');
-
   return (
     <HashRouter>
     <div className="App">
-      <SettingsContext.Provider value={{
-        lang
-      }}>
 
         <Routes>
-          <Route path="/" element={
-            <Layout
-              langController={[lang, setLang]}
-              langagesFlag={['fr', 'en']}
-            />
+          <Route path="/:lang/" element={
+            <Layout />
           }>
-            <Route index element={<Home />} />
-            <Route path="partie-0" element={<ScrollyPage Content={Partie0} title='Intro' />} />
-            <Route path="partie-1" element={<ScrollyPage Content={Partie1} title='Partie 1' />} />
-            <Route path="partie-2" element={<ScrollyPage Content={Partie2} title='Partie 2' />} />
+            {// looping through the page
+              LANGUAGES.map(lang => {
+                return routes
+                  .map(({
+                    titles,
+                    routes: inputRoute,
+                    contents,
+                    Component: ThatComponent,
+                  }, index) => {
+                    const route = `page/${inputRoute[lang]}`;
+                    // const title = titles[lang];
+                    // const Content = contents[lang];
+                    return (
+                      <Route key={index} path={route} exact
+                        element={
+                          <ThatComponent
+                            {
+                            ...{
+                              contents,
+                              titles,
+                            }
+                            }
+                          />
+                        }
+                      >
+                      </Route>
+                    )
+                  })
+              })
+            }
+            <Route path="atlas/:visualizationId?" component={Atlas} />
             <Route path="about" element={<About />} />
+            <Route index element={<Home />} />
+            {/* <Route path="partie-0" element={<ScrollyPage Content={Partie0} title='Intro' />} />
+            <Route path="partie-1" element={<ScrollyPage Content={Partie1} title='Partie 1' />} />
+            <Route path="partie-2" element={<ScrollyPage Content={Partie2} title='Partie 2' />} /> */}
           </Route>
+          <Route
+                path="*"
+                element={<Navigate to="fr" />}
+            />
         </Routes>
-
-      </SettingsContext.Provider>
     </div>
     </HashRouter>
   );

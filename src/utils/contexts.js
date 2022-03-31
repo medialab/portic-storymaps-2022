@@ -24,6 +24,13 @@ export const SettingsContext = React.createContext({});
 
 export const VisualisationContext = React.createContext({});
 
+/**
+ * Context used for communicating currently displayed visualization
+ */
+ export const VisualizationControlContext = React.createContext({
+
+})
+
 export const VisualisationProvider = ({ children }) => {
     const [list, setList] = useState([]);
     return (
@@ -32,3 +39,11 @@ export const VisualisationProvider = ({ children }) => {
         </VisualisationContext.Provider>
     );
 };
+
+
+/**
+ * Context used for datasets values passing
+ */
+ export const DatasetsContext = React.createContext({
+
+})
