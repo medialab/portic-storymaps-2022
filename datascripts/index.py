@@ -1,6 +1,6 @@
 import json
 
-PATH_DATA = '../'
+PATH_DATA = '../data/'
 PATH_DATA_PUBLIC = '../public/data/'
 FILE_JSON_INDEX = '../src/data/viz.json'
 
