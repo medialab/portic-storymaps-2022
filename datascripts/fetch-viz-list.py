@@ -5,6 +5,8 @@ import json
 
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
+OUTPUT_PATH = "../src/data/viz.json"
+
 with requests.Session() as s:
     download = s.get(GSHEET_URL)
     decoded_content = download.content.decode('utf-8')
@@ -19,5 +21,5 @@ with requests.Session() as s:
         vizualisations[ row['id'] ] = row
 
     json_object = json.dumps(vizualisations, indent=4, ensure_ascii=False)
-    with open("viz.json", "w") as f:
+    with open(OUTPUT_PATH, "w") as f:
         f.write(json_object)

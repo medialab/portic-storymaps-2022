@@ -1,8 +1,8 @@
 import json
 
 PATH_DATA = '../'
-PATH_DATA_PUBLIC = '../../public/data/'
-FILE_JSON_INDEX = '../../src/data/viz.json'
+PATH_DATA_PUBLIC = '../public/data/'
+FILE_JSON_INDEX = '../src/data/viz.json'
 
 def get_viz_metas(viz_id):
     """
