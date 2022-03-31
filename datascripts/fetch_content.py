@@ -78,6 +78,6 @@ with requests.Session() as s:
     # Each part became a MDX file
     for i, part in enumerate(parts):
         part = '\n'.join(part)
-        f = open('partie-' + str(i) + '.mdx', "w")
+        f = open('../src/content/fr/partie-' + str(i) + '.mdx', "w")
         f.write(part)
         f.close()
