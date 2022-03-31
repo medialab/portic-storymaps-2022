@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
-import Layout from './Layout';
-import Home from './Home'
-import About from './About'
-import ScrollyPage from './ScrollyPage'
+import Layout from './components/Layout';
+import Home from './components/Home'
+import About from './components/About'
+import ScrollyPage from './components/ScrollyPage'
 
-import Partie0 from '../content/partie-0.mdx'
-import Partie1 from '../content/partie-1.mdx'
-import Partie2 from '../content/partie-2.mdx'
+import Partie0 from './content/partie-0.mdx'
+import Partie1 from './content/partie-1.mdx'
+import Partie2 from './content/partie-2.mdx'
 
-import { SettingsContext } from '../utils/contexts';
+import { SettingsContext } from './utils/contexts';
 
-import '../styles/app.scss'
+import './styles/app.scss'
 
 export default function App() {
   /**
@@ -22,6 +22,7 @@ export default function App() {
   const [lang, setLang] = useState('fr');
 
   return (
+    <HashRouter>
     <div className="App">
       <SettingsContext.Provider value={{
         lang
@@ -44,5 +45,6 @@ export default function App() {
 
       </SettingsContext.Provider>
     </div>
+    </HashRouter>
   );
 }

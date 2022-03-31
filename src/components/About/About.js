@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-import { SettingsContext } from '../utils/contexts';
-import translate from '../utils/translate';
+import { SettingsContext } from '../../utils/contexts';
+import translate from '../../utils/translate';
 
-import Content from '../content/about.mdx'
+import Content from '../../content/about.mdx'
 
 export default function About ({
     ...props

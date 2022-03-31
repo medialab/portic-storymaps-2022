@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
-import Loader from './Loader';
-import SmogglagePortsStats from './SmogglagePortsStats';
+import Loader from '../Loader';
+import SmogglagePortsStats from '../../visualizations/SmogglagePortsStats';
 
-import { fetchDataCsv } from '../utils/fetch';
+import { fetchDataCsv } from '../../utils/fetch';
 
 /* eslint-disable import/no-webpack-loader-syntax */
 // import Mdx from '!@mdx-js/loader!../content/home.mdx';
