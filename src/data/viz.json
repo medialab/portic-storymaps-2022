@@ -1,15 +1,22 @@
 {
-  "smogglage_port": {
-    "chapter": "smogglage",
-    "scripts": [
-      "smogglage.py"
-    ],
-    "description": "Statistiques générales sur les ports smoggleurs.",
-    "inputs": [
-      "navigo_all_flows_1787.csv"
-    ],
-    "outputs": [
-      "smogglage_ports_stats.csv"
-    ]
-  }
+    "smoggleur-proportion": {
+        "id": "smoggleur-proportion",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/smoggleur-proportion",
+        "titre_fr": "Proportion des smoggleurs au départ de Dunkerque et d'autres ports français",
+        "titre_en": "",
+        "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
+        "description_en": "",
+        "comment_lire_fr": "",
+        "comment_cest_fait_fr": "",
+        "comment_lire_en": "",
+        "comment_cest_fait_en": "",
+        "inputs": [
+            "navigo_all_flows_1787.csv",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    }
 }

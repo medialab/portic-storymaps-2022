@@ -32,7 +32,7 @@ ports = {
     'bordeaux': []
 }
 
-VIZ_METAS = get_viz_metas('smogglage_port')
+VIZ_METAS = get_viz_metas('smoggleur-proportion')
 
 for source in VIZ_METAS['inputs']:
 
