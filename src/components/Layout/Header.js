@@ -42,6 +42,9 @@ export default function Header({
             <div className={'navbar-menu' + (isOpen === true ? ' is-active' : '')}>
                 <div className="navbar-start">
                     <Link to='/' className="navbar-item">Accueil</Link>
+                    <Link to='partie-0' className="navbar-item">Intro</Link>
+                    <Link to='partie-1' className="navbar-item">Partie 1</Link>
+                    <Link to='partie-2' className="navbar-item">Partie 2</Link>
                     <Link to='about' className="navbar-item">À propos</Link>
                 </div>
             </div>
