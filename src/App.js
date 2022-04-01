@@ -40,8 +40,6 @@ export default function App() {
                     Component: ThatComponent,
                   }, index) => {
                     const route = `page/${inputRoute[lang]}`;
-                    // const title = titles[lang];
-                    // const Content = contents[lang];
                     return (
                       <Route key={index} path={route} exact
                         element={
@@ -63,9 +61,6 @@ export default function App() {
             <Route path="atlas/:visualizationId?" component={Atlas} />
             <Route path="about" element={<About />} />
             <Route index element={<Home />} />
-            {/* <Route path="partie-0" element={<ScrollyPage Content={Partie0} title='Intro' />} />
-            <Route path="partie-1" element={<ScrollyPage Content={Partie1} title='Partie 1' />} />
-            <Route path="partie-2" element={<ScrollyPage Content={Partie2} title='Partie 2' />} /> */}
           </Route>
           <Route
                 path="*"

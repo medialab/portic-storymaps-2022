@@ -10,7 +10,7 @@ sanitizer = Sanitizer({
     'attributes': { 'caller': ('id'), 'a': ('href', 'rel', 'target') }
 })
 
-GDOC_URL = 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub'
+GDOC_URL = 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub'
 
 parts = [[]]
 
