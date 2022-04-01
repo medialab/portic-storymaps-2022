@@ -6,16 +6,12 @@ import Home from './components/Home'
 import About from './components/About'
 import Atlas from './components/Atlas'
 
-import Partie0 from './content/fr/partie-0.mdx'
-import Partie1 from './content/fr/partie-1.mdx'
-import Partie2 from './content/fr/partie-2.mdx'
-
 import routes from './summary';
 
 import './styles/app.scss'
 
 
-const LANGUAGES = ['fr', 'en'];
+const langagesFlag = ['fr', 'en'];
 
 export default function App() {
   /**
@@ -28,10 +24,10 @@ export default function App() {
 
         <Routes>
           <Route path="/:lang/" element={
-            <Layout />
+            <Layout langagesFlag={langagesFlag} />
           }>
             {// looping through the page
-              LANGUAGES.map(lang => {
+              langagesFlag.map(lang => {
                 return routes
                   .map(({
                     titles,

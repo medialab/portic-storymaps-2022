@@ -3,9 +3,10 @@ import ScrollyPage from './components/ScrollyPage';
 
 // import PartHome from './contents/home.mdx';
 import Part0 from './content/fr/partie-0.mdx';
-// import Part1 from './contents/partie-1.mdx';
-// import Part2 from './contents/partie-2.mdx';
-// import PartAbout from './contents/about.mdx';
+import Part1 from './content/fr/partie-1.mdx';
+import Part2 from './content/fr/partie-2.mdx';
+import Part3 from './content/fr/partie-3.mdx';
+// import PartAbout from './content/fr/about.mdx';
 
 const summary = [
   {
@@ -14,8 +15,8 @@ const summary = [
       en: 'part-0'
     },
     titles: {
-      fr: 'Partie 0',
-      en: 'Part 0'
+      fr: 'Intro',
+      en: 'Intro-en'
     },
     shortTitles: {
       fr: 'x',
@@ -28,54 +29,66 @@ const summary = [
     Component: ScrollyPage,
     routeGroup: 'primary'
   },
-  // {
-  //   routes: {
-  //     fr: 'partie-2',
-  //     en: 'part-2'
-  //   },
-  //   titles: {
-  //     fr: 'Une forte spécialisation portuaire: le cas de la traite négrière, du commerce du sel et de l\'eau-de-vie',
-  //     en: 'A strong portual specialization'
-  //   },
-  //   shortTitles: {
-  //     fr: 'une forte spécialisation portuaire',
-  //     en: 'a strong portual specialization'
-  //   },
-  //   contents: {
-  //     fr: 'fr/partie-2.mdx',
-  //     en: 'en/part-2.mdx'
-  //   },
-  //   contentsProcessed: {
-  //     fr: Part2IntroFr,
-  //     en: Part2IntroEn,
-  //   },
-  //   Component: ScrollyPage,
-  //   routeGroup: 'primary'
-  // },
-  // {
-  //   routes: {
-  //     fr: 'partie-3',
-  //     en: 'part-3'
-  //   },
-  //   titles: {
-  //     fr: 'La Rochelle, port dominant mais pas structurant',
-  //     en: 'La Rochelle port, dominating but not structuring'
-  //   },
-  //   shortTitles: {
-  //     fr: 'un port dominant mais pas structurant',
-  //     en: 'a dominating but not structuring port'
-  //   },
-  //   contents: {
-  //     fr: 'fr/partie-3.mdx',
-  //     en: 'en/part-3.mdx'
-  //   },
-  //   contentsProcessed: {
-  //     fr: Part3Fr,
-  //     en: Part3En,
-  //   },
-  //   Component: ScrollyPage,
-  //   routeGroup: 'primary'
-  // },
+  {
+    routes: {
+      fr: 'partie-1',
+      en: 'part-1'
+    },
+    titles: {
+      fr: 'Partie 1',
+      en: 'Part 1'
+    },
+    shortTitles: {
+      fr: 'x',
+      en: 'x'
+    },
+    contents: {
+      fr: Part1,
+      en: Part1
+    },
+    Component: ScrollyPage,
+    routeGroup: 'primary'
+  },
+  {
+    routes: {
+      fr: 'partie-2',
+      en: 'part-2'
+    },
+    titles: {
+      fr: 'Partie 2',
+      en: 'Part 2'
+    },
+    shortTitles: {
+      fr: 'x',
+      en: 'x'
+    },
+    contents: {
+      fr: Part2,
+      en: Part2
+    },
+    Component: ScrollyPage,
+    routeGroup: 'primary'
+  },
+  {
+    routes: {
+      fr: 'partie-3',
+      en: 'part-3'
+    },
+    titles: {
+      fr: 'Partie 3',
+      en: 'Part 3'
+    },
+    shortTitles: {
+      fr: 'x',
+      en: 'x'
+    },
+    contents: {
+      fr: Part3,
+      en: Part3
+    },
+    Component: ScrollyPage,
+    routeGroup: 'primary'
+  },
   // {
   //   routes: {
   //     fr: 'references',

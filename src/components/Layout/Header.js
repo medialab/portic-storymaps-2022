@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
+import routes from '../../summary';
+
 /**
  * Header contains navigation and…
  * @param {Object} props
@@ -11,7 +13,7 @@ import { Link } from "react-router-dom";
 
 export default function Header({
     willOpenNav,
-    langagesFlag = ['fr', 'en'],
+    langagesFlag,
     onLangChange,
     lang,
 }) {
@@ -24,10 +26,6 @@ export default function Header({
 
     function onClickOpen () {
         setIsOpen(!isOpen);
-    }
-
-    function onClickLang (langFlag) {
-        // setLang(langFlag);
     }
 
     return (
@@ -43,9 +41,13 @@ export default function Header({
             <div className={'navbar-menu' + (isOpen === true ? ' is-active' : '')}>
                 <div className="navbar-start">
                     <Link to='/' className="navbar-item">Accueil</Link>
-                    <Link to='/fr/page/partie-0' className="navbar-item">Intro</Link>
-                    <Link to='/fr/page/partie-1' className="navbar-item">Partie 1</Link>
-                    <Link to='/fr/page/partie-2' className="navbar-item">Partie 2</Link>
+                    {
+                        routes.map(({ routes, titles }) => {
+                            const pagePath = routes[lang];
+                            const title = titles[lang];
+                            return <Link to={`/${lang}/page/${pagePath}`} className="navbar-item">{title}</Link>
+                        })
+                    }
                     <Link to='about' className="navbar-item">À propos</Link>
                 </div>
             </div>
