@@ -33,8 +33,10 @@ with requests.Session() as s:
         # Google tracked link to clean link
         link['href'] = re.search(r"q=(.*)&sa", link['href']).group(1)
         # Add attributes for safe navigation
+        """
         link['target'] = '_blank'
         link['rel'] = 'noopener noreferrer'
+        """
 
     content = soup.prettify() # Beautify HTML
     # Remove useless tags and attributes
@@ -54,14 +56,18 @@ with requests.Session() as s:
             new_tag = new_tag.div
             caller.insert_after(new_tag)
             # Store each element is not a <h1> or another <caller> in the <div>
+            """
             for next_tag in new_tag.find_all_next():
                 if next_tag.name not in {'h1', 'caller'}:
                     new_tag.append(next_tag)
                 else:
                     break
+            """
 
     content = soup.prettify()
     md = html2markdown.convert(content)
+
+    md = md.replace('caller', 'Caller')
 
     # Analyse each Markdown line to find first level titles and split parts
     md_lines = md.split('\n')
