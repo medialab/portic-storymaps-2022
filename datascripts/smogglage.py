@@ -13,7 +13,7 @@ import csv
 from index import (
     get_viz_metas
 )
-from functions import (
+from utils import (
     is_smoggleur_dunkerque,
     is_smoggleur_calais,
     is_smoggleur_boulogne,
