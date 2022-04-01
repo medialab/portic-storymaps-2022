@@ -67,7 +67,9 @@ with requests.Session() as s:
     content = soup.prettify()
     md = html2markdown.convert(content)
 
+    # React requirements
     md = md.replace('caller', 'Caller')
+    md = md.replace('class', 'className')
 
     # Analyse each Markdown line to find first level titles and split parts
     md_lines = md.split('\n')

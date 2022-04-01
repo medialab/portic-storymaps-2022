@@ -42,10 +42,10 @@ export default function Header({
                 <div className="navbar-start">
                     <Link to='/' className="navbar-item">Accueil</Link>
                     {
-                        routes.map(({ routes, titles }) => {
+                        routes.map(({ routes, titles }, i) => {
                             const pagePath = routes[lang];
                             const title = titles[lang];
-                            return <Link to={`/${lang}/page/${pagePath}`} className="navbar-item">{title}</Link>
+                            return <Link to={`/${lang}/page/${pagePath}`} className="navbar-item" key={i}>{title}</Link>
                         })
                     }
                     <Link to='about' className="navbar-item">À propos</Link>

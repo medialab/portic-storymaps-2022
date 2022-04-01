@@ -10,23 +10,21 @@ import routes from './summary';
 
 import './styles/app.scss'
 
-
 const langagesFlag = ['fr', 'en'];
 
 export default function App() {
-  /**
-   * @type {['fr'|'en', Function]}
-   * @typedef {Function} setLang Set the app langage for i18n
-   */
   return (
     <HashRouter>
     <div className="App">
 
         <Routes>
-          <Route path="/:lang/" element={
-            <Layout langagesFlag={langagesFlag} />
-          }>
-            {// looping through the page
+          <Route key='lang' path="/:lang/" element=
+            {
+              // Header, Footer, Contexts and Outlet to include below routes
+              <Layout langagesFlag={langagesFlag} />
+            }
+          >
+            {
               langagesFlag.map(lang => {
                 return routes
                   .map(({
@@ -35,15 +33,15 @@ export default function App() {
                     contents,
                     Component: ThatComponent,
                   }, index) => {
-                    const route = `page/${inputRoute[lang]}`;
+                    const path = `page/${inputRoute[lang]}`;
                     return (
-                      <Route key={index} path={route} exact
+                      <Route key={index} path={path} exact
                         element={
-                          <ThatComponent
+                          <ThatComponent // ScrollyPage or PlainPage
                             {
                             ...{
-                              contents,
-                              titles,
+                              contents, // Mdx files, for each lang
+                              titles, // for each lang
                             }
                             }
                           />
@@ -54,14 +52,15 @@ export default function App() {
                   })
               })
             }
-            <Route path="atlas/:visualizationId?" component={Atlas} />
-            <Route path="about" element={<About />} />
-            <Route index element={<Home />} />
+            <Route key='atlas' path="atlas/:visualizationId?" component={Atlas} />
+            <Route key='about' path="about" element={<About />} />
+            <Route key='home' index element={<Home />} />
           </Route>
           <Route
-                path="*"
-                element={<Navigate to="fr" />}
-            />
+            key='404'
+            path="*"
+            element={<Navigate to="fr" />}
+          />
         </Routes>
     </div>
     </HashRouter>

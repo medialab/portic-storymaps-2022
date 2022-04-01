@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import omit from 'lodash/omit';
 import cx from 'classnames';
 import Measure from 'react-measure'
 
 import VisualizationContainer from '../../visualizations/index.js';
+import { VisualizationControlContext } from '../../utils/contexts';
 
 /**
  * Controller preparing a given visualization for rendering (cleaning props, providing dimensions)
@@ -24,6 +25,7 @@ const VisualizationController = ({
     height: 1000
   });
   const visProps = activeVisualization && omit(activeVisualization, ['id', 'ref', 'visualizationId']);
+  
   return (
     <Measure 
       bounds
