@@ -31,6 +31,8 @@ with requests.Session() as s:
 
     for link in soup.find_all('a'):
         # Google tracked link to clean link
+        if link.has_attr('href') == False:
+            continue
         link['href'] = re.search(r"q=(.*)&sa", link['href']).group(1)
         # Add attributes for safe navigation
         """
