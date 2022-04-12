@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useEffect, useRef, useContext } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server'
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import cx from 'classnames';
@@ -20,7 +21,6 @@ const CENTER_FRACTION = 0.6;
 
 import './ScrollyPage.scss';
 
-
 /**
  * Import .mdx files to render text and viz (<Caller/>) on a long page to scroll
  * @param {Object} props
@@ -32,6 +32,7 @@ import './ScrollyPage.scss';
 export default function ScrollyPage ({
     contents,
     titles,
+    chapter,
     ...props
 }) {
     const { lang } = useContext(SettingsContext);
@@ -41,15 +42,24 @@ export default function ScrollyPage ({
 
     /** @type {[Object, Function]} */
     const [visualizations, setVisualizations] = useReducer(
-        (state, newState) => ({ ...state, ...newState }),
+        (state, {type, payload}) => {
+            switch(type) {
+                case 'SET':
+                    return payload;
+                default:
+                case 'MERGE':
+                    return { ...state, ...payload }
+            }
+            
+        },
         {}
     )
     /** @type {[Object, Function]} */
     const [data, setData] = useState({});
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
-    /** @type {['process'|'finished', Function]} */
-    const [loadingStateCallers, setLoadingStateCallers] = useState('process');
+    // /** @type {['process'|'finished', Function]} */
+    // const [loadingStateCallers, setLoadingStateCallers] = useState('process');
 
     /**
      * Register a new viz to the page list
@@ -60,26 +70,11 @@ export default function ScrollyPage ({
      */
     function onRegisterVisualization (params) {
         setVisualizations({
-            ...visualizations,
-            [params.callerId]: { ...params }
+            type: 'MERGE',
+            payload: {
+                [params.callerId]: { ...params }
+            }
         });
-    }
-
-    /**
-     * Remove a viz from the page list
-     * @param {String} callerId 
-     */
-    function onUnregisterVisualization (callerId) {
-        const newVis = Object.entries(visualizations).reduce((res, [thatId, payload]) => {
-            if (thatId === callerId) {
-              return res;
-            }
-            return {
-              ...res,
-              [thatId]: payload
-            }
-          }, {})
-          setVisualizations(newVis)
     }
     
     /**
@@ -98,29 +93,22 @@ export default function ScrollyPage ({
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setLoadingStateCallers('finished');
-        }, 300);
-    }, []);
+        setVisualizations({
+            type: 'SET',
+            payload: {}
+        })
+    }, [contents]);
 
     useEffect(() => {
-        if (loadingStateCallers !== 'finished') {
-            return;
-        }
-
         setLoadingState('process');
 
-        let filesCsvToLoad = new Set();
-        const visualisationsIds = Object
-            .values(visualizations)
-            .map(vizMetas => vizMetas.visualizationId)
-            .filter(vizId => vizId !== undefined)
-
-        for (const id of visualisationsIds) {
-            const vizOutputs = visualizationsMetas[id]['outputs'];
-            vizOutputs.forEach(output => filesCsvToLoad.add(output));
-        }
-
+        let filesCsvToLoad = new Set(
+            Object.keys(visualizationsMetas)
+                .map(vizId => visualizationsMetas[vizId])
+                .filter(viz => viz['n_chapitre'] === chapter)
+                .map(viz => viz['outputs'])
+                .flat()
+        );
         filesCsvToLoad = Array.from(filesCsvToLoad);
 
         Promise.all(
@@ -138,7 +126,7 @@ export default function ScrollyPage ({
             setLoadingState('failed');
             console.error(error);
         })
-    }, [loadingStateCallers]);
+    }, [chapter]);
 
     if (loadingState === 'process') {
         return <Loader message='En cours de chargement' />
@@ -147,12 +135,9 @@ export default function ScrollyPage ({
         return <Loader message='Échec du chargement' />
     }
 
-    console.log(data);
-
     return (
         <VisualisationContext.Provider value={{
             onRegisterVisualization,
-            onUnregisterVisualization,
             onClickCallerScroll
         }}>
 

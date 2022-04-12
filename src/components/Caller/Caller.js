@@ -12,15 +12,16 @@ import { VisualisationContext } from '../../utils/contexts';
 
 export default function Caller ({
     id: visualizationId,
+    className,
     ...props
 }) {
     const ref = useRef(null);
     /** @type {[String, Function]} */
     const [callerId, setCallerId] = useState(genId());
+    const isInvalid = className === 'is-invalid';
 
     const {
         onRegisterVisualization,
-        onUnregisterVisualization,
         onClickCallerScroll
     } = useContext(VisualisationContext);
 
@@ -34,13 +35,12 @@ export default function Caller ({
                 callerId
             });
         });
-        return onUnregisterVisualization(callerId);
     }, [callerId]);
 
     return (
         <div
             ref={ref}
-            className='Caller'
+            className={'Caller ' + (isInvalid ? 'is-invalid' : '')}
             onClick={(e) => onClickCallerScroll(ref)}
         >
             {

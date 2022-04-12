@@ -1,16 +1,56 @@
+#!/usr/bin/env python3
+
+'''
+Description: Get data from shared Google Drive documents to generate pages content
+License: GPL-3.0-or-later
+Author: Guillaume Brioudes (https://myllaume.fr/)
+Date last modified: 2022-04-11
+Python Version: 3.10.1
+'''
+
 import requests
 from bs4 import BeautifulSoup
 from html_sanitizer import Sanitizer
 import html2markdown
 import re
+import csv
+import json
 
 sanitizer = Sanitizer({
     'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'sub', 'sup', 'hr', 'caller'),
     'empty': ('hr', 'caller'),
-    'attributes': { 'caller': ('id'), 'a': ('href', 'rel', 'target') }
+    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target') }
 })
 
 GDOC_URL = 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub'
+GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
+
+"""
+Import visualisations list from GSheet
+"""
+
+viz_id_list = {}
+
+with requests.Session() as s:
+    download = s.get(GSHEET_URL)
+    decoded_content = download.content.decode('utf-8')
+
+    viz_id_list = {}
+
+    reader = csv.DictReader(decoded_content.splitlines(), delimiter=',')
+    for row in reader:
+        row['n_chapitre'] = int(row['n_chapitre'])
+        row['inputs'] = row['inputs'].split(',')
+        row['outputs'] = row['outputs'].split(',')
+        viz_id_list[ row['id'] ] = row
+
+    json_object = json.dumps(viz_id_list, indent=4, ensure_ascii=False)
+    with open('../src/data/viz.json', "w") as f:
+        f.write(json_object)
+
+"""
+Import page content from GDoc
+"""
 
 parts = [[]]
 
@@ -19,7 +59,7 @@ with requests.Session() as s:
     decoded_content = download.content.decode('utf-8')
 
     # Unescape tags and their quotes
-    decoded_content = re.sub(r"&lt;(.*?)/&gt;", r"<\1>", decoded_content).replace('”', '"').replace('“', '"')
+    decoded_content = re.sub(r"&lt;(.*?)&gt;", r"<\1>", decoded_content).replace('”', '"').replace('“', '"')
 
     soup = BeautifulSoup(decoded_content, 'html.parser')
     title = soup.title.get_text()
@@ -65,29 +105,36 @@ with requests.Session() as s:
                 else:
                     break
             """
+            continue
 
-    content = soup.prettify()
-    md = html2markdown.convert(content)
+    for title in soup.find_all('h1'):
+        # Match <h1> to init a new part
+        parts.append([title])
+        for next_tag in title.find_all_next():
+            if next_tag.name == 'h1':
+                # Begin a new part if new title
+                break
+            # Store each brother tag in list
+            parts[-1].append(next_tag)
 
-    # React requirements
-    md = md.replace('caller', 'Caller')
-    md = md.replace('class', 'className')
+    parts = parts[1:] # skip first empty part
 
-    # Analyse each Markdown line to find first level titles and split parts
-    md_lines = md.split('\n')
-    for line in md_lines:
-        if line == '':
-            pass
-        if re.match(r"^#\s.*?$", line):
-            # Match '# Title 1'
-            parts.append([line])
-        else:
-            # Append other lines into the last part array
-            parts[-1].append(line)
-
-    # Each part became a MDX file
     for i, part in enumerate(parts):
-        part = '\n'.join(part)
+        # Make a new soup from each array of tags
+        part = ''.join([str(tag) for tag in part])
+        part_soup = BeautifulSoup(part, 'html.parser')
+        for caller in part_soup.find_all('caller'):
+            part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == i]
+            if caller.has_attr('id') and caller['id'] not in part_viz_id_list:
+                # <Caller> id is not find from viz id list
+                caller['class'] = 'is-invalid'
+        part = part_soup.prettify()
+
+        md = html2markdown.convert(part)
+        # React requirements
+        md = md.replace('caller', 'Caller')
+        md = md.replace('class', 'className')
+
         f = open('../src/content/fr/partie-' + str(i) + '.mdx', "w")
-        f.write(part)
+        f.write(md)
         f.close()

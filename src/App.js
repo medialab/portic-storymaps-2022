@@ -29,19 +29,20 @@ export default function App() {
                 return routes
                   .map(({
                     titles,
-                    routes: inputRoute,
+                    routes: inputRoutes,
                     contents,
                     Component: ThatComponent,
                   }, index) => {
-                    const path = `page/${inputRoute[lang]}`;
+                    const path = `page/${inputRoutes[lang]}`;
                     return (
                       <Route key={index} path={path} exact
                         element={
                           <ThatComponent // ScrollyPage or PlainPage
+                            chapter={index} // number of chapter
                             {
                             ...{
                               contents, // Mdx files, for each lang
-                              titles, // for each lang
+                              titles // for each lang
                             }
                             }
                           />
