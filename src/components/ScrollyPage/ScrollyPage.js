@@ -1,9 +1,6 @@
-import React, { useState, useReducer, useEffect, useRef, useContext } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server'
+import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
-import cx from 'classnames';
-import ReactTooltip from 'react-tooltip';
 
 import { SettingsContext } from '../../utils/contexts';
 import { VisualisationContext } from '../../utils/contexts';
@@ -35,10 +32,11 @@ export default function ScrollyPage ({
     chapter,
     ...props
 }) {
-    const { lang } = useContext(SettingsContext);
-    const Content = contents[lang];
-    const title = buildPageTitle(titles[lang], lang);
-    const sectionRef = useRef(null);
+    const { lang } = useContext(SettingsContext)
+        , Content = contents[lang]
+        , title = buildPageTitle(titles[lang], lang)
+        , sectionRef = useRef(null)
+        , scrollY = useScrollYPosition();
 
     /** @type {[Object, Function]} */
     const [visualizations, setVisualizations] = useReducer(
@@ -58,8 +56,10 @@ export default function ScrollyPage ({
     const [data, setData] = useState({});
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
-    // /** @type {['process'|'finished', Function]} */
-    // const [loadingStateCallers, setLoadingStateCallers] = useState('process');
+    /** @type {[Boolean, Function]} */
+    const [isFocusOnViz, setIsFocusOnViz] = useState(false);
+    /** @type {[String, Function]} */
+    const [focusedVizId, setFocusedVizId] = useState(null);
 
     /**
      * Register a new viz to the page list
@@ -79,26 +79,70 @@ export default function ScrollyPage ({
     
     /**
      * Scroll to the <Caller/> onclick event
+     * The scrollTo function launch scroll useEffect
      * @param {*} ref Caller element from React.useRef
      */
     function onClickCallerScroll (ref) {
-        const { y: initialVisY } = ref.current.getBoundingClientRect();
-        const visY = initialVisY + window.scrollY;
-        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
-        const scrollTo = visY - DISPLACE_Y * .9;
+        const { y: initialVizY } = ref.current.getBoundingClientRect();
+        const vizY = initialVizY + window.scrollY;
+        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
+        const scrollTo = vizY - DISPLACE_Y * 0.9;
+
         window.scrollTo({
             top: scrollTo,
             behavior: 'smooth'
         });
     }
 
+    /**
+     * When change of chapter, clean 'visualisations' state
+     */
     useEffect(() => {
         setVisualizations({
             type: 'SET',
             payload: {}
         })
-    }, [contents]);
+    }, [chapter]);
 
+    /**
+     * When scroll, set the focused visualisation
+     */
+    useEffect(() => {
+        if (Object.keys(visualizations).length === 0) { return; }
+        const visualizationEntries = Object.entries(visualizations);
+
+        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
+        const y = scrollY + DISPLACE_Y;
+        const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
+        const sectionEnd = sectionDims.y + window.scrollY + sectionDims.height;
+
+        // if the Y position is out from scroll section, hide viz (use to avoid hiding the footer)
+        if (y > sectionEnd) {
+            setIsFocusOnViz(false);
+            return;
+        }
+        setIsFocusOnViz(true);
+
+        for (let i = visualizationEntries.length - 1; i >= 0; i--) {
+            const [vizId, vizParms] = visualizationEntries[i];
+            const { ref } = vizParms;
+
+            if (!!ref.current === false) { continue; }
+
+            const { y: initialVizY } = ref.current.getBoundingClientRect();
+            let vizY = initialVizY + window.scrollY;
+
+            if (y > vizY) {
+                setFocusedVizId(vizParms.visualizationId);
+                break;
+            }
+        }
+    }, [scrollY, visualizations]);
+
+    /**
+     * When change of chapter, store each CSV output in 'data' sate
+     * for each chapter output
+     */
     useEffect(() => {
         setLoadingState('process');
 
@@ -120,13 +164,30 @@ export default function ScrollyPage ({
                 payload[filesCsvToLoad[i]] = datasets[i];
             }
             setData(payload);
-            setLoadingState('sucessed');
+            setLoadingState('successed');
         })
         .catch((error) => {
             setLoadingState('failed');
             console.error(error);
         })
     }, [chapter]);
+
+    /**
+     * When load viz caller, set the first as focused in 'focusedVizId' state
+     */
+    useEffect(() => {
+        const firstCallerViz = Object.values(visualizations)[0];
+
+        if (firstCallerViz === undefined) {
+            setIsFocusOnViz(false);
+            return;
+        }
+
+        const firstCallerVizId = firstCallerViz.visualizationId;
+
+        setIsFocusOnViz(true);
+        setFocusedVizId(firstCallerVizId);
+    }, [visualizations]);
 
     if (loadingState === 'process') {
         return <Loader message='En cours de chargement' />
@@ -150,8 +211,16 @@ export default function ScrollyPage ({
                     <Content components={{Caller}} />
                 </section>
 
-                <aside>
-
+                <aside className={isFocusOnViz === true ? 'is-focused' : ''}>
+                    {
+                        isFocusOnViz && 
+                        <VisualizationController
+                            {...{
+                                focusedVizId,
+                                data
+                            }}
+                        />
+                    }
                 </aside>
             </div>
 

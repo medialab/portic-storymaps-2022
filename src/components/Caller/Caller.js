@@ -26,6 +26,8 @@ export default function Caller ({
     } = useContext(VisualisationContext);
 
     useEffect(() => {
+        if (isInvalid) { return; }
+
         setTimeout(() => {
             // we wrap callback in a setTimeout in order to have a non-null ref to the HTML element
             onRegisterVisualization({
@@ -37,10 +39,28 @@ export default function Caller ({
         });
     }, [callerId]);
 
+    if (isInvalid) {
+        return (
+            <div
+                ref={ref}
+                id={visualizationId}
+                className={'Caller is-invalid'}
+            >
+                {
+                    process.env.NODE_ENV === 'development' &&
+                    <span>Caller viz
+                        <code>{visualizationId}</code> : <code>{JSON.stringify({...props})}</code>
+                    </span>
+                }
+            </div>
+        )
+    }
+
     return (
         <div
             ref={ref}
-            className={'Caller ' + (isInvalid ? 'is-invalid' : '')}
+            id={visualizationId}
+            className='Caller'
             onClick={(e) => onClickCallerScroll(ref)}
         >
             {

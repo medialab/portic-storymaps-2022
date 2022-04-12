@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import omit from 'lodash/omit';
 import cx from 'classnames';
 import Measure from 'react-measure'
@@ -6,55 +6,43 @@ import Measure from 'react-measure'
 import VisualizationContainer from '../../visualizations/index.js';
 import { VisualizationControlContext } from '../../utils/contexts';
 
+import visualizationsMetas from '../../data/viz';
+
 /**
  * Controller preparing a given visualization for rendering (cleaning props, providing dimensions)
- * @param {object} activeVisualization - JSON data about the visualization to display
- * @param {string} lang
- * @param {boolean} atlasMode
- * @param {boolean} screenshotMode
+ * @param {Object} props
+ * @param {String} props.focusedVizId
+ * @param {Object} props.data
  * @returns {React.ReactElement} - React component
  */
-const VisualizationController = ({
-  activeVisualization,
-  lang,
-  atlasMode,
-  screenshotMode
-}) => {
-  const [dimensions, setDimensions] = useState({
-    width: 1000,
-    height: 1000
-  });
-  const visProps = activeVisualization && omit(activeVisualization, ['id', 'ref', 'visualizationId']);
-  
-  return (
-    <Measure 
-      bounds
-      onResize={contentRect => {
-        setDimensions(contentRect.bounds)
-      }}
-    >
-      {({ measureRef }) => (
-          <div ref={measureRef} className={cx("VisualizationController", {'is-empty': !activeVisualization})}>
-          {/* <h2>Visualization controller</h2> */}
-          {
-            activeVisualization ?
-            <>
-              <VisualizationContainer 
-                lang={lang} 
-                screenshotMode={screenshotMode} 
-                atlasMode={atlasMode} 
-                id={atlasMode ? activeVisualization.id : activeVisualization.visualizationId} 
-                {...visProps} 
-                dimensions={dimensions} 
-              />
-            </>
-            : null // <div>Pas de visualisation à afficher</div>
-          }
-  
-        </div>
-      )}
-    </Measure>
-  );
-}
+export default function VisualizationController({
+    focusedVizId,
+    data
+}) {
+    console.log(data);
 
-export default VisualizationController;
+    // useEffect(() => {
+    //   if (focusedVizId === null) { return; }
+
+    //   let {
+    //       titre_fr,
+    //       description_fr,
+    //       description_en,
+    //       comment_lire_fr,
+    //       comment_lire_en,
+    //       outputs
+    //   } = Object.keys(visualizationsMetas)
+    //       .map(vizId => visualizationsMetas[vizId])
+    //       .find(viz => viz['id'] === focusedVizId);
+
+    //   outputs = outputs.map(csvFile => data[csvFile]);
+    // }, [focusedVizId]);
+
+    return (
+        <pre>
+            <code>
+                {focusedVizId}
+            </code>
+        </pre>
+    )
+}
