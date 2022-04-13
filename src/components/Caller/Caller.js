@@ -19,6 +19,7 @@ export default function Caller ({
     /** @type {[String, Function]} */
     const [callerId, setCallerId] = useState(genId());
     const isInvalid = className === 'is-invalid';
+    const isBlank = visualizationId === undefined;
 
     const {
         onRegisterVisualization,
@@ -26,7 +27,7 @@ export default function Caller ({
     } = useContext(VisualisationContext);
 
     useEffect(() => {
-        if (isInvalid) { return; }
+        if (isInvalid || isBlank) { return; }
 
         setTimeout(() => {
             // we wrap callback in a setTimeout in order to have a non-null ref to the HTML element

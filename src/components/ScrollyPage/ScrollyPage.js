@@ -8,7 +8,7 @@ import { fetchDataCsv } from '../../utils/fetch';
 
 import Caller from '../../components/Caller';
 import Loader from '../../components/Loader';
-import VisualizationController from '../../components/VisualizationController';
+import VisualizationContainer from '../../components/VisualizationContainer';
 import VisualizationFocus from '../../components/VisualizationFocus';
 
 import { buildPageTitle } from '../../utils/misc';
@@ -52,7 +52,6 @@ export default function ScrollyPage ({
         },
         {}
     )
-    /** @type {[Object, Function]} */
     const [data, setData] = useState({});
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
@@ -137,7 +136,7 @@ export default function ScrollyPage ({
                 break;
             }
         }
-    }, [scrollY, visualizations]);
+    }, [scrollY, sectionRef]);
 
     /**
      * When change of chapter, store each CSV output in 'data' sate
@@ -214,12 +213,12 @@ export default function ScrollyPage ({
                 <aside className={isFocusOnViz === true ? 'is-focused' : ''}>
                     {
                         isFocusOnViz && 
-                        <VisualizationController
-                            {...{
+                        <VisualizationContainer {
+                            ...{
                                 focusedVizId,
                                 data
-                            }}
-                        />
+                            }
+                        } />
                     }
                 </aside>
             </div>

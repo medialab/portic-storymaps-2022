@@ -13,18 +13,16 @@ import translate from '../../utils/translate';
  */
 
 export default function SmogglagePortsStats ({
-    data
+    data,
+    title
 }) {
-    const { lang } = useContext(SettingsContext);
-    const title = translate('SmogglagePortsStats', 'title', lang);
+    data = data['smogglage_ports_stats.csv'];
 
     return (
         <>
-            <h2 className='title'>{title}</h2>
-
             <BarChart
                 data={data}
-                title="Test de bar chart (fill gaps)"
+                title={title}
                 width={window.innerWidth - 20}
                 x={{
                     field: 'port de départ',
@@ -36,12 +34,6 @@ export default function SmogglagePortsStats ({
                 }}
                 tooltip={item => item['port de départ']}
             />
-
-            <pre>
-                <code>
-                    {JSON.stringify(data, undefined, 4)}
-                </code>
-            </pre>
         </>
     )
 }
