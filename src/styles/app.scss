@@ -27,6 +27,9 @@ main.wrapper {
     padding: $small-gutter;
     font-size: 0.7rem;
     cursor: pointer;
+    &.is-invalid {
+        background: rgba(192, 106, 106, 0.8);
+    }
     &.is-active {
         background: $color-accent-background;
         color: white;

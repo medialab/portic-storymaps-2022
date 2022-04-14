@@ -15,7 +15,7 @@ import ContentsEn from '../../content/en/introduction.mdx'
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 // import CitationWidget from '../CitationWidget';
-import VisualizationController from '../VisualizationController';
+import VisualizationContainer from '../VisualizationContainer';
 import { VisualizationControlContext } from '../../utils/contexts';
 import summary from '../../summary';
 
@@ -206,7 +206,7 @@ function Home({ lang = 'fr' }
               {lang === 'fr' ? <ContentsFr /> : <ContentsEn />}
             </section>
             <aside className={cx({'is-focused': focusOnViz, 'is-fixed': inVis})}>
-              <VisualizationController lang={lang} activeVisualization={activeVisualization} />
+              {/* <VisualizationContainer lang={lang} activeVisualization={activeVisualization} /> */}
             </aside>
             
           </div>

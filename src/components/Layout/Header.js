@@ -42,12 +42,13 @@ export default function Header({
                 <div className="navbar-start">
                     <Link to='/' className="navbar-item">Accueil</Link>
                     {
-                        routes.map(({ routes, titles }) => {
+                        routes.map(({ routes, titles }, i) => {
                             const pagePath = routes[lang];
                             const title = titles[lang];
-                            return <Link to={`/${lang}/page/${pagePath}`} className="navbar-item">{title}</Link>
+                            return <Link to={`/${lang}/${pagePath}`} className="navbar-item" key={i}>{title}</Link>
                         })
                     }
+                    <Link to='atlas' className="navbar-item">Atlas</Link>
                     <Link to='about' className="navbar-item">À propos</Link>
                 </div>
             </div>
@@ -58,7 +59,7 @@ export default function Header({
                         <button
                             key={i}
                             className={'button is-small is-white' + (lang === flag ? 'is-active' : '')}
-                            onClick={onLangChange}
+                            onClick={() => onLangChange(flag)}
                         >{flag}</button>)
                 }
             </div>
