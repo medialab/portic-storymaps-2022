@@ -49,7 +49,6 @@ export default function Header({
                         })
                     }
                     <Link to='atlas' className="navbar-item">Atlas</Link>
-                    <Link to='about' className="navbar-item">À propos</Link>
                 </div>
             </div>
 
