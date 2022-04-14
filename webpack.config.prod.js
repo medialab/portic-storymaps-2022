@@ -8,7 +8,7 @@ const webpack = require('webpack')
 module.exports = {
     entry: './index.js',
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'build'),
         filename: '[name].bundle.js'
     },
     plugins: [
