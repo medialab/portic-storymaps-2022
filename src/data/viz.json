@@ -1,19 +1,152 @@
 {
     "smoggleur-proportion": {
         "id": "smoggleur-proportion",
-        "n_chapitre": 2,
+        "n_chapitre": 1,
         "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/smoggleur-proportion",
         "titre_fr": "Proportion des smoggleurs au départ de Dunkerque et d'autres ports français",
-        "titre_en": "",
+        "titre_en": "Proportion of smogglers from Dunkirk and other French ports",
         "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
-        "description_en": "",
-        "comment_lire_fr": "",
-        "comment_cest_fait_fr": "",
-        "comment_lire_en": "",
-        "comment_cest_fait_en": "",
+        "description_en": "Proportions of boat departures based on their smogglegler status or non-smogglegler.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "inputs": [
             "navigo_all_flows_1787.csv",
             "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "toflit-cust": {
+        "id": "toflit-cust",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/toflit-cust",
+        "titre_fr": "Comparer Toflit18 et CUST",
+        "titre_en": "Compare Toflit18 and CUST",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "incertitude-smogglage": {
+        "id": "incertitude-smogglage",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/incertitude-smogglage",
+        "titre_fr": "Incertiture du smogglage",
+        "titre_en": "Uncertictive smogging",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "bureau-calais": {
+        "id": "bureau-calais",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/bureau-calais",
+        "titre_fr": "Comparaison avec le bureau de ferme de Calais",
+        "titre_en": "Comparison with the Calais farm office",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "port-smogglage": {
+        "id": "port-smogglage",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/port-smogglage",
+        "titre_fr": "Ports smoggleurs",
+        "titre_en": "Smoggle ports",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "dunkerque-courses": {
+        "id": "dunkerque-courses",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/dunkerque-courses",
+        "titre_fr": "Courses depuis Dunkerque",
+        "titre_en": "Course from Dunkirk",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "douane-amiraute": {
+        "id": "douane-amiraute",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/douane-amiraute",
+        "titre_fr": "Rapports de douane de l'amirauté",
+        "titre_en": "Admiralty customs reports",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ]
+    },
+    "port-franc": {
+        "id": "port-franc",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/port-franc",
+        "titre_fr": "Le porc franc de Dunkerque",
+        "titre_en": "Dunkirk's Franc Pork",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            ""
         ],
         "outputs": [
             "smogglage_ports_stats.csv"

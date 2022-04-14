@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 
 import BarChart from '../../components/BarChart';
 
-import { SettingsContext } from '../../utils/contexts';
-import translate from '../../utils/translate';
-
 /**
  * Header contains navigation and…
  * @param {Object} props

@@ -1,46 +1,48 @@
 import React from "react";
 import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
-import { SettingsContext } from "../../utils/contexts";
 
 import Header from './Header';
 import Footer from './Footer';
 
 import routes from '../../summary';
 
-export default function Layout ({
-  ...props
+export default function Layout({
+    ...props
 }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const {lang} = useParams();
-  const onLangChange = () => {
-    const otherLang = lang === 'fr' ? 'en' : 'fr';
+    const { lang } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const { pathname } = location;
-    // @todo this is dirty, refactor this to be handled based on the routes config JSON ?
-    if (pathname.includes('atlas')) {
-      const visualizationId = pathname.split('/atlas/').pop();
-      navigate(`/${ln}/atlas/${visualizationId || ''}`);
-    } else {
-      const pathOtherLang = location.pathname.split('/').pop();
-      const routeItem = routes.find(route => {
-        return route.routes[lang] === pathOtherLang;
-      });
-      if (routeItem) {
-        navigate(`/${otherLang}/page/${routeItem.routes[otherLang]}`);
-      } else {
-        navigate(`/${otherLang}/`);
-      }
-    }
-  }
-  return (
-      <SettingsContext.Provider value={{lang}}>
-        <Header lang={lang} onLangChange={onLangChange} {...props} />
+    function onLangChange(newLangFlag) {
+        let { pathname } = location;
+        const [_, formerLang, page] = pathname.split('/');
+
+        const partPageMetas = routes.find(route => route.routes[formerLang] === page);
         
-        <main className="wrapper">
-          <Outlet />
-        </main>
-        <Footer />
-      </SettingsContext.Provider>
-  );
+        if (partPageMetas !== undefined) {
+            navigate(`/${newLangFlag}/${partPageMetas.routes[newLangFlag]}`);
+            return;
+        }
+
+        switch (page) {
+            case 'atlas':
+                navigate(`/${newLangFlag}/${page}`)
+                return;
+            default:
+            case undefined:
+                navigate(`/${newLangFlag}`)
+                return;
+        }
+    }
+
+    return (
+        <>
+            <Header lang={lang} onLangChange={onLangChange} {...props} />
+
+            <main className="wrapper">
+                <Outlet />
+            </main>
+            <Footer />
+        </>
+    );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 
-import { SettingsContext } from '../../utils/contexts';
 import { VisualisationContext } from '../../utils/contexts';
 import { fetchDataCsv } from '../../utils/fetch';
 
@@ -27,16 +27,16 @@ import './ScrollyPage.scss';
  */
 
 export default function ScrollyPage ({
-    contents,
-    titles,
+    Content,
+    title,
     chapter,
     ...props
 }) {
-    const { lang } = useContext(SettingsContext)
-        , Content = contents[lang]
-        , title = buildPageTitle(titles[lang], lang)
+    const { lang } = useParams()
         , sectionRef = useRef(null)
         , scrollY = useScrollYPosition();
+
+    title = buildPageTitle(title, lang);
 
     /** @type {[Object, Function]} */
     const [visualizations, setVisualizations] = useReducer(

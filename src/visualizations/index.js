@@ -2,7 +2,6 @@ import { useContext, useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 
-import { SettingsContext } from '../utils/contexts';
 import visualizationsMetas from '../data/viz';
 
 /**
@@ -20,7 +19,6 @@ export default function VisualizationController ({
     ref,
     dimensions
 }) {
-    const { lang } = useContext(SettingsContext);
     const { width, height } = dimensions;
 
     const {

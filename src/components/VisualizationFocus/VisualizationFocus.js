@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import packageJSON from '../../../package.json';
 import copy from 'copy-to-clipboard';
 import VisualizationController from '../../visualizations';
 import Md from 'react-markdown';
 
-import { SettingsContext } from '../../utils/contexts';
 import visualizationsMetas from '../../data/viz';
 
 import './VisualizationFocus.scss';
@@ -23,7 +23,7 @@ export default function VisualizationFocus({
     onClickClose,
     ...props
 }) {
-    const { lang } = useContext(SettingsContext);
+    const { lang } = useParams();
 
     const dimensions = {
         width: 1000,
