@@ -151,5 +151,25 @@
         "outputs": [
             "smogglage_ports_stats.csv"
         ]
+    },
+    "smoggleur-statut": {
+        "id": "smoggleur-statut",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2021/smoggleur-statut",
+        "titre_fr": "Départs de bateaux anaglais en 1787 avec une précision sur leur statut de smoggleur",
+        "titre_en": "Boat departures Anaglais in 1787 with accuracy on their smogglegate status",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            "navigo_all_flows_1787.csv",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "smoggleur-statut.csv"
+        ]
     }
 }

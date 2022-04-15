@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
+import SmogglageStatus from './SmogglageStatus';
 
 import visualizationsMetas from '../data/viz';
 
@@ -19,17 +20,29 @@ export default function VisualizationController ({
     ref,
     dimensions
 }) {
-    const { width, height } = dimensions;
-
     const {
         title
     } = Object.keys(visualizationsMetas)
         .map(vizId => visualizationsMetas[vizId])
         .find(viz => viz['id'] === vizId);
 
+    const vizContent = useMemo(() => {
+            switch (vizId) {
+                case 'smoggleur-statut':
+                    return (
+                        <SmogglageStatus { ...{ title, data, dimensions } } />
+                    );
+                default:
+                case 'smoggleur-proportion':
+                    return (
+                        <SmogglagePortsStats { ...{ title, data, dimensions } } />
+                    );
+            }
+    }, [vizId])
+
     return (
         <div ref={ref}>
-            <SmogglagePortsStats title={title} data={data} />
+            {vizContent}
         </div>
     )
 }
