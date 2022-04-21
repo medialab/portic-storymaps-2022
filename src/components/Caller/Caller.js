@@ -1,4 +1,5 @@
 import {useContext, useEffect, useRef, useState} from 'react';
+import omit from 'lodash/omit';
 import {v4 as genId} from 'uuid';
 
 import { VisualisationContext } from '../../utils/contexts';
@@ -50,7 +51,7 @@ export default function Caller ({
                 {
                     process.env.NODE_ENV === 'development' &&
                     <span>Caller viz
-                        <code>{visualizationId}</code> : <code>{JSON.stringify({...props})}</code>
+                        <code>{visualizationId}</code> :  <code>{JSON.stringify({...omit(props, 'children')})}</code>
                     </span>
                 }
             </div>
@@ -67,7 +68,7 @@ export default function Caller ({
             {
                 process.env.NODE_ENV === 'development' &&
                 <span>Caller viz
-                    <code>{visualizationId}</code> : <code>{JSON.stringify({...props})}</code>
+                    <code>{visualizationId}</code> : <code>{JSON.stringify({...omit(props, 'children')})}</code>
                 </span>
             }
         </div>
