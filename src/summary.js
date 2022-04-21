@@ -29,7 +29,7 @@ export default [
             en: enPart0,
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'intro'
     },
     {
         routes: {
