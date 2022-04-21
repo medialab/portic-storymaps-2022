@@ -1,15 +1,19 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
+
+import frContent from '../../content/fr/footer.mdx';
+import enContent from '../../content/en/footer.mdx';
+
+import './Footer.scss';
 
 export default function Footer() {
+    const { lang } = useParams();
+
+    const Content = (lang === 'fr') ? frContent : enContent;
+
     return (
-        <footer className="footer">
-            <div className="content has-text-centered">
-                <p>
-                    <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-                    <a href="http://opensource.org/licenses/mit-license.php">GNU GPL</a>. The website content
-                    is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-                </p>
-            </div>
+        <footer className="Footer">
+            <Content />
         </footer>
     );
 }
