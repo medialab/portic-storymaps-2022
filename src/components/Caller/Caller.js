@@ -20,7 +20,7 @@ export default function Caller ({
     /** @type {[String, Function]} */
     const [callerId, setCallerId] = useState(genId());
     const isInvalid = className === 'is-invalid';
-    const isBlank = visualizationId === undefined;
+    const isBlank = className === 'is-blank';
 
     const {
         onRegisterVisualization,

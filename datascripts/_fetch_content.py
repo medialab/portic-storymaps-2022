@@ -63,9 +63,6 @@ for lang in GDOC_URL.keys():
         download = s.get(url)
         decoded_content = download.content.decode('utf-8')
 
-        # Unescape tags and their quotes
-        decoded_content = re.sub(r"&lt;(.*?)&gt;", r"<\1>", decoded_content).replace('”', '"').replace('“', '"')
-
         soup = BeautifulSoup(decoded_content, 'html.parser')
         title = soup.title.get_text()
 
@@ -88,6 +85,8 @@ for lang in GDOC_URL.keys():
         content = soup.prettify() # Beautify HTML
         # Remove useless tags and attributes
         content = sanitizer.sanitize(content)
+        # Unescape caller tags and their quotes
+        content = re.sub(r"&lt;(.*?)&gt;", r"<\1>", content).replace('”', '"').replace('“', '"')
 
         # Second edition of HTML
         soup = BeautifulSoup(content, 'html.parser')
@@ -130,7 +129,11 @@ for lang in GDOC_URL.keys():
             part_soup = BeautifulSoup(part, 'html.parser')
             for caller in part_soup.find_all('caller'):
                 part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == i]
-                if caller.has_attr('id') and caller['id'] not in part_viz_id_list:
+                if caller.has_attr('id') == False:
+                    caller['class'] = 'is-blank'
+                    continue
+                caller['id'] = caller['id'].strip()
+                if caller['id'] not in part_viz_id_list:
                     # <Caller> id is not find from viz id list
                     caller['class'] = 'is-invalid'
             part = part_soup.prettify()
