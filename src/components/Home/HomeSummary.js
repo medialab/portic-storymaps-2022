@@ -26,11 +26,11 @@ function HomeSummary({ lang = 'fr', summary }) {
       <ul className="chapters-links-container">
         {
           summary
-            .filter(item => item.routeGroup === 'primary')
+            .filter(item => item.routeGroup === 'chapter')
             .filter(item => item.routes[lang])
             .map((item, itemIndex) => {
               const title = item.titles[lang];
-              const route = `/${lang}/page/${item.routes[lang]}`;
+              const route = `/${lang}/${item.routes[lang]}`;
               return (
                 <li key={itemIndex}>
                   <Link to={route}>

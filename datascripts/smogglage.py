@@ -103,3 +103,46 @@ with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
         row['% de destination smoggleurs'] = 0 if row['smoggleurs avec produits de contrebande'] == 0 else (row['smoggleurs avec produits de contrebande'] / row['trajets anglais smoggleurs']) * 100
 
         writer.writerow(row)
+
+VIZ_METAS = get_viz_metas('smoggleur-statut')
+
+with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
+    fieldnames = [
+        'departure_fr',
+        'departure_longitude',
+        'departure_latitude',
+        'destination_fr',
+        'destination_longitude',
+        'destination_latitude',
+        'tonnage',
+        'is_smoggleur'
+    ]
+
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+
+    for port in ports.keys():
+        flows = [flow for flow in ports[port]]
+
+        for flow in flows:
+            if flow['flag'] != 'British':
+                continue
+            if flow['destination_fr'] in {'Angleterre', 'Angleterre (destination simulée pour)'}:
+                flow['destination_fr'] = 'Autre en Angleterre'
+                # continue
+            if flow['destination_fr'] in {'pas identifié', 'pas mentionné'}:
+                flow['destination_fr'] = 'inconnu'
+                # continue
+            # if flow['is_smoggleur'] == False:
+            #     continue
+            writer.writerow({
+                'departure_fr': flow['departure_fr'],
+                'departure_longitude': flow['departure_longitude'],
+                'departure_latitude': flow['departure_latitude'],
+                'destination_fr': flow['destination_fr'],
+                'destination_longitude': flow['destination_longitude'],
+                'destination_latitude': flow['destination_latitude'],
+                'tonnage': flow['tonnage'],
+                'is_smoggleur': 1 if flow['is_smoggleur'] == True else 0
+            })

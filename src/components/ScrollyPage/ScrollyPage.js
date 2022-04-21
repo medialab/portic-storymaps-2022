@@ -206,7 +206,7 @@ export default function ScrollyPage ({
             </Helmet>
 
             <div className='ScrollyPage'>
-                <section ref={sectionRef}>
+                <section className="content" ref={sectionRef}>
                     <Content components={{Caller}} />
                 </section>
 
