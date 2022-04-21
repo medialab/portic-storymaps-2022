@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import cx from 'classnames';
 
@@ -16,13 +16,15 @@ export default function Atlas({
     ...props
 }) {
     const { vizId, lang } = useParams();
+    const navigate = useNavigate();
+    console.log('vizId', vizId);
 
     /**
      * Launch focus on a viz
      * @param {Array} csvFiles 
      */
     function onClickFocus (vizId, csvFiles) {
-        console.log('focus');
+        navigate( `/${lang}/atlas/${vizId}`);
     }
 
     return (
