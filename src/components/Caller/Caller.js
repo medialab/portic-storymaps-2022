@@ -1,5 +1,6 @@
 import {useContext, useEffect, useRef, useState} from 'react';
 import omit from 'lodash/omit';
+import cx from 'classnames';
 import {v4 as genId} from 'uuid';
 
 import { VisualisationContext } from '../../utils/contexts';
@@ -24,7 +25,8 @@ export default function Caller ({
 
     const {
         onRegisterVisualization,
-        onClickCallerScroll
+        onClickCallerScroll,
+        focusedVizId
     } = useContext(VisualisationContext);
 
     useEffect(() => {
@@ -41,28 +43,15 @@ export default function Caller ({
         });
     }, [callerId]);
 
-    if (isInvalid) {
-        return (
-            <div
-                ref={ref}
-                id={visualizationId}
-                className={'Caller is-invalid'}
-            >
-                {
-                    process.env.NODE_ENV === 'development' &&
-                    <span>Caller viz
-                        <code>{visualizationId}</code> :  <code>{JSON.stringify({...omit(props, 'children')})}</code>
-                    </span>
-                }
-            </div>
-        )
-    }
-
     return (
         <div
             ref={ref}
             id={visualizationId}
-            className='Caller'
+            className={cx('Caller', {
+                'is-invalid': isInvalid,
+                'is-blank': isBlank,
+                'is-active': focusedVizId && focusedVizId === visualizationId
+            })}
             onClick={(e) => onClickCallerScroll(ref)}
         >
             {

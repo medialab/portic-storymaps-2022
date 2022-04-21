@@ -198,7 +198,8 @@ export default function ScrollyPage ({
     return (
         <VisualisationContext.Provider value={{
             onRegisterVisualization,
-            onClickCallerScroll
+            onClickCallerScroll,
+            focusedVizId
         }}>
 
             <Helmet>
