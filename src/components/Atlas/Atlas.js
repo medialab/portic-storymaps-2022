@@ -22,7 +22,6 @@ export default function Atlas({
 
   const [data, setData] = useState(undefined);
   const [vizMetas, setVizMetas] = useState(undefined);
-  // const [vizIdToFocus, setVizIdToFocus] = useState(vizId); // not necessary, we already have vizId
   /** @type {['process'|'failed'|'successed'|'none', Function]} */
   const [loadingState, setLoadingState] = useState('none');
 
@@ -35,7 +34,7 @@ export default function Atlas({
   }
 
   useEffect(() => {
-    if (!!vizId === false) {
+    if (!!vizId === false || visualizationsMetas[vizId] === undefined) {
       setLoadingState('none');
       return;
     }
@@ -95,7 +94,11 @@ export default function Atlas({
                   onClickClose={(e) => navigate(`/${lang}/atlas`)}
                 />
                 :
-                <Loader message={loadingState === 'process' ? 'En cours de chargement' : 'Échec du chargement'} />
+                {
+                  'process': <Loader message='En cours de chargement' />,
+                  'failed': <Loader message='En cours de chargement' />,
+                  'none': null
+                }[loadingState]
               }
           </div>
           : null
