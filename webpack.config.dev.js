@@ -15,7 +15,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new webpack.DefinePlugin({
-            'process.env.BASE_PATH': JSON.stringify('/')
+            'process.env.BASE_PATH': JSON.stringify('.')
         })
     ],
     module: {

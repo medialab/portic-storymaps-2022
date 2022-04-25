@@ -2,6 +2,8 @@ import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } f
 import { useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
+import ReactTooltip from 'react-tooltip';
+import cx from 'classnames';
 
 import { VisualisationContext } from '../../utils/contexts';
 import { fetchDataCsv } from '../../utils/fetch';
@@ -9,7 +11,6 @@ import { fetchDataCsv } from '../../utils/fetch';
 import Caller from '../../components/Caller';
 import Loader from '../../components/Loader';
 import VisualizationContainer from '../../components/VisualizationContainer';
-import VisualizationFocus from '../../components/VisualizationFocus';
 
 import { buildPageTitle } from '../../utils/misc';
 import visualizationsMetas from '../../data/viz';
@@ -17,6 +18,7 @@ import visualizationsMetas from '../../data/viz';
 const CENTER_FRACTION = 0.6;
 
 import './ScrollyPage.scss';
+import translate from '../../utils/translate';
 
 /**
  * Import .mdx files to render text and viz (<Caller/>) on a long page to scroll
@@ -59,6 +61,8 @@ export default function ScrollyPage ({
     const [isFocusOnViz, setIsFocusOnViz] = useState(false);
     /** @type {[String, Function]} */
     const [focusedVizId, setFocusedVizId] = useState(null);
+    /** @type {['content'|'viz', Function]} */
+    const [activeSideOnResponsive, setActiveSideOnResponsive] = useState('content');
 
     /**
      * Register a new viz to the page list
@@ -93,6 +97,15 @@ export default function ScrollyPage ({
         });
     }
 
+    function onClickChangeResponsive () {
+        if (activeSideOnResponsive === 'content') {
+            setActiveSideOnResponsive('viz')
+        }
+        if (activeSideOnResponsive === 'viz') {
+            setActiveSideOnResponsive('content')
+        }
+    }
+
     /**
      * When change of chapter, clean 'visualisations' state
      */
@@ -108,8 +121,13 @@ export default function ScrollyPage ({
      */
     useEffect(() => {
         if (Object.keys(visualizations).length === 0) { return; }
+        /* @todo this is a rustine, we don't understand
+        why sometimes sectionRef is undefined
+        */
+        if (!sectionRef.current) {
+          return;
+        }
         const visualizationEntries = Object.entries(visualizations);
-
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
         const y = scrollY + DISPLACE_Y;
         const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
@@ -207,11 +225,26 @@ export default function ScrollyPage ({
             </Helmet>
 
             <div className='ScrollyPage'>
-                <section className="content" ref={sectionRef}>
+                <ReactTooltip id="contents-tooltip" />
+                <section className={cx("content", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
+                    <button
+                        className='switch-btn'
+                        onClick={onClickChangeResponsive}
+                        data-for="contents-tooltip"
+                        data-effect="solid"
+                        data-tip={translate('vizContainer', 'switchToContent', lang)}
+                    >➡</button>
                     <Content components={{Caller}} />
                 </section>
 
-                <aside className={isFocusOnViz === true ? 'is-focused' : ''}>
+                <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>
+                    <button
+                        className='switch-btn'
+                        onClick={onClickChangeResponsive}
+                        data-for="contents-tooltip"
+                        data-effect="solid"
+                        data-tip={translate('vizContainer', 'switchToViz', lang)}
+                    >⬅</button>
                     {
                         isFocusOnViz && 
                         <VisualizationContainer {

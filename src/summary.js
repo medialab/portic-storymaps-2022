@@ -17,22 +17,6 @@ import PartAbout from './content/fr/about.mdx';
 export default [
     {
         routes: {
-            fr: 'partie-0',
-            en: 'part-0'
-        },
-        titles: {
-            fr: 'Intro',
-            en: 'Intro-en'
-        },
-        contents: {
-            fr: frPart0,
-            en: enPart0,
-        },
-        Component: ScrollyPage,
-        routeGroup: 'intro'
-    },
-    {
-        routes: {
             fr: 'partie-1',
             en: 'part-1'
         },
@@ -45,7 +29,8 @@ export default [
             en: enPart1
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -61,7 +46,8 @@ export default [
             en: enPart2
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -77,7 +63,8 @@ export default [
             en: enPart3
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -93,6 +80,7 @@ export default [
             en: undefined
         },
         Component: PlainPage,
-        routeGroup: 'secondary'
+        routeGroup: 'secondary',
+        navGroup: 'secondary'
     }
 ];
