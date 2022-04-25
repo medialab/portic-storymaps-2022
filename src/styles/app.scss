@@ -206,6 +206,7 @@ button.is-active {
  .secondary-page {
    margin: 0;
    padding: 0;
+   padding-top: 3em;
    width: 100vw;
    min-height: calc(100vh - #{$footer_height});
    background: $color-background;
