@@ -108,8 +108,13 @@ export default function ScrollyPage ({
      */
     useEffect(() => {
         if (Object.keys(visualizations).length === 0) { return; }
+        /* @todo this is a rustine, we don't understand
+        why sometimes sectionRef is undefined
+        */
+        if (!sectionRef.current) {
+          return;
+        }
         const visualizationEntries = Object.entries(visualizations);
-
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
         const y = scrollY + DISPLACE_Y;
         const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
