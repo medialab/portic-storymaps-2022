@@ -4,6 +4,7 @@
   position: relative;
   width: 100vw;
   min-width: 100vw;
+  min-height: 100vh;
   // max-width: calc(100vw - 2rem);
   background: linear-gradient(to bottom, $color-background-blue 10vh, $color-background 50vh);
   // overflow-x: hidden;
@@ -26,11 +27,16 @@
       opacity: 1;
     }
   }
+  .switch-btn {
+    visibility: hidden;
+    background: transparent;
+  }
+
   > section {
     width: 40%;
     box-sizing: border-box;
-    padding: 0 $medium-gutter 0 $medium_gutter * 4;
-    margin-bottom: $medium-gutter * 15;
+    padding: 0 $medium-gutter $medium_gutter $medium_gutter * 4;
+    // margin-bottom: $medium-gutter * 15;
 
     a {
       color: inherit;
@@ -45,7 +51,12 @@
         font-size: 1rem;
       }
     }
+
+    .switch-btn {
+      float: right;
+    }
   }
+  
   aside {
     position: fixed;
     right: 0;
@@ -53,6 +64,10 @@
     width: 60%;
     height: calc(100vh - #{$header_height});
     box-sizing: border-box;
+
+    .switch-btn {
+      float: left;
+    }
   }
 
   .fullscreen-viz-toggle-container {
@@ -91,6 +106,9 @@
   }
   @include phone {
     max-width: 100vw;
+    .switch-btn {
+      visibility: visible;
+    }
     section {
       width: 100%;
       position: relative;

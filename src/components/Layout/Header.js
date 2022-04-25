@@ -38,7 +38,7 @@ export default function Header({
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
     const title = translate('site', 'title', lang);
-    const scrollY = useDebounce(useScrollYPosition(), 50);
+    const scrollY = useScrollYPosition()
     const pageColorScale = scaleLinear().range([colorBackgroundBlue, colorBackground]).domain([0, 1]);
     const { fontColor, backgroundColor } = useMemo(() => {
         const screenHeight = window.innerHeight;
