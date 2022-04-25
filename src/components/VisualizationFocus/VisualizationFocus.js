@@ -5,6 +5,7 @@ import copy from 'copy-to-clipboard';
 import VisualizationController from '../../visualizations';
 import Md from 'react-markdown';
 
+import translate from '../../utils/translate';
 import visualizationsMetas from '../../data/viz';
 
 import './VisualizationFocus.scss';
@@ -43,26 +44,11 @@ export default function VisualizationFocus({
         , howItsMade = metas['comment_cest_fait_' + lang] || false;
 
     const messages = {
-        description: {
-            fr: "De quoi s'agit t'il ?",
-            en: 'What is about ?',
-        },
-        howItsMade: {
-            fr: 'Comment les données et la visualisation ont-elles été produites ?',
-            en: 'How were the data and visualization produced ?',
-        },
-        howToRead: {
-            fr: 'Comment lire la visualisation ?',
-            en: 'How to read the visualization?'
-        },
-        copyLink: {
-            fr: 'copier le lien de cette visualisation',
-            en: 'copy this visualization link'
-        },
-        linkCopied: {
-            fr: 'lien copié dans le presse-papier !',
-            en: 'link copied in the clipboard !'
-        }
+        description: translate('vizFocus', 'description', lang),
+        howItsMade: translate('vizFocus', 'howItsMade', lang),
+        howToRead: translate('vizFocus', 'howToRead', lang),
+        copyLink: translate('vizFocus', 'copyLink', lang),
+        linkCopied: translate('vizFocus', 'linkCopied', lang)
     }
 
     function onClickCopy (e) {
@@ -111,13 +97,13 @@ export default function VisualizationFocus({
                             </button>
                         </div>
                         <div className="copy-link-container">
-                        <button onClick={onClickCopy}>{copyClicked ? messages.linkCopied[lang] : messages.copyLink[lang]}</button>
+                        <button onClick={onClickCopy}>{copyClicked ? messages.linkCopied : messages.copyLink}</button>
                         </div>
                         <div className="details-contents">
                             {
                                 description ?
                                     <section className="details-contents-section">
-                                        <h3>{messages.description[lang]}</h3>
+                                        <h3>{messages.description}</h3>
                                         <Md>
                                             {description.replace(/<br\/>/g, '\n\n')}
                                         </Md>
@@ -127,7 +113,7 @@ export default function VisualizationFocus({
                             {
                                 howItsMade ?
                                     <section className="details-contents-section">
-                                        <h3>{messages.howItsMade[lang]}</h3>
+                                        <h3>{messages.howItsMade}</h3>
                                         <Md>
                                             {howItsMade.replace(/<br\/>/g, '\n\n')}
                                         </Md>
@@ -137,7 +123,7 @@ export default function VisualizationFocus({
                             {
                                 howToRead ?
                                     <section className="details-contents-section">
-                                        <h3>{messages.howToRead[lang]}</h3>
+                                        <h3>{messages.howToRead}</h3>
                                         <Md>
                                             {howToRead.replace(/<br\/>/g, '\n\n')}
                                         </Md>

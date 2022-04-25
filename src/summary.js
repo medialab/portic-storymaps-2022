@@ -29,7 +29,8 @@ export default [
             en: enPart0,
         },
         Component: ScrollyPage,
-        routeGroup: 'intro'
+        routeGroup: 'intro',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -45,7 +46,8 @@ export default [
             en: enPart1
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -61,7 +63,8 @@ export default [
             en: enPart2
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -77,7 +80,8 @@ export default [
             en: enPart3
         },
         Component: ScrollyPage,
-        routeGroup: 'chapter'
+        routeGroup: 'chapter',
+        navGroup: 'primary'
     },
     {
         routes: {
@@ -93,6 +97,7 @@ export default [
             en: undefined
         },
         Component: PlainPage,
-        routeGroup: 'secondary'
+        routeGroup: 'secondary',
+        navGroup: 'secondary'
     }
 ];

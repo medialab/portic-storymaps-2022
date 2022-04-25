@@ -1,7 +1,31 @@
 {
+  "site": {
+    "title": {
+      "fr": "Commerce multi-échelles autour du port de La Rochelle au XVIIIème siècle",
+      "en": "Multi-scale trade around the port of La Rochelle in the 18th century"
+    },
+    "titleHTML": {
+      "fr": "Commerce multi-échelles autour du port de La Rochelle au XVIII<sup>e</sup> siècle",
+      "en": "Multi-scale trade around the port of La Rochelle in the 18th century"
+    },
+    "subtitle": {
+      "fr": "Une étude de cas du programme de recherche interdisciplinaire PORTIC",
+      "en": "A case study of the PORTIC interdisciplinary research program"
+    }
+  },
+  "menu": {
+    "home": {
+      "fr": "accueil",
+      "en": "home"
+    },
+    "atlas": {
+      "fr": "atlas des visualisations",
+      "en": "visualizations atlas"
+    }
+  },
   "about": {
     "title": {
-      "fr": "À propos ${toto}",
+      "fr": "À propos",
       "en": "About"
     }
   },
@@ -9,6 +33,28 @@
     "title": {
       "fr": "Atlas des visualisations",
       "en": "Visualizations atlas"
+    }
+  },
+  "vizFocus": {
+    "description": {
+      "fr": "De quoi s'agit t'il ?",
+      "en": "What is about?"
+    },
+    "howItsMade": {
+      "fr": "Comment les données et la visualisation ont-elles été produites ?",
+      "en": "How were the data and visualization produced?"
+    },
+    "howToRead": {
+      "fr": "Comment lire la visualisation ?",
+      "en": "How to read the visualization?"
+    },
+    "copyLink": {
+      "fr": "copier le lien de cette visualisation",
+      "en": "copy this visualization link"
+    },
+    "linkCopied": {
+      "fr": "lien copié dans le presse-papier !",
+      "en": "link copied in the clipboard!"
     }
   }
 }

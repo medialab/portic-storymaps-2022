@@ -1,13 +1,11 @@
 
 import React, { useRef, useState, useReducer, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import cx from 'classnames';
 import ReactTooltip from 'react-tooltip';
 
 /* eslint-disable import/no-webpack-loader-syntax */
-
-import metadataFr from '../../content/fr/metadata'
-import metadataEn from '../../content/en/metadata'
 
 import ContentsFr from '../../content/fr/introduction.mdx'
 import ContentsEn from '../../content/en/introduction.mdx'
@@ -17,6 +15,7 @@ import { useScrollYPosition } from 'react-use-scroll-position';
 // import CitationWidget from '../CitationWidget';
 import VisualizationContainer from '../VisualizationContainer';
 import { VisualizationControlContext } from '../../utils/contexts';
+import translate from '../../utils/translate';
 import summary from '../../summary';
 
 import BoatsContainer from './BoatsContainer';
@@ -27,23 +26,20 @@ import './Home.scss';
 const CENTER_FRACTION = 0.5;
 // const CENTER_FRACTION = .6;
 
-const metadata = {
-  fr: metadataFr,
-  en: metadataEn
-}
+function Home({
+  ...props
+}) {
+  const { lang } = useParams();
 
-function Home({ lang = 'fr' }
-) {
   // function Home({ match: {
   //   params: { lang = 'fr' }
   // } }) {
   const introRef = useRef(null);
   const [focusOnViz, setFocusOnViz] = useState(false);
   const [inVis, setInVis] = useState(false);
-  const currentMetadata = metadata[lang] || metadataFr;
-  const title = currentMetadata.title;
-  const titleHTML = currentMetadata.titleHTML;
-  const subtitle = currentMetadata.subtitle
+  const title = translate('site', 'title', lang);
+  const titleHTML = translate('site', 'titleHTML', lang);
+  const subtitle = translate('site', 'subtitle', lang);
   const [activeVisualization, setActiveVisualization] = useState(undefined);
   const [visualizations, setVisualizations] = useReducer(
     (state, newState) => ({ ...state, ...newState }),

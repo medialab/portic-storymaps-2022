@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
 
 import Header from './Header';
@@ -12,6 +12,27 @@ export default function Layout({
     const { lang } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
+
+    const pageType = useMemo(() => {
+        let { pathname } = location;
+        const [_, lang, page] = pathname.split('/');
+
+        if (page === undefined) {
+            return 'home';
+        }
+
+        if (page === 'atlas') {
+            return 'atlas';
+        }
+
+        for (const route of routes) {
+            if (route.routes[lang] === page) {
+                return route.routeGroup;
+            }
+        }
+
+        return 'other-page'; // default case
+    }, [location]);
 
     function onLangChange(newLangFlag) {
         let { pathname } = location;
@@ -37,7 +58,7 @@ export default function Layout({
 
     return (
         <>
-            <Header lang={lang} onLangChange={onLangChange} {...props} />
+            <Header lang={lang} onLangChange={onLangChange} pageType={pageType} {...props} />
 
             <main className="wrapper">
                 <Outlet />
