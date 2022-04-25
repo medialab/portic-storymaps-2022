@@ -13,7 +13,9 @@ export default function Footer() {
 
     return (
         <footer className="Footer">
-            <Content />
+            <div className="footer-contents">
+                <Content />
+            </div>
         </footer>
     );
 }

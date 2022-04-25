@@ -12,7 +12,7 @@ export default function LangSwitcher({
                     <li>
                         <button
                             key={i}
-                            className={'button is-small is-white' + (activeLang === flag ? 'is-active' : '')}
+                            className={(activeLang === flag ? 'is-active' : '')}
                             onClick={() => onLangChange(flag)}
                         >{flag}</button>
                     </li>

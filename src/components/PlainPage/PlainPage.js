@@ -17,7 +17,9 @@ export default function PlainPage ({
                 <title>{buildPageTitle(title, lang)}</title>
             </Helmet>
 
-            <Content />
+            <div className='centered-contents'>
+                <Content />
+            </div>
         </div>
     )
 }
