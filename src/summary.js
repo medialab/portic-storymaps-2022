@@ -17,23 +17,6 @@ import PartAbout from './content/fr/about.mdx';
 export default [
     {
         routes: {
-            fr: 'partie-0',
-            en: 'part-0'
-        },
-        titles: {
-            fr: 'Intro',
-            en: 'Intro-en'
-        },
-        contents: {
-            fr: frPart0,
-            en: enPart0,
-        },
-        Component: ScrollyPage,
-        routeGroup: 'intro',
-        navGroup: 'primary'
-    },
-    {
-        routes: {
             fr: 'partie-1',
             en: 'part-1'
         },

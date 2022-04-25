@@ -7,8 +7,8 @@ import ReactTooltip from 'react-tooltip';
 
 /* eslint-disable import/no-webpack-loader-syntax */
 
-import ContentsFr from '../../content/fr/introduction.mdx'
-import ContentsEn from '../../content/en/introduction.mdx'
+import ContentsFr from '../../content/fr/part-0.mdx'
+import ContentsEn from '../../content/en/part-0.mdx'
 
 import { useScrollYPosition } from 'react-use-scroll-position';
 
@@ -160,7 +160,7 @@ function Home({
   const onClickOnStart = () => {
     if (introRef && introRef.current) {
       const intro = introRef.current;
-      const top = intro.offsetTop - (window.innerHeight / 15);
+      const top = intro.offsetTop - (window.innerHeight / 20);
       window.scrollTo({
         top,
         behavior: 'smooth'
