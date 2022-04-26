@@ -63,6 +63,8 @@ export default function Atlas({
 
     }, [vizId])
 
+    useEffect(() => window.scrollTo({ top: 0 }), []);
+
     return (
         <div className='Atlas secondary-page'>
             <Helmet>
@@ -70,15 +72,27 @@ export default function Atlas({
             </Helmet>
             <div className="centered-contents">
                 <h1 className='title'>{translate('atlas', 'title', lang)}</h1>
-                <ul>
+                <ul className='visualizations-list'>
                     {
                         Object.values(visualizationsMetas).map((metas, i) => {
-                            const title = metas['titre_' + lang] || false
-                                , description = metas['description_' + lang] || false;
+                            const title = metas['titre_' + lang] || false;
 
                             const { id, output } = metas;
 
-                            return <li onClick={() => onClickFocus(id, output)}>{title}</li>
+                            return (
+                                <li
+                                    className='visualization-item'
+                                    onClick={() => onClickFocus(id, output)}
+                                >
+                                    <figure className="thumbnail-container">
+                                        <img
+                                            className='thumbnail'
+                                            src={`${process.env.BASE_PATH}/thumbnails/${lang}/${id}.png`}
+                                        />
+                                        <figcaption className='visualization-title'>{title}</figcaption>
+                                    </figure>
+                                </li>
+                            )
                         })
                     }
                 </ul>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import LinearAlluvialChart from '../../components/LinearAlluvialChart'
 
@@ -10,6 +10,8 @@ export default function SmogglageStatus ({
 }) {
     data = data['smoggleur-statut.csv'];
     const { width, height } = dimensions;
+
+    useEffect(() => console.log('rendre'))
 
     const steps = [
         {
