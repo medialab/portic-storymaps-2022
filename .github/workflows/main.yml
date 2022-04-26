@@ -19,6 +19,7 @@ jobs:
         run: |
           sh install.sh
           yarn
+          yarn dev
           node makeThumbnails.js
       - name: Build 🔧
         # continue-on-error: true
