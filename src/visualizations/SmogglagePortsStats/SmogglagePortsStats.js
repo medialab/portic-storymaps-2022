@@ -11,7 +11,8 @@ import BarChart from '../../components/BarChart';
 
 export default function SmogglagePortsStats ({
     data,
-    title
+    title,
+    lang
 }) {
     data = data['smogglage_ports_stats.csv'];
 

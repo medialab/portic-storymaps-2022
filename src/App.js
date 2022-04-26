@@ -3,7 +3,7 @@ import { Routes, Route, HashRouter, Navigate } from "react-router-dom";
 
 import Layout from './components/Layout';
 import Home from './components/Home'
-import About from './components/About'
+import StandaloneVisualization from './components/StandaloneVisualization';
 import Atlas from './components/Atlas'
 
 import routes from './summary';
@@ -52,6 +52,10 @@ export default function App() {
                                     })
                             })
                         }
+                        <Route key='vizualisation' path="vizualisation/">
+                            <Route key='vizualisation' index element={<Navigate to="../*" />} />
+                            <Route key='vizualisation' path=":vizId" element={<StandaloneVisualization />} />
+                        </Route>
                         <Route key='atlas' path="atlas/">
                             <Route key='atlas' index element={<Atlas />} />
                             <Route key='atlas' path=":vizId" element={<Atlas />} />

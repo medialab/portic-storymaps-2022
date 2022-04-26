@@ -5,7 +5,8 @@ import LinearAlluvialChart from '../../components/LinearAlluvialChart'
 export default function SmogglageStatus ({
     data,
     title,
-    dimensions
+    dimensions,
+    lang
 }) {
     data = data['smoggleur-statut.csv'];
     const { width, height } = dimensions;
