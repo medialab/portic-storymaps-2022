@@ -18,7 +18,8 @@ export default function VisualizationController ({
     focusedVizId: vizId,
     data,
     ref,
-    dimensions
+    dimensions,
+    lang
 }) {
     const {
         title
@@ -30,18 +31,18 @@ export default function VisualizationController ({
             switch (vizId) {
                 case 'smoggleur-statut':
                     return (
-                        <SmogglageStatus { ...{ title, data, dimensions } } />
+                        <SmogglageStatus { ...{ title, data, dimensions, lang } } />
                     );
                 default:
                 case 'smoggleur-proportion':
                     return (
-                        <SmogglagePortsStats { ...{ title, data, dimensions } } />
+                        <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
                     );
             }
     }, [vizId])
 
     return (
-        <div ref={ref}>
+        <div className='viz-render' ref={ref}>
             {vizContent}
         </div>
     )

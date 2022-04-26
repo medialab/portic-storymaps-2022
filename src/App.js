@@ -3,7 +3,7 @@ import { Routes, Route, HashRouter, Navigate } from "react-router-dom";
 
 import Layout from './components/Layout';
 import Home from './components/Home'
-import About from './components/About'
+import StandaloneVisualization from './components/StandaloneVisualization';
 import Atlas from './components/Atlas'
 
 import routes from './summary';
@@ -42,7 +42,7 @@ export default function App() {
                                                             contents[lang] ||
                                                             (() => <Navigate to="*" />) // redirect to 404 if no content for lang
                                                         }
-                                                        chapter={index} // number of chapter
+                                                        chapter={index+1} // number of chapter
                                                         title={titles[lang]}
                                                     />
                                                 }
@@ -52,6 +52,9 @@ export default function App() {
                                     })
                             })
                         }
+                        <Route key='vizualisation' path="vizualisation/">
+                            <Route key='vizualisation' path=":vizId" element={<StandaloneVisualization />} />
+                        </Route>
                         <Route key='atlas' path="atlas/">
                             <Route key='atlas' index element={<Atlas />} />
                             <Route key='atlas' path=":vizId" element={<Atlas />} />

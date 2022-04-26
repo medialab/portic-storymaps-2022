@@ -138,6 +138,7 @@ export default function VisualizationFocus({
                             {
                                 ...{
                                     dimensions,
+                                    lang,
                                     data
                                 }
                             }

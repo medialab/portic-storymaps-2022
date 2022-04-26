@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import omit from 'lodash/omit';
 import cx from 'classnames';
 import Measure from 'react-measure'
@@ -21,6 +22,8 @@ import visualizationsMetas from '../../data/viz';
 export default function VisualizationContainer ({
     ...props
 }) {
+    const { lang } = useParams();
+
     const [dimensions, setDimensions] = useState({
         width: 1000,
         height: 1000
@@ -64,6 +67,7 @@ export default function VisualizationContainer ({
                         <VisualizationController {
                             ...{
                                 dimensions,
+                                lang,
                                 ...props
                             }
                         } />

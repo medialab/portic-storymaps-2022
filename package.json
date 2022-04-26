@@ -44,6 +44,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "puppeteer": "^13.6.0",
     "react-snap": "^1.23.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.68.0",
@@ -53,5 +54,5 @@
   "repository": "https://github.com/medialab/portic-storymaps-2022",
   "author": "Guillaume Brioudes (https://myllaume.fr/)",
   "license": "GPL-3.0-or-later",
-  "homepage": "https://medialab.github.io/portic-storymaps-2022/"
+  "homepage": "https://medialab.github.io/portic-storymaps-2022"
 }
