@@ -42,7 +42,7 @@ export default function App() {
                                                             contents[lang] ||
                                                             (() => <Navigate to="*" />) // redirect to 404 if no content for lang
                                                         }
-                                                        chapter={index} // number of chapter
+                                                        chapter={index+1} // number of chapter
                                                         title={titles[lang]}
                                                     />
                                                 }
@@ -53,7 +53,6 @@ export default function App() {
                             })
                         }
                         <Route key='vizualisation' path="vizualisation/">
-                            <Route key='vizualisation' index element={<Navigate to="../*" />} />
                             <Route key='vizualisation' path=":vizId" element={<StandaloneVisualization />} />
                         </Route>
                         <Route key='atlas' path="atlas/">
