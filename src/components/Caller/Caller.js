@@ -56,7 +56,7 @@ export default function Caller ({
         >
             {
                 process.env.NODE_ENV === 'development' &&
-                <span>Caller viz
+                <span>Caller viz&nbsp;
                     <code>{visualizationId}</code> : <code>{JSON.stringify({...omit(props, 'children')})}</code>
                 </span>
             }

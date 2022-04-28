@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
+import PecheTypeValue from './PecheTypeValue';
 
 import visualizationsMetas from '../data/viz';
 
@@ -29,6 +30,10 @@ export default function VisualizationController ({
 
     const vizContent = useMemo(() => {
             switch (vizId) {
+                case 'peche-type-value':
+                    return (
+                        <PecheTypeValue { ...{ title, data, dimensions, lang } } />
+                    );
                 case 'smoggleur-statut':
                     return (
                         <SmogglageStatus { ...{ title, data, dimensions, lang } } />

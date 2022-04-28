@@ -12,6 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 from html_sanitizer import Sanitizer
 import html2markdown
+import validators
 import re
 import csv
 import json
@@ -33,6 +34,7 @@ Import visualisations list from GSheet
 """
 
 viz_id_list = {}
+inputs_csv_online = {}
 
 with requests.Session() as s:
     download = s.get(GSHEET_URL)
@@ -47,9 +49,32 @@ with requests.Session() as s:
         row['outputs'] = row['outputs'].split(',')
         viz_id_list[ row['id'] ] = row
 
+        for i, input_str in enumerate(row['inputs']):
+            if validators.url(input_str) == True:
+                try:
+                    corresponding_output = row['outputs'][i]
+                    inputs_csv_online[corresponding_output] = input_str
+                except IndexError:
+                    print('error : no output index for input online csv')
+
     json_object = json.dumps(viz_id_list, indent=4, ensure_ascii=False)
     with open('../src/data/viz.json', "w") as f:
         f.write(json_object)
+
+"""
+Import CSV from the web, from viz_id_list
+"""
+
+for output in inputs_csv_online.keys():
+    input_url = inputs_csv_online[output]
+    path = '../public/data/'
+    with requests.Session() as s:
+        online_csv = s.get(input_url)
+        decoded_content = online_csv.content.decode('utf-8')
+        f = open(path + output, "w")
+        f.write(decoded_content)
+        f.close()
+
 
 """
 Import page content from GDoc
