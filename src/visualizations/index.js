@@ -47,7 +47,7 @@ export default function VisualizationController ({
     }, [vizId])
 
     return (
-        <div className='viz-render' ref={ref}>
+        <div className='VisualizationController viz-render' ref={ref}>
             {vizContent}
         </div>
     )

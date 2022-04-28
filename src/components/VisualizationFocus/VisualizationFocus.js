@@ -28,7 +28,7 @@ export default function VisualizationFocus({
 
     const dimensions = {
         width: 1000,
-        height: 1000
+        height: 500
     }
 
     let {
@@ -132,7 +132,7 @@ export default function VisualizationFocus({
                             }
                         </div>
                     </div>
-                    <div className="visualization-wrapper">
+                    <div className="visualization-wrapper" onClick={onClickClose}>
                         <VisualizationController
                             focusedVizId={vizId}
                             {

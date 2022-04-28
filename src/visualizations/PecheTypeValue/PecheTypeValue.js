@@ -12,15 +12,21 @@ import BarChart from '../../components/BarChart';
 export default function PecheTypeValue({
     data: inputData,
     title,
-    lang
+    lang,
+    dimensions
 }) {
+    const { width, height } = dimensions;
     let data = inputData['peche-type-value.csv'];
 
     return (
         <BarChart
-            data={data}
-            title={title}
-            width={window.innerWidth - 20}
+            { ...{
+                data,
+                title,
+                width,
+                height
+            }}
+
             layout='stack'
             x={{
                 field: 'annee',
