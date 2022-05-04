@@ -18,9 +18,9 @@ import csv
 import json
 
 sanitizer = Sanitizer({
-    'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'sub', 'sup', 'hr', 'caller'),
+    'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'dfn'),
     'empty': ('hr', 'caller'),
-    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target') }
+    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target'), 'dfn': ('title') }
 })
 
 GDOC_URL = {
@@ -97,10 +97,32 @@ for lang in GDOC_URL.keys():
             styleTag.extract()
 
         for link in soup.find_all('a'):
-            # Google tracked link to clean link
             if link.has_attr('href') == False:
                 continue
-            link['href'] = re.search(r"q=(.*)&sa", link['href']).group(1)
+
+            re_match_footnote_anchor = re.match(r"#ftnt(?P<id>[1-9])", link['href'])
+            re_match_footnote_ref = re.match(r"#ftnt_ref(?P<id>[1-9])", link['href'])
+            if re_match_footnote_ref:
+                footnote_id = re_match_footnote_ref.groupdict()['id']
+                footnote_ref = link
+                footnote_text_container = footnote_ref.find_next('span')
+                footnote_content = footnote_text_container.string.strip()
+                footnote_anchor = soup.find('a', {'href': str('#ftnt' + footnote_id)})
+                footnote_anchor_context = footnote_anchor.parent.find_previous().string
+                footnote_anchor_text = footnote_anchor_context.split()[-1]
+                footnote_anchor.string.replace_with(footnote_anchor_text)
+                footnote_anchor.name = 'dfn'
+                del footnote_anchor['id']; del footnote_anchor['href']
+                footnote_anchor['title'] = footnote_content
+                # delete tags
+                footnote_ref.extract()
+                footnote_text_container.extract()
+                continue
+            if re_match_footnote_anchor:
+                continue
+
+            # Track Google links to clean them
+            link['href'] = re.search(r"(?<=q=)(.*?)(?=&)", link['href']).group(1)
             # Add attributes for safe navigation
             """
             link['target'] = '_blank'
@@ -111,7 +133,7 @@ for lang in GDOC_URL.keys():
         # Remove useless tags and attributes
         content = sanitizer.sanitize(content)
         # Unescape caller tags and their quotes
-        content = re.sub(r"&lt;(.*?)&gt;", r"<\1>", content).replace('”', '"').replace('“', '"')
+        content = re.sub(r"(?<=&lt;)(.*?)(?=&gt;)", r"<\1>", content).replace('”', '"').replace('“', '"')
 
         # Second edition of HTML
         soup = BeautifulSoup(content, 'html.parser')

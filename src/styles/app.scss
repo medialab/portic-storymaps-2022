@@ -114,6 +114,19 @@ button.is-active {
   background: $color-accent;
 }
 
+dfn {
+  position: relative;
+  text-decoration: underline dashed;
+}
+dfn:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(-100% - 10px);
+  left: 0;
+  background-color: white;
+  padding: 0.2em;
+}
+
 
 /**
  * ==========
