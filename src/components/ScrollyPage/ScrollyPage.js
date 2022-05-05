@@ -226,7 +226,7 @@ export default function ScrollyPage ({
 
             <div className='ScrollyPage'>
                 <ReactTooltip id="contents-tooltip" />
-                <section className={cx("content", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
+                <section className={cx("Contents", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
                     <button
                         className='switch-btn'
                         onClick={onClickChangeResponsive}

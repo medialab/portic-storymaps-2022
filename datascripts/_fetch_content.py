@@ -107,7 +107,7 @@ for lang in GDOC_URL.keys():
             link['rel'] = 'noopener noreferrer'
             """
 
-        content = soup.prettify() # Beautify HTML
+        content = str(soup)
         # Remove useless tags and attributes
         content = sanitizer.sanitize(content)
         # Unescape caller tags and their quotes
@@ -116,10 +116,6 @@ for lang in GDOC_URL.keys():
         # Second edition of HTML
         soup = BeautifulSoup(content, 'html.parser')
 
-        # Each <caller> tag is extracted from its <p> parent
-        for caller in soup.find_all('caller'):
-            caller.parent.insert_after(caller)
-            caller.parent.extract() # Delete <p>
         # Each <caller> tag without id is follow by a <div>
         for caller in soup.find_all('caller'):
             if caller.has_attr('id') == False:
@@ -127,19 +123,22 @@ for lang in GDOC_URL.keys():
                 new_tag = new_tag.div
                 caller.insert_after(new_tag)
                 # Store each element is not a <h1> or another <caller> in the <div>
-                """
                 for next_tag in new_tag.find_all_next():
                     if next_tag.name not in {'h1', 'caller'}:
                         new_tag.append(next_tag)
                     else:
                         break
-                """
                 continue
+            is_inline_caller = len(caller.parent.find_all()) == 1
+            if is_inline_caller == False:
+                caller['class'] = 'is-inblock'
 
         for title in soup.find_all('h1'):
             # Match <h1> to init a new part
             parts.append([title])
             for next_tag in title.find_all_next():
+                if next_tag.name == 'caller':
+                    continue
                 if next_tag.name == 'h1':
                     # Begin a new part if new title
                     break
@@ -161,13 +160,15 @@ for lang in GDOC_URL.keys():
                 if caller['id'] not in part_viz_id_list:
                     # <Caller> id is not find from viz id list
                     caller['class'] = 'is-invalid'
-            part = part_soup.prettify()
-
-            md = html2markdown.convert(part)
+            part = str(part_soup)
             # React requirements
-            md = md.replace('caller', 'Caller')
-            md = md.replace('class', 'className')
+            part = part.replace('caller', 'Caller')
+            part = part.replace('class', 'className')
+
+            f = open('./' + lang + '-part-' + str(i) + '.html', "w")
+            f.write(part)
+            f.close()
 
             f = open('../src/content/' + lang + '/part-' + str(i) + '.mdx', "w")
-            f.write(md)
+            f.write(html2markdown.convert(part))
             f.close()
