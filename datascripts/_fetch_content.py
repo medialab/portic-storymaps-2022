@@ -24,8 +24,9 @@ sanitizer = Sanitizer({
 })
 
 GDOC_URL = {
-    'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
-    'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
+    'fr': 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub',
+    # 'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
+    # 'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
 }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
@@ -82,7 +83,7 @@ Import page content from GDoc
 
 for lang in GDOC_URL.keys():
     url = GDOC_URL[lang]
-    parts = [[]]
+    parts_soup = []
 
     with requests.Session() as s:
         download = s.get(url)
@@ -154,15 +155,11 @@ for lang in GDOC_URL.keys():
         # Remove useless tags and attributes
         content = sanitizer.sanitize(content)
         # Unescape caller tags and their quotes
-        content = re.sub(r"(?<=&lt;)(.*?)(?=&gt;)", r"<\1>", content).replace('”', '"').replace('“', '"')
+        content = re.sub(r"&lt;(.*?)&gt;", r"<\1>", content).replace('”', '"').replace('“', '"')
 
         # Second edition of HTML
         soup = BeautifulSoup(content, 'html.parser')
 
-        # Each <caller> tag is extracted from its <p> parent
-        for caller in soup.find_all('caller'):
-            caller.parent.insert_after(caller)
-            caller.parent.extract() # Delete <p>
         # Each <caller> tag without id is follow by a <div>
         for caller in soup.find_all('caller'):
             if caller.has_attr('id') == False:
@@ -170,31 +167,29 @@ for lang in GDOC_URL.keys():
                 new_tag = new_tag.div
                 caller.insert_after(new_tag)
                 # Store each element is not a <h1> or another <caller> in the <div>
-                """
                 for next_tag in new_tag.find_all_next():
                     if next_tag.name not in {'h1', 'caller'}:
                         new_tag.append(next_tag)
                     else:
                         break
-                """
                 continue
+            is_inline_caller = len(caller.parent.find_all()) == 1
+            if is_inline_caller == False:
+                caller['class'] = 'is-inblock'
 
-        for title in soup.find_all('h1'):
-            # Match <h1> to init a new part
-            parts.append([title])
+        for i, title in enumerate(soup.find_all('h1')):
+            part_soup = BeautifulSoup('<div id="part-' + str(i) + '"/>', 'html.parser')
+            part_root = part_soup.div
             for next_tag in title.find_all_next():
                 if next_tag.name == 'h1':
-                    # Begin a new part if new title
                     break
-                # Store each brother tag in list
-                parts[-1].append(next_tag)
+                if next_tag.name not in {'p'}:
+                    continue
+                part_root.append(next_tag)
+                print(next_tag)
+            parts_soup.append(part_soup)
 
-        parts = parts[1:] # skip first empty part
-
-        for i, part in enumerate(parts):
-            # Make a new soup from each array of tags
-            part = ''.join([str(tag) for tag in part])
-            part_soup = BeautifulSoup(part, 'html.parser')
+        for i, part_soup in enumerate(parts_soup):
             for title_link in part_soup.find_all('a', {'class': 'title_link'}):
                 title_link.name = 'link'
                 title_link['to'] = title_link['href']
@@ -208,7 +203,12 @@ for lang in GDOC_URL.keys():
                 if caller['id'] not in part_viz_id_list:
                     # <Caller> id is not find from viz id list
                     caller['class'] = 'is-invalid'
+            # part = part_soup.prettify()
             part = str(part_soup)
+            # React requirements
+            part = part.replace('caller', 'Caller')
+            part = part.replace('link', 'Link')
+            part = part.replace('class', 'className')
 
             """
             f = open('./' + lang + '-part-' + str(i) + '.html', "w")
@@ -216,12 +216,6 @@ for lang in GDOC_URL.keys():
             f.close()
             """
 
-            md = html2markdown.convert(part)
-            # React requirements
-            md = md.replace('caller', 'Caller')
-            md = md.replace('link', 'Link')
-            md = md.replace('class', 'className')
-
             f = open('../src/content/' + lang + '/part-' + str(i) + '.mdx', "w")
-            f.write(md)
+            f.write(part)
             f.close()
