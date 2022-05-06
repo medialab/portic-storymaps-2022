@@ -24,9 +24,8 @@ sanitizer = Sanitizer({
 })
 
 GDOC_URL = {
-    'fr': 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub',
-    # 'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
-    # 'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
+    'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
+    'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
 }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
@@ -162,6 +161,7 @@ for lang in GDOC_URL.keys():
 
         # Each <caller> tag without id is follow by a <div>
         for caller in soup.find_all('caller'):
+            """
             if caller.has_attr('id') == False:
                 new_tag = BeautifulSoup('<div class="centered-part"></div>', 'html.parser')
                 new_tag = new_tag.div
@@ -173,9 +173,16 @@ for lang in GDOC_URL.keys():
                     else:
                         break
                 continue
+            """
             is_inline_caller = len(caller.parent.find_all()) == 1
             if is_inline_caller == False:
                 caller['class'] = 'is-inblock'
+            """
+            else:
+                # <caller> tag is extracted from its <p> parent
+                caller.parent.insert_after(caller)
+                caller.parent.extract() # Delete <p>
+            """
 
         for i, title in enumerate(soup.find_all('h1')):
             part_soup = BeautifulSoup('<div id="part-' + str(i) + '"/>', 'html.parser')
@@ -183,10 +190,9 @@ for lang in GDOC_URL.keys():
             for next_tag in title.find_all_next():
                 if next_tag.name == 'h1':
                     break
-                if next_tag.name not in {'p'}:
+                if next_tag.name not in {'p', 'h1', 'h2', 'h3', 'caller'}:
                     continue
                 part_root.append(next_tag)
-                print(next_tag)
             parts_soup.append(part_soup)
 
         for i, part_soup in enumerate(parts_soup):

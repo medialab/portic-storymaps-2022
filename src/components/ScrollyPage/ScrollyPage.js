@@ -85,7 +85,7 @@ export default function ScrollyPage ({
      * The scrollTo function launch scroll useEffect
      * @param {*} ref Caller element from React.useRef
      */
-    function onClickCallerScroll (ref) {
+    function onClickCallerScroll (ref, visualizationId) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
@@ -95,6 +95,8 @@ export default function ScrollyPage ({
             top: scrollTo,
             behavior: 'smooth'
         });
+
+        setIsFocusOnViz(visualizationId);
     }
 
     function onClickChangeResponsive () {

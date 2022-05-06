@@ -47,7 +47,15 @@ export default function Caller ({
 
     if (isInblock) {
         return (
-            <span className='Caller is-block'>{children}</span>
+            <span
+                ref={ref}
+                id={visualizationId}
+                className={cx('Caller', {
+                    'is-invalid': isInvalid,
+                    'is-active': focusedVizId && focusedVizId === visualizationId
+                })}
+                onClick={(e) => onClickCallerScroll(ref, visualizationId)}
+            >{children}</span>
         )
     }
 
