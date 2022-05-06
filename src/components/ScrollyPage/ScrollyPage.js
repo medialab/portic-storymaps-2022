@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import ReactTooltip from 'react-tooltip';
@@ -234,7 +234,7 @@ export default function ScrollyPage ({
                         data-effect="solid"
                         data-tip={translate('vizContainer', 'switchToContent', lang)}
                     >➡</button>
-                    <Content components={{Caller}} />
+                    <Content components={{Caller, Link}} />
                 </section>
 
                 <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>

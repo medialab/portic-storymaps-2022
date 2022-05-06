@@ -18,9 +18,9 @@ import csv
 import json
 
 sanitizer = Sanitizer({
-    'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'dfn'),
+    'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'link', 'dfn'),
     'empty': ('hr', 'caller'),
-    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target'), 'dfn': ('title') }
+    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target', 'class'), 'dfn': ('title') }
 })
 
 GDOC_URL = {
@@ -96,6 +96,17 @@ for lang in GDOC_URL.keys():
         for styleTag in soup.select('style'):
             styleTag.extract()
 
+        titles_per_part = {}
+        title_part_number = 0
+        for title in soup.find_all({'h1', 'h2', 'h3'}):
+            title_id = title['id']
+            if title.name == 'h1':
+                title_part_number += 1
+            titles_per_part[title_id] = {
+                'part': title_part_number,
+                'name': title.name
+            }
+
         for link in soup.find_all('a'):
             if link.has_attr('href') == False:
                 continue
@@ -121,6 +132,16 @@ for lang in GDOC_URL.keys():
             if re_match_footnote_anchor:
                 continue
 
+            re_match_title_link = re.match(r"#h(?P<id>.*)", link['href'])
+            if re_match_title_link:
+                title_id = 'h' + re_match_title_link.groupdict()['id']
+                title_name = titles_per_part[title_id]['name']
+                title_part = str(titles_per_part[title_id]['part'])
+                title_element = soup.find(title_name, {'id': title_id})
+                link['class'] = 'title_link'
+                link['href'] = '/' + lang + '/partie-' + title_part
+                continue
+
             # Track Google links to clean them
             link['href'] = re.search(r"(?<=q=)(.*?)(?=&)", link['href']).group(1)
             # Add attributes for safe navigation
@@ -129,7 +150,7 @@ for lang in GDOC_URL.keys():
             link['rel'] = 'noopener noreferrer'
             """
 
-        content = soup.prettify() # Beautify HTML
+        content = str(soup)
         # Remove useless tags and attributes
         content = sanitizer.sanitize(content)
         # Unescape caller tags and their quotes
@@ -174,6 +195,10 @@ for lang in GDOC_URL.keys():
             # Make a new soup from each array of tags
             part = ''.join([str(tag) for tag in part])
             part_soup = BeautifulSoup(part, 'html.parser')
+            for title_link in part_soup.find_all('a', {'class': 'title_link'}):
+                title_link.name = 'link'
+                title_link['to'] = title_link['href']
+                del title_link['href']
             for caller in part_soup.find_all('caller'):
                 part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == i]
                 if caller.has_attr('id') == False:
@@ -183,11 +208,18 @@ for lang in GDOC_URL.keys():
                 if caller['id'] not in part_viz_id_list:
                     # <Caller> id is not find from viz id list
                     caller['class'] = 'is-invalid'
-            part = part_soup.prettify()
+            part = str(part_soup)
+
+            """
+            f = open('./' + lang + '-part-' + str(i) + '.html', "w")
+            f.write(part)
+            f.close()
+            """
 
             md = html2markdown.convert(part)
             # React requirements
             md = md.replace('caller', 'Caller')
+            md = md.replace('link', 'Link')
             md = md.replace('class', 'className')
 
             f = open('../src/content/' + lang + '/part-' + str(i) + '.mdx', "w")
