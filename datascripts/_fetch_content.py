@@ -9,6 +9,7 @@ Python Version: 3.10.1
 '''
 
 import requests
+from urllib.parse import urlsplit, unquote, parse_qsl
 from bs4 import BeautifulSoup
 from html_sanitizer import Sanitizer
 import html2markdown
@@ -24,8 +25,7 @@ sanitizer = Sanitizer({
 })
 
 GDOC_URL = {
-    'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
-    'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
+    'fr': 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub'
 }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
@@ -144,6 +144,15 @@ for lang in GDOC_URL.keys():
 
             # Track Google links to clean them
             link['href'] = re.search(r"(?<=q=)(.*?)(?=&)", link['href']).group(1)
+
+            parse = urlsplit(link['href'])
+            if parse.netloc == 'caller':
+                query = unquote(parse.query)
+                query = dict(parse_qsl(query))
+                link.name = 'caller'
+                # link['id'] = query['id']
+                link['id'] = 'dunkerque-courses'
+
             # Add attributes for safe navigation
             """
             link['target'] = '_blank'
@@ -190,7 +199,7 @@ for lang in GDOC_URL.keys():
             for next_tag in title.find_all_next():
                 if next_tag.name == 'h1':
                     break
-                if next_tag.name not in {'p', 'h1', 'h2', 'h3', 'caller'}:
+                if next_tag.name not in {'p', 'h1', 'h2', 'h3'}:
                     continue
                 part_root.append(next_tag)
             parts_soup.append(part_soup)
@@ -212,9 +221,9 @@ for lang in GDOC_URL.keys():
             # part = part_soup.prettify()
             part = str(part_soup)
             # React requirements
-            part = part.replace('caller', 'Caller')
-            part = part.replace('link', 'Link')
-            part = part.replace('class', 'className')
+            part = re.sub(r"(</?)caller", r"\1Caller", part) # caller -> Caller
+            part = re.sub(r"(</?)link", r"\1Link", part) # link -> Laller
+            part = re.sub(r"class(=\")", r"className\1", part) # class -> className
 
             """
             f = open('./' + lang + '-part-' + str(i) + '.html', "w")
