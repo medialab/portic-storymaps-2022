@@ -129,7 +129,16 @@ export default function ScrollyPage ({
         if (!sectionRef.current) {
           return;
         }
+
         const visualizationEntries = Object.entries(visualizations);
+
+        if (scrollY === 0) {
+            const [firstCallerId, firstVizParms] = visualizationEntries[0];
+            const { visualizationId: firstVizId } = firstVizParms;
+            setFocusedVizId(firstVizId);
+            return;
+        }
+
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
         const y = scrollY + DISPLACE_Y;
         const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
@@ -143,7 +152,8 @@ export default function ScrollyPage ({
         setIsFocusOnViz(true);
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
-            const [vizId, vizParms] = visualizationEntries[i];
+            const [callerId, vizParms] = visualizationEntries[i];
+            const { visualizationId } = vizParms;
             const { ref } = vizParms;
 
             if (!!ref.current === false) { continue; }
@@ -152,7 +162,7 @@ export default function ScrollyPage ({
             let vizY = initialVizY + window.scrollY;
 
             if (y > vizY) {
-                setFocusedVizId(vizParms.visualizationId);
+                setFocusedVizId(visualizationId);
                 break;
             }
         }
