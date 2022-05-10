@@ -61,7 +61,6 @@ export default function VisualizationFocus({
     }
 
     function onKeyEscape (e) {
-        console.log(e);
         if (e.keyCode === 27) {
             onClickClose();
         }

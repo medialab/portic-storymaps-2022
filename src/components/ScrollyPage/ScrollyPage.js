@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import ReactTooltip from 'react-tooltip';
@@ -37,6 +37,8 @@ export default function ScrollyPage ({
     const { lang } = useParams()
         , sectionRef = useRef(null)
         , scrollY = useScrollYPosition();
+
+    const location = useLocation();
 
     title = buildPageTitle(title, lang);
 
@@ -107,6 +109,20 @@ export default function ScrollyPage ({
             setActiveSideOnResponsive('content')
         }
     }
+
+    useEffect(() => {
+        console.log(location);
+        if (!!location.hash === '') { return; }
+        const hash = location.hash.substring(1)
+        // @todo I know, it is very ugly, may be illegal, but I did not find another way
+        const interval = setInterval(() => {
+            const locatedTitle = document.getElementById(hash);
+            if (locatedTitle !== null) {
+                locatedTitle.scrollIntoView();
+                clearInterval(interval);
+            }
+        }, 1000);
+    }, [location]);
 
     /**
      * When change of chapter, clean 'visualisations' state

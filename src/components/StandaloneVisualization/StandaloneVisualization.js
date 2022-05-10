@@ -34,7 +34,6 @@ export default function StandaloneVisualization({
                 for (let i = 0; i < datasets.length; i++) {
                     payload[outputs[i]] = datasets[i];
                 }
-                console.log('data is loaded');
                 setData(payload);
                 setLoadingState('successed');
             })

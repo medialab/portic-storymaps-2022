@@ -21,7 +21,12 @@ import json
 sanitizer = Sanitizer({
     'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'link', 'dfn'),
     'empty': ('hr', 'caller'),
-    'attributes': { 'caller': ('id', 'class'), 'a': ('href', 'rel', 'target', 'class'), 'dfn': ('title') }
+    'attributes': {
+        'caller': ('id', 'class'),
+        'a': ('href', 'rel', 'target', 'class'),
+        'dfn': ('title'),
+        'h2': ('id'), 'h3': ('id')
+    }
 })
 
 GDOC_URL = {
@@ -97,7 +102,7 @@ for lang in GDOC_URL.keys():
             styleTag.extract()
 
         titles_per_part = {}
-        title_part_number = 0
+        title_part_number = -1 # because the first title have to be 0
         for title in soup.find_all({'h1', 'h2', 'h3'}):
             title_id = title['id']
             if title.name == 'h1':
@@ -138,8 +143,11 @@ for lang in GDOC_URL.keys():
                 title_name = titles_per_part[title_id]['name']
                 title_part = str(titles_per_part[title_id]['part'])
                 title_element = soup.find(title_name, {'id': title_id})
+                href = '/' + lang + '/partie-' + title_part
+                if title_element.name != 'h1':
+                    href += '#' + title_id
                 link['class'] = 'title_link'
-                link['href'] = '/' + lang + '/partie-' + title_part
+                link['href'] = href
                 continue
 
             # Track Google links to clean them
