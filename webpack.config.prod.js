@@ -17,7 +17,7 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "./public/data", to: "./data" },
+                './public'
             ],
         }),
         new webpack.DefinePlugin({
