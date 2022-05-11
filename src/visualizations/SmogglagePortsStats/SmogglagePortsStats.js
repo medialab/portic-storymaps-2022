@@ -10,11 +10,13 @@ import BarChart from '../../components/BarChart';
  */
 
 export default function SmogglagePortsStats ({
-    data,
+    data: inputData,
     title,
-    lang
+    lang,
+    dimensions
 }) {
-    data = data['smogglage_ports_stats.csv'];
+    const { width, height } = dimensions;
+    let data = inputData['smogglage_ports_stats.csv'];
 
     return (
         <>
@@ -31,6 +33,11 @@ export default function SmogglagePortsStats ({
                     title: 'trajets anglais smoggleurs'
                 }}
                 tooltip={item => item['port de départ']}
+
+                { ...{
+                    width,
+                    height
+                }}
             />
         </>
     )

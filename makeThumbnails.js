@@ -1,5 +1,18 @@
-const path = require('path');
-const fs = require('fs');
+const path = require('path')
+    , fs = require('fs')
+    , Webpack = require('webpack')
+    , WebpackDevServer = require('webpack-dev-server');
+
+const config = require('./webpack.config.dev')
+    , compiler = Webpack(config)
+    , devServerOptions = {
+        ...config.devServer,
+        open: false,
+        client: {
+            logging: 'none'
+        }
+    }
+    , server = new WebpackDevServer(devServerOptions, compiler);
 
 const puppeteer = require('puppeteer');
 const visualizationsMetas = require('./src/data/viz.json');
@@ -19,6 +32,7 @@ const basePath = path.join(__dirname, 'public');
 });
 
 (async () => {
+    await server.start();
     const browser = await puppeteer.launch({
         // headless: false
     });
@@ -36,7 +50,7 @@ const basePath = path.join(__dirname, 'public');
             });
 
             const pathToSave = path.join(basePath, 'thumbnails', lang, `${vizId}.png`)
-            const url = `http://localhost:9000/#/${lang}/vizualisation/${vizId}`;
+            const url = `http://localhost:${devServerOptions.port}/#/${lang}/vizualisation/${vizId}`;
 
             await page.goto(url);
             await page.waitForSelector('.viz-render', {
@@ -51,4 +65,5 @@ const basePath = path.join(__dirname, 'public');
     }
 
     await browser.close();
+    await server.stop();
 })();

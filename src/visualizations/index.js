@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
+import PecheTypeValue from './PecheTypeValue';
 
 import visualizationsMetas from '../data/viz';
 
@@ -21,14 +22,17 @@ export default function VisualizationController ({
     dimensions,
     lang
 }) {
-    const {
-        title
-    } = Object.keys(visualizationsMetas)
-        .map(vizId => visualizationsMetas[vizId])
-        .find(viz => viz['id'] === vizId);
+    const title = useMemo(() => {
+        const vizMetas = visualizationsMetas[vizId];
+        return vizMetas[`titre_${lang}`]
+    }, [vizId, lang]);
 
     const vizContent = useMemo(() => {
             switch (vizId) {
+                case 'peche-type-value':
+                    return (
+                        <PecheTypeValue { ...{ title, data, dimensions, lang } } />
+                    );
                 case 'smoggleur-statut':
                     return (
                         <SmogglageStatus { ...{ title, data, dimensions, lang } } />
@@ -39,10 +43,10 @@ export default function VisualizationController ({
                         <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
                     );
             }
-    }, [vizId])
+    }, [vizId, dimensions, lang, data, title])
 
     return (
-        <div className='viz-render' ref={ref}>
+        <div className='VisualizationController viz-render' ref={ref}>
             {vizContent}
         </div>
     )

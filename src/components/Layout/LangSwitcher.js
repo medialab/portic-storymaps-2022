@@ -9,9 +9,8 @@ export default function LangSwitcher({
         <ul className="lang-toggle-container">
             {
                 langagesFlag.map((flag, i) =>
-                    <li>
+                    <li key={i} >
                         <button
-                            key={i}
                             className={(activeLang === flag ? 'is-active' : '')}
                             onClick={() => onLangChange(flag)}
                         >{flag}</button>
