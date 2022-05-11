@@ -53,7 +53,7 @@ export default function VisualizationContainer ({
         >
             {
                 ({ measureRef }) => (
-                    <div ref={measureRef}>
+                    <div ref={measureRef} style={{ height: '100%' }}>
                         <div className="fullscreen-viz-toggle-container">
                             <button
                                 data-for='contents-tooltip'

@@ -43,7 +43,7 @@ export default function VisualizationController ({
                         <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
                     );
             }
-    }, [vizId])
+    }, [vizId, dimensions, lang, data, title])
 
     return (
         <div className='VisualizationController viz-render' ref={ref}>
