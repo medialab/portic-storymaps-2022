@@ -19,11 +19,11 @@ jobs:
         run: |
           sh install.sh
           yarn
+          yarn run thumbnails
       - name: Build 🔧
         # continue-on-error: true
         run: |
           yarn run build
-          yarn run thumbnails
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
