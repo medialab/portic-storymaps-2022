@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import ReactTooltip from 'react-tooltip';
@@ -37,6 +37,8 @@ export default function ScrollyPage ({
     const { lang } = useParams()
         , sectionRef = useRef(null)
         , scrollY = useScrollYPosition();
+
+    const location = useLocation();
 
     title = buildPageTitle(title, lang);
 
@@ -85,7 +87,7 @@ export default function ScrollyPage ({
      * The scrollTo function launch scroll useEffect
      * @param {*} ref Caller element from React.useRef
      */
-    function onClickCallerScroll (ref) {
+    function onClickCallerScroll (ref, visualizationId) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
@@ -95,6 +97,8 @@ export default function ScrollyPage ({
             top: scrollTo,
             behavior: 'smooth'
         });
+
+        setIsFocusOnViz(visualizationId);
     }
 
     function onClickChangeResponsive () {
@@ -105,6 +109,20 @@ export default function ScrollyPage ({
             setActiveSideOnResponsive('content')
         }
     }
+
+    useEffect(() => {
+        console.log(location);
+        if (!!location.hash === '') { return; }
+        const hash = location.hash.substring(1)
+        // @todo I know, it is very ugly, may be illegal, but I did not find another way
+        const interval = setInterval(() => {
+            const locatedTitle = document.getElementById(hash);
+            if (locatedTitle !== null) {
+                locatedTitle.scrollIntoView();
+                clearInterval(interval);
+            }
+        }, 1000);
+    }, [location]);
 
     /**
      * When change of chapter, clean 'visualisations' state
@@ -127,7 +145,16 @@ export default function ScrollyPage ({
         if (!sectionRef.current) {
           return;
         }
+
         const visualizationEntries = Object.entries(visualizations);
+
+        if (scrollY === 0) {
+            const [firstCallerId, firstVizParms] = visualizationEntries[0];
+            const { visualizationId: firstVizId } = firstVizParms;
+            setFocusedVizId(firstVizId);
+            return;
+        }
+
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
         const y = scrollY + DISPLACE_Y;
         const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
@@ -141,7 +168,8 @@ export default function ScrollyPage ({
         setIsFocusOnViz(true);
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
-            const [vizId, vizParms] = visualizationEntries[i];
+            const [callerId, vizParms] = visualizationEntries[i];
+            const { visualizationId } = vizParms;
             const { ref } = vizParms;
 
             if (!!ref.current === false) { continue; }
@@ -150,7 +178,7 @@ export default function ScrollyPage ({
             let vizY = initialVizY + window.scrollY;
 
             if (y > vizY) {
-                setFocusedVizId(vizParms.visualizationId);
+                setFocusedVizId(visualizationId);
                 break;
             }
         }
@@ -226,7 +254,7 @@ export default function ScrollyPage ({
 
             <div className='ScrollyPage'>
                 <ReactTooltip id="contents-tooltip" />
-                <section className={cx("content", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
+                <section className={cx("Contents", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
                     <button
                         className='switch-btn'
                         onClick={onClickChangeResponsive}
@@ -234,7 +262,7 @@ export default function ScrollyPage ({
                         data-effect="solid"
                         data-tip={translate('vizContainer', 'switchToContent', lang)}
                     >➡</button>
-                    <Content components={{Caller}} />
+                    <Content components={{Caller, Link}} />
                 </section>
 
                 <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>

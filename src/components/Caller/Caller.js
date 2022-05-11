@@ -15,11 +15,13 @@ import { VisualisationContext } from '../../utils/contexts';
 export default function Caller ({
     id: visualizationId,
     className,
+    children,
     ...props
 }) {
     const ref = useRef(null);
     /** @type {[String, Function]} */
     const [callerId, setCallerId] = useState(genId());
+    const isInblock = className === 'is-inblock';
     const isInvalid = className === 'is-invalid';
     const isBlank = className === 'is-blank';
 
@@ -42,6 +44,20 @@ export default function Caller ({
             });
         });
     }, [callerId]);
+
+    if (isInblock) {
+        return (
+            <span
+                ref={ref}
+                id={visualizationId}
+                className={cx('Caller', {
+                    'is-invalid': isInvalid,
+                    'is-active': focusedVizId && focusedVizId === visualizationId
+                })}
+                onClick={(e) => onClickCallerScroll(ref, visualizationId)}
+            >{children}</span>
+        )
+    }
 
     return (
         <div

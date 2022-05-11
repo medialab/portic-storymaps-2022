@@ -33,8 +33,6 @@ const LinearAlluvialChart = ({
     return vizData;
   }, [inputData, sumBy, steps]);
 
-  console.log(data);
-
   const BAR_WIDTH = width / 100;
   const stepXScale = scaleLinear().range([0, width]).domain([0, data.length - 1])
   const handleMouseOut = () => {

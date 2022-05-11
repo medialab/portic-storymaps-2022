@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { scaleLinear } from 'd3-scale';
 import cx from 'classnames';

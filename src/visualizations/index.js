@@ -22,11 +22,10 @@ export default function VisualizationController ({
     dimensions,
     lang
 }) {
-    const {
-        title
-    } = Object.keys(visualizationsMetas)
-        .map(vizId => visualizationsMetas[vizId])
-        .find(viz => viz['id'] === vizId);
+    const title = useMemo(() => {
+        const vizMetas = visualizationsMetas[vizId];
+        return vizMetas[`titre_${lang}`]
+    }, [vizId, lang]);
 
     const vizContent = useMemo(() => {
             switch (vizId) {
@@ -44,7 +43,7 @@ export default function VisualizationController ({
                         <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
                     );
             }
-    }, [vizId])
+    }, [vizId, dimensions, lang, data, title])
 
     return (
         <div className='VisualizationController viz-render' ref={ref}>
