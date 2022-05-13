@@ -62,7 +62,9 @@ export default function ScrollyPage ({
     /** @type {[Boolean, Function]} */
     const [isFocusOnViz, setIsFocusOnViz] = useState(false);
     /** @type {[String, Function]} */
-    const [focusedVizId, setFocusedVizId] = useState(null);
+    const [focusedVizId, setFocusedVizId] = useState(undefined);
+    /** @type {[String, Function]} */
+    const [focusedCallerId, setFocusedCallerId] = useState(undefined);
     /** @type {['content'|'viz', Function]} */
     const [activeSideOnResponsive, setActiveSideOnResponsive] = useState('content');
 
@@ -87,7 +89,7 @@ export default function ScrollyPage ({
      * The scrollTo function launch scroll useEffect
      * @param {*} ref Caller element from React.useRef
      */
-    function onClickCallerScroll (ref, visualizationId) {
+    function onClickCallerScroll (ref, visualizationId, callerId) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
@@ -99,6 +101,7 @@ export default function ScrollyPage ({
         });
 
         setIsFocusOnViz(visualizationId);
+        setFocusedCallerId(callerId);
     }
 
     function onClickChangeResponsive () {
@@ -111,7 +114,6 @@ export default function ScrollyPage ({
     }
 
     useEffect(() => {
-        console.log(location);
         if (!!location.hash === '') { return; }
         const hash = location.hash.substring(1)
         // @todo I know, it is very ugly, may be illegal, but I did not find another way
@@ -152,6 +154,7 @@ export default function ScrollyPage ({
             const [firstCallerId, firstVizParms] = visualizationEntries[0];
             const { visualizationId: firstVizId } = firstVizParms;
             setFocusedVizId(firstVizId);
+            setFocusedCallerId(firstCallerId);
             return;
         }
 
@@ -179,6 +182,7 @@ export default function ScrollyPage ({
 
             if (y > vizY) {
                 setFocusedVizId(visualizationId);
+                setFocusedCallerId(callerId);
                 break;
             }
         }
@@ -221,17 +225,19 @@ export default function ScrollyPage ({
      * When load viz caller, set the first as focused in 'focusedVizId' state
      */
     useEffect(() => {
-        const firstCallerViz = Object.values(visualizations)[0];
+        const visualizationEntries = Object.entries(visualizations);
 
-        if (firstCallerViz === undefined) {
+        if (visualizationEntries[0] === undefined) {
             setIsFocusOnViz(false);
             return;
         }
-
-        const firstCallerVizId = firstCallerViz.visualizationId;
-
         setIsFocusOnViz(true);
-        setFocusedVizId(firstCallerVizId);
+
+        const [firstCallerId, firstVizParms] = visualizationEntries[0];
+        const { visualizationId: firstVizId } = firstVizParms;
+
+        setFocusedVizId(firstVizId);
+        setFocusedCallerId(firstCallerId);
     }, [visualizations]);
 
     if (loadingState === 'process') {
@@ -242,12 +248,7 @@ export default function ScrollyPage ({
     }
 
     return (
-        <VisualisationContext.Provider value={{
-            onRegisterVisualization,
-            onClickCallerScroll,
-            focusedVizId
-        }}>
-
+        <>
             <Helmet>
                 <title>{title}</title>
             </Helmet>
@@ -262,7 +263,13 @@ export default function ScrollyPage ({
                         data-effect="solid"
                         data-tip={translate('vizContainer', 'switchToContent', lang)}
                     >➡</button>
-                    <Content components={{Caller, Link}} />
+                    <VisualisationContext.Provider value={{
+                        onRegisterVisualization,
+                        onClickCallerScroll,
+                        focusedCallerId
+                    }}>
+                        <Content components={{Caller, Link}} />
+                    </VisualisationContext.Provider>
                 </section>
 
                 <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>
@@ -275,16 +282,16 @@ export default function ScrollyPage ({
                     >⬅</button>
                     {
                         isFocusOnViz && 
-                        <VisualizationContainer {
-                            ...{
+                        <VisualizationContainer
+                            callerProps={visualizations[focusedCallerId]['props']}
+                            { ...{
                                 focusedVizId,
                                 data
-                            }
-                        } />
+                            }}
+                        />
                     }
                 </aside>
             </div>
-
-        </VisualisationContext.Provider>
+        </>
     );
 }

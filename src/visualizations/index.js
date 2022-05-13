@@ -20,7 +20,8 @@ export default function VisualizationController ({
     data,
     ref,
     dimensions,
-    lang
+    lang,
+    callerProps
 }) {
     const title = useMemo(() => {
         const vizMetas = visualizationsMetas[vizId];
@@ -42,8 +43,12 @@ export default function VisualizationController ({
                     return (
                         <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
                     );
+                case 'map':
+                    return (
+                        <>Coucou {JSON.stringify(callerProps, undefined, 4)}</>
+                    );
             }
-    }, [vizId, dimensions, lang, data, title])
+    }, [vizId, callerProps, dimensions, lang, data, title])
 
     return (
         <div className='VisualizationController viz-render' ref={ref}>
