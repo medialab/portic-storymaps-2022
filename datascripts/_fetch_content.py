@@ -23,7 +23,6 @@ from citeproc import Citation, CitationItem
 from citeproc import formatter
 from citeproc.source.json import CiteProcJSON
 
-zotero_api_key = 'H5YiYSe7GX7pR2TtMkPcIeWB'
 sanitizer = Sanitizer({
     'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'link', 'dfn'),
     'empty': ('hr', 'caller'),
@@ -110,7 +109,7 @@ Import CSL JSON from Zotero
 """
 
 with open('../src/data/bib.json', "w") as bib_tex_file:
-    zotero_access = zotero.Zotero('2660172', 'group', zotero_api_key)
+    zotero_access = zotero.Zotero('4690289', 'group')
     bib_database = zotero_access.top(format='csljson')
     bib_database = bib_database['items']
     for i, item_metas in enumerate(bib_database):

@@ -1,989 +1,179 @@
 [
     {
-        "id": "Chevallier,1996",
-        "type": "book",
-        "title": "Savoir faire et pouvoir transmettre: Transmission et apprentissage des savoir-faire et des techniques",
-        "publisher": "Éditions de la Maison des sciences de l’homme",
-        "URL": "http://books.openedition.org/editionsmsh/3818",
-        "ISBN": "978-2-7351-0453-6 978-2-7351-1968-4",
-        "note": "DOI: 10.4000/books.editionsmsh.3818",
-        "shortTitle": "Savoir faire et pouvoir transmettre",
-        "language": "fr",
-        "editor": [
-            {
-                "family": "Chevallier",
-                "given": "Denis"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1996
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    11,
-                    15
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Masure,2014",
-        "type": "thesis",
-        "title": "Le design des programmes Des façons de faire du numérique",
-        "publisher": "Paris Panthéon Sorbonne",
-        "number-of-pages": "550",
-        "URL": "www.softphd.com",
-        "shortTitle": "Le design des programmes",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Masure",
-                "given": "Anthony"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2014,
-                    11,
-                    10
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2020,
-                    8,
-                    7
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Capuozzo,2003",
-        "type": "webpage",
-        "title": "UML - Les quatre types de relations",
-        "container-title": "linux-france.org",
-        "URL": "http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Capuozzo",
-                "given": "Olivier"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2003,
-                    4,
-                    4
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2020,
-                    10,
-                    5
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Jeanneret,2009",
+        "id": "Pfister,1977",
         "type": "article-journal",
-        "title": "La physionomie des systèmes : diagramme et représentation",
-        "container-title": "Communication langages",
-        "page": "63-79",
-        "volume": "N° 160",
-        "issue": "2",
-        "abstract": "<titre>R&#233;sum&#233;</titre> Au-del&#224; des r&#233;alit&#233;s strictement techniques et informatiques des syst&#232;mes d&#8217;information, cet article se propose de soumettre &#224; une analyse attentive l&#8217;un des aspects importants mais peu interrog&#233;s du d&#233;ploiement de ces syst&#232;mes : les dispositifs graphiques qui les accompagnent. Sch&#233;mas, diagrammes, tableaux dynamiques sont mobilis&#233;s au service de l&#8217;information et de la communication &#224; propos des SI ; l&#8217;homog&#233;n&#233;it&#233; de nature entre les sch&#233;mas et dispositifs graphiques mobilis&#233;s dans toutes les phases de mise en &#339;uvre des SI tend &#224; mettre en &#233;vidence une &#171;&#160;naturalisation&#160;&#187; des processus de d&#233;ploiement des SI.",
-        "URL": "https://www.cairn.info/revue-communication-et-langages1-2009-2-page-63.htm",
-        "note": "Publisher: NecPlus",
-        "shortTitle": "La physionomie des systèmes",
-        "language": "fr",
+        "title": "Les archives du pilotage de Dunkerque",
+        "container-title": "Gazette des archives",
+        "page": "137–143",
+        "volume": "98",
+        "issue": "1",
+        "note": "Publisher: Persée-Portail des revues scientifiques en SHS",
         "author": [
             {
-                "family": "Jeanneret",
-                "given": "Yves"
-            },
-            {
-                "family": "Chevalier",
-                "given": "Yves"
+                "family": "Pfister",
+                "given": "Christian"
             }
         ],
         "issued": {
             "date-parts": [
                 [
-                    2009
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    1,
-                    17
+                    1977
                 ]
             ]
         }
     },
     {
-        "id": "Eghbal,2017",
-        "type": "book",
-        "title": "Sur quoi reposent nos infrastructures numériques ? : Le travail invisible des faiseurs du web",
-        "collection-title": "Encyclopédie numérique",
-        "publisher": "OpenEdition Press",
-        "publisher-place": "Marseille",
-        "number-of-pages": "172",
-        "event-place": "Marseille",
-        "URL": "http://books.openedition.org/oep/1797",
-        "ISBN": "978-2-8218-9493-8",
-        "shortTitle": "Sur quoi reposent nos infrastructures numériques ?",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Eghbal",
-                "given": "Nadia"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2017,
-                    8,
-                    3
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2020,
-                    7,
-                    6
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Chun,2008",
+        "id": "Lemaire,1927",
         "type": "article-journal",
-        "title": "On \"Sourcery,\" or Code as Fetish",
-        "container-title": "Configurations",
-        "page": "299-324",
-        "volume": "16",
+        "title": "Dunkerque, des origines à 1900, avec préface de M. de Saint-Léger, 1927",
+        "container-title": "Revue du Nord",
+        "page": "306–308",
+        "volume": "13",
+        "issue": "52",
+        "note": "Publisher: Persée-Portail des revues scientifiques en SHS",
+        "author": [
+            {
+                "family": "Lemaire",
+                "given": "Louis"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    1927
+                ]
+            ]
+        }
+    },
+    {
+        "id": "De Bertrand,1865",
+        "type": "book",
+        "title": "Le Port et  le commerce maritime de dunkerque",
+        "edition": "The university of Chicago",
+        "author": [
+            {
+                "family": "De Bertrand",
+                "given": "Raymond"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    1865
+                ]
+            ]
+        }
+    },
+    {
+        "id": "Dermigny,1974",
+        "type": "book",
+        "title": "Escales, échelles et ports francs au moyen âge et aux temps modernes",
+        "author": [
+            {
+                "family": "Dermigny",
+                "given": "Louis"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    1974
+                ]
+            ]
+        }
+    },
+    {
+        "id": "Cullen,1968",
+        "type": "article-journal",
+        "title": "The smuggling trade in Ireland in the eighteenth century",
+        "container-title": "Proceedings of the Royal Irish Academy. Section C: Archaeology, Celtic Studies, History, Linguistics, Literature",
+        "page": "149–175",
+        "note": "Publisher: JSTOR",
+        "author": [
+            {
+                "family": "Cullen",
+                "given": "Louis M"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    1968
+                ]
+            ]
+        }
+    },
+    {
+        "id": "Cole,1958",
+        "type": "article-journal",
+        "title": "Trends in eighteenth-century smuggling",
+        "container-title": "The Economic History Review",
+        "page": "395–410",
+        "volume": "10",
         "issue": "3",
-        "abstract": "This essay offers a sympathetic interrogation of the move within new media studies toward \"software studies.\" Arguing against theoretical conceptions of programming languages as the ultimate performative utterance, it contends that source code is never simply the source of any action; rather, source code is only source code after the fact: its effectiveness depends on a whole imagined network of machines and humans. This does not mean that source code does nothing, but rather that it serves as a kind of fetish, and that the notion of the user as super agent, buttressed by real-time computation, is the obverse, not the opposite of this \"sourcery.\"",
-        "URL": "https://muse.jhu.edu/article/373990",
-        "DOI": "10.1353/con.0.0064",
-        "note": "Publisher: Johns Hopkins University Press",
+        "note": "Publisher: JSTOR",
         "author": [
             {
-                "family": "Chun",
-                "given": "Wendy Hui Kyong"
+                "family": "Cole",
+                "given": "William Alan"
             }
         ],
         "issued": {
             "date-parts": [
                 [
-                    2008
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    1,
-                    21
+                    1958
                 ]
             ]
         }
     },
     {
-        "id": "Diebolt,2011",
-        "type": "webpage",
-        "title": "Le petit lexique des termes de la complexité",
-        "container-title": "Réseau Intelligence de la Complexité",
-        "URL": "http://www.intelligence-complexite.org/fr/documents/lexique-de-termes-de-la-complexite.html",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Diebolt",
-                "given": "Serge"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2011
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    2,
-                    21
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Parnas,1972",
+        "id": "Charles,2022",
         "type": "article-journal",
-        "title": "On the criteria to be used in decomposing systems into modules",
-        "container-title": "Communications of the ACM",
-        "page": "1053-1058",
-        "volume": "15",
-        "issue": "12",
-        "abstract": "This paper discusses modularization as a mechanism for improving the flexibility and comprehensibility of a system while allowing the shortening of its development time. The effectiveness of a “modularization” is dependent upon the criteria used in dividing the system into modules. A system design problem is presented and both a conventional and unconventional decomposition are described. It is shown that the unconventional decompositions have distinct advantages for the goals outlined. The criteria used in arriving at the decompositions are discussed. The unconventional decomposition, if implemented with the conventional assumption that a module consists of one or more subroutines, will be less efficient in most cases. An alternative approach to implementation which does not have this effect is sketched.",
-        "URL": "https://dl.acm.org/doi/10.1145/361598.361623",
-        "DOI": "10.1145/361598.361623",
-        "journalAbbreviation": "Commun. ACM",
-        "language": "en",
+        "title": "Exploring the transformation of French trade in the long eighteenth century (1713–1823): The TOFLIT18 project",
+        "container-title": "Historical Methods: A Journal of Quantitative and Interdisciplinary History",
+        "page": "1–31",
+        "note": "Publisher: Taylor & Francis",
         "author": [
             {
-                "family": "Parnas",
-                "given": "David"
+                "family": "Charles",
+                "given": "Loïc"
+            },
+            {
+                "family": "Daudin",
+                "given": "Guillaume"
+            },
+            {
+                "family": "Girard",
+                "given": "Paul"
+            },
+            {
+                "family": "Plique",
+                "given": "Guillaume"
             }
         ],
         "issued": {
             "date-parts": [
                 [
-                    "1972"
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    7,
-                    27
+                    2022
                 ]
             ]
         }
     },
     {
-        "id": "Booch,1997",
+        "id": "Schumpeter,1961",
         "type": "book",
-        "title": "Analyse et conception orientées objets",
-        "publisher": "Éd. Addidon-Wesley France",
-        "publisher-place": "Paris; Reading (Mass.); Amsterdam",
-        "event-place": "Paris; Reading (Mass.); Amsterdam",
-        "ISBN": "978-2-87908-069-7",
-        "note": "OCLC: 465708216",
-        "language": "French",
+        "title": "English overseas trade statistics, 1697-1808",
+        "publisher": "Clarendon press",
         "author": [
             {
-                "family": "Booch",
-                "given": "Grady"
-            },
-            {
-                "family": "Reese",
-                "given": "Freddy"
-            },
-            {
-                "family": "Reese",
-                "given": "Laurent"
-            },
-            {
-                "family": "Bonnetain",
-                "given": "Pierre-Yves"
+                "family": "Schumpeter",
+                "given": "Elizabeth Boody"
             }
         ],
         "issued": {
             "date-parts": [
                 [
-                    1997
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Jonathan,2014",
-        "type": "post-weblog",
-        "title": "L’entropie logicielle, pourquoi la dette technique ne fait qu’augmenter ?",
-        "container-title": "Arnaud LEMAIRE",
-        "abstract": "La deuxième loi de la thermodynamique, dans ses principes, énonce que la désorganisation d’un système fermé ne peut pas être diminuée, mais seulement rester inchangée ou augmenter. Une mesure…",
-        "URL": "https://lilobase.wordpress.com/2014/05/27/lentropie-logicielle-pourquoi-la-dette-technique-ne-fait-quaugmenter/",
-        "language": "fr-FR",
-        "author": [
-            {
-                "family": "Jonathan",
-                "given": ""
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2014
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    9,
-                    8
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Akrich,2016",
-        "type": "chapter",
-        "title": "Le mode d’emploi : genèse, forme et usage",
-        "container-title": "Savoir faire et pouvoir transmettre : Transmission et apprentissage des savoir-faire et des techniques",
-        "collection-title": "Ethnologie de la France",
-        "publisher": "Éditions de la Maison des sciences de l’homme",
-        "publisher-place": "Paris",
-        "page": "113-131",
-        "event-place": "Paris",
-        "URL": "http://books.openedition.org/editionsmsh/3841",
-        "ISBN": "978-2-7351-1968-4",
-        "note": "Code: Savoir faire et pouvoir transmettre : Transmission et apprentissage des savoir-faire et des techniques",
-        "shortTitle": "Le mode d’emploi",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Akrich",
-                "given": "Madeleine"
-            },
-            {
-                "family": "Boullier",
-                "given": "Dominique"
-            }
-        ],
-        "editor": [
-            {
-                "family": "Chevallier",
-                "given": "Denis"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2016,
-                    1,
-                    15
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    2,
-                    13
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Barcellini,2008",
-        "type": "thesis",
-        "title": "Conception de l’artefact, conception du collectif",
-        "publisher": "CNAM",
-        "publisher-place": "Paris",
-        "number-of-pages": "241",
-        "event-place": "Paris",
-        "URL": "https://ergonomie.cnam.fr/equipe/barcellini/these.pdf",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Barcellini",
-                "given": "Flore"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2008
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Goyet,2017",
-        "type": "thesis",
-        "title": "De briques et de blocs. La fonction éditoriale des interfaces de programmation (API) web : entre science combinatoire et industrie du texte",
-        "publisher": "Paris IV Sorbonne",
-        "number-of-pages": "755",
-        "URL": "https://tel.archives-ouvertes.fr/tel-01665406",
-        "shortTitle": "De briques et de blocs.",
-        "language": "fr",
-        "author": [
-            {
-                "family": "Goyet",
-                "given": "Samuel"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2017
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Fowler,2003",
-        "type": "article-journal",
-        "title": "Who Needs an Architect?",
-        "page": "4",
-        "URL": "http://files.catwell.info/misc/mirror/2003-martin-fowler-who-needs-an-architect.pdf",
-        "language": "en",
-        "author": [
-            {
-                "family": "Fowler",
-                "given": "Martin"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2003
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Moseley,2006",
-        "type": "article",
-        "title": "Out of the Tar Pit",
-        "URL": "http://curtclifton.net/papers/MoseleyMarks06a.pdf",
-        "language": "en",
-        "author": [
-            {
-                "family": "Moseley",
-                "given": "Ben"
-            },
-            {
-                "family": "Marks",
-                "given": "Peter"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2006
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Nielsen,1994",
-        "type": "book",
-        "title": "Interactive Technologies: Usability Engineering.",
-        "publisher": "Elsevier Science & Technology Books Ebrary, Incorporated [distributor",
-        "publisher-place": "San Diego; Palo Alto",
-        "event-place": "San Diego; Palo Alto",
-        "URL": "https://www.safaribooksonline.com/library/view/title/9780125184069/?ar?orpq&email=^u",
-        "ISBN": "978-0-08-052029-2",
-        "note": "OCLC: 1103276433",
-        "shortTitle": "Interactive Technologies",
-        "language": "English",
-        "author": [
-            {
-                "family": "Nielsen",
-                "given": "Jakob"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1994
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    9,
-                    8
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Myers,1990",
-        "type": "article-journal",
-        "title": "Taxonomies of visual programming and program visualization",
-        "container-title": "Journal of Visual Languages & Computing",
-        "page": "97-123",
-        "volume": "1",
-        "issue": "1",
-        "abstract": "There has been great interest recently in systems that use graphics to aid in the programming, debugging, and understanding of computer systems. The terms ‘Visual Programming’ and ‘Program Visualization’ have been applied to these systems. This paper attempts to provide more meaning to these terms by giving precise definitions, and then surveys a number of systems that can be classified as providing Visual Programming or Program Visualization. These systems are organized by classifying them into three different taxonomies.",
-        "URL": "https://www.sciencedirect.com/science/article/pii/S1045926X05800369",
-        "DOI": "https://doi.org/10.1016/S1045-926X(05)80036-9",
-        "language": "en",
-        "author": [
-            {
-                "family": "Myers",
-                "given": "Brad A."
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1990
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Knuth,1983",
-        "type": "article-journal",
-        "title": "Literate Programming",
-        "container-title": "The computer journal",
-        "page": "15",
-        "URL": "https://academic.oup.com/comjnl/article/27/2/97/343244",
-        "language": "en",
-        "author": [
-            {
-                "family": "Knuth",
-                "given": "Donald"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1983
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Grosse,2012",
-        "type": "article-journal",
-        "title": "Vers la conception d'un outil d'assistance à la rédaction technique",
-        "container-title": "47e congrès international de la Société d’Ergonomie de Langue Française",
-        "page": "1–7",
-        "URL": "https://ergonomie-self.org/wp-content/uploads/2019/05/acte-8-self-2012.pdf",
-        "author": [
-            {
-                "family": "Grosse",
-                "given": "Corinne"
-            },
-            {
-                "family": "Barcellini",
-                "given": "Flore"
-            },
-            {
-                "family": "Saint-Dizier",
-                "given": "Patrick"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2012
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Sommerville,2001",
-        "type": "article-journal",
-        "title": "Software documentation",
-        "container-title": "Software engineering",
-        "page": "143–154",
-        "volume": "2",
-        "author": [
-            {
-                "family": "Sommerville",
-                "given": "Ian"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2001
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Horton,1994",
-        "type": "book",
-        "title": "Designing and writing online documentation: hypermedia for self-supporting products",
-        "collection-title": "Wiley technical communication library",
-        "publisher": "Wiley",
-        "publisher-place": "New York",
-        "number-of-pages": "439",
-        "edition": "2nd ed",
-        "event-place": "New York",
-        "ISBN": "978-0-471-30635-1",
-        "call-number": "QA76.9.D6 H675 1994",
-        "shortTitle": "Designing and writing online documentation",
-        "author": [
-            {
-                "family": "Horton",
-                "given": "William K."
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1994
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Bobillier Chaumon,2000",
-        "type": "article-journal",
-        "title": "Evolutions de l’activité et de l’organisation du travail lors du changement d’environnement de programmation chez les informaticiens",
-        "container-title": "Terminal",
-        "author": [
-            {
-                "family": "Bobillier Chaumon",
-                "given": "Marc-Eric"
-            },
-            {
-                "family": "Brangier",
-                "given": "Eric"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2000,
-                    4
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Lehman,1980",
-        "type": "article-journal",
-        "title": "Programs, life cycles, and laws of software evolution",
-        "container-title": "Proceedings of the IEEE",
-        "page": "1060-1076",
-        "volume": "68",
-        "issue": "9",
-        "DOI": "10.1109/PROC.1980.11805",
-        "author": [
-            {
-                "family": "Lehman",
-                "given": "M.M."
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1980
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Briand,2003",
-        "type": "paper-conference",
-        "title": "Software documentation: how much is enough?",
-        "container-title": "Seventh european conference onSoftware maintenance and reengineering, 2003. Proceedings.",
-        "page": "13-15",
-        "DOI": "10.1109/CSMR.2003.1192406",
-        "author": [
-            {
-                "family": "Briand",
-                "given": "Lionel"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2003
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Curtis,1989",
-        "type": "article-journal",
-        "title": "Experimental evaluation of software documentation formats",
-        "container-title": "Journal of systems and software",
-        "page": "167–207",
-        "volume": "9",
-        "issue": "2",
-        "note": "Publisher: Elsevier",
-        "author": [
-            {
-                "family": "Curtis",
-                "given": "Bill"
-            },
-            {
-                "family": "Sheppard",
-                "given": "Sylvia B"
-            },
-            {
-                "family": "Kruesi-Bailey",
-                "given": "Elizabeth"
-            },
-            {
-                "family": "Bailey",
-                "given": "John"
-            },
-            {
-                "family": "Boehm-Davis",
-                "given": "Deborah A"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1989
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Forward,2002",
-        "type": "thesis",
-        "title": "Software documentation: Building and maintaining artefacts of communication.",
-        "publisher": "University of Ottawa (Canada)",
-        "author": [
-            {
-                "family": "Forward",
-                "given": "Andrew"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2002
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Berglund,2000",
-        "type": "paper-conference",
-        "title": "Writing for adaptable documentation",
-        "container-title": "18th annual conference on computer documentation. ipcc sigdoc 2000. Technology and teamwork. Proceedings. IEEE professional communication society international professional communication conference an",
-        "page": "497–508",
-        "note": "tex.ids= berglundWritingAdaptableDocumentation2000\ntex.organization: IEEE",
-        "author": [
-            {
-                "family": "Berglund",
-                "given": "Erik"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2000
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Cockburn,2002",
-        "type": "book",
-        "title": "Agile software development: the cooperative game",
-        "publisher": "Pearson Education",
-        "edition": "Addison-Wesley Longman Publishing Co.",
-        "URL": "https://www.researchgate.net/publication/235616359_Agile_Software_Development",
-        "language": "en",
-        "author": [
-            {
-                "family": "Cockburn",
-                "given": "Alistair"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    2002,
-                    1
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Elliott Sim,1999",
-        "type": "paper-conference",
-        "title": "Browsing and searching software architectures",
-        "container-title": "Proceedings IEEE International Conference on Software Maintenance - 1999 (ICSM'99). 'Software Maintenance for Business Change' (Cat. No.99CB36360)",
-        "publisher": "IEEE",
-        "publisher-place": "Oxford, UK",
-        "page": "381-390",
-        "event": "Proceedings IEEE International Conference on Software Maintenance - 1999 (ICSM'99). 'Software Maintenance for Business Change' (Cat. No.99CB36360)",
-        "event-place": "Oxford, UK",
-        "abstract": "Software architecture visualization tools tend to support browsing, that is, exploration by following concepts. If architectural diagrams are to be used during daily software maintenance tasks, these tools also need to support specific fact-finding through searching. Searching is essential to program comprehension and hypothesis testing. Furthermore, searching allows users to reverse the abstractions in architectural diagrams and access facts in the underlying program code. In this paper, we consider the problem of searching and browsing software architectures using perspectives from information retrieval and program comprehension. After analyzing our own user studies and results from the literature, we propose a solution: the Searchable Bookshelf, an architecture visualization tool that supports both navigation styles. We also present a prototype of our tool which is an extension of an existing architecture visualization tool.",
-        "URL": "http://ieeexplore.ieee.org/document/792636/",
-        "DOI": "10.1109/ICSM.1999.792636",
-        "ISBN": "978-0-7695-0016-4",
-        "language": "en",
-        "author": [
-            {
-                "family": "Elliott Sim",
-                "given": "Susan"
-            },
-            {
-                "family": "Clarke",
-                "given": "C.L.A."
-            },
-            {
-                "family": "Holt",
-                "given": "R.C."
-            },
-            {
-                "family": "Cox",
-                "given": "A.M."
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1999
-                ]
-            ]
-        },
-        "accessed": {
-            "date-parts": [
-                [
-                    2021,
-                    10,
-                    15
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Brooks,1983",
-        "type": "article-journal",
-        "title": "Towards a theory of the comprehension of computer programs",
-        "container-title": "International journal of man-machine studies",
-        "page": "543–554",
-        "volume": "18",
-        "issue": "6",
-        "URL": "https://www.sciencedirect.com/science/article/abs/pii/S0020737383800315",
-        "DOI": "10.1016/S0020-7373(83)80031-5",
-        "note": "tex.ids= brooksTheoryComprehensionComputer1983\npublisher: Elsevier",
-        "language": "en",
-        "author": [
-            {
-                "family": "Brooks",
-                "given": "Ruven"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1983
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Sametinger,1996",
-        "type": "article-journal",
-        "title": "Reuse Documentation and Documentation Reuse",
-        "container-title": "TOOLS 19: Technology of Object-Oriented Languages and Systems",
-        "page": "17–28",
-        "abstract": "The reuse of application frameworks and class libraries can improve the productivity in software development considerably. Object-oriented techniques, i.e., inheritance and information hiding, that ease reusing software, can be applied to documentation and thus, enable documentation reuse.",
-        "URL": "https://www.se.jku.at/wp-content/uploads/1996/02/1996.tools_.europe.pdf",
-        "language": "en",
-        "author": [
-            {
-                "family": "Sametinger",
-                "given": "Johannes"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1996
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Walker,1988",
-        "type": "article-journal",
-        "title": "Supporting document development with Concordia",
-        "container-title": "Computer",
-        "page": "48–59",
-        "volume": "21",
-        "issue": "1",
-        "note": "Publisher: IEEE",
-        "author": [
-            {
-                "family": "Walker",
-                "given": "Janet H."
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1988
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Tilley,1993",
-        "type": "paper-conference",
-        "title": "Documenting-in-the-large vs. documenting-in-the-small.",
-        "container-title": "CASCON",
-        "page": "1083–1090",
-        "URL": "http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.30.3346&rep=rep1&type=pdf",
-        "note": "tex.organization: Citeseer",
-        "language": "en",
-        "author": [
-            {
-                "family": "Tilley",
-                "given": "Scott Robert"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1993,
-                    10,
-                    24
-                ]
-            ]
-        }
-    },
-    {
-        "id": "Ramsey,1994",
-        "type": "article-journal",
-        "title": "Literate programming simplified",
-        "container-title": "IEEE software",
-        "page": "97–105",
-        "volume": "11",
-        "issue": "5",
-        "URL": "https://www.cs.tufts.edu/~nr/pubs/lpsimp-abstract.html",
-        "note": "Publisher: IEEE",
-        "language": "en",
-        "author": [
-            {
-                "family": "Ramsey",
-                "given": "Norman"
-            }
-        ],
-        "issued": {
-            "date-parts": [
-                [
-                    1994
+                    1961
                 ]
             ]
         }
