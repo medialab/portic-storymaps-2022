@@ -87,21 +87,30 @@ export default function ScrollyPage ({
     /**
      * Scroll to the <Caller/> onclick event
      * The scrollTo function launch scroll useEffect
-     * @param {*} ref Caller element from React.useRef
+     * @param {Object} props Caller props
+     * @param {*} props.ref Caller ref
+     * @param {String} props.visualizationId
+     * @param {String} props.callerId
+     * @param {Boolean} props.canFocusOnScroll Need click to be displayed as overflow
+     * @param {Object} props.callerProps Caller input props
      */
-    function onClickCallerScroll (ref, visualizationId, callerId) {
+    function onClickCallerScroll ({ref, visualizationId, callerId, canFocusOnScroll, callerProps}) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
         const scrollTo = vizY - DISPLACE_Y * 0.9;
+        
+        if (canFocusOnScroll === false) {
+            setIsFocusOnViz(true);
+            setFocusedVizId(visualizationId);
+            setFocusedCallerId(callerId);
+            return;
+        }
 
         window.scrollTo({
             top: scrollTo,
             behavior: 'smooth'
         });
-
-        setIsFocusOnViz(visualizationId);
-        setFocusedCallerId(callerId);
     }
 
     function onClickChangeResponsive () {
@@ -173,14 +182,14 @@ export default function ScrollyPage ({
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
             const [callerId, vizParms] = visualizationEntries[i];
             const { visualizationId } = vizParms;
-            const { ref } = vizParms;
+            const { ref, canFocusOnScroll } = vizParms;
 
             if (!!ref.current === false) { continue; }
 
             const { y: initialVizY } = ref.current.getBoundingClientRect();
             let vizY = initialVizY + window.scrollY;
 
-            if (y > vizY) {
+            if (y > vizY && canFocusOnScroll) {
                 setFocusedVizId(visualizationId);
                 setFocusedCallerId(callerId);
                 break;

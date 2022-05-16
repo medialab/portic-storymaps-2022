@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useMemo, useRef, useState} from 'react';
 import cx from 'classnames';
 import {v4 as genId} from 'uuid';
 
@@ -30,17 +30,22 @@ export default function Caller ({
         focusedCallerId
     } = useContext(VisualisationContext);
 
+    const callerPayload = useMemo(() => {
+        return {
+            props: {...props},
+            canFocusOnScroll: isInblock ? false : true,
+            ref,
+            visualizationId,
+            callerId
+        }
+    }, [className, ref, visualizationId, callerId]);
+
     useEffect(() => {
         if (isInvalid || isBlank) { return; }
 
         setTimeout(() => {
             // we wrap callback in a setTimeout in order to have a non-null ref to the HTML element
-            onRegisterVisualization({
-                props: {...props},
-                ref,
-                visualizationId,
-                callerId
-            });
+            onRegisterVisualization(callerPayload);
         });
     }, [callerId]);
 
@@ -53,7 +58,7 @@ export default function Caller ({
                     'is-invalid': isInvalid,
                     'is-active': focusedCallerId && focusedCallerId === callerId
                 })}
-                onClick={(e) => onClickCallerScroll(ref, visualizationId, callerId)}
+                onClick={(e) => onClickCallerScroll(callerPayload)}
             >{children} {JSON.stringify({ ...props })}</span>
         )
     }
@@ -67,7 +72,7 @@ export default function Caller ({
                 'is-blank': isBlank,
                 'is-active': focusedCallerId && focusedCallerId === callerId
             })}
-            onClick={(e) => onClickCallerScroll(ref)}
+            onClick={(e) => onClickCallerScroll(callerPayload)}
         >
             {
                 process.env.NODE_ENV === 'development' &&
