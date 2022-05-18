@@ -40,14 +40,6 @@ export default function MapDunkerquePort({
 
     const mapRef = useRef(null);
 
-    // useEffect(() => {
-    //     fetchDataSvg('ville_flamande.svg')
-    //         .then((data) => {
-    //             console.log(data);
-    //             setInputSVG(data);
-    //         })
-    // }, [])
-
     function changeMapView(id) {
         const { file } = data.find(({id: rowId}) => rowId === id);
         const pathSvg = process.env.BASE_PATH + '/assets'
@@ -70,7 +62,7 @@ export default function MapDunkerquePort({
                     { ...{ data } }
                     dimensions={{
                         width: mapDimensions.width,
-                        height: 50
+                        height: 120
                     }}
                 />
             </VisualisationContext.Provider>

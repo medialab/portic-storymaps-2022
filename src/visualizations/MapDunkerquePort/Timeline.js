@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
 
 import TimelineFragment from "./TimelineFragment";
 
@@ -12,6 +12,7 @@ export default function Timeline({
     dimensions,
     ...props
 }) {
+    const [yearMark, setYearMark] = useState(undefined);
     const { width: timelineWidth, height: timelineHeight } = dimensions;
 
     const svgRef = useRef(null);
@@ -38,9 +39,18 @@ export default function Timeline({
         return categories;
     }, [data]);
 
+    const categories = useMemo(() => {
+        return Object.keys(categoriesColor);
+    }, [categoriesColor])
+
+    const categoryHeight = useMemo(() => {
+        return timelineHeight / categories.length;
+    }, [categories])
+
     const yearsOnInterest = useMemo(() => {
         const paylaod = {};
-        for (const { year, category, text, ...rest } of data) {
+        for (const { year, ...rest } of data) {
+            const { category } = rest;
             paylaod[year] = {
                 color: categoriesColor[category],
                 ...rest
@@ -69,15 +79,20 @@ export default function Timeline({
         }
     }
 
-    function changeYearOnClick(xCoordinateOnLick) {
+    function getYearWithX(xCoordinateOnLick) {
         const floatYearForXCoordinate = spanRange.invert(xCoordinateOnLick);
         const yearForXCoordinate = Math.round(floatYearForXCoordinate);
+        return yearForXCoordinate;
+    }
+
+    function getInterestYearIdWithX(xCoordinateOnLick) {
+        let yearTarget = getYearWithX(xCoordinateOnLick);
         const years = Object.keys(yearsOnInterest);
         const yearClosest = years.reduce((prev, curr) => {
-            return (Math.abs(curr - yearForXCoordinate) < Math.abs(prev - yearForXCoordinate) ? curr : prev);
+            return (Math.abs(curr - yearTarget) < Math.abs(prev - yearTarget) ? curr : prev);
         });
-        const [year, { id: yearClosestId }] = Object.entries(yearsOnInterest).find(([year, metas]) => yearClosest === year)
-        changeMapView(yearClosestId);
+        const [_, { id: yearClosestId }] = Object.entries(yearsOnInterest).find(([year, {...rest}]) => yearClosest === year)
+        return yearClosestId;
     }
 
     return (
@@ -85,23 +100,87 @@ export default function Timeline({
             ref={svgRef}
             onClick={(e) => {
                 const { x } = getCoordinatesOnClick(e);
-                changeYearOnClick(x);
+                let yearClosestId = getInterestYearIdWithX(x);
+                changeMapView(yearClosestId);
             }}
+            onMouseMove={(e) => {
+                const { x } = getCoordinatesOnClick(e);
+                let yearTarget = getYearWithX(x);
+                setYearMark({
+                    year: yearTarget,
+                    x
+                })
+            }}
+            onMouseLeave={() => setYearMark(undefined)}
             width={timelineWidth}
             height={timelineHeight}
         >
             {
-                Object.entries(yearsOnInterest).map(([year, { ...rest }], i) => {
+                years.map((year, i) => {
+                    if (year % 20 !== 0) {
+                        return null;
+                    }
                     return (
-                        <TimelineFragment
-                            key={year}
-                            width={step}
-                            height={timelineHeight}
-                            x={spanRange(year)}
-                            y={0}
-                            label={year}
-                            { ...rest }
-                        />
+                        <g
+                            transform={`translate(${spanRange(year)}, ${0})`}
+                            key={i}
+                        >
+                            <line
+                                y1={timelineHeight}
+                                y2={0}
+                                strokeOpacity="0.2"
+                                strokeDasharray="10,15"
+                                stroke='gray'
+                                strokeWidth={1}
+                            ></line>
+                            <text y={timelineHeight} x={5} fontSize={10} fill='gray'>{year}</text>
+                        </g>
+                    )
+                })
+            }
+            {
+                yearMark &&
+                <g
+                    transform={`translate(${yearMark.x}, ${0})`}
+                >
+                    <line
+                        y1={timelineHeight}
+                        y2={0}
+                        stroke='black'
+                        strokeWidth={step}
+                    ></line>
+                    <text y={timelineHeight} x={5} fontSize={10}>{yearMark.year}</text>
+                </g>
+            }
+            {
+                categories.map((category, i) => {
+                    const categoryLabelSize = 14;
+                    const categoryLabelMargin = 5;
+                    return (
+                        <g
+                            key={i}
+                            transform={`translate(${0}, ${categoryHeight * i})`}
+                        >
+                            <text y={categoryLabelSize} fontSize={categoryLabelSize} >{category}</text>
+                            {
+                                Object.entries(yearsOnInterest)
+                                .filter(([year, { category: yearCategory }]) => yearCategory === category)
+                                .map(([year, { year_end, ...rest }], i) => {
+                                    const length = (year_end) ? year_end - year : 1;
+                                    return (
+                                        <TimelineFragment
+                                            key={i}
+                                            width={step*length}
+                                            height={categoryHeight - categoryLabelSize}
+                                            x={spanRange(year)}
+                                            y={categoryLabelSize + categoryLabelMargin}
+                                            label={year}
+                                            { ...rest }
+                                        />
+                                    )
+                                })
+                            }
+                        </g>
                     )
                 })
             }

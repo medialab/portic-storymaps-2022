@@ -7,7 +7,7 @@ export default function TimelineFragment({
     height,
     x,
     y,
-    color = 'transparent',
+    color = 'black',
     lockShowTitle = false,
     label = '',
     id,
@@ -53,7 +53,6 @@ export default function TimelineFragment({
             transform={`translate(${x}, ${y})`}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            onClick={() => changeMapView(id)}
         >
             <rect
                 fill={color}
@@ -63,7 +62,6 @@ export default function TimelineFragment({
             {
                 showTitle &&
                 <g>
-                    {/* <line x1={heightForSpan + heightForLabel + 10} x2={0} stroke={color} strokeWidth={3}></line> */}
                     <text y={heightForSpan + heightForLabel} x={0} fontSize={10} color="red">{label}</text>
                 </g>
             }
