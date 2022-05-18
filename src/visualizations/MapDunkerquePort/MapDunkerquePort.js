@@ -11,6 +11,7 @@ export default function MapDunkerquePort({
     title,
     data: inputData,
     dimensions,
+    callerProps,
     ...props
 }) {
     const [mapBackgroundPath, setMapBackgroundPath] = useState(undefined);
@@ -29,7 +30,14 @@ export default function MapDunkerquePort({
     const mapDimensions = useMemo(() => {
         return {
             width: dimensions.width,
-            height: 400
+            height: dimensions.height * 0.6
+        }
+    }, [dimensions]);
+
+    const timelineDimension = useMemo(() => {
+        return {
+            width: dimensions.width,
+            height: dimensions.height * 0.2
         }
     }, [dimensions]);
 
@@ -59,11 +67,8 @@ export default function MapDunkerquePort({
                 changeMapView
             }}>
                 <Timeline
-                    { ...{ data } }
-                    dimensions={{
-                        width: mapDimensions.width,
-                        height: 120
-                    }}
+                    { ...{ data, callerProps } }
+                    dimensions={timelineDimension}
                 />
             </VisualisationContext.Provider>
         </div>

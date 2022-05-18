@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState, useEffect } from "react";
 
 import TimelineFragment from "./TimelineFragment";
 
@@ -10,6 +10,7 @@ import { VisualisationContext } from "../../utils/contexts";
 export default function Timeline({
     data,
     dimensions,
+    callerProps,
     ...props
 }) {
     const [yearMark, setYearMark] = useState(undefined);
@@ -45,7 +46,7 @@ export default function Timeline({
 
     const categoryHeight = useMemo(() => {
         return timelineHeight / categories.length;
-    }, [categories])
+    }, [categories, timelineHeight])
 
     const yearsOnInterest = useMemo(() => {
         // const yearFromData = new Set(data.map(({ year }) => year))
@@ -71,6 +72,21 @@ export default function Timeline({
     const step = useMemo(() => {
         return spanRange(years[1])
     }, [spanRange]);
+
+    // useEffect(() => {
+    //     const { year: callerYear, object: callerObject } = callerProps;
+    //     if (callerYear === undefined) { return; }
+    //     const itemFromCaller = data.find(({ year: rowYear, object: rowObject }) => {
+    //         if (rowYear === callerYear && object === undefined) {
+    //             return true;
+    //         }
+    //         if (rowYear === callerYear && rowObject === callerObject) {
+    //             return true;
+    //         }
+    //     })
+    //     const { year } = itemFromCaller;
+    //     console.log(spanRange(year));
+    // }, [callerProps])
 
     function getCoordinatesOnClick(e) {
         const { clientX, clientY } = e;

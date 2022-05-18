@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
@@ -46,7 +46,7 @@ export default function VisualizationController ({
                     );
                 case 'map':
                     return (
-                        <MapDunkerquePort { ...{ title, data, dimensions } } />
+                        <MapDunkerquePort { ...{ title, data, dimensions, callerProps } } />
                     );
             }
     }, [vizId, callerProps, dimensions, lang, data, title])
