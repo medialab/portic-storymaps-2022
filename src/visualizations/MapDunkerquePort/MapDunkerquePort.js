@@ -42,7 +42,7 @@ export default function MapDunkerquePort({
 
     function changeMapView(id) {
         const { file } = data.find(({id: rowId}) => rowId === id);
-        const pathSvg = process.env.BASE_PATH + '/assets'
+        const pathSvg = process.env.BASE_PATH + '/assets';
         setMapLayerPath(pathSvg + '/' + file);
     }
     

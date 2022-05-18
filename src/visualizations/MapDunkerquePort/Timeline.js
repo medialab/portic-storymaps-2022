@@ -48,6 +48,8 @@ export default function Timeline({
     }, [categories])
 
     const yearsOnInterest = useMemo(() => {
+        // const yearFromData = new Set(data.map(({ year }) => year))
+        // return Array.from(yearFromData);
         const paylaod = {};
         for (const { year, ...rest } of data) {
             const { category } = rest;
@@ -57,7 +59,7 @@ export default function Timeline({
             }
         }
         return paylaod;
-    }, [data, categoriesColor]);
+    }, [data]);
 
     const spanRange = useMemo(() => {
         let yearMin = years[0], yearMax = years[years.length - 1];
@@ -163,9 +165,9 @@ export default function Timeline({
                         >
                             <text y={categoryLabelSize} fontSize={categoryLabelSize} >{category}</text>
                             {
-                                Object.entries(yearsOnInterest)
-                                .filter(([year, { category: yearCategory }]) => yearCategory === category)
-                                .map(([year, { year_end, ...rest }], i) => {
+                                data
+                                .filter(({ category: yearCategory }) => yearCategory === category)
+                                .map(({ year, year_end, ...rest }, i) => {
                                     const length = (year_end) ? year_end - year : 1;
                                     return (
                                         <TimelineFragment
@@ -175,6 +177,7 @@ export default function Timeline({
                                             x={spanRange(year)}
                                             y={categoryLabelSize + categoryLabelMargin}
                                             label={year}
+                                            color={categoriesColor[category]}
                                             { ...rest }
                                         />
                                     )
