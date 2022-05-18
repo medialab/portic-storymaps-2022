@@ -18,8 +18,8 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "./public/data", to: "./data" },
-                { from: "./public/thumbnails", to: "./thumbnails" },
-                './public'
+                { from: "./public/assets", to: "./assets" },
+                { from: "./public/thumbnails", to: "./thumbnails" }
             ],
         }),
         new webpack.DefinePlugin({

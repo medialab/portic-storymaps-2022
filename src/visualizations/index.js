@@ -3,6 +3,7 @@ import { useContext, useMemo } from 'react';
 import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
 import PecheTypeValue from './PecheTypeValue';
+import MapDunkerquePort from './MapDunkerquePort';
 
 import visualizationsMetas from '../data/viz';
 
@@ -45,7 +46,7 @@ export default function VisualizationController ({
                     );
                 case 'map':
                     return (
-                        <>Coucou {JSON.stringify(callerProps, undefined, 4)}</>
+                        <MapDunkerquePort { ...{ title, data, dimensions } } />
                     );
             }
     }, [vizId, callerProps, dimensions, lang, data, title])

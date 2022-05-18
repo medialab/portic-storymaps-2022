@@ -97,9 +97,9 @@ export default function Header({
                         <Link to='/'>
                             {
                                 fontColor === 'white' ?
-                                    <img src={`${process.env.BASE_PATH}/rose_des_vents_white.svg`} alt="logo" />
+                                    <img src={`${process.env.BASE_PATH}/assets/rose_des_vents_white.svg`} alt="logo" />
                                     :
-                                    <img src={`${process.env.BASE_PATH}/rose_des_vents.svg`} alt="logo" />
+                                    <img src={`${process.env.BASE_PATH}/assets/rose_des_vents.svg`} alt="logo" />
                             }
                         </Link>
                     </li>
@@ -203,9 +203,9 @@ export default function Header({
                     <button onClick={() => setDrawerIsOpen(!drawerIsOpen)} className={cx('drawer-button')}>
                         {
                             fontColor === 'white' || drawerIsOpen ?
-                                <img style={{ background: drawerIsOpen ? undefined : backgroundColor }} src={`${process.env.BASE_PATH}/rose_des_vents_white.svg`} alt="logo" />
+                                <img style={{ background: drawerIsOpen ? undefined : backgroundColor }} src={`${process.env.BASE_PATH}/assets/rose_des_vents_white.svg`} alt="logo" />
                                 :
-                                <img style={{ background: drawerIsOpen ? undefined : backgroundColor }} src={`${process.env.BASE_PATH}/rose_des_vents.svg`} alt="logo" />
+                                <img style={{ background: drawerIsOpen ? undefined : backgroundColor }} src={`${process.env.BASE_PATH}/assets/rose_des_vents.svg`} alt="logo" />
                         }
                     </button>
                     <Link to='/'>
