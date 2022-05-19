@@ -40,7 +40,7 @@ export default function VisualizationController({
                     <MapDunkerquePort {...{ data, dimensions, callerProps }} />
                 );
             default:
-                return <>Visualizations manquante</>
+                return <>Visualisation manquante</>
         }
     }, [vizId, callerProps, dimensions, lang, data])
 
