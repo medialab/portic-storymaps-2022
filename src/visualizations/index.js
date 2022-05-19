@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
@@ -22,7 +22,7 @@ export default function VisualizationController ({
     ref,
     dimensions,
     lang,
-    callerProps
+    callerProps = {}
 }) {
     const title = useMemo(() => {
         const vizMetas = visualizationsMetas[vizId];

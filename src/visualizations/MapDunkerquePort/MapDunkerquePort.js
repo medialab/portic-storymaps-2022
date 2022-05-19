@@ -16,6 +16,7 @@ export default function MapDunkerquePort({
 }) {
     const [mapBackgroundPath, setMapBackgroundPath] = useState(undefined);
     const [mapLayerPath, setMapLayerPath] = useState(undefined);
+    const [yearMark, setYearMark] = useState(undefined);
 
     const data = useMemo(() => {
         return inputData['map.csv'].map(({...rest}) => {
@@ -48,10 +49,14 @@ export default function MapDunkerquePort({
 
     const mapRef = useRef(null);
 
-    function changeMapView(id) {
-        const { file } = data.find(({id: rowId}) => rowId === id);
+    function changeMapView(id, xCoordinate) {
+        const { file, year } = data.find(({id: rowId}) => rowId === id);
         const pathSvg = process.env.BASE_PATH + '/assets';
         setMapLayerPath(pathSvg + '/' + file);
+        setYearMark({
+            year,
+            x: xCoordinate
+        });
     }
     
     return (
@@ -64,7 +69,8 @@ export default function MapDunkerquePort({
             </div>
 
             <VisualisationContext.Provider value={{
-                changeMapView
+                changeMapView,
+                yearMark
             }}>
                 <Timeline
                     { ...{ data, callerProps } }

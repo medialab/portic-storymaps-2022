@@ -1,6 +1,7 @@
 import React, { useContext, useMemo, useRef, useState, useEffect } from "react";
 
 import TimelineFragment from "./TimelineFragment";
+import TimelineVerticalLine from "./TimelineVerticalLine";
 
 import { scaleLinear } from "d3-scale";
 import { range } from "lodash";
@@ -13,13 +14,14 @@ export default function Timeline({
     callerProps,
     ...props
 }) {
-    const [yearMark, setYearMark] = useState(undefined);
+    const [yearCursor, setYearCursor] = useState(undefined);
     const { width: timelineWidth, height: timelineHeight } = dimensions;
 
     const svgRef = useRef(null);
 
     const {
-        changeMapView
+        changeMapView,
+        yearMark
     } = useContext(VisualisationContext);
 
     const years = useMemo(() => {
@@ -73,20 +75,35 @@ export default function Timeline({
         return spanRange(years[1])
     }, [spanRange]);
 
-    // useEffect(() => {
-    //     const { year: callerYear, object: callerObject } = callerProps;
-    //     if (callerYear === undefined) { return; }
-    //     const itemFromCaller = data.find(({ year: rowYear, object: rowObject }) => {
-    //         if (rowYear === callerYear && object === undefined) {
-    //             return true;
-    //         }
-    //         if (rowYear === callerYear && rowObject === callerObject) {
-    //             return true;
-    //         }
-    //     })
-    //     const { year } = itemFromCaller;
-    //     console.log(spanRange(year));
-    // }, [callerProps])
+    useEffect(() => {
+        const { year: callerYear, object: callerObject } = callerProps;
+        if ([callerYear, callerObject].every(callerProp => callerProp === undefined) === true) {
+            return;
+        }
+
+        let matchRow = undefined;
+
+        const yearMatchData = data.filter(({ year: rowYear }) => rowYear === callerYear);
+        if (yearMatchData.length === 1) {
+            matchRow = yearMatchData[0];
+            const { year: matchYear } = matchRow;
+            const xCoordinate = spanRange(matchYear);
+            let yearClosestId = getInterestYearIdWithX(xCoordinate);
+            changeMapView(yearClosestId, xCoordinate);
+            return;
+        }
+
+        if (callerObject === undefined) { return; }
+
+        matchRow = yearMatchData.find(({ object: rowObject }) => rowObject === callerObject);
+        if (matchRow !== undefined) {
+            const { year: matchYear } = matchRow;
+            const xCoordinate = spanRange(matchYear);
+            let yearClosestId = getInterestYearIdWithX(xCoordinate);
+            changeMapView(yearClosestId, xCoordinate);
+            return;
+        }
+    }, [callerProps])
 
     function getCoordinatesOnClick(e) {
         const { clientX, clientY } = e;
@@ -119,56 +136,54 @@ export default function Timeline({
             onClick={(e) => {
                 const { x } = getCoordinatesOnClick(e);
                 let yearClosestId = getInterestYearIdWithX(x);
-                changeMapView(yearClosestId);
+                changeMapView(yearClosestId, x);
             }}
             onMouseMove={(e) => {
                 const { x } = getCoordinatesOnClick(e);
                 let yearTarget = getYearWithX(x);
-                setYearMark({
+                setYearCursor({
                     year: yearTarget,
                     x
                 })
             }}
-            onMouseLeave={() => setYearMark(undefined)}
+            onMouseLeave={() => setYearCursor(undefined)}
             width={timelineWidth}
             height={timelineHeight}
         >
-            {
+            { // background gray lines
                 years.map((year, i) => {
                     if (year % 20 !== 0) {
                         return null;
                     }
                     return (
-                        <g
-                            transform={`translate(${spanRange(year)}, ${0})`}
-                            key={i}
-                        >
-                            <line
-                                y1={timelineHeight}
-                                y2={0}
-                                strokeOpacity="0.2"
-                                strokeDasharray="10,15"
-                                stroke='gray'
-                                strokeWidth={1}
-                            ></line>
-                            <text y={timelineHeight} x={5} fontSize={10} fill='gray'>{year}</text>
-                        </g>
+                        <TimelineVerticalLine
+                            year={year}
+                            x={spanRange(year)}
+                            height={timelineHeight}
+                            color='gray'
+                            strokeOpacity="0.2"
+                            strokeDasharray="10,15"
+                        />
                     )
                 })
             }
             {
                 yearMark &&
-                <g
-                    transform={`translate(${yearMark.x}, ${0})`}
-                >
-                    <line
-                        y1={timelineHeight}
-                        y2={0}
-                        stroke='black'
-                        strokeWidth={step}
-                    ></line>
-                    <text y={timelineHeight} x={5} fontSize={10}>{yearMark.year}</text>
-                </g>
+                <TimelineVerticalLine
+                    year={yearMark.year}
+                    x={yearMark.x}
+                    height={timelineHeight}
+                    color='gray'
+                />
+            }
+            {
+                yearCursor &&
+                <TimelineVerticalLine
+                    year={yearCursor.year}
+                    x={yearCursor.x}
+                    height={timelineHeight}
+                    color='black'
+                />
             }
             {
                 categories.map((category, i) => {
