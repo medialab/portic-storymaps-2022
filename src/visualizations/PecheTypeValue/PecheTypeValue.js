@@ -22,7 +22,6 @@ export default function PecheTypeValue({
         <BarChart
             { ...{
                 data,
-                title,
                 width,
                 height
             }}

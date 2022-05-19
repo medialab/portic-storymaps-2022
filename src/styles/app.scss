@@ -178,15 +178,15 @@ dfn:hover::after {
 /**
  * controller wrapping visualizations in several contexts and displaying a margin
  */
-.VisualizationController {
-  width: calc(100% - 2rem);
-  height: calc(100% - 2rem);
-  left: 1rem;
-  top: 1rem;
-  position: absolute;
-  display: flex;
-  align-items: center;
-}
+// .VisualizationController {
+//   width: calc(100% - 2rem);
+//   height: calc(100% - 2rem);
+//   left: 1rem;
+//   top: 1rem;
+//   position: absolute;
+//   display: flex;
+//   align-items: center;
+// }
 
 
 /**

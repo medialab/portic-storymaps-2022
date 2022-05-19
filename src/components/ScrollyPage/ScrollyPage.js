@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import ReactTooltip from 'react-tooltip';
 import cx from 'classnames';
+import { isEqual } from 'lodash';
 
 import { VisualisationContext } from '../../utils/contexts';
 import { fetchDataCsv } from '../../utils/fetch';
@@ -60,11 +61,16 @@ export default function ScrollyPage ({
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
     /** @type {[Boolean, Function]} */
-    const [isFocusOnViz, setIsFocusOnViz] = useState(false);
-    /** @type {[String, Function]} */
-    const [focusedVizId, setFocusedVizId] = useState(undefined);
-    /** @type {[String, Function]} */
-    const [focusedCallerId, setFocusedCallerId] = useState(undefined);
+    const [displayViz, setDisplayViz] = useState(false);
+    const [currentVizId, setCurrentVizId] = useState(undefined);
+    const [displayedVizId, setDisplayedVizId] = useState(undefined);
+    const [displayedVizProps, setDisplayedVizProps] = useState(undefined);
+    const [activeCallerId, setActiveCallerId] = useState(undefined);
+    /** initial states are used when the user click on a inblock caller to memorize the last inline caller and its props */
+    const [initialCallerId, setInitialCallerId] = useState(undefined);
+    const [initialVizProps, setInitialVizProps] = useState(undefined);
+    /** used when user click on a inblock caller */
+    const [canResetVizProps, setCanResetVizProps] = useState(false);
     /** @type {['content'|'viz', Function]} */
     const [activeSideOnResponsive, setActiveSideOnResponsive] = useState('content');
 
@@ -101,9 +107,8 @@ export default function ScrollyPage ({
         const scrollTo = vizY - DISPLACE_Y * 0.9;
         
         if (canFocusOnScroll === false) {
-            setIsFocusOnViz(true);
-            setFocusedVizId(visualizationId);
-            setFocusedCallerId(callerId);
+            setDisplayedVizId(visualizationId);
+            setActiveCallerId(callerId);
             return;
         }
 
@@ -121,6 +126,31 @@ export default function ScrollyPage ({
             setActiveSideOnResponsive('content')
         }
     }
+
+    function resetVizProps() {
+        setDisplayedVizProps(initialVizProps);
+        setActiveCallerId(initialCallerId);
+        setCanResetVizProps(false);
+    }
+
+    useEffect(() => {
+        if (visualizations[activeCallerId] === undefined) { return; }
+        const { props } =  visualizations[activeCallerId];
+        setInitialVizProps(props);
+        setInitialCallerId(activeCallerId);
+    }, [currentVizId, visualizations])
+
+    useEffect(() => {
+        if (visualizations[activeCallerId] === undefined) { return; }
+        const { props } =  visualizations[activeCallerId];
+        setDisplayedVizProps(props);
+    }, [activeCallerId, visualizations])
+
+    useEffect(() => {
+        setCanResetVizProps(
+            isEqual(initialVizProps, displayedVizProps) === false
+        )
+    }, [initialVizProps, displayedVizProps])
 
     useEffect(() => {
         if (!!location.hash === '') { return; }
@@ -162,8 +192,9 @@ export default function ScrollyPage ({
         if (scrollY === 0) {
             const [firstCallerId, firstVizParms] = visualizationEntries[0];
             const { visualizationId: firstVizId } = firstVizParms;
-            setFocusedVizId(firstVizId);
-            setFocusedCallerId(firstCallerId);
+            setDisplayedVizId(firstVizId);
+            setCurrentVizId(firstVizId);
+            setActiveCallerId(firstCallerId);
             return;
         }
 
@@ -174,10 +205,10 @@ export default function ScrollyPage ({
 
         // if the Y position is out from scroll section, hide viz (use to avoid hiding the footer)
         if (y > sectionEnd) {
-            setIsFocusOnViz(false);
+            setDisplayViz(false);
             return;
         }
-        setIsFocusOnViz(true);
+        setDisplayViz(true);
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
             const [callerId, vizParms] = visualizationEntries[i];
@@ -189,9 +220,10 @@ export default function ScrollyPage ({
             const { y: initialVizY } = ref.current.getBoundingClientRect();
             let vizY = initialVizY + window.scrollY;
 
-            if (y > vizY && canFocusOnScroll) {
-                setFocusedVizId(visualizationId);
-                setFocusedCallerId(callerId);
+            if (y > vizY && canFocusOnScroll && canResetVizProps === false) {
+                setDisplayedVizId(visualizationId);
+                setCurrentVizId(visualizationId);
+                setActiveCallerId(callerId);
                 break;
             }
         }
@@ -231,22 +263,23 @@ export default function ScrollyPage ({
     }, [chapter]);
 
     /**
-     * When load viz caller, set the first as focused in 'focusedVizId' state
+     * When load viz caller, set the first as focused in 'displayedVizId' state
      */
     useEffect(() => {
         const visualizationEntries = Object.entries(visualizations);
 
         if (visualizationEntries[0] === undefined) {
-            setIsFocusOnViz(false);
+            setDisplayViz(false);
             return;
         }
-        setIsFocusOnViz(true);
+        setDisplayViz(true);
 
         const [firstCallerId, firstVizParms] = visualizationEntries[0];
         const { visualizationId: firstVizId } = firstVizParms;
 
-        setFocusedVizId(firstVizId);
-        setFocusedCallerId(firstCallerId);
+        setDisplayedVizId(firstVizId);
+        setCurrentVizId(firstVizId);
+        setActiveCallerId(firstCallerId);
     }, [visualizations]);
 
     if (loadingState === 'process') {
@@ -275,27 +308,22 @@ export default function ScrollyPage ({
                     <VisualisationContext.Provider value={{
                         onRegisterVisualization,
                         onClickCallerScroll,
-                        focusedCallerId
+                        activeCallerId
                     }}>
                         <Content components={{Caller, Link}} />
                     </VisualisationContext.Provider>
                 </section>
 
                 <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>
-                    <button
-                        className='switch-btn'
-                        onClick={onClickChangeResponsive}
-                        data-for="contents-tooltip"
-                        data-effect="solid"
-                        data-tip={translate('vizContainer', 'switchToViz', lang)}
-                    >⬅</button>
                     {
-                        isFocusOnViz && 
+                        displayViz && 
                         <VisualizationContainer
-                            callerProps={visualizations[focusedCallerId]['props']}
+                            callerProps={displayedVizProps}
                             { ...{
-                                focusedVizId,
-                                data
+                                displayedVizId,
+                                data,
+                                canResetVizProps,
+                                resetVizProps
                             }}
                         />
                     }

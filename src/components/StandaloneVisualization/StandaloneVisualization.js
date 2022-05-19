@@ -53,8 +53,8 @@ export default function StandaloneVisualization({
                         lang={lang}
                         data={data}
                         dimensions={{
-                            width: 1000,
-                            height: 1000
+                            width: 600,
+                            height: 600
                         }}
                     />
                     :
