@@ -19,7 +19,7 @@ const { homepage } = packageJSON;
  * @returns {React.ReactElement}
  */
 export default function VisualizationFocus({
-    focusedVizId: vizId,
+    vizId,
     data,
     onClickClose,
     ...props
@@ -133,9 +133,9 @@ export default function VisualizationFocus({
                     </div>
                     <div className="visualization-wrapper" onClick={onClickClose}>
                         <VisualizationController
-                            focusedVizId={vizId}
                             {
                                 ...{
+                                    vizId,
                                     dimensions,
                                     lang,
                                     data

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import ReactTooltip from 'react-tooltip';
 import cx from 'classnames';
+import { isEqual } from 'lodash';
 
 import { VisualisationContext } from '../../utils/contexts';
 import { fetchDataCsv } from '../../utils/fetch';
@@ -60,9 +61,16 @@ export default function ScrollyPage ({
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
     /** @type {[Boolean, Function]} */
-    const [isFocusOnViz, setIsFocusOnViz] = useState(false);
-    /** @type {[String, Function]} */
-    const [focusedVizId, setFocusedVizId] = useState(null);
+    const [displayViz, setDisplayViz] = useState(false);
+    const [currentVizId, setCurrentVizId] = useState(undefined);
+    const [displayedVizId, setDisplayedVizId] = useState(undefined);
+    const [displayedVizProps, setDisplayedVizProps] = useState(undefined);
+    const [activeCallerId, setActiveCallerId] = useState(undefined);
+    /** initial states are used when the user click on a inblock caller to memorize the last inline caller and its props */
+    const [initialCallerId, setInitialCallerId] = useState(undefined);
+    const [initialVizProps, setInitialVizProps] = useState(undefined);
+    /** used when user click on a inblock caller */
+    const [canResetVizProps, setCanResetVizProps] = useState(false);
     /** @type {['content'|'viz', Function]} */
     const [activeSideOnResponsive, setActiveSideOnResponsive] = useState('content');
 
@@ -85,20 +93,29 @@ export default function ScrollyPage ({
     /**
      * Scroll to the <Caller/> onclick event
      * The scrollTo function launch scroll useEffect
-     * @param {*} ref Caller element from React.useRef
+     * @param {Object} props Caller props
+     * @param {*} props.ref Caller ref
+     * @param {String} props.visualizationId
+     * @param {String} props.callerId
+     * @param {Boolean} props.canFocusOnScroll Need click to be displayed as overflow
+     * @param {Object} props.callerProps Caller input props
      */
-    function onClickCallerScroll (ref, visualizationId) {
+    function onClickCallerScroll ({ref, visualizationId, callerId, canFocusOnScroll, callerProps}) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
         const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
         const scrollTo = vizY - DISPLACE_Y * 0.9;
+        
+        if (canFocusOnScroll === false) {
+            setDisplayedVizId(visualizationId);
+            setActiveCallerId(callerId);
+            return;
+        }
 
         window.scrollTo({
             top: scrollTo,
             behavior: 'smooth'
         });
-
-        setIsFocusOnViz(visualizationId);
     }
 
     function onClickChangeResponsive () {
@@ -110,8 +127,32 @@ export default function ScrollyPage ({
         }
     }
 
+    function resetVizProps() {
+        setDisplayedVizProps(initialVizProps);
+        setActiveCallerId(initialCallerId);
+        setCanResetVizProps(false);
+    }
+
     useEffect(() => {
-        console.log(location);
+        if (visualizations[activeCallerId] === undefined) { return; }
+        const { props } =  visualizations[activeCallerId];
+        setInitialVizProps(props);
+        setInitialCallerId(activeCallerId);
+    }, [currentVizId, visualizations])
+
+    useEffect(() => {
+        if (visualizations[activeCallerId] === undefined) { return; }
+        const { props } =  visualizations[activeCallerId];
+        setDisplayedVizProps(props);
+    }, [activeCallerId, visualizations])
+
+    useEffect(() => {
+        setCanResetVizProps(
+            isEqual(initialVizProps, displayedVizProps) === false
+        )
+    }, [initialVizProps, displayedVizProps])
+
+    useEffect(() => {
         if (!!location.hash === '') { return; }
         const hash = location.hash.substring(1)
         // @todo I know, it is very ugly, may be illegal, but I did not find another way
@@ -151,7 +192,9 @@ export default function ScrollyPage ({
         if (scrollY === 0) {
             const [firstCallerId, firstVizParms] = visualizationEntries[0];
             const { visualizationId: firstVizId } = firstVizParms;
-            setFocusedVizId(firstVizId);
+            setDisplayedVizId(firstVizId);
+            setCurrentVizId(firstVizId);
+            setActiveCallerId(firstCallerId);
             return;
         }
 
@@ -162,23 +205,25 @@ export default function ScrollyPage ({
 
         // if the Y position is out from scroll section, hide viz (use to avoid hiding the footer)
         if (y > sectionEnd) {
-            setIsFocusOnViz(false);
+            setDisplayViz(false);
             return;
         }
-        setIsFocusOnViz(true);
+        setDisplayViz(true);
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
             const [callerId, vizParms] = visualizationEntries[i];
             const { visualizationId } = vizParms;
-            const { ref } = vizParms;
+            const { ref, canFocusOnScroll } = vizParms;
 
             if (!!ref.current === false) { continue; }
 
             const { y: initialVizY } = ref.current.getBoundingClientRect();
             let vizY = initialVizY + window.scrollY;
 
-            if (y > vizY) {
-                setFocusedVizId(visualizationId);
+            if (y > vizY && canFocusOnScroll && canResetVizProps === false) {
+                setDisplayedVizId(visualizationId);
+                setCurrentVizId(visualizationId);
+                setActiveCallerId(callerId);
                 break;
             }
         }
@@ -218,20 +263,23 @@ export default function ScrollyPage ({
     }, [chapter]);
 
     /**
-     * When load viz caller, set the first as focused in 'focusedVizId' state
+     * When load viz caller, set the first as focused in 'displayedVizId' state
      */
     useEffect(() => {
-        const firstCallerViz = Object.values(visualizations)[0];
+        const visualizationEntries = Object.entries(visualizations);
 
-        if (firstCallerViz === undefined) {
-            setIsFocusOnViz(false);
+        if (visualizationEntries[0] === undefined) {
+            setDisplayViz(false);
             return;
         }
+        setDisplayViz(true);
 
-        const firstCallerVizId = firstCallerViz.visualizationId;
+        const [firstCallerId, firstVizParms] = visualizationEntries[0];
+        const { visualizationId: firstVizId } = firstVizParms;
 
-        setIsFocusOnViz(true);
-        setFocusedVizId(firstCallerVizId);
+        setDisplayedVizId(firstVizId);
+        setCurrentVizId(firstVizId);
+        setActiveCallerId(firstCallerId);
     }, [visualizations]);
 
     if (loadingState === 'process') {
@@ -242,12 +290,7 @@ export default function ScrollyPage ({
     }
 
     return (
-        <VisualisationContext.Provider value={{
-            onRegisterVisualization,
-            onClickCallerScroll,
-            focusedVizId
-        }}>
-
+        <>
             <Helmet>
                 <title>{title}</title>
             </Helmet>
@@ -262,29 +305,30 @@ export default function ScrollyPage ({
                         data-effect="solid"
                         data-tip={translate('vizContainer', 'switchToContent', lang)}
                     >➡</button>
-                    <Content components={{Caller, Link}} />
+                    <VisualisationContext.Provider value={{
+                        onRegisterVisualization,
+                        onClickCallerScroll,
+                        activeCallerId
+                    }}>
+                        <Content components={{Caller, Link}} />
+                    </VisualisationContext.Provider>
                 </section>
 
                 <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>
-                    <button
-                        className='switch-btn'
-                        onClick={onClickChangeResponsive}
-                        data-for="contents-tooltip"
-                        data-effect="solid"
-                        data-tip={translate('vizContainer', 'switchToViz', lang)}
-                    >⬅</button>
                     {
-                        isFocusOnViz && 
-                        <VisualizationContainer {
-                            ...{
-                                focusedVizId,
-                                data
-                            }
-                        } />
+                        displayViz && 
+                        <VisualizationContainer
+                            callerProps={displayedVizProps}
+                            { ...{
+                                displayedVizId,
+                                data,
+                                canResetVizProps,
+                                resetVizProps
+                            }}
+                        />
                     }
                 </aside>
             </div>
-
-        </VisualisationContext.Provider>
+        </>
     );
 }

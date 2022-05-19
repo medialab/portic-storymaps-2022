@@ -8,21 +8,26 @@ Date last modified: 2022-04-11
 Python Version: 3.10.1
 '''
 
-import requests
-from urllib.parse import urlsplit, unquote, parse_qsl
-from bs4 import BeautifulSoup
-from html_sanitizer import Sanitizer
-import html2markdown
-import validators
 import re
 import csv
 import json
+import requests
+from urllib.parse import urlsplit, unquote, parse_qsl
+
+from bs4 import BeautifulSoup
+from html_sanitizer import Sanitizer
+import validators
+from pyzotero import zotero
+from citeproc import CitationStylesStyle, CitationStylesBibliography
+from citeproc import Citation, CitationItem
+from citeproc import formatter
+from citeproc.source.json import CiteProcJSON
 
 sanitizer = Sanitizer({
     'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'link', 'dfn'),
     'empty': ('hr', 'caller'),
     'attributes': {
-        'caller': ('id', 'class'),
+        'caller': ('id', 'class', 'year', 'object'),
         'a': ('href', 'rel', 'target', 'class'),
         'dfn': ('title'),
         'h2': ('id'), 'h3': ('id')
@@ -35,12 +40,30 @@ GDOC_URL = {
 }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
+def warn(citation_item):
+    return False
+
+def set_humain_quote_id(item_metas):
+    name = ''
+    if 'editor' in item_metas:
+        name = item_metas['editor'][0]['family']
+    if 'author' in item_metas:
+        name = item_metas['author'][0]['family']
+    year = item_metas['issued']['date-parts'][0][0]
+    year = str(year)
+    if name != '' and year != '':
+        return name + ',' + year
+    else:
+        return item_metas['id']
+
 """
 Import visualisations list from GSheet
 """
 
 viz_id_list = {}
 inputs_csv_online = {}
+bib_source = None
+bib_style = CitationStylesStyle('iso690-author-date-fr-no-abstract', validate=False)
 
 with requests.Session() as s:
     download = s.get(GSHEET_URL)
@@ -81,6 +104,21 @@ for output in inputs_csv_online.keys():
         f.write(decoded_content)
         f.close()
 
+"""
+Import CSL JSON from Zotero
+"""
+
+with open('../src/data/bib.json', "w") as bib_tex_file:
+    zotero_access = zotero.Zotero('4690289', 'group')
+    bib_database = zotero_access.top(format='csljson')
+    bib_database = bib_database['items']
+    for i, item_metas in enumerate(bib_database):
+        bib_database[i]['id'] = set_humain_quote_id(item_metas)
+    json_bib = json.dumps(bib_database, indent=4, ensure_ascii=False)
+    bib_tex_file.write(json_bib)
+    bib_source = CiteProcJSON(bib_database)
+
+bib_engine = CitationStylesBibliography(bib_style, bib_source, formatter.html)
 
 """
 Import page content from GDoc
@@ -159,8 +197,12 @@ for lang in GDOC_URL.keys():
                 query = unquote(parse.query)
                 query = dict(parse_qsl(query))
                 link.name = 'caller'
+                # if id not in query:
+                #     continue
                 # link['id'] = query['id']
-                link['id'] = 'dunkerque-courses'
+                for key in query.keys():
+                    link[key] = query[key]
+                # link['id'] = 'dunkerque-courses'
 
             # Add attributes for safe navigation
             """
@@ -213,13 +255,15 @@ for lang in GDOC_URL.keys():
                 part_root.append(next_tag)
             parts_soup.append(part_soup)
 
-        for i, part_soup in enumerate(parts_soup):
+        for part_nb, part_soup in enumerate(parts_soup):
+            bibliography_spans = {}
+            citations_spans = {}
             for title_link in part_soup.find_all('a', {'class': 'title_link'}):
                 title_link.name = 'link'
                 title_link['to'] = title_link['href']
                 del title_link['href']
             for caller in part_soup.find_all('caller'):
-                part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == i]
+                part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == part_nb]
                 if caller.has_attr('id') == False:
                     caller['class'] = 'is-blank'
                     continue
@@ -227,8 +271,33 @@ for lang in GDOC_URL.keys():
                 if caller['id'] not in part_viz_id_list:
                     # <Caller> id is not find from viz id list
                     caller['class'] = 'is-invalid'
-            # part = part_soup.prettify()
             part = str(part_soup)
+            # Quoting
+            matches = re.finditer(r"\[@.*?\]", part, re.MULTILINE)
+            for i, match in enumerate(matches):
+                match = match.group()
+                match_split = match.split(';')
+                citation_group = [re.sub(r"[@\s\[\]]", '', match) for match in match_split]
+                citation_group = [CitationItem(citation) for citation in citation_group if citation]
+                citations_spans[match] = citation_group
+            for citation_match in citations_spans.keys():
+                citation_group = Citation(citations_spans[citation_match])
+                bib_engine.register(citation_group)
+                citations_spans[citation_match] = bib_engine.cite(citation_group, warn)
+                part = part.replace(citation_match, citations_spans[citation_match])
+            # Add bibliography for the part
+            for item in bib_engine.bibliography():
+                bibliography_item_key = item.split(',', 1)[0]
+                bibliography_span = BeautifulSoup('<li>' + str(item) + '</li>', 'html.parser')
+                bibliography_spans[bibliography_item_key] = bibliography_span
+            bibliography_spans_sorted = {k: bibliography_spans[k] for k in sorted(bibliography_spans)}
+            part_soup = BeautifulSoup(part, 'html.parser')
+            bib_container_soup = BeautifulSoup('<div class="bibliography"><h2>Bibliographie</h2></div>', 'html.parser')
+            for bib_soup in bibliography_spans_sorted.values():
+                bib_container_soup.div.append(bib_soup)
+            part_soup.div.append(bib_container_soup)
+            part = str(part_soup)
+
             # React requirements
             part = re.sub(r"(</?)caller", r"\1Caller", part) # caller -> Caller
             part = re.sub(r"(</?)link", r"\1Link", part) # link -> Laller
@@ -240,6 +309,6 @@ for lang in GDOC_URL.keys():
             f.close()
             """
 
-            f = open('../src/content/' + lang + '/part-' + str(i) + '.mdx', "w")
+            f = open('../src/content/' + lang + '/part-' + str(part_nb) + '.mdx', "w")
             f.write(part)
             f.close()

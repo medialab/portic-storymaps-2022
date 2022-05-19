@@ -1,5 +1,4 @@
-import {useContext, useEffect, useRef, useState} from 'react';
-import omit from 'lodash/omit';
+import {useContext, useEffect, useMemo, useRef, useState} from 'react';
 import cx from 'classnames';
 import {v4 as genId} from 'uuid';
 
@@ -28,20 +27,25 @@ export default function Caller ({
     const {
         onRegisterVisualization,
         onClickCallerScroll,
-        focusedVizId
+        activeCallerId
     } = useContext(VisualisationContext);
+
+    const callerPayload = useMemo(() => {
+        return {
+            props: {...props},
+            canFocusOnScroll: isInblock ? false : true,
+            ref,
+            visualizationId,
+            callerId
+        }
+    }, [className, ref, visualizationId, callerId]);
 
     useEffect(() => {
         if (isInvalid || isBlank) { return; }
 
         setTimeout(() => {
             // we wrap callback in a setTimeout in order to have a non-null ref to the HTML element
-            onRegisterVisualization({
-                ...props,
-                ref,
-                visualizationId,
-                callerId
-            });
+            onRegisterVisualization(callerPayload);
         });
     }, [callerId]);
 
@@ -52,10 +56,10 @@ export default function Caller ({
                 id={visualizationId}
                 className={cx('Caller', {
                     'is-invalid': isInvalid,
-                    'is-active': focusedVizId && focusedVizId === visualizationId
+                    'is-active': activeCallerId && activeCallerId === callerId
                 })}
-                onClick={(e) => onClickCallerScroll(ref, visualizationId)}
-            >{children}</span>
+                onClick={(e) => onClickCallerScroll(callerPayload)}
+            >{children} {JSON.stringify({ ...props })}</span>
         )
     }
 
@@ -66,14 +70,14 @@ export default function Caller ({
             className={cx('Caller', {
                 'is-invalid': isInvalid,
                 'is-blank': isBlank,
-                'is-active': focusedVizId && focusedVizId === visualizationId
+                'is-active': activeCallerId && activeCallerId === callerId
             })}
-            onClick={(e) => onClickCallerScroll(ref)}
+            onClick={(e) => onClickCallerScroll(callerPayload)}
         >
             {
                 process.env.NODE_ENV === 'development' &&
                 <span>Caller viz&nbsp;
-                    <code>{visualizationId}</code> : <code>{JSON.stringify({...omit(props, 'children')})}</code>
+                    <code>{visualizationId}</code> : <code>{JSON.stringify({ ...props })}</code>
                 </span>
             }
         </div>
