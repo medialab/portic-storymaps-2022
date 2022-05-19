@@ -27,7 +27,7 @@ export default function Caller ({
     const {
         onRegisterVisualization,
         onClickCallerScroll,
-        focusedCallerId
+        activeCallerId
     } = useContext(VisualisationContext);
 
     const callerPayload = useMemo(() => {
@@ -56,7 +56,7 @@ export default function Caller ({
                 id={visualizationId}
                 className={cx('Caller', {
                     'is-invalid': isInvalid,
-                    'is-active': focusedCallerId && focusedCallerId === callerId
+                    'is-active': activeCallerId && activeCallerId === callerId
                 })}
                 onClick={(e) => onClickCallerScroll(callerPayload)}
             >{children} {JSON.stringify({ ...props })}</span>
@@ -70,7 +70,7 @@ export default function Caller ({
             className={cx('Caller', {
                 'is-invalid': isInvalid,
                 'is-blank': isBlank,
-                'is-active': focusedCallerId && focusedCallerId === callerId
+                'is-active': activeCallerId && activeCallerId === callerId
             })}
             onClick={(e) => onClickCallerScroll(callerPayload)}
         >

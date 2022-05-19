@@ -21,6 +21,7 @@ export default function Timeline({
 
     const {
         changeMapView,
+        resetMapView,
         yearMark
     } = useContext(VisualisationContext);
 
@@ -78,6 +79,7 @@ export default function Timeline({
     useEffect(() => {
         const { year: callerYear, object: callerObject } = callerProps;
         if ([callerYear, callerObject].every(callerProp => callerProp === undefined) === true) {
+            resetMapView();
             return;
         }
 
@@ -93,7 +95,10 @@ export default function Timeline({
             return;
         }
 
-        if (callerObject === undefined) { return; }
+        if (callerObject === undefined) {
+            resetMapView();
+            return;
+        }
 
         matchRow = yearMatchData.find(({ object: rowObject }) => rowObject === callerObject);
         if (matchRow !== undefined) {
@@ -157,6 +162,7 @@ export default function Timeline({
                     }
                     return (
                         <TimelineVerticalLine
+                            key={i}
                             year={year}
                             x={spanRange(year)}
                             height={timelineHeight}

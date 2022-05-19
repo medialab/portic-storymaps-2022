@@ -8,7 +8,6 @@ import Timeline from "./Timeline";
 import './MapDunkerquePort.scss'
 
 export default function MapDunkerquePort({
-    title,
     data: inputData,
     dimensions,
     callerProps,
@@ -31,14 +30,14 @@ export default function MapDunkerquePort({
     const mapDimensions = useMemo(() => {
         return {
             width: dimensions.width,
-            height: dimensions.height * 0.6
+            height: dimensions.height * 0.7
         }
     }, [dimensions]);
 
     const timelineDimension = useMemo(() => {
         return {
             width: dimensions.width,
-            height: dimensions.height * 0.2
+            height: dimensions.height * 0.3
         }
     }, [dimensions]);
 
@@ -58,11 +57,14 @@ export default function MapDunkerquePort({
             x: xCoordinate
         });
     }
+
+    function resetMapView() {
+        setMapLayerPath(undefined);
+        setYearMark(undefined);
+    }
     
     return (
         <div ref={mapRef} className='MapDunkerquePort' style={{ ...dimensions }}>
-            <h3>{title}</h3>
-
             <div className="map-container" style={{ ...mapDimensions }}>
                 <img className='layer' src={mapLayerPath} />
                 <img className='base' src={mapBackgroundPath} />
@@ -70,6 +72,7 @@ export default function MapDunkerquePort({
 
             <VisualisationContext.Provider value={{
                 changeMapView,
+                resetMapView,
                 yearMark
             }}>
                 <Timeline

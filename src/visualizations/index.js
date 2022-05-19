@@ -4,55 +4,55 @@ import SmogglagePortsStats from './SmogglagePortsStats';
 import SmogglageStatus from './SmogglageStatus';
 import PecheTypeValue from './PecheTypeValue';
 import MapDunkerquePort from './MapDunkerquePort';
-
-import visualizationsMetas from '../data/viz';
-
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
  * It returns a visualization component depending on the provided id
  * @param {string} id
- * @param {String} props.focusedVizId
+ * @param {String} props.displayedVizId
  * @param {Object} props.data
  * @param {object} props.dimensions
  * @returns {React.ReactElement} - React component
  */
-export default function VisualizationController ({
-    focusedVizId: vizId,
+export default function VisualizationController({
+    vizId,
     data,
     ref,
     dimensions,
     lang,
     callerProps = {}
 }) {
-    const title = useMemo(() => {
-        const vizMetas = visualizationsMetas[vizId];
-        return vizMetas[`titre_${lang}`]
-    }, [vizId, lang]);
-
     const vizContent = useMemo(() => {
-            switch (vizId) {
-                case 'peche-type-value':
-                    return (
-                        <PecheTypeValue { ...{ title, data, dimensions, lang } } />
-                    );
-                case 'smoggleur-statut':
-                    return (
-                        <SmogglageStatus { ...{ title, data, dimensions, lang } } />
-                    );
-                default:
-                case 'smoggleur-proportion':
-                    return (
-                        <SmogglagePortsStats { ...{ title, data, dimensions, lang } } />
-                    );
-                case 'map':
-                    return (
-                        <MapDunkerquePort { ...{ title, data, dimensions, callerProps } } />
-                    );
-            }
-    }, [vizId, callerProps, dimensions, lang, data, title])
+        switch (vizId) {
+            case 'peche-type-value':
+                return (
+                    <PecheTypeValue {...{ data, dimensions, lang }} />
+                );
+            case 'smoggleur-statut':
+                return (
+                    <SmogglageStatus {...{ data, dimensions, lang }} />
+                );
+            case 'smoggleur-proportion':
+                return (
+                    <SmogglagePortsStats {...{ data, dimensions, lang }} />
+                );
+            case 'map':
+                return (
+                    <MapDunkerquePort {...{ data, dimensions, callerProps }} />
+                );
+            default:
+                return <>Visualizations manquante</>
+        }
+    }, [vizId, callerProps, dimensions, lang, data])
 
     return (
-        <div className='VisualizationController viz-render' ref={ref}>
+        <div
+            className='VisualizationController viz-render'
+            ref={ref}
+            style={{
+                display: 'flex',
+                flexDirection: 'column'
+            }}
+        >
             {vizContent}
         </div>
     )
