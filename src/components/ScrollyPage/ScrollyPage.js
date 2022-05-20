@@ -36,7 +36,7 @@ export default function ScrollyPage ({
     ...props
 }) {
     const { lang } = useParams()
-        , sectionRef = useRef(null)
+        , pageRef = useRef(null)
         , scrollY = useScrollYPosition();
 
     const location = useLocation();
@@ -103,9 +103,9 @@ export default function ScrollyPage ({
     function onClickCallerScroll ({ref, visualizationId, callerId, canFocusOnScroll, callerProps}) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
-        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
-        const scrollTo = vizY - DISPLACE_Y * 0.9;
-        
+        const yFraction = window.innerHeight * CENTER_FRACTION;
+        const scrollTo = vizY - yFraction * 0.9;
+
         if (canFocusOnScroll === false) {
             setDisplayedVizId(visualizationId);
             setActiveCallerId(callerId);
@@ -181,9 +181,9 @@ export default function ScrollyPage ({
     useEffect(() => {
         if (Object.keys(visualizations).length === 0) { return; }
         /* @todo this is a rustine, we don't understand
-        why sometimes sectionRef is undefined
+        why sometimes pageRef is undefined
         */
-        if (!sectionRef.current) {
+        if (!pageRef.current) {
           return;
         }
 
@@ -198,13 +198,13 @@ export default function ScrollyPage ({
             return;
         }
 
-        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
-        const y = scrollY + DISPLACE_Y;
-        const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
-        const sectionEnd = sectionDims.y + window.scrollY + sectionDims.height;
+        const yFraction = window.innerHeight * CENTER_FRACTION;
+        const yBottom = scrollY + window.innerHeight
+        const yMatch = scrollY + yFraction;
+        const pageDims = pageRef.current && pageRef.current.getBoundingClientRect();
 
-        // if the Y position is out from scroll section, hide viz (use to avoid hiding the footer)
-        if (y > sectionEnd) {
+        if (yBottom > pageDims.height) {
+            // to avoid hiding the footer
             setDisplayViz(false);
             return;
         }
@@ -215,19 +215,24 @@ export default function ScrollyPage ({
             const { visualizationId } = vizParms;
             const { ref, canFocusOnScroll } = vizParms;
 
+            if (displayedVizId === visualizationId) {
+                return;
+            }
+
             if (!!ref.current === false) { continue; }
 
             const { y: initialVizY } = ref.current.getBoundingClientRect();
             let vizY = initialVizY + window.scrollY;
 
-            if (y > vizY && canFocusOnScroll && canResetVizProps === false) {
+            if (yMatch > vizY && canFocusOnScroll) {
+                resetVizProps();
                 setDisplayedVizId(visualizationId);
                 setCurrentVizId(visualizationId);
                 setActiveCallerId(callerId);
                 break;
             }
         }
-    }, [scrollY, sectionRef]);
+    }, [scrollY, pageRef]);
 
     /**
      * When change of chapter, store each CSV output in 'data' sate
@@ -297,7 +302,7 @@ export default function ScrollyPage ({
 
             <div className='ScrollyPage'>
                 <ReactTooltip id="contents-tooltip" />
-                <section className={cx("Contents", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
+                <section className={cx("Contents", {'is-focused': activeSideOnResponsive === 'content'})} ref={pageRef}>
                     <button
                         className='switch-btn'
                         onClick={onClickChangeResponsive}
