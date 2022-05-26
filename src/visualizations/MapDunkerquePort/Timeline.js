@@ -210,7 +210,7 @@ export default function Timeline({
                                         <TimelineFragment
                                             key={i}
                                             width={step*length}
-                                            height={categoryHeight - categoryLabelSize}
+                                            height={categoryHeight - categoryLabelSize - 10}
                                             x={spanRange(year)}
                                             y={categoryLabelSize + categoryLabelMargin}
                                             label={year}

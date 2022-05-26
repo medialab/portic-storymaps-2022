@@ -49,12 +49,14 @@ export default function StandaloneVisualization({
             {
                 loadingState === 'successed' ?
                     <VisualizationController
-                        focusedVizId={vizId}
-                        lang={lang}
-                        data={data}
+                        { ...{
+                            vizId,
+                            lang,
+                            data
+                        } }
                         dimensions={{
-                            width: 600,
-                            height: 600
+                            width: 1200,
+                            height: 800
                         }}
                     />
                     :
