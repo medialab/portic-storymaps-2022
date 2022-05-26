@@ -48,6 +48,7 @@ cols_to_markdown_file = {
     'computation_info': 'Aggregation/computation info',
     'warnings': 'Notes/warnings'
 }
+doc_dir_path = '../doc/'
 
 def warn(citation_item):
     return False
@@ -97,10 +98,9 @@ with requests.Session() as s:
         row['inputs'] = row['inputs'].split(',')
         row['outputs'] = row['outputs'].split(',')
         # Create Markdown file with infos
-        dir_path = '../doc/' + row['id']
-        if os.path.isdir(dir_path) == False:
-            os.mkdir(dir_path)
-        f = open(dir_path + '/' + row['id'] + '.md', "w")
+        if os.path.isdir(doc_dir_path + row['id']) == False:
+            os.mkdir(doc_dir_path + row['id'])
+        f = open(doc_dir_path + row['id'] + '/' + row['id'] + '.md', "w")
         f.write(make_markdown_from_viz_index(row))
         f.close()
         for col in cols_to_markdown_file.keys():
@@ -114,7 +114,10 @@ with requests.Session() as s:
                     corresponding_output = row['outputs'][i]
                 except IndexError:
                     print('\033[91m','ERROR', '\033[0m', 'no output index for input online csv', input_str)
-                inputs_csv_online[corresponding_output] = input_str
+                inputs_csv_online[corresponding_output] = {
+                    'input_str': input_str,
+                    'id': row['id']
+                }
 
     json_object = json.dumps(viz_id_list, indent=4, ensure_ascii=False)
     with open('../src/data/viz.json', "w") as f:
@@ -127,7 +130,8 @@ Import CSV from the web, from viz_id_list
 print('Get online CSV list')
 for output in inputs_csv_online.keys():
     output_extension = Path(output).suffix
-    input_url = inputs_csv_online[output]
+    input_url = inputs_csv_online[output]['input_str']
+    id = inputs_csv_online[output]['id']
     print('--', output)
     path = '../public/data/'
     with requests.Session() as s:
@@ -137,6 +141,10 @@ for output in inputs_csv_online.keys():
             continue
         decoded_content = online_csv.content.decode('utf-8')
         f = open(path + output, "w")
+        f.write(decoded_content)
+        f.close()
+        # Duplicate CSV in doc
+        f = open(doc_dir_path + '/' + id + '/' + output, "w")
         f.write(decoded_content)
         f.close()
 
