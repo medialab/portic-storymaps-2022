@@ -108,7 +108,7 @@ export default function Timeline({
             changeMapView(yearClosestId, xCoordinate);
             return;
         }
-    }, [callerProps])
+    }, [callerProps, spanRange])
 
     function getCoordinatesOnClick(e) {
         const { clientX, clientY } = e;
