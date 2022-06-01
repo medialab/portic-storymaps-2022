@@ -30,15 +30,19 @@ sanitizer = Sanitizer({
     'empty': ('hr', 'caller'),
     'attributes': {
         'caller': ('id', 'class', 'year', 'object'),
-        'a': ('href', 'rel', 'target', 'class'),
+        'a': ('href', 'rel', 'target', 'class', 'title'),
         'dfn': ('title'),
         'h2': ('id'), 'h3': ('id')
     }
 })
 
 GDOC_URL = {
-    'fr': 'https://docs.google.com/document/d/e/2PACX-1vTEis9-f44FkX5gSOfddxdqyYTi-HPKrNyuG5O2qtc2GBE8d6nMHSZGx8tCZ3ZfgAzs2N16OsKANbtm/pub'
+    'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub'
 }
+# GDOC_URL = {
+#     'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
+#     'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
+# }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
 cols_to_markdown_file = {
@@ -48,6 +52,7 @@ cols_to_markdown_file = {
     'computation_info': 'Aggregation/computation info',
     'warnings': 'Notes/warnings'
 }
+doc_dir_path = '../doc/'
 
 def warn(citation_item):
     return False
@@ -94,13 +99,12 @@ with requests.Session() as s:
             continue
         del row['statut']
         row['n_chapitre'] = int(row['n_chapitre'])
-        row['inputs'] = row['inputs'].split(',')
-        row['outputs'] = row['outputs'].split(',')
+        row['inputs'] = [] if row['inputs'] == '' else row['inputs'].split(',')
+        row['outputs'] = [] if row['outputs'] == '' else row['outputs'].split(',')
         # Create Markdown file with infos
-        dir_path = '../doc/' + row['id']
-        if os.path.isdir(dir_path) == False:
-            os.mkdir(dir_path)
-        f = open(dir_path + '/' + row['id'] + '.md', "w")
+        if os.path.isdir(doc_dir_path + row['id']) == False:
+            os.mkdir(doc_dir_path + row['id'])
+        f = open(doc_dir_path + row['id'] + '/' + row['id'] + '.md', "w")
         f.write(make_markdown_from_viz_index(row))
         f.close()
         for col in cols_to_markdown_file.keys():
@@ -114,7 +118,10 @@ with requests.Session() as s:
                     corresponding_output = row['outputs'][i]
                 except IndexError:
                     print('\033[91m','ERROR', '\033[0m', 'no output index for input online csv', input_str)
-                inputs_csv_online[corresponding_output] = input_str
+                inputs_csv_online[corresponding_output] = {
+                    'input_str': input_str,
+                    'id': row['id']
+                }
 
     json_object = json.dumps(viz_id_list, indent=4, ensure_ascii=False)
     with open('../src/data/viz.json', "w") as f:
@@ -127,7 +134,8 @@ Import CSV from the web, from viz_id_list
 print('Get online CSV list')
 for output in inputs_csv_online.keys():
     output_extension = Path(output).suffix
-    input_url = inputs_csv_online[output]
+    input_url = inputs_csv_online[output]['input_str']
+    id = inputs_csv_online[output]['id']
     print('--', output)
     path = '../public/data/'
     with requests.Session() as s:
@@ -139,6 +147,10 @@ for output in inputs_csv_online.keys():
         f = open(path + output, "w")
         f.write(decoded_content)
         f.close()
+        # Duplicate CSV in doc
+        f = open(doc_dir_path + '/' + id + '/' + output, "w")
+        f.write(decoded_content)
+        f.close()
 
 """
 Import CSL JSON from Zotero
@@ -146,11 +158,12 @@ Import CSL JSON from Zotero
 
 print('Get online CSL JSON from Zotero')
 zotero_access = zotero.Zotero('4690289', 'group')
-print('--', zotero_access.count_items())
+# print('--', zotero_access.count_items())
 bib_database = zotero_access.items(format='csljson')
 bib_database = bib_database['items']
 for i, item_metas in enumerate(bib_database):
     bib_database[i]['id'] = set_humain_quote_id(item_metas)
+    print('--', bib_database[i]['id'])
 json_bib = json.dumps(bib_database, indent=4, ensure_ascii=False)
 f = open('../src/data/bib.json', "w")
 f.write(json_bib)
@@ -194,20 +207,21 @@ for lang in GDOC_URL.keys():
             if link.has_attr('href') == False:
                 continue
 
-            re_match_footnote_anchor = re.match(r"#ftnt(?P<id>[1-9])", link['href'])
-            re_match_footnote_ref = re.match(r"#ftnt_ref(?P<id>[1-9])", link['href'])
+            re_match_footnote_anchor = re.match(r"#ftnt(?P<id>[0-9]+)", link['href'])
+            re_match_footnote_ref = re.match(r"#ftnt_ref(?P<id>[0-9]+)", link['href'])
             if re_match_footnote_ref:
                 footnote_id = re_match_footnote_ref.groupdict()['id']
                 footnote_ref = link
                 footnote_text_container = footnote_ref.find_next('span')
-                footnote_content = footnote_text_container.string.strip()
+                footnote_text = ''.join([text.string for text in footnote_text_container.parent.find_all('span')])
+                footnote_text = footnote_text.replace('“', '«').replace('”', '»')
                 footnote_anchor = soup.find('a', {'href': str('#ftnt' + footnote_id)})
                 footnote_anchor_context = footnote_anchor.parent.find_previous().string
                 footnote_anchor_text = footnote_anchor_context.split()[-1]
                 footnote_anchor.string.replace_with(footnote_anchor_text)
                 footnote_anchor.name = 'dfn'
                 del footnote_anchor['id']; del footnote_anchor['href']
-                footnote_anchor['title'] = footnote_content
+                footnote_anchor['title'] = footnote_text
                 # delete tags
                 footnote_ref.extract()
                 footnote_text_container.extract()

@@ -1,0 +1,2 @@
+import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
+export default StigmatesSmoggleursDunkerque;
