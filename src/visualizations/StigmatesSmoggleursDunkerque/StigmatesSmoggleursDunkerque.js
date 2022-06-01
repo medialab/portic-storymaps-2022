@@ -25,7 +25,7 @@ export default function StigmatesSmoggleursDunkerque({
         }
     }, [height])
 
-    function onFormChange(e) {
+    function onInputChange(e) {
         const { target } = e;
         const { value } = target;
         setYear(value);
@@ -44,7 +44,7 @@ export default function StigmatesSmoggleursDunkerque({
                 }}
             />
             <form
-                onChange={onFormChange}
+                onSubmit={(e) => e.preventDefault()}
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -55,13 +55,14 @@ export default function StigmatesSmoggleursDunkerque({
                     years.map((inputYear, i) => (
                         <span key={i}>
                             <input
+                                onChange={onInputChange}
                                 type="radio"
                                 id={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}
                                 name="year"
                                 value={inputYear}
                                 checked={year === inputYear}
                             />
-                            <label for={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}>{inputYear}</label>
+                            <label htmlFor={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}>{inputYear}</label>
                         </span>
                     ))
                 }
