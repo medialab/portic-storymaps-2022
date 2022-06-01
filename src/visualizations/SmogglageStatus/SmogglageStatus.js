@@ -1,46 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 
-import LinearAlluvialChart from '../../components/LinearAlluvialChart'
+import AlluvialChart from '../../components/AlluvialChart'
 
 export default function SmogglageStatus ({
     data: inputData,
-    title,
-    dimensions,
-    lang
+    dimensions
 }) {
-    let data = inputData['smoggleur-statut.csv'];
-    const { width, height } = dimensions;
-
+    const data = inputData['smoggleur-statut.csv'];
     const steps = [
-        {
-            field: "departure_fr",
-            labels: {
-              fr: 'port de départ',
-              en: 'departure port'
-            },
-            filters: [],
-            name: 'port'
-        },
-        {
-            field: "is_smoggleur",
-            labels: {
-              fr: 'est un smoggleur',
-              en: 'is smoggleur'
-            },
-            filters: [],
-            name: 'smogglage'
-        }
+        'departure_fr',
+        'is_smoggleur'
     ]
 
     return (
         <>
-            <h3>{title}</h3>
-            <LinearAlluvialChart { ...{ data, steps, width, height } } />
-            {/* <pre>
-                <code>
-                    {JSON.stringify(data, undefined, 4)}
-                </code>
-            </pre> */}
+            <AlluvialChart { ...{ data, steps, dimensions } } />
         </>
     )
 }

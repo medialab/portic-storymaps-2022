@@ -214,6 +214,7 @@ for lang in GDOC_URL.keys():
                 footnote_ref = link
                 footnote_text_container = footnote_ref.find_next('span')
                 footnote_text = ''.join([text.string for text in footnote_text_container.parent.find_all('span')])
+                footnote_text = footnote_text.replace('“', '«').replace('”', '»')
                 footnote_anchor = soup.find('a', {'href': str('#ftnt' + footnote_id)})
                 footnote_anchor_context = footnote_anchor.parent.find_previous().string
                 footnote_anchor_text = footnote_anchor_context.split()[-1]
