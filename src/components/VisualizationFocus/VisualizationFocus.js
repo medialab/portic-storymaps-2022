@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import packageJSON from '../../../package.json';
 import copy from 'copy-to-clipboard';
 import VisualizationController from '../../visualizations';
 import Md from 'react-markdown';
+import Measure from 'react-measure'
 
 import translate from '../../utils/translate';
 import visualizationsMetas from '../../data/viz';
@@ -26,54 +27,83 @@ export default function VisualizationFocus({
 }) {
     const { lang } = useParams();
 
-    const dimensions = {
-        width: 1000,
-        height: 500
-    }
+    const [dimensions, setDimensions] = useState({
+        width: -1,
+        height: -1
+    });
+    const [copyClicked, setCopyClicked] = useState(false);
+
+    const inputRef = useRef(null);
 
     let {
-        lien_permanent_visualisation: permalink,
-        ...metas
-    } = Object.keys(visualizationsMetas)
-        .map(vizId => visualizationsMetas[vizId])
-        .find(viz => viz['id'] === vizId);
+        permalink,
+        title,
+        description,
+        howToRead,
+        howItsMade,
+        isOk
+    } = useMemo(function getVizMetas() {
+        const vizMetas = Object.values(visualizationsMetas)
+            .find(({ id }) => id === vizId);
 
-    const title = metas['titre_' + lang] || false
-        , description = metas['description_' + lang] || false
-        , howToRead = metas['comment_lire_' + lang] || false
-        , howItsMade = metas['comment_cest_fait_' + lang] || false;
+        if (vizMetas === undefined) {
+            return { isOk: false };
+        }
 
-    const messages = {
-        description: translate('vizFocus', 'description', lang),
-        howItsMade: translate('vizFocus', 'howItsMade', lang),
-        howToRead: translate('vizFocus', 'howToRead', lang),
-        copyLink: translate('vizFocus', 'copyLink', lang),
-        linkCopied: translate('vizFocus', 'linkCopied', lang)
-    }
+        const {
+            lien_permanent_visualisation: permalink,
+            ...metas
+        } = vizMetas;
 
-    function onClickCopy (e) {
+        const title = metas['titre_' + lang] || false
+            , description = metas['description_' + lang] || false
+            , howToRead = metas['comment_lire_' + lang] || false
+            , howItsMade = metas['comment_cest_fait_' + lang] || false;
+
+        return {
+            permalink,
+            title,
+            description,
+            howToRead,
+            howItsMade,
+            isOk: true
+        }
+    }, [vizId, lang]);
+
+    const messages = useMemo(function getMessages() {
+        return {
+            description: translate('vizFocus', 'description', lang),
+            howItsMade: translate('vizFocus', 'howItsMade', lang),
+            howToRead: translate('vizFocus', 'howToRead', lang),
+            copyLink: translate('vizFocus', 'copyLink', lang),
+            linkCopied: translate('vizFocus', 'linkCopied', lang)
+        }
+    }, [lang])
+
+    function onClickCopy(e) {
         e.stopPropagation();
 
-        copy('https://myllaume.fr/');
+        copy(permalink);
 
         setCopyClicked(true);
         setTimeout(() => setCopyClicked(false), 5000);
     }
 
-    function onKeyEscape (e) {
+    function onKeyEscape(e) {
         if (e.keyCode === 27) {
             onClickClose();
         }
     }
 
-    const inputRef = useRef(null);
-    const [copyClicked, setCopyClicked] = useState(false);
-
     useEffect(() => {
         if (inputRef && inputRef.current) {
             inputRef.current.focus();
         }
-    }, [])
+    }, [inputRef])
+
+    if (isOk === false) {
+        return null;
+    }
 
     return (
         <div className='VisualizationFocus is-visible'>
@@ -90,13 +120,13 @@ export default function VisualizationFocus({
 
                     <div className="visualization-details">
                         <div className="details-header">
-                            {title && <h2>TITRE</h2>}
+                            {title && <h2>{title}</h2>}
                             <button className="close-btn" onClick={onClickClose}>
                                 ✕
                             </button>
                         </div>
                         <div className="copy-link-container">
-                        <button onClick={onClickCopy}>{copyClicked ? messages.linkCopied : messages.copyLink}</button>
+                            <button onClick={onClickCopy}>{copyClicked ? messages.linkCopied : messages.copyLink}</button>
                         </div>
                         <div className="details-contents">
                             {
@@ -132,16 +162,33 @@ export default function VisualizationFocus({
                         </div>
                     </div>
                     <div className="visualization-wrapper" onClick={onClickClose}>
-                        <VisualizationController
+                        <Measure
+                            bounds
+                            onResize={contentRect => {
+                                const { width } = contentRect.bounds;
+                                setDimensions({
+                                    width,
+                                    height: 600
+                                })
+                            }}
+                        >
                             {
-                                ...{
-                                    vizId,
-                                    dimensions,
-                                    lang,
-                                    data
-                                }
+                                ({ measureRef }) => (
+                                    <div ref={measureRef}>
+                                        <VisualizationController
+                                            {
+                                            ...{
+                                                vizId,
+                                                dimensions,
+                                                lang,
+                                                data
+                                            }
+                                            }
+                                        />
+                                    </div>
+                                )
                             }
-                        />
+                        </Measure>
                     </div>
                 </div>
             </div>

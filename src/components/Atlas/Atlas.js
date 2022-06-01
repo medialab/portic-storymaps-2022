@@ -103,7 +103,7 @@ export default function Atlas({
                         {
                             loadingState === 'successed' ?
                                 <VisualizationFocus
-                                    focusedVizId={vizId}
+                                    vizId={vizId}
                                     data={data}
                                     onClickClose={(e) => navigate(`/${lang}/atlas`)}
                                 />
