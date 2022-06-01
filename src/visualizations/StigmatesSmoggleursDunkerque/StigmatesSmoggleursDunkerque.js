@@ -52,8 +52,8 @@ export default function StigmatesSmoggleursDunkerque({
                 }}
             >
                 {
-                    years.map(inputYear => (
-                        <span>
+                    years.map((inputYear, i) => (
+                        <span key={i}>
                             <input
                                 type="radio"
                                 id={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}
