@@ -7,7 +7,7 @@ import Timeline from "./Timeline";
 
 import './MapDunkerquePort.scss'
 
-export default function MapDunkerquePort({
+export default function HistoireDunkerque({
     data: inputData,
     dimensions,
     callerProps,
@@ -18,7 +18,7 @@ export default function MapDunkerquePort({
     const [yearMark, setYearMark] = useState(undefined);
 
     const data = useMemo(() => {
-        return inputData['map.csv'].map(({...rest}) => {
+        return inputData['histoire-dunkerque.csv'].map(({...rest}) => {
             const {year, object} = rest;
             return {
                 id: [year, object].join('_'),
