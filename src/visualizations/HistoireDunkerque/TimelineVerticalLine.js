@@ -1,5 +1,15 @@
 import React from "react";
 
+/**
+ * Timeline vertical delimiter
+ * @param {Object} props
+ * @param {String} props.year
+ * @param {Number} props.x
+ * @param {Number} props.height
+ * @param {String} props.color
+ * @returns 
+ */
+
 export default function TimelineVerticalLine({
     year,
     x,

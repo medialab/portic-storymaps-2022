@@ -1,6 +1,19 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { VisualisationContext } from "../../utils/contexts";
+
+/**
+ * Timeline fragment, as a time event or period
+ * @param {Object} props
+ * @param {Number} props.width
+ * @param {Number} props.height
+ * @param {Number} props.x
+ * @param {Number} props.y
+ * @param {String} [props.color]
+ * @param {String} [props.label]
+ * @param {String} props.label
+ * @returns 
+ */
 
 export default function TimelineFragment({
     width,
@@ -10,14 +23,9 @@ export default function TimelineFragment({
     color = 'black',
     lockShowTitle = false,
     label = '',
-    id,
     ...props
 }) {
     const [showTitle, setShowTitle] = useState(lockShowTitle);
-
-    const {
-        changeMapView
-    } = useContext(VisualisationContext);
 
     const {
         heightForSpan,

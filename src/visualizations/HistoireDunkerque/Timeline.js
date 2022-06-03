@@ -8,6 +8,19 @@ import { range } from "lodash";
 import { generatePalette } from "../../utils/misc";
 import { VisualisationContext } from "../../utils/contexts";
 
+/**
+ * Get timeline SVG component from dataset
+ * @param {Object} props
+ * @param {Object[]} props.data
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @param {Object} props.callerProps
+ * @param {String} props.callerProps.year
+ * @param {Object} props.callerProps.object
+ * @returns 
+ */
+
 export default function Timeline({
     data,
     dimensions,
@@ -204,7 +217,7 @@ export default function Timeline({
                             {
                                 data
                                 .filter(({ category: yearCategory }) => yearCategory === category)
-                                .map(({ year, year_end, ...rest }, i) => {
+                                .map(({ year, year_end, text, ...rest }, i) => {
                                     const length = (year_end) ? year_end - year : 1;
                                     return (
                                         <TimelineFragment
@@ -213,7 +226,7 @@ export default function Timeline({
                                             height={categoryHeight - categoryLabelSize - 10}
                                             x={spanRange(year)}
                                             y={categoryLabelSize + categoryLabelMargin}
-                                            label={year}
+                                            label={text}
                                             color={categoriesColor[category]}
                                             { ...rest }
                                         />
