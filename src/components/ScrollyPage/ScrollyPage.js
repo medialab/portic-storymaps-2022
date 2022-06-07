@@ -259,11 +259,11 @@ export default function ScrollyPage({
         })
         .catch((error) => {
             setLoadingState('failed');
-            console.error(datasets, error);
+            console.error(data, error);
         })
     }, [chapter]);
 
-    if (loadingState === 'process') {
+    if (loadingState === 'process' || !data) {
         return <Loader message='En cours de chargement' />
     }
     if (loadingState === 'failed') {
