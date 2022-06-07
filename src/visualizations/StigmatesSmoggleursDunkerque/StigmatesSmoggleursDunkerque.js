@@ -2,6 +2,15 @@ import React, { useMemo, useState } from 'react';
 
 import AlluvialChart from '../../components/AlluvialChart';
 
+/**
+ * @param {Object} props
+ * @param {Object[]} props.data
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @returns 
+ */
+
 export default function StigmatesSmoggleursDunkerque({
     data: inputData,
     dimensions,

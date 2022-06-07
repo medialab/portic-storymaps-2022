@@ -4,9 +4,10 @@ import visualizationsMetas from '../data/viz';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import PecheTypeValue from './PecheTypeValue';
-import MapDunkerquePort from './MapDunkerquePort';
+import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
+import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque/EvolutionBudgetDunkerque';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -17,13 +18,13 @@ import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
  * @param {object} props.dimensions
  * @returns {React.ReactElement} - React component
  */
-export default function VisualizationController ({
+export default function VisualizationController({
     vizId,
     data,
     ref,
     dimensions,
     lang,
-    callerProps
+    callerProps = {}
 }) {
     const { width, height } = dimensions;
 
@@ -37,9 +38,9 @@ export default function VisualizationController ({
                 return (
                     <SmogglagePortsStats {...{ data, dimensions, lang }} />
                 );
-            case 'map':
+            case 'histoire-dunkerque':
                 return (
-                    <MapDunkerquePort {...{ data, dimensions, callerProps }} />
+                    <HistoireDunkerque {...{ data, dimensions, callerProps }} />
                 );
             case 'stigmates-smoggleurs-dunkerque':
                 return (
@@ -49,8 +50,18 @@ export default function VisualizationController ({
                 return (
                     <FraudeExportDunkerque {...{ data, dimensions }} />
                 );
+            case 'evolution-budget-dunkerque':
+                return (
+                    <EvolutionBudgetDunkerque {...{ data, dimensions }} />
+                );
             default:
-                return <img src={`${process.env.BASE_PATH}/assets/${vizId}.png`} {...{width, height}} style={{objectFit: 'contain'}} />
+                return (
+                    <img
+                        src={`${process.env.BASE_PATH}/assets/${vizId}.jpg`}
+                        {...{ width, height }}
+                        style={{ objectFit: 'contain' }}
+                    />
+                )
         }
     }, [vizId, callerProps, dimensions, lang, data])
 

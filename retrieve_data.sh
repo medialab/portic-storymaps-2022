@@ -1,5 +1,9 @@
 mkdir data
-
+echo "Download data : fetching latest toflit18 data"
+curl -o data/toflit18_bdd.zip "https://raw.githubusercontent.com/medialab/toflit18_data/master/base/bdd%20courante.csv.zip"
+unzip data/toflit18_bdd.zip -d "data"
+rm -f data/toflit18_bdd.zip
+mv "data/bdd courante.csv" "data/toflit18_all_flows.csv"
 echo "Download data : fetching latest navigo pointcalls data"
 curl -o data/navigo_all_pointcalls_1789.csv "data.portic.fr/api/pointcalls/?date=1789&format=csv"
 curl -o data/navigo_all_pointcalls_1787.csv "data.portic.fr/api/pointcalls/?date=1787&format=csv"

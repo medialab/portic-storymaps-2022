@@ -4,6 +4,28 @@ import { groups, sum, max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import iwanthue from 'iwanthue';
 
+/**
+ * @param {Object} props
+ * @param {Object[]} props.data
+ * @param {Array} props.steps ordered list of dimensions of the chart to link
+ * @param {Boolean} [props.decreasing=false]
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @returns
+ * @example
+ * ```
+ * <AlluvialChart
+ *  data={[
+ *      { "destination": "France", "is_smoggleur": "oui" },
+ *      { "destination": "France", "is_smoggleur": "non" },
+ *      { "destination": "Espagne", "is_smoggleur": "oui" }
+ *  ]}
+ *  steps={['destination', 'is_smoggleur']}
+ * />
+ * ```
+ */
+
 export default function AlluvialChart({
     data,
     steps,

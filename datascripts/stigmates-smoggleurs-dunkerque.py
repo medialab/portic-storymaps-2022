@@ -30,9 +30,16 @@ with open(output, 'w', newline='') as csvfile:
                     continue    
                 if row['flag'] != 'British':
                     continue
+
                 row['year'] = year
+                row['tonnage'] = int(row['tonnage'] or 0)
                 if row['destination'] == 'Lisbonne [mais: Angleterre]':
                     row['destination'] = 'Lisbonne'
+                if row['destination'] not in {'Lisbonne', 'Bergen'}:
+                    row['destination'] = row['destination_substate_1789_fr']
+                if row['tonnage'] != '12':
+                    row['tonnage'] = row['tonnage_class']
+
                 writer.writerow(
                     {key: value for key, value in row.items() if key in fieldnames}
                 )
