@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { scaleLinear } from "d3-scale";
-import { group, sum } from 'd3-array'
+import { group, groups, index, rollup, sum, max } from 'd3-array'
 import { partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
@@ -14,16 +14,6 @@ export default function AlluvialImportExport({
     const barWidth = 70;
     const arrowMargin = 10;
 
-    /** @type {Map} */
-    const partners = useMemo(function groupPartners() {
-        return group(data, d => d.partner_type);
-    }, [data]);
-
-    /** @type {Map} */
-    const products = useMemo(function groupProducts() {
-        return group(data, d => d.product_type);
-    }, [data]);
-
     const drawBlocksHeight = useMemo(function getHeightForEachSvgBlock() {
         return {
             productBar: height * 0.45,
@@ -32,24 +22,124 @@ export default function AlluvialImportExport({
         }
     }, [height]);
 
+    function getMaxValueBetweenExportsnImports(productArray) {
+        return max([
+            sum(productArray.filter(({importsexports}) => importsexports === 'Imports'), d => d.value),
+            sum(productArray.filter(({importsexports}) => importsexports === 'Exports'), d => d.value)
+        ])
+    }
+
     const rangeProductValue = useMemo(function setRangeFxForProduct() {
         const { productBar } = drawBlocksHeight;
-        const totalValue = sum(data, d => d.value);
+        let refValue = 0;
+        const productGroups = groups(data, d => d.product_type);
+        for (const [productName, productArray] of productGroups) {
+            const maxValueBetweenExportsnImports = getMaxValueBetweenExportsnImports(productArray);
+            refValue += maxValueBetweenExportsnImports;
+        }
+
         return scaleLinear()
-            .domain([0, totalValue])
+            .domain([0, refValue])
             .range([0, productBar])
     }, [data, drawBlocksHeight]);
 
-    const range = useMemo(function setRangeFxForProduct() {
-        const { productBar } = drawBlocksHeight;
+    const rangePartnerValue = useMemo(function setRangeFxForProduct() {
+        const { partnerBar } = drawBlocksHeight;
+        let refValue = 0;
+        const partnerGroups = groups(data, d => d.partner_type);
+        for (const [partnerName, partnerArray] of partnerGroups) {
+            const maxValueBetweenExportsnImports = getMaxValueBetweenExportsnImports(partnerArray);
+            refValue += maxValueBetweenExportsnImports;
+        }
+
         return scaleLinear()
-            .domain([0, data.length])
-            .range([0, productBar])
+            .domain([0, refValue])
+            .range([0, partnerBar])
     }, [data, drawBlocksHeight]);
 
-    // const links = useMemo(function deduceLinksFromData() {
+    /** @type {Array} */
+    const dataReclassify = useMemo(function groupLittleValues() {
+        const dataReclassify = [];
+        for (const productLine of data) {
+            const valueRange = rangeProductValue(productLine.value);
+            if (valueRange < 15) {
+                productLine['product_type'] = 'Autres';
+            }
+            dataReclassify.push(productLine);
+        }
+        return dataReclassify;
+    }, [data]);
 
-    // }, [data])
+    /** @type {Map} */
+    const partners = useMemo(function groupPartners() {
+        return group(dataReclassify, d => d.partner_type);
+    }, [dataReclassify]);
+
+    /** @type {Map} */
+    const products = useMemo(function groupProducts() {
+        return group(dataReclassify, d => d.product_type);
+    }, [dataReclassify]);
+
+    const links = useMemo(function getLinksBetweenProductsNPartners() {
+        const links = {
+            ['Imports']: [],
+            ['Exports']: []
+        };
+        
+        let iPartnerValue = 0;
+        let partnersY = Object.fromEntries(partners.entries());
+
+        for (const [partnerName, partnerArray] of partners) {
+            partnersY[partnerName] = iPartnerValue; // rangePartnerValue(iPartnerValue)
+            const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
+            iPartnerValue += productValueForAllPartners;
+        }
+
+        partnersY = {
+            ['Imports']: partnersY,
+            ['Exports']: partnersY
+        };
+
+        let iProductValue = {
+            ['Imports']: 0,
+            ['Exports']: 0
+        };
+
+        for (const [productName, productArray] of products) {
+            for (const { value, partner_type, importsexports } of productArray) {
+                switch (importsexports) {
+                    case 'Imports':
+                        links[importsexports].push({
+                            from: {
+                                partner_type,
+                                y: rangePartnerValue(partnersY[importsexports][partner_type])
+                            },
+                            to: {
+                                productName,
+                                y: rangeProductValue(iProductValue[importsexports])
+                            }
+                        });
+                        break;
+                    case 'Exports':
+                        links[importsexports].push({
+                            from: {
+                                productName,
+                                y: rangeProductValue(iProductValue[importsexports])
+                            },
+                            to: {
+                                partner_type,
+                                y: rangePartnerValue(partnersY[importsexports][partner_type])
+                            }
+                        });
+                        break;
+                }
+                
+                iProductValue[importsexports] += value;
+                partnersY[importsexports][partner_type] += value;
+            }
+        }
+        return links;
+    }, [partners, products, rangeProductValue]);
 
     let iProductValue = 0;
     let iPartnerValue = 0;
@@ -72,26 +162,26 @@ export default function AlluvialImportExport({
                 transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
             >
                 {
-                    Array.from(products).map(([productName, productArray]) => {
+                    Array.from(products).map(([productName, productArray], iProduct) => {
                         const color = iwanthue(1, { seed: productName });
-                        return productArray.map(({ value }, iLine) => {
-                            const item = (
-                                <g
-                                    transform={`translate(${0} ${rangeProductValue(iProductValue)})`}
-                                    key={iLine}
-                                >
-                                    <rect
-                                        x={0}
-                                        y={0}
-                                        width={barWidth}
-                                        height={rangeProductValue(value)}
-                                        fill={color}
-                                    />
-                                </g>
-                            )
-                            iProductValue += value;
-                            return item;
-                        })
+                        const productValueForAllPartners = getMaxValueBetweenExportsnImports(productArray)
+                        const drawProductGroup = (
+                            <g
+                                transform={`translate(${0} ${rangeProductValue(iProductValue)})`}
+                                key={iProduct}
+                            >
+                                <rect
+                                    x={0}
+                                    y={0}
+                                    width={barWidth}
+                                    height={rangeProductValue(productValueForAllPartners)}
+                                    fill={color}
+                                />
+                                <text x={0} y={15} fontSize={15}>{productName}</text>
+                            </g>
+                        )
+                        iProductValue += productValueForAllPartners;
+                        return drawProductGroup;
                     })
                 }
             </g>
@@ -133,35 +223,74 @@ export default function AlluvialImportExport({
                 className="partner-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle})`}
             >
-                {/* <rect
-                    x={0}
-                    y={0}
-                    width={barWidth}
-                    height={drawBlocksHeight.productBar}
-                /> */}
                 {
-                    Array.from(partners).map(([partnerName, partnerArray]) => {
+                    Array.from(partners).map(([partnerName, partnerArray], iPartner) => {
                         const color = iwanthue(1, { seed: partnerName });
-                        return partnerArray.map(({ value }, iLine) => {
-                            console.log(value);
-                            const item = (
-                                <g
-                                    transform={`translate(${0} ${rangeProductValue(iPartnerValue)})`}
-                                    key={iLine}
-                                >
-                                    <rect
-                                        x={0}
-                                        y={0}
-                                        width={barWidth}
-                                        height={rangeProductValue(value)}
-                                        fill={color}
-                                    />
-                                    {/* <text x={0} y={0}>{partnerName}</text> */}
-                                </g>
-                            )
-                            iPartnerValue += value;
-                            return item;
-                        })
+                        const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
+                        const drawProductGroup = (
+                            <g
+                                transform={`translate(${0} ${rangePartnerValue(iPartnerValue)})`}
+                                key={iPartner}
+                            >
+                                <rect
+                                    x={0}
+                                    y={0}
+                                    width={barWidth}
+                                    height={rangePartnerValue(productValueForAllPartners)}
+                                    fill={color}
+                                />
+                                <text x={0} y={15} fontSize={15}>{partnerName}</text>
+                            </g>
+                        )
+                        iPartnerValue += productValueForAllPartners;
+                        return drawProductGroup;
+                    })
+                }
+            </g>
+            <g>
+                {
+                    links['Imports'].map(({ from, to }, iLink) => {
+                        iLink++;
+                        const color = iwanthue(1, { seed: from.partner_type });
+                        return (
+                            <path
+                                key={iLink}
+                                d={`
+                                M ${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y}
+                                h -${iLink * 10}
+                                V ${to.y}
+                                h ${iLink * 10}
+                                `}
+                                strokeWidth={2}
+                                stroke={color}
+                                fill='transparent'
+                                markerEnd='url(#arrow-head)'
+                            />
+                        )
+                    })
+                }
+            </g>
+            <g>
+                {
+                    links['Exports'].map(({ from, to }, iLink) => {
+                        iLink++;
+                        const color = iwanthue(1, { seed: from.productName });
+                        console.log(to.partner_type, to.y);
+                        return (
+                            <path
+                                key={iLink}
+                                d={`
+                                M ${width / 2 + barWidth / 2}, ${from.y}
+                                h ${iLink * 10}
+                                V ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + to.y}
+                                h -${iLink * 10}
+                                `}
+                                strokeWidth={2}
+                                stroke={color}
+                                fill='transparent'
+                                markerEnd='url(#arrow-head)'
+                            />
+                        )
                     })
                 }
             </g>
