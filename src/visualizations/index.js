@@ -7,6 +7,7 @@ import PecheTypeValue from './PecheTypeValue';
 import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
+import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque/EvolutionBudgetDunkerque';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -49,10 +50,14 @@ export default function VisualizationController({
                 return (
                     <FraudeExportDunkerque {...{ data, dimensions }} />
                 );
+            case 'evolution-budget-dunkerque':
+                return (
+                    <EvolutionBudgetDunkerque {...{ data, dimensions }} />
+                );
             default:
                 return (
                     <img
-                        src={`${process.env.BASE_PATH}/assets/${vizId}.png`}
+                        src={`${process.env.BASE_PATH}/assets/${vizId}.jpg`}
                         {...{ width, height }}
                         style={{ objectFit: 'contain' }}
                     />
