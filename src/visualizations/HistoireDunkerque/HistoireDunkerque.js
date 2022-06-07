@@ -1,13 +1,25 @@
-import React, { createContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { fetchDataSvg } from "../../utils/fetch";
 import { VisualisationContext } from "../../utils/contexts";
 
 import Timeline from "./Timeline";
 
 import './MapDunkerquePort.scss'
 
-export default function MapDunkerquePort({
+/**
+ * 
+ * @param {Object} props
+ * @param {Object[]} props.data
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @param {Object} props.callerProps
+ * @param {String} props.callerProps.year
+ * @param {Object} props.callerProps.object
+ * @returns 
+ */
+
+export default function HistoireDunkerque({
     data: inputData,
     dimensions,
     callerProps,
@@ -18,7 +30,7 @@ export default function MapDunkerquePort({
     const [yearMark, setYearMark] = useState(undefined);
 
     const data = useMemo(() => {
-        return inputData['map.csv'].map(({...rest}) => {
+        return inputData['histoire-dunkerque.csv'].map(({...rest}) => {
             const {year, object} = rest;
             return {
                 id: [year, object].join('_'),

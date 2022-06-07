@@ -350,3 +350,38 @@ export const getToflitFlowsByCsv = ({
   })
 
 }
+
+/**
+ * From https://github.com/derhuerst/svg-partial-circle
+ * @param {Number} cx X of the circle middle
+ * @param {Number} cy Y of the circle middle
+ * @param {Number} r radius of the circle
+ * @param {Number} start
+ * @param {Number} end
+ * @param {Boolean} [reverse=false]
+ * @returns {String} 'd' attribute of a path
+ * @see http://math2.org/math/geometry/circles.htm
+ * @exemple
+ * ```
+ * const halfCircle = partialCirclePathD( 30, 30, 20, Math.PI / 2, Math.PI * 3 / 2 )
+ * <path d={halfCircle} />
+ * ```
+ */
+
+export function partialCirclePathD(cx, cy, r, start, end, reverse = false) {
+  const length = end - start;
+  if (length === 0) return [];
+
+  const fromX = r * Math.cos(start) + cx;
+  const fromY = r * Math.sin(start) + cy;
+  const toX = r * Math.cos(end) + cx;
+  const toY = r * Math.sin(end) + cy;
+  const large = Math.abs(length) <= Math.PI ? '0' : '1';
+  const sweep = length < 0 ? '0' : '1';
+
+  // if (reverse) {
+  //   return `M ${fromX} ${fromY} A ${r} ${r} ${0} ${large} ${sweep} ${toX} ${toY}`;
+  // }
+
+  return `M ${fromX} ${fromY} A ${r} ${r} ${0} ${large} ${sweep} ${toX} ${toY}`;
+}

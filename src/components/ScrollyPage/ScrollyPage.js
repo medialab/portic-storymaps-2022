@@ -29,14 +29,14 @@ import translate from '../../utils/translate';
  * @returns {React.ReactElement}
  */
 
-export default function ScrollyPage ({
+export default function ScrollyPage({
     Content,
     title,
     chapter,
     ...props
 }) {
     const { lang } = useParams()
-        , sectionRef = useRef(null)
+        , pageRef = useRef(null)
         , scrollY = useScrollYPosition();
 
     const location = useLocation();
@@ -45,15 +45,15 @@ export default function ScrollyPage ({
 
     /** @type {[Object, Function]} */
     const [visualizations, setVisualizations] = useReducer(
-        (state, {type, payload}) => {
-            switch(type) {
+        (state, { type, payload }) => {
+            switch (type) {
                 case 'SET':
                     return payload;
                 default:
                 case 'MERGE':
                     return { ...state, ...payload }
             }
-            
+
         },
         {}
     )
@@ -81,7 +81,7 @@ export default function ScrollyPage ({
      * @param {String} params.visualizationId Viz id
      * @param {String} params.callerId Caller id
      */
-    function onRegisterVisualization (params) {
+    function onRegisterVisualization(params) {
         setVisualizations({
             type: 'MERGE',
             payload: {
@@ -89,7 +89,7 @@ export default function ScrollyPage ({
             }
         });
     }
-    
+
     /**
      * Scroll to the <Caller/> onclick event
      * The scrollTo function launch scroll useEffect
@@ -100,12 +100,12 @@ export default function ScrollyPage ({
      * @param {Boolean} props.canFocusOnScroll Need click to be displayed as overflow
      * @param {Object} props.callerProps Caller input props
      */
-    function onClickCallerScroll ({ref, visualizationId, callerId, canFocusOnScroll, callerProps}) {
+    function onClickCallerScroll({ ref, visualizationId, callerId, canFocusOnScroll, callerProps }) {
         const { y: initialVizY } = ref.current.getBoundingClientRect();
         const vizY = initialVizY + window.scrollY;
-        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION; // center of screen
-        const scrollTo = vizY - DISPLACE_Y * 0.9;
-        
+        const yFraction = window.innerHeight * CENTER_FRACTION;
+        const scrollTo = vizY - yFraction * 0.9;
+
         if (canFocusOnScroll === false) {
             setDisplayedVizId(visualizationId);
             setActiveCallerId(callerId);
@@ -118,7 +118,7 @@ export default function ScrollyPage ({
         });
     }
 
-    function onClickChangeResponsive () {
+    function onClickChangeResponsive() {
         if (activeSideOnResponsive === 'content') {
             setActiveSideOnResponsive('viz')
         }
@@ -127,32 +127,51 @@ export default function ScrollyPage ({
         }
     }
 
+    function focusFirstVizOfPage() {
+        const visualizationEntries = Object.entries(visualizations);
+
+        if (visualizationEntries[0] === undefined) {
+            setDisplayViz(false);
+            return;
+        }
+        setDisplayViz(true);
+
+        const [firstCallerId, firstVizParms] = visualizationEntries[0];
+        const { visualizationId: firstVizId } = firstVizParms;
+
+        setDisplayedVizId(firstVizId);
+        setCurrentVizId(firstVizId);
+        setActiveCallerId(firstCallerId);
+    }
+
     function resetVizProps() {
         setDisplayedVizProps(initialVizProps);
         setActiveCallerId(initialCallerId);
         setCanResetVizProps(false);
     }
 
-    useEffect(() => {
+    useEffect(focusFirstVizOfPage, [visualizations]);
+
+    useEffect(function resetDisplayedVizPropsOnVizChange() {
         if (visualizations[activeCallerId] === undefined) { return; }
-        const { props } =  visualizations[activeCallerId];
+        const { props } = visualizations[activeCallerId];
         setInitialVizProps(props);
         setInitialCallerId(activeCallerId);
     }, [currentVizId, visualizations])
 
-    useEffect(() => {
+    useEffect(function setDisplayedVizPropsOnCallerClick() {
         if (visualizations[activeCallerId] === undefined) { return; }
-        const { props } =  visualizations[activeCallerId];
+        const { props } = visualizations[activeCallerId];
         setDisplayedVizProps(props);
     }, [activeCallerId, visualizations])
 
-    useEffect(() => {
+    useEffect(function displayButtonToResetDisplayedVizProps() {
         setCanResetVizProps(
             isEqual(initialVizProps, displayedVizProps) === false
         )
     }, [initialVizProps, displayedVizProps])
 
-    useEffect(() => {
+    useEffect(function navigateOnHashFromUrl() {
         if (!!location.hash === '') { return; }
         const hash = location.hash.substring(1)
         // @todo I know, it is very ugly, may be illegal, but I did not find another way
@@ -165,46 +184,32 @@ export default function ScrollyPage ({
         }, 1000);
     }, [location]);
 
-    /**
-     * When change of chapter, clean 'visualisations' state
-     */
-    useEffect(() => {
+    useEffect(function cleanVisualisationsState() {
         setVisualizations({
             type: 'SET',
             payload: {}
         })
     }, [chapter]);
 
-    /**
-     * When scroll, set the focused visualisation
-     */
-    useEffect(() => {
-        if (Object.keys(visualizations).length === 0) { return; }
-        /* @todo this is a rustine, we don't understand
-        why sometimes sectionRef is undefined
-        */
-        if (!sectionRef.current) {
-          return;
+    useEffect(function focusVizOnScroll() {
+        if (Object.keys(visualizations).length === 0 || !pageRef.current) {
+            return;
         }
 
         const visualizationEntries = Object.entries(visualizations);
 
         if (scrollY === 0) {
-            const [firstCallerId, firstVizParms] = visualizationEntries[0];
-            const { visualizationId: firstVizId } = firstVizParms;
-            setDisplayedVizId(firstVizId);
-            setCurrentVizId(firstVizId);
-            setActiveCallerId(firstCallerId);
+            focusFirstVizOfPage();
             return;
         }
 
-        const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
-        const y = scrollY + DISPLACE_Y;
-        const sectionDims = sectionRef.current && sectionRef.current.getBoundingClientRect();
-        const sectionEnd = sectionDims.y + window.scrollY + sectionDims.height;
+        const yFraction = window.innerHeight * CENTER_FRACTION;
+        const yBottom = scrollY + window.innerHeight
+        const yMatch = scrollY + yFraction;
+        const {height: pageHeight} = pageRef.current.getBoundingClientRect();
 
-        // if the Y position is out from scroll section, hide viz (use to avoid hiding the footer)
-        if (y > sectionEnd) {
+        if (yBottom > pageHeight) {
+            // to avoid hiding the footer
             setDisplayViz(false);
             return;
         }
@@ -212,35 +217,31 @@ export default function ScrollyPage ({
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
             const [callerId, vizParms] = visualizationEntries[i];
-            const { visualizationId } = vizParms;
-            const { ref, canFocusOnScroll } = vizParms;
+            const { visualizationId, ref, canFocusOnScroll } = vizParms;
 
+            // if (displayedVizId === visualizationId) { return; }
             if (!!ref.current === false) { continue; }
 
             const { y: initialVizY } = ref.current.getBoundingClientRect();
             let vizY = initialVizY + window.scrollY;
 
-            if (y > vizY && canFocusOnScroll && canResetVizProps === false) {
+            if (yMatch >= vizY && canFocusOnScroll) {
+                resetVizProps();
                 setDisplayedVizId(visualizationId);
                 setCurrentVizId(visualizationId);
                 setActiveCallerId(callerId);
                 break;
             }
         }
-    }, [scrollY, sectionRef]);
+    }, [scrollY, pageRef]);
 
-    /**
-     * When change of chapter, store each CSV output in 'data' sate
-     * for each chapter output
-     */
-    useEffect(() => {
+    useEffect(function getDataForChapter() {
         setLoadingState('process');
 
         let filesCsvToLoad = new Set(
-            Object.keys(visualizationsMetas)
-                .map(vizId => visualizationsMetas[vizId])
-                .filter(viz => viz['n_chapitre'] === chapter)
-                .map(viz => viz['outputs'])
+            Object.values(visualizationsMetas)
+                .filter(({n_chapitre}) => n_chapitre === chapter)
+                .map(({outputs}) => outputs)
                 .flat()
         );
         filesCsvToLoad = Array.from(filesCsvToLoad);
@@ -258,29 +259,9 @@ export default function ScrollyPage ({
         })
         .catch((error) => {
             setLoadingState('failed');
-            console.error(error);
+            console.error(datasets, error);
         })
     }, [chapter]);
-
-    /**
-     * When load viz caller, set the first as focused in 'displayedVizId' state
-     */
-    useEffect(() => {
-        const visualizationEntries = Object.entries(visualizations);
-
-        if (visualizationEntries[0] === undefined) {
-            setDisplayViz(false);
-            return;
-        }
-        setDisplayViz(true);
-
-        const [firstCallerId, firstVizParms] = visualizationEntries[0];
-        const { visualizationId: firstVizId } = firstVizParms;
-
-        setDisplayedVizId(firstVizId);
-        setCurrentVizId(firstVizId);
-        setActiveCallerId(firstCallerId);
-    }, [visualizations]);
 
     if (loadingState === 'process') {
         return <Loader message='En cours de chargement' />
@@ -297,7 +278,7 @@ export default function ScrollyPage ({
 
             <div className='ScrollyPage'>
                 <ReactTooltip id="contents-tooltip" />
-                <section className={cx("Contents", {'is-focused': activeSideOnResponsive === 'content'})} ref={sectionRef}>
+                <section className={cx("Contents", { 'is-focused': activeSideOnResponsive === 'content' })} ref={pageRef}>
                     <button
                         className='switch-btn'
                         onClick={onClickChangeResponsive}
@@ -310,16 +291,16 @@ export default function ScrollyPage ({
                         onClickCallerScroll,
                         activeCallerId
                     }}>
-                        <Content components={{Caller, Link}} />
+                        <Content components={{ Caller, Link }} />
                     </VisualisationContext.Provider>
                 </section>
 
-                <aside className={cx({'is-focused': activeSideOnResponsive === 'viz'})}>
+                <aside className={cx({ 'is-focused': activeSideOnResponsive === 'viz' })}>
                     {
-                        displayViz && 
+                        displayViz &&
                         <VisualizationContainer
                             callerProps={displayedVizProps}
-                            { ...{
+                            {...{
                                 displayedVizId,
                                 data,
                                 canResetVizProps,
