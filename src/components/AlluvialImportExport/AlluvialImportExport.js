@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 import { scaleLinear } from "d3-scale";
 import { group, groups, index, rollup, sum, max } from 'd3-array'
-import { partialCirclePathD } from "../../utils/misc";
+import { partialCirclePathD, _partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
 export default function AlluvialImportExport({
@@ -24,8 +24,8 @@ export default function AlluvialImportExport({
 
     function getMaxValueBetweenExportsnImports(productArray) {
         return max([
-            sum(productArray.filter(({importsexports}) => importsexports === 'Imports'), d => d.value),
-            sum(productArray.filter(({importsexports}) => importsexports === 'Exports'), d => d.value)
+            sum(productArray.filter(({ importsexports }) => importsexports === 'Imports'), d => d.value),
+            sum(productArray.filter(({ importsexports }) => importsexports === 'Exports'), d => d.value)
         ])
     }
 
@@ -48,6 +48,7 @@ export default function AlluvialImportExport({
         let refValue = 0;
         const partnerGroups = groups(data, d => d.partner_type);
         for (const [partnerName, partnerArray] of partnerGroups) {
+            if (partnerName === 'Fraude') { continue; }
             const maxValueBetweenExportsnImports = getMaxValueBetweenExportsnImports(partnerArray);
             refValue += maxValueBetweenExportsnImports;
         }
@@ -85,11 +86,12 @@ export default function AlluvialImportExport({
             ['Imports']: [],
             ['Exports']: []
         };
-        
+
         let iPartnerValue = 0;
         let partnersY = Object.fromEntries(partners.entries());
 
         for (const [partnerName, partnerArray] of partners) {
+            if (partnerName === 'Fraude') { continue; }
             partnersY[partnerName] = iPartnerValue; // rangePartnerValue(iPartnerValue)
             const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
             iPartnerValue += productValueForAllPartners;
@@ -110,10 +112,18 @@ export default function AlluvialImportExport({
                 switch (importsexports) {
                     case 'Imports':
                         links[importsexports].push({
-                            from: {
-                                partner_type,
-                                y: rangePartnerValue(partnersY[importsexports][partner_type])
-                            },
+                            value,
+                            from: (
+                                partner_type === 'Fraude' ?
+                                    {
+                                        partner_type,
+                                        y: 0
+                                    } :
+                                    {
+                                        partner_type,
+                                        y: rangePartnerValue(partnersY[importsexports][partner_type])
+                                    }
+                            ),
                             to: {
                                 productName,
                                 y: rangeProductValue(iProductValue[importsexports])
@@ -122,18 +132,26 @@ export default function AlluvialImportExport({
                         break;
                     case 'Exports':
                         links[importsexports].push({
+                            value,
                             from: {
                                 productName,
                                 y: rangeProductValue(iProductValue[importsexports])
                             },
-                            to: {
-                                partner_type,
-                                y: rangePartnerValue(partnersY[importsexports][partner_type])
-                            }
+                            to: (
+                                partner_type === 'Fraude' ?
+                                    {
+                                        partner_type,
+                                        y: 0
+                                    } :
+                                    {
+                                        partner_type,
+                                        y: rangePartnerValue(partnersY[importsexports][partner_type])
+                                    }
+                            )
                         });
                         break;
                 }
-                
+
                 iProductValue[importsexports] += value;
                 partnersY[importsexports][partner_type] += value;
             }
@@ -202,22 +220,21 @@ export default function AlluvialImportExport({
                     fill='transparent'
                     markerEnd='url(#arrow-head)'
                 />
-                <g transform={`translate(${barWidth + arrowMargin} ${drawBlocksHeight.centerCircle / 2}) rotate(180)`} >
-                    <path
-                        d={partialCirclePathD(
-                            0,
-                            0,
-                            barWidth - 10,
-                            Math.PI / 2,
-                            Math.PI * 3 / 2,
-                            // true
-                        )}
-                        strokeWidth={2}
-                        stroke='black'
-                        fill='transparent'
-                        markerEnd='url(#arrow-head)'
-                    />
-                </g>
+                <path
+                    transform={`translate(${barWidth + arrowMargin} ${drawBlocksHeight.centerCircle / 2}) rotate(180)`}
+                    d={partialCirclePathD(
+                        0,
+                        0,
+                        barWidth - 10,
+                        Math.PI / 2,
+                        Math.PI * 3 / 2,
+                        // true
+                    )}
+                    strokeWidth={2}
+                    stroke='black'
+                    fill='transparent'
+                    markerEnd='url(#arrow-head)'
+                />
             </g>
             <g
                 className="partner-bar"
@@ -249,9 +266,24 @@ export default function AlluvialImportExport({
             </g>
             <g>
                 {
-                    links['Imports'].map(({ from, to }, iLink) => {
+                    links['Imports'].map(({ value, from, to }, iLink) => {
                         iLink++;
                         const color = iwanthue(1, { seed: from.partner_type });
+                        if (from.partner_type === 'Fraude') {
+                            return (
+                                <path
+                                    key={iLink}
+                                    d={`
+                                    M ${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y}
+                                    h -${width / 3}
+                                    v ${rangeProductValue(value)}
+                                    h ${width / 3}
+                                    Z
+                                    `}
+                                    fill={color}
+                                />
+                            )
+                        }
                         return (
                             <path
                                 key={iLink}
@@ -272,10 +304,25 @@ export default function AlluvialImportExport({
             </g>
             <g>
                 {
-                    links['Exports'].map(({ from, to }, iLink) => {
+                    links['Exports'].map(({ value, from, to }, iLink) => {
                         iLink++;
                         const color = iwanthue(1, { seed: from.productName });
-                        console.log(to.partner_type, to.y);
+                        if (to.partner_type === 'Fraude') {
+                            console.log(value);
+                            return (
+                                <path
+                                    key={iLink}
+                                    d={`
+                                    M ${width / 2 + barWidth / 2}, ${from.y}
+                                    h ${width / 3}
+                                    v ${rangeProductValue(value)}
+                                    h -${width / 3}
+                                    Z
+                                    `}
+                                    fill={color}
+                                />
+                            )
+                        }
                         return (
                             <path
                                 key={iLink}
