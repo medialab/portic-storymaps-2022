@@ -16,7 +16,6 @@ export default function PecheTypeValue({
     dimensions
 }) {
     const { width, height } = dimensions;
-    let data = inputData['peche-type-value.csv'];
 
     return (
         <BarChart
