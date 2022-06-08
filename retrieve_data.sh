@@ -10,6 +10,8 @@ curl -o data/navigo_all_pointcalls_1787.csv "data.portic.fr/api/pointcalls/?date
 echo "Download data : fetching latest navigo flows data"
 curl -o data/navigo_all_flows_1789.csv "data.portic.fr/api/rawflows/?date=1789&format=csv"
 curl -o data/navigo_all_flows_1787.csv "data.portic.fr/api/rawflows/?date=1787&format=csv"
+echo "fetching CSL style"
+curl -o data/iso690-author-date-fr-no-abstract.csl "https://www.zotero.org/styles/iso690-author-date-fr-no-abstract"
 
 cd datascripts
 for f in *.py; do python3 "$f"; echo "execute python script $f"; done
