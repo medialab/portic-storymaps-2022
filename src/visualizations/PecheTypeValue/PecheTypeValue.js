@@ -10,7 +10,7 @@ import BarChart from '../../components/BarChart';
  */
 
 export default function PecheTypeValue({
-    data: inputData,
+    data,
     title,
     lang,
     dimensions
