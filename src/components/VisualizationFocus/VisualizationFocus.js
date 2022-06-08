@@ -21,7 +21,7 @@ const { homepage } = packageJSON;
  */
 export default function VisualizationFocus({
     vizId,
-    data,
+    datasets,
     onClickClose,
     ...props
 }) {
@@ -181,7 +181,7 @@ export default function VisualizationFocus({
                                                 vizId,
                                                 dimensions,
                                                 lang,
-                                                data
+                                                datasets
                                             }
                                             }
                                         />
