@@ -53,14 +53,24 @@ const basePath = path.join(__dirname, 'public');
             const url = `http://localhost:${devServerOptions.port}/#/${lang}/vizualisation/${vizId}`;
 
             await page.goto(url);
-            await page.waitForSelector('.viz-render', {
-                visible: true,
-            });
-            await page.screenshot({ 
+
+            try {
+                await page.waitForSelector('.viz-render', {
+                    visible: true,
+                    timeout: 5000 // five seconds
+                });
+            } catch (error) {
+                console.log('failed');
+                await page.close();
+                continue;
+            }
+
+            await page.screenshot({
                 path: pathToSave,
                 fullPage: true
             });
             await page.close();
+            console.log('done');
         }
     }
 

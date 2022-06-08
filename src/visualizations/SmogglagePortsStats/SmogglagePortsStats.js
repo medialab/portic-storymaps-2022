@@ -16,7 +16,6 @@ export default function SmogglagePortsStats ({
     dimensions
 }) {
     const { width, height } = dimensions;
-    let data = inputData['smogglage_ports_stats.csv'];
 
     return (
         <>

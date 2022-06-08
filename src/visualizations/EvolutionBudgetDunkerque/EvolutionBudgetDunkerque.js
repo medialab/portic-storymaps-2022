@@ -10,7 +10,7 @@ export default function EvolutionBudgetDunkerque({
     const { width, height } = dimensions;
 
     const data = useMemo(function prepareData() {
-        let preparedData = inputData['evolution-budget-dunkerque.csv'].map((row) => {
+        let preparedData = inputData.map((row) => {
             return {
                 ['Années comptables']: +row['Années comptables'],
                 ['Recettes']: +row['Recettes'],
@@ -20,8 +20,6 @@ export default function EvolutionBudgetDunkerque({
         })
         return preparedData;
     }, [inputData]);
-
-    console.log(data);
 
     return (
         <LineChart
