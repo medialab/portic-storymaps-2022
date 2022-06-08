@@ -9,7 +9,7 @@ export default function FraudeExportDunkerque({
 }) {
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
-        let preparedData = inputData['fraude-exports.csv']
+        let preparedData = inputData
             .filter(({ port }) => port === 'Dunkerque')
             .filter(({ aggregate_type }) => aggregate_type === 'detail_products')
             .map(({ value, ...rest }) => {

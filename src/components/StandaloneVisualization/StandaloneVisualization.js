@@ -13,7 +13,7 @@ export default function StandaloneVisualization({
 }) {
     const { vizId, lang } = useParams();
 
-    const [data, setData] = useState(undefined);
+    const [datasets, setDatasets] = useState(undefined);
     const [loadingState, setLoadingState] = useState('none');
 
     useEffect(() => {
@@ -23,24 +23,27 @@ export default function StandaloneVisualization({
         }
 
         setLoadingState('process');
-        // @todo handle case in which an incorrect viz id is provided
         const { outputs, ...metas } = visualizationsMetas[vizId];
+        const payload = new Map();
 
         Promise.all(
-            outputs.map(fileToLoad => fetchDataCsv(fileToLoad))
+            outputs.map(fileToLoad =>
+                fetchDataCsv(fileToLoad).catch(error => null)
+            )
         )
-            .then((datasets) => {
-                let payload = {};
-                for (let i = 0; i < datasets.length; i++) {
-                    payload[outputs[i]] = datasets[i];
-                }
-                setData(payload);
-                setLoadingState('successed');
-            })
-            .catch((error) => {
-                setLoadingState('failed');
-                console.error(error);
-            })
+        .then((datasets) => {
+            for (let i = 0; i < datasets.length; i++) {
+                const dataset = datasets[i];
+                if (dataset === null) { continue; }
+                payload.set(outputs[i], dataset);
+            }
+            setDatasets(payload);
+            setLoadingState('successed');
+        })
+        .catch((error) => {
+            setLoadingState('failed');
+            console.log(error);
+        })
 
     }, [vizId])
 
@@ -52,7 +55,7 @@ export default function StandaloneVisualization({
                         { ...{
                             vizId,
                             lang,
-                            data
+                            datasets
                         } }
                         dimensions={{
                             width: 1200,

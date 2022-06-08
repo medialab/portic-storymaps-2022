@@ -20,7 +20,7 @@ export default function Atlas({
     const { vizId, lang } = useParams();
     const navigate = useNavigate();
 
-    const [data, setData] = useState(undefined);
+    const [datasets, setDatasets] = useState(new Map());
     const [vizMetas, setVizMetas] = useState(undefined);
     /** @type {['process'|'failed'|'successed'|'none', Function]} */
     const [loadingState, setLoadingState] = useState('none');
@@ -34,33 +34,36 @@ export default function Atlas({
     }
 
     useEffect(() => {
-        if (!!vizId === false || visualizationsMetas[vizId] === undefined) {
+        if (vizId === undefined || visualizationsMetas[vizId] === undefined) {
             setLoadingState('none');
             return;
         }
 
         setLoadingState('process');
-        // @todo handle case in which an incorrect viz id is provided
         const { outputs, ...metas } = visualizationsMetas[vizId];
+        console.log(outputs);
+
+        const payload = new Map();
 
         Promise.all(
-            outputs.map(fileToLoad => fetchDataCsv(fileToLoad))
+            outputs.map(fileToLoad =>
+                fetchDataCsv(fileToLoad).catch(error => null)
+            )
         )
-            .then((datasets) => {
-                let payload = {};
-                for (let i = 0; i < datasets.length; i++) {
-                    payload[outputs[i]] = datasets[i];
-                }
-                console.log('data is loaded');
-                setData(payload);
-                setVizMetas(metas);
-                setLoadingState('successed');
-            })
-            .catch((error) => {
-                setLoadingState('failed');
-                console.error(error);
-            })
-
+        .then((datasets) => {
+            for (let i = 0; i < datasets.length; i++) {
+                const dataset = datasets[i];
+                if (dataset === null) { continue; }
+                payload.set(outputs[i], dataset);
+            }
+            setDatasets(payload);
+            setVizMetas(metas);
+            setLoadingState('successed');
+        })
+        .catch((error) => {
+            setLoadingState('failed');
+            console.log(error);
+        })
     }, [vizId])
 
     useEffect(() => window.scrollTo({ top: 0 }), []);
@@ -83,6 +86,7 @@ export default function Atlas({
                                 <li
                                     className='visualization-item'
                                     onClick={() => onClickFocus(id, output)}
+                                    key={i}
                                 >
                                     <figure className="thumbnail-container">
                                         <img
@@ -101,16 +105,16 @@ export default function Atlas({
                 vizId ?
                     <div>
                         {
-                            loadingState === 'successed' ?
+                            loadingState === 'successed' || loadingState === 'failed' ?
                                 <VisualizationFocus
                                     vizId={vizId}
-                                    data={data}
+                                    datasets={datasets}
                                     onClickClose={(e) => navigate(`/${lang}/atlas`)}
                                 />
                                 :
                                 {
                                     'process': <Loader message='En cours de chargement' />,
-                                    'failed': <Loader message='Erreur de chargement' />,
+                                    // 'failed': <Loader message='Erreur de chargement' />,
                                     'none': null
                                 }[loadingState]
                         }

@@ -7,16 +7,12 @@ import React from 'react';
  * @returns {React.ReactElement}
  */
 
-export default function Loader ({
+export default function Loader({
     message
 }) {
     return (
-        <section className="hero">
-            <div className="hero-body">
-                <p className="title">
-                    { message }
-                </p>
-            </div>
-        </section>
+        <div>
+            {message}
+        </div>
     );
 }

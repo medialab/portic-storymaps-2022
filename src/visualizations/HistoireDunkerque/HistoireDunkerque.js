@@ -30,7 +30,7 @@ export default function HistoireDunkerque({
     const [yearMark, setYearMark] = useState(undefined);
 
     const data = useMemo(() => {
-        return inputData['histoire-dunkerque.csv'].map(({...rest}) => {
+        return inputData.map(({...rest}) => {
             const {year, object} = rest;
             return {
                 id: [year, object].join('_'),

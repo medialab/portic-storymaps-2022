@@ -19,8 +19,7 @@ export default function StigmatesSmoggleursDunkerque({
     const [year, setYear] = useState('1787');
 
     const data = useMemo(() => {
-        return inputData['stigmates-smoggleurs-dunkerque.csv']
-            .filter(({ year: rowYear }) => year === rowYear);
+        return inputData.filter(({ year: rowYear }) => year === rowYear);
     }, [inputData, year]);
 
     const steps = ['destination', 'tonnage'];
