@@ -7,7 +7,9 @@ import PecheTypeValue from './PecheTypeValue';
 import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
-import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque/EvolutionBudgetDunkerque';
+import EvolutionTypeConges from './EvolutionTypeConges';
+import TonnageMoyenMois from './TonnageMoyenMois';
+import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -73,6 +75,14 @@ export default function VisualizationController({
             case 'evolution-budget-dunkerque':
                 return (
                     <EvolutionBudgetDunkerque {...{ data, dimensions }} />
+                );
+            case 'evolution-type-conges':
+                return (
+                    <EvolutionTypeConges {...{ data, dimensions }} />
+                );
+            case 'tonnage-moyen-par-mois':
+                return (
+                    <TonnageMoyenMois {...{ data, dimensions }} />
                 );
             default:
                 return (
