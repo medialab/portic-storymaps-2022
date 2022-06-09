@@ -65,11 +65,13 @@ export default function TonnageMoyenMois({
                     data.filter(({ year: rowYear }) => year === rowYear)
                 }
                 x={{
-                    field: 'month'
-                }}
-                y={{
                     field: 'value'
                 }}
+                y={{
+                    field: 'month',
+                    fillGaps: true
+                }}
+                orientation='vertical'
             />
             <form
                 onSubmit={(e) => e.preventDefault()}
