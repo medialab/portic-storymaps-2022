@@ -27,7 +27,7 @@ export default function TonnageMoyenMois({
                     'Octobre',
                     'Novembre',
                     'Décembre'
-                ].map((mounth, i) => [mounth, i]))
+                ].map((mounth, i) => [mounth, i + 1]))
                 return {
                     month: mounths[month],
                     ...rest
@@ -35,12 +35,12 @@ export default function TonnageMoyenMois({
             })
     }, [inputData]);
 
-    const years = useMemo(function groupYears () {
+    const years = useMemo(function groupYears() {
         const yearGroup = group(data, d => d.year);
         return Array.from(yearGroup.keys());
     }, [data]);
 
-    useEffect(function setInitialYear () {
+    useEffect(function setInitialYear() {
         setYear(years[0]);
     }, [years]);
 
@@ -63,13 +63,21 @@ export default function TonnageMoyenMois({
                 }}
                 data={
                     data.filter(({ year: rowYear }) => year === rowYear)
+                        .map(({ month, ...rest }) => {
+                            console.log(new Date(rest.year, month));
+                            return {
+                                month: new Date(rest.year, month),
+                                ...rest
+                            }
+                        })
                 }
                 x={{
                     field: 'value'
                 }}
                 y={{
                     field: 'month',
-                    fillGaps: true
+                    fillGaps: true,
+                    tickFormat: v => new Date(v).toLocaleDateString()
                 }}
                 orientation='vertical'
             />
