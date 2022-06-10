@@ -150,8 +150,6 @@ export default function ScrollyPage({
         setCanResetVizProps(false);
     }
 
-    useEffect(focusFirstVizOfPage, [visualizations]);
-
     useEffect(function resetDisplayedVizPropsOnVizChange() {
         if (visualizations[activeCallerId] === undefined) { return; }
         const { props } = visualizations[activeCallerId];
@@ -233,7 +231,7 @@ export default function ScrollyPage({
                 break;
             }
         }
-    }, [scrollY, pageRef]);
+    }, [visualizations, scrollY, pageRef]);
 
     useEffect(function getDataForChapter() {
         setLoadingState('process');
