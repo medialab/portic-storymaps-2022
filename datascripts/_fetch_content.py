@@ -32,7 +32,7 @@ sanitizer = Sanitizer({
     'attributes': {
         'caller': ('id', 'class', 'year', 'object'),
         'a': ('href', 'rel', 'target', 'class', 'title'),
-        'dfn': ('title'),
+        'dfn': ('data-for', 'data-effect', 'data-tip'),
         'h2': ('id'), 'h3': ('id')
     }
 })
@@ -218,11 +218,13 @@ for lang in GDOC_URL.keys():
                 footnote_text = footnote_text.replace('“', '«').replace('”', '»')
                 footnote_anchor = soup.find('a', {'href': str('#ftnt' + footnote_id)})
                 footnote_anchor_context = footnote_anchor.parent.find_previous().string
-                footnote_anchor_text = footnote_anchor_context.split()[-1]
-                footnote_anchor.string.replace_with(footnote_anchor_text)
+                # footnote_anchor_text = footnote_anchor_context.split()[-1]
+                footnote_anchor.string.replace_with(' (?)')
                 footnote_anchor.name = 'dfn'
                 del footnote_anchor['id']; del footnote_anchor['href']
-                footnote_anchor['title'] = footnote_text
+                footnote_anchor['data-for'] = 'contents-tooltip'
+                footnote_anchor['data-effect'] = 'solid'
+                footnote_anchor['data-tip'] = footnote_text
                 # delete tags
                 footnote_ref.extract()
                 footnote_text_container.extract()

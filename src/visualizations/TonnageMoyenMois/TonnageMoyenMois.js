@@ -2,6 +2,7 @@ import { group } from 'd3-array';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import LineChart from '../../components/LineChart';
+import Timeline from './Timeline';
 
 export default function TonnageMoyenMois({
     data: inputData,
@@ -9,7 +10,7 @@ export default function TonnageMoyenMois({
     ...props
 }) {
     const { width, height } = dimensions;
-    const [year, setYear] = useState(undefined);
+    const [yearBrush, setYearBrush] = useState(undefined);
 
     const data = useMemo(() => {
         return inputData
@@ -41,30 +42,29 @@ export default function TonnageMoyenMois({
     }, [data]);
 
     useEffect(function setInitialYear() {
-        setYear(years[0]);
+        setYearBrush([years[0]]);
     }, [years]);
 
-    function onInputChange(e) {
-        const { target } = e;
-        const { value } = target;
-        setYear(value);
-    }
+    const {
+        linechartHeight,
+        timelineHeight
+    } = useMemo(function assignHeightForVizElts () {
+        return {
+            timelineHeight: height * 0.1,
+            linechartHeight: height * 0.9
+        }
+    }, [height])
 
-    if (year === undefined) {
+    if (yearBrush === undefined) {
         return null;
     }
 
     return (
         <>
             <LineChart
-                {...{
-                    width,
-                    height
-                }}
                 data={
-                    data.filter(({ year: rowYear }) => year === rowYear)
+                    data.filter(({ year: rowYear }) => yearBrush.includes(rowYear))
                         .map(({ month, ...rest }) => {
-                            console.log(new Date(rest.year, month));
                             return {
                                 month: new Date(rest.year, month),
                                 ...rest
@@ -79,31 +79,18 @@ export default function TonnageMoyenMois({
                     fillGaps: true,
                     tickFormat: v => new Date(v).toLocaleDateString()
                 }}
+                width={width}
+                height={linechartHeight}
                 orientation='vertical'
             />
-            <form
-                onSubmit={(e) => e.preventDefault()}
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center'
+            <Timeline
+                dimensions={{
+                    width: width,
+                    height: timelineHeight
                 }}
-            >
-                {
-                    years.map((inputYear, i) => (
-                        <span key={i}>
-                            <input
-                                onChange={onInputChange}
-                                type="radio"
-                                id={`tonnage-moyen-mois_year_${inputYear}`}
-                                name="year"
-                                value={inputYear}
-                                checked={year === inputYear}
-                            />
-                            <label htmlFor={`tonnage-moyen-mois_year_${inputYear}`}>{inputYear}</label>
-                        </span>
-                    ))
-                }
-            </form>
+                years={years}
+                yearBrushState={[yearBrush, setYearBrush]}
+            />
         </>
     )
 }
