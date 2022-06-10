@@ -33,7 +33,7 @@ export default function Timeline({
         return scaleLinear()
             .domain([minYear, maxYear])
             .range([0, width])
-    }, [years, height]);
+    }, [years, width]);
 
     useEffect(function handleMouseClickAndMove (e) {
         if (!!timelineRef === false && isOnBrush === false) {
