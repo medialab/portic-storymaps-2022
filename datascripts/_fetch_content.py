@@ -24,7 +24,7 @@ from citeproc import CitationStylesStyle, CitationStylesBibliography
 from citeproc import Citation, CitationItem
 from citeproc import formatter
 from citeproc.source.json import CiteProcJSON
-from citeproc_styles import get_style_filepath
+# from citeproc_styles import get_style_filepath
 
 sanitizer = Sanitizer({
     'tags': ('a', 'h1', 'h2', 'h3', 'strong', 'em', 'p', 'ul', 'ol', 'li', 'br', 'hr', 'caller', 'link', 'dfn'),
@@ -85,7 +85,8 @@ Import visualisations list from GSheet
 viz_id_list = {}
 inputs_csv_online = {}
 bib_source = None
-bib_style = CitationStylesStyle(get_style_filepath('iso690-author-date-fr-no-abstract'), validate=False)
+# bib_style = CitationStylesStyle(get_style_filepath('iso690-author-date-fr-no-abstract'), validate=False)
+bib_style = CitationStylesStyle('harvard1', validate=False)
 
 with requests.Session() as s:
     print('Get viz list from GSheet')
