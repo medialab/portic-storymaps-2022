@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import { groups, sum, max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
@@ -33,6 +33,7 @@ export default function AlluvialChart({
     decreasing = false
 }) {
     const { width, height } = dimensions;
+    const [isHoverCategoryName, setIsHoverCategoryName] = useState(undefined);
     /**
      * We should to order steps as the 'steps' prop and sort
      * categories by their values
@@ -144,6 +145,7 @@ export default function AlluvialChart({
             {
                 steps.map((stepName, iStep) => {
                     let iItem = 0;
+                    const isHoverMode = isHoverCategoryName !== undefined;
                     const itemHeight = itemRange(1);
                     const itemWidth = widthRange(1);
                     const itemWidthMiddle = widthRange(1 / 2);
@@ -169,6 +171,7 @@ export default function AlluvialChart({
 
                             {
                                 stepsGroup.get(stepName).map(([categoryName, categoryArray], iCategory) => {
+                                    const isCategoryHover = categoryName === isHoverCategoryName;
                                     const categoryLinks = links.filter(({ from }) => from === categoryName)
                                     if (isFinalStep) {
                                         const text = (
@@ -192,22 +195,37 @@ export default function AlluvialChart({
                                         return text;
                                     }
                                     const color = iwanthue(1, { seed: categoryName })
+                                    const isTooSmallForText = itemRange(iItem) < 15;
                                     return (
-                                        <g key={iCategory}>
+                                        <g
+                                            key={iCategory}
+                                            onMouseEnter={(e) => {
+                                                console.log(categoryName, e);
+                                                setIsHoverCategoryName(categoryName);
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                console.log(categoryName, e);
+                                                setIsHoverCategoryName(undefined);
+                                            }}
+                                        >
                                             <g
                                                 transform={`translate(${0} ${itemRange(iItem)})`}
                                             >
-                                                <text
-                                                    y={itemRange(categoryLinks.length / 2)}
-                                                    x={5} fontSize={10} fontWeight='bold'
-                                                    fill='black'
-                                                >
-                                                    {categoryName}
-                                                </text>
+                                                {
+                                                    (isTooSmallForText === false || isCategoryHover === true) &&
+                                                    <text
+                                                        y={itemRange(categoryLinks.length / 2)}
+                                                        x={5} fontSize={10} fontWeight='bold'
+                                                        fill='black'
+                                                    >
+                                                        {categoryName}
+                                                    </text>
+                                                }
                                             </g>
 
                                             {
                                                 categoryLinks.map(({ to }, iCategoryItem) => {
+                                                    const reduceOpacity = isHoverMode && isCategoryHover === false;
                                                     const curve = {
                                                         topLine: {
                                                             a1: `${itemWidthMiddle} ${itemRange(iItem)}`,
@@ -236,6 +254,7 @@ export default function AlluvialChart({
                                                                 fill='transparent'
                                                                 stroke={color}
                                                                 strokeWidth={itemHeight}
+                                                                opacity={reduceOpacity ? 0.2 : 1}
                                                             ></path>
                                                         </g>
                                                     )
