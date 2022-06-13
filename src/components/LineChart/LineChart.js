@@ -94,7 +94,7 @@ const LineChart = ({
 
     const margins = {
         left: 120,
-        top: 30,
+        top: 50,
         bottom: 40,
         right: 20,
         ...inputMargins
@@ -158,7 +158,7 @@ const LineChart = ({
                             <TextSpan
                                 maxLength={10}
                                 x={margins.left - 40}
-                                y={margins.top - 10}
+                                y={margins.top - 40}
                                 className="axis-title"
                                 text={y.title || y.field}
                             />

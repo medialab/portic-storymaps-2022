@@ -20,11 +20,13 @@ export default function EvolutionBudgetDunkerque({
                 field: 'Années comptables'
             }}
             y={{
-                field: 'valeur'
+                field: 'valeur',
+                title: 'valeur en livres tournois'
             }}
             color={{
                 field: 'référence'
             }}
+            tooltip={(d) => `${d['référence']} d'une valeur de ${d['valeur']} livres tournois en ${d['Années comptables']}`}
         />
     )
 }
