@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import BarChart from '../../components/BarChart';
+import { formatNumber } from '../../utils/misc';
 
 /**
  * Header contains navigation and…
@@ -32,13 +33,13 @@ export default function PecheTypeValue({
             }}
             y={{
                 field: 'value',
-                title: 'port de départ'
+                title: 'valeur en livres tournois'
             }}
             color={{
                 field: 'type_zone_peche',
                 title: 'Type de pêche'
             }}
-            tooltip={item => `Année ${item['annee']} : valeur ${item['value']}`}
+            tooltip={d => `Valeur de ${formatNumber(d['value'])} livres tournois en ${d['annee']}`}
         />
     )
 }
