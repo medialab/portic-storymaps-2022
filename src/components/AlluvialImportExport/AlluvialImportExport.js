@@ -8,11 +8,27 @@ import iwanthue from 'iwanthue';
 export default function AlluvialImportExport({
     data,
     dimensions,
+    decreasing = false,
     ...props
 }) {
     const { width, height } = dimensions;
     const barWidth = 70;
     const arrowMargin = 10;
+
+    function sortCategories(a, b) {
+        const [aCategory, aCategoryArray] = a;
+        const [bCategory, bCategoryArray] = b;
+        const aCategoryValue = sum(aCategoryArray, d => d.value)
+        const bCategoryValue = sum(bCategoryArray, d => d.value)
+        if (decreasing) {
+            if (aCategoryValue < bCategoryValue) { return 1; }
+            if (aCategoryValue > bCategoryValue) { return -1; }
+        } else {
+            if (aCategoryValue < bCategoryValue) { return -1; }
+            if (aCategoryValue > bCategoryValue) { return 1; }
+        }
+        return 0;
+    }
 
     const drawBlocksHeight = useMemo(function getHeightForEachSvgBlock() {
         return {
@@ -73,12 +89,12 @@ export default function AlluvialImportExport({
 
     /** @type {Map} */
     const partners = useMemo(function groupPartners() {
-        return group(dataReclassify, d => d.partner_type);
+        return groups(dataReclassify, d => d.partner_type);
     }, [dataReclassify]);
 
     /** @type {Map} */
     const products = useMemo(function groupProducts() {
-        return group(dataReclassify, d => d.product_type);
+        return groups(dataReclassify, d => d.product_type).sort(sortCategories);
     }, [dataReclassify]);
 
     const links = useMemo(function getLinksBetweenProductsNPartners() {
@@ -241,7 +257,7 @@ export default function AlluvialImportExport({
                 transform={`translate(${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle})`}
             >
                 {
-                    Array.from(partners).map(([partnerName, partnerArray], iPartner) => {
+                    partners.map(([partnerName, partnerArray], iPartner) => {
                         const color = iwanthue(1, { seed: partnerName });
                         const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
                         const drawProductGroup = (
@@ -298,6 +314,24 @@ export default function AlluvialImportExport({
                                 fill='transparent'
                                 markerEnd='url(#arrow-head)'
                             />
+                            // <g
+                            //     transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
+                            //     key={iLink}
+                            // >
+                            //     <path
+                            //         d={partialCirclePathD(
+                            //             0,
+                            //             (drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y) / 2,
+                            //             (drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y) / 2,
+                            //             Math.PI / 2,
+                            //             Math.PI * 3 / 2,
+                            //         )}
+                            //         strokeWidth={2}
+                            //         stroke='black'
+                            //         fill='transparent'
+                            //         markerEnd='url(#arrow-head)'
+                            //     />
+                            // </g>
                         )
                     })
                 }
@@ -308,7 +342,6 @@ export default function AlluvialImportExport({
                         iLink++;
                         const color = iwanthue(1, { seed: from.productName });
                         if (to.partner_type === 'Fraude') {
-                            console.log(value);
                             return (
                                 <path
                                     key={iLink}

@@ -38,20 +38,18 @@ export default function AlluvialChart({
      * We should to order steps as the 'steps' prop and sort
      * categories by their values
      */
-    const sortCategories = useMemo(function getSortFunction() {
-        return (a, b) => {
-            const [aCategory, aCategoryArray] = a;
-            const [bCategory, bCategoryArray] = b;
-            if (decreasing) {
-                if (aCategoryArray.length < bCategoryArray.length) { return 1; }
-                if (aCategoryArray.length > bCategoryArray.length) { return -1; }
-            } else {
-                if (aCategoryArray.length < bCategoryArray.length) { return -1; }
-                if (aCategoryArray.length > bCategoryArray.length) { return 1; }
-            }
-            return 0;
+    function sortCategories(a, b) {
+        const [aCategory, aCategoryArray] = a;
+        const [bCategory, bCategoryArray] = b;
+        if (decreasing) {
+            if (aCategoryArray.length < bCategoryArray.length) { return 1; }
+            if (aCategoryArray.length > bCategoryArray.length) { return -1; }
+        } else {
+            if (aCategoryArray.length < bCategoryArray.length) { return -1; }
+            if (aCategoryArray.length > bCategoryArray.length) { return 1; }
         }
-    }, [decreasing])
+        return 0;
+    }
 
     /**
      * We should to group values as categories for each step to define what
@@ -74,6 +72,16 @@ export default function AlluvialChart({
         return payload;
     }, [data, sortCategories]);
 
+    const {
+        bodyHeight,
+        footerHeight
+    } = useMemo(function getHeightForChartElements() {
+        return {
+            bodyHeight: height - 20,
+            footerHeight: 20
+        }
+    }, [height])
+
     /**
      * We should divide steps categories on height space
      */
@@ -87,8 +95,8 @@ export default function AlluvialChart({
         const stepsItemsNbMax = max(stepsItemsNb);
         return scaleLinear()
             .domain([0, stepsItemsNbMax])
-            .range([0, height]);
-    }, [steps, stepsGroup, height]);
+            .range([0, bodyHeight]);
+    }, [steps, stepsGroup, bodyHeight]);
 
     /**
      * We should know what is the with for each step as a column
@@ -138,9 +146,6 @@ export default function AlluvialChart({
     return (
         <svg
             {...{ height, width }}
-            style={{
-                border: '2px solid whitesmoke'
-            }}
         >
             {
                 steps.map((stepName, iStep) => {
@@ -162,9 +167,9 @@ export default function AlluvialChart({
                                 strokeWidth={1}
                             ></line>
                             <text
-                                y={height}
+                                y={height - 6}
                                 x={isFinalStep ? -5 : 5}
-                                fontSize={10}
+                                fontSize={16}
                                 fill='black'
                                 textAnchor={isFinalStep ? 'end' : 'start'}
                             >{stepName}</text>
