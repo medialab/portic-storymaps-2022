@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 
 import LineChart from "../../components/LineChart";
+import { formatNumber } from "../../utils/misc";
 
 export default function EvolutionTypeConges({
     data,
@@ -27,7 +28,7 @@ export default function EvolutionTypeConges({
             color={{
                 field: 'type'
             }}
-            tooltip={(d) => `Congé d'une valeur de ${d['valeur']} livres tournois en ${d['année']}`}
+            tooltip={(d) => `Congé d'une valeur de ${formatNumber(d['valeur'])} livres tournois en ${d['année']}`}
         />
     )
 }

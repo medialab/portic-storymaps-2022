@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import LineChart from '../../components/LineChart';
+import { formatNumber } from "../../utils/misc";
 
 export default function EvolutionBudgetDunkerque({
     data,
@@ -26,7 +27,7 @@ export default function EvolutionBudgetDunkerque({
             color={{
                 field: 'référence'
             }}
-            tooltip={(d) => `${d['référence']} d'une valeur de ${d['valeur']} livres tournois en ${d['Années comptables']}`}
+            tooltip={(d) => `${d['référence']} d'une valeur de ${formatNumber(d['valeur'])} livres tournois en ${d['Années comptables']}`}
         />
     )
 }
