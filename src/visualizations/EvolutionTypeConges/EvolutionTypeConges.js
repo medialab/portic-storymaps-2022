@@ -17,14 +17,17 @@ export default function EvolutionTypeConges({
                 height
             }}
             x={{
-                field: 'année'
+                field: 'année',
+                title: 'années'
             }}
             y={{
-                field: 'valeur'
+                field: 'valeur',
+                title: 'valeur en livres tournois'
             }}
             color={{
                 field: 'type'
             }}
+            tooltip={(d) => `Congé d'une valeur de ${d['valeur']} livres tournois en ${d['année']}`}
         />
     )
 }
