@@ -36,7 +36,7 @@ export default function AlluvialChart({
     decreasing = false
 }) {
     const { width, height } = dimensions;
-    const [isHoverCategoryName, setIsHoverCategoryName] = useState(undefined);
+    const [isHighlightedCategoryName, setIsHighlightedCategoryName] = useState(undefined);
     /**
      * We should to order steps as the 'steps' prop and sort
      * categories by their values
@@ -166,7 +166,7 @@ export default function AlluvialChart({
             {
                 steps.map((stepName, iStep) => {
                     let iItem = 0;
-                    const isHoverMode = isHoverCategoryName !== undefined;
+                    const isHoverMode = isHighlightedCategoryName !== undefined;
                     const itemHeight = itemRange(1);
                     const itemWidth = widthRange(1);
                     const itemWidthMiddle = widthRange(1 / 2);
@@ -192,7 +192,7 @@ export default function AlluvialChart({
 
                             {
                                 stepsGroup.get(stepName).map(([categoryName, categoryArray], iCategory) => {
-                                    const isCategoryHover = categoryName === isHoverCategoryName;
+                                    const isCategoryHover = categoryName === isHighlightedCategoryName;
                                     const categoryLinks = links.filter(({ from }) => from === categoryName)
                                     if (isFinalStep) {
                                         const text = (
@@ -220,12 +220,12 @@ export default function AlluvialChart({
                                     return (
                                         <g
                                             key={iCategory}
-                                            onMouseEnter={(e) => {
-                                                setIsHoverCategoryName(categoryName);
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                console.log(categoryName, e);
-                                                setIsHoverCategoryName(undefined);
+                                            onClick={(e) => {
+                                                if (categoryName === isHighlightedCategoryName) {
+                                                    setIsHighlightedCategoryName(undefined);
+                                                    return;
+                                                }
+                                                setIsHighlightedCategoryName(categoryName);
                                             }}
                                         >
                                             <g
