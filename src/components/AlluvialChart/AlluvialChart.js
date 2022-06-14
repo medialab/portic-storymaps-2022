@@ -215,8 +215,9 @@ export default function AlluvialChart({
 
                                         return text;
                                     }
-                                    const color = iwanthue(1, { seed: categoryName })
+                                    const color = iwanthue(1, { seed: categoryName });
                                     const isTooSmallForText = itemRange(iItem) < 15;
+                                    const linksLength = sum(categoryLinks, d => d.length);
                                     return (
                                         <g
                                             key={iCategory}
@@ -234,7 +235,7 @@ export default function AlluvialChart({
                                                 {
                                                     (isTooSmallForText === false || isCategoryHover === true) &&
                                                     <text
-                                                        y={itemRange(categoryLinks.length / 2)}
+                                                        y={itemRange(linksLength) / 2}
                                                         x={5} fontSize={10} fontWeight='bold'
                                                         fill='black'
                                                     >
