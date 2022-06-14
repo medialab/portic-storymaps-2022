@@ -4,6 +4,9 @@ import { groups, sum, max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import iwanthue from 'iwanthue';
 
+import AnimatedPath from "./AnimatedPath";
+import AnimatedGroup from "./AnimatedGroup";
+
 /**
  * @param {Object} props
  * @param {Object[]} props.data
@@ -128,16 +131,29 @@ export default function AlluvialChart({
                     if (a[previousStep] > b[previousStep]) { return 1; }
                     return 0;
                 })
-                rows.forEach((row) => {
+                // aggregate rows by steps
+                let lastRow = undefined;
+                for (const row of rows) {
+                    if (lastRow &&
+                        lastRow[step] === row[step] &&
+                        lastRow[previousStep] === row[previousStep]
+                    ) {
+                        const lastLink = links[links.length - 1];
+                        lastLink.length += 1;
+                        iRow++;
+                        continue;
+                    }
                     links.push({
                         from: row[previousStep],
                         to: {
                             category: row[step],
                             y: iRow
-                        }
+                        },
+                        length: 1
                     })
                     iRow++;
-                })
+                    lastRow = row;
+                }
             }
         }
         return links
@@ -205,7 +221,6 @@ export default function AlluvialChart({
                                         <g
                                             key={iCategory}
                                             onMouseEnter={(e) => {
-                                                console.log(categoryName, e);
                                                 setIsHoverCategoryName(categoryName);
                                             }}
                                             onMouseLeave={(e) => {
@@ -229,42 +244,36 @@ export default function AlluvialChart({
                                             </g>
 
                                             {
-                                                categoryLinks.map(({ to }, iCategoryItem) => {
+                                                categoryLinks.map(({ to, length }, iCategoryItem) => {
                                                     const reduceOpacity = isHoverMode && isCategoryHover === false;
+                                                    // path stroke grow from the middle of the path, we must balance coordinates by 'strokeWidth'
+                                                    const middlePath = itemHeight*length / 2;
                                                     const curve = {
-                                                        topLine: {
-                                                            a1: `${itemWidthMiddle} ${itemRange(iItem)}`,
-                                                            b1: `${itemWidthMiddle} ${itemRange(to.y)}`,
-                                                            b: `${itemWidth} ${itemRange(to.y)}`
-                                                        },
-                                                        bottomLine: {
-                                                            b: `${itemWidthMiddle} ${itemRange(to.y + 1)}`,
-                                                            b1: `${itemWidthMiddle} ${itemRange(iItem + 1)}`,
-                                                            a1: `${0} ${itemRange(iItem + 1)}`
-                                                        }
+                                                        a1: `${itemWidthMiddle} ${itemRange(iItem) + middlePath}`,
+                                                        b1: `${itemWidthMiddle} ${itemRange(to.y) + middlePath}`,
+                                                        b: `${itemWidth} ${itemRange(to.y) + middlePath}`
                                                     }
                                                     const path = (
-                                                        <g
+                                                        <AnimatedGroup
                                                             transform={`translate(0, ${itemHeight / 2})`}
                                                             style={{
                                                                 mixBlendMode: 'multiply'
                                                             }}
                                                             key={iCategoryItem}
                                                         >
-                                                            <path
+                                                            <AnimatedPath
                                                                 d={`
-                                                                M 0 ${itemRange(iItem)}
-                                                                C ${curve.topLine.a1}, ${curve.topLine.b1}, ${curve.topLine.b}
+                                                                M 0 ${itemRange(iItem) + middlePath}
+                                                                C ${curve.a1}, ${curve.b1}, ${curve.b}
                                                                 `}
                                                                 fill='transparent'
                                                                 stroke={color}
-                                                                strokeWidth={itemHeight}
+                                                                strokeWidth={itemHeight*length}
                                                                 opacity={reduceOpacity ? 0.2 : 1}
-                                                            ></path>
-                                                        </g>
+                                                            ></AnimatedPath>
+                                                        </AnimatedGroup>
                                                     )
-
-                                                    iItem++;
+                                                    iItem += length;
 
                                                     return path;
                                                 })
