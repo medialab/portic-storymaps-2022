@@ -3,11 +3,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import LineChart from '../../components/LineChart';
 import { formatNumber } from '../../utils/misc';
+import translate from '../../utils/translate';
 import Timeline from './Timeline';
 
 export default function TonnageMoyenMois({
     data: inputData,
     dimensions,
+    lang,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -74,17 +76,22 @@ export default function TonnageMoyenMois({
                 }
                 x={{
                     field: 'value',
-                    title: 'tonnage'
+                    title: translate('TonnageMoyenMois', 'x', lang)
                 }}
                 y={{
                     field: 'month',
-                    title: 'mois',
+                    title: translate('TonnageMoyenMois', 'y', lang),
                     fillGaps: true,
                     tickFormat: v => new Date(v).toLocaleDateString()
                 }}
                 width={width}
                 height={linechartHeight}
-                tooltip={(d) => `Tonnage de ${formatNumber(d['value'])} en ${d['month'].toLocaleDateString()}`}
+                tooltip={
+                    (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
+                        value: formatNumber(d['value']),
+                        month: d['month'].toLocaleDateString()
+                    })
+                }
             />
             <Timeline
                 dimensions={{

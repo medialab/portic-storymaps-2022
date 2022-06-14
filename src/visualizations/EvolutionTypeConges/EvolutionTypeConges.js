@@ -2,10 +2,12 @@ import React, { useMemo } from "react";
 
 import LineChart from "../../components/LineChart";
 import { formatNumber } from "../../utils/misc";
+import translate from '../../utils/translate';
 
 export default function EvolutionTypeConges({
     data,
     dimensions,
+    lang,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -19,16 +21,21 @@ export default function EvolutionTypeConges({
             }}
             x={{
                 field: 'année',
-                title: 'années'
+                title: translate('EvolutionTypeConges', 'x', lang)
             }}
             y={{
                 field: 'valeur',
-                title: 'valeur en livres tournois'
+                title: translate('EvolutionTypeConges', 'y', lang)
             }}
             color={{
                 field: 'type'
             }}
-            tooltip={(d) => `Congé d'une valeur de ${formatNumber(d['valeur'])} livres tournois en ${d['année']}`}
+            tooltip={
+                (d) => translate('EvolutionTypeConges', 'tooltip', lang, {
+                    value: formatNumber(d['valeur']),
+                    year: d['année']
+                })
+            }
         />
     )
 }
