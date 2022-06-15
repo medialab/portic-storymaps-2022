@@ -6,6 +6,7 @@ import iwanthue from 'iwanthue';
 
 import AnimatedPath from "./AnimatedPath";
 import AnimatedGroup from "./AnimatedGroup";
+import { isEqual } from "lodash";
 
 /**
  * @param {Object} props
@@ -30,13 +31,14 @@ import AnimatedGroup from "./AnimatedGroup";
  */
 
 export default function AlluvialChart({
-    data,
+    data: inputData,
     steps,
     dimensions = { width: 800, height: 500 },
     decreasing = false
 }) {
     const { width, height } = dimensions;
     const [isHighlightedCategoryName, setIsHighlightedCategoryName] = useState(undefined);
+    const [isHighlightedLinesId, setIsHighlightedLinesId] = useState(undefined);
     /**
      * We should to order steps as the 'steps' prop and sort
      * categories by their values
@@ -53,6 +55,15 @@ export default function AlluvialChart({
         }
         return 0;
     }
+
+    const data = useMemo(function addIdToLines() {
+        return inputData.map(({ ...rest }, i) => {
+            return {
+                id: i,
+                ...rest
+            }
+        })
+    }, [inputData]);
 
     /**
      * We should to group values as categories for each step to define what
@@ -73,7 +84,7 @@ export default function AlluvialChart({
             )
         }
         return payload;
-    }, [data, sortCategories]);
+    }, [data]);
 
     const {
         bodyHeight,
@@ -149,7 +160,8 @@ export default function AlluvialChart({
                             category: row[step],
                             y: iRow
                         },
-                        length: 1
+                        length: 1,
+                        isHighlighted: isHighlightedLinesId && isHighlightedLinesId.has(row['id'])
                     })
                     iRow++;
                     lastRow = row;
@@ -157,7 +169,7 @@ export default function AlluvialChart({
             }
         }
         return links
-    }, [stepsGroup, sortCategories, steps])
+    }, [stepsGroup, steps, isHighlightedLinesId])
 
     return (
         <svg
@@ -167,8 +179,9 @@ export default function AlluvialChart({
                 steps.map((stepName, iStep) => {
                     let iItem = 0;
                     const isHoverMode = isHighlightedCategoryName !== undefined;
+                    const nodeWidth = 5;
                     const itemHeight = itemRange(1);
-                    const itemWidth = widthRange(1);
+                    const itemWidth = widthRange(1) - nodeWidth;
                     const itemWidthMiddle = widthRange(1 / 2);
                     const isFinalStep = iStep === steps.length - 1;
                     return (
@@ -176,12 +189,6 @@ export default function AlluvialChart({
                             transform={`translate(${widthRange(iStep)}, ${0})`}
                             key={iStep}
                         >
-                            <line
-                                y1={height}
-                                y2={0}
-                                stroke='black'
-                                strokeWidth={1}
-                            ></line>
                             <text
                                 y={height - 6}
                                 x={isFinalStep ? -5 : 5}
@@ -193,13 +200,35 @@ export default function AlluvialChart({
                             {
                                 stepsGroup.get(stepName).map(([categoryName, categoryArray], iCategory) => {
                                     const isCategoryHover = categoryName === isHighlightedCategoryName;
-                                    const categoryLinks = links.filter(({ from }) => from === categoryName)
+                                    const categoryLinks = links.filter(({ from }) => from === categoryName);
+                                    const color = iwanthue(1, { seed: categoryName });
+                                    const linksLength = sum(categoryLinks, d => d.length);
+                                    const isTooSmallForText = itemRange(linksLength) < 15;
+
                                     if (isFinalStep) {
                                         const text = (
                                             <g
                                                 transform={`translate(${0} ${itemRange(iItem)})`}
                                                 key={iCategory}
                                             >
+                                                <rect
+                                                    className="tto"
+                                                    x={-nodeWidth}
+                                                    y={0}
+                                                    width={nodeWidth}
+                                                    height={itemRange(categoryArray.length)}
+                                                    fill={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? 'grey' : 'black'}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        if (isHighlightedCategoryName) { setIsHighlightedCategoryName(undefined); }
+                                                        const linesId = new Set(categoryArray.map(({ id }) => id));
+                                                        if (isEqual(isHighlightedLinesId, linesId)) {
+                                                            setIsHighlightedLinesId(undefined);
+                                                            return;
+                                                        }
+                                                        setIsHighlightedLinesId(linesId);
+                                                    }}
+                                                />
                                                 <text
                                                     y={itemRange(categoryArray.length / 2)}
                                                     x={-5} fontSize={10} fontWeight='bold'
@@ -215,13 +244,12 @@ export default function AlluvialChart({
 
                                         return text;
                                     }
-                                    const color = iwanthue(1, { seed: categoryName });
-                                    const isTooSmallForText = itemRange(iItem) < 15;
-                                    const linksLength = sum(categoryLinks, d => d.length);
+
                                     return (
                                         <g
                                             key={iCategory}
                                             onClick={(e) => {
+                                                if (isHighlightedLinesId) { setIsHighlightedLinesId(undefined); }
                                                 if (categoryName === isHighlightedCategoryName) {
                                                     setIsHighlightedCategoryName(undefined);
                                                     return;
@@ -232,11 +260,28 @@ export default function AlluvialChart({
                                             <g
                                                 transform={`translate(${0} ${itemRange(iItem)})`}
                                             >
+                                                <rect
+                                                    x={0}
+                                                    y={0}
+                                                    width={nodeWidth}
+                                                    height={itemRange(linksLength)}
+                                                    fill={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? 'grey' : 'black'}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        if (isHighlightedCategoryName) { setIsHighlightedCategoryName(undefined); }
+                                                        const linesId = new Set(categoryArray.map(({ id }) => id));
+                                                        if (isEqual(isHighlightedLinesId, linesId)) {
+                                                            setIsHighlightedLinesId(undefined);
+                                                            return;
+                                                        }
+                                                        setIsHighlightedLinesId(linesId);
+                                                    }}
+                                                />
                                                 {
                                                     (isTooSmallForText === false || isCategoryHover === true) &&
                                                     <text
                                                         y={itemRange(linksLength) / 2}
-                                                        x={5} fontSize={10} fontWeight='bold'
+                                                        x={5 + nodeWidth} fontSize={10} fontWeight='bold'
                                                         fill='black'
                                                     >
                                                         {categoryName}
@@ -245,18 +290,19 @@ export default function AlluvialChart({
                                             </g>
 
                                             {
-                                                categoryLinks.map(({ to, length }, iCategoryItem) => {
-                                                    const reduceOpacity = isHoverMode && isCategoryHover === false;
+                                                categoryLinks.map(({ to, length, isHighlighted }, iCategoryItem) => {
+                                                    const reduceOpacity = (isHoverMode && isCategoryHover === false) || (isHighlightedLinesId && isHighlighted === false);
                                                     // path stroke grow from the middle of the path, we must balance coordinates by 'strokeWidth'
-                                                    const middlePath = itemHeight*length / 2;
+                                                    const middlePath = itemHeight * length / 2;
                                                     const curve = {
                                                         a1: `${itemWidthMiddle} ${itemRange(iItem) + middlePath}`,
                                                         b1: `${itemWidthMiddle} ${itemRange(to.y) + middlePath}`,
                                                         b: `${itemWidth} ${itemRange(to.y) + middlePath}`
                                                     }
+                                                    links.filter(({ highlighted }) => highlighted === true)
                                                     const path = (
                                                         <AnimatedGroup
-                                                            transform={`translate(0, ${itemHeight / 2})`}
+                                                            transform={`translate(${nodeWidth}, ${0})`}
                                                             style={{
                                                                 mixBlendMode: 'multiply'
                                                             }}
@@ -269,7 +315,7 @@ export default function AlluvialChart({
                                                                 `}
                                                                 fill='transparent'
                                                                 stroke={color}
-                                                                strokeWidth={itemHeight*length}
+                                                                strokeWidth={itemHeight * length}
                                                                 opacity={reduceOpacity ? 0.2 : 1}
                                                             ></AnimatedPath>
                                                         </AnimatedGroup>
