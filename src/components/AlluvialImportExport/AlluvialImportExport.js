@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 
 import { scaleLinear } from "d3-scale";
 import { groups, max, sum } from 'd3-array'
-import { partialCirclePathD } from "../../utils/misc";
+import { formatNumber, partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
 export default function AlluvialImportExport({
@@ -12,17 +12,35 @@ export default function AlluvialImportExport({
     ...props
 }) {
     const [focusedProduct, setFocusedProduct] = useState(undefined);
+    const [focusedPartner, setFocusedPartner] = useState(undefined);
     const { width, height } = dimensions;
     const barWidth = 70;
+
+    function focusProduct(product) {
+        if (product === focusedProduct) {
+            setFocusedProduct(undefined);
+            return;
+        }
+        setFocusedProduct(product);
+    }
+
+    function focusPartner(product) {
+        if (product === focusedPartner) {
+            setFocusedPartner(undefined);
+            return;
+        }
+        setFocusedPartner(product);
+    }
 
     const data = useMemo(() => {
         if (focusedProduct) {
             return inputData.filter(({ product_type }) => product_type === focusedProduct)
         }
+        if (focusedPartner) {
+            return inputData.filter(({ partner_type }) => partner_type === focusedPartner)
+        }
         return inputData;
-    }, [inputData, focusedProduct])
-
-    console.log(data);
+    }, [inputData, focusedProduct, focusedPartner])
 
     const products = useMemo(function groupProducts() {
         return groups(data, d => d.product_type);
@@ -245,13 +263,7 @@ export default function AlluvialImportExport({
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
-                                onClick={(e) => {
-                                    if (product === focusedProduct) {
-                                        setFocusedProduct(undefined);
-                                        return;
-                                    }
-                                    setFocusedProduct(product);
-                                }}
+                                onClick={() => focusProduct(product)}
                                 key={i}
                             >
                                 <rect
@@ -290,6 +302,7 @@ export default function AlluvialImportExport({
                             <g
                                 transform={`translate(${0}, ${y})`}
                                 key={i}
+                                onClick={() => focusPartner(partner)}
                             >
                                 <rect
                                     x={0}
@@ -298,11 +311,14 @@ export default function AlluvialImportExport({
                                     height={partnerScale}
                                     fill={color}
                                 />
-                                <text
-                                    y={partnerScale - labelMargin}
-                                    x={labelMargin}
-                                    fontSize={10}
-                                >{partner}</text>
+                                {
+                                    partner !== 'Fraude' &&
+                                    <text
+                                        y={partnerScale - labelMargin}
+                                        x={labelMargin}
+                                        fontSize={10}
+                                    >{partner}</text>
+                                }
                             </g>
                         )
                     })
@@ -314,10 +330,6 @@ export default function AlluvialImportExport({
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
-                        if (isFraude) {
-                            console.log(product, "imports");
-                            return null;
-                        }
                         return (
                             <g
                                 transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
@@ -325,6 +337,7 @@ export default function AlluvialImportExport({
                                 style={{
                                     mixBlendMode: 'multiply'
                                 }}
+                                onClick={() => focusProduct(product)}
                             >
                                 <path
                                     d={
@@ -346,6 +359,7 @@ export default function AlluvialImportExport({
                                     stroke={color}
                                     fill='transparent'
                                 />
+                                <text textAnchor='end'>{formatNumber(value)}</text>
                             </g>
                         )
                     })
@@ -384,6 +398,7 @@ export default function AlluvialImportExport({
                                     stroke={color}
                                     fill='transparent'
                                 />
+                                <text textAnchor='start'>{formatNumber(value)}</text>
                             </g>
                         )
                     })
