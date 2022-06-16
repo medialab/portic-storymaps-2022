@@ -212,6 +212,11 @@ export default function AlluvialImportExport({
             }}
             style={{ border: '1px solid black' }}
         >
+            <defs>
+                <marker id='arrow-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
+                    <path d='M0,0 V4 L2,2 Z' fill='black' />
+                </marker>
+            </defs>
             <g
                 className="product-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
@@ -247,18 +252,6 @@ export default function AlluvialImportExport({
                         )
                     })
                 }
-            </g>
-            <g
-                className="center-circle"
-                transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight})`}
-            >
-                <rect
-                    x={0}
-                    y={0}
-                    width={barWidth}
-                    height={centerCircleHeight}
-                    fill='white'
-                />
             </g>
             <g
                 className="partner-bar"
@@ -376,6 +369,48 @@ export default function AlluvialImportExport({
                         )
                     })
                 }
+            </g>
+            <g
+                className="center-circle"
+                transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight})`}
+            >
+                <g
+                    transform={`translate(${0}, ${centerCircleHeight / 2})`}
+                >
+                    <path
+                        d={partialCirclePathD(
+                            0,
+                            0,
+                            centerCircleHeight / 2,
+                            Math.PI / 2,
+                            Math.PI * 3 / 2,
+                        )}
+                        strokeWidth={2}
+                        stroke='black'
+                        fill='transparent'
+                        markerEnd='url(#arrow-head)'
+                    />
+                    <text x={-30} textAnchor='end'>Imports</text>
+                </g>
+                <g
+                    transform={`translate(${barWidth}, ${centerCircleHeight / 2})`}
+                >
+                    <path
+                        d={partialCirclePathD(
+                            0,
+                            0,
+                            centerCircleHeight / 2,
+                            Math.PI / 2,
+                            Math.PI * 3 / 2,
+                        )}
+                        strokeWidth={2}
+                        stroke='black'
+                        fill='transparent'
+                        markerEnd='url(#arrow-head)'
+                        transform='rotate(180)'
+                    />
+                    <text x={30} textAnchor='start'>Exports</text>
+                </g>
             </g>
         </svg>
     )
