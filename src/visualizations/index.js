@@ -10,6 +10,7 @@ import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
 import EvolutionTypeConges from './EvolutionTypeConges';
 import TonnageMoyenMois from './TonnageMoyenMois';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
+import FraudeExportPortFranc from './FraudeExportPortFranc';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -71,6 +72,10 @@ export default function VisualizationController({
             case 'fraude-exports-dunkerque':
                 return (
                     <FraudeExportDunkerque {...{ data, dimensions, lang }} />
+                );
+            case 'fraude-exports-ports-francs':
+                return (
+                    <FraudeExportPortFranc {...{ data, dimensions, lang }} />
                 );
             case 'evolution-budget-dunkerque':
                 return (
