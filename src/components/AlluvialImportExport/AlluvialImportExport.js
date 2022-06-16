@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import { scaleLinear } from "d3-scale";
 import { groups, max, sum } from 'd3-array'
@@ -6,13 +6,23 @@ import { partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
 export default function AlluvialImportExport({
-    data,
+    data: inputData,
     dimensions,
     decreasing = false,
     ...props
 }) {
+    const [focusedProduct, setFocusedProduct] = useState(undefined);
     const { width, height } = dimensions;
     const barWidth = 70;
+
+    const data = useMemo(() => {
+        if (focusedProduct) {
+            return inputData.filter(({ product_type }) => product_type === focusedProduct)
+        }
+        return inputData;
+    }, [inputData, focusedProduct])
+
+    console.log(data);
 
     const products = useMemo(function groupProducts() {
         return groups(data, d => d.product_type);
@@ -228,13 +238,21 @@ export default function AlluvialImportExport({
                     height={productBarHeight}
                 />
                 {
-                    productsDraw.map(([product, y]) => {
+                    productsDraw.map(([product, y], i) => {
                         y = scaleValue(y);
                         const productScale = scaleValue(productsImportValue[product]);
                         const color = iwanthue(1, { seed: product });
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
+                                onClick={(e) => {
+                                    if (product === focusedProduct) {
+                                        setFocusedProduct(undefined);
+                                        return;
+                                    }
+                                    setFocusedProduct(product);
+                                }}
+                                key={i}
                             >
                                 <rect
                                     x={0}
@@ -264,13 +282,14 @@ export default function AlluvialImportExport({
                     height={partnerBarHeight}
                 />
                 {
-                    partnersDraw.map(([partner, y]) => {
+                    partnersDraw.map(([partner, y], i) => {
                         y = scaleValue(y);
                         const partnerScale = scaleValue(partnersMaxValue[partner]);
                         const color = iwanthue(1, { seed: partner });
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
+                                key={i}
                             >
                                 <rect
                                     x={0}
@@ -291,7 +310,7 @@ export default function AlluvialImportExport({
             </g>
             <g>
                 {
-                    links['Imports'].map(({ from, to, value, product, isFraude }, iLink) => {
+                    links['Imports'].map(({ from, to, value, product, isFraude }, i) => {
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
@@ -302,7 +321,7 @@ export default function AlluvialImportExport({
                         return (
                             <g
                                 transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
-                                key={iLink}
+                                key={i}
                                 style={{
                                     mixBlendMode: 'multiply'
                                 }}
@@ -332,14 +351,14 @@ export default function AlluvialImportExport({
                     })
                 }
                 {
-                    links['Exports'].map(({ from, to, value, product, isFraude }, iLink) => {
+                    links['Exports'].map(({ from, to, value, product, isFraude }, i) => {
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
                         return (
                             <g
                                 transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
-                                key={iLink}
+                                key={i}
                                 style={{
                                     mixBlendMode: 'multiply'
                                 }}
