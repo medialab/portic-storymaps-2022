@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 
 import { scaleLinear } from "d3-scale";
-import { group, groups, index, rollup, sum, max } from 'd3-array'
-import { partialCirclePathD, _partialCirclePathD } from "../../utils/misc";
+import { groups, max, sum } from 'd3-array'
+import { partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
 export default function AlluvialImportExport({
@@ -13,170 +13,196 @@ export default function AlluvialImportExport({
 }) {
     const { width, height } = dimensions;
     const barWidth = 70;
-    const arrowMargin = 10;
 
-    function sortCategories(a, b) {
-        const [aCategory, aCategoryArray] = a;
-        const [bCategory, bCategoryArray] = b;
-        const aCategoryValue = sum(aCategoryArray, d => d.value)
-        const bCategoryValue = sum(bCategoryArray, d => d.value)
-        if (decreasing) {
-            if (aCategoryValue < bCategoryValue) { return 1; }
-            if (aCategoryValue > bCategoryValue) { return -1; }
-        } else {
-            if (aCategoryValue < bCategoryValue) { return -1; }
-            if (aCategoryValue > bCategoryValue) { return 1; }
-        }
+    const products = useMemo(function groupProducts() {
+        return groups(data, d => d.product_type);
+    }, [data]);
+
+    const partners = useMemo(function groupPartners() {
+        return groups(data, d => d.partner_type);
+    }, [data]);
+
+    function sortGroups(a, b) {
+        const [aGroup, aGroupArray] = a;
+        const [bGroup, bGroupArray] = b;
+        const aGroupValue = sum(aGroupArray, d => d.value);
+        const bGroupValue = sum(bGroupArray, d => d.value);
+
+        if (aGroupValue < bGroupValue) { return -1; }
+        if (aGroupValue > bGroupValue) { return 1; }
         return 0;
     }
 
-    const drawBlocksHeight = useMemo(function getHeightForEachSvgBlock() {
-        return {
-            productBar: height * 0.45,
-            partnerBar: height * 0.45,
-            centerCircle: height * 0.1
-        }
-    }, [height]);
+    const {
+        productBarHeight,
+        partnerBarHeight,
+        centerCircleHeight,
+        scaleValue,
+        productsImportValue,
+        partnersMaxValue
+    } = useMemo(function getHeightForDraw() {
+        /**
+         * To size product bar,
+         * need for each product the import value, as import value === export value
+         */
+        let productsImportValue = products.map(([product, productArray]) => {
+            const productImportArray = productArray.filter(({ importsexports }) => importsexports === 'Imports');
+            return [
+                product,
+                sum(productImportArray, d => d.value)
+            ]
+        });
+        const productsTotalImportValue = sum(productsImportValue, d => d[1]);
+        productsImportValue = Object.fromEntries(productsImportValue);
 
-    function getMaxValueBetweenExportsnImports(productArray) {
-        return max([
-            sum(productArray.filter(({ importsexports }) => importsexports === 'Imports'), d => d.value),
-            sum(productArray.filter(({ importsexports }) => importsexports === 'Exports'), d => d.value)
-        ])
-    }
-
-    const rangeProductValue = useMemo(function setRangeFxForProduct() {
-        const { productBar } = drawBlocksHeight;
-        let refValue = 0;
-        const productGroups = groups(data, d => d.product_type);
-        for (const [productName, productArray] of productGroups) {
-            const maxValueBetweenExportsnImports = getMaxValueBetweenExportsnImports(productArray);
-            refValue += maxValueBetweenExportsnImports;
-        }
-
-        return scaleLinear()
-            .domain([0, refValue])
-            .range([0, productBar])
-    }, [data, drawBlocksHeight]);
-
-    const rangePartnerValue = useMemo(function setRangeFxForProduct() {
-        const { partnerBar } = drawBlocksHeight;
-        let refValue = 0;
-        const partnerGroups = groups(data, d => d.partner_type);
-        for (const [partnerName, partnerArray] of partnerGroups) {
-            if (partnerName === 'Fraude') { continue; }
-            const maxValueBetweenExportsnImports = getMaxValueBetweenExportsnImports(partnerArray);
-            refValue += maxValueBetweenExportsnImports;
-        }
-
-        return scaleLinear()
-            .domain([0, refValue])
-            .range([0, partnerBar])
-    }, [data, drawBlocksHeight]);
-
-    /** @type {Array} */
-    const dataReclassify = useMemo(function groupLittleValues() {
-        const dataReclassify = [];
-        for (const productLine of data) {
-            const valueRange = rangeProductValue(productLine.value);
-            if (valueRange < 15) {
-                productLine['product_type'] = 'Autres';
+        /**
+         * To size partner bar,
+         * need for each partner the max value between import and export
+         */
+        let partnersMaxValue = partners.map(([partner, partnerArray]) => {
+            if (partner === 'Fraude') { return [partner, 0]; }
+            let partnerImportArray = [];
+            let partnerExportArray = [];
+            for (const { importsexports, value } of partnerArray) {
+                switch (importsexports) {
+                    case 'Imports': partnerImportArray.push(value); continue;
+                    case 'Exports': partnerExportArray.push(value); continue;
+                }
             }
-            dataReclassify.push(productLine);
+            return [
+                partner,
+                max([
+                    sum(partnerImportArray),
+                    sum(partnerExportArray)
+                ])
+            ]
+        });
+        const partnerTotalValue = sum(partnersMaxValue, d => d[1]);
+        partnersMaxValue = Object.fromEntries(partnersMaxValue);
+
+        /**
+         * Size of the center loop draw
+         */
+        const centerCircleHeight = 50;
+
+        /**
+         * Values to pixels
+         */
+        const scaleValue = scaleLinear()
+            .domain([0, sum([productsTotalImportValue, partnerTotalValue])])
+            .range([0, height - centerCircleHeight]);
+        return {
+            productBarHeight: scaleValue(productsTotalImportValue),
+            partnerBarHeight: scaleValue(partnerTotalValue),
+            centerCircleHeight,
+            scaleValue,
+            productsImportValue,
+            partnersMaxValue
         }
-        return dataReclassify;
-    }, [data]);
+    }, [height, products, partners]);
 
-    /** @type {Map} */
-    const partners = useMemo(function groupPartners() {
-        return groups(dataReclassify, d => d.partner_type);
-    }, [dataReclassify]);
+    const {
+        productsDraw,
+        partnersDraw,
+        links
+    } = useMemo(function positionElements() {
+        const productsImportSorted = Object.entries(productsImportValue).sort((a, b) => {
+            const [aName, aValue] = a;
+            const [bName, bValue] = b;
+            if (aValue < bValue) { return -1; }
+            if (aValue > bValue) { return 1; }
+        });
+        const productsDraw = [];
+        let iProductsImportValue = 0;
+        for (const [product, value] of productsImportSorted) {
+            productsDraw.push([
+                product,
+                iProductsImportValue
+            ]);
+            iProductsImportValue += value;
+        }
 
-    /** @type {Map} */
-    const products = useMemo(function groupProducts() {
-        return groups(dataReclassify, d => d.product_type).sort(sortCategories);
-    }, [dataReclassify]);
+        const partnersMaxSorted = Object.entries(partnersMaxValue).sort((a, b) => {
+            const [aName, aValue] = a;
+            const [bName, bValue] = b;
+            if (aValue < bValue) { return -1; }
+            if (aValue > bValue) { return 1; }
+        });
+        const partnersDraw = [];
+        let iPartnersImportValue = 0;
+        for (const [partner, value] of partnersMaxSorted) {
+            partnersDraw.push([
+                partner,
+                iPartnersImportValue
+            ]);
+            iPartnersImportValue += value;
+        }
 
-    const links = useMemo(function getLinksBetweenProductsNPartners() {
         const links = {
-            ['Imports']: [],
-            ['Exports']: []
+            ['Imports']: [], // left side
+            ['Exports']: [] // right side
+        };
+        const iProduct = {
+            ['Imports']: Object.fromEntries(productsDraw),
+            ['Exports']: Object.fromEntries(productsDraw)
+        };
+        const iPartner = {
+            ['Imports']: Object.fromEntries(partnersDraw),
+            ['Exports']: Object.fromEntries(partnersDraw)
         };
 
-        let iPartnerValue = 0;
-        let partnersY = Object.fromEntries(partners.entries());
-
-        for (const [partnerName, partnerArray] of partners) {
-            if (partnerName === 'Fraude') { continue; }
-            partnersY[partnerName] = iPartnerValue; // rangePartnerValue(iPartnerValue)
-            const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
-            iPartnerValue += productValueForAllPartners;
-        }
-
-        partnersY = {
-            ['Imports']: partnersY,
-            ['Exports']: partnersY
-        };
-
-        let iProductValue = {
-            ['Imports']: 0,
-            ['Exports']: 0
-        };
-
-        for (const [productName, productArray] of products) {
+        for (const [product, productArray] of products) {
             for (const { value, partner_type, importsexports } of productArray) {
+                let item;
+                const yProduct = iProduct[importsexports][product];
+                const yPartner = iPartner[importsexports][partner_type];
+                const isFraude = partner_type === 'Fraude';
                 switch (importsexports) {
                     case 'Imports':
-                        links[importsexports].push({
+                        item = {
                             value,
-                            from: (
-                                partner_type === 'Fraude' ?
-                                    {
-                                        partner_type,
-                                        y: 0
-                                    } :
-                                    {
-                                        partner_type,
-                                        y: rangePartnerValue(partnersY[importsexports][partner_type])
-                                    }
-                            ),
-                            to: {
-                                productName,
-                                y: rangeProductValue(iProductValue[importsexports])
-                            }
-                        });
-                        break;
-                    case 'Exports':
-                        links[importsexports].push({
-                            value,
+                            product,
+                            isFraude,
                             from: {
-                                productName,
-                                y: rangeProductValue(iProductValue[importsexports])
+                                partner_type,
+                                y: scaleValue(yPartner)
                             },
-                            to: (
-                                partner_type === 'Fraude' ?
-                                    {
-                                        partner_type,
-                                        y: 0
-                                    } :
-                                    {
-                                        partner_type,
-                                        y: rangePartnerValue(partnersY[importsexports][partner_type])
-                                    }
-                            )
-                        });
+                            to: {
+                                product,
+                                y: scaleValue(yProduct)
+                            }
+                        }
+                        break;
+
+                    case 'Exports':
+                        item = {
+                            value,
+                            product,
+                            isFraude,
+                            from: {
+                                product,
+                                y: scaleValue(yProduct)
+                            },
+                            to: {
+                                partner_type,
+                                y: scaleValue(yPartner)
+                            }
+                        }
                         break;
                 }
-
-                iProductValue[importsexports] += value;
-                partnersY[importsexports][partner_type] += value;
+                links[importsexports].push(item);
+                iProduct[importsexports][product] += value;
+                iPartner[importsexports][partner_type] += value;
             }
         }
-        return links;
-    }, [partners, products, rangeProductValue]);
+        return {
+            links,
+            productsDraw,
+            partnersDraw
+        };
+    }, [products, partners, scaleValue]);
 
-    let iProductValue = 0;
-    let iPartnerValue = 0;
+    const labelMargin = 5;
 
     return (
         <svg
@@ -186,190 +212,167 @@ export default function AlluvialImportExport({
             }}
             style={{ border: '1px solid black' }}
         >
-            <defs>
-                <marker id='arrow-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
-                    <path d='M0,0 V4 L2,2 Z' fill='black' />
-                </marker>
-            </defs>
             <g
                 className="product-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
             >
+                <rect
+                    x={0}
+                    y={0}
+                    width={barWidth}
+                    height={productBarHeight}
+                />
                 {
-                    Array.from(products).map(([productName, productArray], iProduct) => {
-                        const color = iwanthue(1, { seed: productName });
-                        const productValueForAllPartners = getMaxValueBetweenExportsnImports(productArray)
-                        const drawProductGroup = (
+                    productsDraw.map(([product, y]) => {
+                        y = scaleValue(y);
+                        const productScale = scaleValue(productsImportValue[product]);
+                        const color = iwanthue(1, { seed: product });
+                        return (
                             <g
-                                transform={`translate(${0} ${rangeProductValue(iProductValue)})`}
-                                key={iProduct}
+                                transform={`translate(${0}, ${y})`}
                             >
                                 <rect
                                     x={0}
                                     y={0}
                                     width={barWidth}
-                                    height={rangeProductValue(productValueForAllPartners)}
+                                    height={productScale}
                                     fill={color}
                                 />
-                                <text x={0} y={15} fontSize={15}>{productName}</text>
+                                <text
+                                    y={productScale - labelMargin}
+                                    x={labelMargin}
+                                    fontSize={10}
+                                >{product}</text>
                             </g>
                         )
-                        iProductValue += productValueForAllPartners;
-                        return drawProductGroup;
                     })
                 }
             </g>
             <g
                 className="center-circle"
-                transform={`translate(${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar})`}
+                transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight})`}
             >
-                <path
-                    d={partialCirclePathD(
-                        -Math.abs(0 + arrowMargin),
-                        drawBlocksHeight.centerCircle / 2,
-                        barWidth - 10,
-                        Math.PI / 2,
-                        Math.PI * 3 / 2,
-                    )}
-                    strokeWidth={2}
-                    stroke='black'
-                    fill='transparent'
-                    markerEnd='url(#arrow-head)'
-                />
-                <path
-                    transform={`translate(${barWidth + arrowMargin} ${drawBlocksHeight.centerCircle / 2}) rotate(180)`}
-                    d={partialCirclePathD(
-                        0,
-                        0,
-                        barWidth - 10,
-                        Math.PI / 2,
-                        Math.PI * 3 / 2,
-                        // true
-                    )}
-                    strokeWidth={2}
-                    stroke='black'
-                    fill='transparent'
-                    markerEnd='url(#arrow-head)'
+                <rect
+                    x={0}
+                    y={0}
+                    width={barWidth}
+                    height={centerCircleHeight}
+                    fill='white'
                 />
             </g>
             <g
                 className="partner-bar"
-                transform={`translate(${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle})`}
+                transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight + centerCircleHeight})`}
             >
+                <rect
+                    x={0}
+                    y={0}
+                    width={barWidth}
+                    height={partnerBarHeight}
+                />
                 {
-                    partners.map(([partnerName, partnerArray], iPartner) => {
-                        const color = iwanthue(1, { seed: partnerName });
-                        const productValueForAllPartners = getMaxValueBetweenExportsnImports(partnerArray);
-                        const drawProductGroup = (
+                    partnersDraw.map(([partner, y]) => {
+                        y = scaleValue(y);
+                        const partnerScale = scaleValue(partnersMaxValue[partner]);
+                        const color = iwanthue(1, { seed: partner });
+                        return (
                             <g
-                                transform={`translate(${0} ${rangePartnerValue(iPartnerValue)})`}
-                                key={iPartner}
+                                transform={`translate(${0}, ${y})`}
                             >
                                 <rect
                                     x={0}
                                     y={0}
                                     width={barWidth}
-                                    height={rangePartnerValue(productValueForAllPartners)}
+                                    height={partnerScale}
                                     fill={color}
                                 />
-                                <text x={0} y={15} fontSize={15}>{partnerName}</text>
+                                <text
+                                    y={partnerScale - labelMargin}
+                                    x={labelMargin}
+                                    fontSize={10}
+                                >{partner}</text>
                             </g>
                         )
-                        iPartnerValue += productValueForAllPartners;
-                        return drawProductGroup;
                     })
                 }
             </g>
             <g>
                 {
-                    links['Imports'].map(({ value, from, to }, iLink) => {
-                        iLink++;
-                        const color = iwanthue(1, { seed: from.partner_type });
-                        if (from.partner_type === 'Fraude') {
-                            return (
-                                <path
-                                    key={iLink}
-                                    d={`
-                                    M ${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y}
-                                    h -${width / 3}
-                                    v ${rangeProductValue(value)}
-                                    h ${width / 3}
-                                    Z
-                                    `}
-                                    fill={color}
-                                />
-                            )
+                    links['Imports'].map(({ from, to, value, product, isFraude }, iLink) => {
+                        const color = iwanthue(1, { seed: product });
+                        const strokeWidth = scaleValue(value);
+                        const strokeWidthMiddle = strokeWidth / 2;
+                        if (isFraude) {
+                            console.log(product, "imports");
+                            return null;
                         }
                         return (
-                            <path
+                            <g
+                                transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
                                 key={iLink}
-                                d={`
-                                M ${width / 2 - barWidth / 2}, ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y}
-                                h -${iLink * 10}
-                                V ${to.y}
-                                h ${iLink * 10}
-                                `}
-                                strokeWidth={2}
-                                stroke={color}
-                                fill='transparent'
-                                markerEnd='url(#arrow-head)'
-                            />
-                            // <g
-                            //     transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
-                            //     key={iLink}
-                            // >
-                            //     <path
-                            //         d={partialCirclePathD(
-                            //             0,
-                            //             (drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y) / 2,
-                            //             (drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + from.y) / 2,
-                            //             Math.PI / 2,
-                            //             Math.PI * 3 / 2,
-                            //         )}
-                            //         strokeWidth={2}
-                            //         stroke='black'
-                            //         fill='transparent'
-                            //         markerEnd='url(#arrow-head)'
-                            //     />
-                            // </g>
+                                style={{
+                                    mixBlendMode: 'multiply'
+                                }}
+                            >
+                                <path
+                                    d={
+                                        isFraude ?
+                                            `
+                                            M ${0} ${0}
+                                            L ${width} ${0}
+                                            `
+                                            :
+                                            partialCirclePathD(
+                                                0,
+                                                (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                                                (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                                                Math.PI / 2,
+                                                Math.PI * 3 / 2,
+                                            )
+                                    }
+                                    strokeWidth={strokeWidth}
+                                    stroke={color}
+                                    fill='transparent'
+                                />
+                            </g>
                         )
                     })
                 }
-            </g>
-            <g>
                 {
-                    links['Exports'].map(({ value, from, to }, iLink) => {
-                        iLink++;
-                        const color = iwanthue(1, { seed: from.productName });
-                        if (to.partner_type === 'Fraude') {
-                            return (
-                                <path
-                                    key={iLink}
-                                    d={`
-                                    M ${width / 2 + barWidth / 2}, ${from.y}
-                                    h ${width / 3}
-                                    v ${rangeProductValue(value)}
-                                    h -${width / 3}
-                                    Z
-                                    `}
-                                    fill={color}
-                                />
-                            )
-                        }
+                    links['Exports'].map(({ from, to, value, product, isFraude }, iLink) => {
+                        const color = iwanthue(1, { seed: product });
+                        const strokeWidth = scaleValue(value);
+                        const strokeWidthMiddle = strokeWidth / 2;
                         return (
-                            <path
+                            <g
+                                transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
                                 key={iLink}
-                                d={`
-                                M ${width / 2 + barWidth / 2}, ${from.y}
-                                h ${iLink * 10}
-                                V ${drawBlocksHeight.productBar + drawBlocksHeight.centerCircle + to.y}
-                                h -${iLink * 10}
-                                `}
-                                strokeWidth={2}
-                                stroke={color}
-                                fill='transparent'
-                                markerEnd='url(#arrow-head)'
-                            />
+                                style={{
+                                    mixBlendMode: 'multiply'
+                                }}
+                            >
+                                <path
+                                    transform='scale(-1, 1)'
+                                    d={
+                                        isFraude ?
+                                            `
+                                            M ${0} ${0}
+                                            L -${width} ${0}
+                                            `
+                                            :
+                                            partialCirclePathD(
+                                                0,
+                                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                                                Math.PI / 2,
+                                                Math.PI * 3 / 2,
+                                            )
+                                    }
+                                    strokeWidth={strokeWidth}
+                                    stroke={color}
+                                    fill='transparent'
+                                />
+                            </g>
                         )
                     })
                 }
