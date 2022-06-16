@@ -13,6 +13,7 @@ export default function AlluvialImportExport({
 }) {
     const [focusedProduct, setFocusedProduct] = useState(undefined);
     const [focusedPartner, setFocusedPartner] = useState(undefined);
+
     const { width, height } = dimensions;
     const barWidth = 70;
 
@@ -337,7 +338,6 @@ export default function AlluvialImportExport({
                                 style={{
                                     mixBlendMode: 'multiply'
                                 }}
-                                onClick={() => focusProduct(product)}
                             >
                                 <path
                                     d={
