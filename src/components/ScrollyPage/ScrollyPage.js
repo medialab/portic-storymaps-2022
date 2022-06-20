@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { isEqual } from 'lodash';
 
 import { VisualisationContext } from '../../utils/contexts';
-import { fetchDataCsv } from '../../utils/fetch';
+import { fetchDataFile } from '../../utils/fetch';
 
 import Caller from '../../components/Caller';
 import Loader from '../../components/Loader';
@@ -247,7 +247,7 @@ export default function ScrollyPage({
 
         Promise.all(
             filesCsvToLoad.map(fileToLoad =>
-                fetchDataCsv(fileToLoad).catch(error => null)
+                fetchDataFile(fileToLoad).catch(error => null)
             )
         )
         .then((datasets) => {
