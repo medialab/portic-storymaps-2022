@@ -11,6 +11,7 @@ import CarteDestinations from './CarteDestinations';
 import EvolutionTypeConges from './EvolutionTypeConges';
 import TonnageMoyenMois from './TonnageMoyenMois';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
+import FraudeExportPortFranc from './FraudeExportPortFranc';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -66,27 +67,31 @@ export default function VisualizationController({
                 );
             case 'histoire-dunkerque':
                 return (
-                    <HistoireDunkerque {...{ data, dimensions, callerProps, ...props }} />
+                    <HistoireDunkerque {...{ data, dimensions, callerProps, lang }} />
                 );
             case 'stigmates-smoggleurs-dunkerque':
                 return (
-                    <StigmatesSmoggleursDunkerque {...{ data, dimensions, ...props }} />
+                    <StigmatesSmoggleursDunkerque {...{ data, dimensions, lang }} />
                 );
             case 'fraude-exports-dunkerque':
                 return (
-                    <FraudeExportDunkerque {...{ data, dimensions, ...props }} />
+                    <FraudeExportDunkerque {...{ data, dimensions, lang }} />
+                );
+            case 'fraude-exports-ports-francs':
+                return (
+                    <FraudeExportPortFranc {...{ data, dimensions, lang }} />
                 );
             case 'evolution-budget-dunkerque':
                 return (
-                    <EvolutionBudgetDunkerque {...{ data, dimensions, ...props }} />
+                    <EvolutionBudgetDunkerque {...{ data, dimensions, lang }} />
                 );
             case 'evolution-type-conges':
                 return (
-                    <EvolutionTypeConges {...{ data, dimensions }} />
+                    <EvolutionTypeConges {...{ data, dimensions, lang }} />
                 );
             case 'tonnage-moyen-par-mois':
                 return (
-                    <TonnageMoyenMois {...{ data, dimensions }} />
+                    <TonnageMoyenMois {...{ data, dimensions, lang }} />
                 );
             default:
                 return (

@@ -33,15 +33,6 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /\.csv$/,
-                loader: 'csv-loader',
-                options: {
-                    dynamicTyping: true,
-                    header: true,
-                    skipEmptyLines: true
-                }
-            },
-            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -71,6 +62,10 @@ module.exports = {
                         options: {}
                     }
                 ]
+            },
+            {
+                test: /\.ya?ml$/,
+                use: 'yaml-loader'
             }
         ]
     },

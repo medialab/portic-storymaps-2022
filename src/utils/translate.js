@@ -1,4 +1,4 @@
-import catalog from '../i18n/catalog.json'
+import catalog from '../i18n/catalog.yml'
 
 /**
  * @type {RegExp}

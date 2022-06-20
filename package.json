@@ -58,10 +58,14 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "yaml-loader": "^0.8.0"
   },
   "repository": "https://github.com/medialab/portic-storymaps-2022",
   "author": "Guillaume Brioudes (https://myllaume.fr/)",
   "license": "GPL-3.0-or-later",
-  "homepage": "https://medialab.github.io/portic-storymaps-2022"
+  "homepage": "https://medialab.github.io/portic-storymaps-2022",
+  "reactSnap": {
+    "fixWebpackChunksIssue": false
+  }
 }
