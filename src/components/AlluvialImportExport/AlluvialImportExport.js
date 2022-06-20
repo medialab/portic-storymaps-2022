@@ -34,11 +34,17 @@ export default function AlluvialImportExport({
     }
 
     const data = useMemo(() => {
+        // sort to get 'fraude' partner type on top of alluvial
+        inputData = inputData.sort(({ partner_type: aPartner }) => {
+            if (aPartner === 'Fraude') { return -1; }
+            if (aPartner !== 'Fraude') { return 1; }
+            return 0;
+        })
         if (focusedProduct) {
-            return inputData.filter(({ product_type }) => product_type === focusedProduct)
+            return inputData.filter(({ product_type }) => product_type === focusedProduct);
         }
         if (focusedPartner) {
-            return inputData.filter(({ partner_type }) => partner_type === focusedPartner)
+            return inputData.filter(({ partner_type }) => partner_type === focusedPartner);
         }
         return inputData;
     }, [inputData, focusedProduct, focusedPartner])
@@ -50,17 +56,6 @@ export default function AlluvialImportExport({
     const partners = useMemo(function groupPartners() {
         return groups(data, d => d.partner_type);
     }, [data]);
-
-    function sortGroups(a, b) {
-        const [aGroup, aGroupArray] = a;
-        const [bGroup, bGroupArray] = b;
-        const aGroupValue = sum(aGroupArray, d => d.value);
-        const bGroupValue = sum(bGroupArray, d => d.value);
-
-        if (aGroupValue < bGroupValue) { return -1; }
-        if (aGroupValue > bGroupValue) { return 1; }
-        return 0;
-    }
 
     const {
         productBarHeight,
@@ -75,11 +70,21 @@ export default function AlluvialImportExport({
          * need for each product the import value, as import value === export value
          */
         let productsImportValue = products.map(([product, productArray]) => {
-            const productImportArray = productArray.filter(({ importsexports }) => importsexports === 'Imports');
+            let productImportArray = [], productExportArray = [];
+            for (const item of productArray) {
+                switch (item['importsexports']) {
+                    case 'Imports':
+                        productImportArray.push(item); continue;
+                    case 'Exports':
+                        productExportArray.push(item); continue;
+                }
+            }
+            const productImportTotal = sum(productImportArray, d => d.value);
+            const productExportTotal = sum(productExportArray, d => d.value);
             return [
                 product,
-                sum(productImportArray, d => d.value)
-            ]
+                max([productImportTotal, productExportTotal])
+            ];
         });
         const productsTotalImportValue = sum(productsImportValue, d => d[1]);
         productsImportValue = Object.fromEntries(productsImportValue);
@@ -151,12 +156,11 @@ export default function AlluvialImportExport({
             iProductsImportValue += value;
         }
 
-        const partnersMaxSorted = Object.entries(partnersMaxValue).sort((a, b) => {
-            const [aName, aValue] = a;
-            const [bName, bValue] = b;
-            if (aValue < bValue) { return -1; }
-            if (aValue > bValue) { return 1; }
-        });
+        const partnersMaxSorted = Object.entries(partnersMaxValue)
+            .sort(([aName, aValue], [bName, bValue]) => {
+                if (aValue < bValue) { return -1; }
+                if (aValue > bValue) { return 1; }
+            });
         const partnersDraw = [];
         let iPartnersImportValue = 0;
         for (const [partner, value] of partnersMaxSorted) {
@@ -239,7 +243,6 @@ export default function AlluvialImportExport({
                 width,
                 height
             }}
-            style={{ border: '1px solid black' }}
         >
             <defs>
                 <marker id='arrow-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
