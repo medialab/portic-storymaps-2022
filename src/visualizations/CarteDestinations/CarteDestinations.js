@@ -16,16 +16,18 @@ export default function FraudeExportDunkerque({
     return (
       <GeographicMapChart
         title={'Carte des destinations des navires partis de Dunkerque'}
-        projectionConfig={{
-          scale: 100,
-          centerX: 0, //2.376776,
-          centerY: 0, //51.034368,
-        }}
+        projectionTemplate='from France to England'
         layers={[
+          // {
+          //   type: 'svg',
+          //   data: data.get('map_backgrounds/world_map.svg'),//: data['map_backgrounds/map_france_1789.geojson'],
+          //   animated: true
+          // },
           {
-            type: 'svg',
-            data,//: data['map_backgrounds/map_france_1789.geojson'],
-            animated: true
+            type: 'choropleth',
+            animated: true,
+            data: data.get('map_backgrounds/world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            // reverseColors: atlasMode ? undefined : true,
           },
           {
             type: 'points',

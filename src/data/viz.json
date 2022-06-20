@@ -105,7 +105,7 @@
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmd4hLWgCWE_7QSDAPq1G4C3ShRw-d53EoNnRSzX4je2fk-4SQlaC0cGIL1MNprQ/pub?gid=661858842&single=true&output=csv"
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmd4hLWgCWE_7QSDAPq1G4C3ShRw-d53EoNnRSzX4je2fk-4SQlaC0cGIL1MNprQ/pub?gid=461109929&single=true&output=csv"
         ],
         "outputs": [
             "evolution-budget-dunkerque.csv"
@@ -153,8 +153,12 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": []
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxBxqnzHK1HEDjh5dBwJ9gBG5CJCSNfDpVeEDFHvCHxl3nXyuA2aLhiCf_JGib9A/pub?gid=1209238320&single=true&output=csv"
+        ],
+        "outputs": [
+            "evolution-type-conges.csv"
+        ]
     },
     "tonnage-moyen-par-mois": {
         "id": "tonnage-moyen-par-mois",
@@ -168,8 +172,12 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": []
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtEHMi-XI37xMlMXvDSS2Tnfy_DqSmpyx320i9iT7Wa1bTBEDqg1Y76AgF5WQW-g/pub?gid=1647345428&single=true&output=csv"
+        ],
+        "outputs": [
+            "tonnage-moyen-par-mois.csv"
+        ]
     },
     "carte-destinations-dunkerquois": {
         "id": "carte-destinations-dunkerquois",
@@ -214,7 +222,10 @@
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "map_backgrounds/world_map.svg",
+            "map_backgrounds/world_map.geojson"
+        ]
     },
     "evolution-peche": {
         "id": "evolution-peche",

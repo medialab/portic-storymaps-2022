@@ -151,6 +151,17 @@ const GeographicMapChart = ({
           // translationY: height * 0.28
         }
         break;
+      case 'coast from Bretagne to Flandres':
+        projectionConfig = {
+          ...projectionConfig,
+          scale: 5000,
+          // scale: 1000,
+          centerX: .8,
+          centerY: 50,
+          translationX: width * 0.5,
+          translationY: height * 0.5
+        }
+        break;
       case 'coast from Nantes to Bordeaux':
         projectionConfig = {
           ...projectionConfig,
@@ -196,9 +207,21 @@ const GeographicMapChart = ({
           translationY: height * 0.25
         }
         break;
+      case 'from France to England':
+        projectionConfig = {
+          ...projectionConfig,
+          scale: height * 4,
+          centerX: 2.4,
+          centerY:  48,
+          translationX: width * .5,
+          translationY: height * .5,
+          // translationX: width * 0.4,
+          // translationY: height * 0.28
+        }
+        break;
       case 'France':
       default: // as France config 
-        // console.log('projection config in dry version', projectionConfig);
+        console.log('projection config in dry version', projectionConfig);
         // console.log(`we are taking the config as specified in config parameters ===> if not specified, the view should correspond to France`);
         break;
     }
