@@ -5,6 +5,8 @@ import { groups, max, sum } from 'd3-array'
 import { formatNumber, partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
+import { AnimatedPath, AnimatedGroup } from '../AnimatedSvgElements';
+
 export default function AlluvialImportExport({
     data: inputData,
     dimensions,
@@ -249,7 +251,7 @@ export default function AlluvialImportExport({
                     <path d='M0,0 V4 L2,2 Z' fill='black' />
                 </marker>
             </defs>
-            <g
+            <AnimatedGroup
                 className="product-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
             >
@@ -286,8 +288,8 @@ export default function AlluvialImportExport({
                         )
                     })
                 }
-            </g>
-            <g
+            </AnimatedGroup>
+            <AnimatedGroup
                 className="partner-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight + centerCircleHeight})`}
             >
@@ -327,7 +329,7 @@ export default function AlluvialImportExport({
                         )
                     })
                 }
-            </g>
+            </AnimatedGroup>
             <g>
                 {
                     links['Imports'].map(({ from, to, value, product, isFraude }, i) => {
@@ -342,7 +344,7 @@ export default function AlluvialImportExport({
                                     mixBlendMode: 'multiply'
                                 }}
                             >
-                                <path
+                                <AnimatedPath
                                     d={
                                         isFraude ?
                                             `
@@ -380,7 +382,7 @@ export default function AlluvialImportExport({
                                     mixBlendMode: 'multiply'
                                 }}
                             >
-                                <path
+                                <AnimatedPath
                                     transform='scale(-1, 1)'
                                     d={
                                         isFraude ?

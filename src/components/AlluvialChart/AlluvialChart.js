@@ -4,8 +4,7 @@ import { groups, sum, max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import iwanthue from 'iwanthue';
 
-import AnimatedPath from "./AnimatedPath";
-import AnimatedGroup from "./AnimatedGroup";
+import { AnimatedPath, AnimatedGroup } from '../AnimatedSvgElements';
 import { isEqual } from "lodash";
 
 /**
