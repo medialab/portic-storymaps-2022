@@ -2,12 +2,15 @@ import React, { useMemo } from "react"
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
 
+import './FraudeExportPortFranc.scss';
+
 export default function FraudeExportPortFranc({
     data: inputData,
     dimensions,
     ...props
 }) {
     const { width, height } = dimensions;
+    const margin = 40;
 
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
@@ -25,44 +28,48 @@ export default function FraudeExportPortFranc({
     return (
         <>
             <div
-                style={{
-                    display: 'flex'
-                }}
+                className='FraudeExportPortFranc-row'
             >
-                <AlluvialImportExport
-                    dimensions={{
-                        width: width / 2,
-                        height: height / 2
-                    }}
-                    data={data.filter(({ port }) => port === 'Dunkerque')}
-                />
-                <AlluvialImportExport
-                    dimensions={{
-                        width: width / 2,
-                        height: height / 2
-                    }}
-                    data={data.filter(({ port }) => port === 'Marseille')}
-                />
+                <div>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: (width / 2) - margin,
+                            height: (height / 2) - margin
+                        }}
+                        data={data.filter(({ port }) => port === 'Dunkerque')}
+                    />
+                </div>
+                <div>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: (width / 2) - margin,
+                            height: (height / 2) - margin
+                        }}
+                        data={data.filter(({ port }) => port === 'Marseille')}
+                    />
+                </div>
             </div>
             <div
-                style={{
-                    display: 'flex'
-                }}
+                className='FraudeExportPortFranc-row'
             >
-                <AlluvialImportExport
-                    dimensions={{
-                        width: width / 2,
-                        height: height / 2
-                    }}
-                    data={data.filter(({ port }) => port === 'Lorient')}
-                />
-                <AlluvialImportExport
-                    dimensions={{
-                        width: width / 2,
-                        height: height / 2
-                    }}
-                    data={data.filter(({ port }) => port === 'Bayonne')}
-                />
+                <div>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: (width / 2) - margin,
+                            height: (height / 2) - margin
+                        }}
+                        data={data.filter(({ port }) => port === 'Lorient')}
+                    />
+                </div>
+                <div>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: (width / 2) - margin,
+                            height: (height / 2) - margin
+                        }}
+                        data={data.filter(({ port }) => port === 'Bayonne')}
+                    />
+                </div>
             </div>
         </>
     )
