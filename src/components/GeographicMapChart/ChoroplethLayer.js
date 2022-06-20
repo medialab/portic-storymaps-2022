@@ -109,7 +109,7 @@ const ChoroplethLayer = ({
   const project = geoPath().projection(projection);
 
   if (!layer.data) {
-    console.info(layer);
+    console.info('no data for layer:', layer);
     return null;
   }
 

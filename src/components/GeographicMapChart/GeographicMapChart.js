@@ -26,6 +26,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { geoEqualEarth } from "d3-geo";
+import cx from 'classnames';
 import ChoroplethLayer from './ChoroplethLayer';
 import PointsLayer from './PointsLayer';
 import FlowsLayer from './FlowsLayer';
@@ -61,7 +62,8 @@ const GeographicMapChart = ({
   projectionConfig: inputProjectionConfig, // customeconfig that will overwrite a template (optional argument) 
   debug = false, // @todo : à réparer
   withLegend,
-  legendLayerFilter
+  legendLayerFilter,
+  className
 }) => {
   const width = fixSvgDimension(inputWidth);
   const height = fixSvgDimension(inputHeight);
@@ -209,7 +211,7 @@ const GeographicMapChart = ({
 
   // const [xCenterPoint, yCenterPoint] = projection([centerX, centerY]);
   return (
-    <div className="GeographicMapChartWrapper">
+    <div className={cx("GeographicMapChartWrapper", className)}>
 
       {title ? <h5 className="visualization-title">{title}</h5> : null}
 
