@@ -6,8 +6,8 @@ const simplify = require('simplify-geojson')
 
 /** URL of the geojson for full map to be used for generating the background svg */
 const FULL_MAP_URL = 'https://raw.githubusercontent.com/medialab/portic-storymaps-2021/main/public/data/map_backgrounds/map_cartoweb_world_1789_29juillet2021_mixte4326_geojson_UTF8.geojson';
-const TEMP_MAP_PATH = path.resolve(__dirname + '/../data/full_world_map.geojson');
-const SVG_OUTPUT_PATH = path.resolve(__dirname + '/../public/data/world_map.svg');
+const SVG_OUTPUT_FOLDER_PATH = path.resolve(__dirname + '/../public/data/map_backgrounds/');
+const SVG_OUTPUT_FILENAME = '/world_map.svg';
 const width = 960;
 const height = 500;
 
@@ -18,6 +18,7 @@ const generateSVGMapBackground = async () => {
 
   let geoJSONData;
   let originalLength;
+  let svgStr;
   console.log(chalk.blue('fetch geojson map background'));
   axios(FULL_MAP_URL)
   .then(({data}) => {
@@ -104,7 +105,8 @@ const generateSVGMapBackground = async () => {
           return feature;
         }
         // simplification maximum
-        return simplify(feature, .05); // works
+        // return simplify(feature, .05); // works
+        return simplify(feature, .1); // works
         // return simplify(feature, .005); // works
       })
     }
@@ -123,19 +125,23 @@ const generateSVGMapBackground = async () => {
     const referencePointPosition = projection(referencePoint);
     console.log(chalk.blue('reference point (null island) screen coordinates : ' + referencePointPosition.join(',')));
     // console.log(paths);
-    const svgStr = `
+    svgStr = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
     ${
-      paths.map((pathD, i) => `<path stroke="black" stroke-width=".1" title="${features[i].properties.shortname}" fill="none" d="${pathD}"></path>`)
+      paths.map((pathD, i) => `<path class="${features[i].properties.dominant} ${features[i].properties.shortname}" title="${features[i].properties.shortname}" d="${pathD}"></path>`).join('')
     }
+    
   </svg>
   `;
   console.log(chalk.green('svg str successfully prepared'));
-  console.log(chalk.blue('writing the svg at ' + SVG_OUTPUT_PATH));
-    return fs.writeFile(SVG_OUTPUT_PATH, svgStr, 'utf-8')
+  console.log(chalk.blue('writing the svg at ' + SVG_OUTPUT_FOLDER_PATH + SVG_OUTPUT_FILENAME));
+    return fs.ensureDir(SVG_OUTPUT_FOLDER_PATH)
   })
   .then(() => {
-    console.log(chalk.green('file successfully written at ' + SVG_OUTPUT_PATH));
+    return fs.writeFile(SVG_OUTPUT_FOLDER_PATH + SVG_OUTPUT_FILENAME, svgStr, 'utf-8')
+  })
+  .then(() => {
+    console.log(chalk.green('file successfully written at ' + SVG_OUTPUT_FOLDER_PATH + SVG_OUTPUT_FILENAME));
     console.log(chalk.green('all done, bye!'));
   })
   .catch(error => {
