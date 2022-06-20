@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
 
-import LineChart from '../../components/LineChart';
+import LineChart from "../../components/LineChart";
 
-export default function EvolutionBudgetDunkerque({
+export default function EvolutionTypeConges({
     data,
     dimensions,
     ...props
@@ -17,13 +17,13 @@ export default function EvolutionBudgetDunkerque({
                 height
             }}
             x={{
-                field: 'Années comptables'
+                field: 'année'
             }}
             y={{
                 field: 'valeur'
             }}
             color={{
-                field: 'référence'
+                field: 'type'
             }}
         />
     )

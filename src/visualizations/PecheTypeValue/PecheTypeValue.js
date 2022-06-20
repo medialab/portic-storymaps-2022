@@ -10,13 +10,12 @@ import BarChart from '../../components/BarChart';
  */
 
 export default function PecheTypeValue({
-    data: inputData,
+    data,
     title,
     lang,
     dimensions
 }) {
     const { width, height } = dimensions;
-    let data = inputData['peche-type-value.csv'];
 
     return (
         <BarChart

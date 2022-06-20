@@ -57,7 +57,7 @@ export default function ScrollyPage({
         },
         {}
     )
-    const [data, setData] = useState({});
+    const [datasets, setDatasets] = useState({});
     /** @type {['process'|'failed'|'successed', Function]} */
     const [loadingState, setLoadingState] = useState('process');
     /** @type {[Boolean, Function]} */
@@ -150,8 +150,6 @@ export default function ScrollyPage({
         setCanResetVizProps(false);
     }
 
-    useEffect(focusFirstVizOfPage, [visualizations]);
-
     useEffect(function resetDisplayedVizPropsOnVizChange() {
         if (visualizations[activeCallerId] === undefined) { return; }
         const { props } = visualizations[activeCallerId];
@@ -233,10 +231,11 @@ export default function ScrollyPage({
                 break;
             }
         }
-    }, [scrollY, pageRef]);
+    }, [visualizations, scrollY, pageRef]);
 
     useEffect(function getDataForChapter() {
         setLoadingState('process');
+        const payload = new Map();
 
         let filesCsvToLoad = new Set(
             Object.values(visualizationsMetas)
@@ -247,28 +246,31 @@ export default function ScrollyPage({
         filesCsvToLoad = Array.from(filesCsvToLoad);
 
         Promise.all(
-            filesCsvToLoad.map(fileToLoad => fetchDataCsv(fileToLoad))
+            filesCsvToLoad.map(fileToLoad =>
+                fetchDataCsv(fileToLoad).catch(error => null)
+            )
         )
         .then((datasets) => {
-            let payload = {};
             for (let i = 0; i < datasets.length; i++) {
-                payload[filesCsvToLoad[i]] = datasets[i];
+                const dataset = datasets[i];
+                if (dataset === null) { continue; }
+                payload.set(filesCsvToLoad[i], dataset);
             }
-            setData(payload);
+            setDatasets(payload);
             setLoadingState('successed');
         })
         .catch((error) => {
             setLoadingState('failed');
-            console.error(data, error);
+            console.error(error);
         })
     }, [chapter]);
 
-    if (loadingState === 'process' || !data) {
+    if (loadingState === 'process' || !datasets) {
         return <Loader message='En cours de chargement' />
     }
-    if (loadingState === 'failed') {
-        return <Loader message='Échec du chargement' />
-    }
+    // if (loadingState === 'failed') {
+    //     return <Loader message='Échec du chargement' />
+    // }
 
     return (
         <>
@@ -302,7 +304,7 @@ export default function ScrollyPage({
                             callerProps={displayedVizProps}
                             {...{
                                 displayedVizId,
-                                data,
+                                datasets,
                                 canResetVizProps,
                                 resetVizProps
                             }}

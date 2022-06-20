@@ -30,7 +30,7 @@ export default function VisualizationContainer({
 
     const title = useMemo(() => {
         const vizMetas = visualizationsMetas[vizId];
-        return vizMetas[`titre_${lang}`]
+        return vizMetas ? vizMetas[`titre_${lang}`] : '';
     }, [vizId, lang]);
 
     const [dimensions, setDimensions] = useState({

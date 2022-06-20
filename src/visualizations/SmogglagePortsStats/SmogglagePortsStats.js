@@ -10,13 +10,12 @@ import BarChart from '../../components/BarChart';
  */
 
 export default function SmogglagePortsStats ({
-    data: inputData,
+    data,
     title,
     lang,
     dimensions
 }) {
     const { width, height } = dimensions;
-    let data = inputData['smogglage_ports_stats.csv'];
 
     return (
         <>

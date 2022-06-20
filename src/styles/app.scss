@@ -115,18 +115,11 @@ button.is-active {
 }
 
 dfn {
-  position: relative;
+  cursor: help;
+  font-style: normal;
+  margin: 0 5px;
   text-decoration: underline dashed;
 }
-dfn:hover::after {
-  content: attr(title);
-  position: absolute;
-  top: calc(-100% - 10px);
-  left: 0;
-  background-color: white;
-  padding: 0.2em;
-}
-
 
 /**
  * ==========
@@ -396,6 +389,10 @@ dfn:hover::after {
     .background-line {
       stroke: rgba(0, 0, 0, 0.2);
       stroke-dasharray: 4, 2;
+
+      &.is-zero {
+        stroke: rgba(0, 0, 0, 0.8);
+      }
     }
   }
   .headers {

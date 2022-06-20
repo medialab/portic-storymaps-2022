@@ -7,21 +7,28 @@ import PecheTypeValue from './PecheTypeValue';
 import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
-import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque/EvolutionBudgetDunkerque';
 import CarteDestinations from './CarteDestinations';
+import EvolutionTypeConges from './EvolutionTypeConges';
+import TonnageMoyenMois from './TonnageMoyenMois';
+import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
  * It returns a visualization component depending on the provided id
- * @param {string} id
- * @param {String} props.focusedVizId
- * @param {Object} props.data
- * @param {object} props.dimensions
+ * @param {Object} props
+ * @param {String} props.vizId
+ * @param {Map} props.datasets
+ * @param {React.Ref} props.ref
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @param {'fr'|'en'} props.lang
+ * @param {Object} [props.callerProps={}]
  * @returns {React.ReactElement} - React component
  */
 export default function VisualizationController({
     vizId,
-    data,
+    datasets,
     ref,
     dimensions,
     lang,
@@ -30,7 +37,22 @@ export default function VisualizationController({
 }) {
     const { width, height } = dimensions;
 
+    const data = useMemo(function getVizDataFromId() {
+        const { outputs: vizDataFiles = [] } = visualizationsMetas[vizId] || {};
+        if (vizDataFiles.every(dataFile => datasets.has(dataFile)) === false) {
+            return undefined;
+        }
+        if (vizDataFiles.length === 1) {
+            return datasets.get(vizDataFiles[0]);
+        }
+        return datasets;
+    }, [vizId, datasets]);
+
     const vizContent = useMemo(() => {
+        if (data === undefined) {
+            return <>Les données de cette visualisation n'ont pu être chargées.</>;
+        }
+
         switch (vizId) {
             case 'carte-destinations':
               return <CarteDestinations {...{data, dimensions, lang, ...props}} />;
@@ -57,6 +79,14 @@ export default function VisualizationController({
             case 'evolution-budget-dunkerque':
                 return (
                     <EvolutionBudgetDunkerque {...{ data, dimensions, ...props }} />
+                );
+            case 'evolution-type-conges':
+                return (
+                    <EvolutionTypeConges {...{ data, dimensions }} />
+                );
+            case 'tonnage-moyen-par-mois':
+                return (
+                    <TonnageMoyenMois {...{ data, dimensions }} />
                 );
             default:
                 return (
