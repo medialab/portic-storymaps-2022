@@ -8,6 +8,7 @@ import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque/EvolutionBudgetDunkerque';
+import CarteDestinations from './CarteDestinations';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -24,35 +25,38 @@ export default function VisualizationController({
     ref,
     dimensions,
     lang,
-    callerProps = {}
+    callerProps = {},
+    ...props
 }) {
     const { width, height } = dimensions;
 
     const vizContent = useMemo(() => {
         switch (vizId) {
+            case 'carte-destinations':
+              return <CarteDestinations {...{data, dimensions, lang, ...props}} />;
             case 'peche-type-value':
                 return (
-                    <PecheTypeValue {...{ data, dimensions, lang }} />
+                    <PecheTypeValue {...{ data, dimensions, lang, ...props }} />
                 );
             case 'smoggleur-proportion':
                 return (
-                    <SmogglagePortsStats {...{ data, dimensions, lang }} />
+                    <SmogglagePortsStats {...{ data, dimensions, lang, ...props }} />
                 );
             case 'histoire-dunkerque':
                 return (
-                    <HistoireDunkerque {...{ data, dimensions, callerProps }} />
+                    <HistoireDunkerque {...{ data, dimensions, callerProps, ...props }} />
                 );
             case 'stigmates-smoggleurs-dunkerque':
                 return (
-                    <StigmatesSmoggleursDunkerque {...{ data, dimensions }} />
+                    <StigmatesSmoggleursDunkerque {...{ data, dimensions, ...props }} />
                 );
             case 'fraude-exports-dunkerque':
                 return (
-                    <FraudeExportDunkerque {...{ data, dimensions }} />
+                    <FraudeExportDunkerque {...{ data, dimensions, ...props }} />
                 );
             case 'evolution-budget-dunkerque':
                 return (
-                    <EvolutionBudgetDunkerque {...{ data, dimensions }} />
+                    <EvolutionBudgetDunkerque {...{ data, dimensions, ...props }} />
                 );
             default:
                 return (
