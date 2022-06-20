@@ -12,6 +12,7 @@ import colorsPalettes from '../../utils/colorPalettes';
 import { fixSvgDimension, generatePalette } from '../../utils/misc';
 
 import './LineChart.scss';
+import TextSpan from '../TextSpan';
 
 const { generic } = colorsPalettes;
 
@@ -92,9 +93,9 @@ const LineChart = ({
     }, [width, height, color, data])
 
     const margins = {
-        left: 100,
-        top: 30,
-        bottom: 20,
+        left: 120,
+        top: 50,
+        bottom: 40,
         right: 20,
         ...inputMargins
     };
@@ -154,9 +155,13 @@ const LineChart = ({
                 <div className="row vis-row">
                     <svg className="chart" width={width} height={height}>
                         <g className="axis left-axis ticks">
-                            <text x={margins.left - 10} y={margins.top - 10} className="axis-title">
-                                {y.title || y.field}
-                            </text>
+                            <TextSpan
+                                maxLength={10}
+                                x={margins.left - 40}
+                                y={margins.top - 40}
+                                className="axis-title"
+                                text={y.title || y.field}
+                            />
                             {
                                 yAxisValues.map((value, valueIndex) => (
                                     <g
@@ -187,6 +192,13 @@ const LineChart = ({
                             }
                         </g>
                         <g className="axis bottom-axis ticks">
+                            <TextSpan
+                                maxLength={10}
+                                x={width - (margins.right + 10)}
+                                y={height - (margins.bottom - 20)}
+                                className="axis-title"
+                                text={x.title || x.field}
+                            />
                             {
                                 xAxisValues.map((value, valueIndex) => (
                                     <g

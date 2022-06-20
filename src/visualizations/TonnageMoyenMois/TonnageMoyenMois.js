@@ -2,11 +2,14 @@ import { group } from 'd3-array';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import LineChart from '../../components/LineChart';
+import { formatNumber } from '../../utils/misc';
+import translate from '../../utils/translate';
 import Timeline from './Timeline';
 
 export default function TonnageMoyenMois({
     data: inputData,
     dimensions,
+    lang,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -50,8 +53,8 @@ export default function TonnageMoyenMois({
         timelineHeight
     } = useMemo(function assignHeightForVizElts () {
         return {
-            timelineHeight: height * 0.1,
-            linechartHeight: height * 0.9
+            timelineHeight: 80,
+            linechartHeight: height - 80
         }
     }, [height])
 
@@ -72,16 +75,23 @@ export default function TonnageMoyenMois({
                         })
                 }
                 x={{
-                    field: 'value'
+                    field: 'value',
+                    title: translate('TonnageMoyenMois', 'x', lang)
                 }}
                 y={{
                     field: 'month',
+                    title: translate('TonnageMoyenMois', 'y', lang),
                     fillGaps: true,
                     tickFormat: v => new Date(v).toLocaleDateString()
                 }}
                 width={width}
                 height={linechartHeight}
-                orientation='vertical'
+                tooltip={
+                    (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
+                        value: formatNumber(d['value']),
+                        month: d['month'].toLocaleDateString()
+                    })
+                }
             />
             <Timeline
                 dimensions={{

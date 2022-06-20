@@ -55,7 +55,8 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "yaml-loader": "^0.8.0"
   },
   "repository": "https://github.com/medialab/portic-storymaps-2022",
   "author": "Guillaume Brioudes (https://myllaume.fr/)",

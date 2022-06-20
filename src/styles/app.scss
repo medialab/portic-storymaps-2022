@@ -350,6 +350,14 @@ dfn {
 }
 
 
+tspan {
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  background: inherit;
+}
+
 /**
  * GENERIC VISUALIZATIONS STYLING
  */
@@ -381,7 +389,7 @@ dfn {
         text-anchor: end;
       }
       .axis-title {
-        font-weight: 800;
+        font-weight: bold;
         font-style: italic;
         background: $color-text;
       }

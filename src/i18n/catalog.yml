@@ -1,0 +1,88 @@
+site:
+  title:
+    fr: 'Commerce, contrebande et ports francs : le cas de Dunkerque au XVIIIe siècle'
+    en: Trade around the port of Dunkerque in the 18th century
+  titleHTML:
+    fr: 'Commerce, contrebande et ports francs&nbsp;: le cas de Dunkerque au&nbsp;<span>XVIII</span><sup>e</sup>&nbsp;siècle'
+    en: Trade around the port of Dunkerque in the 18th century
+  subtitle:
+    fr: Une étude de cas du programme de recherche interdisciplinaire PORTIC
+    en: A case study of the PORTIC interdisciplinary research program
+menu:
+  home:
+    fr: accueil
+    en: home
+  atlas:
+    fr: atlas des visualisations
+    en: visualizations atlas
+about:
+  title:
+    fr: À propos
+    en: About
+atlas:
+  title:
+    fr: Atlas des visualisations
+    en: Visualizations atlas
+vizFocus:
+  description:
+    fr: De quoi s'agit t'il ?
+    en: What is about?
+  howItsMade:
+    fr: Comment les données et la visualisation ont-elles été produites ?
+    en: How were the data and visualization produced?
+  howToRead:
+    fr: Comment lire la visualisation ?
+    en: How to read the visualization?
+  copyLink:
+    fr: copier le lien de cette visualisation
+    en: copy this visualization link
+  linkCopied:
+    fr: lien copié dans le presse-papier !
+    en: link copied in the clipboard!
+vizContainer:
+  switchToViz:
+    fr: voir la visualisation associée
+    en: see associated visualization
+  switchToContent:
+    fr: voir le texte associé
+    en: see associated text
+EvolutionBudgetDunkerque:
+  tooltip:
+    fr: ${reference} d'une valeur de ${value} livres tournois en ${year}
+    en:
+  x:
+    fr: Année comptable
+    en: 
+  y:
+    fr: Valeur en livres tournois
+    en: 
+EvolutionTypeConges:
+  tooltip:
+    fr: Congé d'une valeur de ${value} livres tournois en ${year}
+    en:
+  x:
+    fr: Année
+    en: Year
+  y:
+    fr: Valeur en livres tournois
+    en: 
+PecheTypeValue:
+  tooltip:
+    fr: Valeur de ${value} livres tournois en ${year}
+    en:
+  x:
+    fr: Année
+    en: Year
+  y:
+    fr: Valeur en livres tournois
+    en: 
+TonnageMoyenMois:
+  tooltip:
+    fr: Tonnage de ${value} en ${month}
+    en: 
+  x:
+    fr: Tonnage
+    en: Year
+  y:
+    fr: Mois
+    en: Months
