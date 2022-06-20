@@ -266,6 +266,7 @@ export default function AlluvialImportExport({
                         y = scaleValue(y);
                         const productScale = scaleValue(productsImportValue[product]);
                         const color = iwanthue(1, { seed: product });
+                        const isTooSmallForText = productScale < 25;
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
@@ -279,11 +280,13 @@ export default function AlluvialImportExport({
                                     height={productScale}
                                     fill={color}
                                 />
-                                <text
-                                    y={productScale - labelMargin}
-                                    x={labelMargin}
-                                    fontSize={10}
-                                >{product}</text>
+                                {isTooSmallForText === false &&
+                                    <text
+                                        y={productScale - labelMargin}
+                                        x={labelMargin}
+                                        fontSize={10}
+                                    >{product}</text>
+                                }
                             </g>
                         )
                     })
@@ -336,6 +339,7 @@ export default function AlluvialImportExport({
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
+                        const isTooSmallForText = strokeWidth < 25;
                         return (
                             <g
                                 transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
@@ -364,7 +368,7 @@ export default function AlluvialImportExport({
                                     stroke={color}
                                     fill='transparent'
                                 />
-                                <text textAnchor='end'>{formatNumber(value)}</text>
+                                {isTooSmallForText === false && <text textAnchor='end'>{formatNumber(value)}</text>}
                             </g>
                         )
                     })
@@ -374,6 +378,7 @@ export default function AlluvialImportExport({
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
+                        const isTooSmallForText = strokeWidth < 25;
                         return (
                             <g
                                 transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
@@ -403,7 +408,7 @@ export default function AlluvialImportExport({
                                     stroke={color}
                                     fill='transparent'
                                 />
-                                <text textAnchor='start'>{formatNumber(value)}</text>
+                                {isTooSmallForText === false && <text textAnchor='start'>{formatNumber(value)}</text>}
                             </g>
                         )
                     })
