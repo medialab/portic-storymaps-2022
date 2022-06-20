@@ -10,11 +10,11 @@ const Button = ({
     useEffect(() => {
       let interval
       if (isMouseDown) {
-        console.log("setInterval")
+        // console.log("setInterval")
         interval = setInterval(onMouseDown, 100)
       }
       return () => {
-        console.log("clearInterval")
+        // console.log("clearInterval")
         clearInterval(interval)
       }
     }, [isMouseDown, onMouseDown])

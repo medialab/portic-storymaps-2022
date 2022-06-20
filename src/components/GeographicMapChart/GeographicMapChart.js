@@ -25,7 +25,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
-import { geoEqualEarth } from "d3-geo";
+import { geoEqualEarth, geoMercator } from "d3-geo";
 import cx from 'classnames';
 import ChoroplethLayer from './ChoroplethLayer';
 import PointsLayer from './PointsLayer';
@@ -38,6 +38,7 @@ import Legend from './Legend';
 
 import './GeographicMapChart.scss'
 import { fixSvgDimension } from '../../utils/misc';
+import SVGLayer from './SVGLayer';
 
 
 /**
@@ -59,7 +60,7 @@ const GeographicMapChart = ({
   title,
   layers = [],
   projectionTemplate: initialProjectionTemplate,
-  projectionConfig: inputProjectionConfig, // customeconfig that will overwrite a template (optional argument) 
+  projectionConfig: inputProjectionConfig, // custom config that will overwrite a template (optional argument) 
   debug = false, // @todo : à réparer
   withLegend,
   legendLayerFilter,
@@ -72,6 +73,8 @@ const GeographicMapChart = ({
   const [rotation, setRotation] = useState(0)
   const [translationX, setTranslationX] = useState(width / 2)
   const [translationY, setTranslationY] = useState(height / 2)
+  // const [translationX, setTranslationX] = useState(0)
+  // const [translationY, setTranslationY] = useState(0)
   const [centerX, setCenterX] = useState(-1.7475027) // -1.7475027 pour centrer sur région
   const [centerY, setCenterY] = useState(46.573642) // 46.573642
 
@@ -83,6 +86,14 @@ const GeographicMapChart = ({
       setProjectionTemplate(initialProjectionTemplate);
     // })
   }, [initialProjectionTemplate])
+
+  // fix default translationX after size change during startup
+  useEffect(() => {
+    if (width !== 1) {
+      setTranslationX(width/2)
+      setTranslationY(height/2)
+    }
+  }, [width, height])
 
 
   // define a default map Config
@@ -102,7 +113,32 @@ const GeographicMapChart = ({
 
     let projectionConfig = { ...defaultProjectionConfig } // casser la référence à defaultProj pour respecter principe react qu'on ne modifie pas un objet reçu en argument
 
-    let projection = geoEqualEarth()
+    let projection = geoMercator();
+
+    if (debug) {
+      projectionConfig = {
+        ...projectionConfig,
+        centerX,
+        centerY,
+        translationX,
+        translationY,
+        rotationDegree: rotation,
+        scale
+      }
+      console.log('set projection config', projectionConfig);
+      projection
+      .scale(projectionConfig.scale)
+
+      projection.center([projectionConfig.centerX, projectionConfig.centerY])
+
+      if (projectionConfig.rotationDegree) {
+        projection.angle(projectionConfig.rotationDegree)
+      }
+
+      projection.translate([projectionConfig.translationX, projectionConfig.translationY])
+
+      return projection;
+    }
 
     switch (projectionTemplate) {
       case 'World':
@@ -205,7 +241,11 @@ const GeographicMapChart = ({
     projection.translate([projectionConfig.translationX, projectionConfig.translationY])
 
     return projection;
-  }, [width, height, defaultProjectionConfig, inputProjectionConfig, projectionTemplate]) 
+  }, [width, height, defaultProjectionConfig, inputProjectionConfig, projectionTemplate, scale,
+    centerX,
+    centerY,
+    translationX,
+    translationY, rotation]) 
 
 
 
@@ -217,8 +257,8 @@ const GeographicMapChart = ({
 
       {
         debug ?
-          <>
-            <h2>scale: {scale}, rotation: {rotation}, translationX: {translationX}, translationY: {translationY}, centerX: {centerX}, centerY: {centerY}</h2>
+          <div className="debug-container">
+            <h4>scale: {scale}, rotation: {rotation}, translationX: {translationX}, translationY: {translationY}, centerX: {centerX}, centerY: {centerY}</h4>
             <div className="table">
               <ul id="horizontal-list">
                 <li>
@@ -231,7 +271,7 @@ const GeographicMapChart = ({
                     </li>
                     <li>
                       <Input value={scale} placeHolder={"entrez une valeur pour la scale"} onBlur={(str) => {
-                        const val = isNaN(+str) ? scale : +str
+                        const val = isNaN(+str) ? scale : +str;
                         setScale(val)
                       }} />
                     </li>
@@ -240,7 +280,7 @@ const GeographicMapChart = ({
                 <li>
                   <ul>
                     <li>
-                      <Button onMouseDown={() => { console.log("DOWN !!"); setRotation(rotation + 2) }}>rotation+</Button>
+                      <Button onMouseDown={() => { setRotation(rotation + 2) }}>rotation+</Button>
                     </li>
                     <li>
                       <Button onMouseDown={() => setRotation(rotation - 2)}>rotation-</Button>
@@ -255,7 +295,7 @@ const GeographicMapChart = ({
                     <li>
                       <Button onMouseDown={() => setTranslationX(translationX * 0.8)}>translationX-</Button>
                     </li>
-                    <li>b
+                    <li>
                       <Button onMouseDown={() => setTranslationY(translationY * 1.2)}>translationY+</Button>
                     </li>
                     <li>
@@ -271,7 +311,7 @@ const GeographicMapChart = ({
                     <li>
                       <Button onMouseDown={() => setCenterX(centerX - 0.3)}>centerX-</Button>
                     </li>
-                    <li>b
+                    <li>
                       <Button onMouseDown={() => setCenterY(centerY + 0.3)}>centerY+</Button>
                     </li>
                     <li>
@@ -293,7 +333,7 @@ const GeographicMapChart = ({
                 </li>
               </ul>
             </div>
-          </>
+          </div>
           : null
       }
 
@@ -341,6 +381,17 @@ const GeographicMapChart = ({
                   width={width}
                   height={height}
                 />
+              case 'svg':
+                return (
+                  <SVGLayer
+                    key={layerIndex}
+                    layer={layer}
+                    projection={projection}
+                    projectionTemplate={projectionTemplate}
+                    width={width}
+                    height={height}
+                  />
+                )
 
               default:
                 return <g key={layerIndex}><text>Unsupported layer type</text></g>

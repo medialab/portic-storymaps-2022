@@ -129,6 +129,7 @@ const StackedLabelGroup = ({
   const { latitude, longitude, size: area, label, /*labelPosition = 'right', labelSize, index*/ } = datum;
   const size = Math.sqrt(area / Math.PI)
   const [x, y] = projection([+longitude, +latitude]);
+  console.log('projection x:%s, y:%s', x, y)
   const [isInited, setIsInited] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -186,7 +187,6 @@ const PointsLayer = ({ layer, projection, width, height }) => {
   */
   const markerData = useMemo(() => {
     if (layer.data) {
-
       // regroup data by coordinates
       const coordsMap = {};
       layer.data.forEach(datum => {
@@ -207,7 +207,6 @@ const PointsLayer = ({ layer, projection, width, height }) => {
       })
 
       let grouped = Object.entries(coordsMap).map(([_mark, datum]) => datum);
-
       let palette;
       if (layer.color !== undefined) {
         // colors palette building
@@ -247,9 +246,8 @@ const PointsLayer = ({ layer, projection, width, height }) => {
       return grouped;
     }
   }, [projection, width, layer])/* eslint react-hooks/exhaustive-deps : 0 */
-
   let visibleMarkers = markerData
-    .filter(({ latitude, longitude }) => latitude && longitude && !isNaN(latitude) && !isNaN(longitude))
+    .filter(({ latitude, longitude }) => latitude !== undefined && longitude !== undefined && !isNaN(latitude) && !isNaN(longitude))
     .sort((a, b) => {
       if (a.latitude > b.latitude) {
         return 1;
