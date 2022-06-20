@@ -100,7 +100,7 @@ export default function VisualizationController({
     }, [vizId, callerProps, dimensions, lang, data])
 
     return (
-        <div className='VisualizationController viz-render' ref={ref}>
+        <div onClick={e => e.stopPropagation()} className='VisualizationController viz-render' ref={ref}>
             {vizContent}
         </div>
     )
