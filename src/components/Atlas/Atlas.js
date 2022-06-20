@@ -83,6 +83,7 @@ export default function Atlas({
                                 <li
                                     className='visualization-item'
                                     onClick={() => onClickFocus(id, output)}
+                                    key={id}
                                 >
                                     <figure className="thumbnail-container">
                                         <img
