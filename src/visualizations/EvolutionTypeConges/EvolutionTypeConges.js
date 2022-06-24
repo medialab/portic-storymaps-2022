@@ -25,7 +25,8 @@ export default function EvolutionTypeConges({
             }}
             y={{
                 field: 'valeur',
-                title: translate('EvolutionTypeConges', 'y', lang)
+                title: translate('EvolutionTypeConges', 'y', lang),
+                tickFormat: (value, valueIndex) => formatNumber(value)
             }}
             color={{
                 field: 'type'
