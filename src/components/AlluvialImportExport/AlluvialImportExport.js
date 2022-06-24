@@ -11,6 +11,7 @@ export default function AlluvialImportExport({
     data: inputData,
     dimensions,
     decreasing = false,
+    colorPalette = {},
     ...props
 }) {
     const [focus, setFocus] = useReducer((currentState, action) => {
@@ -290,7 +291,7 @@ export default function AlluvialImportExport({
                     productsDraw.map(([product, y], i) => {
                         y = scaleValue(y);
                         const productScale = scaleValue(productsImportValue[product]);
-                        const color = iwanthue(1, { seed: product });
+                        const color = colorPalette[product] || iwanthue(1, { seed: product });
                         const isTooSmallForText = productScale < 25;
                         const isNotHighlight = (focus && focus.mode === 'highlight' && focus.itemValue !== product)
                         return (
@@ -338,7 +339,7 @@ export default function AlluvialImportExport({
                     partnersDraw.map(([partner, y], i) => {
                         y = scaleValue(y);
                         const partnerScale = scaleValue(partnersMaxValue[partner]);
-                        const color = iwanthue(1, { seed: partner });
+                        const color = colorPalette[partner] || iwanthue(1, { seed: partner });
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
@@ -379,7 +380,7 @@ export default function AlluvialImportExport({
             <g>
                 {
                     links['Imports'].map(({ from, to, value, product, isFraude, isHighlight }, i) => {
-                        const color = iwanthue(1, { seed: product });
+                        const color = colorPalette[product] || iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
                         const isTooSmallForText = strokeWidth < 25;
@@ -419,7 +420,7 @@ export default function AlluvialImportExport({
                 }
                 {
                     links['Exports'].map(({ from, to, value, product, isFraude, isHighlight }, i) => {
-                        const color = iwanthue(1, { seed: product });
+                        const color = colorPalette[product] || iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
                         const isTooSmallForText = strokeWidth < 25;
