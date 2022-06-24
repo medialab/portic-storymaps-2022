@@ -1,0 +1,42 @@
+
+
+.CarteDestinations {
+  .legend {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 30%;
+    background: white;
+    padding: 1rem;
+  }
+
+  .slider-container {
+    > div {
+      margin: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  .destination {
+    cursor: pointer;
+    transition: .5s ease all;
+    .background-circle {
+      stroke: black;
+      fill: rgba(0,0,0,0.05);
+    }
+    .radar-line {
+      stroke: grey;
+    }
+    .radar-chart {
+      stroke: none;
+      fill:rgba(200,0,0,0.3); 
+    }
+    .radar-point {
+      fill: black;
+    }
+
+    .arrow {
+      stroke: black;
+    }
+  }
+}
