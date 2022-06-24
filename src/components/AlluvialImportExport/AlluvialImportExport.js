@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useReducer, useState } from "react";
 
 import { scaleLinear } from "d3-scale";
 import { groups, max, sum } from 'd3-array'
@@ -13,27 +13,23 @@ export default function AlluvialImportExport({
     decreasing = false,
     ...props
 }) {
-    const [focusedProduct, setFocusedProduct] = useState(undefined);
-    const [focusedPartner, setFocusedPartner] = useState(undefined);
+    const [focus, setFocus] = useReducer((currentState, action) => {
+        let { actionType, itemType, itemValue, mode } = action;
+        if (currentState && itemValue === currentState.itemValue) { actionType = 'reset' }
+        switch (actionType) {
+            case 'set':
+                return {
+                    itemType,
+                    itemValue,
+                    mode
+                }
+            case 'reset':
+                return undefined;
+        }
+    }, undefined);
 
     const { width, height } = dimensions;
     const barWidth = 70;
-
-    function focusProduct(product) {
-        if (product === focusedProduct) {
-            setFocusedProduct(undefined);
-            return;
-        }
-        setFocusedProduct(product);
-    }
-
-    function focusPartner(product) {
-        if (product === focusedPartner) {
-            setFocusedPartner(undefined);
-            return;
-        }
-        setFocusedPartner(product);
-    }
 
     const data = useMemo(() => {
         // sort to get 'fraude' partner type on top of alluvial
@@ -42,14 +38,46 @@ export default function AlluvialImportExport({
             if (aPartner !== 'Fraude') { return 1; }
             return 0;
         })
-        if (focusedProduct) {
-            return inputData.filter(({ product_type }) => product_type === focusedProduct);
+        if (focus && focus.mode === 'filter') {
+            switch (focus.itemType) {
+                case 'product':
+                    return inputData.filter(({ product_type }) => product_type === focus.itemValue);
+                case 'partner':
+                    return inputData.filter(({ partner_type }) => partner_type === focus.itemValue);
+            }
         }
-        if (focusedPartner) {
-            return inputData.filter(({ partner_type }) => partner_type === focusedPartner);
+        if (focus && focus.mode === 'highlight') {
+            switch (focus.itemType) {
+                case 'product':
+                    return inputData.map((row) => {
+                        if (row['product_type'] === focus.itemValue) {
+                            return {
+                                isHighlight: true,
+                                ...row
+                            }
+                        }
+                        return {
+                            isHighlight: false,
+                            ...row
+                        }
+                    })
+                case 'partner':
+                    return inputData.map((row) => {
+                        if (row['partner_type'] === focus.itemValue) {
+                            return {
+                                isHighlight: true,
+                                ...row
+                            }
+                        }
+                        return {
+                            isHighlight: false,
+                            ...row
+                        }
+                    })
+            }
         }
         return inputData;
-    }, [inputData, focusedProduct, focusedPartner])
+    }, [inputData, focus])
 
     const products = useMemo(function groupProducts() {
         return groups(data, d => d.product_type);
@@ -187,17 +215,20 @@ export default function AlluvialImportExport({
         };
 
         for (const [product, productArray] of products) {
-            for (const { value, partner_type, importsexports } of productArray) {
-                let item;
+            for (const { value, partner_type, importsexports, isHighlight } of productArray) {
                 const yProduct = iProduct[importsexports][product];
                 const yPartner = iPartner[importsexports][partner_type];
                 const isFraude = partner_type === 'Fraude';
+                let item = {
+                    value,
+                    product,
+                    isFraude,
+                    isHighlight
+                };
                 switch (importsexports) {
                     case 'Imports':
                         item = {
-                            value,
-                            product,
-                            isFraude,
+                            ...item,
                             from: {
                                 partner_type,
                                 y: scaleValue(yPartner)
@@ -211,9 +242,7 @@ export default function AlluvialImportExport({
 
                     case 'Exports':
                         item = {
-                            value,
-                            product,
-                            isFraude,
+                            ...item,
                             from: {
                                 product,
                                 y: scaleValue(yProduct)
@@ -239,6 +268,8 @@ export default function AlluvialImportExport({
 
     const labelMargin = 5;
 
+    console.log(focus);
+
     return (
         <svg
             {...{
@@ -255,22 +286,28 @@ export default function AlluvialImportExport({
                 className="product-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
             >
-                <rect
-                    x={0}
-                    y={0}
-                    width={barWidth}
-                    height={productBarHeight}
-                />
                 {
                     productsDraw.map(([product, y], i) => {
                         y = scaleValue(y);
                         const productScale = scaleValue(productsImportValue[product]);
                         const color = iwanthue(1, { seed: product });
                         const isTooSmallForText = productScale < 25;
+                        const isNotHighlight = (focus && focus.mode === 'highlight' && focus.itemValue !== product)
                         return (
                             <g
                                 transform={`translate(${0}, ${y})`}
-                                onClick={() => focusProduct(product)}
+                                onDoubleClick={() => setFocus({
+                                    actionType: 'set',
+                                    itemType: 'product',
+                                    mode: 'filter',
+                                    itemValue: product
+                                })}
+                                onClick={() => setFocus({
+                                    actionType: 'set',
+                                    itemType: 'product',
+                                    mode: 'highlight',
+                                    itemValue: product
+                                })}
                                 key={i}
                             >
                                 <rect
@@ -279,8 +316,9 @@ export default function AlluvialImportExport({
                                     width={barWidth}
                                     height={productScale}
                                     fill={color}
+                                    opacity={(isNotHighlight ? 0.2 : 1)}
                                 />
-                                {isTooSmallForText === false &&
+                                {(isTooSmallForText === false || isNotHighlight === false) &&
                                     <text
                                         y={productScale - labelMargin}
                                         x={labelMargin}
@@ -296,12 +334,6 @@ export default function AlluvialImportExport({
                 className="partner-bar"
                 transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight + centerCircleHeight})`}
             >
-                <rect
-                    x={0}
-                    y={0}
-                    width={barWidth}
-                    height={partnerBarHeight}
-                />
                 {
                     partnersDraw.map(([partner, y], i) => {
                         y = scaleValue(y);
@@ -311,7 +343,18 @@ export default function AlluvialImportExport({
                             <g
                                 transform={`translate(${0}, ${y})`}
                                 key={i}
-                                onClick={() => focusPartner(partner)}
+                                onDoubleClick={() => setFocus({
+                                    actionType: 'set',
+                                    itemType: 'partner',
+                                    mode: 'filter',
+                                    itemValue: partner
+                                })}
+                                onClick={() => setFocus({
+                                    actionType: 'set',
+                                    itemType: 'partner',
+                                    mode: 'highlight',
+                                    itemValue: partner
+                                })}
                             >
                                 <rect
                                     x={0}
@@ -335,7 +378,7 @@ export default function AlluvialImportExport({
             </AnimatedGroup>
             <g>
                 {
-                    links['Imports'].map(({ from, to, value, product, isFraude }, i) => {
+                    links['Imports'].map(({ from, to, value, product, isFraude, isHighlight }, i) => {
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
@@ -367,6 +410,7 @@ export default function AlluvialImportExport({
                                     strokeWidth={strokeWidth}
                                     stroke={color}
                                     fill='transparent'
+                                    opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
                                 />
                                 {isTooSmallForText === false && <text textAnchor='end'>{formatNumber(value)}</text>}
                             </g>
@@ -374,7 +418,7 @@ export default function AlluvialImportExport({
                     })
                 }
                 {
-                    links['Exports'].map(({ from, to, value, product, isFraude }, i) => {
+                    links['Exports'].map(({ from, to, value, product, isFraude, isHighlight }, i) => {
                         const color = iwanthue(1, { seed: product });
                         const strokeWidth = scaleValue(value);
                         const strokeWidthMiddle = strokeWidth / 2;
@@ -407,6 +451,7 @@ export default function AlluvialImportExport({
                                     strokeWidth={strokeWidth}
                                     stroke={color}
                                     fill='transparent'
+                                    opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
                                 />
                                 {isTooSmallForText === false && <text textAnchor='start'>{formatNumber(value)}</text>}
                             </g>
