@@ -39,7 +39,6 @@ export default function Timeline({
         if (!!timelineRef === false && isOnBrush === false) {
             return;
         }
-        console.log(timelineRef);
     }, [timelineRef, isOnBrush]);
 
     useEffect(function setCurrentVizYearWhenBrushChange () {
