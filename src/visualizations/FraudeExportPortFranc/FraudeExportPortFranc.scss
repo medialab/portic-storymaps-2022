@@ -1,7 +1,24 @@
-.FraudeExportPortFranc-row {
+.FraudeExportPortFranc {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-    div {
-       margin: 20px;
+    .FraudeExportPortFranc-box {
+        position: relative;
+        h3 {
+            position: absolute;
+            margin: 0;
+            float: le;
+        }
+    }
+
+
+    .FraudeExportPortFranc-row {
+        display: flex;
+        justify-content: space-between;
+
+        // div {
+        //    margin: 20px;
+        // }
     }
 }

@@ -1,4 +1,4 @@
-import { group } from 'd3-array';
+import { extent, group, groups, mean } from 'd3-array';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import LineChart from '../../components/LineChart';
@@ -12,41 +12,36 @@ export default function TonnageMoyenMois({
     lang,
     ...props
 }) {
+    const [minYear, maxYear] = extent(inputData, d => d.year)
     const { width, height } = dimensions;
-    const [yearBrush, setYearBrush] = useState(undefined);
+    const [yearBrush, setYearBrush] = useState([minYear, minYear]);
 
     const data = useMemo(() => {
         return inputData
-            .map(({ month, ...rest }) => {
-                const mounths = Object.fromEntries([
-                    'Janvier',
-                    'Février',
-                    'Mars',
-                    'Avril',
-                    'Mai',
-                    'Juin',
-                    'Juillet',
-                    'Août',
-                    'Septembre',
-                    'Octobre',
-                    'Novembre',
-                    'Décembre'
-                ].map((mounth, i) => [mounth, i + 1]))
-                return {
-                    month: mounths[month],
-                    ...rest
-                }
-            })
-    }, [inputData]);
+        .filter(({ year: rowYear }) => yearBrush.includes(rowYear))
+        .map(({ value, ...rest }) => {
+            return {
+                ...rest,
+                value: +value
+            }
+        })
+    }, [inputData, yearBrush]);
+
+    const monthsValue = useMemo(function groupMonths() {
+        const monthGroup = groups(data, d => d.month);
+        const monthGroupValue = monthGroup.map(([month, monthArray]) => {
+            return {
+                month,
+                value: mean(monthArray, d => d.value)
+            }
+        })
+        return monthGroupValue;
+    }, [data, yearBrush]);
 
     const years = useMemo(function groupYears() {
-        const yearGroup = group(data, d => d.year);
+        const yearGroup = group(inputData, d => d.year);
         return Array.from(yearGroup.keys());
-    }, [data]);
-
-    useEffect(function setInitialYear() {
-        setYearBrush([years[0]]);
-    }, [years]);
+    }, [inputData]);
 
     const {
         linechartHeight,
@@ -58,38 +53,28 @@ export default function TonnageMoyenMois({
         }
     }, [height])
 
-    if (yearBrush === undefined) {
-        return null;
-    }
-
     return (
         <>
             <LineChart
-                data={
-                    data.filter(({ year: rowYear }) => yearBrush.includes(rowYear))
-                        .map(({ month, ...rest }) => {
-                            return {
-                                month: new Date(rest.year, month),
-                                ...rest
-                            }
-                        })
-                }
+                data={monthsValue}
                 x={{
                     field: 'value',
-                    title: translate('TonnageMoyenMois', 'x', lang)
+                    title: translate('TonnageMoyenMois', 'x', lang),
+                    tickFormat: (value, valueIndex) => formatNumber(value)
                 }}
                 y={{
                     field: 'month',
                     title: translate('TonnageMoyenMois', 'y', lang),
                     fillGaps: true,
-                    tickFormat: v => new Date(v).toLocaleDateString()
+                    type: 'ordinal'
                 }}
                 width={width}
                 height={linechartHeight}
                 tooltip={
                     (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
-                        value: formatNumber(d['value']),
-                        month: d['month'].toLocaleDateString()
+                        value: formatNumber(Math.round(d['value'])),
+                        month: d['month'],
+                        period: (yearBrush[0] === yearBrush[1]) ? yearBrush[0] : extent(yearBrush).join('-')
                     })
                 }
             />

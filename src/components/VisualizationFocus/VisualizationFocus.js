@@ -161,7 +161,7 @@ export default function VisualizationFocus({
                             }
                         </div>
                     </div>
-                    <div className="visualization-wrapper" onClick={onClickClose}>
+                    <div className="visualization-wrapper">
                         <Measure
                             bounds
                             onResize={contentRect => {

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useReducer, useState } from "react"
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
 
@@ -9,8 +9,12 @@ export default function FraudeExportPortFranc({
     dimensions,
     ...props
 }) {
+    const [focus, setFocus] = useReducer((lastState, newState) => {
+        if (lastState === newState) { return undefined; }
+        return newState;
+    }, undefined);
+
     const { width, height } = dimensions;
-    const margin = 40;
 
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
@@ -25,52 +29,60 @@ export default function FraudeExportPortFranc({
         return preparedData;
     }, [inputData]);
 
+    const focusRatio = 0.7;
+
     return (
-        <>
-            <div
-                className='FraudeExportPortFranc-row'
-            >
-                <div>
+        <div
+            className='FraudeExportPortFranc'
+            style={{
+                width,
+                height
+            }}
+        >
+            <div className='FraudeExportPortFranc-row' >
+                <div className='FraudeExportPortFranc-box'>
+                    <h3 onClick={() => setFocus('Dunkerque')}>Dunkerque</h3>
                     <AlluvialImportExport
                         dimensions={{
-                            width: (width / 2) - margin,
-                            height: (height / 2) - margin
+                            width: width * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio)),
+                            height: height * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio))
                         }}
-                        data={data.filter(({ port }) => port === 'Dunkerque')}
+                        data={data.filter(({ port, aggregate_type }) => port === 'Dunkerque' && aggregate_type === 'detail_products')}
                     />
                 </div>
-                <div>
+                <div className='FraudeExportPortFranc-box'>
+                    <h3 onClick={() => setFocus('Marseille')}>Marseille</h3>
                     <AlluvialImportExport
                         dimensions={{
-                            width: (width / 2) - margin,
-                            height: (height / 2) - margin
+                            width: width * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio)),
+                            height: height * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio))
                         }}
-                        data={data.filter(({ port }) => port === 'Marseille')}
-                    />
-                </div>
-            </div>
-            <div
-                className='FraudeExportPortFranc-row'
-            >
-                <div>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: (width / 2) - margin,
-                            height: (height / 2) - margin
-                        }}
-                        data={data.filter(({ port }) => port === 'Lorient')}
-                    />
-                </div>
-                <div>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: (width / 2) - margin,
-                            height: (height / 2) - margin
-                        }}
-                        data={data.filter(({ port }) => port === 'Bayonne')}
+                        data={data.filter(({ port, aggregate_type }) => port === 'Marseille' && aggregate_type === 'detail_products')}
                     />
                 </div>
             </div>
-        </>
+            <div className='FraudeExportPortFranc-row'>
+                <div className='FraudeExportPortFranc-box'>
+                    <h3 onClick={() => setFocus('Lorient')}>Lorient</h3>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: width * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio)),
+                            height: height * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio))
+                        }}
+                        data={data.filter(({ port, aggregate_type }) => port === 'Lorient' && aggregate_type === 'detail_products')}
+                    />
+                </div>
+                <div className='FraudeExportPortFranc-box'>
+                    <h3 onClick={() => setFocus('Bayonne')}>Bayonne</h3>
+                    <AlluvialImportExport
+                        dimensions={{
+                            width: width * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio)),
+                            height: height * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio))
+                        }}
+                        data={data.filter(({ port, aggregate_type }) => port === 'Bayonne' && aggregate_type === 'detail_products')}
+                    />
+                </div>
+            </div>
+        </div>
     )
 }
