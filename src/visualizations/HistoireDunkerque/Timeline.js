@@ -1,129 +1,27 @@
-import React, { useContext, useMemo, useRef, useState, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import TimelineFragment from "./TimelineFragment";
-import TimelineVerticalLine from "./TimelineVerticalLine";
+import DiagonalHatching from "../../components/DiagonalHatching";
 
+import { extent, max, range } from 'd3-array';
 import { scaleLinear } from "d3-scale";
-import { range } from "lodash";
-import { generatePalette } from "../../utils/misc";
-import { VisualisationContext } from "../../utils/contexts";
-
-/**
- * Get timeline SVG component from dataset
- * @param {Object} props
- * @param {Object[]} props.data
- * @param {Object} props.dimensions
- * @param {Number} props.dimensions.width
- * @param {Number} props.dimensions.height
- * @param {Object} props.callerProps
- * @param {String} props.callerProps.year
- * @param {Object} props.callerProps.object
- * @returns 
- */
+import iwanthue from "iwanthue";
 
 export default function Timeline({
     data,
     dimensions,
+    palette,
     callerProps,
+    yearState,
     ...props
 }) {
-    const [yearCursor, setYearCursor] = useState(undefined);
-    const { width: timelineWidth, height: timelineHeight } = dimensions;
+    const { width, height } = dimensions;
+    const [cursorX, setCursorX] = useState(undefined);
+    const [yearTicks, setYearTicks] = useState(10);
+    const [diplayedYear, setDiplayedYear] = yearState;
 
     const svgRef = useRef(null);
 
-    const {
-        changeMapView,
-        resetMapView,
-        yearMark
-    } = useContext(VisualisationContext);
-
-    const years = useMemo(() => {
-        let yearMin = Infinity, yearMax = 0;
-        for (const { year } of data) {
-            if (year < yearMin) { yearMin = +year }
-            if (year > yearMax) { yearMax = +year }
-        }
-        return range(yearMin, yearMax);
-    }, [data]);
-
-    const categoriesColor = useMemo(() => {
-        let categories = new Set(data.map(({category}) => category));
-        categories = Array.from(categories);
-        const colors = generatePalette('years', categories.length);
-        categories = categories.map((category, i) => [category, colors[i]]);
-        categories = Object.fromEntries(categories)
-        return categories;
-    }, [data]);
-
-    const categories = useMemo(() => {
-        return Object.keys(categoriesColor);
-    }, [categoriesColor])
-
-    const categoryHeight = useMemo(() => {
-        return timelineHeight / categories.length;
-    }, [categories, timelineHeight])
-
-    const yearsOnInterest = useMemo(() => {
-        // const yearFromData = new Set(data.map(({ year }) => year))
-        // return Array.from(yearFromData);
-        const paylaod = {};
-        for (const { year, ...rest } of data) {
-            const { category } = rest;
-            paylaod[year] = {
-                color: categoriesColor[category],
-                ...rest
-            }
-        }
-        return paylaod;
-    }, [data]);
-
-    const spanRange = useMemo(() => {
-        let yearMin = years[0], yearMax = years[years.length - 1];
-        return scaleLinear()
-            .domain([yearMin, yearMax])
-            .range([0, timelineWidth]);
-    }, [years, dimensions]);
-
-    const step = useMemo(() => {
-        return spanRange(years[1])
-    }, [spanRange]);
-
-    useEffect(() => {
-        const { year: callerYear, object: callerObject } = callerProps;
-        if ([callerYear, callerObject].every(callerProp => callerProp === undefined) === true) {
-            resetMapView();
-            return;
-        }
-
-        let matchRow = undefined;
-
-        const yearMatchData = data.filter(({ year: rowYear }) => rowYear === callerYear);
-        if (yearMatchData.length === 1) {
-            matchRow = yearMatchData[0];
-            const { year: matchYear } = matchRow;
-            const xCoordinate = spanRange(matchYear);
-            let yearClosestId = getInterestYearIdWithX(xCoordinate);
-            changeMapView(yearClosestId, xCoordinate);
-            return;
-        }
-
-        if (callerObject === undefined) {
-            resetMapView();
-            return;
-        }
-
-        matchRow = yearMatchData.find(({ object: rowObject }) => rowObject === callerObject);
-        if (matchRow !== undefined) {
-            const { year: matchYear } = matchRow;
-            const xCoordinate = spanRange(matchYear);
-            let yearClosestId = getInterestYearIdWithX(xCoordinate);
-            changeMapView(yearClosestId, xCoordinate);
-            return;
-        }
-    }, [callerProps, spanRange])
-
-    function getCoordinatesOnClick(e) {
+    function getCursorCoordinates(e) {
         const { clientX, clientY } = e;
         const { top, left } = svgRef.current.getBoundingClientRect();
         return {
@@ -132,111 +30,154 @@ export default function Timeline({
         }
     }
 
-    function getYearWithX(xCoordinateOnLick) {
-        const floatYearForXCoordinate = spanRange.invert(xCoordinateOnLick);
+    function getYearWithX(xCoordinateOnClick) {
+        if (xCoordinateOnClick === undefined) { return; }
+        const floatYearForXCoordinate = spanRange.invert(xCoordinateOnClick);
         const yearForXCoordinate = Math.round(floatYearForXCoordinate);
         return yearForXCoordinate;
     }
 
-    function getInterestYearIdWithX(xCoordinateOnLick) {
-        let yearTarget = getYearWithX(xCoordinateOnLick);
-        const years = Object.keys(yearsOnInterest);
-        const yearClosest = years.reduce((prev, curr) => {
-            return (Math.abs(curr - yearTarget) < Math.abs(prev - yearTarget) ? curr : prev);
+    const {
+        minYear,
+        maxYear,
+        perYear
+    } = useMemo(function rangeYears() {
+        const periodsYears = data
+            .filter(({ type }) => type === 'period')
+            .map(({ year_start, year_end }) => [year_start, year_end])
+            .flat();
+        const [minYear, maxYear] = extent(periodsYears);
+
+        let perYear = range(minYear, maxYear, 1).map(year => {
+            return [
+                year, {
+                    head: '1700__head.svg',
+                    map: '1700__map.svg',
+                    legend: '1700__legend.svg'
+                }
+            ]
         });
-        const [_, { id: yearClosestId }] = Object.entries(yearsOnInterest).find(([year, {...rest}]) => yearClosest === year)
-        return yearClosestId;
-    }
+        perYear = Object.fromEntries(perYear);
+
+        return {
+            minYear,
+            maxYear,
+            perYear
+        };
+    }, [data]);
+
+    const spanRange = useMemo(() => {
+        return scaleLinear()
+            .domain([minYear, maxYear])
+            .range([0, width]);
+    }, [minYear, maxYear, width]);
+
+    useEffect(function evalTicksFromDisplaySize() {
+        if (svgRef === null) { return; }
+        const { width: displayWidth } = svgRef.current.getBoundingClientRect();
+        const yearnNb = maxYear - minYear;
+        if ((displayWidth / yearnNb) < 2) { setYearTicks(20); }
+        else { setYearTicks(10); }
+    }, [svgRef, width, minYear, maxYear]);
 
     return (
         <svg
+            {...{ width, height }}
             ref={svgRef}
             onClick={(e) => {
-                const { x } = getCoordinatesOnClick(e);
-                let yearClosestId = getInterestYearIdWithX(x);
-                changeMapView(yearClosestId, x);
+                const { x } = getCursorCoordinates(e);
+                let yearTarget = getYearWithX(x);
+                setDiplayedYear(yearTarget);
             }}
             onMouseMove={(e) => {
-                const { x } = getCoordinatesOnClick(e);
-                let yearTarget = getYearWithX(x);
-                setYearCursor({
-                    year: yearTarget,
-                    x
-                })
+                const { x } = getCursorCoordinates(e);
+                setCursorX(x)
             }}
-            onMouseLeave={() => setYearCursor(undefined)}
-            width={timelineWidth}
-            height={timelineHeight}
+            onMouseLeave={() => setCursorX(undefined)}
         >
-            { // background gray lines
-                years.map((year, i) => {
-                    if (year % 20 !== 0) {
-                        return null;
-                    }
-                    return (
-                        <TimelineVerticalLine
-                            key={i}
-                            year={year}
-                            x={spanRange(year)}
-                            height={timelineHeight}
-                            color='gray'
-                            strokeOpacity="0.2"
-                            strokeDasharray="10,15"
-                        />
-                    )
-                })
-            }
+            <DiagonalHatching id='diag-hatch' lineGap={5} color='red' />
             {
-                yearMark &&
-                <TimelineVerticalLine
-                    year={yearMark.year}
-                    x={yearMark.x}
-                    height={timelineHeight}
-                    color='gray'
-                />
-            }
-            {
-                yearCursor &&
-                <TimelineVerticalLine
-                    year={yearCursor.year}
-                    x={yearCursor.x}
-                    height={timelineHeight}
-                    color='black'
-                />
-            }
-            {
-                categories.map((category, i) => {
-                    const categoryLabelSize = 14;
-                    const categoryLabelMargin = 5;
+                data.filter(({ type }) => type === 'period').map(({ year_start, year_end, upper_town, lower_town }, i) => {
+                    const colorUpperTown = palette[upper_town];
+                    const colorLowerTown = palette[lower_town];
+                    const lineHeight = 15;
                     return (
                         <g
+                            // transform={`translate(${spanRange(year_start)}, ${0})`}
                             key={i}
-                            transform={`translate(${0}, ${categoryHeight * i})`}
                         >
-                            <text y={categoryLabelSize} fontSize={categoryLabelSize} >{category}</text>
-                            {
-                                data
-                                .filter(({ category: yearCategory }) => yearCategory === category)
-                                .map(({ year, year_end, text, ...rest }, i) => {
-                                    const length = (year_end) ? year_end - year : 1;
-                                    return (
-                                        <TimelineFragment
-                                            key={i}
-                                            width={step*length}
-                                            height={categoryHeight - categoryLabelSize - 10}
-                                            x={spanRange(year)}
-                                            y={categoryLabelSize + categoryLabelMargin}
-                                            label={text}
-                                            color={categoriesColor[category]}
-                                            { ...rest }
-                                        />
-                                    )
-                                })
-                            }
+                            <path
+                                d={`
+                                M ${spanRange(year_start)}, ${lineHeight / 2}
+                                H ${spanRange(year_end)}
+                                `}
+                                stroke={colorUpperTown}
+                                strokeWidth={lineHeight}
+                            />
+                            <path
+                                d={`
+                                M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
+                                H ${spanRange(year_end)}
+                                `}
+                                stroke={colorLowerTown}
+                                strokeWidth={lineHeight}
+                            />
                         </g>
                     )
                 })
             }
+            {
+                data.filter(({ type }) => type === 'event').map(({ year }, i) => {
+                    const pointHeight = 5;
+                    return (
+                        <g
+                            transform={`translate(${spanRange(year) - pointHeight / 2}, ${12})`}
+                            key={i}
+                        >
+                            <circle
+                                cx={pointHeight / 2}
+                                cy={pointHeight / 2}
+                                r={pointHeight / 2}
+                                fill='black'
+                            />
+                        </g>
+                    )
+                })
+            }
+            {
+                range(minYear, maxYear, yearTicks).map((year, i) => {
+                    return (
+                        <g
+                            transform={`translate(${spanRange(year)}, ${0})`}
+                            key={i}
+                        >
+                            <path
+                                d={`
+                                M 0, 0
+                                V ${height}
+                                `}
+                                stroke='gray'
+                                strokeWidth={0.5}
+                                strokeDasharray="10,15"
+                            />
+                            <text y={height} x={2} fontSize={8} fill='gray'>{year}</text>
+                        </g>
+                    )
+                })
+            }
+            <g
+                transform={`translate(${cursorX || spanRange(diplayedYear)}, ${0})`}
+            >
+                <path
+                    d={`
+                    M 0, 0
+                    V ${height}
+                    `}
+                    stroke='black'
+                    strokeWidth={0.5}
+                />
+                <text y={height} x={2} fontSize={8} fill='gray'>{getYearWithX(cursorX) || diplayedYear}</text>
+            </g>
         </svg>
     )
 }

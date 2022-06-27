@@ -7,6 +7,7 @@ import PecheTypeValue from './PecheTypeValue';
 import HistoireDunkerque from './HistoireDunkerque';
 import FraudeExportDunkerque from './FraudeExportDunkerque';
 import StigmatesSmoggleursDunkerque from './StigmatesSmoggleursDunkerque';
+import CarteDestinations from './CarteDestinations';
 import EvolutionTypeConges from './EvolutionTypeConges';
 import TonnageMoyenMois from './TonnageMoyenMois';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
@@ -32,12 +33,13 @@ export default function VisualizationController({
     ref,
     dimensions,
     lang,
-    callerProps = {}
+    callerProps = {},
+    ...props
 }) {
     const { width, height } = dimensions;
 
     const data = useMemo(function getVizDataFromId() {
-        const { outputs: vizDataFiles } = visualizationsMetas[vizId];
+        const { outputs: vizDataFiles = [] } = visualizationsMetas[vizId] || {};
         if (vizDataFiles.every(dataFile => datasets.has(dataFile)) === false) {
             return undefined;
         }
@@ -53,13 +55,15 @@ export default function VisualizationController({
         }
 
         switch (vizId) {
+            case 'carte-destinations':
+              return <CarteDestinations {...{data, dimensions, lang, ...props}} />;
             case 'peche-type-value':
                 return (
-                    <PecheTypeValue {...{ data, dimensions, lang }} />
+                    <PecheTypeValue {...{ data, dimensions, lang, ...props }} />
                 );
             case 'smoggleur-proportion':
                 return (
-                    <SmogglagePortsStats {...{ data, dimensions, lang }} />
+                    <SmogglagePortsStats {...{ data, dimensions, lang, ...props }} />
                 );
             case 'histoire-dunkerque':
                 return (
@@ -101,7 +105,7 @@ export default function VisualizationController({
     }, [vizId, callerProps, dimensions, lang, data])
 
     return (
-        <div className='VisualizationController viz-render' ref={ref}>
+        <div onClick={e => e.stopPropagation()} className='VisualizationController viz-render' ref={ref}>
             {vizContent}
         </div>
     )

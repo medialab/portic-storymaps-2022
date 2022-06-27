@@ -9,7 +9,7 @@ import VisualizationFocus from '../VisualizationFocus';
 
 import translate from '../../utils/translate';
 import { buildPageTitle } from '../../utils/misc';
-import { fetchDataCsv } from '../../utils/fetch';
+import { fetchDataFile } from '../../utils/fetch';
 
 import './Atlas.scss';
 
@@ -41,13 +41,12 @@ export default function Atlas({
 
         setLoadingState('process');
         const { outputs, ...metas } = visualizationsMetas[vizId];
-        console.log(outputs);
 
         const payload = new Map();
 
         Promise.all(
             outputs.map(fileToLoad =>
-                fetchDataCsv(fileToLoad).catch(error => null)
+                fetchDataFile(fileToLoad).catch(error => null)
             )
         )
         .then((datasets) => {
@@ -67,7 +66,6 @@ export default function Atlas({
     }, [vizId])
 
     useEffect(() => window.scrollTo({ top: 0 }), []);
-
     return (
         <div className='Atlas secondary-page'>
             <Helmet>
@@ -86,7 +84,7 @@ export default function Atlas({
                                 <li
                                     className='visualization-item'
                                     onClick={() => onClickFocus(id, output)}
-                                    key={i}
+                                    key={id}
                                 >
                                     <figure className="thumbnail-container">
                                         <img

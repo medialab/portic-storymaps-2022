@@ -10,8 +10,7 @@ export default function FraudeExportDunkerque({
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
         let preparedData = inputData
-            .filter(({ port }) => port === 'Dunkerque')
-            .filter(({ aggregate_type }) => aggregate_type === 'detail_products')
+            .filter(({ port, aggregate_type }) => port === 'Dunkerque' && aggregate_type === 'detail_products')
             .map(({ value, ...rest }) => {
                 return {
                     value: +value, // string to number

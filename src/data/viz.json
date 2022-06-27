@@ -1,13 +1,32 @@
 {
+    "histoire-dunkerque": {
+        "id": "histoire-dunkerque",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/histoire-dunkerque",
+        "titre_fr": "L'histoire de Dunkerque",
+        "titre_en": "The story of Dunkirk",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzWwOjKagEDPUPP5zEdE_fkhUKWmnH6PrhdSATuvPWD7i40gnMR9Z770s_0tB2dqSnmlwivBbFBCdj/pub?gid=0&single=true&output=csv"
+        ],
+        "outputs": [
+            "histoire-dunkerque.csv"
+        ]
+    },
     "smoggleur-proportion": {
         "id": "smoggleur-proportion",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/visualisation/smoggleur-proportion",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-proportion",
         "titre_fr": "Proportion des smoggleurs au départ de Dunkerque et d'autres ports français",
         "titre_en": "Proportion of smoggers from Dunkirk and other French ports",
         "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
         "description_en": "Proportions of boats departures according to their status as smogger or non-semogleur.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -21,8 +40,8 @@
     },
     "smoggleur-statut": {
         "id": "smoggleur-statut",
-        "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/visualisation/smoggleur-statut",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-statut",
         "titre_fr": "Départs de bateaux anglais en 1787 avec une précision sur leur statut de smoggleur",
         "titre_en": "Departures of English boats in 1787 with precision on their status as smogger",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -42,7 +61,7 @@
     "peche-type-value": {
         "id": "peche-type-value",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/visualisation/peche-type-value",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/peche-type-value",
         "titre_fr": "Valeur du poisson importé à Dunkerque",
         "titre_en": "Fish value imported in Dunkirk",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -58,23 +77,325 @@
             "peche-type-value.csv"
         ]
     },
-    "map": {
-        "id": "map",
-        "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/visualisation/map",
-        "titre_fr": "Transformation du port de Dunkerque au fil des ans",
-        "titre_en": "Transformation of the port of Dunkirk over the years",
+    "peche-map": {
+        "id": "peche-map",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/peche-map",
+        "titre_fr": "Cartes des zones de pêche du port de Dunkerque",
+        "titre_en": "Port of Dunkirk fishing areas",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [],
+        "outputs": []
+    },
+    "evolution-budget-dunkerque": {
+        "id": "evolution-budget-dunkerque",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-budget-dunkerque",
+        "titre_fr": "Évolution du budget de Dunkerque au XVIIIème siècle",
+        "titre_en": "Evolution of the Dunkirk budget in the 18th century",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzWwOjKagEDPUPP5zEdE_fkhUKWmnH6PrhdSATuvPWD7i40gnMR9Z770s_0tB2dqSnmlwivBbFBCdj/pub?gid=0&single=true&output=csv"
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmd4hLWgCWE_7QSDAPq1G4C3ShRw-d53EoNnRSzX4je2fk-4SQlaC0cGIL1MNprQ/pub?gid=461109929&single=true&output=csv"
         ],
         "outputs": [
-            "map.csv"
+            "evolution-budget-dunkerque.csv"
         ]
+    },
+    "schema-sources": {
+        "id": "schema-sources",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/schema-sources",
+        "titre_fr": "Sources à disposition",
+        "titre_en": "Sources available",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "pilotage": {
+        "id": "pilotage",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/pilotage",
+        "titre_fr": "Évolution du pilotage et de la navigation selon les sources disponibles",
+        "titre_en": "Evolution of management and navigation according to available sources",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "evolution-type-conges": {
+        "id": "evolution-type-conges",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-type-conges",
+        "titre_fr": "Évolution des types de congés",
+        "titre_en": "Evolution of types of leave",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxBxqnzHK1HEDjh5dBwJ9gBG5CJCSNfDpVeEDFHvCHxl3nXyuA2aLhiCf_JGib9A/pub?gid=1209238320&single=true&output=csv"
+        ],
+        "outputs": [
+            "evolution-type-conges.csv"
+        ]
+    },
+    "tonnage-moyen-par-mois": {
+        "id": "tonnage-moyen-par-mois",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/tonnage-moyen-par-mois",
+        "titre_fr": "Tonnage moyen par mois",
+        "titre_en": "Average tonnage per month",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtEHMi-XI37xMlMXvDSS2Tnfy_DqSmpyx320i9iT7Wa1bTBEDqg1Y76AgF5WQW-g/pub?gid=1647345428&single=true&output=csv"
+        ],
+        "outputs": [
+            "tonnage-moyen-par-mois.csv"
+        ]
+    },
+    "carte-destinations-dunkerquois": {
+        "id": "carte-destinations-dunkerquois",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-dunkerquois",
+        "titre_fr": "Les destinations des Dunkerquois",
+        "titre_en": "Dunkerquois destinations",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "carte-destinations-non-dunkerquois": {
+        "id": "carte-destinations-non-dunkerquois",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-non-dunkerquois",
+        "titre_fr": "Les destinations des non-dunkerquois",
+        "titre_en": "The destinations of non-Dunkirk",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "carte-destinations": {
+        "id": "carte-destinations",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations",
+        "titre_fr": "Carte des destinations des navires partis de Dunkerque",
+        "titre_en": "Map of the destinations of the ships who left Dunkirk",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [
+            "map_backgrounds/world_map.svg",
+            "map_backgrounds/world_map.geojson"
+        ]
+    },
+    "evolution-peche": {
+        "id": "evolution-peche",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-peche",
+        "titre_fr": "Les dunkerquois et la pêche",
+        "titre_en": "Dunkirk and fishing",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "resume-activite-dunkerquois-1787": {
+        "id": "resume-activite-dunkerquois-1787",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/resume-activite-dunkerquois-1787",
+        "titre_fr": "Activités des dunkerquois en 1787",
+        "titre_en": "Dunkerquois activities in 1787",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "stigmates-smoggleurs-dunkerque": {
+        "id": "stigmates-smoggleurs-dunkerque",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/stigmates-smoggleurs-dunkerque",
+        "titre_fr": "Repérer les smoggleurs",
+        "titre_en": "Locate smoggers",
+        "description_fr": "Les smoggleurs ont des caractéristiques particulières en fonction de leur ville de provenance.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [
+            "stigmates-smoggleurs-dunkerque.csv"
+        ]
+    },
+    "departs-fr-vers-angleterre": {
+        "id": "departs-fr-vers-angleterre",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/departs-fr-vers-angleterre",
+        "titre_fr": "Les départs vers l'Angleterre",
+        "titre_en": "Departures to England",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "destinations-gb-vers-gb": {
+        "id": "destinations-gb-vers-gb",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/destinations-gb-vers-gb",
+        "titre_fr": "Les destinations des anglais",
+        "titre_en": "English destinations",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "fraude-exports-dunkerque": {
+        "id": "fraude-exports-dunkerque",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fraude-exports-dunkerque",
+        "titre_fr": "Les masses manquantes de la balance dunkerquoise",
+        "titre_en": "The missing masses of the Dunkerquoise balance",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [
+            "fraude-exports.csv"
+        ]
+    },
+    "fraude-exports-ports-francs": {
+        "id": "fraude-exports-ports-francs",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fraude-exports-ports-francs",
+        "titre_fr": "Les masses manquantes de la balance dunkerquoise comparées aux autres ports francs",
+        "titre_en": "The missing masses of the Dunkerquoise balance compared to the other franc ports",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [
+            "fraude-exports.csv"
+        ]
+    },
+    "fausses-declarations": {
+        "id": "fausses-declarations",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fausses-declarations",
+        "titre_fr": "Un inventaire des (supposément) fausses déclarations de navigation",
+        "titre_en": "An inventory of (supposedly) false navigation declarations",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "imports-dunkerque-vs-ports-francs": {
+        "id": "imports-dunkerque-vs-ports-francs",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/imports-dunkerque-vs-ports-francs",
+        "titre_fr": "Imports : Dunkerque comparée aux autres ports francs",
+        "titre_en": "Imports: Dunkirk compared to other free ports",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "exports-vs-smogglage": {
+        "id": "exports-vs-smogglage",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/exports-vs-smogglage",
+        "titre_fr": "Étude des produits transportés par les smoggleurs",
+        "titre_en": "Study of products transported by smoggers",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
+    },
+    "homeports-from-dunkerque": {
+        "id": "homeports-from-dunkerque",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/homeports-from-dunkerque",
+        "titre_fr": "Ports d'attache des bateaux partis de Dunkerque en 1789",
+        "titre_en": "",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": []
     }
 }

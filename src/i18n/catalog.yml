@@ -78,11 +78,11 @@ PecheTypeValue:
     en: 
 TonnageMoyenMois:
   tooltip:
-    fr: Tonnage de ${value} en ${month}
+    fr: Tonnage moyen de ${value} en ${month} ${period}
     en: 
   x:
-    fr: Tonnage
-    en: Year
+    fr: Tonnage moyen
+    en: Mean tonnage
   y:
     fr: Mois
     en: Months

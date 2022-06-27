@@ -24,6 +24,9 @@ export default function Timeline({
     const [isOnBrush, setIsOnBrush] = useState(false);
     const [brushStart, setBrushStart] = useState(0);
     const [brushEnd, setBrushEnd] = useState(0);
+    const [mouseStart, setMouseStart] = useState(0);
+    const [mouseEnd, setMouseEnd] = useState(0);
+    const [isMouseCapture, setIsMouseCapture] = useState(false);
 
     const timelineRef = useRef(null);
 
@@ -39,7 +42,6 @@ export default function Timeline({
         if (!!timelineRef === false && isOnBrush === false) {
             return;
         }
-        console.log(timelineRef);
     }, [timelineRef, isOnBrush]);
 
     useEffect(function setCurrentVizYearWhenBrushChange () {
@@ -48,8 +50,9 @@ export default function Timeline({
             setCurrentVizYearBrush([brushStart.toString()]);
             return;
         }
+        const [minBrush, maxBrush] = extent([brushStart, brushEnd]);
         let yearsBetweenStartnEndBrush;
-        yearsBetweenStartnEndBrush = range(brushStart, brushEnd, 1);
+        yearsBetweenStartnEndBrush = range(minBrush, maxBrush, 1);
         yearsBetweenStartnEndBrush = yearsBetweenStartnEndBrush
             .map(year => year.toString())
             .filter(year => years.includes(year));
@@ -58,12 +61,16 @@ export default function Timeline({
 
     const fragmentHeight = useMemo(() => yearRange(years[1]), [years, yearRange]);
 
-    const { colorAccentBackground } = colorsPalettes.ui;
+    const { colorAccentBackground, colorAccent } = colorsPalettes.ui;
 
-    function convertXOnYear(e) {
+    function mouseXToTimlineX(e) {
         const { pageX } = e;
         const { left } = timelineRef.current.getBoundingClientRect();
         const xRelative = pageX - left;
+        return xRelative;
+    }
+
+    function convertXOnYear(xRelative) {
         const year = yearRange.invert(xRelative);
         return Math.round(year)
     }
@@ -79,8 +86,24 @@ export default function Timeline({
                 cursor:'crosshair',
                 userSelect:'none'
             }}
-            onMouseDown={(e) => setBrushStart(convertXOnYear(e))}
-            onMouseUp={(e) => setBrushEnd(convertXOnYear(e))}
+            onMouseDown={(e) => {
+                const xRelative = mouseXToTimlineX(e);
+                setIsMouseCapture(true);
+                setBrushStart(convertXOnYear(xRelative));
+                setMouseStart(xRelative);
+            }}
+            onMouseMove={(e) => {
+                if (isMouseCapture) {
+                    const xRelative = mouseXToTimlineX(e);
+                    setMouseEnd(xRelative);
+                }
+            }}
+            onMouseUp={(e) => {
+                setIsMouseCapture(false);
+                const xRelative = mouseXToTimlineX(e);
+                setBrushEnd(convertXOnYear(xRelative));
+                setMouseEnd(xRelative);
+            }}
         >
             {
                 range(minYear, maxYear, 1).map(year => {
@@ -108,7 +131,15 @@ export default function Timeline({
                     )
                 })
             }
-            {/* <line y={200} x1={yearRange(brushStart)} x2={yearRange(brushEnd)} stroke='black' /> */}
+            <path
+                d={`
+                M ${mouseStart}, ${40}
+                H ${mouseEnd}
+                `}
+                strokeWidth={5}
+                stroke={colorAccent}
+                fill='transparent'
+            />
         </svg>
     )
 }

@@ -27,17 +27,21 @@ with open(output, 'w', newline='') as csvfile:
                 if row['departure_function'] != 'O':
                     continue
                 if row['departure_fr'] != 'Dunkerque':
-                    continue    
+                    continue
                 if row['flag'] != 'British':
                     continue
 
                 row['year'] = year
                 row['tonnage'] = int(row['tonnage'] or 0)
+                if row['destination'] == '':
+                    row['destination'] = 'Inconnue'
                 if row['destination'] == 'Lisbonne [mais: Angleterre]':
                     row['destination'] = 'Lisbonne'
                 if row['destination'] not in {'Lisbonne', 'Bergen'}:
                     row['destination'] = row['destination_substate_1789_fr']
-                if row['tonnage'] != '12':
+                if row['tonnage'] == 12:
+                    row['tonnage'] = 12
+                else:
                     row['tonnage'] = row['tonnage_class']
 
                 writer.writerow(

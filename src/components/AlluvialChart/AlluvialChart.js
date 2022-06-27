@@ -33,6 +33,7 @@ export default function AlluvialChart({
     data: inputData,
     steps,
     dimensions = { width: 800, height: 500 },
+    colorPalette = {},
     decreasing = false
 }) {
     const { width, height } = dimensions;
@@ -200,7 +201,7 @@ export default function AlluvialChart({
                                 stepsGroup.get(stepName).map(([categoryName, categoryArray], iCategory) => {
                                     const isCategoryHover = categoryName === isHighlightedCategoryName;
                                     const categoryLinks = links.filter(({ from }) => from === categoryName);
-                                    const color = iwanthue(1, { seed: categoryName });
+                                    const color = colorPalette[categoryName] || iwanthue(1, { seed: categoryName });
                                     const linksLength = sum(categoryLinks, d => d.length);
                                     const isTooSmallForText = itemRange(linksLength) < 15;
 

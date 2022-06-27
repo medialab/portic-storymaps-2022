@@ -1,7 +1,7 @@
 
-import { scaleLinear } from 'd3-scale';
-import { extent, range, max, min } from 'd3-array';
-import { useRef, useState, useEffect } from 'react';
+import { scaleLinear, scaleOrdinal } from 'd3-scale';
+import { range, max, min, group } from 'd3-array';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { groupBy, uniq } from 'lodash';
 import { axisPropsFromTickScale } from 'react-d3-axis';
@@ -92,6 +92,10 @@ const LineChart = ({
         })
     }, [width, height, color, data])
 
+    useEffect(() => {
+        Tooltip.rebuild();
+    }, [data])
+
     const margins = {
         left: 120,
         top: 50,
@@ -104,12 +108,16 @@ const LineChart = ({
         tickFormat: yTickFormat,
         tickSpan: yTickSpan,
         domain: initialYDomain,
+        type: yType,
+        field: yField,
         fillGaps
     } = y;
     const {
         tickFormat: xTickFormat,
         tickSpan: xTickSpan,
         domain: initialXDomain,
+        type: xType,
+        field: xField
     } = x;
 
     let colorPalette;
@@ -124,14 +132,29 @@ const LineChart = ({
         }), {})
     }
 
-    const xDomain = initialXDomain || extent(data.filter(d => +d[y.field]).map(d => +d[x.field]));
-    const yDomain = initialYDomain || [min(data.map(d => +d[y.field])), max(data.map(d => +d[y.field]))];
+    let xScale, xDomain, xAxisValues;
+    if (xType === 'ordinal') {
+        xDomain = Array.from(group(data, d => d[xField]).keys())
+        xScale = scaleOrdinal().domain(xDomain).range(range(margins.left, width - margins.right, (width - margins.right) / xDomain.length - 1));
+        xAxisValues = xDomain;
+    } else {
+        xDomain = [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
+        xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]).nice();
+        xAxisValues = axisPropsFromTickScale(xScale).values;
+    }
 
-    const xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]).nice();
-    const yScale = scaleLinear().domain(yDomain).range([height - margins.bottom, margins.top]).nice();
+    let yScale, yDomain, yAxisValues;
+    if (yType === 'ordinal') {
+        yDomain = Array.from(group(data, d => d[yField]).keys())
+        yScale = scaleOrdinal().domain(yDomain).range(range(margins.top, height - margins.bottom, (height - margins.bottom) / yDomain.length - 1));
+        yAxisValues = yDomain;
+    } else {
+        yDomain = [min(data.map(d => +d[y.field])), max(data.map(d => +d[y.field]))];
+        yScale = scaleLinear().domain(yDomain).range([height - margins.bottom, margins.top]).nice();
+        yAxisValues = axisPropsFromTickScale(yScale, 10).values;
+    }
+
     const groups = color ? Object.entries(groupBy(data, d => d[color.field])) : [[undefined, data]];
-    let { values: xAxisValues } = axisPropsFromTickScale(xScale);
-    let { values: yAxisValues } = axisPropsFromTickScale(yScale, 10);
     if (xTickSpan) {
         xDomain[0] = xDomain[0] - xDomain[0] % xTickSpan;
         xDomain[1] = xDomain[1] + (xTickSpan - xDomain[0] % xTickSpan);
@@ -388,10 +411,10 @@ const LineChart = ({
                                                                     ?
                                                                     <line
                                                                         className="chart-line"
-                                                                        x1={xScale(+item[x.field])}
-                                                                        x2={xScale(+next[x.field])}
-                                                                        y1={yScale(+item[y.field])}
-                                                                        y2={yScale(+next[y.field])}
+                                                                        x1={xScale(item[x.field])}
+                                                                        x2={xScale(next[x.field])}
+                                                                        y1={yScale(item[y.field])}
+                                                                        y2={yScale(next[y.field])}
                                                                         style={{ stroke: color }}
                                                                     />
                                                                     : null
