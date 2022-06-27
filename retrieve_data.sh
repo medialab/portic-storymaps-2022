@@ -15,3 +15,4 @@ curl -o data/iso690-author-date-fr-no-abstract.csl "https://www.zotero.org/style
 
 cd datascripts
 for f in *.py; do python3 "$f"; echo "execute python script $f"; done
+for f in *.js; do node "$f"; echo "execute node script $f"; done
