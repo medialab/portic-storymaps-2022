@@ -72,8 +72,9 @@ export default function TonnageMoyenMois({
                 height={linechartHeight}
                 tooltip={
                     (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
-                        value: formatNumber(d['value']),
-                        month: d['month']
+                        value: formatNumber(Math.round(d['value'])),
+                        month: d['month'],
+                        period: (yearBrush[0] === yearBrush[1]) ? yearBrush[0] : extent(yearBrush).join('-')
                     })
                 }
             />

@@ -1,6 +1,6 @@
 
 import { scaleLinear, scaleOrdinal } from 'd3-scale';
-import { extent, range, max, min, group } from 'd3-array';
+import { range, max, min, group } from 'd3-array';
 import { useRef, useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { groupBy, uniq } from 'lodash';
@@ -92,6 +92,10 @@ const LineChart = ({
         })
     }, [width, height, color, data])
 
+    useEffect(() => {
+        Tooltip.rebuild();
+    }, [data])
+
     const margins = {
         left: 120,
         top: 50,
@@ -131,7 +135,7 @@ const LineChart = ({
     let xScale, xDomain, xAxisValues;
     if (xType === 'ordinal') {
         xDomain = Array.from(group(data, d => d[xField]).keys())
-        xScale = scaleOrdinal().domain(xDomain).range(range(margins.left, width - margins.right, (width - margins.right) / xDomain.length));
+        xScale = scaleOrdinal().domain(xDomain).range(range(margins.left, width - margins.right, (width - margins.right) / xDomain.length - 1));
         xAxisValues = xDomain;
     } else {
         xDomain = [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
@@ -142,15 +146,13 @@ const LineChart = ({
     let yScale, yDomain, yAxisValues;
     if (yType === 'ordinal') {
         yDomain = Array.from(group(data, d => d[yField]).keys())
-        yScale = scaleOrdinal().domain(yDomain).range(range(margins.top, height - margins.bottom, (height - margins.bottom) / yDomain.length));
+        yScale = scaleOrdinal().domain(yDomain).range(range(margins.top, height - margins.bottom, (height - margins.bottom) / yDomain.length - 1));
         yAxisValues = yDomain;
     } else {
         yDomain = [min(data.map(d => +d[y.field])), max(data.map(d => +d[y.field]))];
         yScale = scaleLinear().domain(yDomain).range([height - margins.bottom, margins.top]).nice();
         yAxisValues = axisPropsFromTickScale(yScale, 10).values;
     }
-
-    console.log(yDomain);
 
     const groups = color ? Object.entries(groupBy(data, d => d[color.field])) : [[undefined, data]];
     if (xTickSpan) {

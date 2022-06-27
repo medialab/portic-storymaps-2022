@@ -50,8 +50,9 @@ export default function Timeline({
             setCurrentVizYearBrush([brushStart.toString()]);
             return;
         }
+        const [minBrush, maxBrush] = extent([brushStart, brushEnd]);
         let yearsBetweenStartnEndBrush;
-        yearsBetweenStartnEndBrush = range(brushStart, brushEnd, 1);
+        yearsBetweenStartnEndBrush = range(minBrush, maxBrush, 1);
         yearsBetweenStartnEndBrush = yearsBetweenStartnEndBrush
             .map(year => year.toString())
             .filter(year => years.includes(year));
