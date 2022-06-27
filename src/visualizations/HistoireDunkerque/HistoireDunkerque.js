@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import iwanthue from "iwanthue";
 
 import DunkerqueMap from "./DunkerqueMap";
 import Timeline from "./Timeline";
@@ -24,12 +23,13 @@ export default function HistoireDunkerque({
     data: inputData,
     dimensions,
     callerProps,
+    lang,
     ...props
 }) {
     const { width, height } = dimensions;
     const imgBasePath = `${process.env.BASE_PATH}/assets/`;
     const timelineHeight = 50;
-    const asideWidth = 50;
+    const asideWidth = 150;
 
     const palette = {
         'tax-free': 'url(#diag-hatch)',
@@ -130,7 +130,8 @@ export default function HistoireDunkerque({
                 <div
                     className='map-aside'
                     style={{
-                        height: height - timelineHeight
+                        height: height - timelineHeight,
+                        minWidth: asideWidth
                     }}
                 >
                     <img
@@ -155,6 +156,7 @@ export default function HistoireDunkerque({
                             height={height - timelineHeight}
                             data={inputData.get('histoire-dunkerque-points.csv')}
                             diplayedYear={diplayedYear}
+                            lang={lang}
                         />
                     </div>
                     <div

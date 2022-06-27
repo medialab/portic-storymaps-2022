@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 export default function MapPoints({
     data: inputData,
     diplayedYear,
     height,
+    lang,
     ...props
 }) {
     const [hoverId, setHoverId] = useState(undefined);
@@ -11,11 +12,12 @@ export default function MapPoints({
     const data = useMemo(function setIdForEachPoint() {
         return inputData.map((point, i) => {
             return {
+                ...point,
                 id: i,
-                ...point
+                label: point[`label_${lang}`]
             }
         })
-    }, [inputData]);
+    }, [inputData, lang]);
 
     return (
         <svg
@@ -32,17 +34,18 @@ export default function MapPoints({
                     label,
                     color,
                     id
-                }) => {
+                }, i) => {
                     if (year_start <= diplayedYear && (year_end === '' || diplayedYear < year_end)) {
                         return (
                             <g
                                 transform={`translate(${x}, ${y})`}
                                 onMouseEnter={(e) => setHoverId(id)}
                                 onMouseLeave={(e) => setHoverId(undefined)}
+                                key={i}
                             >
                                 <circle
-                                    cx={0}
-                                    cy={0}
+                                    cx={10}
+                                    cy={10}
                                     r={5}
                                     fill={color}
                                 />
