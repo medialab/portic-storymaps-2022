@@ -13,7 +13,7 @@ export default function DunkerqueMap({
     ...props
 }) {
     const { width, height } = dimensions;
-    console.log(elementsDisplay);
+
     const {
         upperTown,
         lowerTown,

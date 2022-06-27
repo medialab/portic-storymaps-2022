@@ -33,6 +33,7 @@ const { generic } = colorsPalettes;
  * @param {object} props.x
  * @param {string} props.x.field
  * @param {string} props.x.title
+ * @param {'ordinal' | 'quantitative'} props.x.type
  * @param {number} props.x.tickSpan
  * @param {function} props.x.tickFormat
  * @param {array} props.x.domain
@@ -40,6 +41,7 @@ const { generic } = colorsPalettes;
  * @param {object} props.x
  * @param {string} props.y.field
  * @param {string} props.y.title
+ * @param {'ordinal' | 'quantitative'} props.y.type
  * @param {number} props.y.tickSpan
  * @param {function} props.y.tickFormat
  * @param {array} props.y.domain
