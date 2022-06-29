@@ -86,3 +86,13 @@ TonnageMoyenMois:
   y:
     fr: Mois
     en: Months
+PecheMap:
+  tooltip:
+    fr: Pêche en ${type} d'une valeur de ${value} en ${year}
+    en: 
+  x:
+    fr: Valeur
+    en: Value
+  y:
+    fr: Année
+    en: Year
