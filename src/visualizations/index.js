@@ -12,6 +12,7 @@ import EvolutionTypeConges from './EvolutionTypeConges';
 import TonnageMoyenMois from './TonnageMoyenMois';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
 import FraudeExportPortFranc from './FraudeExportPortFranc';
+import PecheMap from './PecheMap';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -33,7 +34,7 @@ export default function VisualizationController({
     ref,
     dimensions,
     lang,
-    callerProps = {},
+    callerProps = undefined,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -92,6 +93,10 @@ export default function VisualizationController({
             case 'tonnage-moyen-par-mois':
                 return (
                     <TonnageMoyenMois {...{ data, dimensions, lang }} />
+                );
+            case 'peche-map':
+                return (
+                    <PecheMap {...{ data, dimensions, lang }} />
                 );
             default:
                 return (

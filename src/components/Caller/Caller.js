@@ -31,8 +31,12 @@ export default function Caller ({
     } = useContext(VisualisationContext);
 
     const callerPayload = useMemo(() => {
+        let callerProps = {...props}
+        if (Object.keys(callerProps).length === 0) {
+            callerProps = undefined;
+        }
         return {
-            props: {...props},
+            props: callerProps,
             canFocusOnScroll: isInblock ? false : true,
             ref,
             visualizationId,

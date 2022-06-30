@@ -218,6 +218,17 @@ const GeographicMapChart = ({
           // translationX: width * 0.4,
           // translationY: height * 0.28
         }
+      case 'world north':
+        projectionConfig = {
+          ...projectionConfig,
+          scale: 550,
+          centerX: -25,
+          centerY: 55,
+          translationX: width * .5,
+          translationY: height * .5,
+          // translationX: width * 0.4,
+          // translationY: height * 0.28
+        }
         break;
       case 'France':
       default: // as France config 

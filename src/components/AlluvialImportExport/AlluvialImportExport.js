@@ -7,10 +7,30 @@ import iwanthue from 'iwanthue';
 
 import { AnimatedPath, AnimatedGroup } from '../AnimatedSvgElements';
 
+/**
+ * @typedef Line
+ * @type {object}
+ * @property {'Exports' | 'Imports'} importsexports
+ * @property {String} port
+ * @property {'detail_products'} aggregate_type
+ * @property {'Monde' | 'Colonies' | 'Fraude'} partner_type
+ * @property {String} product_type
+ * @property {Number} value
+ */
+
+/**
+ * @param {Object} props
+ * @param {Line[]} props.data
+ * @param {Object} props.dimensions
+ * @param {Number} props.dimensions.width
+ * @param {Number} props.dimensions.height
+ * @param {Object} props.colorPalette
+ * @returns {React.ReactElement}
+ */
+
 export default function AlluvialImportExport({
     data: inputData,
     dimensions,
-    decreasing = false,
     colorPalette = {},
     ...props
 }) {
@@ -31,6 +51,12 @@ export default function AlluvialImportExport({
 
     const { width, height } = dimensions;
     const barWidth = 70;
+
+    function sortEntriesByValue([aName, aValue], [bName, bValue]) {
+        if (aValue < bValue) { return -1; }
+        if (aValue > bValue) { return 1; }
+        return 0;
+    }
 
     const data = useMemo(() => {
         // sort to get 'fraude' partner type on top of alluvial
@@ -98,7 +124,7 @@ export default function AlluvialImportExport({
     } = useMemo(function getHeightForDraw() {
         /**
          * To size product bar,
-         * need for each product the import value, as import value === export value
+         * need for each product the max value between imports and exports
          */
         let productsImportValue = products.map(([product, productArray]) => {
             let productImportArray = [], productExportArray = [];
@@ -122,7 +148,7 @@ export default function AlluvialImportExport({
 
         /**
          * To size partner bar,
-         * need for each partner the max value between import and export
+         * need for each partner the max value between imports and exports
          */
         let partnersMaxValue = partners.map(([partner, partnerArray]) => {
             if (partner === 'Fraude') { return [partner, 0]; }
@@ -150,12 +176,10 @@ export default function AlluvialImportExport({
          */
         const centerCircleHeight = 50;
 
-        /**
-         * Values to pixels
-         */
         const scaleValue = scaleLinear()
             .domain([0, sum([productsTotalImportValue, partnerTotalValue])])
             .range([0, height - centerCircleHeight]);
+
         return {
             productBarHeight: scaleValue(productsTotalImportValue),
             partnerBarHeight: scaleValue(partnerTotalValue),
@@ -166,17 +190,17 @@ export default function AlluvialImportExport({
         }
     }, [height, products, partners]);
 
+    /**
+     * We sum the value, item by item, to increment the value and deduce the 'y'
+     * position of product/partners.
+     */
+
     const {
-        productsDraw,
+        productsDraw, // each product with its initial value, sum with previous elements, ready to be scaled on pixels ('y' position)
         partnersDraw,
-        links
+        links // each data line, refactor as a directionnal link, 'from' -> 'to
     } = useMemo(function positionElements() {
-        const productsImportSorted = Object.entries(productsImportValue).sort((a, b) => {
-            const [aName, aValue] = a;
-            const [bName, bValue] = b;
-            if (aValue < bValue) { return -1; }
-            if (aValue > bValue) { return 1; }
-        });
+        const productsImportSorted = Object.entries(productsImportValue).sort(sortEntriesByValue);
         const productsDraw = [];
         let iProductsImportValue = 0;
         for (const [product, value] of productsImportSorted) {
@@ -187,11 +211,7 @@ export default function AlluvialImportExport({
             iProductsImportValue += value;
         }
 
-        const partnersMaxSorted = Object.entries(partnersMaxValue)
-            .sort(([aName, aValue], [bName, bValue]) => {
-                if (aValue < bValue) { return -1; }
-                if (aValue > bValue) { return 1; }
-            });
+        const partnersMaxSorted = Object.entries(partnersMaxValue).sort(sortEntriesByValue);
         const partnersDraw = [];
         let iPartnersImportValue = 0;
         for (const [partner, value] of partnersMaxSorted) {
@@ -206,6 +226,7 @@ export default function AlluvialImportExport({
             ['Imports']: [], // left side
             ['Exports']: [] // right side
         };
+        // dict to increment value ('y' position) for each product/partner, on left side and right side
         const iProduct = {
             ['Imports']: Object.fromEntries(productsDraw),
             ['Exports']: Object.fromEntries(productsDraw)
@@ -256,7 +277,7 @@ export default function AlluvialImportExport({
                         break;
                 }
                 links[importsexports].push(item);
-                iProduct[importsexports][product] += value;
+                iProduct[importsexports][product] += value; // increment
                 iPartner[importsexports][partner_type] += value;
             }
         }

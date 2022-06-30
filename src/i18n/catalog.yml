@@ -86,3 +86,29 @@ TonnageMoyenMois:
   y:
     fr: Mois
     en: Months
+PecheMap:
+  tooltip:
+    fr: Pêche en ${type} d'une valeur de ${value} en ${year}
+    en: 
+  x:
+    fr: Valeur
+    en: Value
+  y:
+    fr: Année
+    en: Year
+HistoireDunkerque:
+  legend_square_port_free:
+    fr: Port franc
+    en: 
+  legend_square_kingdom_france:
+    fr: Royaume de France
+    en: 
+  legend_point_port_interests:
+    fr: Défend les intérêts du Port Franc
+    en: 
+  legend_point_guard:
+    fr: Poste de garde
+    en: 
+  legend_point_kingdom_dependency:
+    fr: Dépend du Royaume de France
+    en: 

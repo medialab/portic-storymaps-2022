@@ -1,16 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useReducer } from 'react';
 
 import LineChart from '../../components/LineChart';
-import { formatNumber } from "../../utils/misc";
+import { formatNumber, reducerBrush } from "../../utils/misc";
 import translate from '../../utils/translate';
 
 export default function EvolutionBudgetDunkerque({
-    data,
+    data: inputData,
     dimensions,
     lang,
     ...props
 }) {
     const { width, height } = dimensions;
+    const [brush, setBrush] = useReducer(reducerBrush, [undefined, undefined, undefined]);
+
+    const data = useMemo(function filterData() {
+        const { start, end, mouse } = brush;
+        if (mouse !== 'up') {
+            return inputData;
+        }
+        return inputData.filter((row) => +row['Années comptables'] >= start && +row['Années comptables'] <= end);
+    }, [inputData, brush])
 
     return (
         <LineChart
@@ -37,6 +46,7 @@ export default function EvolutionBudgetDunkerque({
                     year: d['Années comptables']
                 })
             }
+            brushState={[brush, setBrush]}
         />
     )
 }
