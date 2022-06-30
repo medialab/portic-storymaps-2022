@@ -23,7 +23,7 @@ export default function HistoireDunkerque({
     data: inputData,
     dimensions,
     lang,
-    callerProps = { year: 1580 },
+    callerProps,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -39,7 +39,7 @@ export default function HistoireDunkerque({
         'point-kingdom': '#0d0a47'
     }
 
-    const [diplayedYear, setDiplayedYear] = useState(callerProps['year']);
+    const [diplayedYear, setDiplayedYear] = useState(callerProps?.year || inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
 
     const data = useMemo(function computeDataYears() {
         return inputData.get('histoire-dunkerque-dates.csv').map((row, i) => {
