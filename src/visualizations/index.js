@@ -34,7 +34,7 @@ export default function VisualizationController({
     ref,
     dimensions,
     lang,
-    callerProps = {},
+    callerProps = undefined,
     ...props
 }) {
     const { width, height } = dimensions;
