@@ -104,24 +104,52 @@ export default function Timeline({
                         <g
                             key={i}
                         >
-                            <path
-                                d={`
-                                M ${spanRange(year_start)}, ${lineHeight / 2}
-                                H ${spanRange(year_end)}
-                                `}
-                                stroke={colorUpperTown}
-                                strokeWidth={lineHeight}
-                                opacity={(colorUpperTown === '#2F2D8D' ? 0.2 : 1)}
-                            />
-                            <path
-                                d={`
-                                M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
-                                H ${spanRange(year_end)}
-                                `}
-                                stroke={colorLowerTown}
-                                strokeWidth={lineHeight}
-                                opacity={(colorLowerTown === '#2F2D8D' ? 0.2 : 1)}
-                            />
+                            <g>
+                                {
+                                    upper_town === 'tax-free' &&
+                                    <path
+                                        d={`
+                                        M ${spanRange(year_start)}, ${lineHeight / 2}
+                                        H ${spanRange(year_end)}
+                                        `}
+                                        stroke='#2F2D8D'
+                                        strokeWidth={lineHeight}
+                                        opacity={0.2}
+                                    />
+                                }
+                                <path
+                                    d={`
+                                    M ${spanRange(year_start)}, ${lineHeight / 2}
+                                    H ${spanRange(year_end)}
+                                    `}
+                                    stroke={colorUpperTown}
+                                    strokeWidth={lineHeight}
+                                    opacity={(colorUpperTown === '#2F2D8D' ? 0.2 : 1)}
+                                />
+                            </g>
+                            <g>
+                                {
+                                    lower_town === 'tax-free' &&
+                                    <path
+                                        d={`
+                                        M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
+                                        H ${spanRange(year_end)}
+                                        `}
+                                        stroke='#2F2D8D'
+                                        strokeWidth={lineHeight}
+                                        opacity={0.2}
+                                    />
+                                }
+                                <path
+                                    d={`
+                                    M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
+                                    H ${spanRange(year_end)}
+                                    `}
+                                    stroke={colorLowerTown}
+                                    strokeWidth={lineHeight}
+                                    opacity={(colorLowerTown === '#2F2D8D' ? 0.2 : 1)}
+                                />
+                            </g>
                         </g>
                     )
                 })
