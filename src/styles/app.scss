@@ -776,3 +776,8 @@ tspan {
     display: none;
   }
 }
+
+foreignObject p {
+  margin: 0;
+  font-family: $font-family-1;
+}

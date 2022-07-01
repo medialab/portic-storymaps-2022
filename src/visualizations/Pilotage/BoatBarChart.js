@@ -32,7 +32,7 @@ export default function BoatBarChart({
     }, [data, barChartWidth]);
 
     const scaleTotal = useMemo(function computeScaleFromValue() {
-        const [minValue, maxValue] = extent(data, d => d['total']);
+        const maxValue = max(data, d => d['total']);
         return scaleLinear()
             .domain([0, maxValue])
             .range([height - margin.bottom, 0]);
@@ -103,17 +103,14 @@ export default function BoatBarChart({
                         fill='transparent'
                     />
                     <foreignObject
-                            y={maxValueScalePilotage }
+                            y={maxValueScalePilotage - 10}
                             x={35}
                             width={90}
-                            height={100}
+                            height={110}
                         >
                             <p
                                 xmlns="http://www.w3.org/1999/xhtml"
-                                style={{
-                                    fontSize: 10,
-                                    fontFamily: 'inherit'
-                                }}
+                                style={{ fontSize: 11, }}
                             >{translate('Pilotage', 'description_pilotage', lang, { mean: meanPilotage })}</p>
                     </foreignObject>
                 </g>
@@ -126,9 +123,7 @@ export default function BoatBarChart({
                             const pilotageY = scaleTotal(sorties_pilotage);
                             const yearY = scaleYear(year);
                             return (
-                                <g
-                                // transform={`translate(${0}, ${margin})`}
-                                >
+                                <g key={i} transform={`translate(${barFromBarChartWidth / 2})`} >
                                     <path
                                         d={`
                                         M ${yearY - (barFromBarChartWidth / 2)}, ${height - margin.bottom}
@@ -139,8 +134,8 @@ export default function BoatBarChart({
                                     />
                                     <path
                                         d={`
-                                        M ${yearY - (barFromBarChartWidth / 2)}, ${totalY}
-                                        H ${barChartWidth + 50}
+                                        M ${yearY - (barFromBarChartWidth)}, ${totalY}
+                                        H ${barChartWidth - (barFromBarChartWidth / 2) + 50}
                                         `}
                                         stroke={colorPalette['total']}
                                         strokeWidth={1}
@@ -156,8 +151,8 @@ export default function BoatBarChart({
                                     />
                                     <path
                                         d={`
-                                        M ${yearY - (barFromBarChartWidth / 2)}, ${pilotageY}
-                                        H ${barChartWidth + 50}
+                                        M ${yearY - (barFromBarChartWidth)}, ${pilotageY}
+                                        H ${barChartWidth - (barFromBarChartWidth / 2) + 50}
                                         `}
                                         stroke={colorPalette['sorties_pilotage']}
                                         strokeWidth={1}
@@ -178,6 +173,7 @@ export default function BoatBarChart({
                                 <g
                                     transform={`translate(${0}, ${scaleTotal(value)})`}
                                     className='ticks-y-item'
+                                    key={i}
                                 >
                                     <path
                                         d={`
@@ -212,6 +208,7 @@ export default function BoatBarChart({
                                 <g
                                     transform={`translate(${scaleYear(value)}, ${0})`}
                                     className='ticks-x-item'
+                                    key={i}
                                 >
                                     <path
                                         d={`
