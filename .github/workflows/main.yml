@@ -17,8 +17,8 @@ jobs:
 
       - name: Install dependencies and prepare data ⚙
         run: |
-          sh install.sh
           yarn
+          sh install.sh
           yarn run thumbnails
         continue-on-error: true
       - name: Build 🔧
