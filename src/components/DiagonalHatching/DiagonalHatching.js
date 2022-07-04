@@ -1,3 +1,20 @@
+/**
+ * @param {Object} props
+ * @param {String} props.id
+ * @param {Number} [props.lineGap=10]
+ * @param {String} [props.color='black']
+ * @param {Number} [props.angle=45]
+ * @param {Number} [props.strokeWidth=1]
+ * @returns {React.ReactElement}
+ * @exemple
+ * ```
+ * <>
+ *      <DiagonalHatching id='hatch' lineGap={5} color='red' />
+ *      <path d="M10,10 H80" fill="url(#hatch)" />
+ * </>
+ * ```
+ */
+
 export default function DiagonalHatching({
     id,
     lineGap = 10,

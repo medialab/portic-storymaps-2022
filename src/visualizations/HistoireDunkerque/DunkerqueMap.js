@@ -3,7 +3,7 @@ import React from "react";
 import DiagonalHatching from "../../components/DiagonalHatching";
 
 export default function DunkerqueMap({
-    dimensions,
+    height,
     elementsDisplay = {
         upperTown: 'red',
         lowerTown: 'red',
@@ -12,8 +12,6 @@ export default function DunkerqueMap({
     },
     ...props
 }) {
-    const { width, height } = dimensions;
-    console.log(elementsDisplay);
     const {
         upperTown,
         lowerTown,
@@ -24,7 +22,7 @@ export default function DunkerqueMap({
     return (
         <svg
             width='100%'
-            height={height}
+            height='100%'
             viewBox="0 0 920 836"
         >
             <DiagonalHatching id='diag-hatch-upper-town' lineGap={5} color={upperTown} />

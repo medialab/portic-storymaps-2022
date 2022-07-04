@@ -33,6 +33,7 @@ const { generic } = colorsPalettes;
  * @param {object} props.x
  * @param {string} props.x.field
  * @param {string} props.x.title
+ * @param {'ordinal' | 'quantitative'} props.x.type
  * @param {number} props.x.tickSpan
  * @param {function} props.x.tickFormat
  * @param {array} props.x.domain
@@ -40,6 +41,7 @@ const { generic } = colorsPalettes;
  * @param {object} props.x
  * @param {string} props.y.field
  * @param {string} props.y.title
+ * @param {'ordinal' | 'quantitative'} props.y.type
  * @param {number} props.y.tickSpan
  * @param {function} props.y.tickFormat
  * @param {array} props.y.domain
@@ -71,12 +73,14 @@ const LineChart = ({
     y,
     tooltip,
     margins: inputMargins = {},
-    annotations = []
+    annotations = [],
+    brushState = false
 }) => {
     const [headersHeight, setHeadersHeight] = useState(0);
     const [legendWidth, setLegendWidth] = useState(0);
     const { lang } = useParams();
 
+    const svgRef = useRef(null);
     const legendRef = useRef(null);
     const headerRef = useRef(null);
 
@@ -139,7 +143,7 @@ const LineChart = ({
         xAxisValues = xDomain;
     } else {
         xDomain = [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
-        xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]).nice();
+        xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]);
         xAxisValues = axisPropsFromTickScale(xScale).values;
     }
 
@@ -168,6 +172,24 @@ const LineChart = ({
         yScale.domain(yDomain)
     }
 
+    function mouseXToChartX(e) {
+        const { pageX } = e;
+        let { left, width } = svgRef.current.getBoundingClientRect();
+        const xRelative = pageX - left;
+        if (xRelative <= margins.left) {
+            return margins.left;
+        }
+        if (xRelative >= width) {
+            return width;
+        }
+        return xRelative;
+    }
+
+    function convertXOnYear(xRelative) {
+        const year = xScale.invert(xRelative);
+        return Math.round(year)
+    }
+
     const legendTitle = lang === 'fr' ? 'Légende' : 'Legend';
     return (
         <>
@@ -175,8 +197,57 @@ const LineChart = ({
                 <div ref={headerRef} className="row">
                     {title ? <h5 className="visualization-title" style={{ marginLeft: margins.left }}>{title}</h5> : null}
                 </div>
+                {
+                    (brushState !== false && brushState[0]['mouse'] === 'up') &&
+                    <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Reset</button>
+                }
                 <div className="row vis-row">
-                    <svg className="chart" width={width} height={height}>
+                    <svg
+                        ref={svgRef}
+                        className="chart"
+                        width={width}
+                        height={height}
+                        onMouseDown={(e) => {
+                            if (brushState === false) { return; }
+                            const [brush, setBrush] = brushState;
+                            const xRelative = mouseXToChartX(e);
+                            setBrush({
+                                mode: 'start',
+                                value: convertXOnYear(xRelative),
+                                mouseState: 'down'
+                            })
+                        }}
+                        onMouseMove={(e) => {
+                            if (brushState === false) { return; }
+                            const [brush, setBrush] = brushState;
+                            const xRelative = mouseXToChartX(e);
+                            setBrush({
+                                mode: 'progress',
+                                value: convertXOnYear(xRelative),
+                            })
+                        }}
+                        onMouseUp={(e) => {
+                            if (brushState === false) { return; }
+                            const [brush, setBrush] = brushState;
+                            const xRelative = mouseXToChartX(e);
+                            setBrush({
+                                mode: 'end',
+                                value: convertXOnYear(xRelative),
+                                mouseState: 'up'
+                            })
+                        }}
+                    >
+                        {
+                            brushState &&
+                            <path
+                                d={`
+                                M ${xScale(brushState[0]['start'])}, 0
+                                H ${xScale(brushState[0]['end'])}
+                                `}
+                                strokeWidth={5}
+                                fill='red'
+                            />
+                        }
                         <g className="axis left-axis ticks">
                             <TextSpan
                                 maxLength={10}

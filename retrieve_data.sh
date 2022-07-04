@@ -1,4 +1,3 @@
-mkdir data
 echo "Download data : fetching latest toflit18 data"
 curl -o data/toflit18_bdd.zip "https://raw.githubusercontent.com/medialab/toflit18_data/master/base/bdd%20courante.csv.zip"
 unzip data/toflit18_bdd.zip -d "data"
@@ -15,3 +14,4 @@ curl -o data/iso690-author-date-fr-no-abstract.csl "https://www.zotero.org/style
 
 cd datascripts
 for f in *.py; do python3 "$f"; echo "execute python script $f"; done
+for f in *.js; do node "$f"; echo "execute node script $f"; done

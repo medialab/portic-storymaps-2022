@@ -385,3 +385,83 @@ export function partialCirclePathD(cx, cy, r, start, end, reverse = false) {
 
   return `M ${fromX} ${fromY} A ${r} ${r} ${0} ${large} ${sweep} ${toX} ${toY}`;
 }
+
+/**
+ * 
+ * @param {Object} state Last state
+ * @param {Object} action 
+ * @param {'start'|'progress'|'end'|'reset'} action.mode 
+ * @param {'down'|'up'} action.mouseState
+ * @param {String|Number} action.value
+ * @returns {Object}
+ * @exemple
+ * ```
+ * const [brush, setBrush] = useReducer(reducerBrush, { start: undefined, end: undefined, mouse: undefined });
+ * 
+ * const data = useMemo(function filterData() {
+ *    const { start, end, mouse } = brush;
+ *        if (mouse !== 'up') {
+ *          return filterData;
+ *        }
+ *    return inputData.filter(({ year }) => +year >= start && +year <= end);
+ * }, [inputData, brush]);
+ * 
+ * <Chart
+ *    onMouseDown={(e) => {
+ *      setBrush({
+ *          mode: 'start',
+ *          value,
+ *          mouseState: 'down'
+ *      })
+ *    }}
+ *    onMouseMove={(e) => {
+ *      setBrush({
+ *          mode: 'progress',
+ *          value,
+ *      })
+ *    }}
+ *    onMouseUp={(e) => {
+ *      setBrush({
+ *          mode: 'end',
+ *          value,
+ *          mouseState: 'up'
+ *      })
+ *    }}
+ * />
+ * <button onClick={(e) => { setBrush({ mode: 'reset' }) }}>reset</button>
+ * ```
+ */
+
+export function reducerBrush(state, { mode, mouseState, value }) {
+  const { start, end, mouse } = state;
+  switch (mode) {
+    case 'start':
+      return {
+        start: value,
+        end,
+        mouse: mouseState
+      }
+    case 'progress':
+      if (mouse === 'down') {
+        return {
+          start,
+          end: value,
+          mouse
+        }
+      }
+      return state;
+    case 'end':
+      return {
+        start,
+        end: value,
+        mouse: mouseState
+      }
+    case 'reset':
+    default:
+      return {
+        start: undefined,
+        end: undefined,
+        mouse: undefined
+      }
+  }
+}

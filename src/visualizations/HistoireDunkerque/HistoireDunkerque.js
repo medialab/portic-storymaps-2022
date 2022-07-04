@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react";
-import iwanthue from "iwanthue";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import DunkerqueMap from "./DunkerqueMap";
 import Timeline from "./Timeline";
 import MapPoints from "./MapPoints";
 
 import './HistoireDunkerque.scss';
+import MapLegend from "./MapLegend";
 
 /**
  * 
@@ -15,34 +15,39 @@ import './HistoireDunkerque.scss';
  * @param {Number} props.dimensions.width
  * @param {Number} props.dimensions.height
  * @param {Object} props.callerProps
- * @param {String} props.callerProps.year
- * @param {Object} props.callerProps.object
+ * @param {Number} props.callerProps.year
  * @returns 
  */
 
 export default function HistoireDunkerque({
     data: inputData,
     dimensions,
+    lang,
     callerProps,
     ...props
 }) {
     const { width, height } = dimensions;
     const imgBasePath = `${process.env.BASE_PATH}/assets/`;
     const timelineHeight = 50;
-    const asideWidth = 50;
+
+    const mapContainerRef = useRef(null);
 
     const palette = {
         'tax-free': 'url(#diag-hatch)',
         'Spain': '#f5f697',
         'France': '#2F2D8D',
-        'UK': '#a187d1'
+        'UK': '#a187d1',
+        'point-port': '#ff493b',
+        'point-kingdom': '#0d0a47'
     }
 
-    const [diplayedYear, setDiplayedYear] = useState(1795);
+    const [diplayedYear, setDiplayedYear] = useState(callerProps?.year || inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
 
     const data = useMemo(function computeDataYears() {
         return inputData.get('histoire-dunkerque-dates.csv').map((row, i) => {
             const { year_start, year_end } = row;
+
+            row['head'] = row[`head_${lang}`];
 
             if (year_start && year_end) {
                 return {
@@ -56,13 +61,14 @@ export default function HistoireDunkerque({
                 return {
                     ...row,
                     type: 'event',
-                    year: +year_start,
+                    year_start: +year_start,
+                    year_end: undefined
                 }
             }
         })
     }, [inputData]);
 
-    const events = data.filter(({ type }) => type === 'event').sort(({ year: aYear }, { year: bYear }) => {
+    const events = data.filter(({ type }) => type === 'event').sort(({ year_start: aYear }, { year_start: bYear }) => {
         if (aYear < bYear) { return -1; }
         if (aYear > bYear) { return 1; }
         return 0;
@@ -71,46 +77,68 @@ export default function HistoireDunkerque({
 
     const {
         dunkerqueLayer,
-        file_legend,
-        file_head
-    } = useMemo(function getDispleyForCurrentYear() {
-        let lastEvent = events.find(({ year }) => year === diplayedYear);
-        if (lastEvent === undefined) {
-            for (let i = 0; i < events.length; i++) {
-                const event = events[i];
-                if (diplayedYear < event['year']) { break; }
-                lastEvent = event;
+        legend,
+        head,
+        previouseEvent,
+        nextEvent
+    } = useMemo(function getDisplayForCurrentYear() {
+        let currentPeriod = periods.find((period) => {
+            if (period['year_start'] <= diplayedYear && period['year_end'] > diplayedYear) {
+                return true;
+            }
+        });
+        let currentEvent = events.find((event) => {
+            if (event['year_start'] === diplayedYear) {
+                return true;
+            }
+        });
+
+        let previouseEvent, nextEvent;
+        for (const { year_start } of events) {
+            if (year_start < diplayedYear) {
+                previouseEvent = year_start;
+                continue;
+            }
+            if (year_start > diplayedYear) {
+                nextEvent = year_start;
+                break;
             }
         }
-        if (lastEvent === undefined) {
-            lastEvent = events[0];
+
+        const reference = currentEvent || currentPeriod;
+        const {
+            dunkerque_city,
+            dunkerque_territory,
+            country,
+            upper_town,
+            lower_town,
+            head,
+            legend_square_port_free,
+            legend_square_kingdom_france,
+            legend_point_port_interests,
+            legend_point_guard,
+            legend_point_kingdom_dependency
+        } = reference;
+
+        return {
+            dunkerqueLayer: {
+                upperTown: dunkerque_city === '1' && upper_town === 'tax-free' ? 'red' : 'transparent',
+                lowerTown: dunkerque_city === '1' && lower_town === 'tax-free' ? 'red' : 'transparent',
+                dunkerqueTerritory: dunkerque_territory === '1' ? palette[upper_town] : 'transparent',
+                country: country === '1' ? palette['France'] : 'transparent',
+            },
+            legend: {
+                legend_square_port_free: (legend_square_port_free === '1'),
+                legend_square_kingdom_france: (legend_square_kingdom_france === '1'),
+                legend_point_port_interests: (legend_point_port_interests === '1'),
+                legend_point_guard: (legend_point_guard === '1'),
+                legend_point_kingdom_dependency: (legend_point_kingdom_dependency === '1')
+            },
+            head,
+            previouseEvent,
+            nextEvent
         }
-        const { file_legend, file_head } = lastEvent;
-        for (const period of periods) {
-            const {
-                year_start,
-                year_end,
-                dunkerque_city,
-                dunkerque_territory,
-                country,
-                upper_town,
-                lower_town
-            } = period;
-            if (year_start <= diplayedYear && year_end > diplayedYear) {
-                return {
-                    dunkerqueLayer: {
-                        upperTown: dunkerque_city === '1' && upper_town === 'tax-free' ? 'red' : 'transparent',
-                        lowerTown: dunkerque_city === '1' && lower_town === 'tax-free' ? 'red' : 'transparent',
-                        dunkerqueTerritory: dunkerque_territory === '1' ? palette[upper_town] : 'transparent',
-                        country: country === '1' ? palette['France'] : 'transparent',
-                    },
-                    file_legend,
-                    file_head
-                }
-            }
-        }
-        return {};
-    }, [diplayedYear, data])
+    }, [diplayedYear, data]);
 
     return (
         <div
@@ -124,27 +152,42 @@ export default function HistoireDunkerque({
                 className="top-section"
                 style={{
                     width,
-                    height: height - timelineHeight
+                    maxHeight: height - timelineHeight,
+                    height: width >= 512 ? width - 250 : null
                 }}
             >
-                <div
-                    className='map-aside'
-                    style={{
-                        height: height - timelineHeight
-                    }}
-                >
-                    <img
-                        src={imgBasePath + file_head}
-                    />
-                    <img
-                        src={imgBasePath + file_legend}
-                    />
+                <div className="map-title">
+                    <div className="map-titles">
+                        <span
+                            className='map-switch-spans'
+                            style={{ visibility: (!!previouseEvent) ? 'visible' : 'hidden' }}
+                            onClick={(e) => { if (previouseEvent) { setDiplayedYear(previouseEvent); } }}
+                        >← {previouseEvent || '0000'}</span>
+                        <h3>{diplayedYear}</h3>
+                        <span
+                            className='map-switch-spans'
+                            style={{ visibility: (!!nextEvent) ? 'visible' : 'hidden' }}
+                            onClick={(e) => { if (nextEvent) { setDiplayedYear(nextEvent); } }}
+                        >{nextEvent || '0000'} →</span>
+                    </div>
+                    <div className="head">{head}</div>
+                    <div className="map-switch-btns">
+                        <button
+                            onClick={(e) => { if (previouseEvent) { setDiplayedYear(previouseEvent); } }}
+                            style={{ visibility: (!!previouseEvent) ? 'visible' : 'hidden' }}
+                        >Étape précédante</button>
+                        <button
+                            onClick={(e) => { if (nextEvent) { setDiplayedYear(nextEvent); } }}
+                            style={{ visibility: (!!nextEvent) ? 'visible' : 'hidden' }}
+                        >Étape suivante</button>
+                    </div>
                 </div>
+
                 <div
-                    className="map-main map-container"
+                    className="map-container"
+                    ref={mapContainerRef}
                     style={{
-                        width: width - asideWidth,
-                        height: height - timelineHeight
+                        maxWidth: width >= 512 ? width - 250 : null
                     }}
                 >
                     <div
@@ -152,20 +195,16 @@ export default function HistoireDunkerque({
                         style={{ zIndex: 200 }}
                     >
                         <MapPoints
-                            height={height - timelineHeight}
+                            {...{ lang, palette }}
                             data={inputData.get('histoire-dunkerque-points.csv')}
                             diplayedYear={diplayedYear}
                         />
                     </div>
                     <div
                         className='layer'
-                        style={{ zIndex: 100 }}
+                        style={{ zIndex: 100}}
                     >
                         <DunkerqueMap
-                            dimensions={{
-                                width: width - asideWidth,
-                                height: height - timelineHeight
-                            }}
                             elementsDisplay={dunkerqueLayer}
                         />
                     </div>
@@ -174,7 +213,17 @@ export default function HistoireDunkerque({
                         src={imgBasePath + 'dunkerque_map.jpg'}
                     />
                 </div>
+
+                <div className="map-legend">
+                    <MapLegend
+                        {...{ lang, palette }}
+                        height={120}
+                        width={190}
+                        values={legend}
+                    />
+                </div>
             </div>
+
             <footer className="timeline">
                 <Timeline
                     dimensions={{

@@ -187,7 +187,7 @@ export default function ScrollyPage({
             type: 'SET',
             payload: {}
         })
-    }, [chapter]);
+    }, [chapter, lang]);
 
     useEffect(function focusVizOnScroll() {
         if (Object.keys(visualizations).length === 0 || !pageRef.current) {

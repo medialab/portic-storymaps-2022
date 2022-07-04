@@ -2,9 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import DiagonalHatching from "../../components/DiagonalHatching";
 
-import { extent, max, range } from 'd3-array';
+import { extent, range } from 'd3-array';
 import { scaleLinear } from "d3-scale";
-import iwanthue from "iwanthue";
 
 export default function Timeline({
     data,
@@ -103,42 +102,81 @@ export default function Timeline({
                     const lineHeight = 15;
                     return (
                         <g
-                            // transform={`translate(${spanRange(year_start)}, ${0})`}
                             key={i}
                         >
-                            <path
-                                d={`
-                                M ${spanRange(year_start)}, ${lineHeight / 2}
-                                H ${spanRange(year_end)}
-                                `}
-                                stroke={colorUpperTown}
-                                strokeWidth={lineHeight}
-                            />
-                            <path
-                                d={`
-                                M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
-                                H ${spanRange(year_end)}
-                                `}
-                                stroke={colorLowerTown}
-                                strokeWidth={lineHeight}
-                            />
+                            <g>
+                                {
+                                    upper_town === 'tax-free' &&
+                                    <path
+                                        d={`
+                                        M ${spanRange(year_start)}, ${lineHeight / 2}
+                                        H ${spanRange(year_end)}
+                                        `}
+                                        stroke='#2F2D8D'
+                                        strokeWidth={lineHeight}
+                                        opacity={0.2}
+                                    />
+                                }
+                                <path
+                                    d={`
+                                    M ${spanRange(year_start)}, ${lineHeight / 2}
+                                    H ${spanRange(year_end)}
+                                    `}
+                                    stroke={colorUpperTown}
+                                    strokeWidth={lineHeight}
+                                    opacity={(colorUpperTown === '#2F2D8D' ? 0.2 : 1)}
+                                />
+                            </g>
+                            <g>
+                                {
+                                    lower_town === 'tax-free' &&
+                                    <path
+                                        d={`
+                                        M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
+                                        H ${spanRange(year_end)}
+                                        `}
+                                        stroke='#2F2D8D'
+                                        strokeWidth={lineHeight}
+                                        opacity={0.2}
+                                    />
+                                }
+                                <path
+                                    d={`
+                                    M ${spanRange(year_start)}, ${lineHeight + lineHeight / 2}
+                                    H ${spanRange(year_end)}
+                                    `}
+                                    stroke={colorLowerTown}
+                                    strokeWidth={lineHeight}
+                                    opacity={(colorLowerTown === '#2F2D8D' ? 0.2 : 1)}
+                                />
+                            </g>
                         </g>
                     )
                 })
             }
             {
-                data.filter(({ type }) => type === 'event').map(({ year }, i) => {
-                    const pointHeight = 5;
+                data.filter(({ type }) => type === 'event').map(({ year_start, interests }, i) => {
+                    const interestsColor = (interests === 'port_interests' ? palette['point-port'] : palette['point-kingdom']);
+                    const pointHeight = 12;
                     return (
                         <g
-                            transform={`translate(${spanRange(year) - pointHeight / 2}, ${12})`}
+                            transform={`translate(${spanRange(year_start) - pointHeight / 2}, ${8})`}
                             key={i}
                         >
                             <circle
                                 cx={pointHeight / 2}
                                 cy={pointHeight / 2}
                                 r={pointHeight / 2}
-                                fill='black'
+                                fill='white'
+                                style={{
+                                    filter: 'drop-shadow(1px 2px 2px rgb(0 0 0 / 0.4))'
+                                }}
+                            />
+                            <circle
+                                cx={pointHeight / 2}
+                                cy={pointHeight / 2}
+                                r={pointHeight / 4}
+                                fill={interestsColor}
                             />
                         </g>
                     )
@@ -158,7 +196,7 @@ export default function Timeline({
                                 `}
                                 stroke='gray'
                                 strokeWidth={0.5}
-                                strokeDasharray="10,15"
+                                strokeDasharray="3,3"
                             />
                             <text y={height} x={2} fontSize={8} fill='gray'>{year}</text>
                         </g>
@@ -174,9 +212,10 @@ export default function Timeline({
                     V ${height}
                     `}
                     stroke='black'
-                    strokeWidth={0.5}
+                    strokeWidth={1.5}
                 />
-                <text y={height} x={2} fontSize={8} fill='gray'>{getYearWithX(cursorX) || diplayedYear}</text>
+                <rect y={height - 10} x={2} width={20} height={10} fill='white' />
+                <text y={height} x={2} fontSize={8} fill='black'>{getYearWithX(cursorX) || diplayedYear}</text>
             </g>
         </svg>
     )
