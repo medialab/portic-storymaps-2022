@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
 
-import { extent, max, mean } from 'd3-array';
+import { extent, min, max, mean } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { axisPropsFromTickScale } from 'react-d3-axis';
+
+import DiagonalHatching from '../../components/DiagonalHatching';
 
 import { formatNumber } from '../../utils/misc';
 
@@ -19,7 +21,34 @@ export default function PilotageLegend({
         bottom: 20,
         left: 45
     };
-    const barFromBarChartWidth = 5;
+    const barFromBarChartWidth = 8;
+
+    // const data = useMemo(function prepareData() {
+    //     return inputData.map((row) => {
+    //         const { sorties_pilotage, total } = row;
+    //         if (sorties_pilotage === undefined || total === undefined) {
+    //             return row;
+    //         }
+    //         return {
+    //             ...row,
+    //             rapport: sorties_pilotage / total
+    //         }
+    //     })
+    // }, [inputData])
+
+    // console.table(data)
+
+    const {
+        meanPilotage,
+        minPilotage,
+        maxPilotage
+    } = useMemo(() => {
+        return {
+            meanPilotage: mean(data, d => d['sorties_pilotage'] / d['total']),
+            minPilotage: min(data, d => d['sorties_pilotage'] / d['total']),
+            maxPilotage: max(data, d => d['sorties_pilotage'] / d['total'])
+        }
+    }, [data]);
 
     const scaleYear = useMemo(function computeScaleFromYear() {
         const [minYear, maxYear] = extent(data, d => d['year']);
@@ -31,7 +60,7 @@ export default function PilotageLegend({
     const scaleTotal = useMemo(function computeScaleFromValue() {
         const maxValue = max(data, d => d['total']);
         return scaleLinear()
-            .domain([0, maxValue])
+            .domain([0, (maxValue / maxPilotage)])
             .range([height - margin.bottom, 0]);
     }, [data, height]);
 
@@ -39,6 +68,7 @@ export default function PilotageLegend({
         <svg
             {...{ width, height }}
         >
+            <DiagonalHatching id='diag-hatch' lineGap={2} color='red' />
             <defs>
                 <marker id='arrow-top' orient='-270deg' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
                     <path d='M0,0 V4 L2,2 Z' fill='gray' />
@@ -52,9 +82,12 @@ export default function PilotageLegend({
                     data.map(({ year, sorties_pilotage, total }, i) => {
                         const totalY = scaleTotal(total);
                         const pilotageY = scaleTotal(sorties_pilotage);
+                        const pilotageMaxY = scaleTotal(sorties_pilotage / maxPilotage);
+                        const pilotageMinY = scaleTotal(sorties_pilotage / minPilotage);
+                        const pilotageMeanY = scaleTotal(sorties_pilotage / meanPilotage);
                         const yearY = scaleYear(year);
                         return (
-                            <g key={i} transform={`translate(${yearY - (barFromBarChartWidth)})`} >
+                            <g key={i} transform={`translate(${yearY - barFromBarChartWidth * 2})`} >
                                 <path
                                     d={`
                                     M ${barFromBarChartWidth}, ${height - margin.bottom}
@@ -71,18 +104,39 @@ export default function PilotageLegend({
                                     stroke={colorPalette['sorties_pilotage']}
                                     strokeWidth={barFromBarChartWidth}
                                 />
-                                <g transform={`translate(${barFromBarChartWidth * 2})`}>
+                                <g>
+                                    {
+                                        totalY !== undefined &&
+                                        <path
+                                            d={`
+                                            M ${barFromBarChartWidth}, ${pilotageY}
+                                            V ${max([pilotageMeanY, totalY])}
+                                            `}
+                                            stroke='#ffb2ad'
+                                            strokeWidth={barFromBarChartWidth}
+                                        />
+                                    }
                                     <path
                                         d={`
-                                        M ${0}, ${height - margin.bottom - 40}
-                                        V ${100}
+                                        M ${barFromBarChartWidth}, ${pilotageY}
+                                        V ${pilotageMeanY}
+                                        `}
+                                        stroke='url(#diag-hatch)'
+                                        strokeWidth={barFromBarChartWidth}
+                                    />
+                                </g>
+                                <g transform={`translate(${barFromBarChartWidth / 2 + barFromBarChartWidth})`} className='moustach'>
+                                    <path
+                                        d={`
+                                        M ${0}, ${pilotageMaxY}
+                                        V ${pilotageMinY}
                                         `}
                                         stroke='gray'
                                         strokeWidth={1.5}
                                         markerEnd='url(#arrow-top)'
                                         markerStart='url(#arrow-bottom)'
                                     />
-                                    <circle cx={0} cy={height - margin.bottom - 110} r={2} fill='gray' />
+                                    <circle cx={0} cy={pilotageMeanY} r={2} fill='gray' />
                                 </g>
                             </g>
                         )

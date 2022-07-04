@@ -54,7 +54,7 @@ export default function Pilotage({
             <BarChartEstimation
                 {...{ colorPalette, lang, data }}
                 dimensions={{
-                    width,
+                    width: width - 50,
                     height: 300
                 }}
             />
