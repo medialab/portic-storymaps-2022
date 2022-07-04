@@ -13,5 +13,5 @@ echo "fetching CSL style"
 curl -o data/iso690-author-date-fr-no-abstract.csl "https://www.zotero.org/styles/iso690-author-date-fr-no-abstract"
 
 cd datascripts
-for f in *.py; do python3 "$f"; echo "execute python script $f"; done
-for f in *.js; do node "$f"; echo "execute node script $f"; done
+for f in *.py; do echo "execute python script $f"; python3 "$f"; done
+for f in *.js; do echo "execute node script $f"; node "$f"; done
