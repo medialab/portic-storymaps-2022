@@ -1,4 +1,3 @@
-mkdir data
 echo "Download data : fetching latest toflit18 data"
 curl -o data/toflit18_bdd.zip "https://raw.githubusercontent.com/medialab/toflit18_data/master/base/bdd%20courante.csv.zip"
 unzip data/toflit18_bdd.zip -d "data"

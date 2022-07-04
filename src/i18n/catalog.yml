@@ -112,3 +112,22 @@ HistoireDunkerque:
   legend_point_kingdom_dependency:
     fr: Dépend du Royaume de France
     en: 
+Pilotage:
+  title_comparaison:
+    fr: Comparaison entre les données du pilotage et le registre des congés
+    en: 
+  title_estimation:
+    fr: Estimation du nombre de bateaux quittant le port de Dunkerque
+    en: 
+  title_evaluation:
+    fr: Évaluation du nombre de sorties
+    en: 
+  legend_pilotage:
+    fr: Navires usant du pilotage pour quitter le port de Dunkerque
+    en: 
+  legend_total:
+    fr: Navires quittant le port de Dunkerque selon le registre des congés
+    en: 
+  description_pilotage:
+    fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
+    en: 

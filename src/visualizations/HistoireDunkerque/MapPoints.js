@@ -1,4 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useSpring, animated } from 'react-spring'
+
+let timeOut;
 
 export default function MapPoints({
     data: inputData,
@@ -9,6 +12,7 @@ export default function MapPoints({
     ...props
 }) {
     const [hoverId, setHoverId] = useState(undefined);
+    const [styles, setStyles] = useSpring(() => ({ opacity: 1 }))
 
     const data = useMemo(function setIdForEachPoint() {
         return inputData.map((point, i) => {
@@ -19,6 +23,14 @@ export default function MapPoints({
             }
         })
     }, [inputData, lang]);
+
+    useEffect(() => {
+        setStyles.start({ opacity: 1 })
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
+            setStyles.start({ opacity: 0 })
+        }, 2000);
+    }, [diplayedYear])
 
     return (
         <svg
@@ -48,56 +60,56 @@ export default function MapPoints({
                         return (
                             <g
                                 transform={`translate(${x}, ${y})`}
-                                onMouseEnter={(e) => setHoverId(id)}
-                                onMouseLeave={(e) => setHoverId(undefined)}
                                 key={i}
                             >
-                                {
-                                    (shape === 'circle') &&
-                                    <circle
-                                        cx={10}
-                                        cy={10}
-                                        r={5}
-                                        fill={color}
-                                        stroke='white'
-                                    />
-                                }
-                                {
-                                    (shape === 'cross') &&
-                                    <g>
-                                        <path
-                                            d={crossD}
-                                            strokeWidth={6}
+                                <g
+                                    onMouseEnter={(e) => setHoverId(id)}
+                                    onMouseLeave={(e) => setHoverId(undefined)}
+                                >
+                                    {
+                                        (shape === 'circle') &&
+                                        <circle
+                                            cx={10}
+                                            cy={10}
+                                            r={5}
+                                            fill={color}
                                             stroke='white'
                                         />
-                                        <path
-                                            d={crossD}
-                                            strokeWidth={4}
-                                            stroke={color}
-                                        />
-                                    </g>
-                                }
-                                {
-                                    (+year_start === diplayedYear || hoverId === id) &&
-                                    <g>
-                                        <text y={15} x={20} stroke={color} strokeWidth='0.6em'>{label}</text>
-                                        <text y={15} x={20} fill='white'>{label}</text>
-                                    </g>
-                                    // <foreignObject
-                                    // y={0}
-                                    // x={15}
-                                    // width='100px'
-                                    // height='20px'
-                                    // >
-                                    //     <div
-                                    //     xmlns="http://www.w3.org/1999/xhtml"
-                                    //     style={{
-                                    //         color: 'white',
-                                    //         backgroundColor: color,
-                                    //     }}
-                                    //     >{label}</div>
-                                    // </foreignObject>
-                                }
+                                    }
+                                    {
+                                        (shape === 'cross') &&
+                                        <g>
+                                            <path
+                                                d={crossD}
+                                                strokeWidth={6}
+                                                stroke='white'
+                                            />
+                                            <path
+                                                d={crossD}
+                                                strokeWidth={4}
+                                                stroke={color}
+                                            />
+                                        </g>
+                                    }
+                                </g>
+                                <animated.g style={styles}>
+                                    <text y={15} x={20} stroke={color} strokeWidth='0.6em'>{label}</text>
+                                    <text y={15} x={20} fill='white'>{label}</text>
+                                </animated.g>
+                                {/* <foreignObject
+                                    y={0}
+                                    x={15}
+                                    width='100px'
+                                    height='20px'
+                                    >
+                                        <div
+                                        xmlns="http://www.w3.org/1999/xhtml"
+                                        style={{
+                                            color: 'white',
+                                            backgroundColor: color,
+                                        }}
+                                        >{label}</div>
+                                    </foreignObject> */}
                             </g>
                         )
                     }

@@ -13,6 +13,7 @@ import TonnageMoyenMois from './TonnageMoyenMois';
 import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
 import FraudeExportPortFranc from './FraudeExportPortFranc';
 import PecheMap from './PecheMap';
+import Pilotage from './Pilotage/Pilotage';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -97,6 +98,10 @@ export default function VisualizationController({
             case 'peche-map':
                 return (
                     <PecheMap {...{ data, dimensions, lang }} />
+                );
+            case 'pilotage':
+                return (
+                    <Pilotage {...{ data, dimensions, lang }} />
                 );
             default:
                 return (
