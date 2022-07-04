@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import DunkerqueMap from "./DunkerqueMap";
 import Timeline from "./Timeline";
@@ -29,6 +29,8 @@ export default function HistoireDunkerque({
     const { width, height } = dimensions;
     const imgBasePath = `${process.env.BASE_PATH}/assets/`;
     const timelineHeight = 50;
+
+    const mapContainerRef = useRef(null);
 
     const palette = {
         'tax-free': 'url(#diag-hatch)',
@@ -150,7 +152,8 @@ export default function HistoireDunkerque({
                 className="top-section"
                 style={{
                     width,
-                    height: height - timelineHeight
+                    maxHeight: height - timelineHeight,
+                    height: width >= 512 ? width - 250 : null
                 }}
             >
                 <div className="map-title">
@@ -182,6 +185,10 @@ export default function HistoireDunkerque({
 
                 <div
                     className="map-container"
+                    ref={mapContainerRef}
+                    style={{
+                        maxWidth: width >= 512 ? width - 250 : null
+                    }}
                 >
                     <div
                         className='layer'
@@ -195,7 +202,7 @@ export default function HistoireDunkerque({
                     </div>
                     <div
                         className='layer'
-                        style={{ zIndex: 100 }}
+                        style={{ zIndex: 100}}
                     >
                         <DunkerqueMap
                             elementsDisplay={dunkerqueLayer}
