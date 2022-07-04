@@ -81,6 +81,10 @@ export default function PilotageLegend({
             <g className='bars'>
                 {
                     data.map(({ year, sorties_pilotage, total }, i) => {
+                        if (sorties_pilotage == undefined && total == undefined) {
+                            return null;
+                        }
+
                         const totalY = scaleTotal(total);
                         const pilotageY = scaleTotal(sorties_pilotage);
                         const pilotageMaxY = scaleTotal(sorties_pilotage / maxPilotage);
