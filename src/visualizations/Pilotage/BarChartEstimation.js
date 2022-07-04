@@ -19,7 +19,8 @@ export default function PilotageLegend({
 
     const margin = {
         bottom: 20,
-        left: 45
+        left: 45,
+        right: 10
     };
     const barFromBarChartWidth = 8;
 
@@ -54,7 +55,7 @@ export default function PilotageLegend({
         const [minYear, maxYear] = extent(data, d => d['year']);
         return scaleLinear()
             .domain([minYear, maxYear])
-            .range([margin.left, width]);
+            .range([margin.left, width - margin.right]);
     }, [data, width]);
 
     const scaleTotal = useMemo(function computeScaleFromValue() {
@@ -87,10 +88,10 @@ export default function PilotageLegend({
                         const pilotageMeanY = scaleTotal(sorties_pilotage / meanPilotage);
                         const yearY = scaleYear(year);
                         return (
-                            <g key={i} transform={`translate(${yearY - barFromBarChartWidth * 2})`} >
+                            <g key={i} transform={`translate(${yearY})`} >
                                 <path
                                     d={`
-                                    M ${barFromBarChartWidth}, ${height - margin.bottom}
+                                    M ${0}, ${height - margin.bottom}
                                     V ${totalY}
                                     `}
                                     stroke={colorPalette['total']}
@@ -98,7 +99,7 @@ export default function PilotageLegend({
                                 />
                                 <path
                                     d={`
-                                    M ${barFromBarChartWidth}, ${height - margin.bottom}
+                                    M ${0}, ${height - margin.bottom}
                                     V ${pilotageY}
                                     `}
                                     stroke={colorPalette['sorties_pilotage']}
@@ -109,7 +110,7 @@ export default function PilotageLegend({
                                         totalY !== undefined &&
                                         <path
                                             d={`
-                                            M ${barFromBarChartWidth}, ${pilotageY}
+                                            M ${0}, ${pilotageY}
                                             V ${max([pilotageMeanY, totalY])}
                                             `}
                                             stroke='#ffb2ad'
@@ -118,14 +119,14 @@ export default function PilotageLegend({
                                     }
                                     <path
                                         d={`
-                                        M ${barFromBarChartWidth}, ${pilotageY}
+                                        M ${0}, ${pilotageY}
                                         V ${pilotageMeanY}
                                         `}
                                         stroke='url(#diag-hatch)'
                                         strokeWidth={barFromBarChartWidth}
                                     />
                                 </g>
-                                <g transform={`translate(${barFromBarChartWidth / 2 + barFromBarChartWidth})`} className='moustach'>
+                                <g transform={`translate(${barFromBarChartWidth - 5})`} className='moustach'>
                                     <path
                                         d={`
                                         M ${0}, ${pilotageMaxY}
@@ -203,7 +204,7 @@ export default function PilotageLegend({
                                     fontSize={6}
                                     x={0}
                                     y={20}
-                                >{formatNumber(year)}</text>
+                                >{year}</text>
                             </g>
                         )
                     })
