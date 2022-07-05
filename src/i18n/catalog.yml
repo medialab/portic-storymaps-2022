@@ -137,3 +137,12 @@ Pilotage:
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
     en: 
+  tooltip_total:
+    fr: Total de ${value} navires sortants en ${year}
+    en:
+  tooltip_pilotage:
+    fr: ${value} navires sortants avec pilotage en ${year}
+    en:
+  tooltip_estimation:
+    fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
+    en:
