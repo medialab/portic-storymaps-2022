@@ -69,7 +69,7 @@ export default function PilotageLegend({
         <svg
             {...{ width, height }}
         >
-            <DiagonalHatching id='diag-hatch' lineGap={2} color='red' />
+            <DiagonalHatching id='diag-hatch' lineGap={4} strokeWidth={5} color={colorPalette['total']} />
             <defs>
                 <marker id='arrow-top' orient='-270deg' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
                     <path d='M0,0 V4 L2,2 Z' fill='gray' />
