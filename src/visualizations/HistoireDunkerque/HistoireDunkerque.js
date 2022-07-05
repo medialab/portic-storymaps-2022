@@ -141,6 +141,20 @@ export default function HistoireDunkerque({
         }
     }, [diplayedYear, data]);
 
+    const minTimelineHeight = 50;
+    const MEDIUM_BREAKPOINT = 512;
+    let minMode;
+    const maxTopSectionHeight = width - 250;
+    let topSectionHeight = null;
+    if (width >= MEDIUM_BREAKPOINT) {
+      minMode = true;
+      if (height - maxTopSectionHeight > minTimelineHeight) {
+        topSectionHeight = maxTopSectionHeight;
+      } else {
+        topSectionheight = height - minTimelineHeight;
+      }
+    }
+
     return (
         <div
             className='HistoireDunkerque'
@@ -154,7 +168,7 @@ export default function HistoireDunkerque({
                 style={{
                     width,
                     maxHeight: height - timelineHeight,
-                    height: width >= 512 ? width - 250 : null
+                    height: topSectionHeight
                 }}
             >
                 <div className="map-title">
@@ -225,11 +239,17 @@ export default function HistoireDunkerque({
                 </div>
             </div>
 
-            <footer className="timeline">
+            <footer 
+              className="timeline"
+              style={{
+                height: height - topSectionHeight
+              }}
+            >
                 <Timeline
                     dimensions={{
                         width,
-                        height: timelineHeight
+                        // height: timelineHeight
+                        height: height - topSectionHeight
                     }}
                     palette={palette}
                     data={data}
