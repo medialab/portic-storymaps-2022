@@ -29,9 +29,10 @@ export default function HistoireDunkerque({
 }) {
     const { width, height } = dimensions;
     const imgBasePath = `${process.env.BASE_PATH}/assets/`;
-    const timelineHeight = 50;
+    const [timelineHeight, setTimelineHeight] = useState(50);
 
     const mapContainerRef = useRef(null);
+    const mapSectionref = useRef(null);
 
     const palette = {
         'tax-free': 'url(#diag-hatch)',
@@ -141,6 +142,16 @@ export default function HistoireDunkerque({
         }
     }, [diplayedYear, data]);
 
+    useEffect(() => {
+        if (!mapSectionref) { return; }
+        const { height: mapSectionHeight } = mapSectionref.current.getBoundingClientRect();
+        const newTimelineHeight = height - mapSectionHeight;
+        if (newTimelineHeight <= 50) {
+            setTimelineHeight(50);
+        }
+        setTimelineHeight(newTimelineHeight);
+    }, [mapSectionref, dimensions]);
+
     return (
         <div
             className='HistoireDunkerque'
@@ -151,6 +162,7 @@ export default function HistoireDunkerque({
         >
             <div
                 className="top-section"
+                ref={mapSectionref}
                 style={{
                     width,
                     maxHeight: height - timelineHeight,
