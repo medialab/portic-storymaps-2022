@@ -7,6 +7,8 @@ import iwanthue from 'iwanthue';
 import { AnimatedPath, AnimatedGroup } from '../AnimatedSvgElements';
 import { isEqual } from "lodash";
 
+import './AlluvialChart.scss';
+
 /**
  * @param {Object} props
  * @param {Object[]} props.data
@@ -173,7 +175,11 @@ export default function AlluvialChart({
 
     return (
         <svg
-            {...{ height, width }}
+            // {...{ height, width }}
+            width='100%'
+            height='100%'
+            viewBox={`0 0 ${width} ${height}`}
+            className='AlluvialChart'
         >
             {
                 steps.map((stepName, iStep) => {
