@@ -3,9 +3,10 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import DunkerqueMap from "./DunkerqueMap";
 import Timeline from "./Timeline";
 import MapPoints from "./MapPoints";
+import MapLegend from "./MapLegend";
 
 import './HistoireDunkerque.scss';
-import MapLegend from "./MapLegend";
+import translate from "../../utils/translate";
 
 /**
  * 
@@ -175,11 +176,11 @@ export default function HistoireDunkerque({
                         <button
                             onClick={(e) => { if (previouseEvent) { setDiplayedYear(previouseEvent); } }}
                             style={{ visibility: (!!previouseEvent) ? 'visible' : 'hidden' }}
-                        >Étape précédante</button>
+                        >{translate('HistoireDunkerque', 'btn_previous_step', lang)}</button>
                         <button
                             onClick={(e) => { if (nextEvent) { setDiplayedYear(nextEvent); } }}
                             style={{ visibility: (!!nextEvent) ? 'visible' : 'hidden' }}
-                        >Étape suivante</button>
+                        >{translate('HistoireDunkerque', 'btn_next_step', lang)}</button>
                     </div>
                 </div>
 

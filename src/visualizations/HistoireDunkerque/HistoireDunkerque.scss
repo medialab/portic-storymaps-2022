@@ -37,6 +37,13 @@
             display: flex;
             margin-top: 0.5rem;
 
+            button {
+                background-color: transparent;
+                text-decoration: underline;
+                margin-top: 0.5rem;
+                padding: 0;
+            }
+
             button+button {
                 margin-left: 0.5rem;
             }
@@ -65,6 +72,10 @@
         height: 100%;
         object-fit: contain;
     }
+
+    // .timeline {
+    //     margin: 0 1rem;
+    // }
 
     @include phone {
         .top-section {
