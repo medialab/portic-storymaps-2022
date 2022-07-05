@@ -62,8 +62,8 @@ export default function PilotageLegend({
         const maxValue = max(data, d => d['total']);
         return scaleLinear()
             .domain([0, (maxValue / maxPilotage)])
-            .range([height - margin.bottom, 0]);
-    }, [data, height]);
+            .range([height - margin.bottom, margin.bottom]);
+    }, [data, maxPilotage, height]);
 
     return (
         <svg
@@ -205,9 +205,11 @@ export default function PilotageLegend({
                                     strokeWidth={1}
                                 />
                                 <text
+                                    transform='translate(0, 15) rotate(-45)'
                                     fontSize={6}
                                     x={0}
-                                    y={20}
+                                    y={0}
+                                    textAnchor='middle'
                                 >{year}</text>
                             </g>
                         )
