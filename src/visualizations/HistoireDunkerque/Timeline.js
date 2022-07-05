@@ -99,7 +99,7 @@ export default function Timeline({
                 data.filter(({ type }) => type === 'period').map(({ year_start, year_end, upper_town, lower_town }, i) => {
                     const colorUpperTown = palette[upper_town];
                     const colorLowerTown = palette[lower_town];
-                    const lineHeight = (height - 15) / 2;
+                    const lineHeight = 15;
                     return (
                         <g
                             key={i}
