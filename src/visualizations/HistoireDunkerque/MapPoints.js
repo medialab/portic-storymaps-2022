@@ -92,24 +92,22 @@ export default function MapPoints({
                                         </g>
                                     }
                                 </g>
-                                <animated.g style={styles}>
-                                    <text y={15} x={20} stroke={color} strokeWidth='0.6em'>{label}</text>
-                                    <text y={15} x={20} fill='white'>{label}</text>
-                                </animated.g>
-                                {/* <foreignObject
+                                <foreignObject
                                     y={0}
                                     x={15}
-                                    width='100px'
-                                    height='20px'
-                                    >
-                                        <div
+                                    width='250px'
+                                    height='30px'
+                                >
+                                    <animated.p
                                         xmlns="http://www.w3.org/1999/xhtml"
                                         style={{
+                                            ...styles,
                                             color: 'white',
-                                            backgroundColor: color,
+                                            display: 'inline-block',
+                                            backgroundColor: color
                                         }}
-                                        >{label}</div>
-                                    </foreignObject> */}
+                                    >{label}</animated.p>
+                                </foreignObject>
                             </g>
                         )
                     }
