@@ -7,6 +7,7 @@ import MapLegend from "./MapLegend";
 
 import './HistoireDunkerque.scss';
 import translate from "../../utils/translate";
+import cx from "classnames";
 
 /**
  * 
@@ -29,7 +30,14 @@ export default function HistoireDunkerque({
 }) {
     const { width, height } = dimensions;
     const imgBasePath = `${process.env.BASE_PATH}/assets/`;
-    const timelineHeight = 50;
+
+    const minTimelineHeight = 50;
+    const maxTopSectionHeight = width - 250;
+    const mediumBreakpoint = 600;
+
+    const [showTimline, setShowTimeline] = useState(true);
+    const [minMode, setMinMode] = useState(false);
+    const [topSectionHeight, setTopSectionHeight] = useState(undefined);
 
     const mapContainerRef = useRef(null);
 
@@ -41,6 +49,19 @@ export default function HistoireDunkerque({
         'point-port': '#ff493b',
         'point-kingdom': '#0d0a47'
     }
+
+    useEffect(function responsive() {
+        if (width === -1) { return; }
+        console.log(width, minMode);
+        setMinMode(width <= mediumBreakpoint);
+        setShowTimeline(minMode === false);
+
+        if (height - maxTopSectionHeight > minTimelineHeight) {
+            setTopSectionHeight(maxTopSectionHeight);
+        } else {
+            setTopSectionHeight(height - minTimelineHeight);
+        }
+    }, [width, height, minMode]);
 
     const [diplayedYear, setDiplayedYear] = useState(callerProps?.year || inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
 
@@ -141,34 +162,20 @@ export default function HistoireDunkerque({
         }
     }, [diplayedYear, data]);
 
-    const minTimelineHeight = 50;
-    const MEDIUM_BREAKPOINT = 512;
-    let minMode;
-    const maxTopSectionHeight = width - 250;
-    let topSectionHeight = null;
-    if (width >= MEDIUM_BREAKPOINT) {
-      minMode = true;
-      if (height - maxTopSectionHeight > minTimelineHeight) {
-        topSectionHeight = maxTopSectionHeight;
-      } else {
-        topSectionheight = height - minTimelineHeight;
-      }
-    }
-
     return (
         <div
-            className='HistoireDunkerque'
+            className={cx('HistoireDunkerque', { minMode })}
             style={{
                 width,
-                height
+                height: minMode === false ? height : null
             }}
         >
             <div
                 className="top-section"
                 style={{
                     width,
-                    maxHeight: height - timelineHeight,
-                    height: topSectionHeight
+                    // maxHeight: maxTopSectionHeight,
+                    height: minMode === false ? topSectionHeight : null
                 }}
             >
                 <div className="map-title">
@@ -202,7 +209,8 @@ export default function HistoireDunkerque({
                     className="map-container"
                     ref={mapContainerRef}
                     style={{
-                        maxWidth: width >= 512 ? width - 250 : null
+                        width: minMode === false ? topSectionHeight : null,
+                        height: minMode === false ? topSectionHeight : null
                     }}
                 >
                     <div
@@ -217,7 +225,7 @@ export default function HistoireDunkerque({
                     </div>
                     <div
                         className='layer'
-                        style={{ zIndex: 100}}
+                        style={{ zIndex: 100 }}
                     >
                         <DunkerqueMap
                             elementsDisplay={dunkerqueLayer}
@@ -239,23 +247,25 @@ export default function HistoireDunkerque({
                 </div>
             </div>
 
-            <footer 
-              className="timeline"
-              style={{
-                height: height - topSectionHeight
-              }}
-            >
-                <Timeline
-                    dimensions={{
-                        width,
-                        // height: timelineHeight
+            {
+                showTimline &&
+                <footer
+                    className="timeline"
+                    style={{
                         height: height - topSectionHeight
                     }}
-                    palette={palette}
-                    data={data}
-                    yearState={[diplayedYear, setDiplayedYear]}
-                />
-            </footer>
+                >
+                    <Timeline
+                        dimensions={{
+                            width,
+                            height: height - topSectionHeight
+                        }}
+                        palette={palette}
+                        data={data}
+                        yearState={[diplayedYear, setDiplayedYear]}
+                    />
+                </footer>
+            }
         </div>
     )
 }

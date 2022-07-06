@@ -73,20 +73,7 @@
         object-fit: contain;
     }
 
-    // .timeline {
-    //     margin: 0 1rem;
-    // }
-
-    @include phone {
-        .top-section {
-            flex-wrap: nowrap;
-            align-items: center;
-        }
-
-        .timeline {
-            display: none;
-        }
-
+    &.minMode {
         .map-title {
             order: 1;
             width: 100%;
@@ -100,6 +87,11 @@
             display: none !important;
         }
 
+        .top-section {
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
         .map-container {
             position: relative;
             order: 2;
@@ -111,9 +103,5 @@
             order: 3;
             width: 100%;
         }
-    }
-
-    svg p {
-        font-family: $font-family-1;
     }
 }

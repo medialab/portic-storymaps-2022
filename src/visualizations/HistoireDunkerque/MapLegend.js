@@ -67,6 +67,7 @@ export default function MapLegend({
                             height={30}
                             fill={palette['France']}
                             stroke='black'
+                            opacity={0.2}
                         />
                         <foreignObject
                             y={3}
