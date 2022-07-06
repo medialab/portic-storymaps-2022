@@ -79,6 +79,9 @@ export default function Timeline({
         else { setYearTicks(10); }
     }, [svgRef, width, minYear, maxYear]);
 
+    const FONT_SIZE = 8;
+    const TICK_MARGIN = 5;
+
     return (
         <svg
             {...{ width, height }}
@@ -99,10 +102,11 @@ export default function Timeline({
                 data.filter(({ type }) => type === 'period').map(({ year_start, year_end, upper_town, lower_town }, i) => {
                     const colorUpperTown = palette[upper_town];
                     const colorLowerTown = palette[lower_town];
-                    const lineHeight = 15;
+                    const lineHeight = (height - FONT_SIZE - TICK_MARGIN)/2; // 15;
                     return (
                         <g
                             key={i}
+                            className="period"
                         >
                             <g>
                                 {
@@ -160,7 +164,7 @@ export default function Timeline({
                     const pointHeight = 12;
                     return (
                         <g
-                            transform={`translate(${spanRange(year_start) - pointHeight / 2}, ${8})`}
+                            transform={`translate(${spanRange(year_start) - pointHeight / 2}, ${(height - FONT_SIZE - TICK_MARGIN) / 2})`}
                             key={i}
                         >
                             <circle
@@ -198,7 +202,7 @@ export default function Timeline({
                                 strokeWidth={0.5}
                                 strokeDasharray="3,3"
                             />
-                            <text y={height} x={2} fontSize={8} fill='gray'>{year}</text>
+                            <text y={height} x={2} fontSize={FONT_SIZE} fill='gray'>{year}</text>
                         </g>
                     )
                 })

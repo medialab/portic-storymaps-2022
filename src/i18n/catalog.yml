@@ -112,6 +112,12 @@ HistoireDunkerque:
   legend_point_kingdom_dependency:
     fr: Dépend du Royaume de France
     en: 
+  btn_previous_step:
+      fr: Étape précédente
+      en: Previous step
+  btn_next_step:
+    fr: Étape suivante
+    en: Next step
 Pilotage:
   title_comparaison:
     fr: Comparaison entre les données du pilotage et le registre des congés
@@ -131,3 +137,12 @@ Pilotage:
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
     en: 
+  tooltip_total:
+    fr: Total de ${value} navires sortants en ${year}
+    en:
+  tooltip_pilotage:
+    fr: ${value} navires sortants avec pilotage en ${year}
+    en:
+  tooltip_estimation:
+    fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
+    en:

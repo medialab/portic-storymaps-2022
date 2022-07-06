@@ -55,14 +55,35 @@ export default function BoatBarChart({
                 transform={`translate(${barChartWidth + 40}, 0)`}
             >
                 <g className='bar' >
-                    <path
-                        d={`
-                        M0,0
-                        V ${height - margin.bottom}
-                        `}
-                        stroke='black'
-                        strokeWidth={20}
-                    />
+                    {
+                        data.map(({ year, sorties_pilotage, total }, i) => {
+                            const totalY = scaleTotal(total);
+                            const pilotageY = scaleTotal(sorties_pilotage);
+                            const yearY = scaleYear(year);
+                            return (
+                                <g>
+                                    <path
+                                        d={`
+                                        M ${0}, ${height - margin.bottom}
+                                        V ${totalY}
+                                        `}
+                                        stroke={colorPalette['total']}
+                                        strokeWidth={20}
+                                        opacity={0.4}
+                                    />
+                                    <path
+                                        d={`
+                                        M ${0}, ${height - margin.bottom}
+                                        V ${pilotageY}
+                                        `}
+                                        stroke={colorPalette['sorties_pilotage']}
+                                        strokeWidth={20}
+                                        opacity={0.4}
+                                    />
+                                </g>
+                            )
+                        })
+                    }
                 </g>
                 <g
                     className='description'

@@ -67,9 +67,10 @@ export default function MapLegend({
                             height={30}
                             fill={palette['France']}
                             stroke='black'
+                            opacity={0.2}
                         />
                         <foreignObject
-                            y={-5}
+                            y={3}
                             x={35}
                             width='60px'
                             height='35px'
@@ -77,8 +78,7 @@ export default function MapLegend({
                             <p
                                 xmlns="http://www.w3.org/1999/xhtml"
                                 style={{
-                                    fontSize: fontSize,
-                                    fontFamily: 'inherit'
+                                    fontSize: fontSize
                                 }}
                             >{translate('HistoireDunkerque', 'legend_square_kingdom_france', lang)}</p>
                         </foreignObject>
