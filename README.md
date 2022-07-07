@@ -13,9 +13,10 @@ This project rests on the shoulders of two existing digital history projects : [
 Prerequisites:
 
 * install [Node.js](https://nodejs.org/)
-* install [python](https://www.python.org/)
-* install [yarn](https://yarnpkg.com/)
-* install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* install [Python](https://www.python.org/)
+* install [Pypi](https://pypi.org/)
+* install [Yarn](https://yarnpkg.com/)
+* install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 Then in a shell terminal, copy the following commands and hit enter:
 
@@ -27,7 +28,7 @@ yarn run thumbnails
 
 # Development
 
-Use command.
+Use following command.
 
 
 ```bash
@@ -43,7 +44,6 @@ sh retrieve_data.sh
 ```
 
 You can update the thumbnails with the following command. Warning: thumbnails building can be capricious on some machines. Backup existing screenshots from `public/thumbnails` before re-running this script.
-
 
 ```bash
 yarn thumbnails
@@ -96,7 +96,7 @@ This data allows to generate the text content of the application, as well as the
 | bibliography            | Zotero                | /src/data/bib.json    |                    | /datascript/_fetch_content.py |
 | texts                   | Google Drive (GDoc)   | /src/content/**/*.mdx | /src/summary.js    | /datascript/_fetch_content.py |
 
-# Middle : view data
+## Middle : view data
 
 The visualizations index `/src/data/viz.json` contains the names of the `.csv` data files to be loaded via HTTP GET for each visualization. The `/src/visualizations/index.js` file centralizes all calls to the visualization components. It also automatically passes them the data as prescribed by the index of the visualizations. For this, the columns 'id' and 'n_chapter' must match the caller of the visualization. Below the visualization 'id' === 'history-dunkerque' && 'n_chapter' === 1.
 
