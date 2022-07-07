@@ -21,7 +21,7 @@ export default function BoatBarChart({
         left: 60
     };
     const barFromBarChartWidth = 4;
-    const rightBarSpace = 180;
+    const rightBarSpace = 300;
     const barChartWidth = width - rightBarSpace
 
     const scaleYear = useMemo(function computeScaleFromYear() {
@@ -59,9 +59,8 @@ export default function BoatBarChart({
                         data.map(({ year, sorties_pilotage, total }, i) => {
                             const totalY = scaleTotal(total);
                             const pilotageY = scaleTotal(sorties_pilotage);
-                            const yearY = scaleYear(year);
                             return (
-                                <g>
+                                <g key={i}>
                                     <path
                                         d={`
                                         M ${0}, ${height - margin.bottom}
@@ -69,7 +68,7 @@ export default function BoatBarChart({
                                         `}
                                         stroke={colorPalette['total']}
                                         strokeWidth={20}
-                                        opacity={0.4}
+                                        opacity={i / 100}
                                     />
                                     <path
                                         d={`
@@ -78,7 +77,7 @@ export default function BoatBarChart({
                                         `}
                                         stroke={colorPalette['sorties_pilotage']}
                                         strokeWidth={20}
-                                        opacity={0.4}
+                                        opacity={i / 100}
                                     />
                                 </g>
                             )
@@ -89,34 +88,48 @@ export default function BoatBarChart({
                     className='description'
                     transform={`translate(${10}, 0)`}
                 >
-                    <path
-                        className='description-total'
-                        d={`
-                        M 0,0
-                        h 10
-                        V ${maxValueScalePilotage}
-                        h -10
-                        `}
-                        stroke={colorPalette['total']}
-                        strokeWidth={0.5}
-                        fill='transparent'
-                    />
-                    <path
-                        className='description-pilotage'
-                        d={`
-                        M 0,${maxValueScalePilotage}
-                        h 20
-                        V ${height - margin.bottom}
-                        h -20
-                        `}
-                        stroke={colorPalette['sorties_pilotage']}
-                        strokeWidth={0.5}
-                        fill='transparent'
-                    />
+                    <g>
+                        <path
+                            className='description-total'
+                            d={`
+                            M 0,0
+                            h 20
+                            V ${maxValueScalePilotage}
+                            h -20
+                            `}
+                            stroke={colorPalette['total']}
+                            strokeWidth={0.5}
+                            fill='transparent'
+                        />
+                        <text
+                            transform={`translate(${10}, ${20}) rotate(-90)`}
+                            fontSize={11}
+                            textAnchor='end'
+                        >hors pilotage</text>
+                    </g>
+                    <g>
+                        <path
+                            className='description-pilotage'
+                            d={`
+                            M 0,${maxValueScalePilotage}
+                            h 30
+                            V ${height - margin.bottom}
+                            h -30
+                            `}
+                            stroke={colorPalette['sorties_pilotage']}
+                            strokeWidth={0.5}
+                            fill='transparent'
+                        />
+                        <text
+                            transform={`translate(${10}, ${maxValueScalePilotage + 20}) rotate(-90)`}
+                            fontSize={11}
+                            textAnchor='end'
+                        >pilotage</text>
+                    </g>
                     <path
                         className='description-pilotage-queue'
                         d={`
-                        M 20,${maxValueScalePilotage + 50}
+                        M 30,${maxValueScalePilotage + 50}
                         h 10
                         `}
                         stroke={colorPalette['sorties_pilotage']}
@@ -124,14 +137,14 @@ export default function BoatBarChart({
                         fill='transparent'
                     />
                     <foreignObject
-                            y={maxValueScalePilotage - 10}
-                            x={35}
-                            width={90}
-                            height={110}
+                            y={maxValueScalePilotage}
+                            x={45}
+                            width={150}
+                            height={100}
                         >
                             <p
                                 xmlns="http://www.w3.org/1999/xhtml"
-                                style={{ fontSize: 11, }}
+                                style={{ fontSize: 14, }}
                             >{translate('Pilotage', 'description_pilotage', lang, { mean: meanPilotage })}</p>
                     </foreignObject>
                 </g>
@@ -146,6 +159,7 @@ export default function BoatBarChart({
                             return (
                                 <g key={i} transform={`translate(${barFromBarChartWidth / 2})`} >
                                     <path
+                                        className='path-vertical'
                                         d={`
                                         M ${yearY - (barFromBarChartWidth / 2)}, ${height - margin.bottom}
                                         V ${totalY}
@@ -154,15 +168,18 @@ export default function BoatBarChart({
                                         strokeWidth={barFromBarChartWidth}
                                     />
                                     <path
+                                        className='path-horizontal'
                                         d={`
                                         M ${yearY - (barFromBarChartWidth)}, ${totalY}
                                         H ${barChartWidth - (barFromBarChartWidth / 2) + 50}
                                         `}
                                         stroke={colorPalette['total']}
-                                        strokeWidth={1}
+                                        strokeWidth={0.5}
+                                        strokeDasharray='4'
                                     />
 
                                     <path
+                                        className='path-vertical'
                                         d={`
                                         M ${yearY - (barFromBarChartWidth / 2)}, ${height - margin.bottom}
                                         V ${pilotageY}
@@ -171,12 +188,14 @@ export default function BoatBarChart({
                                         strokeWidth={barFromBarChartWidth}
                                     />
                                     <path
+                                        className='path-horizontal'
                                         d={`
                                         M ${yearY - (barFromBarChartWidth)}, ${pilotageY}
                                         H ${barChartWidth - (barFromBarChartWidth / 2) + 50}
                                         `}
                                         stroke={colorPalette['sorties_pilotage']}
-                                        strokeWidth={1}
+                                        strokeWidth={0.5}
+                                        strokeDasharray='4'
                                     />
                                 </g>
                             )
@@ -187,7 +206,6 @@ export default function BoatBarChart({
                     className='ticks-y'
                     transform={`translate(${margin.left - 15}, ${0})`}
                 >
-                    <path className='ticks-y-bar' d={`M${5},${0} V${height - margin.bottom}`} stroke='black' />
                     {
                         axisPropsFromTickScale(scaleTotal, 15).values.map((value, i) => {
                             return (
@@ -222,7 +240,6 @@ export default function BoatBarChart({
                     className='ticks-x'
                     transform={`translate(${0}, ${height - margin.bottom})`}
                 >
-                    <path className='ticks-x-bar' d={`M${margin.left - 15},${0} H${barChartWidth}`} stroke='black' />
                     {
                         axisPropsFromTickScale(scaleYear, 10).values.map((value, i) => {
                             return (

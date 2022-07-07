@@ -4,7 +4,10 @@ import BoatBarChart from './BoatBarChart';
 import BarChartEstimation from './BarChartEstimation';
 import PilotageLegend from './PilotageLegend';
 
+import { mean, extent } from 'd3-array';
+
 import './Pilotage.scss';
+import SchemaDemonstration from './SchemaDemonstration';
 
 export default function Pilotage({
     data: inputData,
@@ -29,33 +32,91 @@ export default function Pilotage({
         })
     }, [inputData]);
 
+    // data with lines 'total' and 'sorties_pilotage' to compute the projection
+    const dataForProjection = useMemo(function filterData() {
+        return data.filter(({ total, sorties_pilotage }) => total !== undefined && sorties_pilotage !== undefined);
+    }, [data]);
+    const yearPeriodForProjection = useMemo(() => extent(dataForProjection, d => d['year']), [dataForProjection]);
+
+    const projectionStats = useMemo(function computeData() {
+        const pilotageOnTotalPourcentagePerYear = dataForProjection.map(({ total, sorties_pilotage }) => {
+            return (sorties_pilotage / total) * 100;
+        });
+        const pilotageOnTotalPourcentagePerYearMean = mean(pilotageOnTotalPourcentagePerYear);
+        const projectionPerYear = dataForProjection.map(({ sorties_pilotage, total, year }) => {
+            const pilotageByProjection = (sorties_pilotage * 100) / pilotageOnTotalPourcentagePerYearMean;
+            const realityGap = total - pilotageByProjection;
+            const realityGapPourcentage = (realityGap / pilotageByProjection) * 100;
+            return {
+                year,
+                pilotageByProjection,
+                realityGap,
+                realityGapPourcentage
+            };
+        });
+        let [minProjectionPerYear, maxProjectionPerYear] = extent(projectionPerYear, d => d['realityGapPourcentage']);
+        minProjectionPerYear = minProjectionPerYear.toFixed(2);
+        maxProjectionPerYear = maxProjectionPerYear.toFixed(2);
+        return {
+            projectionPerYear,
+            minProjectionPerYear,
+            maxProjectionPerYear,
+            meanProjectionPerYear: pilotageOnTotalPourcentagePerYearMean
+        };
+    }, [dataForProjection]);
 
     return (
         <div className='Pilotage'>
-            <h3>{translate('Pilotage', 'title_comparaison', lang)}</h3>
-            <div className='top-barchart'>
-                <PilotageLegend
-                    {...{ colorPalette, lang }}
-                    dimensions={{
-                        width: 150,
-                        height: 150
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}
-                />
-                <BoatBarChart
-                    {...{ colorPalette, lang }}
-                    data={data.filter(({ total }) => total !== undefined)}
+                >
+                    <div
+                        style={{ marginBottom: '1rem' }}
+                    >
+                        <h3>{translate('Pilotage', 'title_comparaison', lang)}</h3>
+                        <PilotageLegend
+                            {...{ colorPalette, lang }}
+                            dimensions={{
+                                width: 600,
+                                height: 40
+                            }}
+                        />
+                    </div>
+                    <BoatBarChart
+                        {...{ colorPalette, lang }}
+                        data={dataForProjection}
+                        dimensions={{
+                            width: 600,
+                            height: 250
+                        }}
+                    />
+                </div>
+
+                <SchemaDemonstration
+                    {...{ lang, colorPalette, projectionStats }}
+                    data={dataForProjection}
                     dimensions={{
-                        width: 450,
-                        height: 250
+                        width: 550,
+                        height: 300
                     }}
                 />
             </div>
+
             <h3>{translate('Pilotage', 'title_estimation', lang)}</h3>
             <BarChartEstimation
-                {...{ colorPalette, lang, data }}
+                {...{ colorPalette, lang, data, yearPeriodForProjection, projectionStats }}
                 dimensions={{
                     width: width - 50,
-                    height: 300
+                    height: 400
                 }}
             />
         </div>
