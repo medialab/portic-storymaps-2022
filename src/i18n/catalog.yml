@@ -134,6 +134,17 @@ Pilotage:
   legend_total:
     fr: Navires quittant le port de Dunkerque selon le registre des congés
     en: 
+  footer_projection:
+    fr: Projection à partir de la moyenne ${year_start}/${year_end}
+    en: 
+  footer_register:
+    fr: Données issues des registres
+    en: 
+  description_demonstration:
+    fr: >-
+      À partir de cette moyenne on peut estimer le nombre de navires quittant Dunkerque chaque année.
+      La comparaison avec les données des congés permet de constater une marge d'erreur entre ${value_max}% et ${value_min}%.
+    en: 
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
     en: 

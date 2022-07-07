@@ -22,7 +22,7 @@ export default function PilotageLegend({
                 <foreignObject
                     y={0}
                     x={15}
-                    width={120}
+                    width={width}
                     height={100}
                 >
                     <p
@@ -40,7 +40,7 @@ export default function PilotageLegend({
                 <foreignObject
                     y={0}
                     x={15}
-                    width={120}
+                    width={width}
                     height={100}
                 >
                     <p

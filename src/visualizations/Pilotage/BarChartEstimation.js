@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect } from 'react';
 
 import Tooltip from 'react-tooltip';
-import { extent, min, max, mean } from 'd3-array';
+import { extent, max, min, mean } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { axisPropsFromTickScale } from 'react-d3-axis';
 import translate from '../../utils/translate';
@@ -15,31 +15,18 @@ export default function PilotageLegend({
     lang,
     dimensions,
     colorPalette,
+    projectionStats,
+    yearPeriodForProjection,
     ...props
 }) {
     const { width, height } = dimensions;
 
     const margin = {
-        bottom: 30,
+        bottom: 60,
         left: 45,
         right: 10
     };
     const barFromBarChartWidth = 7;
-
-    // const data = useMemo(function prepareData() {
-    //     return inputData.map((row) => {
-    //         const { sorties_pilotage, total } = row;
-    //         if (sorties_pilotage === undefined || total === undefined) {
-    //             return row;
-    //         }
-    //         return {
-    //             ...row,
-    //             rapport: sorties_pilotage / total
-    //         }
-    //     })
-    // }, [inputData])
-
-    // console.table(data)
 
     const {
         meanPilotage,
@@ -53,6 +40,18 @@ export default function PilotageLegend({
         }
     }, [data]);
 
+    const {
+        projectionPerYear,
+        minProjectionPerYear,
+        maxProjectionPerYear,
+        meanProjectionPerYear
+    } = projectionStats;
+
+    console.log(projectionPerYear);
+
+    const startYear = min(data, d => d['year']);
+    const [startYearForProjection, endYearForProjection] = yearPeriodForProjection;
+
     const scaleYear = useMemo(function computeScaleFromYear() {
         const [minYear, maxYear] = extent(data, d => d['year']);
         return scaleLinear()
@@ -63,9 +62,15 @@ export default function PilotageLegend({
     const scaleTotal = useMemo(function computeScaleFromValue() {
         const maxValue = max(data, d => d['total']);
         return scaleLinear()
-            .domain([0, (maxValue / maxPilotage)])
+            .domain([0, maxValue])
             .range([height - margin.bottom, margin.bottom]);
     }, [data, maxPilotage, height]);
+
+    const scaleProjection = useMemo(function computeScaleFromProjectionValue() {
+        return scaleLinear()
+            .domain([minProjectionPerYear, maxProjectionPerYear])
+            .range([height - margin.bottom, margin.bottom]);
+    }, [minProjectionPerYear, maxProjectionPerYear, height]);
 
     useEffect(() => {
         Tooltip.rebuild();
@@ -115,46 +120,74 @@ export default function PilotageLegend({
                                         data-for="bar-tooltip"
                                         data-tip={translate('Pilotage', 'tooltip_pilotage', lang, { value: sorties_pilotage, year })}
                                     />
-                                    <g
-                                        data-for="bar-tooltip"
-                                        data-tip={translate('Pilotage', 'tooltip_estimation', lang, {
-                                            value_min: formatNumber(Math.round(sorties_pilotage / maxPilotage)),
-                                            value_max: formatNumber(Math.round(sorties_pilotage / minPilotage)),
-                                            year
-                                        }
-                                        )}
-                                    >
-                                        {
-                                            totalY !== undefined &&
-                                            <path
-                                                d={`
-                                                M ${0}, ${pilotageY}
-                                                V ${max([pilotageMeanY, totalY])}
-                                                `}
-                                                stroke='#ffb2ad'
-                                                strokeWidth={barFromBarChartWidth}
-                                            />
-                                        }
-                                        <path
-                                            d={`
-                                            M ${0}, ${pilotageY}
-                                            V ${pilotageMeanY}
-                                            `}
-                                            stroke='url(#diag-hatch)'
-                                            strokeWidth={barFromBarChartWidth}
-                                        />
-                                    </g>
-                                    <g transform={`translate(${barFromBarChartWidth - 3})`} className='moustach'>
-                                        <path
-                                            d={`
-                                            M ${0}, ${pilotageMaxY}
-                                            V ${pilotageMinY}
-                                            `}
-                                            stroke='black'
-                                            strokeWidth={1.5}
-                                        />
-                                        <circle cx={0} cy={pilotageMeanY} r={3} fill='black' />
-                                    </g>
+                                    {
+                                        year < startYearForProjection &&
+                                        <g>
+                                            <g
+                                                data-for="bar-tooltip"
+                                                data-tip={translate('Pilotage', 'tooltip_estimation', lang, {
+                                                    value_min: formatNumber(Math.round(sorties_pilotage / maxPilotage)),
+                                                    value_max: formatNumber(Math.round(sorties_pilotage / minPilotage)),
+                                                    year
+                                                }
+                                                )}
+                                            >
+                                                {
+                                                    totalY !== undefined &&
+                                                    <path
+                                                        d={`
+                                                        M ${0}, ${pilotageY}
+                                                        V ${max([pilotageMeanY, totalY])}
+                                                        `}
+                                                        stroke='#ffb2ad'
+                                                        strokeWidth={barFromBarChartWidth}
+                                                    />
+                                                }
+                                                <path
+                                                    d={`
+                                                    M ${0}, ${pilotageY}
+                                                    V ${pilotageMeanY}
+                                                    `}
+                                                    stroke='url(#diag-hatch)'
+                                                    strokeWidth={barFromBarChartWidth}
+                                                />
+                                            </g>
+                                            <g transform={`translate(${barFromBarChartWidth - 3})`} className='moustach'>
+                                                {
+                                                    projectionPerYear.map(({ realityGapPourcentage }) => {
+                                                        if (realityGapPourcentage >= 0) {
+                                                            return (
+                                                                <path
+                                                                    d={`
+                                                                    M0,${scaleProjection(realityGapPourcentage)}
+                                                                    V${scaleProjection(0)}
+                                                                    `}
+                                                                    stroke='black'
+                                                                    strokeWidth={3}
+                                                                    opacity={0.1}
+                                                                    strokeLinecap='round'
+                                                                />
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <path
+                                                                    d={`
+                                                                    M0,${scaleProjection(0)}
+                                                                    V${scaleProjection(realityGapPourcentage)}
+                                                                    `}
+                                                                    stroke='black'
+                                                                    strokeWidth={3}
+                                                                    opacity={0.1}
+                                                                    strokeLinecap='round'
+                                                                />
+                                                            )
+                                                        }
+                                                    })
+                                                }
+                                                <circle cx={0} cy={scaleProjection(sorties_pilotage / (meanPilotage * 100))} r={4} fill='black' />
+                                            </g>
+                                        </g>
+                                    }
                                 </g>
                             )
                         })
@@ -181,15 +214,12 @@ export default function PilotageLegend({
                                         stroke='black'
                                         strokeWidth={1}
                                     />
-                                    {
-                                        (i % 3 === 0) &&
-                                        <text
-                                            fontSize={11}
-                                            x={0}
-                                            y={0}
-                                            textAnchor='end'
-                                        >{formatNumber(value)}</text>
-                                    }
+                                    <text
+                                        fontSize={11}
+                                        x={0}
+                                        y={0}
+                                        textAnchor='end'
+                                    >{formatNumber(value)}</text>
                                 </g>
                             )
                         })
@@ -199,7 +229,6 @@ export default function PilotageLegend({
                     className='ticks-x'
                     transform={`translate(${0}, ${height - margin.bottom})`}
                 >
-                    <path className='ticks-x-bar' d={`M${margin.left - 15},${0} H${width}`} stroke='black' />
                     {
                         data.map(({ year }, i) => {
                             return (
@@ -209,7 +238,7 @@ export default function PilotageLegend({
                                     key={i}
                                 >
                                     <path
-                                            d={`
+                                        d={`
                                             M ${0}, ${0}
                                             v ${5}
                                         `}
@@ -227,6 +256,65 @@ export default function PilotageLegend({
                             )
                         })
                     }
+                </g>
+                <g className='body-axis'>
+                    {
+                        axisPropsFromTickScale(scaleTotal, 3).values.map((value, i) => {
+                            return (
+                                <path key={i} className='ticks-x-bar' d={`M${margin.left - 15},${scaleTotal(value)} H${width}`} stroke='gray' strokeWidth={0.5} />
+                            )
+                        })
+                    }
+                </g>
+                <g className='footer' transform={`translate(0, ${height})`}>
+                    <g className='footer-projection'>
+                        <path
+                            d={`M${scaleYear(startYear)},${-15} H${scaleYear(startYearForProjection) - 5}`}
+                            stroke='black'
+                        />
+                        <foreignObject
+                            y={-25}
+                            x={130}
+                            width={250}
+                            height={20}
+                        >
+                            <p
+                                xmlns="http://www.w3.org/1999/xhtml"
+                                style={{
+                                    fontSize: 10,
+                                    border: '1px solid black',
+                                    borderRadius: '10px',
+                                    textAlign: 'center',
+                                    backgroundColor: 'white',
+                                    display: 'inline-block'
+                                }}
+                            >{translate('Pilotage', 'footer_projection', lang, { year_start: startYearForProjection, year_end: endYearForProjection })}</p>
+                        </foreignObject>
+                    </g>
+                    <g className='footer-register'>
+                        <path
+                            d={`M${scaleYear(startYearForProjection) + 5},${-15} H${scaleYear(endYearForProjection)}`}
+                            stroke='black'
+                        />
+                        <foreignObject
+                            y={-25}
+                            x={scaleYear(startYearForProjection) + 100}
+                            width={250}
+                            height={20}
+                        >
+                            <p
+                                xmlns="http://www.w3.org/1999/xhtml"
+                                style={{
+                                    fontSize: 10,
+                                    color: 'white',
+                                    borderRadius: '10px',
+                                    textAlign: 'center',
+                                    backgroundColor: 'black',
+                                    display: 'inline-block'
+                                }}
+                            >{translate('Pilotage', 'footer_register', lang)}</p>
+                        </foreignObject>
+                    </g>
                 </g>
             </svg>
             <Tooltip id="bar-tooltip" />
