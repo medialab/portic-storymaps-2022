@@ -32,12 +32,14 @@ const basePath = path.join(__dirname, 'public');
 });
 
 (async () => {
+    console.log('preparation');
+
     await server.start();
     const browser = await puppeteer.launch({
         // headless: false
     });
 
-    console.log('preparation');
+    console.log('lancement');
 
     for (const vizId of vizList) {
         console.log('screenshot for ', vizId);
@@ -73,6 +75,24 @@ const basePath = path.join(__dirname, 'public');
             console.log('done');
         }
     }
+
+    const homePage = await browser.newPage();
+    console.log('screenshot for ', 'social networks');
+    try {
+        await homePage.setViewport({
+            width: 1905,
+            height: 952,
+            deviceScaleFactor: 1,
+        });
+        await homePage.goto(`http://localhost:${devServerOptions.port}/#/fr/`);
+    } catch (error) {
+        console.log('failed');
+        await page.close();
+    }
+    await homePage.screenshot({
+        path: path.join(basePath, 'thumbnails', `dunkerque-rs.png`),
+        fullPage: false
+    });
 
     await browser.close();
     await server.stop();
