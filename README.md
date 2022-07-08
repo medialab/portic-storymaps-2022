@@ -68,6 +68,7 @@ The project is open to contribution through pull requests.
 ## Also read
 
 - [Translate the app](./src/i18n/README.md)
+- [Translate the app](./datascripts/README.md)
 
 # App architecture
 
