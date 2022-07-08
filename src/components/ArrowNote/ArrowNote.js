@@ -47,25 +47,32 @@ export default function ArrowNote({
     y2,
     debug = false
 }) {
-    const xArrowBegin = x1 + textWidth;
-    const yArrowBegin = y1 + textHeight;
-    const inverseArrow = y1 > y2;
+    const inverseArrowX = x1 > x2;
+    const inverseArrowY = y1 > y2;
+
+    let xArrowBegin, yArrowBegin;
+
+    if (inverseArrowX) {
+        xArrowBegin = x1;
+    } else {
+        xArrowBegin = x1 + textWidth
+    }
+
+    if (inverseArrowY) {
+        yArrowBegin = y1;
+    } else {
+        yArrowBegin = y1 + textHeight;
+    }
+    
     return (
         <g
             className="ArrowNote"
-            transform={`translate(${100}, ${100})`}
         >
             <path
                 d={
-                inverseArrow === false  ?
                 `
                 M${xArrowBegin},${yArrowBegin}
                 C${xArrowBegin},${yArrowBegin + 10} ${xArrowBegin + 10},${y2} ${x2},${y2}
-                `
-                :
-                `
-                M${xArrowBegin},${y1}
-                C${xArrowBegin},${y1 - 10} ${xArrowBegin + 10},${y2} ${x2},${y2}
                 `
                 }
                 stroke={arrowColor}
@@ -83,7 +90,7 @@ export default function ArrowNote({
                     xmlns="http://www.w3.org/1999/xhtml"
                     style={{
                         fontSize: 12,
-                        textAlign: 'right',
+                        textAlign: inverseArrowX ? 'left' : 'right',
                         ...textStyle
                     }}
                 >{text}</p>

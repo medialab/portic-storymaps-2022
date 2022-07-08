@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 
-import { extent, max, mean } from 'd3-array';
+import Tooltip from 'react-tooltip';
+import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import translate from '../../utils/translate';
 
@@ -45,6 +46,10 @@ export default function SchemaDemonstration({
             .range([height - topTexteHeight - margin.bottom, margin.bottom]);
     }, [minProjectionPerYear, maxProjectionPerYear, height]);
 
+    useEffect(() => {
+        Tooltip.rebuild();
+    });
+
     return (
         <svg {...{ width, height }} >
             <DiagonalHatching id='diag-hatch' lineGap={4} strokeWidth={5} color={colorPalette['total']} />
@@ -82,6 +87,8 @@ export default function SchemaDemonstration({
                                             `}
                                             stroke={colorPalette['total']}
                                             strokeWidth={barFromBarChartWidth}
+                                            data-for="bar-tooltip"
+                                            data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
                                         />
                                     }
                                     {
@@ -93,6 +100,8 @@ export default function SchemaDemonstration({
                                             `}
                                             stroke='url(#diag-hatch)'
                                             strokeWidth={barFromBarChartWidth}
+                                            data-for="bar-tooltip"
+                                            data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
                                         />
                                     }
                                 </g>
@@ -224,39 +233,38 @@ export default function SchemaDemonstration({
                         })
                     }
                 </g>
-            </g>
-
-            <g className='notes'>
+                <g className='notes'>
                 <ArrowNote
                     arrowId='arrow-note-head'
                     textWidth={130}
                     textHeight={40}
-                    x1={-100}
-                    y1={40}
-                    x2={55}
-                    y2={110}
+                    x1={0}
+                    y1={80}
+                    x2={margin.left - 20}
+                    y2={scaleProjection(0)}
                     text={translate('Pilotage', 'note_schema_mean', lang)}
                 />
                 <ArrowNote
                     arrowId='arrow-note-head'
                     textWidth={160}
                     textHeight={40}
-                    x1={-50}
-                    y1={-20}
-                    x2={150}
-                    y2={60}
+                    x1={20}
+                    y1={20}
+                    x2={scaleYear(1772)}
+                    y2={80}
                     text={translate('Pilotage', 'note_schema_sup', lang)}
                 />
                 <ArrowNote
                     arrowId='arrow-note-head'
                     textWidth={280}
                     textHeight={20}
-                    x1={-80}
-                    y1={170}
-                    x2={240}
-                    y2={140}
+                    x1={20}
+                    y1={220}
+                    x2={scaleYear(1789)}
+                    y2={200}
                     text={translate('Pilotage', 'note_schema_inf', lang)}
                 />
+            </g>
             </g>
         </svg>
     )

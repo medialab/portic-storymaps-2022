@@ -70,7 +70,8 @@ export default function Pilotage({
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap'
                 }}
             >
                 <div

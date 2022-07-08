@@ -5,10 +5,10 @@ import { extent, max, min, mean } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { axisPropsFromTickScale } from 'react-d3-axis';
 import translate from '../../utils/translate';
+import { formatNumber } from '../../utils/misc';
 
 import DiagonalHatching from '../../components/DiagonalHatching';
-
-import { formatNumber } from '../../utils/misc';
+import ArrowNote from "../../components/ArrowNote";
 
 export default function PilotageLegend({
     data,
@@ -26,7 +26,7 @@ export default function PilotageLegend({
         left: 45,
         right: 10
     };
-    const barFromBarChartWidth = 7;
+    const barFromBarChartWidth = 8;
 
     const {
         meanPilotage,
@@ -43,11 +43,8 @@ export default function PilotageLegend({
     const {
         projectionPerYear,
         minProjectionPerYear,
-        maxProjectionPerYear,
-        meanProjectionPerYear
+        maxProjectionPerYear
     } = projectionStats;
-
-    console.log(projectionPerYear);
 
     const startYear = min(data, d => d['year']);
     const [startYearForProjection, endYearForProjection] = yearPeriodForProjection;
@@ -82,6 +79,10 @@ export default function PilotageLegend({
                 {...{ width, height }}
             >
                 <DiagonalHatching id='diag-hatch' lineGap={4} strokeWidth={5} color={colorPalette['total']} />
+                <marker id='arrow-note-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
+                    <path d='M0,0 V4 L2,2 Z' fill='black' />
+                </marker>
+
                 <g className='bars'>
                     {
                         data.map(({ year, sorties_pilotage, total }, i) => {
@@ -152,7 +153,7 @@ export default function PilotageLegend({
                                                     strokeWidth={barFromBarChartWidth}
                                                 />
                                             </g>
-                                            <g transform={`translate(${barFromBarChartWidth - 3})`} className='moustach'>
+                                            <g transform={`translate(${barFromBarChartWidth - 3}, ${scaleProjection(sorties_pilotage / (meanPilotage * 100)) - 200})`} className='moustach'>
                                                 {
                                                     projectionPerYear.map(({ realityGapPourcentage }) => {
                                                         if (realityGapPourcentage >= 0) {
@@ -184,7 +185,7 @@ export default function PilotageLegend({
                                                         }
                                                     })
                                                 }
-                                                <circle cx={0} cy={scaleProjection(sorties_pilotage / (meanPilotage * 100))} r={4} fill='black' />
+                                                <circle cx={0} cy={scaleProjection(0)} r={4} fill='black' />
                                             </g>
                                         </g>
                                     }
@@ -197,7 +198,6 @@ export default function PilotageLegend({
                     className='ticks-y'
                     transform={`translate(${margin.left - 15}, ${0})`}
                 >
-                    <path className='ticks-y-bar' d={`M${5},${0} V${height - margin.bottom}`} stroke='black' />
                     {
                         axisPropsFromTickScale(scaleTotal, 15).values.map((value, i) => {
                             return (
@@ -259,7 +259,7 @@ export default function PilotageLegend({
                 </g>
                 <g className='body-axis'>
                     {
-                        axisPropsFromTickScale(scaleTotal, 3).values.map((value, i) => {
+                        [...axisPropsFromTickScale(scaleTotal, 3).values, 2800].map((value, i) => {
                             return (
                                 <path key={i} className='ticks-x-bar' d={`M${margin.left - 15},${scaleTotal(value)} H${width}`} stroke='gray' strokeWidth={0.5} />
                             )
@@ -274,21 +274,24 @@ export default function PilotageLegend({
                         />
                         <foreignObject
                             y={-25}
-                            x={130}
-                            width={250}
-                            height={20}
+                            x={scaleYear(startYear)}
+                            width={scaleYear(startYearForProjection) - scaleYear(startYear)}
+                            height={25}
                         >
-                            <p
-                                xmlns="http://www.w3.org/1999/xhtml"
-                                style={{
-                                    fontSize: 10,
-                                    border: '1px solid black',
-                                    borderRadius: '10px',
-                                    textAlign: 'center',
-                                    backgroundColor: 'white',
-                                    display: 'inline-block'
-                                }}
-                            >{translate('Pilotage', 'footer_projection', lang, { year_start: startYearForProjection, year_end: endYearForProjection })}</p>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <p
+                                    xmlns="http://www.w3.org/1999/xhtml"
+                                    style={{
+                                        fontSize: 10,
+                                        border: '1px solid black',
+                                        borderRadius: '10px',
+                                        textAlign: 'center',
+                                        backgroundColor: 'white',
+                                        display: 'inline-block',
+                                        padding: '2px'
+                                    }}
+                                >{translate('Pilotage', 'footer_projection', lang, { year_start: startYearForProjection, year_end: endYearForProjection })}</p>
+                            </div>
                         </foreignObject>
                     </g>
                     <g className='footer-register'>
@@ -298,23 +301,59 @@ export default function PilotageLegend({
                         />
                         <foreignObject
                             y={-25}
-                            x={scaleYear(startYearForProjection) + 100}
-                            width={250}
-                            height={20}
+                            x={scaleYear(startYearForProjection)}
+                            width={scaleYear(endYearForProjection) - scaleYear(startYearForProjection)}
+                            height={25}
                         >
-                            <p
-                                xmlns="http://www.w3.org/1999/xhtml"
-                                style={{
-                                    fontSize: 10,
-                                    color: 'white',
-                                    borderRadius: '10px',
-                                    textAlign: 'center',
-                                    backgroundColor: 'black',
-                                    display: 'inline-block'
-                                }}
-                            >{translate('Pilotage', 'footer_register', lang)}</p>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <p
+                                    xmlns="http://www.w3.org/1999/xhtml"
+                                    style={{
+                                        fontSize: 10,
+                                        color: 'white',
+                                        border: '1px solid black',
+                                        borderRadius: '10px',
+                                        textAlign: 'center',
+                                        backgroundColor: 'black',
+                                        display: 'inline-block',
+                                        padding: '2px'
+                                    }}
+                                >{translate('Pilotage', 'footer_register', lang)}</p>
+                            </div>
                         </foreignObject>
                     </g>
+                </g>
+                <g className='notes'>
+                    <ArrowNote
+                        arrowId='arrow-note-head'
+                        textWidth={130}
+                        textHeight={40}
+                        x1={scaleYear(1733)}
+                        y1={scaleTotal(1600)}
+                        x2={scaleYear(1731.5)}
+                        y2={scaleTotal(200)}
+                        text={translate('Pilotage', 'note_demonstration_pilotage', lang)}
+                    />
+                    <ArrowNote
+                        arrowId='arrow-note-head'
+                        textWidth={130}
+                        textHeight={40}
+                        x1={scaleYear(1738)}
+                        y1={scaleTotal(2200)}
+                        x2={scaleYear(1747.5)}
+                        y2={scaleTotal(1000)}
+                        text={translate('Pilotage', 'note_demonstration_projection', lang)}
+                    />
+                    <ArrowNote
+                        arrowId='arrow-note-head'
+                        textWidth={130}
+                        textHeight={40}
+                        x1={scaleYear(1758)}
+                        y1={scaleTotal(1500)}
+                        x2={scaleYear(1755.5)}
+                        y2={scaleTotal(2000)}
+                        text={translate('Pilotage', 'note_demonstration_margin', lang)}
+                    />
                 </g>
             </svg>
             <Tooltip id="bar-tooltip" />
