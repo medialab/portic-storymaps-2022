@@ -157,3 +157,12 @@ Pilotage:
   tooltip_estimation:
     fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
     en:
+  note_schema_mean:
+    fr: Estimation du nombre de navires hors pilotage
+    en: 
+  note_schema_sup:
+    fr: Les données relevées sont supérieurs à la moyenne
+    en: 
+  note_schema_inf:
+    fr: Les données relevées sont inférieures à la moyenne
+    en: 

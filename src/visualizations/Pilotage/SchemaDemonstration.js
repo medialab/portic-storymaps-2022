@@ -5,6 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import translate from '../../utils/translate';
 
 import DiagonalHatching from '../../components/DiagonalHatching';
+import ArrowNote from "../../components/ArrowNote";
 
 export default function SchemaDemonstration({
     lang,
@@ -18,7 +19,7 @@ export default function SchemaDemonstration({
 
     const margin = {
         bottom: 30,
-        left: 15,
+        left: 180,
         right: 85
     };
     const barFromBarChartWidth = 7;
@@ -58,6 +59,10 @@ export default function SchemaDemonstration({
                     style={{ fontSize: 14, }}
                 >{translate('Pilotage', 'description_demonstration', lang, { value_max: maxProjectionPerYear, value_min: minProjectionPerYear })}</p>
             </foreignObject>
+
+            <marker id='arrow-note-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
+                <path d='M0,0 V4 L2,2 Z' fill='black' />
+            </marker>
 
             <g className='chart' transform={`translate(${0}, ${topTexteHeight})`}>
                 <g className='bars'>
@@ -219,6 +224,39 @@ export default function SchemaDemonstration({
                         })
                     }
                 </g>
+            </g>
+
+            <g className='notes'>
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={130}
+                    textHeight={40}
+                    x1={-100}
+                    y1={40}
+                    x2={55}
+                    y2={110}
+                    text={translate('Pilotage', 'note_schema_mean', lang)}
+                />
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={160}
+                    textHeight={40}
+                    x1={-50}
+                    y1={-20}
+                    x2={150}
+                    y2={60}
+                    text={translate('Pilotage', 'note_schema_sup', lang)}
+                />
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={280}
+                    textHeight={20}
+                    x1={-80}
+                    y1={170}
+                    x2={240}
+                    y2={140}
+                    text={translate('Pilotage', 'note_schema_inf', lang)}
+                />
             </g>
         </svg>
     )
