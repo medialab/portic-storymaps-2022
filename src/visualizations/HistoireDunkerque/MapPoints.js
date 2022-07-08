@@ -30,7 +30,7 @@ export default function MapPoints({
         timeOut = setTimeout(() => {
             setStyles.start({ opacity: 0 })
         }, 2000);
-    }, [diplayedYear])
+    }, [diplayedYear]);
 
     return (
         <svg
@@ -93,8 +93,8 @@ export default function MapPoints({
                                     }
                                 </g>
                                 <foreignObject
-                                    y={0}
-                                    x={15}
+                                    y={-5}
+                                    x={20}
                                     width='250px'
                                     height='30px'
                                 >
@@ -104,10 +104,31 @@ export default function MapPoints({
                                             ...styles,
                                             color: 'white',
                                             display: 'inline-block',
+                                            padding: '2px',
                                             backgroundColor: color
                                         }}
                                     >{label}</animated.p>
                                 </foreignObject>
+                                {
+                                    hoverId === id &&
+                                    <foreignObject
+                                        y={-5}
+                                        x={20}
+                                        width='250px'
+                                        height='30px'
+                                    >
+                                        <p
+                                            xmlns="http://www.w3.org/1999/xhtml"
+                                            style={{
+                                                ...styles,
+                                                color: 'white',
+                                                display: 'inline-block',
+                                                padding: '2px',
+                                                backgroundColor: color
+                                            }}
+                                        >{label}</p>
+                                    </foreignObject>
+                                }
                             </g>
                         )
                     }

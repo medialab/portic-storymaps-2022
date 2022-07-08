@@ -1,10 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 
-import { extent, max, mean } from 'd3-array';
+import Tooltip from 'react-tooltip';
+import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import translate from '../../utils/translate';
 
 import DiagonalHatching from '../../components/DiagonalHatching';
+import ArrowNote from "../../components/ArrowNote";
 
 export default function SchemaDemonstration({
     lang,
@@ -18,7 +20,7 @@ export default function SchemaDemonstration({
 
     const margin = {
         bottom: 30,
-        left: 15,
+        left: 180,
         right: 85
     };
     const barFromBarChartWidth = 7;
@@ -44,6 +46,10 @@ export default function SchemaDemonstration({
             .range([height - topTexteHeight - margin.bottom, margin.bottom]);
     }, [minProjectionPerYear, maxProjectionPerYear, height]);
 
+    useEffect(() => {
+        Tooltip.rebuild();
+    });
+
     return (
         <svg {...{ width, height }} >
             <DiagonalHatching id='diag-hatch' lineGap={4} strokeWidth={5} color={colorPalette['total']} />
@@ -58,6 +64,10 @@ export default function SchemaDemonstration({
                     style={{ fontSize: 14, }}
                 >{translate('Pilotage', 'description_demonstration', lang, { value_max: maxProjectionPerYear, value_min: minProjectionPerYear })}</p>
             </foreignObject>
+
+            <marker id='arrow-note-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
+                <path d='M0,0 V4 L2,2 Z' fill='black' />
+            </marker>
 
             <g className='chart' transform={`translate(${0}, ${topTexteHeight})`}>
                 <g className='bars'>
@@ -77,6 +87,8 @@ export default function SchemaDemonstration({
                                             `}
                                             stroke={colorPalette['total']}
                                             strokeWidth={barFromBarChartWidth}
+                                            data-for="bar-tooltip"
+                                            data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
                                         />
                                     }
                                     {
@@ -88,6 +100,8 @@ export default function SchemaDemonstration({
                                             `}
                                             stroke='url(#diag-hatch)'
                                             strokeWidth={barFromBarChartWidth}
+                                            data-for="bar-tooltip"
+                                            data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
                                         />
                                     }
                                 </g>
@@ -219,6 +233,38 @@ export default function SchemaDemonstration({
                         })
                     }
                 </g>
+                <g className='notes'>
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={130}
+                    textHeight={40}
+                    x1={0}
+                    y1={80}
+                    x2={margin.left - 20}
+                    y2={scaleProjection(0)}
+                    text={translate('Pilotage', 'note_schema_mean', lang)}
+                />
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={160}
+                    textHeight={40}
+                    x1={20}
+                    y1={20}
+                    x2={scaleYear(1772)}
+                    y2={80}
+                    text={translate('Pilotage', 'note_schema_sup', lang)}
+                />
+                <ArrowNote
+                    arrowId='arrow-note-head'
+                    textWidth={280}
+                    textHeight={20}
+                    x1={20}
+                    y1={220}
+                    x2={scaleYear(1789)}
+                    y2={200}
+                    text={translate('Pilotage', 'note_schema_inf', lang)}
+                />
+            </g>
             </g>
         </svg>
     )

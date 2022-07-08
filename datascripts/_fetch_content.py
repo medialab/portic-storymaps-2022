@@ -4,7 +4,7 @@
 Description: Get data from shared Google Drive documents to generate pages content, with quoting
 License: GPL-3.0-or-later
 Author: Guillaume Brioudes (https://myllaume.fr/)
-Date last modified: 2022-04-11
+Date last modified: 2022-08-07
 Python Version: 3.10.1
 '''
 
@@ -37,9 +37,6 @@ sanitizer = Sanitizer({
     }
 })
 
-# GDOC_URL = {
-#     'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub'
-# }
 GDOC_URL = {
     'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
     'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
