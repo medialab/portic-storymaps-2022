@@ -10,6 +10,8 @@ import iwanthue from 'iwanthue';
 import catalog from '../i18n/catalog.yml';
 import palettes from './colorPalettes';
 
+const { generic } = palettes;
+
 
 const DEFAULT_COLOR_SPACE = {
   cmin: 25.59,
