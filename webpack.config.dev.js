@@ -63,6 +63,7 @@ module.exports = {
     },
     devServer: {
         static: path.join(__dirname, 'public'),
+        open: true,
         port: 9000
     },
     mode: 'development'
