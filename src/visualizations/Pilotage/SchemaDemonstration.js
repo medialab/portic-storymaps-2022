@@ -72,10 +72,10 @@ export default function SchemaDemonstration({
             <g className='chart' transform={`translate(${0}, ${topTexteHeight})`}>
                 <g className='bars'>
                     {
-                        projectionPerYear.map(({ year, realityGapPourcentage }, i) => {
+                        projectionPerYear.map(({ year, realityGapPourcentage }, projectionIndex) => {
                             return (
                                 <g
-                                    key={i}
+                                    key={projectionIndex}
                                     transform={`translate(${scaleYear(year)})`}
                                 >
                                     {
@@ -182,7 +182,7 @@ export default function SchemaDemonstration({
                         <circle cx={0} cy={scaleProjection(0)} r={5} />
                         <text x={7} y={scaleProjection(0)} fontSize={12}>Moyenne</text>
                         {
-                            projectionPerYear.map(({ realityGapPourcentage }) => {
+                            projectionPerYear.map(({ realityGapPourcentage }, projectionIndex) => {
                                 if (realityGapPourcentage >= 0) {
                                     return (
                                         <path
@@ -194,6 +194,7 @@ export default function SchemaDemonstration({
                                             strokeWidth={5}
                                             opacity={0.2}
                                             strokeLinecap='round'
+                                            key={projectionIndex}
                                         />
                                     )
                                 } else {
@@ -207,6 +208,7 @@ export default function SchemaDemonstration({
                                             strokeWidth={5}
                                             opacity={0.2}
                                             strokeLinecap='round'
+                                            key={projectionIndex}
                                         />
                                     )
                                 }
