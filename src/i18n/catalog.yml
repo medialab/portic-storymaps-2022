@@ -120,10 +120,10 @@ HistoireDunkerque:
     en: Next step
 Pilotage:
   title_comparaison:
-    fr: Comparaison entre les données du pilotage et le registre des congés
+    fr: Comparaison entre les données du pilotage <br/>et le registre des congés
     en: 
   title_estimation:
-    fr: Estimation du nombre de bateaux quittant le port de Dunkerque
+    fr: Évolution (projetée puis observée) du nombre de sorties de Dunkerque de 1730 à 1791
     en: 
   title_evaluation:
     fr: Évaluation du nombre de sorties
@@ -135,24 +135,24 @@ Pilotage:
     fr: Navires quittant le port de Dunkerque selon le registre des congés
     en: 
   footer_projection:
-    fr: Projection à partir de la moyenne ${year_start}/${year_end}
+    fr: Projection à partir des rapports entre pilotage et sorties sur ${year_start}/${year_end}
     en: 
   footer_register:
     fr: Données issues des registres
     en: 
   description_demonstration:
     fr: >-
-      À partir de cette moyenne on peut estimer le nombre de navires quittant Dunkerque chaque année.
-      La comparaison avec les données des congés permet de constater une marge d'erreur entre ${value_max}% et ${value_min}%.
+      À partir de la moyenne des rapports entre nombre de sorties avec pilotage et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec pilotage).
+      La comparaison avec les données des congés permet de constater une marge d'erreur entre <i>+${value_max}%</i> et <i>${value_min}%</i>.
     en: 
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
     en: 
   tooltip_total:
-    fr: Total de ${value} navires sortants en ${year}
+    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque
     en:
   tooltip_pilotage:
-    fr: ${value} navires sortants avec pilotage en ${year}
+    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec pilotage
     en:
   tooltip_estimation:
     fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
@@ -161,20 +161,20 @@ Pilotage:
     fr: Écart de ${value}% par rapport au nombre initial de pilotage en ${year}
     en:
   note_schema_mean:
-    fr: Estimation du nombre de navires hors pilotage
+    fr: Moyenne du rapport entre nombre de pilotages et nombre de sorties
     en: 
   note_schema_sup:
-    fr: Les données relevées sont supérieurs à la moyenne
+    fr: Les données relevées sont supérieures à la moyenne
     en: 
   note_schema_inf:
     fr: Les données relevées sont inférieures à la moyenne
     en: 
   note_demonstration_pilotage:
-    fr: Navires usant du pilotage
+    fr: Nombre de navires sortis avec pilotage
     en: 
   note_demonstration_margin:
     fr: Marge d'erreur
     en: 
   note_demonstration_projection:
-    fr: Projection du nombre de navires hors pilotage
+    fr: Projection du nombre total de sorties
     en: 

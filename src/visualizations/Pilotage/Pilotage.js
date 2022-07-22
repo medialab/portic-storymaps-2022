@@ -9,6 +9,8 @@ import { mean, extent } from 'd3-array';
 import './Pilotage.scss';
 import SchemaDemonstration from './SchemaDemonstration';
 
+const BREAK_POINT = 900;
+
 export default function Pilotage({
     data: inputData,
     dimensions,
@@ -20,6 +22,9 @@ export default function Pilotage({
     ...props
 }) {
     const { width, height } = dimensions;
+
+    const isSlim = useMemo(() => width < BREAK_POINT, [width]);
+    console.log('is slim: ', isSlim);
 
     const data = useMemo(function prepareData() {
         return inputData.map(({ year, sorties_pilotage, navires, total, ...rest }) => {
@@ -66,28 +71,29 @@ export default function Pilotage({
     }, [dataForProjection]);
 
     return (
-        <div className='Pilotage'>
+        <div className={`Pilotage ${isSlim ? 'is-slim': ''}`}
+          style={{
+            maxWidth: width
+          }}
+        >
             <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap'
-                }}
+              className="row upper-row"
             >
                 <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column'
-                    }}
+                  className="explanation-left"
                 >
                     <div
-                        style={{ marginBottom: '1rem' }}
+                      className="legend-container"
                     >
-                        <h3>{translate('Pilotage', 'title_comparaison', lang)}</h3>
+                        <h3
+                          dangerouslySetInnerHTML={{
+                            __html: translate('Pilotage', 'title_comparaison', lang)
+                          }}
+                        />
                         <PilotageLegend
                             {...{ colorPalette, lang }}
                             dimensions={{
-                                width: 600,
+                                width: isSlim ? width : width * .5,
                                 height: 40
                             }}
                         />
@@ -96,30 +102,36 @@ export default function Pilotage({
                         {...{ colorPalette, lang }}
                         data={dataForProjection}
                         dimensions={{
-                            width: 600,
+                            width: isSlim ? width : width * .5,
                             height: 250
                         }}
                     />
                 </div>
-
-                <SchemaDemonstration
-                    {...{ lang, colorPalette, projectionStats }}
-                    data={dataForProjection}
-                    dimensions={{
-                        width: 550,
-                        height: 300
-                    }}
-                />
+                <div className="explanation-right"
+                  style={{
+                    maxWidth: isSlim ? width : width * .5 - 10,
+                  }}
+                >
+                  <SchemaDemonstration
+                      {...{ lang, colorPalette, projectionStats }}
+                      data={dataForProjection}
+                      dimensions={{
+                          width: isSlim ? width : width * .5 - 10,
+                          height: 300
+                      }}
+                  />
+                </div>
             </div>
-
-            <h3>{translate('Pilotage', 'title_estimation', lang)}</h3>
-            <BarChartEstimation
-                {...{ colorPalette, lang, data, yearPeriodForProjection, projectionStats }}
-                dimensions={{
-                    width: width - 50,
-                    height: 400
-                }}
-            />
+            <div className="row lower-row">
+              <h3>{translate('Pilotage', 'title_estimation', lang)}</h3>
+              <BarChartEstimation
+                  {...{ colorPalette, lang, data, yearPeriodForProjection, projectionStats }}
+                  dimensions={{
+                      width: width - 50,
+                      height: 400
+                  }}
+              />
+            </div>
         </div>
     )
 }

@@ -269,18 +269,9 @@ export default function PilotageLegend({
               width={scaleYear(startYearForProjection) - scaleYear(startYear)}
               height={25}
             >
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="back-label">
                 <p
                   xmlns="http://www.w3.org/1999/xhtml"
-                  style={{
-                    fontSize: 10,
-                    border: '1px solid black',
-                    borderRadius: '10px',
-                    textAlign: 'center',
-                    backgroundColor: 'white',
-                    display: 'inline-block',
-                    padding: '2px'
-                  }}
                 >{translate('Pilotage', 'footer_projection', lang, { year_start: startYearForProjection, year_end: endYearForProjection })}</p>
               </div>
             </foreignObject>
@@ -296,19 +287,10 @@ export default function PilotageLegend({
               width={scaleYear(endYearForProjection) - scaleYear(startYearForProjection)}
               height={25}
             >
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div
+              className="back-label is-black">
                 <p
                   xmlns="http://www.w3.org/1999/xhtml"
-                  style={{
-                    fontSize: 10,
-                    color: 'white',
-                    border: '1px solid black',
-                    borderRadius: '10px',
-                    textAlign: 'center',
-                    backgroundColor: 'black',
-                    display: 'inline-block',
-                    padding: '2px'
-                  }}
                 >{translate('Pilotage', 'footer_register', lang)}</p>
               </div>
             </foreignObject>
