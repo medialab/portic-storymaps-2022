@@ -157,8 +157,11 @@ Pilotage:
   tooltip_estimation:
     fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
     en:
-  tooltip_projection:
-    fr: Écart de ${value}% par rapport au nombre initial de pilotage en ${year}
+  tooltip_projection_positive:
+    fr: En ${year}, le rapport entre pilotage et sorties était ${value}% supérieur au rapport moyen de 1765 à 1791
+    en:
+  tooltip_projection_negative:
+    fr: En ${year}, le rapport entre pilotage et sorties était ${value}% inférieur au rapport moyen de 1765 à 1791
     en:
   note_schema_mean:
     fr: Moyenne du rapport entre nombre de pilotages et nombre de sorties
