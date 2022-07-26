@@ -63,6 +63,8 @@ export default function ArrowNote({
     } else {
         yArrowBegin = y1 + textHeight;
     }
+
+    const displaceY = Math.abs(y2 - yArrowBegin) / 5;
     
     return (
         <g
@@ -72,7 +74,7 @@ export default function ArrowNote({
                 d={
                 `
                 M${xArrowBegin},${yArrowBegin}
-                C${xArrowBegin},${yArrowBegin + 10} ${xArrowBegin + 10},${y2} ${x2},${y2}
+                C${xArrowBegin},${yArrowBegin + displaceY} ${xArrowBegin + displaceY},${y2} ${x2},${y2}
                 `
                 }
                 stroke={arrowColor}
