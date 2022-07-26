@@ -95,7 +95,7 @@ export default function SchemaDemonstration({
                         stroke={colorPalette['total']}
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
                       />
                     }
                     {
@@ -108,7 +108,7 @@ export default function SchemaDemonstration({
                         stroke='url(#diag-hatch)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={translate('Pilotage', 'tooltip_projection', lang, { value: realityGapPourcentage.toFixed(2), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
                       />
                     }
                   </g>
@@ -259,18 +259,18 @@ export default function SchemaDemonstration({
               textHeight={40}
               x1={20}
               y1={20}
-              x2={scaleYear(1772)}
+              x2={scaleYear(1767)}
               y2={80}
               text={translate('Pilotage', 'note_schema_sup', lang)}
             />
             <ArrowNote
               arrowId='arrow-note-head'
-              textWidth={280}
-              textHeight={20}
+              textWidth={130}
+              textHeight={50}
               x1={0}
-              y1={220}
-              x2={scaleYear(1765)}
-              y2={200}
+              y1={240}
+              x2={scaleYear(1765) - 30}
+              y2={220}
               text={translate('Pilotage', 'note_schema_inf', lang)}
             />
           </g>

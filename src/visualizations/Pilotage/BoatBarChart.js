@@ -17,11 +17,14 @@ export default function BoatBarChart({
     const { width, height } = dimensions;
 
     const margin = {
-        bottom: 20,
+        bottom: 30,
         left: 60
     };
-    const barFromBarChartWidth = 4;
+    
     const rightBarSpace = 300;
+    const barFromBarChartWidth = useMemo(() => {
+      return (dimensions.width - margin.left - rightBarSpace) / data.length - 2;
+    }, [data, dimensions.width]) // 4;
     const barChartWidth = width - rightBarSpace
 
     const scaleYear = useMemo(function computeScaleFromYear() {
@@ -225,9 +228,9 @@ export default function BoatBarChart({
                                     {
                                         (i % 3 === 0) &&
                                         <text
-                                            fontSize={14}
-                                            x={0}
-                                            y={0}
+                                            fontSize={11}
+                                            x={-2}
+                                            y={3}
                                             textAnchor='end'
                                         >{formatNumber(value)}</text>
                                     }
@@ -241,7 +244,7 @@ export default function BoatBarChart({
                     transform={`translate(${0}, ${height - margin.bottom})`}
                 >
                     {
-                        axisPropsFromTickScale(scaleYear, 10).values.map((value, i) => {
+                        axisPropsFromTickScale(scaleYear, 5).values.map((value, i) => {
                             return (
                                 <g
                                     transform={`translate(${scaleYear(value)}, ${0})`}
@@ -257,12 +260,14 @@ export default function BoatBarChart({
                                         strokeWidth={1}
                                     />
                                     {
-                                        (i % 5 === 0) &&
+                                        (value % 5 === 0) &&
                                         <text
-                                            fontSize={14}
+                                            transform='translate(0, 20) rotate(-45)'
+                                            fontSize={11}
                                             x={0}
-                                            y={20}
-                                        >{formatNumber(value)}</text>
+                                            // y={20}
+                                            textAnchor="middle"
+                                        >{value}</text>
                                     }
                                 </g>
                             )

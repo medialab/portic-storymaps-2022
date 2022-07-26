@@ -26,7 +26,10 @@ export default function PilotageLegend({
     left: 45,
     right: 10
   };
-  const barFromBarChartWidth = 8;
+  const barFromBarChartWidth = useMemo(() => {
+    let normal = (dimensions.width - margin.left - margin.right) / data.length - 3;
+    return normal >= 1 ? normal : 1;
+  }, [data, dimensions.width]);// 8;
 
   const {
     meanPilotage,
@@ -207,8 +210,8 @@ export default function PilotageLegend({
                   />
                   <text
                     fontSize={11}
-                    x={0}
-                    y={0}
+                    x={-2}
+                    y={3}
                     textAnchor='end'
                   >{formatNumber(value)}</text>
                 </g>
@@ -236,13 +239,15 @@ export default function PilotageLegend({
                     stroke='black'
                     strokeWidth={1}
                   />
+
                   <text
                     transform='translate(0, 20) rotate(-45)'
                     fontSize={11}
-                    x={0}
+                    x={-2}
                     y={0}
                     textAnchor='middle'
                   >{year}</text>
+
                 </g>
               )
             })
@@ -288,7 +293,7 @@ export default function PilotageLegend({
               height={25}
             >
               <div
-              className="back-label is-black">
+                className="back-label is-black">
                 <p
                   xmlns="http://www.w3.org/1999/xhtml"
                 >{translate('Pilotage', 'footer_register', lang)}</p>
@@ -299,32 +304,32 @@ export default function PilotageLegend({
         <g className='notes'>
           <ArrowNote
             arrowId='arrow-note-head'
-            textWidth={130}
-            textHeight={40}
-            x1={scaleYear(1733)}
-            y1={scaleTotal(1600)}
-            x2={scaleYear(1731.5)}
-            y2={scaleTotal(200)}
+            textWidth={scaleYear(1737) - scaleYear(1733)}
+            textHeight={64}
+            x1={scaleYear(1731.5)}
+            x2={scaleYear(1731.7)}
+            y1={scaleTotal(900)}
+            y2={scaleTotal(100)}
             text={translate('Pilotage', 'note_demonstration_pilotage', lang)}
           />
           <ArrowNote
             arrowId='arrow-note-head'
-            textWidth={130}
-            textHeight={40}
-            x1={scaleYear(1738)}
-            y1={scaleTotal(2200)}
-            x2={scaleYear(1747.5)}
-            y2={scaleTotal(1000)}
+            textWidth={scaleYear(1736) - scaleYear(1732)}
+            textHeight={64}
+            x1={scaleYear(1729.5)}
+            y1={scaleTotal(2400)}
+            x2={scaleYear(1735)}
+            y2={scaleTotal(900)}
             text={translate('Pilotage', 'note_demonstration_projection', lang)}
           />
           <ArrowNote
             arrowId='arrow-note-head'
             textWidth={130}
             textHeight={40}
-            x1={scaleYear(1758)}
-            y1={scaleTotal(1500)}
-            x2={scaleYear(1755.5)}
-            y2={scaleTotal(2000)}
+            x1={scaleYear(1755)}
+            y1={scaleTotal(1900)}
+            x2={scaleYear(1752.5)}
+            y2={scaleTotal(2400)}
             text={translate('Pilotage', 'note_demonstration_margin', lang)}
           />
         </g>
