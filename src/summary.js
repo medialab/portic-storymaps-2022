@@ -21,7 +21,7 @@ export default [
             en: 'part-1'
         },
         titles: {
-            fr: 'Partie 1',
+            fr: 'I. Dunkerque et sa navigation au XVIIIe siècle',
             en: 'Part 1'
         },
         contents: {
@@ -38,7 +38,7 @@ export default [
             en: 'part-2'
         },
         titles: {
-            fr: 'Partie 2',
+            fr: 'II. Le Smogglage',
             en: 'Part 2'
         },
         contents: {
@@ -55,7 +55,7 @@ export default [
             en: 'part-3'
         },
         titles: {
-            fr: 'Partie 3',
+            fr: 'III. Un port d\'entrepôt pour l\'Europe',
             en: 'Part 3'
         },
         contents: {

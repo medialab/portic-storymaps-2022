@@ -31,7 +31,7 @@ import translate from '../../utils/translate';
 
 export default function ScrollyPage({
     Content,
-    title,
+    title: sectionTitle,
     chapter,
     ...props
 }) {
@@ -41,7 +41,7 @@ export default function ScrollyPage({
 
     const location = useLocation();
 
-    title = buildPageTitle(title, lang);
+    const title = buildPageTitle(sectionTitle, lang);
 
     /** @type {[Object, Function]} */
     const [visualizations, setVisualizations] = useReducer(
@@ -293,6 +293,7 @@ export default function ScrollyPage({
                         onClickCallerScroll,
                         activeCallerId
                     }}>
+                        <h1>{sectionTitle}</h1>
                         <Content components={{ Caller, Link }} />
                     </VisualisationContext.Provider>
                 </section>
