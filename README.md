@@ -1,8 +1,8 @@
-# Portic storymaps 2021 : "Commerce, contrebande et ports francs : le cas de Dunkerque au XVIIIe siècle"
+# Portic storymaps 2022 : "Commerce, contrebande et ports francs : le cas de Dunkerque au XVIIIe siècle"
 
 ![Screenshot of the website](https://medialab.github.io/portic-storymaps-2022/thumbnails/dunkerque-rs.png)
 
-This repository hosts the source code of PORTIC research program's first case study (see [PORTIC homepage](https://anr.portic.fr/) for more information). Built by an interdisciplinary team of historians, engineers and designers, it proposes a detailed study of the economic history of the region of La Rochelle (France) circa 1789.
+This repository hosts the source code of PORTIC research program's second case study (see [PORTIC homepage](https://anr.portic.fr/) for more information). Built by an interdisciplinary team of historians, engineers and designers, it proposes a detailed study of the economic history of the free port of Dunkerque circa 1789.
 
 Through a series of three "storymaps" combining text and visualization, this publication tells the story of the Dunkerque port trade at the dawn of french revolution. It also features an atlas allowing to browse and share individually all the visualizations crafted during this research.
 
@@ -37,17 +37,19 @@ yarn dev
 
 # Maintenance
 
-Regularly update the data with the following command.
+In order to collect freshest contents and data source, update the data with the following command :
 
 ```bash
 sh retrieve_data.sh
 ```
 
-You can update the thumbnails with the following command. Warning: thumbnails building can be capricious on some machines. Backup existing screenshots from `public/thumbnails` before re-running this script.
+You can update the thumbnails with the following command : 
 
 ```bash
 yarn thumbnails
 ```
+
+*Warning: thumbnails building can be capricious on some machines. Backup existing screenshots from `public/thumbnails` before re-running this script.*
 
 # Contributing
 
@@ -65,14 +67,16 @@ The project is open to contribution through pull requests.
 - components aimed at being directly used for specific visualizations should go in the `src/visualizations` folder. They should use reusable components from `src/components` as much as possible.
 - style is managed through scss files. It is suggested to use existing variables in `src/variables.scss` as much as possible, and to add a `.scss` file specific to each new component with its non-reusable styling rules (if any).
 
-## Also read
+## How to translate the app
 
-- [Translate the app](./src/i18n/README.md)
-- [Translate the app](./datascripts/README.md)
+[How to translate the app](./src/i18n/README.md)
+## How to update the data
+
+[How to update the data](./datascripts/README.md)
 
 # App architecture
 
-## Front-end : bundling React scripts
+## Front-end : webpack & react architecture
 
 The application is bundled with [Webpack](https://webpack.js.org/). The root file is `/index.js`. It is in this file that must be imported all the JavaScript scripts that compose the application.
 
@@ -80,7 +84,7 @@ The [React](https://reactjs.org/) library (v.17+) is configured in the project, 
 
 The [React router](https://reactrouter.com/) (v6+) development tool allows you to redirect the user to activate certain display scripts based on the page address and the parameters entered. The page address is used as a source of truth, for the active language and the texts, visualizations to be displayed.
 
-## Back-end : compute data
+## Data retrieval and computation
 
 The data is downloaded and processed with Python and NodeJs scripts in the `/datascript/` directory.
 
@@ -97,9 +101,11 @@ This data allows to generate the text content of the application, as well as the
 | bibliography            | Zotero                | /src/data/bib.json    |                    | /datascript/_fetch_content.py |
 | texts                   | Google Drive (GDoc)   | /src/content/**/*.mdx | /src/summary.js    | /datascript/_fetch_content.py |
 
-## Middle : view data
+## Data local storage and visualizations management
 
-The visualizations index `/src/data/viz.json` contains the names of the `.csv` data files to be loaded via HTTP GET for each visualization. The `/src/visualizations/index.js` file centralizes all calls to the visualization components. It also automatically passes them the data as prescribed by the index of the visualizations. For this, the columns 'id' and 'n_chapter' must match the caller of the visualization. Below the visualization 'id' === 'history-dunkerque' && 'n_chapter' === 1.
+The visualizations index `/src/data/viz.json` contains the names of the `.csv` data files which are loaded in the front-end for each visualization. 
+
+The `/src/visualizations/index.js` file is the entrypoint for all the visualizations code and components. It also automatically passes each visualization component the data it needs as prescribed in `/src/data/viz.json`. For this, the columns 'id' and 'n_chapter' *must* match the *caller id* of the visualization. Here is an example of how a call to the "history-dunkerque" in chapter 1 looks like:
 
 ```md
 Part 1
@@ -112,4 +118,4 @@ Lorem ipsum dolor est.
 
 # Deployment
 
-Deployment used to be automated to happen every day and each time a commit is pushed to the `prod` branch. The published website was then pushed on the `gh-pages` branch, which serves the site at https://medialab.github.io/portic-storymaps-2022/. It is now only updated when pushing on the `prod` branch. To deploy a new version of the website code, it has to be pushed to the `prod` branch.
+Deployment is automated to happen every day and each time a commit is pushed to the `prod` branch. The published website is then pushed on the `gh-pages` branch, which serves the site at https://medialab.github.io/portic-storymaps-2022/.
