@@ -145,7 +145,7 @@ dfn {
 /**
  * Caller component to display scrolly-telling change anchors on screen (for debug mode or display mode)
  */
-.Caller {
+.Caller:not(.is-inline) {
     background: $color-background-blue;
     font-family: $font-family-1;
     padding: $small-gutter;
@@ -166,6 +166,15 @@ dfn {
         padding: 0.3rem;
         margin: 0;
     }
+}
+.Caller.is-inline {
+  font-family: inherit;
+  text-decoration: underline;
+  font-size: inherit;
+  cursor: pointer;
+  &:hover {
+    color: brown;
+  }
 }
 
 /**

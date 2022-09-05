@@ -109,7 +109,7 @@
         max-width: 40vw;
         margin-left: $medium-gutter * 4;
       }
-      .Caller {
+      .Caller:not(.is-inline) {
         margin-left: $medium-gutter * 4;
         background: $color-background-blue;
         opacity: 0.5;

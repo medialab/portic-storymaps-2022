@@ -60,10 +60,11 @@ export default function Caller ({
                 id={visualizationId}
                 className={cx('Caller', {
                     'is-invalid': isInvalid,
+                    'is-inline': isInblock,
                     'is-active': activeCallerId && activeCallerId === callerId
                 })}
                 onClick={(e) => onClickCallerScroll(callerPayload)}
-            >{children} {JSON.stringify({ ...props })}</span>
+            >{children}</span>
         )
     }
 
