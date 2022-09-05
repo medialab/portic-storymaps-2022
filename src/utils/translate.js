@@ -45,7 +45,7 @@ export default function translate (element, label, lang, remplacements) {
 
     result = result.replace(matchDollarBracket, (match, key) => {
         if (remplacements === undefined) { return ''; }
-        return remplacements[key] || ''
+        return (remplacements[key] + '') || ''
     })
 
     return result;
