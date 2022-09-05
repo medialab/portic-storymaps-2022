@@ -61,9 +61,12 @@ export default function HistoireDunkerque({
       setTopSectionHeight(height - minTimelineHeight);
     }
   }, [width, height, minMode]);
-
-  const [displayedYear, setdisplayedYear] = useState(callerProps?.year || inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
-
+  const [displayedYear, setdisplayedYear] = useState(callerProps && callerProps.year ? +callerProps.year : inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
+  useEffect(() => {
+    if (callerProps && callerProps.year) {
+      setdisplayedYear(+callerProps.year);
+    }
+  }, [callerProps && callerProps.year])
   const data = useMemo(function computeDataYears() {
     return inputData.get('histoire-dunkerque-dates.csv').map((row, i) => {
       const { year_start, year_end } = row;
