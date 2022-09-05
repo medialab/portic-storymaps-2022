@@ -164,7 +164,7 @@ export default function Timeline({
                     const pointHeight = 12;
                     return (
                         <g
-                            transform={`translate(${spanRange(year_start) - pointHeight / 2}, ${(height - FONT_SIZE - TICK_MARGIN) / 2})`}
+                            transform={`translate(${spanRange(year_start) - pointHeight / 2}, ${(height - FONT_SIZE * 2 - TICK_MARGIN) / 2})`}
                             key={i}
                         >
                             <circle

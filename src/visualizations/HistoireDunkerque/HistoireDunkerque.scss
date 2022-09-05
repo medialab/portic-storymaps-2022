@@ -1,107 +1,124 @@
 @import "../../styles/variables.scss";
 
 .HistoireDunkerque {
-    .top-section {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        flex-wrap: wrap;
-        overflow-x: hidden;
-        padding: 0 1rem;
-        box-sizing: border-box;
+  .top-section {
+    display: flex;
+    justify-content: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+  .left-column {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+  }
+
+  .map-title {
+    flex: 1;
+
+    .map-titles {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
     }
 
+    .map-switch-spans {
+      cursor: "pointer";
+      font-weight: bold;
+      text-decoration: underline;
+      display: none;
+    }
+
+    .head {
+      display: inline-block;
+      overflow-wrap: break-word;
+      padding-right: 1rem;
+      transition: .5s ease all;
+      &.is-past {
+        opacity: .5;
+        font-style: italic;
+      }
+    }
+  }
+
+  .map-switch-btns {
+    display: flex;
+    padding-bottom: 1.5rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    button {
+      background-color: transparent;
+      text-decoration: underline;
+      margin-top: 0.5rem;
+      opacity: 0.5;
+      padding: 0;
+      transition: 0.5s ease all;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .map-container {
+    max-height: 100%;
+    position: relative;
+    align-self: flex-end;
+  }
+
+  .map-legend {
+  }
+
+  .layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  img.base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .timeline {
+    cursor: pointer;
+  }
+
+  &.minMode {
     .map-title {
-        order: 1;
+      width: 100%;
 
-        .map-titles {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
+      .map-switch-spans {
+        display: inline;
+      }
+    }
 
-        .map-switch-spans {
-            cursor: 'pointer';
-            font-weight: bold;
-            text-decoration: underline;
-            display: none;
-        }
+    .map-switch-btns {
+      display: none !important;
+    }
 
-        .head {
-            display: inline-block;
-            overflow-wrap: break-word;
-            width: 150px;
-        }
-
-        .map-switch-btns {
-            display: flex;
-            margin-top: 0.5rem;
-
-            button {
-                background-color: transparent;
-                text-decoration: underline;
-                margin-top: 0.5rem;
-                padding: 0;
-            }
-
-            button+button {
-                margin-left: 0.5rem;
-            }
-        }
+    .top-section {
+      flex-wrap: nowrap;
+      align-items: center;
+      flex-direction: column;
     }
 
     .map-container {
-        max-height: 100%;
-        position: relative;
-        order: 3;
-        align-self: flex-end;
+      position: relative;
+      align-self: unset;
+      margin: 1rem 0;
     }
 
     .map-legend {
-        order: 2;
+      width: 100%;
     }
-
-    .layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    img.base {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    &.minMode {
-        .map-title {
-            order: 1;
-            width: 100%;
-
-            .map-switch-spans {
-                display: inline;
-            }
-        }
-
-        .map-switch-btns {
-            display: none !important;
-        }
-
-        .top-section {
-            flex-wrap: nowrap;
-            align-items: center;
-        }
-
-        .map-container {
-            position: relative;
-            order: 2;
-            align-self: unset;
-            margin: 1rem 0;
-        }
-
-        .map-legend {
-            order: 3;
-            width: 100%;
-        }
-    }
+  }
 }
