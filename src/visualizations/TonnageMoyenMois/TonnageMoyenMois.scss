@@ -1,0 +1,11 @@
+.TonnageMoyenMois {
+  .Timeline {
+    cursor: crosshair;
+    user-select: none;
+    .tick-year {
+      color: black;
+      text-anchor: middle;
+      font-size: 12px;
+    }
+  }
+}

@@ -143,7 +143,7 @@ const LineChart = ({
         xAxisValues = xDomain;
     } else {
         xDomain = [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
-        xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]);
+        xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]).nice();
         xAxisValues = axisPropsFromTickScale(xScale).values;
     }
 
@@ -251,7 +251,7 @@ const LineChart = ({
                         <g className="axis left-axis ticks">
                             <TextSpan
                                 maxLength={10}
-                                x={margins.left - 40}
+                                x={margins.left - 10}
                                 y={margins.top - 40}
                                 className="axis-title"
                                 text={y.title || y.field}
@@ -288,7 +288,7 @@ const LineChart = ({
                         <g className="axis bottom-axis ticks">
                             <TextSpan
                                 maxLength={10}
-                                x={width - (margins.right + 10)}
+                                x={width - (margins.right)}
                                 y={height - (margins.bottom - 20)}
                                 className="axis-title"
                                 text={x.title || x.field}
@@ -307,7 +307,8 @@ const LineChart = ({
                                             x1={0}
                                             x2={0}
                                             y1={yScale(yAxisValues[yAxisValues.length - 1])}
-                                            y2={height - margins.bottom}
+                                            // y2={height - margins.bottom}
+                                            y2={margins.top}
                                         />
                                         <line
                                             className="tick-mark"

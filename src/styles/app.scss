@@ -397,11 +397,12 @@ tspan {
       text {
         text-anchor: end;
       }
-      .axis-title {
-        font-weight: bold;
-        font-style: italic;
-        background: $color-text;
-      }
+    }
+    .axis-title {
+      font-weight: bold;
+      font-style: italic;
+      background: $color-text;
+      text-anchor: end;
     }
     .background-line {
       stroke: rgba(0, 0, 0, 0.2);

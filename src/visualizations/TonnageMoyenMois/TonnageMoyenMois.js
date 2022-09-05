@@ -6,15 +6,25 @@ import { formatNumber } from '../../utils/misc';
 import translate from '../../utils/translate';
 import Timeline from './Timeline';
 
+import './TonnageMoyenMois.scss';
+
 export default function TonnageMoyenMois({
     data: inputData,
     dimensions,
     lang,
+    callerProps: {
+      startYear,
+      endYear
+    } = {},
     ...props
 }) {
     const [minYear, maxYear] = extent(inputData, d => d.year)
     const { width, height } = dimensions;
     const [yearBrush, setYearBrush] = useState([minYear, minYear]);
+
+    useEffect(() => {
+      setYearBrush([startYear || minYear, endYear || maxYear]);
+    }, [startYear, endYear])
 
     const data = useMemo(() => {
         return inputData
@@ -51,10 +61,15 @@ export default function TonnageMoyenMois({
             timelineHeight: 80,
             linechartHeight: height - 80
         }
-    }, [height])
+    }, [height]);
+
+    const margins = {
+      left: 80,
+      right: 30,
+    }
 
     return (
-        <>
+        <div className="TonnageMoyenMois">
             <LineChart
                 data={monthsValue}
                 x={{
@@ -70,6 +85,7 @@ export default function TonnageMoyenMois({
                 }}
                 width={width}
                 height={linechartHeight}
+                margins={margins}
                 tooltip={
                     (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
                         value: formatNumber(Math.round(d['value'])),
@@ -84,8 +100,10 @@ export default function TonnageMoyenMois({
                     height: timelineHeight
                 }}
                 years={years}
+                margins={margins}
                 yearBrushState={[yearBrush, setYearBrush]}
+                lang={lang}
             />
-        </>
+        </div>
     )
 }

@@ -78,7 +78,7 @@ PecheTypeValue:
     en: 
 TonnageMoyenMois:
   tooltip:
-    fr: Tonnage moyen de ${value} en ${month} ${period}
+    fr: En  ${month} ${period}, le tonnage moyen au départ de Dunkerque était de ${value} tonneaux
     en: 
   x:
     fr: Tonnage moyen
@@ -86,6 +86,9 @@ TonnageMoyenMois:
   y:
     fr: Mois
     en: Months
+  brush_prompt:
+    fr: "Sélectionner une ou plusieurs années à prendre en compte en dessinant un rectangle ci-dessous :"
+    en: "Select one or several years to take into account by brushing a rectangle:"
 PecheMap:
   tooltip:
     fr: Pêche en ${type} d'une valeur de ${value} en ${year}

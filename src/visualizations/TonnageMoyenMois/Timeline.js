@@ -2,6 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { extent, range } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import colorsPalettes from '../../utils/colorPalettes';
+import { useSpring, animated } from 'react-spring';
+import translate from '../../utils/translate';
+
 
 /**
  * 
@@ -12,10 +15,25 @@ import colorsPalettes from '../../utils/colorPalettes';
  * @returns 
  */
 
+ export function Rect({
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.rect {...animatedProps} />
+  )
+}
+
 export default function Timeline({
     dimensions,
     years,
     yearBrushState,
+    margins = {
+      left: 0,
+      right: 0
+    },
+    lang,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -35,7 +53,8 @@ export default function Timeline({
     const yearRange = useMemo(() => {
         return scaleLinear()
             .domain([minYear, maxYear])
-            .range([0, width])
+            .range([margins.left, width - margins.right])
+            // .range([0, width])
     }, [years, width]);
 
     useEffect(function handleMouseClickAndMove (e) {
@@ -59,7 +78,7 @@ export default function Timeline({
         setCurrentVizYearBrush(yearsBetweenStartnEndBrush);
     }, [brushStart, brushEnd]);
 
-    const fragmentHeight = useMemo(() => yearRange(years[1]), [years, yearRange]);
+    const fragmentWidth = useMemo(() => yearRange(years[1]) - yearRange(years[0]), [years, yearRange]);
 
     const { colorAccentBackground, colorAccent } = colorsPalettes.ui;
 
@@ -76,16 +95,20 @@ export default function Timeline({
     }
 
     return (
+        <>
+        <p className="brush-prompt" style={{
+          marginLeft: margins.left,
+          marginRight: margins.right,
+        }}>
+          {translate('TonnageMoyenMois', 'brush_prompt', lang)}
+        </p>
         <svg
+          className="Timeline"
             {...{
                 width,
                 height
             }}
             ref={timelineRef}
-            style={{
-                cursor:'crosshair',
-                userSelect:'none'
-            }}
             onMouseDown={(e) => {
                 const xRelative = mouseXToTimlineX(e);
                 setIsMouseCapture(true);
@@ -96,6 +119,7 @@ export default function Timeline({
                 if (isMouseCapture) {
                     const xRelative = mouseXToTimlineX(e);
                     setMouseEnd(xRelative);
+                    setBrushEnd(convertXOnYear(xRelative));
                 }
             }}
             onMouseUp={(e) => {
@@ -106,40 +130,43 @@ export default function Timeline({
             }}
         >
             {
-                range(minYear, maxYear, 1).map(year => {
+                range(+minYear, +maxYear + 1, 1).map((year) => {
                     year = year.toString();
                     const isIndexedYear = years.includes(year);
                     const isCurrentVizYear = currentVizYearBrush.includes(year);
+                    const graphHeight = height - 60;
+                    const BAR_HEIGHT = isCurrentVizYear ? graphHeight * .7 : graphHeight / 4;
                     return (
                         <g
-                            transform={`translate(${yearRange(year)}, ${10})`}
+                            transform={`translate(${yearRange(year)}, ${0})`}
                             onClick={isIndexedYear ? () => setCurrentVizYearBrush([year]) : null}
+                            key={year}
                         >
-                            {isIndexedYear &&
-                                <rect
+                            {isIndexedYear && year < maxYear &&
+                                <Rect
                                     x={0}
-                                    y={0}
-                                    width={fragmentHeight}
-                                    height={20}
-                                    fill={isCurrentVizYear ? colorAccentBackground : 'black'}
+                                    y={(graphHeight - BAR_HEIGHT / 2)}
+                                    width={fragmentWidth}
+                                    height={BAR_HEIGHT}
+                                    fill={isCurrentVizYear ? colorAccentBackground : 'rgba(0,0,0,0.1)'}
                                     strokeWidth={0}
                                 />
                             }
                             <line x={0} y1={0} y2={40} stroke='black' />
-                            <text color='black' y={60} x={-5}>{year}</text>
+                            <text className="tick-year" x={0} y={height - 20}>{year}</text>
                         </g>
                     )
                 })
             }
-            <path
-                d={`
-                M ${mouseStart}, ${40}
-                H ${mouseEnd}
-                `}
-                strokeWidth={5}
-                stroke={colorAccent}
-                fill='transparent'
+            <rect
+              x={mouseStart}
+              width={mouseEnd - mouseStart}
+              y={0}
+              height={height}
+              fill={colorAccent}
+              fillOpacity={.3}
             />
         </svg>
+        </>
     )
 }
