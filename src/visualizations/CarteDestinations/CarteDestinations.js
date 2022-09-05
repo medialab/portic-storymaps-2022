@@ -2,13 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import GeographicMapChart from "../../components/GeographicMapChart";
 
-import SliderRange from '../../components/SliderRange';
-
 import renderObjects from './renderObjects';
 
 import {max} from 'd3-array';
 
 import './CarteDestinations.scss';
+import Legend from "./Legend";
 
 export default function FraudeExportDunkerque({
     data,
@@ -55,6 +54,15 @@ export default function FraudeExportDunkerque({
     useEffect(() => {
       setProjectionTemplate(projectionTemplateFromProps);
     }, [projectionTemplateFromProps]);
+
+    // auto-update map templates
+    // useEffect(() => {
+    //   if (longCoursOnly) {
+    //     setProjectionTemplate('world north')
+    //   } else {
+    //     setProjectionTemplate('from France to England')
+    //   }
+    // }, [longCoursOnly])
     
 
     const travels = data.get('destinations_from_dunkerque.csv') || [];
@@ -149,7 +157,13 @@ export default function FraudeExportDunkerque({
         ...groups,
         maxDestinationTonnage,
         maxDestinationTravels,
-        destinations: destinationsArray
+        destinations: destinationsArray.sort((a, b) => {
+          if (a.tonnage > b.tonnage) {
+            return -1;
+          } else {
+            return 1;
+          }
+        })
       }
 
       return {
@@ -199,91 +213,29 @@ export default function FraudeExportDunkerque({
           height={atlasMode ? window.innerHeight * .9 : height}
           width={width}
         />
-        <div className="legend">
-          <h3>Légende</h3>
-          <div>
-            <h4>Montrer les pavillons</h4>
-            <ul>
-              {
-                flagGroupModalities
-                .map(id => {
-                  const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(id) : true
-                  const handleClick = (e) => {
-                    e.stopPropagation();
-                    if (!flagGroupFilters.length) {
-                      setFlagGroupFilters(flagGroupModalities.filter(f => f !== id).join(','));
-                    // remove
-                    } else if (isIncluded) {
-                      setFlagGroupFilters(flagGroupFilters.split(',').filter(i => i !== id).join(','));
-                    // add
-                    } else{
-                      setFlagGroupFilters(`${flagGroupFilters},${id}`);
-                    }
-                  }
-                  return (
-                    <li key={id}>
-                      <input onClick={handleClick} type="checkbox" checked={isIncluded} readOnly />
-                     <label>{id}</label>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
-          <div>
-            <h4>Options</h4>
-            <ul>
-            {
-              filterOptions.map(({id, labels}) => {
-                let checked = false;
-                switch (id) {
-                  case 'group_strangers':
-                    checked = groupStrangers;
-                    break;
-                  case 'only_long_cours':
-                  default:
-                    checked = longCoursOnly;
-                    break;
-                }
-                const handleClick = (e) => {
-                  e.stopPropagation();
-                  switch(id) {
-                    case 'group_strangers':
-                      setGroupStrangers(!groupStrangers);
-                      setFlagGroupFilters('');
-                      break;
-                    case 'only_long_cours':
-                    default:
-                      setLongCoursOnly(!longCoursOnly)
-                      break;
-                  }
-                }
-                return (
-                  <li key={id}>
-                    <input onClick={handleClick} type="checkbox" checked={checked} readOnly />
-                    <label>{labels[lang]}</label>
-                  </li>
-                )
-              })
+        <Legend
+          {
+            ...{
+              flagGroupModalities,
+              flagGroupFilters,
+              setFlagGroupFilters,
+              filterOptions,
+              groupStrangers,
+              setGroupStrangers,
+              longCoursOnly,
+              setLongCoursOnly,
+              maxPossibleTonnage,
+              minTonnage,
+              setMinTonnage,
+              maxTonnage,
+              setMinTonnage,
+              setMaxTonnage,
+              containerWidth: width,
+              containerHeight: height,
+              lang,
             }
-            </ul>
-          </div>
-          <div>
-            <h4>Montrer les tonnages</h4>
-            <div className="slider-container">
-              <SliderRange
-                min={0}
-                max={maxPossibleTonnage}
-                value={[minTonnage, maxTonnage]}
-                onChange={([newMin, newMax]) => {
-                  setMinTonnage(newMin);
-                  setMaxTonnage(newMax);
-                }}
-              />
-            </div>
-          </div>
-          
-        </div>
+          }
+        />
       </div>
     )
 }

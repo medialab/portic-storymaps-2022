@@ -121,6 +121,37 @@ HistoireDunkerque:
   btn_next_step:
     fr: Étape suivante
     en: Next step
+CarteDestinations:
+  legend_title:
+    fr: Légende
+    en: Legend
+  edit_legend:
+    fr: éditer
+    en: edit
+  unedit_legend:
+    fr: ne plus éditer
+    en: do not edit
+  legend_flags_title:
+    fr: Pavillons affichés
+    en: Displayed flags
+  legend_options_title:
+    fr: Options
+    en: Options
+  legend_group_strangers:
+    fr: Grouper les étrangers
+    en: Group strangers
+  legend_only_long_cours:
+    fr: Trajets long-cours uniquement
+    en: Only long-cours paths
+  legend_show_tonnages:
+    fr: Montrer les tonnages de ${min} à ${max} tx
+    en: Show tonnages from ${min} to ${max} tx
+  show:
+    fr: montrer
+    en: show
+  hide:
+    fr: cacher
+    en: hide
 Pilotage:
   title_comparaison:
     fr: Comparaison entre les données du pilotage <br/>et le registre des congés

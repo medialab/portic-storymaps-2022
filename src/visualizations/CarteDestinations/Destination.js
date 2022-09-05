@@ -72,7 +72,7 @@ const Destination = ({
     const newPoints = flagGroupModalities.reduce((res, modality, modalityIndex) => {
       const thatTonnage = flagGroups[modality] ? flagGroups[modality].tonnage : 0;
       const thatR = radarScale(thatTonnage);
-      const deg = (modalityIndex / flagGroupModalities.length) * 360;
+      const deg = (modalityIndex / flagGroupModalities.length) * 360 - 90;
       const theta = deg  * Math.PI / 180;
       const thatX = thatR * Math.cos(theta);
       const thatY = thatR * Math.sin(theta);
@@ -140,7 +140,7 @@ const Destination = ({
       />
       {
         flagGroupModalities.map((modality, i) => {
-          const deg = (i / flagGroupModalities.length) * 360;
+          const deg = (i / flagGroupModalities.length) * 360 - 90;
           const theta = deg  * Math.PI / 180;
           const x2 = radius * Math.cos(theta);
           const y2 = radius * Math.sin(theta);
