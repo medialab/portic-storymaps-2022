@@ -62,7 +62,17 @@
     "yaml-loader": "^0.8.0"
   },
   "repository": "https://github.com/medialab/portic-storymaps-2022",
-  "author": "Guillaume Brioudes (https://myllaume.fr/)",
+  "contributors": [
+    "Guillaume Brioudes (https://myllaume.fr/)",
+    "Robin de Mourat",
+    "Silvia Marzagalli",
+    "Christine Plumejeaud",
+    "Guillaume Daudin",
+    "Paul Girard",
+    "Maxime Zoffoli",
+    "Loïc Charles",
+    "Thierry Sauzeau"
+  ],
   "license": "GPL-3.0-or-later",
   "homepage": "https://medialab.github.io/portic-storymaps-2022",
   "reactSnap": {
