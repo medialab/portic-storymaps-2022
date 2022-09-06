@@ -1,8 +1,12 @@
-import React, { useMemo, useReducer, useState } from "react"
+import React, { useMemo, useReducer } from "react";
+
+import colorsPalettes from "../../utils/colorPalettes";
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
 
 import './FraudeExportPortFranc.scss';
+
+const {importsExports: palette} = colorsPalettes;
 
 export default function FraudeExportPortFranc({
     data: inputData,
@@ -47,6 +51,7 @@ export default function FraudeExportPortFranc({
                             width: width * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio)),
                             height: height * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio))
                         }}
+                        colorPalette={palette}
                         data={data.filter(({ port, aggregate_type }) => port === 'Dunkerque' && aggregate_type === 'detail_products')}
                     />
                 </div>
@@ -57,6 +62,7 @@ export default function FraudeExportPortFranc({
                             width: width * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio)),
                             height: height * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio))
                         }}
+                        colorPalette={palette}
                         data={data.filter(({ port, aggregate_type }) => port === 'Marseille' && aggregate_type === 'detail_products')}
                     />
                 </div>
@@ -69,6 +75,7 @@ export default function FraudeExportPortFranc({
                             width: width * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio)),
                             height: height * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio))
                         }}
+                        colorPalette={palette}
                         data={data.filter(({ port, aggregate_type }) => port === 'Lorient' && aggregate_type === 'detail_products')}
                     />
                 </div>
@@ -79,6 +86,7 @@ export default function FraudeExportPortFranc({
                             width: width * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio)),
                             height: height * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio))
                         }}
+                        colorPalette={palette}
                         data={data.filter(({ port, aggregate_type }) => port === 'Bayonne' && aggregate_type === 'detail_products')}
                     />
                 </div>

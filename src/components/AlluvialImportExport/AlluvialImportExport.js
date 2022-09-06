@@ -537,8 +537,6 @@ export default function AlluvialImportExport({
                         fill={'url(#diagonalHatch)'}
                         opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
                       />
-                     
-
                     </>
                     :
                     <AnimatedPath
