@@ -86,7 +86,30 @@ const colorsPalettes = {
     'Russie': '#804a45',
     'Espagne': '#e35027',
     'Portugal': '#e35027',
-  }
+  },
+  generic20colors: [
+    "#e18680",
+    "#65b546",
+    "#7166d9",
+    "#b4b335",
+    "#b453bd",
+    "#5bbe7d",
+    "#d64990",
+    "#3a7e46",
+    "#cd4255",
+    "#4db5a0",
+    "#d3542d",
+    "#4cacd6",
+    "#db933b",
+    "#8093e0",
+    "#6c7429",
+    "#6061a6",
+    "#b6a861",
+    "#d085c6",
+    "#9f6232",
+    "#9e4b6e",
+  ]
+  
 }
 
 export default colorsPalettes;

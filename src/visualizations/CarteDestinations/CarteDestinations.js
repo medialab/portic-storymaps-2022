@@ -8,6 +8,7 @@ import {max} from 'd3-array';
 
 import './CarteDestinations.scss';
 import Legend from "./Legend";
+import ReactTooltip from "react-tooltip";
 
 export default function FraudeExportDunkerque({
     data,
@@ -33,6 +34,7 @@ export default function FraudeExportDunkerque({
     const [longCoursOnly, setLongCoursOnly] = useState(longCoursOnlyFromProps);
     const [flagGroupFilters, setFlagGroupFilters] = useState(flagGroupFiltersFromProps);
     const [projectionTemplate, setProjectionTemplate] = useState(projectionTemplateFromProps);
+    const [highlightedDestination, setHighlightedDestination] = useState();
     // update state from props
     // @todo factorize that with a custom hook
     useEffect(() => {
@@ -54,6 +56,10 @@ export default function FraudeExportDunkerque({
     useEffect(() => {
       setProjectionTemplate(projectionTemplateFromProps);
     }, [projectionTemplateFromProps]);
+
+    useEffect(() => {
+      ReactTooltip.rebuild();
+    })
 
     // auto-update map templates
     // useEffect(() => {
@@ -206,7 +212,16 @@ export default function FraudeExportDunkerque({
             },
             {
               type: 'custom',
-              data: {vizData, maxCircleArea, flagGroupModalities},
+              data: {
+                vizData, 
+                maxCircleArea, 
+                flagGroupModalities, 
+                lang,
+                highlightedDestination, 
+                setHighlightedDestination,
+                containerWidth: width,
+                containerHeight: height,
+              },
               renderObjects
             }
           ]}
@@ -236,6 +251,7 @@ export default function FraudeExportDunkerque({
             }
           }
         />
+        <ReactTooltip id="destinations-tooltip" />
       </div>
     )
 }

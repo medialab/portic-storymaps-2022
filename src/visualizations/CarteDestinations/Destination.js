@@ -2,7 +2,10 @@ import {useMemo} from 'react';
 import { useSpring, animated } from "react-spring";
 import {max} from 'd3-array';
 import {scaleLinear} from 'd3-scale';
+import palettes from '../../utils/colorPalettes';
+import translate from '../../utils/translate';
 
+const {generic20colors} = palettes;
 
 const G = ({ children, className, onClick, ...inputProps }) => {
   const props = useSpring(inputProps);
@@ -59,12 +62,18 @@ const Destination = ({
   y,
   radius,
   fontSize,
-  onClick,
   overflowing,
   arrowDirection,
-
   flagGroupModalities,
+
+
+  highlighted,
+  onClick,
+
+  lang,
 }) => {
+
+  
   const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
   
   const {points, d} = useMemo(() => {
@@ -76,19 +85,6 @@ const Destination = ({
       const theta = deg  * Math.PI / 180;
       const thatX = thatR * Math.cos(theta);
       const thatY = thatR * Math.sin(theta);
-      // if (modalityIndex !== flagGroupModalities.length - 1) {
-      // const nextModalityIndex = (modalityIndex !== flagGroupModalities.length - 1) ? modalityIndex + 1 : 0;
-      // const nextModality = flagGroupModalities[nextModalityIndex];
-      // const nextTonnage = flagGroups[nextModality] ? flagGroups[nextModality].tonnage : 0;
-      // const midTonnage = (thatTonnage + nextTonnage) / 2;
-      // const midR = radarScale(midTonnage);
-      // const nextDeg = (nextModalityIndex / flagGroupModalities.length) * 360;
-      // const midDeg = (deg + nextDeg) / 2;
-      // const midTheta = midDeg  * Math.PI / 180;
-      // const midX = midR * Math.cos(midTheta);
-      // const midY = midR * Math.sin(midTheta);
-      // return [...res, [thatX, thatY, true], [midX, midY, false]];
-      // }
       return [...res, [thatX, thatY, true]];
     }, []);
     const newD = newPoints.reduce((tempD, [thatX, thatY], modalityIndex) => {
@@ -124,12 +120,11 @@ const Destination = ({
       }
     }
     return 0;
-  }, [overflowing, arrowDirection])
-
+  }, [overflowing, arrowDirection]);
   return (
     <G
       transform={`translate(${x}, ${y})`}
-      className="destination"
+      className={`destination ${highlighted ? 'is-highlighted' : ''}`}
       onClick={onClick}
     >
       <Circle
@@ -137,6 +132,8 @@ const Destination = ({
         cy={0}
         r={radius}
         className={'background-circle'}
+        data-for="destinations-tooltip"
+        data-tip={destination}
       />
       {
         flagGroupModalities.map((modality, i) => {
@@ -156,21 +153,47 @@ const Destination = ({
           )
         })
       }
-      <path
+      {/* <path
         d={d}
         className="radar-chart"
-      />
+      /> */}
+      {
+        // triangles
+        points
+        .map(([x, y], pointIndex) => {
+          const next = pointIndex < points.length - 1 ? points[pointIndex + 1] : points[0]
+          const [nextX, nextY] = next;
+          const midX = 0;
+          const midY = 0;
+          const triangleD = `M ${x} ${y} L ${nextX} ${nextY} L ${midX} ${midY} Z`;
+          const colorVar = 30 + parseInt(pointIndex / points.length * 30);
+          return (
+            <path
+              d={triangleD}
+              className="radar-triangle"
+              stroke="none"
+              fill={`hsl(192,42%, ${colorVar}%)`}
+              fillOpacity={.8}
+            />
+          )
+        })
+      }
       {
         points
         .filter(([_x, _y, isMid = true]) => isMid)
         .map(([x, y], pointIndex) => {
+          const flag = flagGroupModalities[pointIndex];
+          const tonnage = flagGroups[flag]?.tonnage || 0;
           return (
             <circle
               cx={x}
               cy={y}
               key={pointIndex}
-              r={radius / 20}
+              r={highlighted ? radius / 30 : radius / 15}
               className="radar-point"
+              style={{fill: generic20colors[pointIndex]}}
+              data-for="destinations-tooltip"
+              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage})}
             />
           )
         })

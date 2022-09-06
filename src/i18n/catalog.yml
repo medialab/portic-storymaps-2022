@@ -132,8 +132,8 @@ CarteDestinations:
     fr: ne plus éditer
     en: do not edit
   legend_flags_title:
-    fr: Pavillons affichés
-    en: Displayed flags
+    fr: "Tonnage cumulé pour les navires de pavillon :"
+    en: "Cumulated tonnage for ships with flag from:"
   legend_options_title:
     fr: Options
     en: Options
@@ -152,6 +152,9 @@ CarteDestinations:
   hide:
     fr: cacher
     en: hide
+  tonnage_for_destination_and_flag:
+    fr: Les navires au départ de Dunkerque de pavillon ${flag} et à destination de ${destination} représentaient ${tonnage} tonneaux cumulés
+    en:
 Pilotage:
   title_comparaison:
     fr: Comparaison entre les données du pilotage <br/>et le registre des congés

@@ -1,8 +1,11 @@
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import SliderRange from '../../components/SliderRange';
 
+import palettes from '../../utils/colorPalettes';
 import translate from '../../utils/translate';
+
+const { generic20colors } = palettes;
 
 const Legend = ({
   flagGroupModalities,
@@ -26,6 +29,7 @@ const Legend = ({
   const svgDimension = containerWidth / 5;
   const margin = 10;
   const radius = (svgDimension - margin * 2) / 2;
+  const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
   return (
     <div className={`Legend ${legendIsEdited ? 'has-legend-edited' : ''}`}>
       <div className="left-column">
@@ -45,12 +49,43 @@ const Legend = ({
               />
               {
                 flagGroupModalities.map((modality, i) => {
+                  const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(modality) : true
                   const deg = (i / flagGroupModalities.length) * 360 - 90;
-                  const theta = deg  * Math.PI / 180;
+                  const theta = deg * Math.PI / 180;
+                  const x2 = (randomRadiuses[i]) * Math.cos(theta);
+                  const y2 = (randomRadiuses[i]) * Math.sin(theta);
+                  const nextI = i < flagGroupModalities.length - 1 ? i + 1 : 0;
+                  const nextDeg = (nextI / flagGroupModalities.length) * 360 - 90;
+                  const nextTheta = nextDeg * Math.PI / 180;
+                  const nextX = (randomRadiuses[nextI]) * Math.cos(nextTheta);
+                  const nextY = (randomRadiuses[nextI]) * Math.sin(nextTheta);
+                  const midX = 0;
+                  const midY = 0;
+                  const triangleD = `M ${x2} ${y2} L ${nextX} ${nextY} L ${midX} ${midY} Z`;
+                  const colorVar = 30 + parseInt(i / flagGroupModalities.length * 30);
+
+                  return (
+                    <g className={`radar-element radar-element-background ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
+                      <path
+                        d={triangleD}
+                        className="radar-triangle"
+                        stroke="none"
+                        fill={`hsl(192,42%, ${colorVar}%)`}
+                        fillOpacity={.8}
+                      />
+                    </g>
+                  )
+                })
+              }
+              {
+                flagGroupModalities.map((modality, i) => {
+                  const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(modality) : true
+                  const deg = (i / flagGroupModalities.length) * 360 - 90;
+                  const theta = deg * Math.PI / 180;
                   const x2 = radius * Math.cos(theta);
                   const y2 = radius * Math.sin(theta);
                   return (
-                    <>
+                    <g className={`radar-element ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
                       <line
                         key={modality}
                         x1={0}
@@ -65,6 +100,7 @@ const Legend = ({
                         cx={x2}
                         cy={y2}
                         r={8}
+                        fill={generic20colors[i]}
                       />
                       <text
                         className="number-number"
@@ -75,49 +111,51 @@ const Legend = ({
                       >
                         {i + 1}
                       </text>
-                    </>
+                    </g>
                   )
                 })
               }
             </g>
           </svg>
-          {/* <h4>{translate('CarteDestinations', 'legend_flags_title', lang)}</h4> */}
-          <ol className="flag-group-modalities-list" style={{maxHeight: containerHeight / 2}}>
-            {
-              flagGroupModalities
-                .map((id, modalityIndex) => {
-                  const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(id) : true
-                  const handleClick = (e) => {
-                    e.stopPropagation();
-                    if (!flagGroupFilters.length) {
-                      setFlagGroupFilters(flagGroupModalities.filter(f => f !== id).join(','));
-                      // remove
-                    } else if (isIncluded) {
-                      setFlagGroupFilters(flagGroupFilters.split(',').filter(i => i !== id).join(','));
-                      // add
-                    } else {
-                      setFlagGroupFilters(`${flagGroupFilters},${id}`);
-                    }
-                  }
-                  return (
-                    <li key={id} className={`flag-group-modality-item ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
-                      <span className="number">
-                        <span>
-                            {modalityIndex + 1}
-                        </span>
-                      </span>
-                      {/* <input onClick={handleClick} type="checkbox" checked={isIncluded} readOnly /> */}
-                      <label>{id}</label>
-                      {
-                        legendIsEdited ?
-                        <button onClick={handleClick}>{isIncluded ? translate('CarteDestinations', 'hide', lang) : translate('CarteDestinations', 'show', lang)}</button>
-                        : null
+          <div className="flags-container">
+            <h5>{translate('CarteDestinations', 'legend_flags_title', lang)}</h5>
+            <ol className="flag-group-modalities-list" style={{ maxHeight: containerHeight / 2 }}>
+              {
+                flagGroupModalities
+                  .map((id, modalityIndex) => {
+                    const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(id) : true
+                    const handleClick = (e) => {
+                      e.stopPropagation();
+                      if (!flagGroupFilters.length) {
+                        setFlagGroupFilters(flagGroupModalities.filter(f => f !== id).join(','));
+                        // remove
+                      } else if (isIncluded) {
+                        setFlagGroupFilters(flagGroupFilters.split(',').filter(i => i !== id).join(','));
+                        // add
+                      } else {
+                        setFlagGroupFilters(`${flagGroupFilters},${id}`);
                       }
-                    </li>
-                  )
-                })
-            }
-          </ol>
+                    }
+                    return (
+                      <li key={id} className={`flag-group-modality-item ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
+                        <span className="number" style={{ background: generic20colors[modalityIndex] }}>
+                          <span>
+                            {modalityIndex + 1}
+                          </span>
+                        </span>
+                        {/* <input onClick={handleClick} type="checkbox" checked={isIncluded} readOnly /> */}
+                        <label>{id}</label>
+                        {
+                          legendIsEdited ?
+                            <button onClick={handleClick}>{isIncluded ? translate('CarteDestinations', 'hide', lang) : translate('CarteDestinations', 'show', lang)}</button>
+                            : null
+                        }
+                      </li>
+                    )
+                  })
+              }
+            </ol>
+          </div>
         </div>
       </div>
       <div
@@ -159,7 +197,7 @@ const Legend = ({
                   return (
                     <li key={id}>
                       <input onClick={handleClick} type="checkbox" checked={checked} readOnly />
-                      <span onClick={handleClick} className={`checkbox ${checked ? 'is-checked': ''}`} readOnly />
+                      <span onClick={handleClick} className={`checkbox ${checked ? 'is-checked' : ''}`} readOnly />
                       <label>{translate('CarteDestinations', 'legend_' + id, lang)}</label>
                     </li>
                   )
