@@ -23,3 +23,13 @@ export function AnimatedPath({
         <animated.path {...animatedProps} />
     )
 }
+
+export function AnimatedRect({
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.rect {...animatedProps} />
+  )
+}

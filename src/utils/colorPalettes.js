@@ -87,6 +87,32 @@ const colorsPalettes = {
     'Espagne': '#e35027',
     'Portugal': '#e35027',
   },
+  importsExports: {
+    'Café': '#41BEA3',
+    'Sucre': '#A07BEE',
+    'Coton non transformé': '#98a9d9',
+    'Subsistances diverses et mélangées': '#a42e0d',
+    'Sirop et mélasse': '#FED63B',
+  
+    'Monde': '#EBB2AD',
+    'Colonies': '#e35027',
+    'France': '#EFC1BD',
+
+
+    // 'Lubeck': '#E7A39C',
+    // 'Brême': '#EBB2AD',
+    // 'Mecklenbourg': '#E3938C',
+    // 'Autriche': '#bd6a62',
+    // 'Grande-Bretagne': '#A07BEE',
+    // 'Provinces-Unies': '#2759e3',
+    // 'Danemark': '#8e7bee',
+
+    // 'Etats-Unis d\'Amérique': '#EBB2AD',
+    // 'Pologne': '#804a45',
+    // 'Russie': '#804a45',
+    // 'Espagne': '#e35027',
+    // 'Portugal': '#e35027',
+  },
   generic20colors: [
     "#e18680",
     "#65b546",
@@ -109,7 +135,6 @@ const colorsPalettes = {
     "#9f6232",
     "#9e4b6e",
   ]
-  
 }
 
 export default colorsPalettes;

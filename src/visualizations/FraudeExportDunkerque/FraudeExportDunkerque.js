@@ -1,6 +1,9 @@
 import React, { useMemo } from "react"
+import colorsPalettes from "../../utils/colorPalettes";
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
+
+const {importsExports: palette} = colorsPalettes;
 
 export default function FraudeExportDunkerque({
     data: inputData,
@@ -26,6 +29,7 @@ export default function FraudeExportDunkerque({
                 dimensions,
                 data
             }}
+            colorPalette={palette}
         />
     )
 }
