@@ -8,11 +8,14 @@ import React from 'react';
  */
 
 export default function Loader({
-    message
+  message,
+  isLoading
 }) {
-    return (
-        <div>
-            {message}
-        </div>
-    );
+  return (
+    <div className={`Loader ${isLoading ? 'is-loading' : ''}`}>
+      <div>
+        {message}
+      </div>
+    </div>
+  );
 }

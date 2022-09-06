@@ -15,110 +15,100 @@ import './Atlas.scss';
 
 
 export default function Atlas({
-    ...props
+  ...props
 }) {
-    const { vizId, lang } = useParams();
-    const navigate = useNavigate();
+  const { vizId, lang } = useParams();
+  const navigate = useNavigate();
 
-    const [datasets, setDatasets] = useState(new Map());
-    const [vizMetas, setVizMetas] = useState(undefined);
-    /** @type {['process'|'failed'|'successed'|'none', Function]} */
-    const [loadingState, setLoadingState] = useState('none');
+  const [datasets, setDatasets] = useState(new Map());
+  const [vizMetas, setVizMetas] = useState(undefined);
+  /** @type {['process'|'failed'|'successed'|'none', Function]} */
+  const [loadingState, setLoadingState] = useState('none');
 
-    /**
-     * Launch focus on a viz
-     * @param {String} vizId 
-     */
-    function onClickFocus(vizId) {
-        navigate(`/${lang}/atlas/${vizId}`);
+  /**
+   * Launch focus on a viz
+   * @param {String} vizId 
+   */
+  function onClickFocus(vizId) {
+    navigate(`/${lang}/atlas/${vizId}`);
+  }
+
+  useEffect(() => {
+    if (vizId === undefined || visualizationsMetas[vizId] === undefined) {
+      setLoadingState('none');
+      return;
     }
 
-    useEffect(() => {
-        if (vizId === undefined || visualizationsMetas[vizId] === undefined) {
-            setLoadingState('none');
-            return;
-        }
+    setLoadingState('process');
+    const { outputs, ...metas } = visualizationsMetas[vizId];
 
-        setLoadingState('process');
-        const { outputs, ...metas } = visualizationsMetas[vizId];
+    const payload = new Map();
 
-        const payload = new Map();
-
-        Promise.all(
-            outputs.map(fileToLoad =>
-                fetchDataFile(fileToLoad).catch(error => null)
-            )
-        )
-        .then((datasets) => {
-            for (let i = 0; i < datasets.length; i++) {
-                const dataset = datasets[i];
-                if (dataset === null) { continue; }
-                payload.set(outputs[i], dataset);
-            }
-            setDatasets(payload);
-            setVizMetas(metas);
-            setLoadingState('successed');
-        })
-        .catch((error) => {
-            setLoadingState('failed');
-            console.log(error);
-        })
-    }, [vizId])
-
-    useEffect(() => window.scrollTo({ top: 0 }), []);
-    return (
-        <div className='Atlas secondary-page'>
-            <Helmet>
-                <title>{buildPageTitle('Atlas', lang)}</title>
-            </Helmet>
-            <div className="centered-contents">
-                <h1 className='title'>{translate('atlas', 'title', lang)}</h1>
-                <ul className='visualizations-list'>
-                    {
-                        Object.values(visualizationsMetas).map((metas, i) => {
-                            const title = metas['titre_' + lang] || false;
-
-                            const { id, output } = metas;
-
-                            return (
-                                <li
-                                    className='visualization-item'
-                                    onClick={() => onClickFocus(id, output)}
-                                    key={id}
-                                >
-                                    <figure className="thumbnail-container">
-                                        <img
-                                            className='thumbnail'
-                                            src={`${process.env.BASE_PATH}/thumbnails/${lang}/${id}.png`}
-                                        />
-                                        <figcaption className='visualization-title'>{title}</figcaption>
-                                    </figure>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-            </div>
-            {
-                vizId ?
-                    <div>
-                        {
-                            loadingState === 'successed' || loadingState === 'failed' ?
-                                <VisualizationFocus
-                                    vizId={vizId}
-                                    datasets={datasets}
-                                    onClickClose={(e) => navigate(`/${lang}/atlas`)}
-                                />
-                                :
-                                {
-                                    'process': <Loader message='En cours de chargement' />,
-                                    // 'failed': <Loader message='Erreur de chargement' />,
-                                    'none': null
-                                }[loadingState]
-                        }
-                    </div>
-                    : null
-            }
-        </div>
+    Promise.all(
+      outputs.map(fileToLoad =>
+        fetchDataFile(fileToLoad).catch(error => null)
+      )
     )
+      .then((datasets) => {
+        for (let i = 0; i < datasets.length; i++) {
+          const dataset = datasets[i];
+          if (dataset === null) { continue; }
+          payload.set(outputs[i], dataset);
+        }
+        setDatasets(payload);
+        setVizMetas(metas);
+        setLoadingState('successed');
+      })
+      .catch((error) => {
+        setLoadingState('failed');
+        console.log(error);
+      })
+  }, [vizId])
+
+  useEffect(() => window.scrollTo({ top: 0 }), []);
+  return (
+    <div className='Atlas secondary-page'>
+      <Helmet>
+        <title>{buildPageTitle('Atlas', lang)}</title>
+      </Helmet>
+      <div className="centered-contents">
+        <h1 className='title'>{translate('atlas', 'title', lang)}</h1>
+        <ul className='visualizations-list'>
+          {
+            Object.values(visualizationsMetas).map((metas, i) => {
+              const title = metas['titre_' + lang] || false;
+
+              const { id, output } = metas;
+
+              return (
+                <li
+                  className='visualization-item'
+                  onClick={() => onClickFocus(id, output)}
+                  key={id}
+                >
+                  <figure className="thumbnail-container">
+                    <img
+                      className='thumbnail'
+                      src={`${process.env.BASE_PATH}/thumbnails/${lang}/${id}.png`}
+                    />
+                    <figcaption className='visualization-title'>{title}</figcaption>
+                  </figure>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+      {
+        vizId ?
+          <VisualizationFocus
+            vizId={vizId}
+            datasets={datasets}
+            onClickClose={(e) => navigate(`/${lang}/atlas`)}
+          />
+          : null
+      }
+      <Loader isLoading={vizId && loadingState !== 'successed'} message='En cours de chargement' />
+    </div>
+  )
 }
