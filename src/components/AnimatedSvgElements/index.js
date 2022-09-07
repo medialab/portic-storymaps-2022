@@ -14,6 +14,50 @@ export function AnimatedGroup({
     )
 }
 
+export function AnimatedText({
+  children,
+  style,
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.text {...animatedProps} style={style}>
+          {children}
+      </animated.text>
+  )
+}
+
+
+export function AnimatedCircle({
+  children,
+  style,
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.circle {...animatedProps} style={style}>
+          {children}
+      </animated.circle>
+  )
+}
+
+
+export function AnimatedLine({
+  children,
+  style,
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.line {...animatedProps} style={style}>
+          {children}
+      </animated.line>
+  )
+}
+
 export function AnimatedPath({
     ...props
 }) {
