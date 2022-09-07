@@ -5,7 +5,7 @@ let timeOut;
 
 export default function MapPoints({
     data: inputData,
-    diplayedYear,
+    displayedYear,
     height,
     lang,
     palette,
@@ -30,7 +30,7 @@ export default function MapPoints({
         timeOut = setTimeout(() => {
             setStyles.start({ opacity: 0 })
         }, 2000);
-    }, [diplayedYear]);
+    }, [displayedYear]);
 
     return (
         <svg
@@ -49,7 +49,7 @@ export default function MapPoints({
                     shape,
                     id
                 }, i) => {
-                    if (year_start <= diplayedYear && (year_end === '' || diplayedYear < year_end)) {
+                    if (year_start <= displayedYear && (year_end === '' || displayedYear < year_end)) {
                         const color = palette[color_type];
                         const crossD = `
                         M 5,5

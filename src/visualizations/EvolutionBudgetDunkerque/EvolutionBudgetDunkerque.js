@@ -34,7 +34,8 @@ export default function EvolutionBudgetDunkerque({
             }}
             y={{
                 field: 'valeur',
-                title: translate('EvolutionBudgetDunkerque', 'y', lang)
+                title: translate('EvolutionBudgetDunkerque', 'y', lang),
+                tickFormat: v => formatNumber(v),
             }}
             color={{
                 field: 'référence'
