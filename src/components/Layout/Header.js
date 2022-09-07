@@ -121,11 +121,7 @@ export default function Header({
                     }
                 </ul>
                 <ul className="secondary-nav-container">
-                    <li className="navitem-container">
-                        <Link to={`/${lang}/atlas`}>
-                            {translate('menu', 'atlas', lang)}
-                        </Link>
-                    </li>
+                    
                     {
                         routes
                             .filter(({ navGroup = 'primary', hide }) => navGroup === 'secondary' && !hide)
@@ -140,6 +136,11 @@ export default function Header({
                                 )
                             })
                     }
+                    <li className="navitem-container">
+                        <Link to={`/${lang}/atlas`}>
+                            {translate('menu', 'atlas', lang)}
+                        </Link>
+                    </li>
 
                     <li className="navitem-container lang-toggle">
                         <LangSwitcher {...{ onLangChange, langagesFlag, lang }} />

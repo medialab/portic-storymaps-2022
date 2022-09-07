@@ -38,7 +38,6 @@ body {
   padding: 0;
   // padding-bottom: $footer_height * 1;
   min-height: 100vh;
-  /* je voudrais que mon header s'éloigne du reste mais n'y arrive pas pour l'instant */
 }
 
 #wrapper > main {
@@ -538,6 +537,7 @@ tspan {
     &.primary-nav-container {
       justify-content: start;
       .navitem-container:first-of-type {
+        padding-right: .5rem;
         a.active {
           border-bottom: none;
         }
@@ -549,7 +549,7 @@ tspan {
   }
 
   li:not(:last-of-type):not(.lang-toggle) {
-    margin-right: 1rem;
+    margin-right: .6rem;
   }
   li.lang-toggle button {
     padding-right: 0;
@@ -559,7 +559,7 @@ tspan {
 
   @include xl-screen {
     .navitem-container a {
-        font-size: 1.1vw;
+        font-size: 0.9vw;
     }
   }
 
@@ -593,10 +593,10 @@ tspan {
     h1 {
       margin: 0;
       padding: 0;
-      font-size: 0.8rem;
+      font-size: 1rem;
       font-weight: 400;
       position: relative;
-      top: 0.5rem;
+      top: 1rem;
       opacity: 0;
       transition: 0.5s ease all;
     }

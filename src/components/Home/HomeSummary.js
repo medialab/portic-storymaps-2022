@@ -5,8 +5,8 @@ import { NavLink as Link } from 'react-router-dom';
 function HomeSummary({ lang = 'fr', summary }) {
   const messages = {
     intro: {
-      fr: 'découvrir les 3 chapitres de l’étude de cas',
-      en: 'discover the 3 chapters of the case study'
+      fr: 'découvrir les différentes parties de l’étude de cas',
+      en: 'discover the different parts of the case study'
     },
     atlas: {
       fr: 'Accéder à l\'atlas de toutes les visualisations',
@@ -31,10 +31,11 @@ function HomeSummary({ lang = 'fr', summary }) {
             .map((item, itemIndex) => {
               const title = item.titles[lang];
               const route = `/${lang}/${item.routes[lang]}`;
+              const notAChapter = title.toLowerCase().includes('conclusion');
               return (
                 <li key={itemIndex}>
                   <Link to={route}>
-                    <h4 className="pretitle">{messages.chapter[lang]} {itemIndex + 1}</h4>
+                    <h4 className="pretitle" style={{opacity: notAChapter ? 0 : 1}}>{notAChapter ? '.' : `${messages.chapter[lang]} ${itemIndex + 1}`}</h4>
                     <h3 className="title">{title}</h3>
                   </Link>
                 </li>

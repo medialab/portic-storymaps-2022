@@ -7,17 +7,18 @@ import './PlainPage.scss';
 
 export default function PlainPage ({
     Content,
-    title
+    title: sectionTitle
 }) {
     const { lang } = useParams();
 
     return (
         <div className="PlainPage secondary-page">
             <Helmet>
-                <title>{buildPageTitle(title, lang)}</title>
+                <title>{buildPageTitle(sectionTitle, lang)}</title>
             </Helmet>
 
             <div className='centered-contents'>
+                <h1>{sectionTitle}</h1>
                 <Content />
             </div>
         </div>
