@@ -298,6 +298,7 @@ for lang in GDOC_URL.keys():
                 caller.parent.extract() # Delete <p>
             """
 
+        # loop through each part
         for i, title in enumerate(soup.find_all('h1')):
             part_soup = BeautifulSoup('<div id="part-' + str(i) + '"/>', 'html.parser')
             part_root = part_soup.div
@@ -346,10 +347,15 @@ for lang in GDOC_URL.keys():
                 bibliography_spans[bibliography_item_key] = bibliography_span
             bibliography_spans_sorted = {k: bibliography_spans[k] for k in sorted(bibliography_spans)}
             part_soup = BeautifulSoup(part, 'html.parser')
+            # adding the bibliography
+            # TODO this is commented for now bc it added the same bibliography to all sections.
+            # It should be fixed and uncommented at some point
+            """
             bib_container_soup = BeautifulSoup('<div class="bibliography"><h2>Bibliographie</h2></div>', 'html.parser')
             for bib_soup in bibliography_spans_sorted.values():
                 bib_container_soup.div.append(bib_soup)
             part_soup.div.append(bib_container_soup)
+            """
             part = str(part_soup)
 
             # React requirements
