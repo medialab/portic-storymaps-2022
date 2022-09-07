@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { scaleLinear } from 'd3-scale';
 import cx from 'classnames';
 
 import routes from '../../summary';
 import colorsPalettes from '../../utils/colorPalettes';
-import { useDebounce } from '../../utils/hooks';
 import LangSwitcher from './LangSwitcher';
-import translate from '../../utils/translate'
+import translate from '../../utils/translate';
+
 
 /**
  * Header contains navigation and…
