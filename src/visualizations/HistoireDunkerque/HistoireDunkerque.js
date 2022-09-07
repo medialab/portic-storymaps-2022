@@ -8,6 +8,7 @@ import MapLegend from "./MapLegend";
 import './HistoireDunkerque.scss';
 import translate from "../../utils/translate";
 import cx from "classnames";
+import ReactTooltip from "react-tooltip";
 
 /**
  * 
@@ -172,6 +173,10 @@ export default function HistoireDunkerque({
     }
   }, [displayedYear, data]);
 
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  });
+
   return (
     <div
       className={cx('HistoireDunkerque', { minMode })}
@@ -282,13 +287,13 @@ export default function HistoireDunkerque({
         <footer
           className="timeline"
           style={{
-            height: height - topSectionHeight
+            height: height - topSectionHeight || 0
           }}
         >
           <Timeline
             dimensions={{
               width,
-              height: height - topSectionHeight
+              height: height - topSectionHeight || 0
             }}
             palette={palette}
             data={data}
@@ -296,6 +301,7 @@ export default function HistoireDunkerque({
           />
         </footer>
       }
+      <ReactTooltip id="histoire-dunkerque-tooltip" />
     </div>
   )
 }
