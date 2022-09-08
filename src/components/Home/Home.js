@@ -13,7 +13,7 @@ import ContentsEn from '../../content/en/part-0.mdx'
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 // import CitationWidget from '../CitationWidget';
-import VisualizationContainer from '../VisualizationContainer';
+// import VisualizationContainer from '../VisualizationContainer';
 import { VisualizationControlContext } from '../../utils/contexts';
 import translate from '../../utils/translate';
 import summary from '../../summary';

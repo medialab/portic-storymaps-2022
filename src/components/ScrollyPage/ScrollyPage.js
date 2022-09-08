@@ -214,8 +214,8 @@ export default function ScrollyPage({
         setDisplayViz(true);
 
         for (let i = visualizationEntries.length - 1; i >= 0; i--) {
-            const [callerId, vizParms] = visualizationEntries[i];
-            const { visualizationId, ref, canFocusOnScroll } = vizParms;
+            const [callerId, vizParams] = visualizationEntries[i];
+            const { visualizationId, ref, canFocusOnScroll, props: vizProps } = vizParams;
 
             // if (displayedVizId === visualizationId) { return; }
             if (!!ref.current === false) { continue; }
@@ -228,6 +228,7 @@ export default function ScrollyPage({
                 setDisplayedVizId(visualizationId);
                 setCurrentVizId(visualizationId);
                 setActiveCallerId(callerId);
+                setDisplayedVizProps(vizProps);
                 break;
             }
         }
