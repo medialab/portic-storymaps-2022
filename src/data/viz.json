@@ -13,11 +13,13 @@
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQx54SFuzSu4Vh7GnqXVhem4MTsx8MrjIBibTwLRsr44TMPL_JmAQxw8kK9yWqmm80j5RQ9NQzv--W/pub?gid=1555689051&single=true&output=csv",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQx54SFuzSu4Vh7GnqXVhem4MTsx8MrjIBibTwLRsr44TMPL_JmAQxw8kK9yWqmm80j5RQ9NQzv--W/pub?gid=0&single=true&output=csv"
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQx54SFuzSu4Vh7GnqXVhem4MTsx8MrjIBibTwLRsr44TMPL_JmAQxw8kK9yWqmm80j5RQ9NQzv--W/pub?gid=0&single=true&output=csv",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQQKrAYZaxQ99BIqbfP1JwJQI9tCCBocoIQA5ZN5t4fpBeIO_SGX6LCUEMxzILWdoZm6ANl-TShZf2m/pub?output=csv"
         ],
         "outputs": [
             "histoire-dunkerque-dates.csv",
-            "histoire-dunkerque-points.csv"
+            "histoire-dunkerque-points.csv",
+            "histoire-dunkerque-assise.csv"
         ]
     },
     "smoggleur-proportion": {

@@ -15,10 +15,13 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: stretch;
+    > div, > svg {
+      flex: 1;
+    }
   }
 
   .map-title {
-    flex: 1;
+    // flex: 1;
 
     .map-titles {
       display: flex;
@@ -39,20 +42,24 @@
       padding-right: 1rem;
       transition: .5s ease all;
       &.is-past {
-        opacity: .5;
+        opacity: .8;
         font-style: italic;
+        font-weight: 200;
       }
     }
   }
 
   .map-switch-btns {
     display: flex;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2.3rem;
     padding-right: 1rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     box-sizing: border-box;
+    align-items: flex-end;
+    flex: 0;
+    max-height: 2rem;
 
     button {
       background-color: transparent;
@@ -74,6 +81,9 @@
   }
 
   .map-legend {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
   }
 
   .layer {

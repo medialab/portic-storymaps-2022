@@ -1,14 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import cx from "classnames";
+import ReactTooltip from "react-tooltip";
 
 import DunkerqueMap from "./DunkerqueMap";
 import Timeline from "./Timeline";
 import MapPoints from "./MapPoints";
 import MapLegend from "./MapLegend";
+import MiniLinechart from "./MiniLinechart";
+
+import translate from "../../utils/translate";
 
 import './HistoireDunkerque.scss';
-import translate from "../../utils/translate";
-import cx from "classnames";
-import ReactTooltip from "react-tooltip";
 
 /**
  * 
@@ -26,7 +28,7 @@ export default function HistoireDunkerque({
   data: inputData,
   dimensions,
   lang,
-  callerProps,
+  callerProps = {},
   ...props
 }) {
   const { width, height } = dimensions;
@@ -62,6 +64,9 @@ export default function HistoireDunkerque({
       setTopSectionHeight(height - minTimelineHeight);
     }
   }, [width, height, minMode]);
+  const assiseData = inputData.get('histoire-dunkerque-assise.csv');
+  // console.log(callerProps)
+  const {displayassises} = callerProps;
   const [displayedYear, setdisplayedYear] = useState(callerProps && callerProps.year ? +callerProps.year : inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
   useEffect(() => {
     if (callerProps && callerProps.year) {
@@ -210,6 +215,25 @@ export default function HistoireDunkerque({
             </div>
             <div className={`head ${headYear ? 'is-past' : ''}`}>{headYear ? `${headYear}${lang === 'fr' ? ' ' : ''}: ` : ''}{head}</div>
           </div>
+
+          {
+            assiseData && displayassises !== undefined ?
+            <div className="assises-container">
+              <h3>{translate('HistoireDunkerque', 'assise_title', lang)}</h3>
+              <MiniLinechart 
+                data={assiseData} 
+                width={topSectionHeight ? width - topSectionHeight : width - 200} 
+                height={200}
+                x={{
+                  field: 'annee'
+                }}
+                y={{
+                  field: 'rapport_assise_recettes'
+                }}
+              />
+            </div>
+            : null
+          }
 
 
           {
