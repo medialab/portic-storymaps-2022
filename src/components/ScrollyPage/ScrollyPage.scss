@@ -103,6 +103,12 @@
     .switch-btn {
       float: left;
     }
+
+    > h3 {
+      margin: 0;
+      position: relative;
+      top: -1em;
+    }
   }
 
   .fullscreen-viz-toggle-container {

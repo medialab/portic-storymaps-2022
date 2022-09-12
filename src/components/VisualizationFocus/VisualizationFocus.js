@@ -181,7 +181,8 @@ export default function VisualizationFocus({
                                                 vizId,
                                                 dimensions,
                                                 lang,
-                                                datasets
+                                                datasets,
+                                                atlasMode: true
                                             }
                                             }
                                         />

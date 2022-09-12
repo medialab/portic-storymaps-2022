@@ -36,6 +36,7 @@ export default function VisualizationController({
     dimensions,
     lang,
     callerProps = undefined,
+    atlasMode,
     ...props
 }) {
     const { width, height } = dimensions;
@@ -101,7 +102,7 @@ export default function VisualizationController({
                 );
             case 'pilotage':
                 return (
-                    <Pilotage {...{ data, dimensions, lang }} />
+                    <Pilotage {...{ data, dimensions, lang, atlasMode }} />
                 );
             default:
                 return (
