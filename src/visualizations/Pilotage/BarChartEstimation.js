@@ -26,6 +26,8 @@ export default function PilotageLegend({
     left: 45,
     right: 10
   };
+
+  const footerHeight = useMemo(() => height / 5, [height]);
   const barFromBarChartWidth = useMemo(() => {
     let normal = (dimensions.width - margin.left - margin.right) / data.length - 3;
     return normal >= 1 ? normal : 1;
@@ -66,12 +68,6 @@ export default function PilotageLegend({
       .range([height - margin.bottom, margin.bottom]);
   }, [data, maxPilotage, height]);
 
-  const scaleProjection = useMemo(function computeScaleFromProjectionValue() {
-    return scaleLinear()
-      .domain([minProjectionPerYear, maxProjectionPerYear])
-      .range([height - margin.bottom, margin.bottom]);
-  }, [minProjectionPerYear, maxProjectionPerYear, height]);
-
   useEffect(() => {
     Tooltip.rebuild();
   });
@@ -95,8 +91,8 @@ export default function PilotageLegend({
 
               const totalY = scaleTotal(total);
               const pilotageY = scaleTotal(sorties_pilotage);
-              const pilotageMaxY = scaleTotal(sorties_pilotage / maxPilotage);
-              const pilotageMinY = scaleTotal(sorties_pilotage / minPilotage);
+              // const pilotageMaxY = scaleTotal(sorties_pilotage / maxPilotage);
+              // const pilotageMinY = scaleTotal(sorties_pilotage / minPilotage);
               const pilotageMeanY = scaleTotal(sorties_pilotage / meanPilotage);
               const yearY = scaleYear(year);
               return (
@@ -224,7 +220,9 @@ export default function PilotageLegend({
           transform={`translate(${0}, ${height - margin.bottom})`}
         >
           {
-            data.map(({ year }, i) => {
+            data
+            .filter(({year}) => year % 2 === 0)
+            .map(({ year }, i) => {
               return (
                 <g
                   transform={`translate(${scaleYear(year)}, ${0})`}
@@ -272,7 +270,7 @@ export default function PilotageLegend({
               y={-25}
               x={scaleYear(startYear)}
               width={scaleYear(startYearForProjection) - scaleYear(startYear)}
-              height={height / 5}
+              height={footerHeight}
             >
               <div className="back-label">
                 <p
@@ -290,7 +288,7 @@ export default function PilotageLegend({
               y={-25}
               x={scaleYear(startYearForProjection)}
               width={scaleYear(endYearForProjection) - scaleYear(startYearForProjection)}
-              height={height / 5}
+              height={footerHeight}
             >
               <div
                 className="back-label is-black">
@@ -315,7 +313,7 @@ export default function PilotageLegend({
           <ArrowNote
             arrowId='arrow-note-head'
             textWidth={scaleYear(1736) - scaleYear(1732)}
-            textHeight={64}
+            textHeight={80}
             x1={scaleYear(1729.5)}
             y1={scaleTotal(2400)}
             x2={scaleYear(1735)}

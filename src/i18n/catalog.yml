@@ -195,7 +195,7 @@ Pilotage:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec pilotage
     en:
   tooltip_estimation:
-    fr: Estimation de ${value_min} à ${value_max} navires sortants avec pilotage en ${year}
+    fr: En ${year}, on estime qu'entre ${value_min} et ${value_max} navires sont sortis du port de Dunkerque
     en:
   tooltip_projection_positive:
     fr: En ${year}, le rapport entre pilotage et sorties était ${value}% supérieur au rapport moyen de 1765 à 1791

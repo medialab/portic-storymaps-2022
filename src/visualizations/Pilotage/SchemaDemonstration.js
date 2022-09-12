@@ -55,7 +55,7 @@ export default function SchemaDemonstration({
     <>
       <p className="mean-explanation"
         dangerouslySetInnerHTML={{
-          __html: translate('Pilotage', 'description_demonstration', lang, { value_max: maxProjectionPerYear, value_min: minProjectionPerYear })
+          __html: translate('Pilotage', 'description_demonstration', lang, { value_max: Math.round(maxProjectionPerYear), value_min: Math.round(minProjectionPerYear) })
         }}
       />
       <svg {...{ width, height }} >
@@ -96,7 +96,7 @@ export default function SchemaDemonstration({
                         stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(1), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(1), year })}
                       />
                     }
                     {
@@ -109,7 +109,7 @@ export default function SchemaDemonstration({
                         stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: Math.round(realityGapPourcentage), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -Math.round(realityGapPourcentage), year })}
                       />
                     }
                   </g>
@@ -237,7 +237,7 @@ export default function SchemaDemonstration({
                       x={0}
                       y={0}
                       textAnchor={value === minProjectionPerYear ? 'end' : 'start'}
-                    >{value}%</text>
+                    >{value > 0 ? '+' : ''}{Math.round(value)}%</text>
                   </g>
                 )
               })
