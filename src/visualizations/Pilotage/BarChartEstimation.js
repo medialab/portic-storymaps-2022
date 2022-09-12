@@ -272,7 +272,7 @@ export default function PilotageLegend({
               y={-25}
               x={scaleYear(startYear)}
               width={scaleYear(startYearForProjection) - scaleYear(startYear)}
-              height={25}
+              height={height / 5}
             >
               <div className="back-label">
                 <p
@@ -290,7 +290,7 @@ export default function PilotageLegend({
               y={-25}
               x={scaleYear(startYearForProjection)}
               width={scaleYear(endYearForProjection) - scaleYear(startYearForProjection)}
-              height={25}
+              height={height / 5}
             >
               <div
                 className="back-label is-black">

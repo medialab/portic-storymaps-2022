@@ -68,8 +68,20 @@
     }
 
     &.is-slim {
+      .row {
+        max-height: 50%;
+      }
       .upper-row {
         flex-direction: column;
+      }
+
+      &.is-scrolly-mode {
+        .upper-row {
+          display: none;
+        }
+        .lower-row h3 {
+          display: none;
+        }
       }
     }
 }

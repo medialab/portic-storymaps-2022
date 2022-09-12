@@ -19,12 +19,13 @@ export default function Pilotage({
         'total': '#ff493b',
         'sorties_pilotage': '#2f2d8d',
     },
+    atlasMode,
     ...props
 }) {
     const { width, height } = dimensions;
 
+
     const isSlim = useMemo(() => width < BREAK_POINT, [width]);
-    console.log('is slim: ', isSlim);
 
     const data = useMemo(function prepareData() {
         return inputData.map(({ year, sorties_pilotage, navires, total, ...rest }) => {
@@ -71,9 +72,10 @@ export default function Pilotage({
     }, [dataForProjection]);
 
     return (
-        <div className={`Pilotage ${isSlim ? 'is-slim': ''}`}
+        <div className={`Pilotage ${isSlim ? 'is-slim': ''} ${atlasMode ? 'is-atlas-mode' : 'is-scrolly-mode'}`}
           style={{
-            maxWidth: width
+            maxWidth: width,
+            maxHeight: atlasMode ? undefined : height
           }}
         >
             <div
@@ -128,7 +130,7 @@ export default function Pilotage({
                   {...{ colorPalette, lang, data, yearPeriodForProjection, projectionStats }}
                   dimensions={{
                       width: width - 50,
-                      height: 400
+                      height: (!atlasMode && isSlim) ? height : 400
                   }}
               />
             </div>
