@@ -59,7 +59,7 @@ export default function SchemaDemonstration({
         }}
       />
       <svg {...{ width, height }} >
-        <DiagonalHatching id='diag-hatch' lineGap={4} strokeWidth={5} color={colorPalette['total']} />
+        <DiagonalHatching id='diag-hatch-projection' lineGap={4} strokeWidth={5} color={colorPalette['projection']} />
         {/* <foreignObject
                 y={0}
                 x={0}
@@ -89,10 +89,11 @@ export default function SchemaDemonstration({
                       realityGapPourcentage >= 0 &&
                       <path
                         d={`
-                                            M ${0}, ${scaleProjection(0)}
-                                            V ${scaleProjection(realityGapPourcentage)}
-                                            `}
-                        stroke={colorPalette['total']}
+                          M ${0}, ${scaleProjection(0)}
+                          V ${scaleProjection(realityGapPourcentage)}
+                        `}
+                        // stroke={colorPalette['projection']}
+                        stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
                         data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
@@ -105,7 +106,7 @@ export default function SchemaDemonstration({
                                             M ${0}, ${scaleProjection(realityGapPourcentage)}
                                             V ${scaleProjection(0)}
                                             `}
-                        stroke='url(#diag-hatch)'
+                        stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
                         data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(2), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(2), year })}
@@ -194,9 +195,9 @@ export default function SchemaDemonstration({
                     return (
                       <path
                         d={`
-                                            M0,${scaleProjection(realityGapPourcentage)}
-                                            V${scaleProjection(0)}
-                                            `}
+                          M0,${scaleProjection(realityGapPourcentage)}
+                          V${scaleProjection(0)}
+                        `}
                         stroke='black'
                         strokeWidth={5}
                         opacity={0.2}
@@ -208,9 +209,9 @@ export default function SchemaDemonstration({
                     return (
                       <path
                         d={`
-                                            M0,${scaleProjection(0)}
-                                            V${scaleProjection(realityGapPourcentage)}
-                                            `}
+                          M0,${scaleProjection(0)}
+                          V${scaleProjection(realityGapPourcentage)}
+                        `}
                         stroke='black'
                         strokeWidth={5}
                         opacity={0.2}

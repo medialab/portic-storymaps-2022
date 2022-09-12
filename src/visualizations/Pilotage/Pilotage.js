@@ -18,6 +18,8 @@ export default function Pilotage({
     colorPalette = {
         'total': '#ff493b',
         'sorties_pilotage': '#2f2d8d',
+        // 'projection': '#c24153',
+        'projection': 'grey'
     },
     atlasMode,
     ...props
