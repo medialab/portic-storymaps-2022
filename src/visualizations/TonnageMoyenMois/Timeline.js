@@ -130,10 +130,11 @@ export default function Timeline({
             }}
         >
             {
-                range(+minYear, +maxYear + 1, 1).map((year) => {
+                range(+minYear, +maxYear, 1).map((year) => {
                     year = year.toString();
                     const isIndexedYear = years.includes(year);
                     const isCurrentVizYear = currentVizYearBrush.includes(year);
+                    const isCurrentVizYearMinusOne = currentVizYearBrush.includes('' + (+year - 1));
                     const graphHeight = height - 60;
                     const BAR_HEIGHT = isCurrentVizYear ? graphHeight * .7 : graphHeight / 4;
                     return (
@@ -152,8 +153,8 @@ export default function Timeline({
                                     strokeWidth={0}
                                 />
                             }
-                            <line x={0} y1={0} y2={40} stroke='black' />
-                            <text className="tick-year" x={0} y={height - 20}>{year}</text>
+                            <line x={0} y1={0} y2={40} stroke={isCurrentVizYear ||isCurrentVizYearMinusOne ? 'black' : 'lightgrey'} />
+                            <text fill={isCurrentVizYear ? 'black' : 'lightgrey'} className="tick-year" x={fragmentWidth / 2} textAnchor="middle" y={height / 2 + 2}>{year}</text>
                         </g>
                     )
                 })

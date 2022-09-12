@@ -140,11 +140,11 @@ const LineChart = ({
 
   let xScale, xDomain, xAxisValues;
   if (xType === 'ordinal') {
-    xDomain = Array.from(group(data, d => d[xField]).keys())
+    xDomain = Array.from(group(data, d => d[xField]).keys());
     xScale = scaleOrdinal().domain(xDomain).range(range(margins.left, width - margins.right, (width - margins.right) / xDomain.length - 1));
     xAxisValues = xDomain;
   } else {
-    xDomain = [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
+    xDomain = initialXDomain && Array.isArray(initialXDomain) && initialXDomain.length === 2 ? initialXDomain : [min(data.map(d => +d[x.field])), max(data.map(d => +d[x.field]))];
     xScale = scaleLinear().domain(xDomain).range([margins.left, width - margins.right]).nice();
     xAxisValues = axisPropsFromTickScale(xScale).values;
   }

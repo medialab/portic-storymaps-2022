@@ -1,4 +1,4 @@
-import { extent, group, groups, mean } from 'd3-array';
+import { extent, group, groups, mean, max } from 'd3-array';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import LineChart from '../../components/LineChart';
@@ -75,7 +75,8 @@ export default function TonnageMoyenMois({
                 x={{
                     field: 'value',
                     title: translate('TonnageMoyenMois', 'x', lang),
-                    tickFormat: (value, valueIndex) => formatNumber(value)
+                    tickFormat: (value, valueIndex) => formatNumber(value) + ' tx',
+                    domain: [0, max(monthsValue.map(d => d.value))]
                 }}
                 y={{
                     field: 'month',
