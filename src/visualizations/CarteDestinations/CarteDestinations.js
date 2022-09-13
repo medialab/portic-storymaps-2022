@@ -96,7 +96,7 @@ export default function FraudeExportDunkerque({
         const tonnage = +travel.tonnage;
         // list flag groups
         const isDunkerquois = travel.homeport == 'Dunkerque';
-        let flagGroup = isDunkerquois ? 'dunkerquois' : groupStrangers ? travel.flag_fr === 'français' ? 'français': 'étranger' : travel.flag_fr;
+        let flagGroup = isDunkerquois ? 'dunkerquois' : groupStrangers ? travel.flag_fr === 'français' ? 'autres français': 'étranger' : travel.flag_fr === 'français' ? 'autres français' : travel.flag_fr;
         if (!flagGroupModalitiesTemp.has(flagGroup)) {
           flagGroupModalitiesTemp.add(flagGroup)
         }
