@@ -29,7 +29,8 @@ const Legend = ({
   const svgDimension = containerWidth / 5;
   const margin = 10;
   const radius = (svgDimension - margin * 2) / 2;
-  const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
+  // const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
+  // const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
   return (
     <div className={`Legend ${legendIsEdited ? 'has-legend-edited' : ''}`}>
       <div className="left-column">
@@ -52,13 +53,21 @@ const Legend = ({
                   const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(modality) : true
                   const deg = (i / flagGroupModalities.length) * 360 - 90;
                   const theta = deg * Math.PI / 180;
-                  const x2 = (randomRadiuses[i]) * Math.cos(theta);
-                  const y2 = (randomRadiuses[i]) * Math.sin(theta);
+                  // const x2 = (randomRadiuses[i]) * Math.cos(theta);
+                  // const y2 = (randomRadiuses[i]) * Math.sin(theta);
+
+                  const x2 = radius * .5 * Math.cos(theta);
+                  const y2 = radius * .5 * Math.sin(theta);
+
                   const nextI = i < flagGroupModalities.length - 1 ? i + 1 : 0;
                   const nextDeg = (nextI / flagGroupModalities.length) * 360 - 90;
                   const nextTheta = nextDeg * Math.PI / 180;
-                  const nextX = (randomRadiuses[nextI]) * Math.cos(nextTheta);
-                  const nextY = (randomRadiuses[nextI]) * Math.sin(nextTheta);
+                  
+                  // const nextX = (randomRadiuses[nextI]) * Math.cos(nextTheta);
+                  // const nextY = (randomRadiuses[nextI]) * Math.sin(nextTheta);
+
+                  const nextX = radius * .5 * Math.cos(nextTheta);
+                  const nextY = radius * .5 * Math.sin(nextTheta);
                   const midX = 0;
                   const midY = 0;
                   const triangleD = `M ${x2} ${y2} L ${nextX} ${nextY} L ${midX} ${midY} Z`;

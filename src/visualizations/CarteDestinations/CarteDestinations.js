@@ -34,6 +34,7 @@ export default function FraudeExportDunkerque({
     const [longCoursOnly, setLongCoursOnly] = useState(longCoursOnlyFromProps);
     const [flagGroupFilters, setFlagGroupFilters] = useState(flagGroupFiltersFromProps);
     const [projectionTemplate, setProjectionTemplate] = useState(projectionTemplateFromProps);
+    const [templatesVisible, setTemplatesVisible] = useState(false);
     const [highlightedDestination, setHighlightedDestination] = useState();
     // update state from props
     // @todo factorize that with a custom hook
@@ -251,6 +252,52 @@ export default function FraudeExportDunkerque({
             }
           }
         />
+        <div className={`projection-templates-container ${templatesVisible ? 'is-deployed': 'is-collapsed'}`}>
+          <h4>
+            Position de la carte
+            <span className="templates-list-toggle">
+              <button
+               onClick={() => setTemplatesVisible(!templatesVisible)}>
+              ▶
+              </button>
+            </span>
+          </h4>
+          <ul>
+          {
+          [
+            {
+              id: 'from France to England',
+              title: 'De la France à l\'Angleterre',
+            },
+            {
+              id: 'France',
+              title: 'France',
+            },
+            {
+              id: 'world north',
+              title: 'Atlantique',
+            },
+            {
+              id: 'coast from Bretagne to Flandres',
+              title: 'De la Bretagne à la Flandre',
+            }, 
+            {
+              id: 'World',
+              title: 'Monde',
+            },            
+          ]
+          .map(({id, title}) => {
+            return (
+              <li className={`projection-button-container ${id === projectionTemplate ? 'is-active': ''}`} key={id}>
+                <button onClick={() => setProjectionTemplate(id)}>
+                  {title}
+                </button>
+              </li>
+            )
+          })
+          }
+          </ul>
+        </div>
         <ReactTooltip id="destinations-tooltip" />
       </div>
     )

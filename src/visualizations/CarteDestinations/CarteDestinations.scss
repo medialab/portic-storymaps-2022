@@ -1,8 +1,71 @@
+@import "../../styles/variables.scss";
+
 .CarteDestinations {
   .GeographicMapChart {
     .geopart {
       stroke: white;
       fill: rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+  .projection-templates-container {
+    position: absolute;
+    left: 1rem;
+    bottom: 2rem;
+
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem;
+
+    h4 {
+      margin: 0;
+    }
+    .templates-list-toggle {
+      button {
+        font-style: normal;
+        text-decoration: none;
+        transition: all .5s ease;
+        transform: rotate(90deg);
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: all .5s ease;
+
+      
+      li:not(:last-of-type) {
+        margin-bottom: 1rem;
+      }
+      .projection-button-container {
+        background: white;
+        button {
+          text-decoration: none;
+          font-family: $font-family-1;
+          font-style: normal;
+          color: black;
+        }
+
+        &.is-active {
+          background: black;
+          button {
+            color: white;
+          }
+        }
+      }
+    }
+    &.is-deployed {
+      ul {
+        max-height: 30rem;
+      }
+
+      .templates-list-toggle {
+        button {
+          transform: rotate(-90deg);
+        }
+      }
     }
   }
   .Legend {
@@ -165,7 +228,7 @@
   .destination {
     cursor: pointer;
     transition: 0.5s ease all;
-    
+
     .background-circle {
       stroke: black;
       fill: rgba(0, 0, 0, 0.07);
@@ -188,7 +251,7 @@
     &.is-highlighted {
       z-index: 10;
       .background-circle {
-        fill: rgba(255,255,255,.8);
+        fill: rgba(255, 255, 255, 0.8);
       }
     }
     &:hover {
@@ -198,7 +261,7 @@
       }
       &.is-highlighted {
         .background-circle {
-          fill: rgba(255,255,255,.9);
+          fill: rgba(255, 255, 255, 0.9);
         }
       }
     }
