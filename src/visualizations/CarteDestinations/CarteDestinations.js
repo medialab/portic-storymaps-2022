@@ -9,6 +9,7 @@ import {max} from 'd3-array';
 import './CarteDestinations.scss';
 import Legend from "./Legend";
 import ReactTooltip from "react-tooltip";
+import translate from "../../utils/translate";
 
 export default function FraudeExportDunkerque({
     data,
@@ -24,6 +25,8 @@ export default function FraudeExportDunkerque({
     groupStrangers: groupStrangersFromProps = true,
     longCoursOnly: longCoursOnlyFromProps = false,
     flagGroupFilters: flagGroupFiltersFromProps = '',
+    showOffscreenPorts: showOffscreenPortsFromProps = false,
+    showDetailsInMap: showDetailsInMapFromProps = false,
     ...props
 }) {
 
@@ -34,8 +37,11 @@ export default function FraudeExportDunkerque({
     const [longCoursOnly, setLongCoursOnly] = useState(longCoursOnlyFromProps);
     const [flagGroupFilters, setFlagGroupFilters] = useState(flagGroupFiltersFromProps);
     const [projectionTemplate, setProjectionTemplate] = useState(projectionTemplateFromProps);
+    const [showOffscreenPorts, setShowOffscreenPorts] = useState(showOffscreenPortsFromProps);
+    const [showDetailsInMap, setShowDetailsInMap] = useState(showDetailsInMapFromProps);
     const [templatesVisible, setTemplatesVisible] = useState(false);
     const [highlightedDestination, setHighlightedDestination] = useState();
+
     // update state from props
     // @todo factorize that with a custom hook
     useEffect(() => {
@@ -59,6 +65,14 @@ export default function FraudeExportDunkerque({
     }, [projectionTemplateFromProps]);
 
     useEffect(() => {
+      setShowOffscreenPorts(showOffscreenPortsFromProps);
+    }, [showOffscreenPortsFromProps]);
+
+    useEffect(() => {
+      setShowDetailsInMap(showDetailsInMapFromProps);
+    }, [showDetailsInMapFromProps]);
+
+    useEffect(() => {
       ReactTooltip.rebuild();
     })
 
@@ -75,19 +89,18 @@ export default function FraudeExportDunkerque({
     const travels = data.get('destinations_from_dunkerque.csv') || [];
     const filterOptions = [
       {
-        id: 'group_strangers',
-        labels: {
-          fr: 'Grouper les étrangers',
-          en: 'Group strangers'
-        }
+        id: 'group_strangers'
       },
       {
-        id: 'only_long_cours',
-        labels: {
-          fr: 'Trajets long-cours uniquement',
-          en: 'Long-cours travels only'
-        }
-      },      
+        id: 'only_long_cours'
+      },  
+      
+      {
+        id: 'show_offscreen_ports'
+      },
+      {
+        id: 'show_details_in_map'
+      }
     ];
 
     const {maxPossibleTonnage = 1000, vizData, flagGroupModalities = []} = useMemo(() => {
@@ -222,6 +235,8 @@ export default function FraudeExportDunkerque({
                 setHighlightedDestination,
                 containerWidth: width,
                 containerHeight: height,
+                showOffscreenPorts,
+                showDetailsInMap,
               },
               renderObjects
             }
@@ -238,6 +253,14 @@ export default function FraudeExportDunkerque({
               filterOptions,
               groupStrangers,
               setGroupStrangers,
+
+              showOffscreenPorts,
+              showDetailsInMap,
+              setShowOffscreenPorts,
+              setShowDetailsInMap,
+
+              dominantMode: !highlightedDestination && !showDetailsInMap,
+
               longCoursOnly,
               setLongCoursOnly,
               maxPossibleTonnage,
@@ -253,11 +276,18 @@ export default function FraudeExportDunkerque({
           }
         />
         <div className={`projection-templates-container ${templatesVisible ? 'is-deployed': 'is-collapsed'}`}>
-          <h4>
-            Position de la carte
+          <p style={{margin: 0, fontSize: 10, maxWidth: '15rem'}}>
+            <i>
+            {translate('CarteDestinations', 'click_cta', lang)}
+            </i>
+          </p>
+          <h4
+               onClick={() => setTemplatesVisible(!templatesVisible)}
+          >
+            {translate('CarteDestinations', 'map_position', lang)}
             <span className="templates-list-toggle">
               <button
-               onClick={() => setTemplatesVisible(!templatesVisible)}>
+              >
               ▶
               </button>
             </span>

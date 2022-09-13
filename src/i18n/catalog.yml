@@ -125,6 +125,12 @@ HistoireDunkerque:
     fr: Évolution de la part de l'assise dans les recettes de Dunkerque
     en:
 CarteDestinations:
+  map_position:
+    fr: Position de la carte
+    en: Map position
+  click_cta:
+    fr: Cliquer sur un cercle pour voir le détail des pavillons
+    en: Click on a circle to see flags details
   legend_title:
     fr: Légende
     en: Legend
@@ -137,12 +143,24 @@ CarteDestinations:
   legend_flags_title:
     fr: "Tonnage cumulé pour les navires de pavillon :"
     en: "Cumulated tonnage for ships with flag from:"
+  legend_dominant_title:
+    fr: "Pavillon dominant des départs de Dunkerque vers la destination :"
+    en: "Dominant flag for departures from Dunkirk to the destination:"
+  legend_saturation:
+    fr: "La saturation de la couleur représente le taux de représentativité du pavillon dominant."
+    en: "Color saturation represents the representativity of the dominant flag."
   legend_options_title:
     fr: Options
     en: Options
   legend_group_strangers:
     fr: Grouper les étrangers
     en: Group strangers
+  legend_show_offscreen_ports:
+    fr: Montrer les ports hors champ
+    en: Show offscreen ports
+  legend_show_details_in_map:
+    fr: Montrer les détails sur la carte
+    en: Show details in map
   legend_only_long_cours:
     fr: Trajets long-cours uniquement
     en: Only long-cours paths

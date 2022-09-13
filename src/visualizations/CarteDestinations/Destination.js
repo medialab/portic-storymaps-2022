@@ -1,6 +1,5 @@
 import {useMemo} from 'react';
 import { useSpring, animated } from "react-spring";
-import {max} from 'd3-array';
 import {scaleLinear} from 'd3-scale';
 import palettes from '../../utils/colorPalettes';
 import translate from '../../utils/translate';
@@ -15,10 +14,10 @@ const G = ({ children, className, onClick, ...inputProps }) => {
     </animated.g>
   )
 }
-const Circle = ({ children, className, onClick, ...inputProps }) => {
+const Circle = ({ children, className, onClick, style, ...inputProps }) => {
   const props = useSpring(inputProps);
   return (
-    <animated.circle className={className} onClick={onClick} {...props}>
+    <animated.circle className={className} onClick={onClick} style={style} {...props}>
       {children}
     </animated.circle>
   )
@@ -65,6 +64,7 @@ const Destination = ({
   overflowing,
   arrowDirection,
   flagGroupModalities,
+  dominantMode,
 
 
   highlighted,
@@ -72,10 +72,26 @@ const Destination = ({
 
   lang,
 }) => {
-
+  const groupModalityToColor = flagGroupModalities.reduce((obj, modality, index) => ({
+    ...obj,
+    [modality]: generic20colors[index]
+  }), {})
   
-  const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
   const sumTonnage = Object.values(flagGroups).reduce((sum, g) => sum + g.tonnage, 0);
+  // const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
+  const {maxTonnage, dominantFlag,dominantIndex } = Object.entries(flagGroups)
+  .reduce(({dominantFlag, maxTonnage}, [thatFlag, {tonnage: thatTonnage}], modalityIndex) => {
+    if (thatTonnage > maxTonnage) {
+      return {
+        dominantFlag: thatFlag,
+        maxTonnage: thatTonnage,
+        dominantIndex: modalityIndex,
+      }
+    }
+    return {dominantFlag, maxTonnage}
+  }, {dominantFlag: undefined, maxTonnage: -Infinity, dominantIndex: undefined});
+  // console.log(destination, ' : dominant flag', dominantFlag, dominantIndex);
+  const dominantColor = groupModalityToColor[dominantFlag] // generic20colors[dominantIndex];
   
   const {points, d} = useMemo(() => {
     // const radarScale = scaleLinear().domain([0, maxTonnage]).range([0, radius]);
@@ -97,7 +113,7 @@ const Destination = ({
       points: newPoints,
       d: newD
     }
-  }, [maxTonnage, flagGroupModalities, flagGroups, radius]); 
+  }, [sumTonnage, flagGroupModalities, flagGroups, radius]); 
 
   const arrowRotate = useMemo(() => {
     if (overflowing) {
@@ -135,9 +151,16 @@ const Destination = ({
         r={radius}
         className={'background-circle'}
         data-for="destinations-tooltip"
-        data-tip={destination}
+        data-tip={`${destination} (pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%)`}
+        style={{
+          fill: dominantMode ? dominantColor : undefined,
+          filter: dominantMode ? `saturate(${parseInt(maxTonnage / sumTonnage * 100)}%)`: undefined,
+          opacity: dominantMode ? '.8' : undefined,
+          stroke: dominantMode ? 'transparent': undefined
+        }}
       />
       {
+        dominantMode ? null :
         flagGroupModalities.map((modality, i) => {
           const deg = (i / flagGroupModalities.length) * 360 - 90;
           const theta = deg  * Math.PI / 180;
@@ -160,6 +183,7 @@ const Destination = ({
         className="radar-chart"
       /> */}
       {
+        dominantMode ? null :
         // triangles
         points
         .map(([x, y], pointIndex) => {
@@ -180,7 +204,7 @@ const Destination = ({
           )
         })
       }
-      {
+      { dominantMode ? null :
         points
         .filter(([_x, _y, isMid = true]) => isMid)
         .map(([x, y], pointIndex) => {

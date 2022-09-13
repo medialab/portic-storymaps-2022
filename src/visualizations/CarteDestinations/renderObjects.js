@@ -16,6 +16,8 @@ const renderObjects = ({
     maxCircleArea,
     flagGroupModalities,
     lang,
+    showOffscreenPorts,
+    showDetailsInMap,
     highlightedDestination,
     setHighlightedDestination,
     containerWidth,
@@ -91,6 +93,12 @@ const renderObjects = ({
       }
       {
         destinations
+        .filter(({overflowing}) => {
+          if (showOffscreenPorts) {
+            return true;
+          }
+          return !overflowing;
+        })
           .sort((a, b) => {
             if (a.tonnage > b.tonnage) {
               return 1;
@@ -105,16 +113,18 @@ const renderObjects = ({
                 setHighlightedDestination(destination)
               }
             }
+            const highlighted = highlightedDestination === destination;
             return (
               <Destination
                 {...destination}
                 {...{
                   flagGroupModalities,
                   lang,
-                  highlighted: highlightedDestination === destination,
+                  highlighted,
+                  dominantMode: !showDetailsInMap && !highlighted,
                 }}
                 {
-                ...(highlightedDestination === destination ? {
+                ...(highlighted ? {
                   x: containerWidth * .3,
                   y: containerHeight * .5,
                   radius: min([containerWidth, containerHeight]) * .25,
