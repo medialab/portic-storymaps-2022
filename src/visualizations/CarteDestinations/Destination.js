@@ -75,9 +75,11 @@ const Destination = ({
 
   
   const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
+  const sumTonnage = Object.values(flagGroups).reduce((sum, g) => sum + g.tonnage, 0);
   
   const {points, d} = useMemo(() => {
-    const radarScale = scaleLinear().domain([0, maxTonnage]).range([0, radius]);
+    // const radarScale = scaleLinear().domain([0, maxTonnage]).range([0, radius]);
+    const radarScale = scaleLinear().domain([0, sumTonnage]).range([0, radius]);
     const newPoints = flagGroupModalities.reduce((res, modality, modalityIndex) => {
       const thatTonnage = flagGroups[modality] ? flagGroups[modality].tonnage : 0;
       const thatR = radarScale(thatTonnage);
@@ -193,7 +195,7 @@ const Destination = ({
               className="radar-point"
               style={{fill: generic20colors[pointIndex]}}
               data-for="destinations-tooltip"
-              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage})}
+              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
             />
           )
         })

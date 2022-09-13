@@ -183,7 +183,7 @@ export default function FraudeExportDunkerque({
     
     const maxCircleArea = useMemo(() => {
       const maxDimension = max([width, height]);
-      const maxObjectRadius = maxDimension * .05;
+      const maxObjectRadius = maxDimension * .03;
       return Math.PI * maxObjectRadius * maxObjectRadius;
     }, [width, height]);
 
