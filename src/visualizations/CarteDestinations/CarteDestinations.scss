@@ -15,15 +15,24 @@
     background: rgba(255, 255, 255, 0.8);
     padding: 0.5rem;
 
-    h4 {
+    .projection-templates-title {
       margin: 0;
+      padding: 0 .5rem;
+      cursor: pointer;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: stretch;
+      align-items: center;
+      > span:first-of-type {
+        flex: 1;
+      }
     }
     .templates-list-toggle {
       button {
         font-style: normal;
         text-decoration: none;
         transition: all .5s ease;
-        transform: rotate(90deg);
+        transform: rotate(-90deg);
       }
     }
 
@@ -58,12 +67,17 @@
     }
     &.is-deployed {
       ul {
-        max-height: 30rem;
+        max-height: 20rem;
+      }
+
+      .projection-templates-title {
+        background: rgba(0,0,0,0.05);
+        margin-bottom: .5rem;
       }
 
       .templates-list-toggle {
         button {
-          transform: rotate(-90deg);
+          transform: rotate(90deg);
         }
       }
     }
@@ -117,6 +131,26 @@
   .object-explanation-container {
     display: flex;
     flex-flow: row nowrap;
+
+    .object-svg-container {
+      overflow: hidden;
+      max-width: 1000rem;
+      max-height: 1000rem;
+      transition: 1s ease all;
+      &.is-hidden {
+        max-width: 0;
+        max-height: 0;
+      }
+    }
+  }
+
+  .scale-indication-container {
+    max-width: 100rem;
+    overflow: hidden;
+    transition: 1s ease all;
+    &.is-hidden {
+      max-width: 0;
+    }
   }
 
   .legend-object {
@@ -142,19 +176,30 @@
       stroke: black;
     }
   }
+  
   .flags-container {
     h5 {
       margin: 0;
-      max-width: 200px;
+      max-width: 15rem;
+      margin-bottom: .5rem;
+    }
+    .variables-explanations-container {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: stretch;
     }
     .flag-group-modalities-list {
       list-style: none;
       overflow-y: auto;
       padding: 0;
+      margin: 0;
       .flag-group-modality-item {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+        font-size: .8rem;
+        font-family: $font-family-1;
+        margin-bottom: .25rem;
         .number {
           background: black;
           color: white;
@@ -243,6 +288,21 @@
     }
     .radar-point {
       fill: black;
+    }
+
+    .ticks-container {
+      .radar-tick {
+        path {
+          stroke: lightgrey;
+          stroke-dasharray: 4 2;
+          fill: transparent;
+        }
+        text {
+          text-anchor: end;
+          font-size: 8px;
+          fill: grey;
+        }
+      }
     }
 
     .arrow {

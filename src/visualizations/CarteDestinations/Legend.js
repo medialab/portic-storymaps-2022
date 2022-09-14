@@ -1,9 +1,11 @@
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
+import { scaleLinear } from 'd3-scale';
 import SliderRange from '../../components/SliderRange';
 
 import palettes from '../../utils/colorPalettes';
 import translate from '../../utils/translate';
+import { formatNumber } from '../../utils/misc';
 
 const { generic20colors } = palettes;
 
@@ -27,6 +29,11 @@ const Legend = ({
   maxPossibleTonnage,
   minTonnage,
   maxTonnage,
+
+  maxDestinationTonnage,
+  minDestinationTonnage,
+  maxCircleArea,
+
   setMinTonnage,
   setMaxTonnage,
   containerWidth,
@@ -34,9 +41,19 @@ const Legend = ({
   lang,
 }) => {
   const [legendIsEdited, setLegendIsEdited] = useState(false);
-  const svgDimension = containerWidth / 5;
+  const svgDimension = containerWidth / 8;
   const margin = 10;
   const radius = (svgDimension - margin * 2) / 2;
+
+  const areaScale = scaleLinear().domain([0, maxDestinationTonnage]).range([0, maxCircleArea]);
+  const sizeRadiusScale = tonnage => {
+    const area = areaScale(tonnage);
+    return Math.sqrt((area / Math.PI));
+  }
+  
+  // const minSizeRadius = sizeRadiusScale(minDestinationTonnage);
+  const minSizeRadius = sizeRadiusScale(maxDestinationTonnage / 10);
+  const maxSizeRadius = sizeRadiusScale(maxDestinationTonnage);
   // const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
   // const randomRadiuses = useMemo(() => flagGroupModalities.map(() => Math.random() * radius / 2 + radius / 3), [flagGroupModalities, radius] ) 
   return (
@@ -44,23 +61,20 @@ const Legend = ({
       <div className="left-column">
         <h3>
           <span>
-          {
-            translate('CarteDestinations', 'legend_title', lang)
-          }
+            {
+              translate('CarteDestinations', 'legend_title', lang)
+            }
           </span>
           <button onClick={() => setLegendIsEdited(!legendIsEdited)}>{!legendIsEdited ? translate('CarteDestinations', 'edit_legend', lang) : translate('CarteDestinations', 'unedit_legend', lang)}</button>
         </h3>
         <div className="object-explanation-container">
-          {
-              dominantMode ?
-              null
-              :
-              <svg
+          <div className={`object-svg-container ${dominantMode ? 'is-hidden' : ''}`}>
+            <svg
               width={svgDimension}
               height={svgDimension}
               className="legend-object"
             >
-              
+
               <g transform={`translate(${svgDimension / 2}, ${svgDimension / 2})`}>
                 <circle
                   cx={0}
@@ -82,7 +96,7 @@ const Legend = ({
                     const nextI = i < flagGroupModalities.length - 1 ? i + 1 : 0;
                     const nextDeg = (nextI / flagGroupModalities.length) * 360 - 90;
                     const nextTheta = nextDeg * Math.PI / 180;
-                    
+
                     // const nextX = (randomRadiuses[nextI]) * Math.cos(nextTheta);
                     // const nextY = (randomRadiuses[nextI]) * Math.sin(nextTheta);
 
@@ -94,7 +108,7 @@ const Legend = ({
                     const colorVar = 30 + parseInt(i / flagGroupModalities.length * 30);
 
                     return (
-                      <g className={`radar-element radar-element-background ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
+                      <g key={i} className={`radar-element radar-element-background ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
                         <path
                           d={triangleD}
                           className="radar-triangle"
@@ -114,9 +128,9 @@ const Legend = ({
                     const x2 = radius * Math.cos(theta);
                     const y2 = radius * Math.sin(theta);
                     return (
-                      <g className={`radar-element ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
+                      <g key={modality} className={`radar-element ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
                         <line
-                          key={modality}
+                          key={modality + 'L'}
                           x1={0}
                           y1={0}
                           x2={x2}
@@ -146,65 +160,124 @@ const Legend = ({
                 }
               </g>
             </svg>
-          }
-          
+          </div>
+
           <div className="flags-container">
             <h5>
-            {
-              dominantMode ?
-              translate('CarteDestinations', 'legend_dominant_title', lang)
-              :
-                translate('CarteDestinations', 'legend_flags_title', lang)
-            }
-            </h5>
-            <ol className="flag-group-modalities-list" style={{ maxHeight: containerHeight / 2 }}>
               {
-                flagGroupModalities
-                  .map((id, modalityIndex) => {
-                    const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(id) : true
-                    const handleClick = (e) => {
-                      e.stopPropagation();
-                      if (!flagGroupFilters.length) {
-                        setFlagGroupFilters(flagGroupModalities.filter(f => f !== id).join(','));
-                        // remove
-                      } else if (isIncluded) {
-                        setFlagGroupFilters(flagGroupFilters.split(',').filter(i => i !== id).join(','));
-                        // add
-                      } else {
-                        setFlagGroupFilters(`${flagGroupFilters},${id}`);
-                      }
-                    }
-                    return (
-                      <li key={id} className={`flag-group-modality-item ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
-                        <span className="number" style={{ 
-                          background: generic20colors[modalityIndex] ,
-                          color: dominantMode ? generic20colors[modalityIndex] : undefined,
-                        }}>
-                          <span>
-                            {modalityIndex + 1}
-                          </span>
-                        </span>
-                        {/* <input onClick={handleClick} type="checkbox" checked={isIncluded} readOnly /> */}
-                        <label>{id}</label>
-                        {
-                          legendIsEdited ?
-                            <button onClick={handleClick}>{isIncluded ? translate('CarteDestinations', 'hide', lang) : translate('CarteDestinations', 'show', lang)}</button>
-                            : null
-                        }
-                      </li>
-                    )
-                  })
+                dominantMode ?
+                  translate('CarteDestinations', 'legend_dominant_title', lang)
+                  :
+                  translate('CarteDestinations', 'legend_flags_title', lang)
               }
-            </ol>
+            </h5>
+            <div className="variables-explanations-container">
+              <ol className="flag-group-modalities-list" style={{ maxHeight: containerHeight / 3 }}>
+                {
+                  flagGroupModalities
+                    .map((id, modalityIndex) => {
+                      const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(id) : true
+                      const handleClick = (e) => {
+                        e.stopPropagation();
+                        if (!flagGroupFilters.length) {
+                          setFlagGroupFilters(flagGroupModalities.filter(f => f !== id).join(','));
+                          // remove
+                        } else if (isIncluded) {
+                          setFlagGroupFilters(flagGroupFilters.split(',').filter(i => i !== id).join(','));
+                          // add
+                        } else {
+                          setFlagGroupFilters(`${flagGroupFilters},${id}`);
+                        }
+                      }
+                      return (
+                        <li key={id} className={`flag-group-modality-item ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
+                          <span className="number" style={{
+                            background: generic20colors[modalityIndex],
+                            color: dominantMode ? generic20colors[modalityIndex] : undefined,
+                          }}>
+                            <span>
+                              {modalityIndex + 1}
+                            </span>
+                          </span>
+                          {/* <input onClick={handleClick} type="checkbox" checked={isIncluded} readOnly /> */}
+                          <label>{id}</label>
+                          {
+                            legendIsEdited ?
+                              <button onClick={handleClick}>{isIncluded ? translate('CarteDestinations', 'hide', lang) : translate('CarteDestinations', 'show', lang)}</button>
+                              : null
+                          }
+                        </li>
+                      )
+                    })
+                }
+              </ol>
+              <div className={`scale-indication-container ${dominantMode ? '' : 'is-hidden'}`}>
+                <svg 
+                  className="scale-indication"
+                  width={maxSizeRadius * 5 + 10}
+                  height={maxSizeRadius * 2 + 10}
+                >
+                  <circle
+                    cx={maxSizeRadius + 5}
+                    cy={maxSizeRadius + 5}
+                    r={maxSizeRadius}
+                    fill="transparent"
+                    stroke="grey"
+                    strokeDasharray={'2 2'}
+                  />
+                  <line
+                    y1={5}
+                    y2={5}
+                    x1={maxSizeRadius + 5}
+                    x2={maxSizeRadius * 3}
+                    stroke="grey"
+                    strokeDasharray={'2 2'}
+                  />
+                  <text
+                    textAnchor="end"
+                    x={maxSizeRadius * 5 - 10}
+                    y={8}
+                    fontSize={8}
+                  >
+                    {formatNumber(maxDestinationTonnage)} tx.
+                  </text>
+                  {/* small mark */}
+                  <circle
+                    cx={5 + maxSizeRadius}
+                    cy={maxSizeRadius * 2 - minSizeRadius / 2}
+                    r={minSizeRadius}
+                    fill="transparent"
+                    stroke="grey"
+                    strokeDasharray={'2 2'}
+                  />
+                  <line
+                    y1={maxSizeRadius * 2 - minSizeRadius - 4}
+                    y2={maxSizeRadius * 2 - minSizeRadius - 4}
+                    x1={maxSizeRadius + 5}
+                    x2={maxSizeRadius * 3}
+                    strokeDasharray={'2 2'}
+                    stroke="grey"
+                  />
+                  <text
+                    textAnchor="end"
+                    x={maxSizeRadius * 5 - 10}
+                    y={maxSizeRadius * 2 - minSizeRadius}
+                    fontSize={8}
+                  >
+                    {formatNumber(maxDestinationTonnage / 10)} tx.
+                  </text>
+                </svg>
+              </div>
+            </div>
             {
               dominantMode ?
-              <p style={{fontSize: 10, maxWidth: '15rem'}}>
-                <i>
-              {translate('CarteDestinations', 'legend_saturation', lang)}
-              </i>
-              </p>
-              :
-               null
+                <p style={{ fontSize: 10, maxWidth: '15rem' }}>
+                  <i>
+                    {translate('CarteDestinations', 'legend_saturation', lang)}
+                  </i>
+                </p>
+                :
+                null
             }
           </div>
         </div>

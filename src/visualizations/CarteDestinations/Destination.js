@@ -1,8 +1,12 @@
 import {useMemo} from 'react';
 import { useSpring, animated } from "react-spring";
 import {scaleLinear} from 'd3-scale';
+
+import { formatNumber } from '../../utils/misc';
 import palettes from '../../utils/colorPalettes';
 import translate from '../../utils/translate';
+import { axisPropsFromTickScale } from 'react-d3-axis';
+import { partialCirclePathD } from '../../utils/misc';
 
 const {generic20colors} = palettes;
 
@@ -23,10 +27,10 @@ const Circle = ({ children, className, onClick, style, ...inputProps }) => {
   )
 }
 
-const Text = ({ children, className, onClick, ...inputProps }) => {
+const Text = ({ children, className, onClick, textAnchor, ...inputProps }) => {
   const props = useSpring(inputProps);
   return (
-    <animated.text className={className} onClick={onClick} {...props}>
+    <animated.text className={className} onClick={onClick} textAnchor={textAnchor} {...props}>
       {children}
     </animated.text>
   )
@@ -75,7 +79,7 @@ const Destination = ({
   const groupModalityToColor = flagGroupModalities.reduce((obj, modality, index) => ({
     ...obj,
     [modality]: generic20colors[index]
-  }), {})
+  }), {});
   
   const sumTonnage = Object.values(flagGroups).reduce((sum, g) => sum + g.tonnage, 0);
   // const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
@@ -93,9 +97,11 @@ const Destination = ({
   // console.log(destination, ' : dominant flag', dominantFlag, dominantIndex);
   const dominantColor = groupModalityToColor[dominantFlag] // generic20colors[dominantIndex];
   
-  const {points, d} = useMemo(() => {
+  const {points, ticks, radarScale, d} = useMemo(() => {
     // const radarScale = scaleLinear().domain([0, maxTonnage]).range([0, radius]);
-    const radarScale = scaleLinear().domain([0, sumTonnage]).range([0, radius]);
+    const radarScale = scaleLinear().domain([0, sumTonnage]).range([0, radius]).nice();
+    const {values: ticks} = axisPropsFromTickScale(radarScale);
+
     const newPoints = flagGroupModalities.reduce((res, modality, modalityIndex) => {
       const thatTonnage = flagGroups[modality] ? flagGroups[modality].tonnage : 0;
       const thatR = radarScale(thatTonnage);
@@ -111,7 +117,9 @@ const Destination = ({
     }, '');
     return {
       points: newPoints,
-      d: newD
+      radarScale,
+      d: newD,
+      ticks
     }
   }, [sumTonnage, flagGroupModalities, flagGroups, radius]); 
 
@@ -151,7 +159,7 @@ const Destination = ({
         r={radius}
         className={'background-circle'}
         data-for="destinations-tooltip"
-        data-tip={`${destination} (pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%)`}
+        data-tip={`${destination} - ${formatNumber(sumTonnage)} tx - pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%`}
         style={{
           fill: dominantMode ? dominantColor : undefined,
           filter: dominantMode ? `saturate(${parseInt(maxTonnage / sumTonnage * 100)}%)`: undefined,
@@ -169,14 +177,57 @@ const Destination = ({
           return (
             <Line
               x1={0}
-              key={modality}
               y1={0}
               x2={x2}
               y2={y2}
               className="radar-line"
+              key={modality}
             />
           )
         })
+      }
+      {
+        highlighted ?
+        <g className="ticks-container">
+          {
+            ticks.slice(0, ticks.length - 1)
+            .map((tickValue) => {
+              const startDeg = -90;
+              const endDeg = -90 + 360 * ((flagGroupModalities.length - 1) / (flagGroupModalities.length));
+              const startRad = startDeg * (Math.PI / 180);
+              const endRad = endDeg * (Math.PI / 180);
+              return (
+                <g className="radar-tick" key={tickValue}>
+                  {/* <circle
+                    cx={0}
+                    cy={0}
+                    r={radarScale(tickValue)}
+                    stroke="black"
+                    fill="transparent"
+                  /> */}
+                  <Path
+                    d={
+                      partialCirclePathD(
+                        0,
+                        0,
+                        radarScale(tickValue),
+                        startRad,
+                        endRad,
+                      )
+                    }
+                  />
+                  <Text
+                    x={-5}
+                    y={-radarScale(tickValue) + 5}
+                  >
+                    {`${tickValue} tx.`}
+                  </Text>
+                </g>
+              )
+            })
+          }
+        </g>
+        : null
       }
       {/* <path
         d={d}
@@ -200,6 +251,7 @@ const Destination = ({
               stroke="none"
               fill={`hsl(192,42%, ${colorVar}%)`}
               fillOpacity={.8}
+              key={pointIndex}
             />
           )
         })
@@ -219,7 +271,7 @@ const Destination = ({
               className="radar-point"
               style={{fill: generic20colors[pointIndex]}}
               data-for="destinations-tooltip"
-              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
+              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage: formatNumber(tonnage)}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
             />
           )
         })

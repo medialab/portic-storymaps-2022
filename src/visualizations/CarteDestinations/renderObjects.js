@@ -100,7 +100,10 @@ const renderObjects = ({
           return !overflowing;
         })
           .sort((a, b) => {
-            if (a.tonnage > b.tonnage) {
+            if (highlightedDestination && a === highlightedDestination) {
+              return 1;
+            }
+            else if (a.tonnage > b.tonnage) {
               return 1;
             }
             return -1;
