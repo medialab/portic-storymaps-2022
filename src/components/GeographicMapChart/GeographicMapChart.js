@@ -222,9 +222,9 @@ const GeographicMapChart = ({
       case 'world north':
         projectionConfig = {
           ...projectionConfig,
-          scale: 550,
-          centerX: -25,
-          centerY: 55,
+          scale: 500,
+          centerX: -30,
+          centerY: 60,
           translationX: width * .5,
           translationY: height * .5,
           // translationX: width * 0.4,
