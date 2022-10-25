@@ -29,12 +29,22 @@ export default function EvolutionTypeConges({
                 tickFormat: (value, valueIndex) => formatNumber(value)
             }}
             color={{
-                field: 'type'
+                field: 'type',
+                palette: {
+                  'pêche': 'rgb(238, 222, 113)',
+                  'cabotage (pav. fr)': '#668EDB',
+                  'Isles (pav. fr)': '#41BEA3',
+                  'long-cours (pav. fr)': '#A7E6F9',
+                  'guerre et marchandises (pav. fr)': '#514EEE',
+                  'cabotage (étrangers)': '#E5881A',
+                  'long-cours (étrangers)': '#875E2E',
+                }
             }}
             tooltip={
                 (d) => translate('EvolutionTypeConges', 'tooltip', lang, {
                     value: formatNumber(d['valeur']),
-                    year: d['année']
+                    year: d['année'],
+                    type: d['type']
                 })
             }
         />

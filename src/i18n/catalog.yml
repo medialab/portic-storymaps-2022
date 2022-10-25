@@ -58,13 +58,13 @@ EvolutionBudgetDunkerque:
     en: 
 EvolutionTypeConges:
   tooltip:
-    fr: Congé d'une valeur de ${value} livres tournois en ${year}
+    fr: ${value} congés pour l'année ${year} pour les congés de type ${type}
     en:
   x:
     fr: Année
     en: Year
   y:
-    fr: Valeur en livres tournois
+    fr: Nombre de congés
     en: 
 PecheTypeValue:
   tooltip:
