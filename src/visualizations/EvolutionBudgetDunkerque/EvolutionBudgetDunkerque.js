@@ -15,7 +15,7 @@ export default function EvolutionBudgetDunkerque({
     const data = useMemo(function filterData() {
         const { start = 1700, end = 1800, mouse } = brush;
         if (mouse !== undefined && mouse !== 'up') {
-            return inputData;
+            return inputData.filter((row) => +row['Années comptables'] < 1793);
         }
         return inputData.filter((row) => +row['Années comptables'] < 1793 && +row['Années comptables'] >= start && +row['Années comptables'] <= end);
     }, [inputData, brush])
