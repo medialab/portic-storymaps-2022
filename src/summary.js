@@ -59,7 +59,7 @@ export default [
       en: 'part-3'
     },
     titles: {
-      fr: 'III. Un port d\'entrepôt pour l\'Europe',
+      fr: 'III. Port d\'entrepôt européen ou fraudeur ?',
       en: 'Part 3'
     },
     contents: {
