@@ -59,7 +59,11 @@ export default function VisualizationContainer({
             <button
                 onClick={resetVizProps}
                 style={{
-                    visibility: (canResetVizProps === true) ? 'visible' : 'hidden'
+                    visibility: (canResetVizProps === true) ? 'visible' : 'hidden',
+                    position: 'absolute',
+                    right: '3rem',
+                    top: '1rem',
+                    zIndex: 10
                 }}
             >
                 Revenir à l'original
