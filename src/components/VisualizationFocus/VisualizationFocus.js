@@ -5,6 +5,7 @@ import copy from 'copy-to-clipboard';
 import VisualizationController from '../../visualizations';
 import Md from 'react-markdown';
 import Measure from 'react-measure'
+import cx from 'classnames';
 
 import translate from '../../utils/translate';
 import visualizationsMetas from '../../data/viz';
@@ -23,6 +24,7 @@ export default function VisualizationFocus({
     vizId,
     datasets,
     onClickClose,
+    isHidden,
     ...props
 }) {
     const { lang } = useParams();
@@ -106,7 +108,7 @@ export default function VisualizationFocus({
     }
 
     return (
-        <div className='VisualizationFocus is-visible'>
+        <div className={cx('VisualizationFocus is-visible', {'is-hidden': isHidden})}>
             <input
                 style={{ opacity: 0, zIndex: -10, 'pointerEvents': 'none' }}
                 type="text"

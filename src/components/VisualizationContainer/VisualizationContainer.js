@@ -23,6 +23,11 @@ import visualizationsMetas from '../../data/viz';
 export default function VisualizationContainer({
     displayedVizId: vizId,
     canResetVizProps,
+
+    onClickToggleFullScreen,
+    isHidden,
+    isFullScreen: propIsFullScreen,
+
     resetVizProps,
     ...props
 }) {
@@ -38,16 +43,21 @@ export default function VisualizationContainer({
         height: -1
     });
     /** @type {[Boolean, Function]} */
-    const [isFullScreen, setIsFullScreen] = useState(false);
+    const [stateIsFullScreen, setIsFullScreen] = useState(propIsFullScreen || false);
 
-    function onClickToggleFullScreen() {
-        setIsFullScreen(!isFullScreen);
+    const isFullScreen = propIsFullScreen !== undefined ? propIsFullScreen : stateIsFullScreen; 
+
+    function handleClickToggleFullScreen() {
+      if (typeof onClickToggleFullScreen === 'function') {
+        return onClickToggleFullScreen();
+      }
+      setIsFullScreen(!isFullScreen);
     }
-
     if (isFullScreen) {
         return (
             <VisualizationFocus
-                onClickClose={() => onClickToggleFullScreen()}
+                onClickClose={() => handleClickToggleFullScreen()}
+                isHidden={isHidden}
                 vizId={vizId}
                 {...props}
             />
@@ -86,7 +96,9 @@ export default function VisualizationContainer({
                                 <button
                                     data-for='contents-tooltip'
                                     data-tip="plus d'informations sur cette visualisation"
-                                    onClick={() => onClickToggleFullScreen()}
+                                    onClick={() => {
+                                      handleClickToggleFullScreen();
+                                    }}
                                 >
                                     <span>+</span>
                                 </button>

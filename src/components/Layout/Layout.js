@@ -58,11 +58,10 @@ export default function Layout({
 
     return (
         <>
-            <Header lang={lang} onLangChange={onLangChange} pageType={pageType} {...props} />
-
             <main className="wrapper">
                 <Outlet />
             </main>
+            <Header lang={lang} onLangChange={onLangChange} pageType={pageType} {...props} />
             <Footer />
         </>
     );

@@ -107,7 +107,7 @@
     > h3 {
       margin: 0;
       position: relative;
-      top: -1em;
+      // top: -1em;
     }
   }
 
@@ -116,6 +116,7 @@
     top: 0;
     right: 0;
     padding: $medium-gutter;
+    padding-top: calc($medium-gutter / 4);
     z-index: 100;
     // padding-top: 0;
     button {
@@ -209,6 +210,12 @@
     }
     > aside {
       display: none;
+    }
+  }
+  &.has-full-screen {
+    overflow: hidden;
+    .Contents {
+      overflow: hidden;
     }
   }
 }
