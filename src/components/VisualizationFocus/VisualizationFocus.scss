@@ -98,7 +98,9 @@
       // padding: $medium-gutter;
       // padding-bottom: $medium-gutter * 5;
       padding: 0;
+      cursor: pointer;
       .VisualizationController {
+        cursor: default;
         // padding: $small-gutter;
         padding-bottom: 0;//$medium-gutter;
         padding-top: 0;//$medium-gutter;
