@@ -30,6 +30,12 @@
   .switch-btn {
     visibility: hidden;
     background: transparent;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 2rem;
+    transition: .5s ease all;
+    position: fixed;
+    top: calc(50vh - .5rem);
   }
 
   .centered-part {
@@ -88,7 +94,14 @@
     }
 
     .switch-btn {
-      float: right;
+      // float: right;
+      left: calc(100vw - 2.5rem);
+      &.is-active {
+        left: 1rem;
+        color: $color-background;
+        background: $color-accent;
+        transform: rotate(180deg);
+      }
     }
   }
   
@@ -99,10 +112,6 @@
     width: 60%;
     height: calc(100vh - #{$header_height});
     box-sizing: border-box;
-
-    .switch-btn {
-      float: left;
-    }
 
     > h3 {
       margin: 0;
@@ -157,18 +166,25 @@
       position: relative;
       left: -100vw;
       transition: 0.5s ease all;
-      padding-right: 2 * $medium-gutter;
+      padding-right: 3 * $medium-gutter;
       &.is-focused {
         left: 0;
       }
     }
     aside {
-      width: 100%;
+      width: calc(100% - 2.5rem);
       position: fixed;
       transition: 0.5s ease all;
       left: 100vw;
       &.is-focused {
-        left: 0;
+        left: 2.5rem;
+      }
+      h3 {
+        margin-left: 1rem;
+      }
+
+      .fullscreen-viz-toggle-container {
+        display: none;
       }
       // display: none;
     }
