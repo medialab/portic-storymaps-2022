@@ -126,6 +126,7 @@ export default function ScrollyPage({
     if (activeSideOnResponsive === 'viz') {
       setActiveSideOnResponsive('content')
     }
+    setTimeout(ReactTooltip.close);
   }
 
   function focusFirstVizOfPage() {
@@ -300,11 +301,12 @@ export default function ScrollyPage({
         <ReactTooltip id="contents-tooltip" />
         <section className={cx("Contents", { 'is-focused': activeSideOnResponsive === 'content' })} ref={pageRef}>
           <button
-            className='switch-btn'
+            className={cx('switch-btn', {'is-active': activeSideOnResponsive === 'viz'})}
             onClick={onClickChangeResponsive}
             data-for="contents-tooltip"
             data-effect="solid"
-            data-tip={translate('vizContainer', 'switchToContent', lang)}
+            data-place={activeSideOnResponsive === 'viz' ? 'right' : 'left'}
+            data-tip={activeSideOnResponsive === 'viz' ? translate('vizContainer', 'switchToText', lang) : translate('vizContainer', 'switchToViz', lang)}
           >➡</button>
           <VisualisationContext.Provider value={{
             onRegisterVisualization,
