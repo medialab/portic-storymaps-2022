@@ -52,8 +52,8 @@ export default function App() {
                                     })
                             })
                         }
-                        <Route key='vizualisation' path="vizualisation/">
-                            <Route key='vizualisation' path=":vizId" element={<StandaloneVisualization />} />
+                        <Route key='visualization' path="visualization/">
+                            <Route key='visualization' path=":vizId" element={<StandaloneVisualization />} />
                         </Route>
                         <Route key='atlas' path="atlas/">
                             <Route key='atlas' index element={<Atlas />} />

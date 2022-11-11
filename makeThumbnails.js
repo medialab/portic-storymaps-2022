@@ -39,7 +39,7 @@ const basePath = path.join(__dirname, 'public');
         // headless: false
     });
 
-    console.log('lancement');
+    console.log('launch');
 
     for (const vizId of vizList) {
         console.log('screenshot for ', vizId);
@@ -53,7 +53,7 @@ const basePath = path.join(__dirname, 'public');
 
             const pathToSave = path.join(basePath, 'thumbnails', lang, `${vizId}.png`)
             const url = `http://localhost:${devServerOptions.port}/#/${lang}/vizualisation/${vizId}`;
-
+            console.log('goto', url);
             await page.goto(url);
 
             try {
