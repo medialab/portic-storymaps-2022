@@ -243,7 +243,7 @@ const LineChart = ({
             }}
           >
             {
-              brushState[0] && brushState[0].mouse !== 'up' &&
+              brushState[0][0] && brushState[0].mouse !== 'up' &&
                 <rect
                   x={xScale(brushState[0]['start'])}
                   width={xScale(brushState[0]['end']) - xScale(brushState[0]['start'])}
@@ -253,13 +253,19 @@ const LineChart = ({
                 /> 
             }
             <AnimatedGroup className="axis left-axis ticks">
-              <tspan
-                maxLength={10}
-                x={margins.left - 10}
-                y={margins.top - 40}
-                className="axis-title"
-                text={y.title || y.field}
-              />
+              <foreignObject
+                  x={0}
+                  y={margins.top - 30}
+                  width={margins.left - 10}
+                  height={100}
+              >
+                <p
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    className="axis-title axis-title-y"
+                >
+                  {y.title || y.field}
+                </p>
+              </foreignObject>
               {
                 yAxisValues.map((value, valueIndex) => (
                   <AnimatedGroup
@@ -290,13 +296,26 @@ const LineChart = ({
               }
             </AnimatedGroup>
             <AnimatedGroup className="axis bottom-axis ticks">
-              <tspan
+              <foreignObject
+                  x={width /2}
+                  y={height - (margins.bottom - 25)}
+                  width={width/2 - margins.right / 2}
+                  height={100}
+              >
+                <p
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    className="axis-title axis-title-x"
+                >
+                  {x.title || x.field}
+                </p>
+              </foreignObject>
+              {/* <tspan
                 maxLength={10}
                 x={width - (margins.right)}
                 y={height - (margins.bottom - 20)}
                 className="axis-title"
                 text={x.title || x.field}
-              />
+              /> */}
               {
                 xAxisValues.map((value, valueIndex) => (
                   <AnimatedGroup
