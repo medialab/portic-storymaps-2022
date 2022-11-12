@@ -217,7 +217,7 @@ for lang in GDOC_URL.keys():
                 footnote_anchor = soup.find('a', {'href': str('#ftnt' + footnote_id)})
                 footnote_anchor_context = footnote_anchor.parent.find_previous().string
                 # footnote_anchor_text = footnote_anchor_context.split()[-1]
-                footnote_anchor.string.replace_with(' (?)')
+                footnote_anchor.string.replace_with('?')
                 footnote_anchor.name = 'dfn'
                 del footnote_anchor['id']; del footnote_anchor['href']
                 footnote_anchor['data-for'] = 'contents-tooltip'
