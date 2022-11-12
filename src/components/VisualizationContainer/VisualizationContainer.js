@@ -1,15 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import omit from 'lodash/omit';
-import cx from 'classnames';
 import Measure from 'react-measure'
 
-import VisualizationFocus from '../../components/VisualizationFocus';
-
 import VisualizationController from '../../visualizations/index.js';
-
-import { VisualizationControlContext } from '../../utils/contexts';
-import { SettingsContext } from '../../utils/contexts';
 
 import visualizationsMetas from '../../data/viz';
 
@@ -25,8 +18,6 @@ export default function VisualizationContainer({
     canResetVizProps,
 
     onClickToggleFullScreen,
-    isHidden,
-    isFullScreen: propIsFullScreen,
 
     resetVizProps,
     ...props
@@ -43,25 +34,8 @@ export default function VisualizationContainer({
         height: -1
     });
     /** @type {[Boolean, Function]} */
-    const [stateIsFullScreen, setIsFullScreen] = useState(propIsFullScreen || false);
-
-    const isFullScreen = propIsFullScreen !== undefined ? propIsFullScreen : stateIsFullScreen; 
-
     function handleClickToggleFullScreen() {
-      if (typeof onClickToggleFullScreen === 'function') {
-        return onClickToggleFullScreen();
-      }
-      setIsFullScreen(!isFullScreen);
-    }
-    if (isFullScreen) {
-        return (
-            <VisualizationFocus
-                onClickClose={() => handleClickToggleFullScreen()}
-                isHidden={isHidden}
-                vizId={vizId}
-                {...props}
-            />
-        )
+      onClickToggleFullScreen();
     }
 
     return (
@@ -96,7 +70,8 @@ export default function VisualizationContainer({
                                 <button
                                     data-for='contents-tooltip'
                                     data-tip="plus d'informations sur cette visualisation"
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                      e.stopPropagation();
                                       handleClickToggleFullScreen();
                                     }}
                                 >

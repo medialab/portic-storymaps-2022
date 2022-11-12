@@ -33,6 +33,7 @@ export default function Atlas({
     navigate(`/${lang}/atlas/${vizId}`);
   }
 
+  // triggers when a visualization is selected
   useEffect(() => {
     if (vizId === undefined || visualizationsMetas[vizId] === undefined) {
       setLoadingState('none');
@@ -65,7 +66,9 @@ export default function Atlas({
       })
   }, [vizId])
 
+  // scroll top when arriving on the view
   useEffect(() => window.scrollTo({ top: 0 }), []);
+
   return (
     <div className='Atlas secondary-page'>
       <Helmet>
@@ -104,6 +107,7 @@ export default function Atlas({
           <VisualizationFocus
             vizId={vizId}
             datasets={datasets}
+            isVisible={vizId !== undefined}
             onClickClose={(e) => navigate(`/${lang}/atlas`)}
           />
           : null

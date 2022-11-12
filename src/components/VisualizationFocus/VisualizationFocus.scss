@@ -1,15 +1,19 @@
 @import '../../styles/variables.scss';
 
 .VisualizationFocus {
-  display: none;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   &.is-visible {
-    display: block;
-  }
-  &.is-hidden {
-    pointer-events: none;
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+    z-index: 4;
+    pointer-events: all;
+    opacity: 1;
   }
   .lightbox-background {
     position: fixed;
@@ -30,6 +34,7 @@
     z-index: 4;
     overflow-x: hidden;
     overflow-y: auto;
+    cursor: pointer;
     .lightbox-contents {
       display: flex;
       flex-flow: row nowrap;
@@ -37,6 +42,7 @@
       padding: $medium-gutter;
       box-sizing: border-box;
       pointer-events: none;
+      cursor: default;
     }
     .visualization-details {
       color: white;

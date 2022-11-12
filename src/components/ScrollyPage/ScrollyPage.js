@@ -12,6 +12,7 @@ import { fetchDataFile } from '../../utils/fetch';
 import Caller from '../../components/Caller';
 import Loader from '../../components/Loader';
 import VisualizationContainer from '../../components/VisualizationContainer';
+import VisualizationFocus from '../../components/VisualizationFocus';
 
 import { buildPageTitle } from '../../utils/misc';
 import visualizationsMetas from '../../data/viz';
@@ -66,6 +67,7 @@ export default function ScrollyPage({
   const [displayedVizId, setDisplayedVizId] = useState(undefined);
   const [displayedVizProps, setDisplayedVizProps] = useState(undefined);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [scrollYBeforeFullScreen, setScrollYBeforeFullScreen] = useState(0);
   const [activeCallerId, setActiveCallerId] = useState(undefined);
   /** initial states are used when the user click on a inblock caller to memorize the last inline caller and its props */
   const [initialCallerId, setInitialCallerId] = useState(undefined);
@@ -208,7 +210,7 @@ export default function ScrollyPage({
   }, [chapter, lang]);
 
   useEffect(function focusVizOnScroll() {
-    if (Object.keys(visualizations).length === 0 || !pageRef.current) {
+    if (Object.keys(visualizations).length === 0 || !pageRef.current || isFullScreen) {
       return;
     }
 
@@ -284,13 +286,20 @@ export default function ScrollyPage({
       })
   }, [chapter]);
 
+  useEffect(function onFullScreenChange() {
+    if (!isFullScreen) {
+      window.scrollTo({
+        top: scrollYBeforeFullScreen
+      })
+    }
+  }, [isFullScreen]);
+
   if (loadingState === 'process' || !datasets) {
     return <Loader message='En cours de chargement' />
   }
   // if (loadingState === 'failed') {
   //     return <Loader message='Échec du chargement' />
   // }
-
   return (
     <>
       <Helmet>
@@ -317,18 +326,6 @@ export default function ScrollyPage({
             <Content components={{ Caller, Link }} />
           </VisualisationContext.Provider>
         </section>
-        <VisualizationContainer
-          callerProps={displayedVizProps}
-          {...{
-            displayedVizId,
-            datasets,
-            canResetVizProps,
-            onClickToggleFullScreen: () => setIsFullScreen(!isFullScreen),
-            isFullScreen: true,
-            isHidden: !isFullScreen,
-            resetVizProps
-          }}
-        />
         <aside className={cx({ 'is-focused': activeSideOnResponsive === 'viz' })}>
           {
             displayViz &&
@@ -340,14 +337,20 @@ export default function ScrollyPage({
                 canResetVizProps,
                 onClickToggleFullScreen: () => {
                   setIsFullScreen(!isFullScreen);
+                  setScrollYBeforeFullScreen(scrollY);
                   ReactTooltip.hide();
                 },
-                isFullScreen: false,
                 resetVizProps
               }}
             />
           }
         </aside>
+        <VisualizationFocus
+          vizId={displayedVizId}
+          datasets={datasets}
+          onClickClose={() => setIsFullScreen(false)}
+          isVisible={isFullScreen}
+        />
 
 
       </div>

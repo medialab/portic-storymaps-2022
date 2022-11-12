@@ -24,8 +24,8 @@ export default function VisualizationFocus({
     vizId,
     datasets,
     onClickClose,
-    isHidden,
-    ...props
+    isVisible,
+    // ...props
 }) {
     const { lang } = useParams();
 
@@ -108,7 +108,7 @@ export default function VisualizationFocus({
     }
 
     return (
-        <div className={cx('VisualizationFocus is-visible', {'is-hidden': isHidden})}>
+        <div className={cx('VisualizationFocus', {'is-visible': isVisible})}>
             <input
                 style={{ opacity: 0, zIndex: -10, 'pointerEvents': 'none' }}
                 type="text"
@@ -117,10 +117,10 @@ export default function VisualizationFocus({
             />
             <div onClick={onClickClose} className="lightbox-background" />
 
-            <div className="lightbox-contents-container">
+            <div className="lightbox-contents-container"  onClick={onClickClose}>
                 <div className="lightbox-contents">
 
-                    <div className="visualization-details">
+                    <div className="visualization-details" onClick={e => e.stopPropagation()}>
                         <div className="details-header">
                             {title && <h2>{title}</h2>}
                             <button className="close-btn" onClick={onClickClose}>
@@ -163,7 +163,7 @@ export default function VisualizationFocus({
                             }
                         </div>
                     </div>
-                    <div className="visualization-wrapper" onClick={onClickClose}>
+                    <div className="visualization-wrapper">
                         <Measure
                             bounds
                             onResize={contentRect => {
@@ -176,7 +176,7 @@ export default function VisualizationFocus({
                         >
                             {
                                 ({ measureRef }) => (
-                                    <div ref={measureRef}>
+                                    <div ref={measureRef} onClick={e => e.stopPropagation()}>
                                         <VisualizationController
                                             {
                                             ...{
