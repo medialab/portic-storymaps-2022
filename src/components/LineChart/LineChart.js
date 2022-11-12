@@ -243,7 +243,7 @@ const LineChart = ({
             }}
           >
             {
-              brushState[0][0] && brushState[0].mouse !== 'up' &&
+              brushState[0] && brushState[0][0] && brushState[0].mouse !== 'up' &&
                 <rect
                   x={xScale(brushState[0]['start'])}
                   width={xScale(brushState[0]['end']) - xScale(brushState[0]['start'])}
@@ -309,13 +309,6 @@ const LineChart = ({
                   {x.title || x.field}
                 </p>
               </foreignObject>
-              {/* <tspan
-                maxLength={10}
-                x={width - (margins.right)}
-                y={height - (margins.bottom - 20)}
-                className="axis-title"
-                text={x.title || x.field}
-              /> */}
               {
                 xAxisValues.map((value, valueIndex) => (
                   <AnimatedGroup
@@ -511,12 +504,16 @@ const LineChart = ({
                                     y1={yScale(item[y.field])}
                                     y2={yScale(next[y.field])}
                                     style={{ stroke: color }}
+                                    key={`${itemIndex}-line`}
                                   />
                                   : null
                               }
                               {
                                 +item[y.field] !== 0 ?
-                                  <AnimatedGroup className="data-dot-container">
+                                  <AnimatedGroup 
+                                    className="data-dot-container"
+                                    key={`${itemIndex}-group`}
+                                  >
                                     <AnimatedCircle
                                       className="data-dot"
                                       fill={color}
