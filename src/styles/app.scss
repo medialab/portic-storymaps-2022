@@ -400,8 +400,12 @@ tspan {
     .axis-title {
       font-weight: bold;
       font-style: italic;
-      background: $color-text;
-      text-anchor: end;
+      // background: $color-text;
+      font-size: .7rem;
+      font-family: $font-family-1;
+      text-align: right;
+
+      // text-anchor: end;
     }
     .background-line {
       stroke: rgba(0, 0, 0, 0.2);
