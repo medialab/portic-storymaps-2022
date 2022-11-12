@@ -75,7 +75,10 @@ PecheTypeValue:
     en: Year
   y:
     fr: Valeur en livres tournois
-    en: 
+    en: Value in livres tournois
+  color:
+    fr: Localisation des activités de pêche
+    en: Fishing activities localization
 TonnageMoyenMois:
   tooltip:
     fr: En  ${month} ${period}, le tonnage moyen au départ de Dunkerque était de ${value} tonneaux
