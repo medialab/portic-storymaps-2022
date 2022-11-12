@@ -69,7 +69,7 @@ export default function Caller ({
     }
 
     return (
-        <div
+        <span
             ref={ref}
             id={visualizationId}
             className={cx('Caller', {
@@ -85,6 +85,6 @@ export default function Caller ({
                     <code>{visualizationId}</code> : <code>{JSON.stringify({ ...props })}</code>
                 </span>
             }
-        </div>
+        </span>
     )
 }
