@@ -4,6 +4,19 @@
     box-sizing: border-box;
     font-family: $font-family-1;
     font-size: 1rem;
+
+    .ArrowNote {
+      p {
+        font-size: 1.3vmin;
+      }
+
+      line,
+      path {
+        stroke: black;
+        stroke-width: 2px;
+      }
+    }
+
     h3{
       margin-top: 0;
     }
@@ -44,6 +57,7 @@
     .lower-row {
       padding: 1rem;
       padding-top: 0;
+      
       .back-label {
         display: flex;
         justify-content: center;

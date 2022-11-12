@@ -253,16 +253,19 @@ export default function SchemaDemonstration({
               x2={margin.left - 20}
               y2={scaleProjection(0)}
               text={translate('Pilotage', 'note_schema_mean', lang)}
+              arrowPosition={'bottom center'}
             />
             <ArrowNote
               arrowId='arrow-note-head'
               textWidth={160}
               textHeight={40}
               x1={20}
-              y1={20}
-              x2={scaleYear(1767)}
+              y1={40}
+              x2={scaleYear(1774)}
               y2={80}
               text={translate('Pilotage', 'note_schema_sup', lang)}
+              arrowPosition={'center right'}
+              textAlign='right'
             />
             <ArrowNote
               arrowId='arrow-note-head'
@@ -270,9 +273,11 @@ export default function SchemaDemonstration({
               textHeight={50}
               x1={0}
               y1={240}
-              x2={scaleYear(1765) - 30}
+              x2={scaleYear(1763)}
               y2={220}
               text={translate('Pilotage', 'note_schema_inf', lang)}
+              textAlign='right'
+              arrowPosition={'top right'}
             />
           </g>
         </g>

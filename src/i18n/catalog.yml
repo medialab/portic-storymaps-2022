@@ -209,7 +209,7 @@ Pilotage:
     en: 
   description_demonstration:
     fr: >-
-      À partir de la moyenne des rapports entre nombre de sorties avec pilotage et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec pilotage).
+      À partir de la moyenne des rapports entre nombre de sorties avec un pilotage et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec un pilotage).
       La comparaison avec les données des congés permet de constater une marge d'erreur entre <i>+${value_max}%</i> et <i>${value_min}%</i>.
     en: 
   description_pilotage:
@@ -219,7 +219,7 @@ Pilotage:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque
     en:
   tooltip_pilotage:
-    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec pilotage
+    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec un pilotage
     en:
   tooltip_estimation:
     fr: En ${year}, on estime qu'entre ${value_min} et ${value_max} navires sont sortis du port de Dunkerque
@@ -240,7 +240,7 @@ Pilotage:
     fr: Les données relevées sont inférieures à la moyenne
     en: 
   note_demonstration_pilotage:
-    fr: Nombre de navires sortis avec pilotage
+    fr: Nombre de navires sortis avec un pilotage
     en: 
   note_demonstration_margin:
     fr: Marge d'erreur
