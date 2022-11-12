@@ -23,7 +23,7 @@ export default function PecheTypeValue({
             { ...{
                 data,
                 width,
-                height
+                height,
             }}
 
             layout='stack'
@@ -36,8 +36,10 @@ export default function PecheTypeValue({
                 title: translate('PecheTypeValue', 'y', lang)
             }}
             color={{
-                field: 'type_zone_peche'
+                field: 'type_zone_peche',
+                title: translate('PecheTypeValue', 'color', lang)
             }}
+
             tooltip={
                 (d) => translate('PecheTypeValue', 'tooltip', lang, {
                     value: formatNumber(d['value']),
