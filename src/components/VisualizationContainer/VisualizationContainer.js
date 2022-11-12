@@ -2,6 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import Measure from 'react-measure'
 
+import translate from '../../utils/translate';
+
+
 import VisualizationController from '../../visualizations/index.js';
 
 import visualizationsMetas from '../../data/viz';
@@ -14,83 +17,83 @@ import visualizationsMetas from '../../data/viz';
  * @returns {React.ReactElement} - React component
  */
 export default function VisualizationContainer({
-    displayedVizId: vizId,
-    canResetVizProps,
+  displayedVizId: vizId,
+  canResetVizProps,
 
-    onClickToggleFullScreen,
+  onClickToggleFullScreen,
 
-    resetVizProps,
-    ...props
+  resetVizProps,
+  ...props
 }) {
-    const { lang } = useParams();
+  const { lang } = useParams();
 
-    const title = useMemo(() => {
-        const vizMetas = visualizationsMetas[vizId];
-        return vizMetas ? vizMetas[`titre_${lang}`] : '';
-    }, [vizId, lang]);
+  const title = useMemo(() => {
+    const vizMetas = visualizationsMetas[vizId];
+    return vizMetas ? vizMetas[`titre_${lang}`] : '';
+  }, [vizId, lang]);
 
-    const [dimensions, setDimensions] = useState({
-        width: -1,
-        height: -1
-    });
-    /** @type {[Boolean, Function]} */
-    function handleClickToggleFullScreen() {
-      onClickToggleFullScreen();
-    }
+  const [dimensions, setDimensions] = useState({
+    width: -1,
+    height: -1
+  });
+  /** @type {[Boolean, Function]} */
+  function handleClickToggleFullScreen() {
+    onClickToggleFullScreen();
+  }
 
-    return (
-        <>
-            <button
-                onClick={resetVizProps}
-                style={{
-                    visibility: (canResetVizProps === true) ? 'visible' : 'hidden',
-                    position: 'absolute',
-                    right: '3rem',
-                    top: '1rem',
-                    zIndex: 10
-                }}
-            >
-                Revenir à l'original
-            </button>
-            <h3>{title}</h3>
-            <Measure
-                bounds
-                onResize={contentRect => {
-                    const { width, height, top } = contentRect.bounds;
-                    setDimensions({
-                        width,
-                        height: height - top
-                    })
-                }}
-            >
-                {
-                    ({ measureRef }) => (
-                        <div className='VisualizationContainer' ref={measureRef} style={{ height: '100%' }}>
-                            <div className="fullscreen-viz-toggle-container">
-                                <button
-                                    data-for='contents-tooltip'
-                                    data-tip="plus d'informations sur cette visualisation"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleClickToggleFullScreen();
-                                    }}
-                                >
-                                    <span>+</span>
-                                </button>
-                            </div>
+  return (
+    <>
+      <h3>{title}</h3>
+      <Measure
+        bounds
+        onResize={contentRect => {
+          const { width, height, top } = contentRect.bounds;
+          setDimensions({
+            width,
+            height: height - top
+          })
+        }}
+      >
+        {
+          ({ measureRef }) => (
+            <div className='VisualizationContainer' ref={measureRef} style={{ height: '100%' }}>
+              <div className="option-buttons-container">
+                <button
+                  data-for='contents-tooltip'
+                  data-tip={translate('vizContainer', 'goToFullScreen', lang)}
+                  className="fullscreen-toggle-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClickToggleFullScreen();
+                  }}
+                >
+                  <span>+</span>
+                </button>
+                <button
+                  onClick={resetVizProps}
+                  className="reset-viz-props-btn"
+                  data-for='contents-tooltip'
+                  data-tip={translate('vizContainer', 'backToMainViz', lang)}
+                  style={{
+                    display: (canResetVizProps === true) ? 'flex' : 'none',
+                  }}
+                >
+                  <span>+</span>
+                </button>
+              </div>
 
-                            <VisualizationController {
-                                ...{
-                                    dimensions,
-                                    lang,
-                                    vizId,
-                                    ...props
-                                }
-                            } />
-                        </div>
-                    )
+              <VisualizationController {
+                ...{
+                  dimensions,
+                  lang,
+                  vizId,
+                  ...props
                 }
-            </Measure>
-        </>
-    )
+              } />
+            </div>
+          )
+        }
+      </Measure>
+    </>
+  )
 }

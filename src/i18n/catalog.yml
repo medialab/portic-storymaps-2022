@@ -46,6 +46,12 @@ vizContainer:
   switchToText:
     fr: voir le texte associé
     en: see associated text
+  goToFullScreen:
+    fr: En savoir plus sur cette visualization
+    en: Learn more about this visualization
+  backToMainViz:
+    fr: Revenir à la visualisation principale
+    en: Back to main visualization
 EvolutionBudgetDunkerque:
   tooltip:
     fr: ${reference} d'une valeur de ${value} livres tournois en ${year}
