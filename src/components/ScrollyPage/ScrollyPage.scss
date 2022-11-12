@@ -120,13 +120,15 @@
     }
   }
 
-  .fullscreen-viz-toggle-container {
+  .option-buttons-container {
     position: absolute;
     top: 0;
     right: 0;
     padding: $medium-gutter;
     padding-top: calc($medium-gutter / 4);
     z-index: 100;
+    display: flex;
+    flex-flow: row nowrap;
     // padding-top: 0;
     button {
       background: transparent;
@@ -143,6 +145,20 @@
       span {
         position: relative;
         top: -0.05rem;
+      }
+      &.reset-viz-props-btn {
+        margin-left: calc($small-gutter / 2);
+        border-color: $color-accent-background;
+        background: $color-accent-background;
+        color: $color-background;
+        &:hover {
+          border-color: $color-accent;
+          background: $color-accent;
+        }
+        span {
+          left: .05rem;
+          transform: rotate(45deg);
+        }
       }
     }
   }
@@ -183,7 +199,7 @@
         margin-left: 1rem;
       }
 
-      .fullscreen-viz-toggle-container {
+      .option-buttons-container {
         display: none;
       }
       // display: none;
