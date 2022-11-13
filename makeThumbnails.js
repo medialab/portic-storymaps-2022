@@ -52,7 +52,7 @@ const basePath = path.join(__dirname, 'public');
             });
 
             const pathToSave = path.join(basePath, 'thumbnails', lang, `${vizId}.png`)
-            const url = `http://localhost:${devServerOptions.port}/#/${lang}/vizualisation/${vizId}`;
+            const url = `http://localhost:${devServerOptions.port}/#/${lang}/visualization/${vizId}`;
             console.log('goto', url);
             await page.goto(url);
 
