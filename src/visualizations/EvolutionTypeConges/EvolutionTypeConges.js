@@ -28,6 +28,15 @@ export default function EvolutionTypeConges({
                 title: translate('EvolutionTypeConges', 'y', lang),
                 tickFormat: (value, valueIndex) => formatNumber(value)
             }}
+
+            annotations={[
+              {
+                axis: 'x',
+                start: 1778,
+                end: 1781,
+                label: 'Guerre d\'indépendance des USA'
+              }
+            ]}
             color={{
                 field: 'type',
                 palette: {
