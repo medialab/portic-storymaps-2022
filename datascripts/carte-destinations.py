@@ -11,7 +11,6 @@ input = get_viz_metas('carte-destinations')['inputs'][0]
 with open(input, "r") as fr:
     reader = csv.DictReader(fr)
     with open(output, "w") as fw:
-      print("write in " + output)
       fieldnames = [
         "destination",
         "destination_state",

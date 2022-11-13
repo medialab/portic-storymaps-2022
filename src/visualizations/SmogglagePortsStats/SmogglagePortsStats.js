@@ -23,6 +23,7 @@ export default function SmogglagePortsStats ({
                 data={data}
                 title={title}
                 width={window.innerWidth - 20}
+                /** @todo translate this */
                 x={{
                     field: 'port de départ',
                     title: 'port de départ'
