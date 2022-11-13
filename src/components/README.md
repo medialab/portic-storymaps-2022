@@ -3,7 +3,7 @@
 - App
     - ScrollyPage
         - Caller
-        - VizualisationContainer
+        - visualizationContainer
             - VisualisationController
             - VisualisationFocus
                 - VisualisationController

@@ -13,6 +13,19 @@ export function AnimatedGroup({
         </animated.g>
     )
 }
+export function AnimatedForeignObject({
+  children,
+  style,
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.foreignObject {...animatedProps} style={style}>
+          {children}
+      </animated.foreignObject>
+  )
+}
 
 export function AnimatedText({
   children,

@@ -8,7 +8,7 @@ import { axisPropsFromTickScale } from 'react-d3-axis';
 import Tooltip from 'react-tooltip';
 import cx from 'classnames';
 
-import { AnimatedCircle, AnimatedGroup, AnimatedRect, AnimatedText, AnimatedLine} from '../AnimatedSvgElements';
+import { AnimatedCircle, AnimatedGroup, AnimatedRect, AnimatedText, AnimatedLine, AnimatedForeignObject} from '../AnimatedSvgElements';
 
 import colorsPalettes from '../../utils/colorPalettes';
 import { fixSvgDimension, generatePalette } from '../../utils/misc';
@@ -76,7 +76,8 @@ const LineChart = ({
   tooltip,
   margins: inputMargins = {},
   annotations = [],
-  brushState = false
+  brushState = false,
+  isBrushable = false
 }) => {
   const [headersHeight, setHeadersHeight] = useState(0);
   const [legendWidth, setLegendWidth] = useState(0);
@@ -192,16 +193,24 @@ const LineChart = ({
     return Math.round(year)
   }
 
-  const legendTitle = lang === 'fr' ? 'Légende' : 'Legend';
+  let legendTitle = lang === 'fr' ? 'Légende' : 'Legend';
+  if (color?.title) {
+    legendTitle = color.title;
+  }
+
   return (
     <>
-      <figure style={{ width: initialWidth, height: initialHeight }} className="LineChart GenericVisualization">
+      <figure style={{ width: initialWidth, height: initialHeight }} className={cx("LineChart GenericVisualization", {'is-brushable': isBrushable})}>
         <div ref={headerRef} className="row">
           {title ? <h5 className="visualization-title" style={{ marginLeft: margins.left }}>{title}</h5> : null}
         </div>
         {
           (brushState !== false && brushState[0]['mouse'] === 'up') &&
-          <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Reset</button>
+          <div className="zoom-info-container">
+            Vous zoomez actuellement sur les années <strong>{brushState[0].start}</strong> à <strong>{brushState[0].end}</strong>.
+            <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Revenir à l'ensemble de la série</button>
+          </div>
+          
         }
         <div className="row vis-row">
           <svg
@@ -243,7 +252,7 @@ const LineChart = ({
             }}
           >
             {
-              brushState[0] && brushState[0][0] && brushState[0].mouse !== 'up' &&
+              brushState[0] && brushState[0].mouse !== 'up' &&
                 <rect
                   x={xScale(brushState[0]['start'])}
                   width={xScale(brushState[0]['end']) - xScale(brushState[0]['start'])}
@@ -255,7 +264,7 @@ const LineChart = ({
             <AnimatedGroup className="axis left-axis ticks">
               <foreignObject
                   x={0}
-                  y={margins.top - 30}
+                  y={margins.top - 40}
                   width={margins.left - 10}
                   height={100}
               >
@@ -346,10 +355,12 @@ const LineChart = ({
                     const thatHeight = height - yScale(yAxisValues[yAxisValues.length - 1]) - margins.bottom;
                     const thatY1 = height - margins.bottom;
                     const thatY2 = yScale(yAxisValues[yAxisValues.length - 1]);
+                    const x = xScale(start);
+                    const maxWidth = Math.abs(height - x + margins.right);
                     return (
                       <AnimatedGroup className="annotation x-axis-annotation" key={annotationIndex}>
                         <AnimatedRect
-                          x={xScale(start)}
+                          x={x}
                           width={xScale(end) - xScale(start)}
                           height={thatHeight}
                           y={thatY2}
@@ -357,8 +368,8 @@ const LineChart = ({
                           opacity={.4}
                         />
                         <AnimatedLine
-                          x1={xScale(start)}
-                          x2={xScale(start)}
+                          x1={x}
+                          x2={x}
                           y1={thatY1}
                           y2={thatY2}
                           stroke="grey"
@@ -382,14 +393,18 @@ const LineChart = ({
                           stroke="grey"
                           markerEnd="url(#arrowhead)"
                         />
-                        <AnimatedText
+                        <AnimatedForeignObject
                           x={xScale(end) + 22}
-                          y={thatY2 + labelPosition}
-                          fontSize={'.5rem'}
-                          fill="grey"
+                          y={thatY2 + labelPosition - 12}
+                          width={maxWidth + 10}
+                          height={height / 2}
                         >
-                          {label}
-                        </AnimatedText>
+                          <p
+                              xmlns="http://www.w3.org/1999/xhtml"
+                          >
+                            {label}
+                          </p>
+                        </AnimatedForeignObject>
                         <defs>
                           <marker id="arrowhead" markerWidth="5" markerHeight="5"
                             refX="0" refY="2.5" orient="auto">
