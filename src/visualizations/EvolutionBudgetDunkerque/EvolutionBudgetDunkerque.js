@@ -39,6 +39,29 @@ export default function EvolutionBudgetDunkerque({
             color={{
                 field: 'référence'
             }}
+            annotations={[
+              {
+                axis: 'x',
+                start: 1744,
+                end: 1748,
+                label: 'Guerre d\'Autriche',
+              },
+              {
+                axis: 'x',
+                start: 1756,
+                end: 1763,
+                label: 'Guerre de sept ans',
+                labelPosition: dimensions.height / 7
+              },
+              
+              {
+                axis: 'x',
+                start: 1778,
+                end: 1781,
+                label: 'Guerre d\'indépendance des USA',
+                labelPosition: dimensions.height / 5 * 2.5
+              }
+            ]}
             tooltip={
                 (d) => translate('EvolutionBudgetDunkerque', 'tooltip', lang, {
                     reference: d['référence'],
@@ -46,6 +69,7 @@ export default function EvolutionBudgetDunkerque({
                     year: d['Années comptables']
                 })
             }
+            isBrushable
             brushState={[brush, setBrush]}
         />
     )
