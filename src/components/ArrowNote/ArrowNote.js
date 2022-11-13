@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Measure from 'react-measure';
 
 /**
@@ -25,7 +25,6 @@ import Measure from 'react-measure';
  *      arrowId='MARKER-ID'
  *      text='Lorem ipsum'
  *      textWidth={160}
- *      textHeight={40}
  *      x1={-50}
  *      y1={-20}
  *      x2={150}
@@ -37,8 +36,6 @@ import Measure from 'react-measure';
 export default function ArrowNote({
   text,
   arrowId,
-  // arrowColor = 'black',
-  // arrowStrokeWidth = 2,
   textWidth = 100,
   textHeight = 100,
   textAlign = 'left',
@@ -53,24 +50,6 @@ export default function ArrowNote({
     width: 10,
     height: 10,
   });
-  // const inverseArrowX = x1 > x2;
-  // const inverseArrowY = y1 > y2;
-
-  // let xArrowBegin, yArrowBegin;
-
-  // if (inverseArrowX) {
-  //   xArrowBegin = x1;
-  // } else {
-  //   xArrowBegin = x1 + textWidth
-  // }
-
-  // if (inverseArrowY) {
-  //   yArrowBegin = y1;
-  // } else {
-  //   yArrowBegin = y1 + textHeight;
-  // }
-
-  // const displaceY = Math.abs(y2 - yArrowBegin) / 5;
 
   let arrowStartX = x1 + dimensions.width / 2;
   let arrowStartY = y1 + dimensions.height / 2;
@@ -86,32 +65,27 @@ export default function ArrowNote({
     arrowStartX = x1 + dimensions.width;
   }
 
+  const controlPointX = arrowStartX;
+  const controlPointY = y2;
+
   return (
     <g
       className="ArrowNote"
     >
-      <line
-        x1={arrowStartX}
-        y1={arrowStartY}
-        x2={x2}
-        y2={y2}
-        // stroke={arrowColor}
-        // strokeWidth={arrowStrokeWidth}
+      <path
+        d={`M ${arrowStartX} ${arrowStartY} Q ${controlPointX} ${controlPointY} ${x2} ${y2}`}
         markerEnd={`url(#${arrowId})`}
         fill='transparent'
       />
-      {/* <path
-        d={
-          `
-                M${xArrowBegin},${yArrowBegin}
-                C${xArrowBegin},${yArrowBegin + displaceY} ${xArrowBegin + displaceY},${y2} ${x2},${y2}
-                `
-        }
-        stroke={arrowColor}
-        strokeWidth={arrowStrokeWidth}
-        markerEnd={`url(#${arrowId})`}
-        fill='transparent'
-      /> */}
+      {
+        debug &&
+        <circle
+          fill="red"
+          cx={controlPointX}
+          cy={controlPointY}
+          r={2}
+        />
+      }
       {
         debug &&
         <rect
@@ -123,7 +97,7 @@ export default function ArrowNote({
           stroke="red"
         />
       }
-      
+
       <Measure
         bounds
         onResize={contentRect => {
@@ -142,8 +116,6 @@ export default function ArrowNote({
               ref={measureRef}
               style={{
                 textAlign,
-                // textAlign: inverseArrowX ? 'left' : 'right',
-                // ...textStyle
               }}
             >{text}</p>
           </foreignObject>

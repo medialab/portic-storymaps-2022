@@ -302,12 +302,12 @@ export default function PilotageLegend({
         <g className='notes'>
           <ArrowNote
             arrowId='arrow-note-head'
-            textWidth={scaleYear(1737) - scaleYear(1733)}
+            textWidth={scaleYear(1736) - scaleYear(1733)}
             textHeight={scaleTotal(1100)}
             x1={scaleYear(1732)}
-            x2={scaleYear(1731.5)}
-            y1={scaleTotal(850)}
-            y2={scaleTotal(50)}
+            x2={scaleYear(1731.6)}
+            y1={scaleTotal(800)}
+            y2={scaleTotal(150)}
             text={translate('Pilotage', 'note_demonstration_pilotage', lang)}
             arrowPosition={'bottom left'}
           />
@@ -315,9 +315,9 @@ export default function PilotageLegend({
             arrowId='arrow-note-head'
             textWidth={scaleYear(1736) - scaleYear(1732)}
             textHeight={80}
-            x1={scaleYear(1729.5)}
+            x1={scaleYear(1729)}
             y1={scaleTotal(2600)}
-            x2={scaleYear(1735.5)}
+            x2={scaleYear(1735.4)}
             y2={scaleTotal(900)}
             textAlign='right'
             text={translate('Pilotage', 'note_demonstration_projection', lang)}

@@ -262,9 +262,9 @@ export default function SchemaDemonstration({
               x1={20}
               y1={40}
               x2={scaleYear(1774)}
-              y2={80}
+              y2={120}
               text={translate('Pilotage', 'note_schema_sup', lang)}
-              arrowPosition={'center right'}
+              arrowPosition={'bottom right'}
               textAlign='right'
             />
             <ArrowNote
@@ -273,8 +273,8 @@ export default function SchemaDemonstration({
               textHeight={50}
               x1={0}
               y1={240}
-              x2={scaleYear(1763)}
-              y2={220}
+              x2={scaleYear(1764)}
+              y2={230}
               text={translate('Pilotage', 'note_schema_inf', lang)}
               textAlign='right'
               arrowPosition={'top right'}
