@@ -1,7 +1,4 @@
 import csv
-import json
-from collections import defaultdict
-import sys
 
 from index import get_viz_metas
 

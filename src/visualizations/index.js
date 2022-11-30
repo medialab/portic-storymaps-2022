@@ -15,6 +15,7 @@ import FraudeExportPortFranc from './FraudeExportPortFranc';
 import PecheMap from './PecheMap';
 import Pilotage from './Pilotage/Pilotage';
 import CommentedImage from '../components/CommentedImage';
+import TreemapChart from '../components/TreemapChart';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -117,6 +118,35 @@ export default function VisualizationController({
                     legend={legend[lang]}
                   />
                  );
+            case 'homeports-from-dunkerque':
+              return (
+                <TreemapChart
+                {
+                  ...{
+                    data,
+                    width: dimensions.width,
+                    height: dimensions.height,
+                    lang,
+                    title: 'Parts des ports d\'attache pour les navires au départ de Dunkerque en 1789',
+                    tooltip: d => `${d.tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
+                    // tooltip: d => translate('partie-1-ports-dattache', 'tooltip', props.lang, { 
+                    //   tonnage: formatNumber(d.tonnage), 
+                    //   homeport: d[`homeport_${props.lang}`], 
+                    //   category: props.lang === 'fr' ? d.category_2 : d.category_2_en 
+                    // }),
+                    fieldsHierarchy: ['state_category', 'homeport', 'homeport_state_fr'],
+                    color: {
+                      field: lang === 'fr' ? 'homeport_state_fr' : 'homeport_state_en',
+                      // palette: props.lang === 'fr' ? colorPalettes.portsTreemaps :  colorPalettes.portsTreemapsEn
+                    },
+                    leaf: {
+                      labelField: 'homeport_' + lang,
+                      countField: 'tonnage'
+                    }
+                  }
+                }
+                />
+              );
             default:
                 return (
                     <img
