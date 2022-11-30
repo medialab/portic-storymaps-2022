@@ -14,6 +14,7 @@ import EvolutionBudgetDunkerque from './EvolutionBudgetDunkerque';
 import FraudeExportPortFranc from './FraudeExportPortFranc';
 import PecheMap from './PecheMap';
 import Pilotage from './Pilotage/Pilotage';
+import CommentedImage from '../components/CommentedImage';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -104,6 +105,18 @@ export default function VisualizationController({
                 return (
                     <Pilotage {...{ data, dimensions, lang, atlasMode }} />
                 );
+            case 'gravure-smoggleurs':
+                  const legend = {
+                    fr: `**Dany Guillou-Beuzit, Jacques Cambry,** voyage dans le Finistère ou état de ce département en 1794 et 1795, **Rennes, PUR, 2011 (dessin de Dany Guillou-Beuzit d’après le texte de Cambry)**`
+                  }
+                  return (
+                  <CommentedImage
+                    src={`${process.env.BASE_PATH}/assets/${vizId}.jpg`}
+                    width={width}
+                    height={height}
+                    legend={legend[lang]}
+                  />
+                 );
             default:
                 return (
                     <img
