@@ -1,25 +1,28 @@
 
 import React, { useRef, useState, useReducer, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import cx from 'classnames';
 import ReactTooltip from 'react-tooltip';
 
 /* eslint-disable import/no-webpack-loader-syntax */
 
-import ContentsFr from '../../content/fr/part-0.mdx'
-import ContentsEn from '../../content/en/part-0.mdx'
+import ContentsFr from '../../content/fr/part-0.mdx';
+import ContentsEn from '../../content/en/part-0.mdx';
 
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 // import CitationWidget from '../CitationWidget';
-// import VisualizationContainer from '../VisualizationContainer';
-import { VisualizationControlContext } from '../../utils/contexts';
+import VisualizationContainer from '../VisualizationContainer';
+// import { VisualizationControlContext } from '../../utils/contexts';
+import { VisualisationContext } from '../../utils/contexts';
 import translate from '../../utils/translate';
+
 import summary from '../../summary';
 
 import BoatsContainer from './BoatsContainer';
 import HomeSummary from './HomeSummary';
+import Caller from '../../components/Caller';
 
 import './Home.scss';
 
@@ -40,13 +43,13 @@ function Home({
   const title = translate('site', 'title', lang);
   const titleHTML = translate('site', 'titleHTML', lang);
   const subtitle = translate('site', 'subtitle', lang);
+  const [activeCallerId, setActiveCallerId] = useState(undefined);
   const [activeVisualization, setActiveVisualization] = useState(undefined);
   const [visualizations, setVisualizations] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {}
   )
   const scrollY = useScrollYPosition();
-
   const updateCurrentVisualization = () => {
     // const bodyPos = document.body.getBoundingClientRect();
     const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
@@ -65,9 +68,9 @@ function Home({
         const { y: initialVisY } = ref.current.getBoundingClientRect();
         let visY = initialVisY + window.scrollY;
         // @todo refactor this, it is dirty
-        if (ref.current.parentNode.className === 'centered-part-contents') {
-          visY += ref.current.parentNode.parentNode.getBoundingClientRect().y;
-        }
+        // if (ref.current.parentNode.className === 'centered-part-contents') {
+        //   visY += ref.current.parentNode.parentNode.getBoundingClientRect().y;
+        // }
         if (visY < firstOneY) {
           firstOneY = visY;
         }
@@ -105,9 +108,13 @@ function Home({
       newActiveVisualization = undefined;
     }
     if (activeVisualization !== !newActiveVisualization) {
-      setActiveVisualization(newActiveVisualization)
-    } else if ((!activeVisualization && newActiveVisualization) || activeVisualization.id !== newActiveVisualization.id) {
-      setActiveVisualization(newActiveVisualization)
+      setActiveVisualization(newActiveVisualization);
+      if (newActiveVisualization) {
+        setActiveCallerId(newActiveVisualization.callerId);
+      }
+    } else if ((!activeVisualization && newActiveVisualization) || activeVisualization.visualizationId !== newActiveVisualization.visualizationId) {
+      setActiveVisualization(newActiveVisualization);
+      setActiveCallerId(newActiveVisualization.callerId);
     }
   }
 
@@ -129,32 +136,9 @@ function Home({
   }, [activeVisualization])
 
   const onRegisterVisualization = (params) => {
-    const finalParams = {
-      ...params,
-      // data
-    }
-    setVisualizations({ ...visualizations, [params.id]: finalParams });
-  }
-  const onUnregisterVisualization = id => {
-    const newVis = Object.entries(visualizations).reduce((res, [thatId, payload]) => {
-      if (thatId === id) {
-        return res;
-      }
-      return {
-        ...res,
-        [thatId]: payload
-      }
-    }, {})
-    setVisualizations(newVis)
-  }
-  const onBlockClick = (id, ref) => {
-    const { y: initialVisY } = ref.current.getBoundingClientRect();
-    const visY = initialVisY + window.scrollY;
-    const DISPLACE_Y = window.innerHeight * CENTER_FRACTION;
-    const scrollTo = visY - DISPLACE_Y * .9;
-    window.scrollTo({
-      top: scrollTo,
-      behavior: 'smooth'
+    setVisualizations({
+      ...visualizations,
+        [params.callerId]: { ...params }
     });
   }
   const onClickOnStart = () => {
@@ -167,6 +151,34 @@ function Home({
       })
     }
     
+  }
+
+  /**
+   * Scroll to the <Caller/> onclick event
+   * The scrollTo function launch scroll useEffect
+   * @param {Object} props Caller props
+   * @param {*} props.ref Caller ref
+   * @param {String} props.visualizationId
+   * @param {String} props.callerId
+   * @param {Boolean} props.canFocusOnScroll Need click to be displayed as overflow
+   * @param {Object} props.callerProps Caller input props
+   */
+   function onClickCallerScroll({ ref, visualizationId, callerId, canFocusOnScroll, callerProps }) {
+    const { y: initialVizY } = ref.current.getBoundingClientRect();
+    const vizY = initialVizY + window.scrollY;
+    const yFraction = window.innerHeight * CENTER_FRACTION;
+    const scrollTo = vizY - yFraction * 0.9;
+
+    if (canFocusOnScroll === false) {
+      setDisplayedVizId(visualizationId);
+      setActiveCallerId(callerId);
+      return;
+    }
+
+    window.scrollTo({
+      top: scrollTo,
+      behavior: 'smooth'
+    });
   }
   return (
     <div className="Home">
@@ -188,25 +200,48 @@ function Home({
         <BoatsContainer />
       </div>
       <main ref={introRef} className="intro-container">
-        <VisualizationControlContext.Provider
+        {/* <VisualizationControlContext.Provider
           value={{
             activeVisualization,
             onBlockClick,
             onRegisterVisualization,
             onUnregisterVisualization,
           }}
-        >
+        > */}
+        <VisualisationContext.Provider value={{
+          onRegisterVisualization,
+          onClickCallerScroll,
+          activeCallerId
+        }}>
+
           <div className="Contents">
             
             <section className={cx({'is-focused': !focusOnViz})}>
-              {lang === 'fr' ? <ContentsFr /> : <ContentsEn />}
+              {lang === 'fr' ? <ContentsFr  components={{ Caller, Link }} /> : <ContentsEn  components={{ Caller, Link }} />}
             </section>
             <aside className={cx({'is-focused': focusOnViz, 'is-fixed': inVis})}>
-              {/* <VisualizationContainer lang={lang} activeVisualization={activeVisualization} /> */}
+              <VisualizationContainer 
+                lang={lang} 
+                activeVisualization={activeVisualization} 
+                introMode
+                {...{
+                  displayedVizId: activeVisualization && activeVisualization.visualizationId,
+                  datasets: {},
+                  // canResetVizProps,
+                  // onClickToggleFullScreen: () => {
+                  //   setIsFullScreen(!isFullScreen);
+                  //   setScrollYBeforeFullScreen(scrollY);
+                  //   ReactTooltip.hide();
+                  // },
+                  // resetVizProps
+                }}
+              />
             </aside>
             
           </div>
-        </VisualizationControlContext.Provider>
+        {/* </VisualizationControlContext.Provider> */}
+        </VisualisationContext.Provider>
+
         <HomeSummary lang={lang} summary={summary} />
         <div className={cx("vis-focus-container", {
           'is-active': focusOnViz,
