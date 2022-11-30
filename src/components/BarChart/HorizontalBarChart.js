@@ -181,7 +181,11 @@ const HorizontalBarChart = ({
 
   const groups = Object.entries(groupBy(data, d => d[x.field])) // color ? Object.entries(groupBy(data, d => d[color.field])) : [[undefined, data]];
 
-  const yDomain = initialYDomain || layout === 'stack' ?
+  let yDomain;
+  if (initialYDomain) {
+    yDomain = initialYDomain;
+  } else {
+    yDomain = layout === 'stack' ?
     // stack -> max = max sum for a given x modality
     [0, max(
       groups.map(
@@ -193,6 +197,8 @@ const HorizontalBarChart = ({
     :
     // group -> max = abs max
     [0, max(data.map(d => +d[y.field]))];
+  }
+  
 
   let bandWidth = layout === 'stack' ? columnWidth / 2 : (columnWidth / colorModalities.length) * .5;
   const yScale = scaleLinear().domain(yDomain).range([height - margins.bottom, margins.top]).nice();

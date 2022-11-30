@@ -16,7 +16,6 @@ export default function SmogglagePortsStats ({
     dimensions
 }) {
     const { width, height } = dimensions;
-
     return (
         <>
             <BarChart
@@ -29,10 +28,16 @@ export default function SmogglagePortsStats ({
                     title: 'port de départ'
                 }}
                 y={{
-                    field: 'trajets anglais smoggleurs',
-                    title: 'trajets anglais smoggleurs'
+                    field: '% de trajets anglais smoggleurs',
+                    title: 'part des smoggleurs dans les trajets anglais en nombre de voyages',
+                    domain: [0, 100],
+                    tickFormat: f => f + '%'
                 }}
                 tooltip={item => item['port de départ']}
+                margins={{
+                  left: 250,
+                  bottom: 40
+                }}
 
                 { ...{
                     width,

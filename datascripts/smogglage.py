@@ -95,7 +95,7 @@ with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
         row['% de trajets anglais smoggleurs'] = (row['trajets anglais smoggleurs'] / row['total des trajets anglais']) * 100 if row['total des trajets anglais'] > 0 else 0
         row['total tonnage'] = sum([flow['tonnage'] for flow in ports[port]])
         row['tonnage smoggleur'] = sum([flow['tonnage'] for flow in ports[port] if flow['is_smoggleur'] == True])
-        row['% de tonnage smoggleurs'] = (row['tonnage smoggleur'] / row['total tonnage']) * 100 if row['total tonage'] > 0 else 0
+        row['% de tonnage smoggleurs'] = (row['tonnage smoggleur'] / row['total tonnage']) * 100 if row['total tonnage'] > 0 else 0
         row['total des destinations'] = len(set([flow['destination_fr'] for flow in ports[port]]))
         row['destinations smoggleurs'] = len(set([flow['destination_fr'] for flow in ports[port] if flow['is_smoggleur'] == True]))
         row['% de destination smoggleurs'] = (row['destinations smoggleurs'] / row['total des destinations']) * 100
