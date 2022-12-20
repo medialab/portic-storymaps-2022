@@ -134,11 +134,17 @@ const TreemapChart = ({
           <svg className="chart" width={width} height={height}>
             {
               root.leaves().map((datum, datumIndex) => {
+                const MIN_FONT_SIZE = 8;
                 const {x0, y0, x1, y1} = datum;
                 const rectWidth = x1 - x0;
                 const rectHeight = y1 - y0;
                 const labelText = `${datum.data[labelField]} (${datum.data[countField]})`;
-                const fontSize = rectWidth / labelText.length * 1.5
+                let fontSize = (rectWidth * rectHeight) * 0.0005;
+                fontSize = fontSize < MIN_FONT_SIZE ? MIN_FONT_SIZE : fontSize;
+                const fitsWidth = f => f * labelText.length * .6 < rectWidth;
+                while (!fitsWidth(fontSize)) {
+                  fontSize = fontSize * .9;
+                }
                 // const labelWidth = window.innerWidth * 0.003 * labelText.length;
                 return (
                   <g 
@@ -156,10 +162,10 @@ const TreemapChart = ({
                       fill={colorPalette[datum.data[color.field]]}
                     />
                     {
-                      rectHeight > fontSize ?
+                      fitsWidth && rectHeight > fontSize ?
                         <text
                           x={rectWidth/2}
-                          y={rectHeight / 2 + 5}
+                          y={rectHeight / 2 + fontSize / 2}
                           style={{
                             fontSize
                           }}
