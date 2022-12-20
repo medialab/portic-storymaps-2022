@@ -133,6 +133,22 @@ HistoireDunkerque:
   assise_title:
     fr: Évolution de la part de l'assise dans les recettes de Dunkerque
     en:
+TonnagesF12:
+  destination:
+    fr: destination
+    en: destination
+  hyp_with_lest:
+    fr: supposer que la source F12 compte les navires partis avec du lest
+    en: suppose source counts ships which left with ballast
+  hyp_without_lest:
+    fr: supposer que la source F12 ne compte pas les navires partis avec du lest (soustraire le lest)
+    en: suppose source does not count ships which left with ballast (substract ballast)
+  with_lest_title:
+    fr: tonnage cumulé (hypothèse selon laquelle la source contient le lest)
+    en: cumulated tonnage (we suppose the source does contains ballast)
+  without_lest_title:
+    fr: tonnage cumulé (hypothèse selon laquelle la source ne contient pas le lest)
+    en: cumulated tonnage (we suppose the source does not contains ballast)
 CarteDestinations:
   map_position:
     fr: Position de la carte
