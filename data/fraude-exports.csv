@@ -1,1318 +1,1318 @@
-importsexports,partner_type,aggregate_type,value,port,product_type
-Exports,Monde,detail_products,4160.0,Lorient,"Ouvrages de bois, liège et jonc"
-Imports,Monde,detail_products,114773.0,Lorient,"Ouvrages de bois, liège et jonc"
-Exports,France,detail_products,8363.0,Lorient,"Ouvrages de bois, liège et jonc"
-Imports,France,detail_products,460.0,Lorient,"Ouvrages de bois, liège et jonc"
-Exports,Fraude,detail_products,102710.0,Lorient,"Ouvrages de bois, liège et jonc"
-Exports,Monde,detail_products,31170.0,Lorient,Matières brutes et transformées pour teinture
-Imports,Monde,detail_products,1370.0,Lorient,Matières brutes et transformées pour teinture
-Imports,Fraude,detail_products,29800.0,Lorient,Matières brutes et transformées pour teinture
-Exports,Monde,detail_products,13500.0,Lorient,Cordage et filets
-Imports,Fraude,detail_products,13500.0,Lorient,Cordage et filets
-Exports,Monde,detail_products,348081.25,Lorient,Eaux-de-vie et liqueurs
-Imports,Monde,detail_products,4370.0,Lorient,Eaux-de-vie et liqueurs
-Imports,France,detail_products,6100.0,Lorient,Eaux-de-vie et liqueurs
-Imports,Fraude,detail_products,337611.25,Lorient,Eaux-de-vie et liqueurs
-Exports,Monde,detail_products,546.0,Lorient,Drogues diverses
-Imports,Monde,detail_products,800.0,Lorient,Drogues diverses
-Exports,France,detail_products,1177.5,Lorient,Drogues diverses
-Imports,France,detail_products,1000.0,Lorient,Drogues diverses
-Exports,Fraude,detail_products,76.5,Lorient,Drogues diverses
-Exports,Monde,detail_products,5250.0,Lorient,Poivre et piment
-Imports,Monde,detail_products,9000.0,Lorient,Poivre et piment
-Exports,Fraude,detail_products,3750.0,Lorient,Poivre et piment
-Exports,Monde,detail_products,500000.0,Lorient,Divers mélangés
-Imports,Monde,detail_products,275.0,Lorient,Divers mélangés
-Imports,France,detail_products,1088.0,Lorient,Divers mélangés
-Imports,Fraude,detail_products,498637.0,Lorient,Divers mélangés
-Exports,Monde,detail_products,57417.0,Lorient,Miel
-Imports,Fraude,detail_products,57417.0,Lorient,Miel
-Exports,Monde,detail_products,42861.0,Lorient,Châles et mouchoirs de soie
-Imports,Fraude,detail_products,42861.0,Lorient,Châles et mouchoirs de soie
-Exports,Monde,detail_products,100.0,Lorient,Papier
-Imports,Monde,detail_products,7480.0,Lorient,Papier
-Exports,Fraude,detail_products,7380.0,Lorient,Papier
-Exports,Monde,detail_products,225.0,Lorient,Parfumerie et toilette
-Imports,Fraude,detail_products,225.0,Lorient,Parfumerie et toilette
-Exports,Monde,detail_products,24600.0,Lorient,Pêche et fruits de mer
-Imports,Monde,detail_products,828.0,Lorient,Pêche et fruits de mer
-Imports,Fraude,detail_products,23772.0,Lorient,Pêche et fruits de mer
-Exports,Monde,detail_products,400.0,Lorient,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,Monde,detail_products,40113.0,Lorient,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Fraude,detail_products,39713.0,Lorient,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Monde,detail_products,178937.035,Lorient,Sel
-Imports,Fraude,detail_products,178937.035,Lorient,Sel
-Exports,Monde,detail_products,146778.0,Lorient,Tabac
-Imports,Monde,detail_products,486100.0,Lorient,Tabac
-Exports,Fraude,detail_products,339322.0,Lorient,Tabac
-Exports,Monde,detail_products,14040.0,Lorient,Étoffes diverses
-Exports,France,detail_products,3945.0,Lorient,Étoffes diverses
-Imports,Fraude,detail_products,17985.0,Lorient,Étoffes diverses
-Exports,Monde,detail_products,1212.0,Lorient,Vins divers
-Exports,France,detail_products,349.5,Lorient,Vins divers
-Imports,France,detail_products,14797.5,Lorient,Vins divers
-Exports,Fraude,detail_products,13236.0,Lorient,Vins divers
-Exports,France,detail_products,3800.000095,Lorient,Beurre
-Imports,Monde,detail_products,6475.0,Lorient,Beurre
-Exports,Fraude,detail_products,2674.999905,Lorient,Beurre
-Exports,France,detail_products,216.0,Lorient,Combustibles dont charbons et bois
-Imports,France,detail_products,894.0,Lorient,Combustibles dont charbons et bois
-Imports,Monde,detail_products,14760.0,Lorient,Combustibles dont charbons et bois
-Exports,Fraude,detail_products,15438.0,Lorient,Combustibles dont charbons et bois
-Exports,Monde,detail_products,49752.5,Lorient,"Cuirs, peaux et pelleterie"
-Imports,Monde,detail_products,1000.0,Lorient,"Cuirs, peaux et pelleterie"
-Exports,France,detail_products,3653.0,Lorient,"Cuirs, peaux et pelleterie"
-Imports,Fraude,detail_products,52405.5,Lorient,"Cuirs, peaux et pelleterie"
-Exports,France,detail_products,119.999998,Lorient,Matières premières diverses
-Imports,Monde,detail_products,125247.0,Lorient,Matières premières diverses
-Exports,Fraude,detail_products,125127.000002,Lorient,Matières premières diverses
-Exports,Monde,detail_products,2524.0,Lorient,Fils divers
-Imports,France,detail_products,228.0,Lorient,Fils divers
-Imports,Fraude,detail_products,2296.0,Lorient,Fils divers
-Exports,Monde,detail_products,868.40002171,Lorient,Graisses diverses
-Imports,Monde,detail_products,9400.0,Lorient,Graisses diverses
-Imports,France,detail_products,328.0,Lorient,Graisses diverses
-Exports,Fraude,detail_products,8859.59997829,Lorient,Graisses diverses
-Exports,Monde,detail_products,3200.0,Lorient,Thé
-Imports,France,detail_products,120.0,Lorient,Thé
-Imports,Fraude,detail_products,3080.0,Lorient,Thé
-Exports,Monde,detail_products,131896.5,Lorient,Toiles de chanvre et de lin
-Exports,France,detail_products,8883.0,Lorient,Toiles de chanvre et de lin
-Imports,Fraude,detail_products,140779.5,Lorient,Toiles de chanvre et de lin
-Exports,Monde,detail_products,150.0,Lorient,Verrerie
-Imports,Monde,detail_products,2998.0,Lorient,Verrerie
-Exports,France,detail_products,390.0,Lorient,Verrerie
-Imports,France,detail_products,115.0,Lorient,Verrerie
-Exports,Fraude,detail_products,2573.0,Lorient,Verrerie
-Exports,Monde,detail_products,1872.0,Lorient,Denrées coloniales et épiceries diverses
-Imports,Fraude,detail_products,1872.0,Lorient,Denrées coloniales et épiceries diverses
-Exports,Monde,detail_products,1600.0,Lorient,Ouvrages divers et mélangés
-Imports,Monde,detail_products,3000.0,Lorient,Ouvrages divers et mélangés
-Exports,France,detail_products,1032.0,Lorient,Ouvrages divers et mélangés
-Imports,France,detail_products,508.0,Lorient,Ouvrages divers et mélangés
-Exports,Fraude,detail_products,876.0,Lorient,Ouvrages divers et mélangés
-Exports,France,detail_products,642.0,Lorient,Rubanerie et passementerie diverse
-Imports,Fraude,detail_products,642.0,Lorient,Rubanerie et passementerie diverse
-Exports,France,detail_products,28975.0,Lorient,Rubanerie et passementerie de soie
-Exports,Monde,detail_products,4590.0,Lorient,Rubanerie et passementerie de soie
-Imports,Fraude,detail_products,33565.0,Lorient,Rubanerie et passementerie de soie
-Exports,France,detail_products,13180.0,Lorient,Toiles diverses
-Imports,Monde,detail_products,35220.0,Lorient,Toiles diverses
-Exports,Fraude,detail_products,22040.0,Lorient,Toiles diverses
-Exports,France,detail_products,5730.5,Lorient,Toiles de coton
-Imports,Monde,detail_products,48685.0,Lorient,Toiles de coton
-Exports,Fraude,detail_products,42954.5,Lorient,Toiles de coton
-Exports,Colonies,detail_products,1067534.0,Lorient,Divers incertains
-Imports,Monde,detail_products,1150.0,Lorient,Divers incertains
-Imports,Fraude,detail_products,1066384.0,Lorient,Divers incertains
-Imports,Monde,detail_products,21746.0,Lorient,Acier
-Imports,France,detail_products,180.0,Lorient,Acier
-Exports,Fraude,detail_products,21926.0,Lorient,Acier
-Imports,Monde,detail_products,175269.0,Lorient,Bâtiments de mer et apparaux
-Exports,Fraude,detail_products,175269.0,Lorient,Bâtiments de mer et apparaux
-Imports,Monde,detail_products,23224.0,Lorient,"Bière, cidre et vinaigre"
-Exports,Fraude,detail_products,23224.0,Lorient,"Bière, cidre et vinaigre"
-Imports,Monde,detail_products,5975.0,Lorient,Bonneterie hors soie
-Imports,France,detail_products,160.0,Lorient,Bonneterie hors soie
-Exports,Fraude,detail_products,6135.0,Lorient,Bonneterie hors soie
-Imports,Monde,detail_products,243251.0,Lorient,Bois divers hors combustible
-Exports,Fraude,detail_products,243251.0,Lorient,Bois divers hors combustible
-Imports,Monde,detail_products,581187.0,Lorient,Ouvrages métalliques
-Imports,France,detail_products,25038.0,Lorient,Ouvrages métalliques
-Exports,Fraude,detail_products,606225.0,Lorient,Ouvrages métalliques
-Imports,Monde,detail_products,25079.0,Lorient,"Brai, goudron et résines"
-Exports,Fraude,detail_products,25079.0,Lorient,"Brai, goudron et résines"
-Imports,Monde,detail_products,35310.0,Lorient,Mercerie
-Imports,France,detail_products,1264.0,Lorient,Mercerie
-Exports,Fraude,detail_products,36574.0,Lorient,Mercerie
-Imports,Monde,detail_products,16180.0,Lorient,"Gravelée, potasse et védasse"
-Exports,Fraude,detail_products,16180.0,Lorient,"Gravelée, potasse et védasse"
-Imports,Monde,detail_products,16392.0,Lorient,Chairs et œufs
-Imports,France,detail_products,307.79999316,Lorient,Chairs et œufs
-Exports,Fraude,detail_products,16699.79999316,Lorient,Chairs et œufs
-Imports,Monde,detail_products,13273.0,Lorient,Subsistances diverses et mélangées
-Exports,Fraude,detail_products,13273.0,Lorient,Subsistances diverses et mélangées
-Imports,Monde,detail_products,221498.0,Lorient,Chanvre
-Exports,Fraude,detail_products,221498.0,Lorient,Chanvre
-Imports,Monde,detail_products,2213.0,Lorient,Cire
-Exports,Fraude,detail_products,2213.0,Lorient,Cire
-Imports,Monde,detail_products,35343.0,Lorient,Étoffes de laine
-Exports,Fraude,detail_products,35343.0,Lorient,Étoffes de laine
-Imports,Monde,detail_products,300.0,Lorient,Azur et cobalt
-Exports,Fraude,detail_products,300.0,Lorient,Azur et cobalt
-Imports,Monde,detail_products,7800.0,Lorient,Indigo
-Exports,Fraude,detail_products,7800.0,Lorient,Indigo
-Imports,Monde,detail_products,41844.0,Lorient,"Farine, gruau, biscuits et pâtes"
-Exports,Fraude,detail_products,41844.0,Lorient,"Farine, gruau, biscuits et pâtes"
-Imports,Monde,detail_products,6990.0,Lorient,Fer-blanc
-Imports,France,detail_products,578.5,Lorient,Fer-blanc
-Exports,Fraude,detail_products,7568.5,Lorient,Fer-blanc
-Imports,Monde,detail_products,18342.0,Lorient,Quincaillerie
-Exports,Fraude,detail_products,18342.0,Lorient,Quincaillerie
-Imports,Monde,detail_products,24404.2,Lorient,Fromage
-Imports,France,detail_products,20.4,Lorient,Fromage
-Exports,Fraude,detail_products,24424.600000000002,Lorient,Fromage
-Imports,Monde,detail_products,17920.0,Lorient,Graines grasses
-Imports,France,detail_products,1186.4,Lorient,Graines grasses
-Exports,Fraude,detail_products,19106.4,Lorient,Graines grasses
-Imports,Monde,detail_products,600.0,Lorient,Graines diverses et mélangées
-Exports,Fraude,detail_products,600.0,Lorient,Graines diverses et mélangées
-Imports,Monde,detail_products,24960.0,Lorient,Blé et autres grains comestibles
-Exports,Fraude,detail_products,24960.0,Lorient,Blé et autres grains comestibles
-Imports,Monde,detail_products,168621.0,Lorient,Riz
-Imports,France,detail_products,1957.500075,Lorient,Riz
-Exports,Fraude,detail_products,170578.500075,Lorient,Riz
-Imports,Monde,detail_products,66630.0,Lorient,Huile de poisson
-Exports,Fraude,detail_products,66630.0,Lorient,Huile de poisson
-Imports,Monde,detail_products,107498.79879999999,Lorient,Huiles diverses
-Exports,Fraude,detail_products,107498.79879999999,Lorient,Huiles diverses
-Imports,Monde,detail_products,4192.0,Lorient,Lin
-Imports,France,detail_products,153.0,Lorient,Lin
-Exports,Fraude,detail_products,4345.0,Lorient,Lin
-Imports,Monde,detail_products,1400.0,Lorient,Bijouterie et pierres fines
-Exports,Fraude,detail_products,1400.0,Lorient,Bijouterie et pierres fines
-Imports,Monde,detail_products,1654.0,Lorient,Poils et crin
-Exports,Fraude,detail_products,1654.0,Lorient,Poils et crin
-Imports,Monde,detail_products,954.0,Lorient,Produits inconnus
-Exports,Fraude,detail_products,954.0,Lorient,Produits inconnus
-Imports,Monde,detail_products,7000.0,Lorient,Sucre
-Exports,Fraude,detail_products,7000.0,Lorient,Sucre
-Imports,Monde,detail_products,3250.0,Lorient,"Bougies, chandelles et flambeaux"
-Imports,France,detail_products,132.00000165,Lorient,"Bougies, chandelles et flambeaux"
-Exports,Fraude,detail_products,3382.00000165,Lorient,"Bougies, chandelles et flambeaux"
-Imports,France,detail_products,422.79999396,Lorient,Métaux divers et mélangés
-Exports,Fraude,detail_products,422.79999396,Lorient,Métaux divers et mélangés
-Imports,France,detail_products,1095.0,Lorient,Alun
-Exports,Fraude,detail_products,1095.0,Lorient,Alun
-Imports,France,detail_products,6720.0,Lorient,Sels chimiques
-Exports,Fraude,detail_products,6720.0,Lorient,Sels chimiques
-Imports,France,detail_products,896.0,Lorient,Huile d'olive à manger
-Exports,Fraude,detail_products,896.0,Lorient,Huile d'olive à manger
-Imports,France,detail_products,812.0,Lorient,"Meubles, glaces et miroirs"
-Imports,Monde,detail_products,525.0,Lorient,"Meubles, glaces et miroirs"
-Exports,Fraude,detail_products,1337.0,Lorient,"Meubles, glaces et miroirs"
-Imports,France,detail_products,744.0,Lorient,Châles et mouchoirs hors soie
-Exports,Fraude,detail_products,744.0,Lorient,Châles et mouchoirs hors soie
-Imports,France,detail_products,12013.64945,Lorient,Savon
-Exports,Fraude,detail_products,12013.64945,Lorient,Savon
-Imports,France,detail_products,435.0,Lorient,Sirop et mélasse
-Exports,Fraude,detail_products,435.0,Lorient,Sirop et mélasse
-Imports,Monde,detail_products,1003.0,Lorient,"Mousseline, basin et nankin"
-Exports,Fraude,detail_products,1003.0,Lorient,"Mousseline, basin et nankin"
-Imports,France,detail_products,32856.0,Lorient,Vins de Bordeaux
-Exports,Fraude,detail_products,32856.0,Lorient,Vins de Bordeaux
-Imports,France,detail_products,1039.0,Lorient,Vin de liqueurs
-Exports,Fraude,detail_products,1039.0,Lorient,Vin de liqueurs
-Exports,Monde,total_trade,1563858.68502171,Lorient,autres produits
-Imports,Monde,total_trade,2834871.9988,Lorient,autres produits
-Exports,France,total_trade,80456.500093,Lorient,autres produits
-Imports,France,total_trade,113649.54951377,Lorient,autres produits
-Exports,Colonies,total_trade,1067534.0,Lorient,autres produits
-Exports,Fraude,total_trade,236672.36319906032,Lorient,autres produits
-Exports,Monde,total_trade,1872.0,Lorient,produits coloniaux
-Imports,Fraude,total_trade,1872.0,Lorient,produits coloniaux
-Imports,France,detail_products,8982.0,Bayonne,Bois des Indes
-Exports,Fraude,detail_products,8982.0,Bayonne,Bois des Indes
-Imports,France,detail_products,383756.2585921,Bayonne,"Brai, goudron et résines"
-Exports,France,detail_products,84546.89867504999,Bayonne,"Brai, goudron et résines"
-Exports,Monde,detail_products,141456.0,Bayonne,"Brai, goudron et résines"
-Imports,Monde,detail_products,400.0,Bayonne,"Brai, goudron et résines"
-Exports,Colonies,detail_products,8611.0,Bayonne,"Brai, goudron et résines"
-Exports,Fraude,detail_products,149542.35991705,Bayonne,"Brai, goudron et résines"
-Imports,France,detail_products,18447.099989399998,Bayonne,Chairs et œufs
-Exports,France,detail_products,5919.70008254,Bayonne,Chairs et œufs
-Exports,Monde,detail_products,45738.0,Bayonne,Chairs et œufs
-Imports,Monde,detail_products,720.0,Bayonne,Chairs et œufs
-Exports,Colonies,detail_products,71880.0,Bayonne,Chairs et œufs
-Imports,Fraude,detail_products,104370.60009314,Bayonne,Chairs et œufs
-Imports,France,detail_products,70842.59997,Bayonne,Réglisse
-Exports,Monde,detail_products,92762.0,Bayonne,Réglisse
-Imports,Monde,detail_products,29102.0,Bayonne,Réglisse
-Exports,Fraude,detail_products,7182.599969999996,Bayonne,Réglisse
-Imports,France,detail_products,111020.0,Bayonne,Eaux-de-vie et liqueurs
-Exports,France,detail_products,34491.89997435,Bayonne,Eaux-de-vie et liqueurs
-Exports,Monde,detail_products,617367.0,Bayonne,Eaux-de-vie et liqueurs
-Exports,Colonies,detail_products,41581.0,Bayonne,Eaux-de-vie et liqueurs
-Imports,Colonies,detail_products,2194.0,Bayonne,Eaux-de-vie et liqueurs
-Imports,Fraude,detail_products,580225.89997435,Bayonne,Eaux-de-vie et liqueurs
-Imports,France,detail_products,1667255.0,Bayonne,Laines non transformées diverses
-Exports,Monde,detail_products,60100.0,Bayonne,Laines non transformées diverses
-Imports,Monde,detail_products,7850.0,Bayonne,Laines non transformées diverses
-Exports,Fraude,detail_products,1615005.0,Bayonne,Laines non transformées diverses
-Imports,France,detail_products,3512.5,Bayonne,Bouchons principalement en liège
-Exports,Colonies,detail_products,536.0,Bayonne,Bouchons principalement en liège
-Exports,Fraude,detail_products,2976.5,Bayonne,Bouchons principalement en liège
-Imports,France,detail_products,7017.00005,Bayonne,Divers mélangés
-Exports,France,detail_products,2567.0,Bayonne,Divers mélangés
-Exports,Monde,detail_products,394.0,Bayonne,Divers mélangés
-Imports,Monde,detail_products,80.0,Bayonne,Divers mélangés
-Exports,Colonies,detail_products,620.0,Bayonne,Divers mélangés
-Imports,Colonies,detail_products,300.0,Bayonne,Divers mélangés
-Exports,Fraude,detail_products,3816.0000499999996,Bayonne,Divers mélangés
-Imports,France,detail_products,12240.0,Bayonne,Plumes brutes
-Exports,France,detail_products,13453.0,Bayonne,Plumes brutes
-Exports,Monde,detail_products,2200.0,Bayonne,Plumes brutes
-Exports,Colonies,detail_products,3000.0,Bayonne,Plumes brutes
-Imports,Fraude,detail_products,6413.0,Bayonne,Plumes brutes
-Exports,France,detail_products,88520.0,Bayonne,Animaux
-Imports,France,detail_products,32945.0,Bayonne,Animaux
-Exports,Monde,detail_products,435.0,Bayonne,Animaux
-Imports,Fraude,detail_products,56010.0,Bayonne,Animaux
-Exports,France,detail_products,8406.0,Bayonne,Habits et lingerie
-Imports,France,detail_products,6843.0,Bayonne,Habits et lingerie
-Exports,Monde,detail_products,300.0,Bayonne,Habits et lingerie
-Imports,Monde,detail_products,15950.0,Bayonne,Habits et lingerie
-Exports,Colonies,detail_products,2330.0,Bayonne,Habits et lingerie
-Exports,Fraude,detail_products,11757.0,Bayonne,Habits et lingerie
-Exports,France,detail_products,1524.0,Bayonne,Bonneterie hors soie
-Imports,Fraude,detail_products,1524.0,Bayonne,Bonneterie hors soie
-Exports,France,detail_products,7656.0,Bayonne,Combustibles dont charbons et bois
-Imports,France,detail_products,159.0,Bayonne,Combustibles dont charbons et bois
-Exports,Monde,detail_products,3683.0,Bayonne,Combustibles dont charbons et bois
-Imports,Monde,detail_products,6887.0,Bayonne,Combustibles dont charbons et bois
-Imports,Fraude,detail_products,4293.0,Bayonne,Combustibles dont charbons et bois
-Exports,France,detail_products,30439.2,Bayonne,Bois divers hors combustible
-Imports,France,detail_products,162655.0,Bayonne,Bois divers hors combustible
-Exports,Monde,detail_products,190.0,Bayonne,Bois divers hors combustible
-Imports,Monde,detail_products,960.0,Bayonne,Bois divers hors combustible
-Exports,Colonies,detail_products,1619.0,Bayonne,Bois divers hors combustible
-Imports,Colonies,detail_products,460.0,Bayonne,Bois divers hors combustible
-Exports,Fraude,detail_products,131826.8,Bayonne,Bois divers hors combustible
-Exports,France,detail_products,58753.89889308001,Bayonne,"Ouvrages de bois, liège et jonc"
-Imports,France,detail_products,29432.5,Bayonne,"Ouvrages de bois, liège et jonc"
-Exports,Monde,detail_products,43300.0,Bayonne,"Ouvrages de bois, liège et jonc"
-Imports,Monde,detail_products,6800.0,Bayonne,"Ouvrages de bois, liège et jonc"
-Exports,Colonies,detail_products,1090.0,Bayonne,"Ouvrages de bois, liège et jonc"
-Imports,Fraude,detail_products,66911.39889308001,Bayonne,"Ouvrages de bois, liège et jonc"
-Exports,France,detail_products,1140.0,Bayonne,Chapeaux hors paille et écorce
-Exports,Colonies,detail_products,600.0,Bayonne,Chapeaux hors paille et écorce
-Imports,Fraude,detail_products,1740.0,Bayonne,Chapeaux hors paille et écorce
-Exports,France,detail_products,8983.60021559,Bayonne,Cordage et filets
-Imports,France,detail_products,10480.0,Bayonne,Cordage et filets
-Exports,Monde,detail_products,4207.0,Bayonne,Cordage et filets
-Imports,Monde,detail_products,11732.0,Bayonne,Cordage et filets
-Exports,Colonies,detail_products,44444.0,Bayonne,Cordage et filets
-Imports,Fraude,detail_products,35422.60021559,Bayonne,Cordage et filets
-Exports,France,detail_products,20367.69988184,Bayonne,"Cuirs, peaux et pelleterie"
-Imports,France,detail_products,149201.0,Bayonne,"Cuirs, peaux et pelleterie"
-Exports,Monde,detail_products,20950.0,Bayonne,"Cuirs, peaux et pelleterie"
-Imports,Monde,detail_products,275942.0,Bayonne,"Cuirs, peaux et pelleterie"
-Imports,Colonies,detail_products,34875.0,Bayonne,"Cuirs, peaux et pelleterie"
-Exports,Fraude,detail_products,418700.30011815997,Bayonne,"Cuirs, peaux et pelleterie"
-Exports,France,detail_products,15820.5,Bayonne,Ouvrages métalliques
-Imports,France,detail_products,277283.96001100005,Bayonne,Ouvrages métalliques
-Exports,Monde,detail_products,8430.0,Bayonne,Ouvrages métalliques
-Imports,Monde,detail_products,190440.0,Bayonne,Ouvrages métalliques
-Exports,Colonies,detail_products,29483.0,Bayonne,Ouvrages métalliques
-Exports,Fraude,detail_products,413990.46001100005,Bayonne,Ouvrages métalliques
-Exports,France,detail_products,4268.0,Bayonne,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,France,detail_products,9316.0,Bayonne,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Monde,detail_products,13952.0,Bayonne,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,Monde,detail_products,24984.0,Bayonne,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Fraude,detail_products,16080.0,Bayonne,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,France,detail_products,8003.5,Bayonne,Fils divers
-Imports,France,detail_products,979.0,Bayonne,Fils divers
-Exports,Monde,detail_products,9240.0,Bayonne,Fils divers
-Imports,Monde,detail_products,80300.0,Bayonne,Fils divers
-Imports,Colonies,detail_products,1045.0,Bayonne,Fils divers
-Exports,Fraude,detail_products,65080.5,Bayonne,Fils divers
-Exports,France,detail_products,6868.00001,Bayonne,Matières premières diverses
-Imports,France,detail_products,20766.0,Bayonne,Matières premières diverses
-Exports,Monde,detail_products,1090.0,Bayonne,Matières premières diverses
-Imports,Monde,detail_products,1873.0,Bayonne,Matières premières diverses
-Exports,Fraude,detail_products,14680.99999,Bayonne,Matières premières diverses
-Exports,France,detail_products,1272742.214505826,Bayonne,Blé et autres grains comestibles
-Imports,France,detail_products,1200981.9492438799,Bayonne,Blé et autres grains comestibles
-Exports,Colonies,detail_products,1392.0,Bayonne,Blé et autres grains comestibles
-Imports,Monde,detail_products,1101366.0,Bayonne,Blé et autres grains comestibles
-Exports,Fraude,detail_products,1028213.734738054,Bayonne,Blé et autres grains comestibles
-Exports,France,detail_products,75980.0000534,Bayonne,Légumes
-Imports,France,detail_products,10576.0,Bayonne,Légumes
-Exports,Monde,detail_products,32074.0,Bayonne,Légumes
-Imports,Monde,detail_products,28922.0,Bayonne,Légumes
-Imports,Fraude,detail_products,68556.0000534,Bayonne,Légumes
-Exports,France,detail_products,11840.0,Bayonne,Mercerie
-Imports,France,detail_products,1800.0,Bayonne,Mercerie
-Exports,Monde,detail_products,19768.0,Bayonne,Mercerie
-Imports,Monde,detail_products,35722.0,Bayonne,Mercerie
-Exports,Fraude,detail_products,5914.0,Bayonne,Mercerie
-Exports,France,detail_products,41130.0,Bayonne,Châles et mouchoirs hors soie
-Exports,Colonies,detail_products,14356.0,Bayonne,Châles et mouchoirs hors soie
-Imports,Monde,detail_products,16500.0,Bayonne,Châles et mouchoirs hors soie
-Imports,Fraude,detail_products,38986.0,Bayonne,Châles et mouchoirs hors soie
-Exports,France,detail_products,6141.000008049999,Bayonne,Ouvrages divers et mélangés
-Imports,France,detail_products,5165.2,Bayonne,Ouvrages divers et mélangés
-Exports,Colonies,detail_products,11198.0,Bayonne,Ouvrages divers et mélangés
-Imports,Monde,detail_products,660.0,Bayonne,Ouvrages divers et mélangés
-Imports,Fraude,detail_products,11513.800008049999,Bayonne,Ouvrages divers et mélangés
-Exports,France,detail_products,9700.000003500001,Bayonne,Drogues diverses
-Exports,Monde,detail_products,300.0,Bayonne,Drogues diverses
-Imports,Fraude,detail_products,10000.000003500001,Bayonne,Drogues diverses
-Exports,France,detail_products,38965.2,Bayonne,Pêche et fruits de mer
-Imports,France,detail_products,9048.0,Bayonne,Pêche et fruits de mer
-Exports,Monde,detail_products,19760.0,Bayonne,Pêche et fruits de mer
-Imports,Monde,detail_products,404022.0,Bayonne,Pêche et fruits de mer
-Exports,Colonies,detail_products,74358.0,Bayonne,Pêche et fruits de mer
-Exports,Fraude,detail_products,279986.8,Bayonne,Pêche et fruits de mer
-Exports,France,detail_products,8933.5,Bayonne,Graisses diverses
-Imports,France,detail_products,25346.4498512,Bayonne,Graisses diverses
-Exports,Colonies,detail_products,2699.0,Bayonne,Graisses diverses
-Imports,Monde,detail_products,45185.0,Bayonne,Graisses diverses
-Exports,Fraude,detail_products,58898.9498512,Bayonne,Graisses diverses
-Exports,France,detail_products,127380.5,Bayonne,Toiles de chanvre et de lin
-Imports,France,detail_products,1744.0,Bayonne,Toiles de chanvre et de lin
-Imports,Monde,detail_products,261950.0,Bayonne,Toiles de chanvre et de lin
-Exports,Fraude,detail_products,136313.5,Bayonne,Toiles de chanvre et de lin
-Exports,France,detail_products,3798.15995337,Bayonne,Verrerie
-Imports,France,detail_products,5065.08,Bayonne,Verrerie
-Exports,Monde,detail_products,1200.0,Bayonne,Verrerie
-Imports,Monde,detail_products,1250.0,Bayonne,Verrerie
-Exports,Fraude,detail_products,1316.92004663,Bayonne,Verrerie
-Exports,France,detail_products,557448.0,Bayonne,Vins divers
-Imports,France,detail_products,31189.5,Bayonne,Vins divers
-Exports,Monde,detail_products,670831.0,Bayonne,Vins divers
-Imports,Monde,detail_products,13522.0,Bayonne,Vins divers
-Exports,Colonies,detail_products,121196.0,Bayonne,Vins divers
-Imports,Fraude,detail_products,1304763.5,Bayonne,Vins divers
-Exports,Monde,detail_products,2771.0,Bayonne,"Bière, cidre et vinaigre"
-Imports,Monde,detail_products,3186.0,Bayonne,"Bière, cidre et vinaigre"
-Exports,France,detail_products,368.0,Bayonne,"Bière, cidre et vinaigre"
-Exports,Colonies,detail_products,620.0,Bayonne,"Bière, cidre et vinaigre"
-Imports,Fraude,detail_products,573.0,Bayonne,"Bière, cidre et vinaigre"
-Exports,Monde,detail_products,2520.0,Bayonne,"Farine, gruau, biscuits et pâtes"
-Imports,Monde,detail_products,66067.0,Bayonne,"Farine, gruau, biscuits et pâtes"
-Exports,France,detail_products,31730.5,Bayonne,"Farine, gruau, biscuits et pâtes"
-Imports,France,detail_products,15903.83,Bayonne,"Farine, gruau, biscuits et pâtes"
-Exports,Colonies,detail_products,12250.0,Bayonne,"Farine, gruau, biscuits et pâtes"
-Exports,Fraude,detail_products,35470.33,Bayonne,"Farine, gruau, biscuits et pâtes"
-Exports,Monde,detail_products,6027.0,Bayonne,Bâtiments de mer et apparaux
-Imports,Monde,detail_products,16075.0,Bayonne,Bâtiments de mer et apparaux
-Imports,France,detail_products,32581.700568660002,Bayonne,Bâtiments de mer et apparaux
-Exports,France,detail_products,1400.0,Bayonne,Bâtiments de mer et apparaux
-Exports,Fraude,detail_products,41229.70056866,Bayonne,Bâtiments de mer et apparaux
-Exports,Monde,detail_products,12810.0,Bayonne,Matières brutes et transformées pour teinture
-Imports,Monde,detail_products,57209.0,Bayonne,Matières brutes et transformées pour teinture
-Exports,France,detail_products,2450.0,Bayonne,Matières brutes et transformées pour teinture
-Imports,France,detail_products,9674.75,Bayonne,Matières brutes et transformées pour teinture
-Exports,Colonies,detail_products,3184.0,Bayonne,Matières brutes et transformées pour teinture
-Imports,Colonies,detail_products,621.0,Bayonne,Matières brutes et transformées pour teinture
-Exports,Fraude,detail_products,49060.75,Bayonne,Matières brutes et transformées pour teinture
-Exports,Monde,detail_products,569085.0,Bayonne,Cacao et chocolat
-Imports,Monde,detail_products,1184822.0,Bayonne,Cacao et chocolat
-Imports,Colonies,detail_products,38815.0,Bayonne,Cacao et chocolat
-Imports,France,detail_products,8450.5,Bayonne,Cacao et chocolat
-Exports,France,detail_products,1580.0,Bayonne,Cacao et chocolat
-Exports,Fraude,detail_products,661422.5,Bayonne,Cacao et chocolat
-Exports,Monde,detail_products,12970.0,Bayonne,Chanvre
-Imports,Monde,detail_products,190990.0,Bayonne,Chanvre
-Exports,France,detail_products,5852.000106400001,Bayonne,Chanvre
-Imports,France,detail_products,8977.30006492,Bayonne,Chanvre
-Exports,Colonies,detail_products,1200.0,Bayonne,Chanvre
-Exports,Fraude,detail_products,179945.29995852002,Bayonne,Chanvre
-Exports,Monde,detail_products,17800.0,Bayonne,Cire
-Imports,Monde,detail_products,140800.0,Bayonne,Cire
-Exports,France,detail_products,25807.6665,Bayonne,Cire
-Imports,France,detail_products,648.0,Bayonne,Cire
-Exports,Fraude,detail_products,97840.33350000001,Bayonne,Cire
-Exports,Monde,detail_products,7600.0,Bayonne,Cuivre
-Imports,Monde,detail_products,13400.0,Bayonne,Cuivre
-Exports,France,detail_products,2070.0,Bayonne,Cuivre
-Imports,France,detail_products,1515.0,Bayonne,Cuivre
-Exports,Fraude,detail_products,5245.0,Bayonne,Cuivre
-Exports,Monde,detail_products,442620.0,Bayonne,Indigo
-Imports,Monde,detail_products,910100.0,Bayonne,Indigo
-Exports,France,detail_products,2488.0,Bayonne,Indigo
-Imports,France,detail_products,10224.0,Bayonne,Indigo
-Imports,Colonies,detail_products,5548.0,Bayonne,Indigo
-Exports,Fraude,detail_products,480764.0,Bayonne,Indigo
-Exports,Monde,detail_products,58334.0,Bayonne,Térébenthine
-Exports,France,detail_products,6796.7999865,Bayonne,Térébenthine
-Imports,France,detail_products,941.0,Bayonne,Térébenthine
-Imports,Fraude,detail_products,64189.7999865,Bayonne,Térébenthine
-Exports,Monde,detail_products,2400.0,Bayonne,Cannelle
-Imports,Monde,detail_products,10000.0,Bayonne,Cannelle
-Exports,France,detail_products,2655.0,Bayonne,Cannelle
-Imports,France,detail_products,28091.0,Bayonne,Cannelle
-Exports,Fraude,detail_products,33036.0,Bayonne,Cannelle
-Exports,Monde,detail_products,520.0,Bayonne,Toiles de coton
-Imports,Monde,detail_products,1085572.0,Bayonne,Toiles de coton
-Exports,France,detail_products,10012.0,Bayonne,Toiles de coton
-Imports,France,detail_products,165924.0,Bayonne,Toiles de coton
-Exports,Fraude,detail_products,1240964.0,Bayonne,Toiles de coton
-Exports,Monde,detail_products,30100.0,Bayonne,Quincaillerie
-Imports,Monde,detail_products,62510.0,Bayonne,Quincaillerie
-Exports,Colonies,detail_products,10805.0,Bayonne,Quincaillerie
-Imports,France,detail_products,1066.0,Bayonne,Quincaillerie
-Exports,France,detail_products,39951.75,Bayonne,Quincaillerie
-Imports,Fraude,detail_products,17280.75,Bayonne,Quincaillerie
-Exports,Monde,detail_products,480.0,Bayonne,Huile de poisson
-Imports,Monde,detail_products,16820.0,Bayonne,Huile de poisson
-Exports,Fraude,detail_products,16340.0,Bayonne,Huile de poisson
-Exports,Monde,detail_products,300.0,Bayonne,Huiles diverses
-Imports,Monde,detail_products,9740.0,Bayonne,Huiles diverses
-Exports,France,detail_products,2105.0,Bayonne,Huiles diverses
-Imports,France,detail_products,19799.550450000002,Bayonne,Huiles diverses
-Exports,Colonies,detail_products,1917.0,Bayonne,Huiles diverses
-Exports,Fraude,detail_products,25217.550450000002,Bayonne,Huiles diverses
-Exports,Monde,detail_products,340.0,Bayonne,"Meubles, glaces et miroirs"
-Exports,France,detail_products,1585.0,Bayonne,"Meubles, glaces et miroirs"
-Imports,France,detail_products,120.0,Bayonne,"Meubles, glaces et miroirs"
-Imports,Fraude,detail_products,1805.0,Bayonne,"Meubles, glaces et miroirs"
-Exports,Monde,detail_products,27616.0,Bayonne,Papier
-Imports,Monde,detail_products,8160.0,Bayonne,Papier
-Exports,France,detail_products,976.0,Bayonne,Papier
-Imports,France,detail_products,350.0,Bayonne,Papier
-Imports,Fraude,detail_products,20082.0,Bayonne,Papier
-Exports,Monde,detail_products,78250.0,Bayonne,Savon
-Imports,Monde,detail_products,9760.0,Bayonne,Savon
-Exports,France,detail_products,484.0000108,Bayonne,Savon
-Imports,France,detail_products,53450.4,Bayonne,Savon
-Imports,Fraude,detail_products,15523.600010799993,Bayonne,Savon
-Exports,Monde,detail_products,2612.0,Bayonne,Sel
-Imports,Monde,detail_products,2600.0,Bayonne,Sel
-Exports,France,detail_products,142204.17636921248,Bayonne,Sel
-Imports,France,detail_products,62188.0,Bayonne,Sel
-Imports,Fraude,detail_products,80028.17636921248,Bayonne,Sel
-Exports,Monde,detail_products,950.0,Bayonne,Produits inconnus
-Exports,Colonies,detail_products,781.0,Bayonne,Produits inconnus
-Imports,France,detail_products,2379.6,Bayonne,Produits inconnus
-Exports,Fraude,detail_products,648.5999999999999,Bayonne,Produits inconnus
-Exports,Monde,detail_products,870.0,Bayonne,Salpêtre et soufre
-Imports,France,detail_products,663.3,Bayonne,Salpêtre et soufre
-Imports,Fraude,detail_products,206.70000000000005,Bayonne,Salpêtre et soufre
-Exports,Monde,detail_products,46850.0,Bayonne,Tabac
-Imports,Monde,detail_products,161645.0,Bayonne,Tabac
-Imports,Colonies,detail_products,2372.0,Bayonne,Tabac
-Imports,France,detail_products,2032.0,Bayonne,Tabac
-Exports,France,detail_products,98580.6,Bayonne,Tabac
-Exports,Fraude,detail_products,20618.399999999994,Bayonne,Tabac
-Exports,Monde,detail_products,2600.0,Bayonne,Vins de Bordeaux
-Imports,Fraude,detail_products,2600.0,Bayonne,Vins de Bordeaux
-Exports,Monde,detail_products,1500.0,Bayonne,Vin de liqueurs
-Imports,Monde,detail_products,3230.0,Bayonne,Vin de liqueurs
-Imports,France,detail_products,14547.116,Bayonne,Vin de liqueurs
-Exports,Fraude,detail_products,16277.116000000002,Bayonne,Vin de liqueurs
-Exports,Monde,detail_products,90500.0,Bayonne,Café
-Exports,France,detail_products,256.8,Bayonne,Café
-Imports,Colonies,detail_products,192366.0,Bayonne,Café
-Exports,Fraude,detail_products,101609.2,Bayonne,Café
-Exports,Monde,detail_products,4230.0,Bayonne,Sirop et mélasse
-Imports,Colonies,detail_products,60.0,Bayonne,Sirop et mélasse
-Imports,Fraude,detail_products,4170.0,Bayonne,Sirop et mélasse
-Exports,Monde,detail_products,326884.0,Bayonne,Sucre
-Imports,Monde,detail_products,46610.0,Bayonne,Sucre
-Imports,Colonies,detail_products,599740.0,Bayonne,Sucre
-Imports,France,detail_products,182940.3,Bayonne,Sucre
-Exports,Fraude,detail_products,502406.30000000005,Bayonne,Sucre
-Exports,France,detail_products,15200.100092319999,Bayonne,Fruits secs et noix
-Imports,France,detail_products,768.0,Bayonne,Fruits secs et noix
-Imports,Monde,detail_products,1200.0,Bayonne,Fruits secs et noix
-Imports,Fraude,detail_products,13232.100092319999,Bayonne,Fruits secs et noix
-Exports,France,detail_products,1845.38,Bayonne,"Armes, munitions, poudre et pierres à fusil"
-Imports,Fraude,detail_products,1845.38,Bayonne,"Armes, munitions, poudre et pierres à fusil"
-Exports,France,detail_products,2170.0,Bayonne,Cendres diverses
-Imports,Fraude,detail_products,2170.0,Bayonne,Cendres diverses
-Exports,France,detail_products,4903.75006705,Bayonne,"Bougies, chandelles et flambeaux"
-Imports,France,detail_products,2828.3,Bayonne,"Bougies, chandelles et flambeaux"
-Exports,Colonies,detail_products,160.0,Bayonne,"Bougies, chandelles et flambeaux"
-Imports,Fraude,detail_products,2235.45006705,Bayonne,"Bougies, chandelles et flambeaux"
-Exports,France,detail_products,1013.0,Bayonne,Coton non transformé
-Imports,Colonies,detail_products,6718.0,Bayonne,Coton non transformé
-Imports,Monde,detail_products,1660.0,Bayonne,Coton non transformé
-Exports,Fraude,detail_products,7365.0,Bayonne,Coton non transformé
-Exports,France,detail_products,49883.0,Bayonne,Étoffes de laine
-Imports,France,detail_products,5550.0,Bayonne,Étoffes de laine
-Imports,Monde,detail_products,246220.0,Bayonne,Étoffes de laine
-Exports,Fraude,detail_products,201887.0,Bayonne,Étoffes de laine
-Exports,France,detail_products,891.8000172,Bayonne,Drogues médicinales diverses
-Imports,France,detail_products,4512.0,Bayonne,Drogues médicinales diverses
-Imports,Colonies,detail_products,1714.0,Bayonne,Drogues médicinales diverses
-Exports,Fraude,detail_products,5334.1999828,Bayonne,Drogues médicinales diverses
-Exports,France,detail_products,749.0,Bayonne,Fer
-Imports,France,detail_products,1633.0,Bayonne,Fer
-Imports,Monde,detail_products,660.0,Bayonne,Fer
-Exports,Fraude,detail_products,1544.0,Bayonne,Fer
-Exports,France,detail_products,420.0,Bayonne,Fromage
-Imports,France,detail_products,24379.6,Bayonne,Fromage
-Imports,Monde,detail_products,105280.0,Bayonne,Fromage
-Exports,Fraude,detail_products,129239.6,Bayonne,Fromage
-Exports,France,detail_products,1836.0,Bayonne,Fruits frais
-Imports,France,detail_products,879.0,Bayonne,Fruits frais
-Imports,Monde,detail_products,170.0,Bayonne,Fruits frais
-Imports,Fraude,detail_products,787.0,Bayonne,Fruits frais
-Exports,France,detail_products,2393.0,Bayonne,Soieries diverses
-Imports,Fraude,detail_products,2393.0,Bayonne,Soieries diverses
-Exports,France,detail_products,5040.600121920001,Bayonne,Riz
-Imports,France,detail_products,576.3,Bayonne,Riz
-Imports,Colonies,detail_products,3524.0,Bayonne,Riz
-Imports,Fraude,detail_products,940.3001219200005,Bayonne,Riz
-Exports,France,detail_products,253.0,Bayonne,Graines diverses et mélangées
-Imports,Fraude,detail_products,253.0,Bayonne,Graines diverses et mélangées
-Exports,France,detail_products,6076.8,Bayonne,Graines grasses
-Imports,Fraude,detail_products,6076.8,Bayonne,Graines grasses
-Exports,France,detail_products,5717.55,Bayonne,Huile d'olive à manger
-Imports,France,detail_products,43542.200000000004,Bayonne,Huile d'olive à manger
-Imports,Monde,detail_products,127422.0,Bayonne,Huile d'olive à manger
-Exports,Fraude,detail_products,165246.65000000002,Bayonne,Huile d'olive à manger
-Exports,France,detail_products,464.0,Bayonne,Marbre brut et ouvré
-Imports,Fraude,detail_products,464.0,Bayonne,Marbre brut et ouvré
-Exports,France,detail_products,107.9999976,Bayonne,Miel
-Imports,Fraude,detail_products,107.9999976,Bayonne,Miel
-Exports,France,detail_products,1035.0,Bayonne,Argenterie et orfèvrerie
-Imports,France,detail_products,14231.4,Bayonne,Argenterie et orfèvrerie
-Exports,Colonies,detail_products,21010.0,Bayonne,Argenterie et orfèvrerie
-Imports,Fraude,detail_products,7813.6,Bayonne,Argenterie et orfèvrerie
-Exports,France,detail_products,200.0,Bayonne,Cordonnerie et sellerie
-Exports,Colonies,detail_products,2312.0,Bayonne,Cordonnerie et sellerie
-Imports,Monde,detail_products,985.0,Bayonne,Cordonnerie et sellerie
-Imports,Fraude,detail_products,1527.0,Bayonne,Cordonnerie et sellerie
-Exports,France,detail_products,1786.0,Bayonne,Fleurs artificielles et ouvrages de mode
-Imports,Fraude,detail_products,1786.0,Bayonne,Fleurs artificielles et ouvrages de mode
-Exports,France,detail_products,870.0,Bayonne,Chapeaux d'écorce et de paille
-Imports,Fraude,detail_products,870.0,Bayonne,Chapeaux d'écorce et de paille
-Exports,France,detail_products,9114.0,Bayonne,Toiles diverses
-Imports,Monde,detail_products,885335.0,Bayonne,Toiles diverses
-Exports,Fraude,detail_products,876221.0,Bayonne,Toiles diverses
-Exports,Colonies,detail_products,8172.0,Bayonne,Beurre
-Imports,Monde,detail_products,1019.0,Bayonne,Beurre
-Imports,France,detail_products,1576.6499999999999,Bayonne,Beurre
-Exports,France,detail_products,217.2,Bayonne,Beurre
-Imports,Fraude,detail_products,5793.550000000001,Bayonne,Beurre
-Exports,Colonies,detail_products,4860.0,Bayonne,Subsistances diverses et mélangées
-Imports,Colonies,detail_products,256.0,Bayonne,Subsistances diverses et mélangées
-Imports,France,detail_products,900.0,Bayonne,Subsistances diverses et mélangées
-Exports,France,detail_products,481.5,Bayonne,Subsistances diverses et mélangées
-Imports,Fraude,detail_products,4185.5,Bayonne,Subsistances diverses et mélangées
-Exports,Colonies,detail_products,1200.0,Bayonne,Céruse et blanc de plomb
-Imports,Monde,detail_products,375.0,Bayonne,Céruse et blanc de plomb
-Imports,France,detail_products,1201.2,Bayonne,Céruse et blanc de plomb
-Exports,Fraude,detail_products,376.20000000000005,Bayonne,Céruse et blanc de plomb
-Exports,Colonies,detail_products,700.0,Bayonne,Fer-blanc
-Imports,Monde,detail_products,13090.0,Bayonne,Fer-blanc
-Imports,France,detail_products,4431.0,Bayonne,Fer-blanc
-Exports,Fraude,detail_products,16821.0,Bayonne,Fer-blanc
-Imports,Monde,detail_products,4760.0,Bayonne,Acier
-Imports,France,detail_products,3304.4,Bayonne,Acier
-Exports,Fraude,detail_products,8064.4,Bayonne,Acier
-Imports,Monde,detail_products,16850.0,Bayonne,Quinquina
-Imports,France,detail_products,13416.0,Bayonne,Quinquina
-Exports,Fraude,detail_products,30266.0,Bayonne,Quinquina
-Imports,Monde,detail_products,25900.0,Bayonne,Poivre et piment
-Imports,France,detail_products,37549.5,Bayonne,Poivre et piment
-Exports,Fraude,detail_products,63449.5,Bayonne,Poivre et piment
-Imports,Monde,detail_products,289231.0,Bayonne,Lin
-Imports,France,detail_products,44177.700000000004,Bayonne,Lin
-Exports,Fraude,detail_products,333408.7,Bayonne,Lin
-Imports,Monde,detail_products,1713.0,Bayonne,Rubanerie et passementerie de soie
-Exports,Fraude,detail_products,1713.0,Bayonne,Rubanerie et passementerie de soie
-Imports,Monde,detail_products,3000.0,Bayonne,Étoffes diverses
-Exports,France,detail_products,56498.0,Bayonne,Étoffes diverses
-Imports,Fraude,detail_products,53498.0,Bayonne,Étoffes diverses
-Imports,Monde,detail_products,82900.0,Bayonne,"Mousseline, basin et nankin"
-Exports,Fraude,detail_products,82900.0,Bayonne,"Mousseline, basin et nankin"
-Imports,France,detail_products,1170.0,Bayonne,Bijouterie et pierres fines
-Exports,Fraude,detail_products,1170.0,Bayonne,Bijouterie et pierres fines
-Imports,France,detail_products,2128.0,Bayonne,Textiles manufacturés divers et mélangés
-Exports,France,detail_products,2560.0,Bayonne,Textiles manufacturés divers et mélangés
-Imports,Fraude,detail_products,432.0,Bayonne,Textiles manufacturés divers et mélangés
-Imports,France,detail_products,8873.0,Bayonne,Manne et médicaments
-Exports,Fraude,detail_products,8873.0,Bayonne,Manne et médicaments
-Imports,France,detail_products,758.75,Bayonne,Séné
-Exports,Fraude,detail_products,758.75,Bayonne,Séné
-Imports,France,detail_products,648.0,Bayonne,Garance
-Exports,Fraude,detail_products,648.0,Bayonne,Garance
-Imports,France,detail_products,7812.0,Bayonne,Girofle
-Exports,Fraude,detail_products,7812.0,Bayonne,Girofle
-Imports,France,detail_products,180.0,Bayonne,Muscades
-Exports,Fraude,detail_products,180.0,Bayonne,Muscades
-Imports,France,detail_products,765.0,Bayonne,Étain
-Exports,Fraude,detail_products,765.0,Bayonne,Étain
-Imports,France,detail_products,1825.0,Bayonne,Étoffes de soie
-Exports,France,detail_products,14215.0,Bayonne,Étoffes de soie
-Imports,Fraude,detail_products,12390.0,Bayonne,Étoffes de soie
-Imports,France,detail_products,439.0,Bayonne,Librairie
-Exports,Fraude,detail_products,439.0,Bayonne,Librairie
-Imports,France,detail_products,165.0,Bayonne,Parfumerie et toilette
-Exports,Fraude,detail_products,165.0,Bayonne,Parfumerie et toilette
-Imports,France,detail_products,14883.18,Bayonne,Plomb
-Exports,Fraude,detail_products,14883.18,Bayonne,Plomb
-Imports,France,detail_products,1544.0,Bayonne,"Faucilles, faux et limes"
-Exports,Fraude,detail_products,1544.0,Bayonne,"Faucilles, faux et limes"
-Imports,France,detail_products,238.0,Bayonne,Rubanerie et passementerie diverse
-Exports,France,detail_products,3990.0,Bayonne,Rubanerie et passementerie diverse
-Imports,Fraude,detail_products,3752.0,Bayonne,Rubanerie et passementerie diverse
-Imports,France,detail_products,900.0,Bayonne,Soie
-Exports,Fraude,detail_products,900.0,Bayonne,Soie
-Imports,France,detail_products,147.0,Bayonne,Thé
-Exports,Fraude,detail_products,147.0,Bayonne,Thé
-Exports,France,detail_products,14208.0,Bayonne,Bonneterie de soie
-Imports,Fraude,detail_products,14208.0,Bayonne,Bonneterie de soie
-Imports,France,detail_products,1710.0,Bayonne,Salsepareille
-Exports,Fraude,detail_products,1710.0,Bayonne,Salsepareille
-Imports,France,detail_products,12948.0004316,Bayonne,Poils et crin
-Exports,Fraude,detail_products,12948.0004316,Bayonne,Poils et crin
-Exports,France,detail_products,560.0,Bayonne,Sels chimiques
-Imports,Fraude,detail_products,560.0,Bayonne,Sels chimiques
-Imports,France,detail_products,1100.0,Bayonne,Métaux divers et mélangés
-Exports,Fraude,detail_products,1100.0,Bayonne,Métaux divers et mélangés
-Imports,France,total_trade,5160206.625222757,Bayonne,autres produits
-Exports,France,total_trade,3139840.4455255987,Bayonne,autres produits
-Exports,Monde,total_trade,3141882.0,Bayonne,autres produits
-Imports,Monde,total_trade,8370185.0,Bayonne,autres produits
-Exports,Colonies,total_trade,500164.0,Bayonne,autres produits
-Exports,Fraude,total_trade,6748505.179697159,Bayonne,autres produits
-Exports,Monde,total_trade,417384.0,Bayonne,produits coloniaux
-Imports,Colonies,total_trade,890608.0,Bayonne,produits coloniaux
-Exports,Fraude,total_trade,473224.0,Bayonne,produits coloniaux
-Exports,Monde,detail_products,196188.600018,Marseille,Cacao et chocolat
-Imports,Monde,detail_products,125262.99799475001,Marseille,Cacao et chocolat
-Exports,Colonies,detail_products,14630.0,Marseille,Cacao et chocolat
-Imports,Colonies,detail_products,98113.0,Marseille,Cacao et chocolat
-Exports,Fraude,detail_products,12557.397976750013,Marseille,Cacao et chocolat
-Exports,Monde,detail_products,10338559.0,Marseille,Café
-Imports,Monde,detail_products,466215.2,Marseille,Café
-Imports,Colonies,detail_products,15241441.0,Marseille,Café
-Imports,France,detail_products,1055.6,Marseille,Café
-Exports,Fraude,detail_products,5370152.799999999,Marseille,Café
-Exports,Monde,detail_products,449563.70104,Marseille,Coton non transformé
-Imports,Monde,detail_products,8103817.0,Marseille,Coton non transformé
-Exports,France,detail_products,10286.89961,Marseille,Coton non transformé
-Imports,France,detail_products,12148.0,Marseille,Coton non transformé
-Imports,Colonies,detail_products,971005.0,Marseille,Coton non transformé
-Exports,Fraude,detail_products,8627119.39935,Marseille,Coton non transformé
-Exports,Monde,detail_products,278137.64996701,Marseille,Denrées coloniales et épiceries diverses
-Imports,Monde,detail_products,8389.900062,Marseille,Denrées coloniales et épiceries diverses
-Exports,Colonies,detail_products,1536.0,Marseille,Denrées coloniales et épiceries diverses
-Imports,Colonies,detail_products,9540.0,Marseille,Denrées coloniales et épiceries diverses
-Imports,Fraude,detail_products,261743.74990501002,Marseille,Denrées coloniales et épiceries diverses
-Exports,Monde,detail_products,1879838.0,Marseille,Indigo
-Imports,Monde,detail_products,1258750.25,Marseille,Indigo
-Imports,Colonies,detail_products,812862.0,Marseille,Indigo
-Exports,Fraude,detail_products,191774.25,Marseille,Indigo
-Exports,Monde,detail_products,38674.0,Marseille,Rocou
-Imports,Monde,detail_products,3162.5,Marseille,Rocou
-Imports,Colonies,detail_products,53337.0,Marseille,Rocou
-Exports,Fraude,detail_products,17825.5,Marseille,Rocou
-Exports,Monde,detail_products,12200117.3999885,Marseille,Sucre
-Imports,Colonies,detail_products,13853256.0,Marseille,Sucre
-Exports,Fraude,detail_products,1653138.6000114996,Marseille,Sucre
-Exports,France,detail_products,23529.0,Marseille,"Armes, munitions, poudre et pierres à fusil"
-Exports,Monde,detail_products,15486.799799999999,Marseille,"Armes, munitions, poudre et pierres à fusil"
-Exports,Colonies,detail_products,16725.0,Marseille,"Armes, munitions, poudre et pierres à fusil"
-Imports,Fraude,detail_products,55740.7998,Marseille,"Armes, munitions, poudre et pierres à fusil"
-Exports,France,detail_products,1250.0,Marseille,Bijouterie et pierres fines
-Exports,Monde,detail_products,9800.0,Marseille,Bijouterie et pierres fines
-Imports,Monde,detail_products,99178.5,Marseille,Bijouterie et pierres fines
-Exports,Colonies,detail_products,12759.0,Marseille,Bijouterie et pierres fines
-Exports,Fraude,detail_products,75369.5,Marseille,Bijouterie et pierres fines
-Exports,France,detail_products,152873.0,Marseille,Habits et lingerie
-Exports,Monde,detail_products,11103.599952,Marseille,Habits et lingerie
-Imports,Monde,detail_products,89582.251735,Marseille,Habits et lingerie
-Exports,Colonies,detail_products,113448.0,Marseille,Habits et lingerie
-Imports,Fraude,detail_products,187842.34821699996,Marseille,Habits et lingerie
-Exports,France,detail_products,348916.0,Marseille,Bonneterie hors soie
-Exports,Monde,detail_products,564164.0,Marseille,Bonneterie hors soie
-Imports,Monde,detail_products,18946.199969,Marseille,Bonneterie hors soie
-Exports,Colonies,detail_products,144.0,Marseille,Bonneterie hors soie
-Imports,Fraude,detail_products,894277.800031,Marseille,Bonneterie hors soie
-Exports,France,detail_products,1239195.0,Marseille,Soieries diverses
-Exports,Monde,detail_products,2205.0,Marseille,Soieries diverses
-Imports,Monde,detail_products,3864951.0,Marseille,Soieries diverses
-Exports,Colonies,detail_products,144744.0,Marseille,Soieries diverses
-Exports,Fraude,detail_products,2478807.0,Marseille,Soieries diverses
-Exports,France,detail_products,25272.0,Marseille,Gants
-Exports,Colonies,detail_products,25981.0,Marseille,Gants
-Imports,Fraude,detail_products,51253.0,Marseille,Gants
-Exports,France,detail_products,398880.0,Marseille,Chapeaux hors paille et écorce
-Exports,Monde,detail_products,222120.0,Marseille,Chapeaux hors paille et écorce
-Exports,Colonies,detail_products,1056147.0,Marseille,Chapeaux hors paille et écorce
-Imports,Fraude,detail_products,1677147.0,Marseille,Chapeaux hors paille et écorce
-Exports,France,detail_products,12341832.0,Marseille,Étoffes de laine
-Exports,Monde,detail_products,11418622.097937202,Marseille,Étoffes de laine
-Imports,Monde,detail_products,5056473.5901420005,Marseille,Étoffes de laine
-Exports,Colonies,detail_products,259960.0,Marseille,Étoffes de laine
-Imports,Fraude,detail_products,18963940.507795203,Marseille,Étoffes de laine
-Exports,France,detail_products,500.0,Marseille,Dentelles
-Exports,Colonies,detail_products,1800.0,Marseille,Dentelles
-Imports,Monde,detail_products,600.0,Marseille,Dentelles
-Imports,Fraude,detail_products,1700.0,Marseille,Dentelles
-Exports,France,detail_products,1023850.0,Marseille,Dorure
-Exports,Monde,detail_products,211565.0,Marseille,Dorure
-Exports,Colonies,detail_products,22515.0,Marseille,Dorure
-Imports,Fraude,detail_products,1257930.0,Marseille,Dorure
-Exports,France,detail_products,295222.4999775,Marseille,Toiles de chanvre et de lin
-Imports,France,detail_products,20631.59978,Marseille,Toiles de chanvre et de lin
-Exports,Monde,detail_products,821258.9937,Marseille,Toiles de chanvre et de lin
-Imports,Monde,detail_products,694781.6090200001,Marseille,Toiles de chanvre et de lin
-Exports,Colonies,detail_products,335345.0,Marseille,Toiles de chanvre et de lin
-Imports,Fraude,detail_products,736413.2848774998,Marseille,Toiles de chanvre et de lin
-Exports,France,detail_products,2577.0,Marseille,Drogues médicinales diverses
-Exports,Monde,detail_products,34876.700054,Marseille,Drogues médicinales diverses
-Imports,Monde,detail_products,80989.79970750002,Marseille,Drogues médicinales diverses
-Exports,Colonies,detail_products,129238.0,Marseille,Drogues médicinales diverses
-Imports,Colonies,detail_products,77092.0,Marseille,Drogues médicinales diverses
-Imports,Fraude,detail_products,8609.900346499984,Marseille,Drogues médicinales diverses
-Exports,France,detail_products,675.0,Marseille,Étain
-Exports,Monde,detail_products,168184.79981199998,Marseille,Étain
-Imports,Monde,detail_products,117814.99,Marseille,Étain
-Imports,Fraude,detail_products,51044.80981199998,Marseille,Étain
-Exports,France,detail_products,973853.75,Marseille,Étoffes diverses
-Exports,Monde,detail_products,161390.102059,Marseille,Étoffes diverses
-Imports,Monde,detail_products,347916.0,Marseille,Étoffes diverses
-Exports,Colonies,detail_products,32357.0,Marseille,Étoffes diverses
-Imports,Fraude,detail_products,819684.8520589999,Marseille,Étoffes diverses
-Exports,France,detail_products,34724.0,Marseille,Textiles manufacturés divers et mélangés
-Exports,Colonies,detail_products,7149.0,Marseille,Textiles manufacturés divers et mélangés
-Imports,Monde,detail_products,7988.0,Marseille,Textiles manufacturés divers et mélangés
-Imports,Fraude,detail_products,33885.0,Marseille,Textiles manufacturés divers et mélangés
-Exports,France,detail_products,308834.2508,Marseille,Toiles de coton
-Imports,France,detail_products,6900.0,Marseille,Toiles de coton
-Exports,Monde,detail_products,283385.50632000004,Marseille,Toiles de coton
-Imports,Monde,detail_products,408936.8,Marseille,Toiles de coton
-Exports,Colonies,detail_products,969333.0,Marseille,Toiles de coton
-Imports,Fraude,detail_products,1145715.95712,Marseille,Toiles de coton
-Exports,France,detail_products,3005011.0,Marseille,Étoffes de soie
-Exports,Monde,detail_products,2862414.0,Marseille,Étoffes de soie
-Imports,Monde,detail_products,159800.0,Marseille,Étoffes de soie
-Exports,Colonies,detail_products,462358.0,Marseille,Étoffes de soie
-Imports,Fraude,detail_products,6169983.0,Marseille,Étoffes de soie
-Exports,France,detail_products,1297.0,Marseille,Fer
-Exports,Monde,detail_products,9985.279999999999,Marseille,Fer
-Imports,Monde,detail_products,19013.11944,Marseille,Fer
-Exports,Fraude,detail_products,7730.83944,Marseille,Fer
-Exports,France,detail_products,24881.0,Marseille,Fils divers
-Exports,Monde,detail_products,3292143.419804,Marseille,Fils divers
-Imports,Monde,detail_products,6568105.2019956,Marseille,Fils divers
-Exports,Colonies,detail_products,90756.0,Marseille,Fils divers
-Imports,Colonies,detail_products,23958.0,Marseille,Fils divers
-Exports,Fraude,detail_products,3184282.7821916,Marseille,Fils divers
-Exports,France,detail_products,89518.0,Marseille,Châles et mouchoirs hors soie
-Imports,France,detail_products,17082.0,Marseille,Châles et mouchoirs hors soie
-Exports,Colonies,detail_products,365647.0,Marseille,Châles et mouchoirs hors soie
-Imports,Fraude,detail_products,438083.0,Marseille,Châles et mouchoirs hors soie
-Exports,France,detail_products,119234.0,Marseille,"Meubles, glaces et miroirs"
-Exports,Monde,detail_products,7956.0,Marseille,"Meubles, glaces et miroirs"
-Exports,Colonies,detail_products,71575.0,Marseille,"Meubles, glaces et miroirs"
-Imports,Fraude,detail_products,198765.0,Marseille,"Meubles, glaces et miroirs"
-Exports,France,detail_products,59877.0,Marseille,Ouvrages divers et mélangés
-Exports,Monde,detail_products,78687.8300806,Marseille,Ouvrages divers et mélangés
-Imports,Monde,detail_products,137180.67475,Marseille,Ouvrages divers et mélangés
-Exports,Colonies,detail_products,294212.0,Marseille,Ouvrages divers et mélangés
-Imports,Fraude,detail_products,295596.1553306,Marseille,Ouvrages divers et mélangés
-Exports,France,detail_products,4930.0,Marseille,Horlogerie
-Exports,Monde,detail_products,21462.0,Marseille,Horlogerie
-Imports,Monde,detail_products,54765.0,Marseille,Horlogerie
-Exports,Fraude,detail_products,28373.0,Marseille,Horlogerie
-Exports,France,detail_products,14688.00022,Marseille,Librairie
-Exports,Monde,detail_products,175835.9976528,Marseille,Librairie
-Imports,Monde,detail_products,15068.0,Marseille,Librairie
-Exports,Colonies,detail_products,5161.0,Marseille,Librairie
-Imports,Fraude,detail_products,180616.99787279998,Marseille,Librairie
-Exports,France,detail_products,1288456.50049,Marseille,Mercerie
-Imports,France,detail_products,3128.32,Marseille,Mercerie
-Exports,Monde,detail_products,877223.550605,Marseille,Mercerie
-Imports,Monde,detail_products,199737.99842879997,Marseille,Mercerie
-Exports,Colonies,detail_products,230921.0,Marseille,Mercerie
-Imports,Fraude,detail_products,2193734.7326662,Marseille,Mercerie
-Exports,France,detail_products,140700.0,Marseille,Châles et mouchoirs de soie
-Exports,Monde,detail_products,82035.0,Marseille,Châles et mouchoirs de soie
-Imports,Monde,detail_products,61204.0,Marseille,Châles et mouchoirs de soie
-Exports,Colonies,detail_products,2880.0,Marseille,Châles et mouchoirs de soie
-Imports,Fraude,detail_products,164411.0,Marseille,Châles et mouchoirs de soie
-Exports,France,detail_products,52880.16,Marseille,Argenterie et orfèvrerie
-Exports,Monde,detail_products,3008.0,Marseille,Argenterie et orfèvrerie
-Imports,Monde,detail_products,6912.0,Marseille,Argenterie et orfèvrerie
-Exports,Colonies,detail_products,20392.0,Marseille,Argenterie et orfèvrerie
-Imports,Fraude,detail_products,69368.16,Marseille,Argenterie et orfèvrerie
-Exports,France,detail_products,11360.0,Marseille,"Ouvrages de bois, liège et jonc"
-Imports,France,detail_products,9734.48007,Marseille,"Ouvrages de bois, liège et jonc"
-Exports,Monde,detail_products,109704.38996400002,Marseille,"Ouvrages de bois, liège et jonc"
-Imports,Monde,detail_products,884729.9085799999,Marseille,"Ouvrages de bois, liège et jonc"
-Exports,Colonies,detail_products,67270.0,Marseille,"Ouvrages de bois, liège et jonc"
-Imports,Colonies,detail_products,17645.0,Marseille,"Ouvrages de bois, liège et jonc"
-Exports,Fraude,detail_products,723774.998686,Marseille,"Ouvrages de bois, liège et jonc"
-Exports,France,detail_products,108543.51014500001,Marseille,Ouvrages métalliques
-Exports,Monde,detail_products,1232755.9719470001,Marseille,Ouvrages métalliques
-Imports,Monde,detail_products,2729927.1041840003,Marseille,Ouvrages métalliques
-Exports,Colonies,detail_products,110616.0,Marseille,Ouvrages métalliques
-Exports,Fraude,detail_products,1278011.6220920002,Marseille,Ouvrages métalliques
-Exports,France,detail_products,21899.0,Marseille,Fleurs artificielles et ouvrages de mode
-Exports,Colonies,detail_products,8574.0,Marseille,Fleurs artificielles et ouvrages de mode
-Imports,Fraude,detail_products,30473.0,Marseille,Fleurs artificielles et ouvrages de mode
-Exports,France,detail_products,26990.0,Marseille,Papier
-Exports,Monde,detail_products,271942.50025,Marseille,Papier
-Imports,Monde,detail_products,17159.0,Marseille,Papier
-Exports,Colonies,detail_products,134165.0,Marseille,Papier
-Imports,Fraude,detail_products,415938.50025,Marseille,Papier
-Exports,France,detail_products,3549.0,Marseille,Divers mélangés
-Imports,France,detail_products,184.0,Marseille,Divers mélangés
-Exports,Monde,detail_products,621.0,Marseille,Divers mélangés
-Imports,Monde,detail_products,5668.489906,Marseille,Divers mélangés
-Exports,Colonies,detail_products,44188.0,Marseille,Divers mélangés
-Imports,Colonies,detail_products,17782.0,Marseille,Divers mélangés
-Imports,Fraude,detail_products,24723.510094,Marseille,Divers mélangés
-Exports,France,detail_products,48900.0,Marseille,Plumes brutes
-Imports,Monde,detail_products,10574.19972,Marseille,Plumes brutes
-Imports,Fraude,detail_products,38325.800279999996,Marseille,Plumes brutes
-Exports,France,detail_products,25753.760044,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,France,detail_products,86580.00140000001,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Monde,detail_products,51911.69018360001,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,Monde,detail_products,163355.91595818,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,Colonies,detail_products,199533.0,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Imports,Fraude,detail_products,27262.532869419985,Marseille,"Porcelaine, poterie, faïence et ouvrages de terre"
-Exports,France,detail_products,196919.399905,Marseille,Quincaillerie
-Imports,France,detail_products,3740.25,Marseille,Quincaillerie
-Exports,Monde,detail_products,277272.302915,Marseille,Quincaillerie
-Imports,Monde,detail_products,142751.59100000001,Marseille,Quincaillerie
-Exports,Colonies,detail_products,349104.0,Marseille,Quincaillerie
-Imports,Fraude,detail_products,676803.86182,Marseille,Quincaillerie
-Exports,France,detail_products,11250.0,Marseille,Rubanerie et passementerie diverse
-Exports,Monde,detail_products,1317.0,Marseille,Rubanerie et passementerie diverse
-Imports,Monde,detail_products,17817.5,Marseille,Rubanerie et passementerie diverse
-Exports,Colonies,detail_products,2142.0,Marseille,Rubanerie et passementerie diverse
-Exports,Fraude,detail_products,3108.5,Marseille,Rubanerie et passementerie diverse
-Exports,France,detail_products,959145.0,Marseille,Rubanerie et passementerie de soie
-Exports,Monde,detail_products,161250.0,Marseille,Rubanerie et passementerie de soie
-Imports,Monde,detail_products,95080.0,Marseille,Rubanerie et passementerie de soie
-Exports,Colonies,detail_products,155012.0,Marseille,Rubanerie et passementerie de soie
-Imports,Fraude,detail_products,1180327.0,Marseille,Rubanerie et passementerie de soie
-Exports,France,detail_products,15382.0,Marseille,Soie
-Exports,Monde,detail_products,640244.0,Marseille,Soie
-Imports,Monde,detail_products,4655569.0,Marseille,Soie
-Exports,Colonies,detail_products,2312.0,Marseille,Soie
-Exports,Fraude,detail_products,3997631.0,Marseille,Soie
-Exports,France,detail_products,1348224.5,Marseille,"Mousseline, basin et nankin"
-Imports,France,detail_products,27530.0,Marseille,"Mousseline, basin et nankin"
-Exports,Colonies,detail_products,886250.0,Marseille,"Mousseline, basin et nankin"
-Imports,Fraude,detail_products,2206944.5,Marseille,"Mousseline, basin et nankin"
-Exports,France,detail_products,461429.0,Marseille,Toiles diverses
-Imports,France,detail_products,12586.0,Marseille,Toiles diverses
-Exports,Monde,detail_products,22783.439784000002,Marseille,Toiles diverses
-Imports,Monde,detail_products,468640.4,Marseille,Toiles diverses
-Exports,Colonies,detail_products,38074.0,Marseille,Toiles diverses
-Imports,Fraude,detail_products,41060.039783999964,Marseille,Toiles diverses
-Exports,France,detail_products,26180.0,Marseille,Verrerie
-Imports,France,detail_products,214.92,Marseille,Verrerie
-Exports,Monde,detail_products,42857.70003,Marseille,Verrerie
-Imports,Monde,detail_products,26139.619339999997,Marseille,Verrerie
-Exports,Colonies,detail_products,51630.0,Marseille,Verrerie
-Imports,Fraude,detail_products,94313.16069000002,Marseille,Verrerie
-Exports,France,detail_products,366.0,Marseille,"Bière, cidre et vinaigre"
-Exports,Monde,detail_products,6002.89011,Marseille,"Bière, cidre et vinaigre"
-Imports,Monde,detail_products,10454.00015,Marseille,"Bière, cidre et vinaigre"
-Exports,Colonies,detail_products,1533.0,Marseille,"Bière, cidre et vinaigre"
-Exports,Fraude,detail_products,2552.1100399999996,Marseille,"Bière, cidre et vinaigre"
-Exports,Monde,detail_products,8881.80006,Marseille,Acier
-Imports,Monde,detail_products,39224.930810000005,Marseille,Acier
-Exports,Fraude,detail_products,30343.130750000004,Marseille,Acier
-Exports,Monde,detail_products,37475.5301435,Marseille,Matières premières diverses
-Imports,Monde,detail_products,380614.91541979957,Marseille,Matières premières diverses
-Exports,France,detail_products,1479.0,Marseille,Matières premières diverses
-Imports,France,detail_products,2259.3700000000003,Marseille,Matières premières diverses
-Exports,Colonies,detail_products,5659.0,Marseille,Matières premières diverses
-Exports,Fraude,detail_products,338260.75527629955,Marseille,Matières premières diverses
-Exports,France,detail_products,87629.21072,Marseille,Fruits secs et noix
-Exports,Monde,detail_products,787772.7802889998,Marseille,Fruits secs et noix
-Imports,Monde,detail_products,333428.077204,Marseille,Fruits secs et noix
-Exports,Colonies,detail_products,163812.0,Marseille,Fruits secs et noix
-Imports,Fraude,detail_products,705785.9138049998,Marseille,Fruits secs et noix
-Exports,Monde,detail_products,6665.75013,Marseille,Beurre
-Imports,Monde,detail_products,2968.199988,Marseille,Beurre
-Imports,Fraude,detail_products,3697.5501420000005,Marseille,Beurre
-Exports,Monde,detail_products,14103.470012,Marseille,Bois divers hors combustible
-Imports,Monde,detail_products,39321.310604,Marseille,Bois divers hors combustible
-Exports,Colonies,detail_products,4028.0,Marseille,Bois divers hors combustible
-Imports,Colonies,detail_products,37492.0,Marseille,Bois divers hors combustible
-Imports,France,detail_products,5001.6,Marseille,Bois divers hors combustible
-Exports,Fraude,detail_products,63683.440592000006,Marseille,Bois divers hors combustible
-Exports,Monde,detail_products,1719.0,Marseille,Bois des Indes
-Imports,Monde,detail_products,22766.130026,Marseille,Bois des Indes
-Exports,France,detail_products,154.0,Marseille,Bois des Indes
-Exports,Fraude,detail_products,20893.130026,Marseille,Bois des Indes
-Exports,Monde,detail_products,549525.410595,Marseille,Matières brutes et transformées pour teinture
-Imports,Monde,detail_products,483081.9210750001,Marseille,Matières brutes et transformées pour teinture
-Exports,France,detail_products,3735.28,Marseille,Matières brutes et transformées pour teinture
-Imports,France,detail_products,306.0,Marseille,Matières brutes et transformées pour teinture
-Exports,Colonies,detail_products,8089.0,Marseille,Matières brutes et transformées pour teinture
-Imports,Colonies,detail_products,38976.0,Marseille,Matières brutes et transformées pour teinture
-Imports,Fraude,detail_products,38985.76951999997,Marseille,Matières brutes et transformées pour teinture
-Exports,Monde,detail_products,477216.0,Marseille,Bonneterie de soie
-Imports,Fraude,detail_products,477216.0,Marseille,Bonneterie de soie
-Exports,Monde,detail_products,5025.0,Marseille,"Filoselle, fleuret et bourre de soie"
-Imports,Monde,detail_products,5706.0,Marseille,"Filoselle, fleuret et bourre de soie"
-Exports,Fraude,detail_products,681.0,Marseille,"Filoselle, fleuret et bourre de soie"
-Exports,Monde,detail_products,67269.31982,Marseille,"Brai, goudron et résines"
-Imports,Monde,detail_products,142509.41787,Marseille,"Brai, goudron et résines"
-Exports,Colonies,detail_products,2485.0,Marseille,"Brai, goudron et résines"
-Imports,France,detail_products,15837.28,Marseille,"Brai, goudron et résines"
-Exports,Fraude,detail_products,88592.37805,Marseille,"Brai, goudron et résines"
-Exports,Monde,detail_products,526648.0238910001,Marseille,Drogues diverses
-Imports,Monde,detail_products,626064.4102335,Marseille,Drogues diverses
-Exports,France,detail_products,21657.19964,Marseille,Drogues diverses
-Imports,France,detail_products,257.25,Marseille,Drogues diverses
-Exports,Colonies,detail_products,39632.0,Marseille,Drogues diverses
-Exports,Fraude,detail_products,38384.436702499865,Marseille,Drogues diverses
-Exports,Monde,detail_products,92083.00011000001,Marseille,Cendres diverses
-Imports,Monde,detail_products,1763700.61919,Marseille,Cendres diverses
-Imports,France,detail_products,2200.08,Marseille,Cendres diverses
-Exports,Fraude,detail_products,1673817.6990800002,Marseille,Cendres diverses
-Exports,Monde,detail_products,74158.5,Marseille,"Gravelée, potasse et védasse"
-Imports,Monde,detail_products,344167.88,Marseille,"Gravelée, potasse et védasse"
-Exports,Fraude,detail_products,270009.38,Marseille,"Gravelée, potasse et védasse"
-Exports,France,detail_products,2535.04,Marseille,Alcalis
-Imports,Monde,detail_products,1404790.97632,Marseille,Alcalis
-Exports,Fraude,detail_products,1402255.9363199999,Marseille,Alcalis
-Exports,Monde,detail_products,9812.649815,Marseille,Chairs et œufs
-Imports,Monde,detail_products,27443.6105618,Marseille,Chairs et œufs
-Exports,Colonies,detail_products,225356.0,Marseille,Chairs et œufs
-Imports,Fraude,detail_products,207725.0392532,Marseille,Chairs et œufs
-Exports,Monde,detail_products,84118.539712,Marseille,Subsistances diverses et mélangées
-Imports,Monde,detail_products,93067.24097117,Marseille,Subsistances diverses et mélangées
-Exports,Colonies,detail_products,129131.0,Marseille,Subsistances diverses et mélangées
-Imports,Colonies,detail_products,5958.0,Marseille,Subsistances diverses et mélangées
-Imports,Fraude,detail_products,114224.29874083,Marseille,Subsistances diverses et mélangées
-Exports,Monde,detail_products,249203.39177499997,Marseille,Chanvre
-Imports,Monde,detail_products,1624047.255225,Marseille,Chanvre
-Exports,France,detail_products,575.05000775,Marseille,Chanvre
-Exports,Fraude,detail_products,1374268.81344225,Marseille,Chanvre
-Exports,Monde,detail_products,2160.0,Marseille,Chapeaux d'écorce et de paille
-Imports,Monde,detail_products,15740.300544,Marseille,Chapeaux d'écorce et de paille
-Exports,Colonies,detail_products,4356.0,Marseille,Chapeaux d'écorce et de paille
-Exports,Fraude,detail_products,9224.300544,Marseille,Chapeaux d'écorce et de paille
-Exports,France,detail_products,964.40004,Marseille,Combustibles dont charbons et bois
-Imports,France,detail_products,142822.38,Marseille,Combustibles dont charbons et bois
-Exports,Monde,detail_products,7879.0,Marseille,Combustibles dont charbons et bois
-Imports,Monde,detail_products,136788.59797499998,Marseille,Combustibles dont charbons et bois
-Exports,Fraude,detail_products,270767.577935,Marseille,Combustibles dont charbons et bois
-Exports,Monde,detail_products,48359.50115000001,Marseille,"Bougies, chandelles et flambeaux"
-Imports,Monde,detail_products,7022.949901,Marseille,"Bougies, chandelles et flambeaux"
-Exports,France,detail_products,3763.9,Marseille,"Bougies, chandelles et flambeaux"
-Exports,Colonies,detail_products,1405697.0,Marseille,"Bougies, chandelles et flambeaux"
-Imports,Fraude,detail_products,1450797.4512490002,Marseille,"Bougies, chandelles et flambeaux"
-Exports,Monde,detail_products,835037.376284,Marseille,Cire
-Imports,Monde,detail_products,740468.117086,Marseille,Cire
-Imports,France,detail_products,19466.7,Marseille,Cire
-Imports,Fraude,detail_products,75102.559198,Marseille,Cire
-Exports,Monde,detail_products,8906.9198592,Marseille,Colles diverses
-Imports,Monde,detail_products,35779.88123,Marseille,Colles diverses
-Exports,Colonies,detail_products,396.0,Marseille,Colles diverses
-Exports,Fraude,detail_products,26476.9613708,Marseille,Colles diverses
-Exports,Monde,detail_products,39869.38039005,Marseille,Cordage et filets
-Imports,Monde,detail_products,76746.49945,Marseille,Cordage et filets
-Exports,Colonies,detail_products,57642.0,Marseille,Cordage et filets
-Imports,Fraude,detail_products,20764.880940050003,Marseille,Cordage et filets
-Exports,Monde,detail_products,1753.499925,Marseille,Produits inconnus
-Imports,Fraude,detail_products,1753.499925,Marseille,Produits inconnus
-Exports,France,detail_products,23571.05034,Marseille,"Cuirs, peaux et pelleterie"
-Imports,France,detail_products,433200.290206,Marseille,"Cuirs, peaux et pelleterie"
-Exports,Monde,detail_products,811221.1462857,Marseille,"Cuirs, peaux et pelleterie"
-Imports,Monde,detail_products,2922917.9605372,Marseille,"Cuirs, peaux et pelleterie"
-Exports,Colonies,detail_products,209864.0,Marseille,"Cuirs, peaux et pelleterie"
-Imports,Colonies,detail_products,299730.0,Marseille,"Cuirs, peaux et pelleterie"
-Exports,Fraude,detail_products,2611192.0541175,Marseille,"Cuirs, peaux et pelleterie"
-Exports,Monde,detail_products,103163.64829999999,Marseille,Cuivre
-Imports,Monde,detail_products,1240159.05,Marseille,Cuivre
-Exports,Fraude,detail_products,1136995.4017,Marseille,Cuivre
-Exports,Monde,detail_products,317575.700056,Marseille,Parfumerie et toilette
-Imports,Monde,detail_products,153631.897653,Marseille,Parfumerie et toilette
-Exports,France,detail_products,2518.5,Marseille,Parfumerie et toilette
-Exports,Colonies,detail_products,16831.0,Marseille,Parfumerie et toilette
-Imports,Fraude,detail_products,183293.30240299998,Marseille,Parfumerie et toilette
-Exports,Monde,detail_products,228042.750815,Marseille,Gommes diverses
-Imports,Monde,detail_products,834691.2976,Marseille,Gommes diverses
-Exports,France,detail_products,5870.39976,Marseille,Gommes diverses
-Exports,Colonies,detail_products,2320.0,Marseille,Gommes diverses
-Exports,Fraude,detail_products,598458.1470250001,Marseille,Gommes diverses
-Exports,France,detail_products,19886.850270000003,Marseille,Manne et médicaments
-Exports,Monde,detail_products,80288.55135,Marseille,Manne et médicaments
-Imports,Monde,detail_products,270478.99875,Marseille,Manne et médicaments
-Exports,Colonies,detail_products,61007.0,Marseille,Manne et médicaments
-Exports,Fraude,detail_products,109296.59713000004,Marseille,Manne et médicaments
-Exports,Monde,detail_products,55762.5,Marseille,Quinquina
-Imports,Monde,detail_products,61586.0,Marseille,Quinquina
-Exports,Colonies,detail_products,38332.0,Marseille,Quinquina
-Imports,Fraude,detail_products,32508.5,Marseille,Quinquina
-Exports,Monde,detail_products,62857.75064175,Marseille,Safran
-Imports,Monde,detail_products,486699.28945965995,Marseille,Safran
-Exports,France,detail_products,1304.79001403,Marseille,Safran
-Exports,Colonies,detail_products,1392.0,Marseille,Safran
-Exports,Fraude,detail_products,421144.74880387995,Marseille,Safran
-Exports,Monde,detail_products,35665.00025,Marseille,Salsepareille
-Imports,Monde,detail_products,196711.2072,Marseille,Salsepareille
-Exports,Colonies,detail_products,57848.0,Marseille,Salsepareille
-Exports,Fraude,detail_products,103198.20695,Marseille,Salsepareille
-Exports,France,detail_products,8854.999749999999,Marseille,Séné
-Exports,Monde,detail_products,46027.500875,Marseille,Séné
-Imports,Monde,detail_products,304606.047501,Marseille,Séné
-Exports,Colonies,detail_products,7075.0,Marseille,Séné
-Exports,Fraude,detail_products,242648.546876,Marseille,Séné
-Exports,Monde,detail_products,103585.0,Marseille,Réglisse
-Imports,Monde,detail_products,173172.78445500002,Marseille,Réglisse
-Exports,France,detail_products,20138.0005,Marseille,Réglisse
-Exports,Colonies,detail_products,265.0,Marseille,Réglisse
-Exports,Fraude,detail_products,49184.78395500002,Marseille,Réglisse
-Exports,Monde,detail_products,86868.3743125,Marseille,Alun
-Imports,Monde,detail_products,230449.48621,Marseille,Alun
-Exports,Colonies,detail_products,275.0,Marseille,Alun
-Exports,Fraude,detail_products,143306.1118975,Marseille,Alun
-Exports,Monde,detail_products,72447.002575,Marseille,"Alquifoux, mine de plomb et graphite"
-Imports,Monde,detail_products,89006.25099999999,Marseille,"Alquifoux, mine de plomb et graphite"
-Exports,Colonies,detail_products,177.0,Marseille,"Alquifoux, mine de plomb et graphite"
-Exports,Fraude,detail_products,16382.248424999983,Marseille,"Alquifoux, mine de plomb et graphite"
-Exports,Monde,detail_products,2399.7600220000004,Marseille,Céruse et blanc de plomb
-Imports,Monde,detail_products,21850.8,Marseille,Céruse et blanc de plomb
-Exports,Colonies,detail_products,2094.0,Marseille,Céruse et blanc de plomb
-Exports,Fraude,detail_products,17357.039978,Marseille,Céruse et blanc de plomb
-Exports,Monde,detail_products,1826664.0,Marseille,Cochenille
-Imports,Monde,detail_products,2122500.0,Marseille,Cochenille
-Exports,Colonies,detail_products,240.0,Marseille,Cochenille
-Exports,Fraude,detail_products,295596.0,Marseille,Cochenille
-Exports,Monde,detail_products,118921.50138,Marseille,Galle
-Imports,Monde,detail_products,939939.0,Marseille,Galle
-Exports,France,detail_products,6660.79977,Marseille,Galle
-Exports,Colonies,detail_products,419.0,Marseille,Galle
-Exports,Fraude,detail_products,813937.69885,Marseille,Galle
-Exports,Monde,detail_products,317139.082813,Marseille,Garance
-Imports,Monde,detail_products,227133.00312,Marseille,Garance
-Imports,Fraude,detail_products,90006.079693,Marseille,Garance
-Exports,Monde,detail_products,233704.899948,Marseille,Verdet
-Imports,Monde,detail_products,1353.0,Marseille,Verdet
-Exports,France,detail_products,1372.8,Marseille,Verdet
-Exports,Colonies,detail_products,482.0,Marseille,Verdet
-Imports,Fraude,detail_products,234206.699948,Marseille,Verdet
-Exports,France,detail_products,33452.1409183,Marseille,Eaux-de-vie et liqueurs
-Imports,France,detail_products,265.00001,Marseille,Eaux-de-vie et liqueurs
-Exports,Monde,detail_products,360540.9891789,Marseille,Eaux-de-vie et liqueurs
-Imports,Monde,detail_products,11654.0,Marseille,Eaux-de-vie et liqueurs
-Exports,Colonies,detail_products,236751.0,Marseille,Eaux-de-vie et liqueurs
-Imports,Colonies,detail_products,55403.0,Marseille,Eaux-de-vie et liqueurs
-Imports,Fraude,detail_products,563422.1300872001,Marseille,Eaux-de-vie et liqueurs
-Exports,Monde,detail_products,15998.749749999999,Marseille,"Cornes, corail, écailles, ivoire et nacre"
-Imports,Monde,detail_products,31038.029888,Marseille,"Cornes, corail, écailles, ivoire et nacre"
-Imports,Colonies,detail_products,9996.0,Marseille,"Cornes, corail, écailles, ivoire et nacre"
-Exports,Fraude,detail_products,25035.280138000006,Marseille,"Cornes, corail, écailles, ivoire et nacre"
-Exports,Monde,detail_products,42720.0,Marseille,Cannelle
-Imports,Monde,detail_products,227614.0,Marseille,Cannelle
-Exports,Colonies,detail_products,11940.0,Marseille,Cannelle
-Exports,Fraude,detail_products,172954.0,Marseille,Cannelle
-Exports,Monde,detail_products,147180.0,Marseille,Girofle
-Imports,Monde,detail_products,383394.0,Marseille,Girofle
-Exports,France,detail_products,41364.0,Marseille,Girofle
-Exports,Colonies,detail_products,6252.0,Marseille,Girofle
-Exports,Fraude,detail_products,188598.0,Marseille,Girofle
-Exports,Monde,detail_products,318939.203104,Marseille,Poivre et piment
-Imports,Monde,detail_products,1123298.2267190001,Marseille,Poivre et piment
-Exports,Colonies,detail_products,33242.0,Marseille,Poivre et piment
-Exports,Fraude,detail_products,771117.0236150001,Marseille,Poivre et piment
-Exports,Monde,detail_products,19188.349961,Marseille,"Farine, gruau, biscuits et pâtes"
-Imports,Monde,detail_products,445031.28969599993,Marseille,"Farine, gruau, biscuits et pâtes"
-Exports,France,detail_products,63633.0025,Marseille,"Farine, gruau, biscuits et pâtes"
-Exports,Colonies,detail_products,127578.0,Marseille,"Farine, gruau, biscuits et pâtes"
-Exports,Fraude,detail_products,234631.93723499993,Marseille,"Farine, gruau, biscuits et pâtes"
-Exports,Monde,detail_products,1506.75,Marseille,Bâtiments de mer et apparaux
-Imports,Monde,detail_products,32570.340088,Marseille,Bâtiments de mer et apparaux
-Exports,Colonies,detail_products,5917.0,Marseille,Bâtiments de mer et apparaux
-Exports,Fraude,detail_products,25146.590088,Marseille,Bâtiments de mer et apparaux
-Exports,Monde,detail_products,32772.6,Marseille,Fer-blanc
-Imports,Monde,detail_products,113026.6,Marseille,Fer-blanc
-Exports,Colonies,detail_products,830.0,Marseille,Fer-blanc
-Exports,Fraude,detail_products,79424.0,Marseille,Fer-blanc
-Exports,Monde,detail_products,81120.5492055,Marseille,Fromage
-Imports,Monde,detail_products,366042.755665,Marseille,Fromage
-Exports,Colonies,detail_products,291479.0,Marseille,Fromage
-Imports,Fraude,detail_products,6556.793540499988,Marseille,Fromage
-Exports,France,detail_products,2418.879943,Marseille,Fruits frais
-Exports,Monde,detail_products,17445.199943,Marseille,Fruits frais
-Imports,Monde,detail_products,449393.7100875,Marseille,Fruits frais
-Exports,Colonies,detail_products,48910.0,Marseille,Fruits frais
-Exports,Fraude,detail_products,380619.6302015,Marseille,Fruits frais
-Exports,Monde,detail_products,1345479.37,Marseille,Blé et autres grains comestibles
-Imports,Monde,detail_products,12705418.801439999,Marseille,Blé et autres grains comestibles
-Exports,France,detail_products,26250.0,Marseille,Blé et autres grains comestibles
-Imports,France,detail_products,100610.04,Marseille,Blé et autres grains comestibles
-Exports,Colonies,detail_products,7066.0,Marseille,Blé et autres grains comestibles
-Exports,Fraude,detail_products,11427233.471439999,Marseille,Blé et autres grains comestibles
-Exports,France,detail_products,743.860013,Marseille,Riz
-Exports,Monde,detail_products,177186.09999999998,Marseille,Riz
-Imports,Monde,detail_products,1076381.77251,Marseille,Riz
-Exports,Colonies,detail_products,65521.0,Marseille,Riz
-Exports,Fraude,detail_products,832930.8124970001,Marseille,Riz
-Exports,Monde,detail_products,16828.749886,Marseille,Graines diverses et mélangées
-Imports,Monde,detail_products,42549.549615,Marseille,Graines diverses et mélangées
-Exports,France,detail_products,374.0,Marseille,Graines diverses et mélangées
-Exports,Colonies,detail_products,7277.0,Marseille,Graines diverses et mélangées
-Exports,Fraude,detail_products,18069.799729000002,Marseille,Graines diverses et mélangées
-Exports,Monde,detail_products,26443.0,Marseille,Graines de jardin
-Exports,Colonies,detail_products,1698.0,Marseille,Graines de jardin
-Imports,Fraude,detail_products,28141.0,Marseille,Graines de jardin
-Exports,Monde,detail_products,326.36,Marseille,Huiles diverses
-Imports,Monde,detail_products,19005678.949804,Marseille,Huiles diverses
-Exports,Colonies,detail_products,378.0,Marseille,Huiles diverses
-Imports,France,detail_products,1736.00008,Marseille,Huiles diverses
-Exports,Fraude,detail_products,19006710.589884,Marseille,Huiles diverses
-Exports,France,detail_products,147989.0,Marseille,Huile d'olive à manger
-Exports,Monde,detail_products,1106722.0,Marseille,Huile d'olive à manger
-Exports,Colonies,detail_products,856930.0,Marseille,Huile d'olive à manger
-Imports,Fraude,detail_products,2111641.0,Marseille,Huile d'olive à manger
-Exports,France,detail_products,153.74999625,Marseille,Huile de poisson
-Imports,France,detail_products,157.5,Marseille,Huile de poisson
-Exports,Monde,detail_products,3979.875,Marseille,Huile de poisson
-Exports,Colonies,detail_products,140.0,Marseille,Huile de poisson
-Imports,Fraude,detail_products,4116.12499625,Marseille,Huile de poisson
-Exports,Monde,detail_products,180525.95784,Marseille,Boissons diverses et mélangées
-Imports,Monde,detail_products,18645.879664,Marseille,Boissons diverses et mélangées
-Exports,France,detail_products,4741.920072,Marseille,Boissons diverses et mélangées
-Imports,Fraude,detail_products,166621.998248,Marseille,Boissons diverses et mélangées
-Exports,France,detail_products,76372.2976,Marseille,Laines non transformées diverses
-Exports,Monde,detail_products,885324.8654309999,Marseille,Laines non transformées diverses
-Imports,Monde,detail_products,4006678.296806,Marseille,Laines non transformées diverses
-Exports,Colonies,detail_products,33128.0,Marseille,Laines non transformées diverses
-Exports,Fraude,detail_products,3011853.1337750005,Marseille,Laines non transformées diverses
-Exports,France,detail_products,135.0,Marseille,Légumes
-Exports,Monde,detail_products,214014.18830499996,Marseille,Légumes
-Imports,Monde,detail_products,427915.620114,Marseille,Légumes
-Exports,Colonies,detail_products,78607.0,Marseille,Légumes
-Exports,Fraude,detail_products,135159.43180900003,Marseille,Légumes
-Exports,Monde,detail_products,15628.90035,Marseille,Bouchons principalement en liège
-Imports,Monde,detail_products,16637.7009,Marseille,Bouchons principalement en liège
-Exports,Colonies,detail_products,49414.0,Marseille,Bouchons principalement en liège
-Imports,Fraude,detail_products,48405.19945,Marseille,Bouchons principalement en liège
-Exports,Monde,detail_products,3673.64981,Marseille,Lin
-Imports,Monde,detail_products,2655.0,Marseille,Lin
-Imports,Fraude,detail_products,1018.6498099999999,Marseille,Lin
-Exports,Monde,detail_products,20916.48,Marseille,Marbre brut et ouvré
-Imports,Monde,detail_products,386119.599918,Marseille,Marbre brut et ouvré
-Exports,France,detail_products,561.0,Marseille,Marbre brut et ouvré
-Exports,Colonies,detail_products,59646.0,Marseille,Marbre brut et ouvré
-Exports,Fraude,detail_products,304996.119918,Marseille,Marbre brut et ouvré
-Exports,Monde,detail_products,13384.439694,Marseille,Miel
-Imports,Monde,detail_products,611.700003,Marseille,Miel
-Exports,Colonies,detail_products,282.0,Marseille,Miel
-Imports,Fraude,detail_products,13054.739691,Marseille,Miel
-Exports,Monde,detail_products,708541.99956,Marseille,Savon
-Imports,Monde,detail_products,4941.9998,Marseille,Savon
-Exports,France,detail_products,313446.5,Marseille,Savon
-Exports,Colonies,detail_products,1466356.0,Marseille,Savon
-Imports,Fraude,detail_products,2483402.49976,Marseille,Savon
-Exports,France,detail_products,1010.0,Marseille,Plomb
-Exports,Monde,detail_products,2613.0,Marseille,Plomb
-Imports,Monde,detail_products,65348.0,Marseille,Plomb
-Exports,Fraude,detail_products,61725.0,Marseille,Plomb
-Exports,Monde,detail_products,9500.0,Marseille,Plumes ouvrées
-Exports,Colonies,detail_products,5505.0,Marseille,Plumes ouvrées
-Imports,Fraude,detail_products,15005.0,Marseille,Plumes ouvrées
-Exports,France,detail_products,29772.73938,Marseille,Pêche et fruits de mer
-Imports,France,detail_products,43527.0,Marseille,Pêche et fruits de mer
-Exports,Monde,detail_products,1044601.1696899999,Marseille,Pêche et fruits de mer
-Imports,Monde,detail_products,658123.07804,Marseille,Pêche et fruits de mer
-Exports,Colonies,detail_products,57421.0,Marseille,Pêche et fruits de mer
-Imports,Fraude,detail_products,430144.83102999977,Marseille,Pêche et fruits de mer
-Exports,France,detail_products,24550.62375,Marseille,Salpêtre et soufre
-Exports,Monde,detail_products,167733.72615749997,Marseille,Salpêtre et soufre
-Imports,Monde,detail_products,252549.151989,Marseille,Salpêtre et soufre
-Exports,Colonies,detail_products,1124.0,Marseille,Salpêtre et soufre
-Exports,Fraude,detail_products,59140.802081500035,Marseille,Salpêtre et soufre
-Exports,Monde,detail_products,346.3199964,Marseille,Graisses diverses
-Imports,Monde,detail_products,595291.5771379999,Marseille,Graisses diverses
-Exports,France,detail_products,9544.32,Marseille,Graisses diverses
-Imports,France,detail_products,2131.69,Marseille,Graisses diverses
-Exports,Colonies,detail_products,98309.0,Marseille,Graisses diverses
-Exports,Fraude,detail_products,489223.6271415999,Marseille,Graisses diverses
-Exports,Monde,detail_products,148856.7983707,Marseille,Tabac
-Imports,Monde,detail_products,335974.392,Marseille,Tabac
-Exports,France,detail_products,99466.796,Marseille,Tabac
-Imports,Colonies,detail_products,19965.0,Marseille,Tabac
-Exports,Fraude,detail_products,107615.79762929998,Marseille,Tabac
-Exports,Monde,detail_products,2155.0,Marseille,Thé
-Imports,Monde,detail_products,13395.0,Marseille,Thé
-Imports,France,detail_products,6275.0,Marseille,Thé
-Exports,Fraude,detail_products,17515.0,Marseille,Thé
-Exports,Monde,detail_products,313982.72153603,Marseille,Vins divers
-Imports,Monde,detail_products,142099.8034354,Marseille,Vins divers
-Exports,France,detail_products,13205.96011614,Marseille,Vins divers
-Imports,France,detail_products,6244.0,Marseille,Vins divers
-Exports,Colonies,detail_products,1226923.0,Marseille,Vins divers
-Imports,Fraude,detail_products,1405767.87821677,Marseille,Vins divers
-Exports,Monde,detail_products,10341.09985227,Marseille,Vins de Bordeaux
-Imports,Fraude,detail_products,10341.09985227,Marseille,Vins de Bordeaux
-Exports,Colonies,detail_products,40169.0,Marseille,Poils et crin
-Imports,Monde,detail_products,55667.850189,Marseille,Poils et crin
-Exports,Fraude,detail_products,15498.850188999997,Marseille,Poils et crin
-Exports,Colonies,detail_products,1689.0,Marseille,Mercure
-Imports,Fraude,detail_products,1689.0,Marseille,Mercure
-Exports,Colonies,detail_products,7846.0,Marseille,Sels chimiques
-Imports,Monde,detail_products,33523.198704,Marseille,Sels chimiques
-Exports,Fraude,detail_products,25677.198704000002,Marseille,Sels chimiques
-Exports,Colonies,detail_products,1155.0,Marseille,Muscades
-Imports,Monde,detail_products,11214.0,Marseille,Muscades
-Exports,Fraude,detail_products,10059.0,Marseille,Muscades
-Exports,Colonies,detail_products,145.0,Marseille,Graines grasses
-Imports,Monde,detail_products,13009.07949,Marseille,Graines grasses
-Exports,Fraude,detail_products,12864.07949,Marseille,Graines grasses
-Exports,Colonies,detail_products,34554.0,Marseille,Sirop et mélasse
-Imports,Colonies,detail_products,3474.0,Marseille,Sirop et mélasse
-Imports,Fraude,detail_products,31080.0,Marseille,Sirop et mélasse
-Exports,Colonies,detail_products,36989.0,Marseille,Monnaies et métaux précieux
-Imports,Monde,detail_products,31317.0,Marseille,Monnaies et métaux précieux
-Imports,Fraude,detail_products,5672.0,Marseille,Monnaies et métaux précieux
-Exports,Colonies,detail_products,866754.0,Marseille,Cordonnerie et sellerie
-Imports,Fraude,detail_products,866754.0,Marseille,Cordonnerie et sellerie
-Exports,Colonies,detail_products,1660684.0,Marseille,Divers incertains
-Imports,Fraude,detail_products,1660684.0,Marseille,Divers incertains
-Imports,Monde,detail_products,9240.0,Marseille,Métaux divers et mélangés
-Exports,Fraude,detail_products,9240.0,Marseille,Métaux divers et mélangés
-Imports,Monde,detail_products,4628.25,Marseille,Azur et cobalt
-Exports,Fraude,detail_products,4628.25,Marseille,Azur et cobalt
-Imports,Monde,detail_products,13240.20006,Marseille,"Faucilles, faux et limes"
-Exports,Fraude,detail_products,13240.20006,Marseille,"Faucilles, faux et limes"
-Imports,Monde,detail_products,6197.12,Marseille,Vin de liqueurs
-Exports,Fraude,detail_products,6197.12,Marseille,Vin de liqueurs
-Exports,Monde,total_trade,24912626.0,Marseille,produits coloniaux
-Imports,Colonies,total_trade,31647025.0,Marseille,produits coloniaux
-Exports,Fraude,total_trade,6734399.0,Marseille,produits coloniaux
-Exports,France,total_trade,26351491.29229197,Marseille,autres produits
-Imports,France,total_trade,983812.3515460002,Marseille,autres produits
-Exports,Monde,total_trade,40516525.090179704,Marseille,autres produits
-Imports,Monde,total_trade,98943860.15101588,Marseille,autres produits
-Exports,Colonies,total_trade,16611629.0,Marseille,autres produits
-Exports,Fraude,total_trade,16448027.120090201,Marseille,autres produits
-Exports,Monde,detail_products,1182957.0,Dunkerque,Café
-Imports,Colonies,detail_products,4071453.0,Dunkerque,Café
-Exports,Fraude,detail_products,2888496.0,Dunkerque,Café
-Exports,Monde,detail_products,719051.0,Dunkerque,Coton non transformé
-Imports,Colonies,detail_products,1082427.0,Dunkerque,Coton non transformé
-Exports,Fraude,detail_products,363376.0,Dunkerque,Coton non transformé
-Exports,Monde,detail_products,101042.0,Dunkerque,Indigo
-Imports,Colonies,detail_products,89556.0,Dunkerque,Indigo
-Imports,Fraude,detail_products,11486.0,Dunkerque,Indigo
-Exports,Monde,detail_products,2211754.0,Dunkerque,Sucre
-Imports,Colonies,detail_products,3269855.0,Dunkerque,Sucre
-Exports,Fraude,detail_products,1058101.0,Dunkerque,Sucre
-Imports,Colonies,detail_products,4414.0,Dunkerque,Cacao et chocolat
-Exports,Fraude,detail_products,4414.0,Dunkerque,Cacao et chocolat
-Imports,Colonies,detail_products,2724.0,Dunkerque,Bois divers hors combustible
-Exports,Fraude,detail_products,2724.0,Dunkerque,Bois divers hors combustible
-Imports,Colonies,detail_products,16367.0,Dunkerque,Matières brutes et transformées pour teinture
-Exports,Fraude,detail_products,16367.0,Dunkerque,Matières brutes et transformées pour teinture
-Imports,Colonies,detail_products,1376.0,Dunkerque,Fils divers
-Exports,Fraude,detail_products,1376.0,Dunkerque,Fils divers
-Imports,Colonies,detail_products,150.0,Dunkerque,Subsistances diverses et mélangées
-Exports,Fraude,detail_products,150.0,Dunkerque,Subsistances diverses et mélangées
-Imports,Colonies,detail_products,61376.0,Dunkerque,"Cuirs, peaux et pelleterie"
-Exports,Fraude,detail_products,61376.0,Dunkerque,"Cuirs, peaux et pelleterie"
-Imports,Colonies,detail_products,19963.0,Dunkerque,Eaux-de-vie et liqueurs
-Exports,Fraude,detail_products,19963.0,Dunkerque,Eaux-de-vie et liqueurs
-Imports,Colonies,detail_products,210.0,Dunkerque,Sirop et mélasse
-Exports,Fraude,detail_products,210.0,Dunkerque,Sirop et mélasse
-Imports,Colonies,detail_products,48931.0,Dunkerque,Tabac
-Exports,Fraude,detail_products,48931.0,Dunkerque,Tabac
-Imports,Colonies,detail_products,1353.0,Dunkerque,Divers mélangés
-Exports,Fraude,detail_products,1353.0,Dunkerque,Divers mélangés
-Exports,France,total_trade,3440713.1238665055,Dunkerque,autres produits
-Imports,France,total_trade,3618187.25966314,Dunkerque,autres produits
-Exports,Colonies,total_trade,1411503.0,Dunkerque,autres produits
-Imports,Monde,total_trade,34261785.0,Dunkerque,autres produits
-Exports,Fraude,total_trade,33027756.135796636,Dunkerque,autres produits
-Exports,Monde,total_trade,4560525.0,Dunkerque,produits coloniaux
-Imports,Colonies,total_trade,8670155.0,Dunkerque,produits coloniaux
-Exports,Fraude,total_trade,4109630.0,Dunkerque,produits coloniaux
+partner_type,importsexports,product_type,port,value,aggregate_type
+Monde,Exports,"Ouvrages de bois, liège et jonc",Lorient,4160.0,detail_products
+Monde,Imports,"Ouvrages de bois, liège et jonc",Lorient,114773.0,detail_products
+France,Exports,"Ouvrages de bois, liège et jonc",Lorient,8363.0,detail_products
+France,Imports,"Ouvrages de bois, liège et jonc",Lorient,460.0,detail_products
+Fraude,Exports,"Ouvrages de bois, liège et jonc",Lorient,102710.0,detail_products
+Monde,Exports,Matières brutes et transformées pour teinture,Lorient,31170.0,detail_products
+Monde,Imports,Matières brutes et transformées pour teinture,Lorient,1370.0,detail_products
+Fraude,Imports,Matières brutes et transformées pour teinture,Lorient,29800.0,detail_products
+Monde,Exports,Cordage et filets,Lorient,13500.0,detail_products
+Fraude,Imports,Cordage et filets,Lorient,13500.0,detail_products
+Monde,Exports,Eaux-de-vie et liqueurs,Lorient,348081.25,detail_products
+Monde,Imports,Eaux-de-vie et liqueurs,Lorient,4370.0,detail_products
+France,Imports,Eaux-de-vie et liqueurs,Lorient,6100.0,detail_products
+Fraude,Imports,Eaux-de-vie et liqueurs,Lorient,337611.25,detail_products
+Monde,Exports,Drogues diverses,Lorient,546.0,detail_products
+Monde,Imports,Drogues diverses,Lorient,800.0,detail_products
+France,Exports,Drogues diverses,Lorient,1177.5,detail_products
+France,Imports,Drogues diverses,Lorient,1000.0,detail_products
+Fraude,Exports,Drogues diverses,Lorient,76.5,detail_products
+Monde,Exports,Poivre et piment,Lorient,5250.0,detail_products
+Monde,Imports,Poivre et piment,Lorient,9000.0,detail_products
+Fraude,Exports,Poivre et piment,Lorient,3750.0,detail_products
+Monde,Exports,Divers mélangés,Lorient,500000.0,detail_products
+Monde,Imports,Divers mélangés,Lorient,275.0,detail_products
+France,Imports,Divers mélangés,Lorient,1088.0,detail_products
+Fraude,Imports,Divers mélangés,Lorient,498637.0,detail_products
+Monde,Exports,Miel,Lorient,57417.0,detail_products
+Fraude,Imports,Miel,Lorient,57417.0,detail_products
+Monde,Exports,Châles et mouchoirs de soie,Lorient,42861.0,detail_products
+Fraude,Imports,Châles et mouchoirs de soie,Lorient,42861.0,detail_products
+Monde,Exports,Papier,Lorient,100.0,detail_products
+Monde,Imports,Papier,Lorient,7480.0,detail_products
+Fraude,Exports,Papier,Lorient,7380.0,detail_products
+Monde,Exports,Parfumerie et toilette,Lorient,225.0,detail_products
+Fraude,Imports,Parfumerie et toilette,Lorient,225.0,detail_products
+Monde,Exports,Pêche et fruits de mer,Lorient,24600.0,detail_products
+Monde,Imports,Pêche et fruits de mer,Lorient,828.0,detail_products
+Fraude,Imports,Pêche et fruits de mer,Lorient,23772.0,detail_products
+Monde,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Lorient,400.0,detail_products
+Monde,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Lorient,40113.0,detail_products
+Fraude,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Lorient,39713.0,detail_products
+Monde,Exports,Sel,Lorient,178937.035,detail_products
+Fraude,Imports,Sel,Lorient,178937.035,detail_products
+Monde,Exports,Tabac,Lorient,146778.0,detail_products
+Monde,Imports,Tabac,Lorient,486100.0,detail_products
+Fraude,Exports,Tabac,Lorient,339322.0,detail_products
+Monde,Exports,Étoffes diverses,Lorient,14040.0,detail_products
+France,Exports,Étoffes diverses,Lorient,3945.0,detail_products
+Fraude,Imports,Étoffes diverses,Lorient,17985.0,detail_products
+Monde,Exports,Vins divers,Lorient,1212.0,detail_products
+France,Exports,Vins divers,Lorient,349.5,detail_products
+France,Imports,Vins divers,Lorient,14797.5,detail_products
+Fraude,Exports,Vins divers,Lorient,13236.0,detail_products
+France,Exports,Beurre,Lorient,3800.000095,detail_products
+Monde,Imports,Beurre,Lorient,6475.0,detail_products
+Fraude,Exports,Beurre,Lorient,2674.999905,detail_products
+France,Exports,Combustibles dont charbons et bois,Lorient,216.0,detail_products
+France,Imports,Combustibles dont charbons et bois,Lorient,894.0,detail_products
+Monde,Imports,Combustibles dont charbons et bois,Lorient,14760.0,detail_products
+Fraude,Exports,Combustibles dont charbons et bois,Lorient,15438.0,detail_products
+Monde,Exports,"Cuirs, peaux et pelleterie",Lorient,49752.5,detail_products
+Monde,Imports,"Cuirs, peaux et pelleterie",Lorient,1000.0,detail_products
+France,Exports,"Cuirs, peaux et pelleterie",Lorient,3653.0,detail_products
+Fraude,Imports,"Cuirs, peaux et pelleterie",Lorient,52405.5,detail_products
+France,Exports,Matières premières diverses,Lorient,119.999998,detail_products
+Monde,Imports,Matières premières diverses,Lorient,125247.0,detail_products
+Fraude,Exports,Matières premières diverses,Lorient,125127.000002,detail_products
+Monde,Exports,Fils divers,Lorient,2524.0,detail_products
+France,Imports,Fils divers,Lorient,228.0,detail_products
+Fraude,Imports,Fils divers,Lorient,2296.0,detail_products
+Monde,Exports,Graisses diverses,Lorient,868.40002171,detail_products
+Monde,Imports,Graisses diverses,Lorient,9400.0,detail_products
+France,Imports,Graisses diverses,Lorient,328.0,detail_products
+Fraude,Exports,Graisses diverses,Lorient,8859.59997829,detail_products
+Monde,Exports,Thé,Lorient,3200.0,detail_products
+France,Imports,Thé,Lorient,120.0,detail_products
+Fraude,Imports,Thé,Lorient,3080.0,detail_products
+Monde,Exports,Toiles de chanvre et de lin,Lorient,131896.5,detail_products
+France,Exports,Toiles de chanvre et de lin,Lorient,8883.0,detail_products
+Fraude,Imports,Toiles de chanvre et de lin,Lorient,140779.5,detail_products
+Monde,Exports,Verrerie,Lorient,150.0,detail_products
+Monde,Imports,Verrerie,Lorient,2998.0,detail_products
+France,Exports,Verrerie,Lorient,390.0,detail_products
+France,Imports,Verrerie,Lorient,115.0,detail_products
+Fraude,Exports,Verrerie,Lorient,2573.0,detail_products
+Monde,Exports,Denrées coloniales et épiceries diverses,Lorient,1872.0,detail_products
+Fraude,Imports,Denrées coloniales et épiceries diverses,Lorient,1872.0,detail_products
+Monde,Exports,Ouvrages divers et mélangés,Lorient,1600.0,detail_products
+Monde,Imports,Ouvrages divers et mélangés,Lorient,3000.0,detail_products
+France,Exports,Ouvrages divers et mélangés,Lorient,1032.0,detail_products
+France,Imports,Ouvrages divers et mélangés,Lorient,508.0,detail_products
+Fraude,Exports,Ouvrages divers et mélangés,Lorient,876.0,detail_products
+France,Exports,Rubanerie et passementerie diverse,Lorient,642.0,detail_products
+Fraude,Imports,Rubanerie et passementerie diverse,Lorient,642.0,detail_products
+France,Exports,Rubanerie et passementerie de soie,Lorient,28975.0,detail_products
+Monde,Exports,Rubanerie et passementerie de soie,Lorient,4590.0,detail_products
+Fraude,Imports,Rubanerie et passementerie de soie,Lorient,33565.0,detail_products
+France,Exports,Toiles diverses,Lorient,13180.0,detail_products
+Monde,Imports,Toiles diverses,Lorient,35220.0,detail_products
+Fraude,Exports,Toiles diverses,Lorient,22040.0,detail_products
+France,Exports,Toiles de coton,Lorient,5730.5,detail_products
+Monde,Imports,Toiles de coton,Lorient,48685.0,detail_products
+Fraude,Exports,Toiles de coton,Lorient,42954.5,detail_products
+Colonies,Exports,Divers incertains,Lorient,1067534.0,detail_products
+Monde,Imports,Divers incertains,Lorient,1150.0,detail_products
+Fraude,Imports,Divers incertains,Lorient,1066384.0,detail_products
+Monde,Imports,Acier,Lorient,21746.0,detail_products
+France,Imports,Acier,Lorient,180.0,detail_products
+Fraude,Exports,Acier,Lorient,21926.0,detail_products
+Monde,Imports,Bâtiments de mer et apparaux,Lorient,175269.0,detail_products
+Fraude,Exports,Bâtiments de mer et apparaux,Lorient,175269.0,detail_products
+Monde,Imports,"Bière, cidre et vinaigre",Lorient,23224.0,detail_products
+Fraude,Exports,"Bière, cidre et vinaigre",Lorient,23224.0,detail_products
+Monde,Imports,Bonneterie hors soie,Lorient,5975.0,detail_products
+France,Imports,Bonneterie hors soie,Lorient,160.0,detail_products
+Fraude,Exports,Bonneterie hors soie,Lorient,6135.0,detail_products
+Monde,Imports,Bois divers hors combustible,Lorient,243251.0,detail_products
+Fraude,Exports,Bois divers hors combustible,Lorient,243251.0,detail_products
+Monde,Imports,Ouvrages métalliques,Lorient,581187.0,detail_products
+France,Imports,Ouvrages métalliques,Lorient,25038.0,detail_products
+Fraude,Exports,Ouvrages métalliques,Lorient,606225.0,detail_products
+Monde,Imports,"Brai, goudron et résines",Lorient,25079.0,detail_products
+Fraude,Exports,"Brai, goudron et résines",Lorient,25079.0,detail_products
+Monde,Imports,Mercerie,Lorient,35310.0,detail_products
+France,Imports,Mercerie,Lorient,1264.0,detail_products
+Fraude,Exports,Mercerie,Lorient,36574.0,detail_products
+Monde,Imports,"Gravelée, potasse et védasse",Lorient,16180.0,detail_products
+Fraude,Exports,"Gravelée, potasse et védasse",Lorient,16180.0,detail_products
+Monde,Imports,Chairs et œufs,Lorient,16392.0,detail_products
+France,Imports,Chairs et œufs,Lorient,307.79999316,detail_products
+Fraude,Exports,Chairs et œufs,Lorient,16699.79999316,detail_products
+Monde,Imports,Subsistances diverses et mélangées,Lorient,13273.0,detail_products
+Fraude,Exports,Subsistances diverses et mélangées,Lorient,13273.0,detail_products
+Monde,Imports,Chanvre,Lorient,221498.0,detail_products
+Fraude,Exports,Chanvre,Lorient,221498.0,detail_products
+Monde,Imports,Cire,Lorient,2213.0,detail_products
+Fraude,Exports,Cire,Lorient,2213.0,detail_products
+Monde,Imports,Étoffes de laine,Lorient,35343.0,detail_products
+Fraude,Exports,Étoffes de laine,Lorient,35343.0,detail_products
+Monde,Imports,Azur et cobalt,Lorient,300.0,detail_products
+Fraude,Exports,Azur et cobalt,Lorient,300.0,detail_products
+Monde,Imports,Indigo,Lorient,7800.0,detail_products
+Fraude,Exports,Indigo,Lorient,7800.0,detail_products
+Monde,Imports,"Farine, gruau, biscuits et pâtes",Lorient,41844.0,detail_products
+Fraude,Exports,"Farine, gruau, biscuits et pâtes",Lorient,41844.0,detail_products
+Monde,Imports,Fer-blanc,Lorient,6990.0,detail_products
+France,Imports,Fer-blanc,Lorient,578.5,detail_products
+Fraude,Exports,Fer-blanc,Lorient,7568.5,detail_products
+Monde,Imports,Quincaillerie,Lorient,18342.0,detail_products
+Fraude,Exports,Quincaillerie,Lorient,18342.0,detail_products
+Monde,Imports,Fromage,Lorient,24404.2,detail_products
+France,Imports,Fromage,Lorient,20.4,detail_products
+Fraude,Exports,Fromage,Lorient,24424.600000000002,detail_products
+Monde,Imports,Graines grasses,Lorient,17920.0,detail_products
+France,Imports,Graines grasses,Lorient,1186.4,detail_products
+Fraude,Exports,Graines grasses,Lorient,19106.4,detail_products
+Monde,Imports,Graines diverses et mélangées,Lorient,600.0,detail_products
+Fraude,Exports,Graines diverses et mélangées,Lorient,600.0,detail_products
+Monde,Imports,Blé et autres grains comestibles,Lorient,24960.0,detail_products
+Fraude,Exports,Blé et autres grains comestibles,Lorient,24960.0,detail_products
+Monde,Imports,Riz,Lorient,168621.0,detail_products
+France,Imports,Riz,Lorient,1957.500075,detail_products
+Fraude,Exports,Riz,Lorient,170578.500075,detail_products
+Monde,Imports,Huile de poisson,Lorient,66630.0,detail_products
+Fraude,Exports,Huile de poisson,Lorient,66630.0,detail_products
+Monde,Imports,Huiles diverses,Lorient,107498.79879999999,detail_products
+Fraude,Exports,Huiles diverses,Lorient,107498.79879999999,detail_products
+Monde,Imports,Lin,Lorient,4192.0,detail_products
+France,Imports,Lin,Lorient,153.0,detail_products
+Fraude,Exports,Lin,Lorient,4345.0,detail_products
+Monde,Imports,Bijouterie et pierres fines,Lorient,1400.0,detail_products
+Fraude,Exports,Bijouterie et pierres fines,Lorient,1400.0,detail_products
+Monde,Imports,Poils et crin,Lorient,1654.0,detail_products
+Fraude,Exports,Poils et crin,Lorient,1654.0,detail_products
+Monde,Imports,Produits inconnus,Lorient,954.0,detail_products
+Fraude,Exports,Produits inconnus,Lorient,954.0,detail_products
+Monde,Imports,Sucre,Lorient,7000.0,detail_products
+Fraude,Exports,Sucre,Lorient,7000.0,detail_products
+Monde,Imports,"Bougies, chandelles et flambeaux",Lorient,3250.0,detail_products
+France,Imports,"Bougies, chandelles et flambeaux",Lorient,132.00000165,detail_products
+Fraude,Exports,"Bougies, chandelles et flambeaux",Lorient,3382.00000165,detail_products
+France,Imports,Métaux divers et mélangés,Lorient,422.79999396,detail_products
+Fraude,Exports,Métaux divers et mélangés,Lorient,422.79999396,detail_products
+France,Imports,Alun,Lorient,1095.0,detail_products
+Fraude,Exports,Alun,Lorient,1095.0,detail_products
+France,Imports,Sels chimiques,Lorient,6720.0,detail_products
+Fraude,Exports,Sels chimiques,Lorient,6720.0,detail_products
+France,Imports,Huile d'olive à manger,Lorient,896.0,detail_products
+Fraude,Exports,Huile d'olive à manger,Lorient,896.0,detail_products
+France,Imports,"Meubles, glaces et miroirs",Lorient,812.0,detail_products
+Monde,Imports,"Meubles, glaces et miroirs",Lorient,525.0,detail_products
+Fraude,Exports,"Meubles, glaces et miroirs",Lorient,1337.0,detail_products
+France,Imports,Châles et mouchoirs hors soie,Lorient,744.0,detail_products
+Fraude,Exports,Châles et mouchoirs hors soie,Lorient,744.0,detail_products
+France,Imports,Savon,Lorient,12013.64945,detail_products
+Fraude,Exports,Savon,Lorient,12013.64945,detail_products
+France,Imports,Sirop et mélasse,Lorient,435.0,detail_products
+Fraude,Exports,Sirop et mélasse,Lorient,435.0,detail_products
+Monde,Imports,"Mousseline, basin et nankin",Lorient,1003.0,detail_products
+Fraude,Exports,"Mousseline, basin et nankin",Lorient,1003.0,detail_products
+France,Imports,Vins de Bordeaux,Lorient,32856.0,detail_products
+Fraude,Exports,Vins de Bordeaux,Lorient,32856.0,detail_products
+France,Imports,Vin de liqueurs,Lorient,1039.0,detail_products
+Fraude,Exports,Vin de liqueurs,Lorient,1039.0,detail_products
+Monde,Exports,autres produits,Lorient,1563858.68502171,total_trade
+Monde,Imports,autres produits,Lorient,2834871.9988,total_trade
+France,Exports,autres produits,Lorient,80456.500093,total_trade
+France,Imports,autres produits,Lorient,113649.54951377,total_trade
+Colonies,Exports,autres produits,Lorient,1067534.0,total_trade
+Fraude,Exports,autres produits,Lorient,236672.36319906032,total_trade
+Monde,Exports,produits coloniaux,Lorient,1872.0,total_trade
+Fraude,Imports,produits coloniaux,Lorient,1872.0,total_trade
+France,Imports,Bois des Indes,Bayonne,8982.0,detail_products
+Fraude,Exports,Bois des Indes,Bayonne,8982.0,detail_products
+France,Imports,"Brai, goudron et résines",Bayonne,383756.2585921,detail_products
+France,Exports,"Brai, goudron et résines",Bayonne,84546.89867504999,detail_products
+Monde,Exports,"Brai, goudron et résines",Bayonne,141456.0,detail_products
+Monde,Imports,"Brai, goudron et résines",Bayonne,400.0,detail_products
+Colonies,Exports,"Brai, goudron et résines",Bayonne,8611.0,detail_products
+Fraude,Exports,"Brai, goudron et résines",Bayonne,149542.35991705,detail_products
+France,Imports,Chairs et œufs,Bayonne,18447.099989399998,detail_products
+France,Exports,Chairs et œufs,Bayonne,5919.70008254,detail_products
+Monde,Exports,Chairs et œufs,Bayonne,45738.0,detail_products
+Monde,Imports,Chairs et œufs,Bayonne,720.0,detail_products
+Colonies,Exports,Chairs et œufs,Bayonne,71880.0,detail_products
+Fraude,Imports,Chairs et œufs,Bayonne,104370.60009314,detail_products
+France,Imports,Réglisse,Bayonne,70842.59997,detail_products
+Monde,Exports,Réglisse,Bayonne,92762.0,detail_products
+Monde,Imports,Réglisse,Bayonne,29102.0,detail_products
+Fraude,Exports,Réglisse,Bayonne,7182.599969999996,detail_products
+France,Imports,Eaux-de-vie et liqueurs,Bayonne,111020.0,detail_products
+France,Exports,Eaux-de-vie et liqueurs,Bayonne,34491.89997435,detail_products
+Monde,Exports,Eaux-de-vie et liqueurs,Bayonne,617367.0,detail_products
+Colonies,Exports,Eaux-de-vie et liqueurs,Bayonne,41581.0,detail_products
+Colonies,Imports,Eaux-de-vie et liqueurs,Bayonne,2194.0,detail_products
+Fraude,Imports,Eaux-de-vie et liqueurs,Bayonne,580225.89997435,detail_products
+France,Imports,Laines non transformées diverses,Bayonne,1667255.0,detail_products
+Monde,Exports,Laines non transformées diverses,Bayonne,60100.0,detail_products
+Monde,Imports,Laines non transformées diverses,Bayonne,7850.0,detail_products
+Fraude,Exports,Laines non transformées diverses,Bayonne,1615005.0,detail_products
+France,Imports,Bouchons principalement en liège,Bayonne,3512.5,detail_products
+Colonies,Exports,Bouchons principalement en liège,Bayonne,536.0,detail_products
+Fraude,Exports,Bouchons principalement en liège,Bayonne,2976.5,detail_products
+France,Imports,Divers mélangés,Bayonne,7017.00005,detail_products
+France,Exports,Divers mélangés,Bayonne,2567.0,detail_products
+Monde,Exports,Divers mélangés,Bayonne,394.0,detail_products
+Monde,Imports,Divers mélangés,Bayonne,80.0,detail_products
+Colonies,Exports,Divers mélangés,Bayonne,620.0,detail_products
+Colonies,Imports,Divers mélangés,Bayonne,300.0,detail_products
+Fraude,Exports,Divers mélangés,Bayonne,3816.0000499999996,detail_products
+France,Imports,Plumes brutes,Bayonne,12240.0,detail_products
+France,Exports,Plumes brutes,Bayonne,13453.0,detail_products
+Monde,Exports,Plumes brutes,Bayonne,2200.0,detail_products
+Colonies,Exports,Plumes brutes,Bayonne,3000.0,detail_products
+Fraude,Imports,Plumes brutes,Bayonne,6413.0,detail_products
+France,Exports,Animaux,Bayonne,88520.0,detail_products
+France,Imports,Animaux,Bayonne,32945.0,detail_products
+Monde,Exports,Animaux,Bayonne,435.0,detail_products
+Fraude,Imports,Animaux,Bayonne,56010.0,detail_products
+France,Exports,Habits et lingerie,Bayonne,8406.0,detail_products
+France,Imports,Habits et lingerie,Bayonne,6843.0,detail_products
+Monde,Exports,Habits et lingerie,Bayonne,300.0,detail_products
+Monde,Imports,Habits et lingerie,Bayonne,15950.0,detail_products
+Colonies,Exports,Habits et lingerie,Bayonne,2330.0,detail_products
+Fraude,Exports,Habits et lingerie,Bayonne,11757.0,detail_products
+France,Exports,Bonneterie hors soie,Bayonne,1524.0,detail_products
+Fraude,Imports,Bonneterie hors soie,Bayonne,1524.0,detail_products
+France,Exports,Combustibles dont charbons et bois,Bayonne,7656.0,detail_products
+France,Imports,Combustibles dont charbons et bois,Bayonne,159.0,detail_products
+Monde,Exports,Combustibles dont charbons et bois,Bayonne,3683.0,detail_products
+Monde,Imports,Combustibles dont charbons et bois,Bayonne,6887.0,detail_products
+Fraude,Imports,Combustibles dont charbons et bois,Bayonne,4293.0,detail_products
+France,Exports,Bois divers hors combustible,Bayonne,30439.2,detail_products
+France,Imports,Bois divers hors combustible,Bayonne,162655.0,detail_products
+Monde,Exports,Bois divers hors combustible,Bayonne,190.0,detail_products
+Monde,Imports,Bois divers hors combustible,Bayonne,960.0,detail_products
+Colonies,Exports,Bois divers hors combustible,Bayonne,1619.0,detail_products
+Colonies,Imports,Bois divers hors combustible,Bayonne,460.0,detail_products
+Fraude,Exports,Bois divers hors combustible,Bayonne,131826.8,detail_products
+France,Exports,"Ouvrages de bois, liège et jonc",Bayonne,58753.89889308001,detail_products
+France,Imports,"Ouvrages de bois, liège et jonc",Bayonne,29432.5,detail_products
+Monde,Exports,"Ouvrages de bois, liège et jonc",Bayonne,43300.0,detail_products
+Monde,Imports,"Ouvrages de bois, liège et jonc",Bayonne,6800.0,detail_products
+Colonies,Exports,"Ouvrages de bois, liège et jonc",Bayonne,1090.0,detail_products
+Fraude,Imports,"Ouvrages de bois, liège et jonc",Bayonne,66911.39889308001,detail_products
+France,Exports,Chapeaux hors paille et écorce,Bayonne,1140.0,detail_products
+Colonies,Exports,Chapeaux hors paille et écorce,Bayonne,600.0,detail_products
+Fraude,Imports,Chapeaux hors paille et écorce,Bayonne,1740.0,detail_products
+France,Exports,Cordage et filets,Bayonne,8983.60021559,detail_products
+France,Imports,Cordage et filets,Bayonne,10480.0,detail_products
+Monde,Exports,Cordage et filets,Bayonne,4207.0,detail_products
+Monde,Imports,Cordage et filets,Bayonne,11732.0,detail_products
+Colonies,Exports,Cordage et filets,Bayonne,44444.0,detail_products
+Fraude,Imports,Cordage et filets,Bayonne,35422.60021559,detail_products
+France,Exports,"Cuirs, peaux et pelleterie",Bayonne,20367.69988184,detail_products
+France,Imports,"Cuirs, peaux et pelleterie",Bayonne,149201.0,detail_products
+Monde,Exports,"Cuirs, peaux et pelleterie",Bayonne,20950.0,detail_products
+Monde,Imports,"Cuirs, peaux et pelleterie",Bayonne,275942.0,detail_products
+Colonies,Imports,"Cuirs, peaux et pelleterie",Bayonne,34875.0,detail_products
+Fraude,Exports,"Cuirs, peaux et pelleterie",Bayonne,418700.30011815997,detail_products
+France,Exports,Ouvrages métalliques,Bayonne,15820.5,detail_products
+France,Imports,Ouvrages métalliques,Bayonne,277283.96001100005,detail_products
+Monde,Exports,Ouvrages métalliques,Bayonne,8430.0,detail_products
+Monde,Imports,Ouvrages métalliques,Bayonne,190440.0,detail_products
+Colonies,Exports,Ouvrages métalliques,Bayonne,29483.0,detail_products
+Fraude,Exports,Ouvrages métalliques,Bayonne,413990.46001100005,detail_products
+France,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Bayonne,4268.0,detail_products
+France,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Bayonne,9316.0,detail_products
+Monde,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Bayonne,13952.0,detail_products
+Monde,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Bayonne,24984.0,detail_products
+Fraude,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Bayonne,16080.0,detail_products
+France,Exports,Fils divers,Bayonne,8003.5,detail_products
+France,Imports,Fils divers,Bayonne,979.0,detail_products
+Monde,Exports,Fils divers,Bayonne,9240.0,detail_products
+Monde,Imports,Fils divers,Bayonne,80300.0,detail_products
+Colonies,Imports,Fils divers,Bayonne,1045.0,detail_products
+Fraude,Exports,Fils divers,Bayonne,65080.5,detail_products
+France,Exports,Matières premières diverses,Bayonne,6868.00001,detail_products
+France,Imports,Matières premières diverses,Bayonne,20766.0,detail_products
+Monde,Exports,Matières premières diverses,Bayonne,1090.0,detail_products
+Monde,Imports,Matières premières diverses,Bayonne,1873.0,detail_products
+Fraude,Exports,Matières premières diverses,Bayonne,14680.99999,detail_products
+France,Exports,Blé et autres grains comestibles,Bayonne,1272742.214505826,detail_products
+France,Imports,Blé et autres grains comestibles,Bayonne,1200981.9492438799,detail_products
+Colonies,Exports,Blé et autres grains comestibles,Bayonne,1392.0,detail_products
+Monde,Imports,Blé et autres grains comestibles,Bayonne,1101366.0,detail_products
+Fraude,Exports,Blé et autres grains comestibles,Bayonne,1028213.734738054,detail_products
+France,Exports,Légumes,Bayonne,75980.0000534,detail_products
+France,Imports,Légumes,Bayonne,10576.0,detail_products
+Monde,Exports,Légumes,Bayonne,32074.0,detail_products
+Monde,Imports,Légumes,Bayonne,28922.0,detail_products
+Fraude,Imports,Légumes,Bayonne,68556.0000534,detail_products
+France,Exports,Mercerie,Bayonne,11840.0,detail_products
+France,Imports,Mercerie,Bayonne,1800.0,detail_products
+Monde,Exports,Mercerie,Bayonne,19768.0,detail_products
+Monde,Imports,Mercerie,Bayonne,35722.0,detail_products
+Fraude,Exports,Mercerie,Bayonne,5914.0,detail_products
+France,Exports,Châles et mouchoirs hors soie,Bayonne,41130.0,detail_products
+Colonies,Exports,Châles et mouchoirs hors soie,Bayonne,14356.0,detail_products
+Monde,Imports,Châles et mouchoirs hors soie,Bayonne,16500.0,detail_products
+Fraude,Imports,Châles et mouchoirs hors soie,Bayonne,38986.0,detail_products
+France,Exports,Ouvrages divers et mélangés,Bayonne,6141.000008049999,detail_products
+France,Imports,Ouvrages divers et mélangés,Bayonne,5165.2,detail_products
+Colonies,Exports,Ouvrages divers et mélangés,Bayonne,11198.0,detail_products
+Monde,Imports,Ouvrages divers et mélangés,Bayonne,660.0,detail_products
+Fraude,Imports,Ouvrages divers et mélangés,Bayonne,11513.800008049999,detail_products
+France,Exports,Drogues diverses,Bayonne,9700.000003500001,detail_products
+Monde,Exports,Drogues diverses,Bayonne,300.0,detail_products
+Fraude,Imports,Drogues diverses,Bayonne,10000.000003500001,detail_products
+France,Exports,Pêche et fruits de mer,Bayonne,38965.2,detail_products
+France,Imports,Pêche et fruits de mer,Bayonne,9048.0,detail_products
+Monde,Exports,Pêche et fruits de mer,Bayonne,19760.0,detail_products
+Monde,Imports,Pêche et fruits de mer,Bayonne,404022.0,detail_products
+Colonies,Exports,Pêche et fruits de mer,Bayonne,74358.0,detail_products
+Fraude,Exports,Pêche et fruits de mer,Bayonne,279986.8,detail_products
+France,Exports,Graisses diverses,Bayonne,8933.5,detail_products
+France,Imports,Graisses diverses,Bayonne,25346.4498512,detail_products
+Colonies,Exports,Graisses diverses,Bayonne,2699.0,detail_products
+Monde,Imports,Graisses diverses,Bayonne,45185.0,detail_products
+Fraude,Exports,Graisses diverses,Bayonne,58898.9498512,detail_products
+France,Exports,Toiles de chanvre et de lin,Bayonne,127380.5,detail_products
+France,Imports,Toiles de chanvre et de lin,Bayonne,1744.0,detail_products
+Monde,Imports,Toiles de chanvre et de lin,Bayonne,261950.0,detail_products
+Fraude,Exports,Toiles de chanvre et de lin,Bayonne,136313.5,detail_products
+France,Exports,Verrerie,Bayonne,3798.15995337,detail_products
+France,Imports,Verrerie,Bayonne,5065.08,detail_products
+Monde,Exports,Verrerie,Bayonne,1200.0,detail_products
+Monde,Imports,Verrerie,Bayonne,1250.0,detail_products
+Fraude,Exports,Verrerie,Bayonne,1316.92004663,detail_products
+France,Exports,Vins divers,Bayonne,557448.0,detail_products
+France,Imports,Vins divers,Bayonne,31189.5,detail_products
+Monde,Exports,Vins divers,Bayonne,670831.0,detail_products
+Monde,Imports,Vins divers,Bayonne,13522.0,detail_products
+Colonies,Exports,Vins divers,Bayonne,121196.0,detail_products
+Fraude,Imports,Vins divers,Bayonne,1304763.5,detail_products
+Monde,Exports,"Bière, cidre et vinaigre",Bayonne,2771.0,detail_products
+Monde,Imports,"Bière, cidre et vinaigre",Bayonne,3186.0,detail_products
+France,Exports,"Bière, cidre et vinaigre",Bayonne,368.0,detail_products
+Colonies,Exports,"Bière, cidre et vinaigre",Bayonne,620.0,detail_products
+Fraude,Imports,"Bière, cidre et vinaigre",Bayonne,573.0,detail_products
+Monde,Exports,"Farine, gruau, biscuits et pâtes",Bayonne,2520.0,detail_products
+Monde,Imports,"Farine, gruau, biscuits et pâtes",Bayonne,66067.0,detail_products
+France,Exports,"Farine, gruau, biscuits et pâtes",Bayonne,31730.5,detail_products
+France,Imports,"Farine, gruau, biscuits et pâtes",Bayonne,15903.83,detail_products
+Colonies,Exports,"Farine, gruau, biscuits et pâtes",Bayonne,12250.0,detail_products
+Fraude,Exports,"Farine, gruau, biscuits et pâtes",Bayonne,35470.33,detail_products
+Monde,Exports,Bâtiments de mer et apparaux,Bayonne,6027.0,detail_products
+Monde,Imports,Bâtiments de mer et apparaux,Bayonne,16075.0,detail_products
+France,Imports,Bâtiments de mer et apparaux,Bayonne,32581.700568660002,detail_products
+France,Exports,Bâtiments de mer et apparaux,Bayonne,1400.0,detail_products
+Fraude,Exports,Bâtiments de mer et apparaux,Bayonne,41229.70056866,detail_products
+Monde,Exports,Matières brutes et transformées pour teinture,Bayonne,12810.0,detail_products
+Monde,Imports,Matières brutes et transformées pour teinture,Bayonne,57209.0,detail_products
+France,Exports,Matières brutes et transformées pour teinture,Bayonne,2450.0,detail_products
+France,Imports,Matières brutes et transformées pour teinture,Bayonne,9674.75,detail_products
+Colonies,Exports,Matières brutes et transformées pour teinture,Bayonne,3184.0,detail_products
+Colonies,Imports,Matières brutes et transformées pour teinture,Bayonne,621.0,detail_products
+Fraude,Exports,Matières brutes et transformées pour teinture,Bayonne,49060.75,detail_products
+Monde,Exports,Cacao et chocolat,Bayonne,569085.0,detail_products
+Monde,Imports,Cacao et chocolat,Bayonne,1184822.0,detail_products
+Colonies,Imports,Cacao et chocolat,Bayonne,38815.0,detail_products
+France,Imports,Cacao et chocolat,Bayonne,8450.5,detail_products
+France,Exports,Cacao et chocolat,Bayonne,1580.0,detail_products
+Fraude,Exports,Cacao et chocolat,Bayonne,661422.5,detail_products
+Monde,Exports,Chanvre,Bayonne,12970.0,detail_products
+Monde,Imports,Chanvre,Bayonne,190990.0,detail_products
+France,Exports,Chanvre,Bayonne,5852.000106400001,detail_products
+France,Imports,Chanvre,Bayonne,8977.30006492,detail_products
+Colonies,Exports,Chanvre,Bayonne,1200.0,detail_products
+Fraude,Exports,Chanvre,Bayonne,179945.29995852002,detail_products
+Monde,Exports,Cire,Bayonne,17800.0,detail_products
+Monde,Imports,Cire,Bayonne,140800.0,detail_products
+France,Exports,Cire,Bayonne,25807.6665,detail_products
+France,Imports,Cire,Bayonne,648.0,detail_products
+Fraude,Exports,Cire,Bayonne,97840.33350000001,detail_products
+Monde,Exports,Cuivre,Bayonne,7600.0,detail_products
+Monde,Imports,Cuivre,Bayonne,13400.0,detail_products
+France,Exports,Cuivre,Bayonne,2070.0,detail_products
+France,Imports,Cuivre,Bayonne,1515.0,detail_products
+Fraude,Exports,Cuivre,Bayonne,5245.0,detail_products
+Monde,Exports,Indigo,Bayonne,442620.0,detail_products
+Monde,Imports,Indigo,Bayonne,910100.0,detail_products
+France,Exports,Indigo,Bayonne,2488.0,detail_products
+France,Imports,Indigo,Bayonne,10224.0,detail_products
+Colonies,Imports,Indigo,Bayonne,5548.0,detail_products
+Fraude,Exports,Indigo,Bayonne,480764.0,detail_products
+Monde,Exports,Térébenthine,Bayonne,58334.0,detail_products
+France,Exports,Térébenthine,Bayonne,6796.7999865,detail_products
+France,Imports,Térébenthine,Bayonne,941.0,detail_products
+Fraude,Imports,Térébenthine,Bayonne,64189.7999865,detail_products
+Monde,Exports,Cannelle,Bayonne,2400.0,detail_products
+Monde,Imports,Cannelle,Bayonne,10000.0,detail_products
+France,Exports,Cannelle,Bayonne,2655.0,detail_products
+France,Imports,Cannelle,Bayonne,28091.0,detail_products
+Fraude,Exports,Cannelle,Bayonne,33036.0,detail_products
+Monde,Exports,Toiles de coton,Bayonne,520.0,detail_products
+Monde,Imports,Toiles de coton,Bayonne,1085572.0,detail_products
+France,Exports,Toiles de coton,Bayonne,10012.0,detail_products
+France,Imports,Toiles de coton,Bayonne,165924.0,detail_products
+Fraude,Exports,Toiles de coton,Bayonne,1240964.0,detail_products
+Monde,Exports,Quincaillerie,Bayonne,30100.0,detail_products
+Monde,Imports,Quincaillerie,Bayonne,62510.0,detail_products
+Colonies,Exports,Quincaillerie,Bayonne,10805.0,detail_products
+France,Imports,Quincaillerie,Bayonne,1066.0,detail_products
+France,Exports,Quincaillerie,Bayonne,39951.75,detail_products
+Fraude,Imports,Quincaillerie,Bayonne,17280.75,detail_products
+Monde,Exports,Huile de poisson,Bayonne,480.0,detail_products
+Monde,Imports,Huile de poisson,Bayonne,16820.0,detail_products
+Fraude,Exports,Huile de poisson,Bayonne,16340.0,detail_products
+Monde,Exports,Huiles diverses,Bayonne,300.0,detail_products
+Monde,Imports,Huiles diverses,Bayonne,9740.0,detail_products
+France,Exports,Huiles diverses,Bayonne,2105.0,detail_products
+France,Imports,Huiles diverses,Bayonne,19799.550450000002,detail_products
+Colonies,Exports,Huiles diverses,Bayonne,1917.0,detail_products
+Fraude,Exports,Huiles diverses,Bayonne,25217.550450000002,detail_products
+Monde,Exports,"Meubles, glaces et miroirs",Bayonne,340.0,detail_products
+France,Exports,"Meubles, glaces et miroirs",Bayonne,1585.0,detail_products
+France,Imports,"Meubles, glaces et miroirs",Bayonne,120.0,detail_products
+Fraude,Imports,"Meubles, glaces et miroirs",Bayonne,1805.0,detail_products
+Monde,Exports,Papier,Bayonne,27616.0,detail_products
+Monde,Imports,Papier,Bayonne,8160.0,detail_products
+France,Exports,Papier,Bayonne,976.0,detail_products
+France,Imports,Papier,Bayonne,350.0,detail_products
+Fraude,Imports,Papier,Bayonne,20082.0,detail_products
+Monde,Exports,Savon,Bayonne,78250.0,detail_products
+Monde,Imports,Savon,Bayonne,9760.0,detail_products
+France,Exports,Savon,Bayonne,484.0000108,detail_products
+France,Imports,Savon,Bayonne,53450.4,detail_products
+Fraude,Imports,Savon,Bayonne,15523.600010799993,detail_products
+Monde,Exports,Sel,Bayonne,2612.0,detail_products
+Monde,Imports,Sel,Bayonne,2600.0,detail_products
+France,Exports,Sel,Bayonne,142204.17636921248,detail_products
+France,Imports,Sel,Bayonne,62188.0,detail_products
+Fraude,Imports,Sel,Bayonne,80028.17636921248,detail_products
+Monde,Exports,Produits inconnus,Bayonne,950.0,detail_products
+Colonies,Exports,Produits inconnus,Bayonne,781.0,detail_products
+France,Imports,Produits inconnus,Bayonne,2379.6,detail_products
+Fraude,Exports,Produits inconnus,Bayonne,648.5999999999999,detail_products
+Monde,Exports,Salpêtre et soufre,Bayonne,870.0,detail_products
+France,Imports,Salpêtre et soufre,Bayonne,663.3,detail_products
+Fraude,Imports,Salpêtre et soufre,Bayonne,206.70000000000005,detail_products
+Monde,Exports,Tabac,Bayonne,46850.0,detail_products
+Monde,Imports,Tabac,Bayonne,161645.0,detail_products
+Colonies,Imports,Tabac,Bayonne,2372.0,detail_products
+France,Imports,Tabac,Bayonne,2032.0,detail_products
+France,Exports,Tabac,Bayonne,98580.6,detail_products
+Fraude,Exports,Tabac,Bayonne,20618.399999999994,detail_products
+Monde,Exports,Vins de Bordeaux,Bayonne,2600.0,detail_products
+Fraude,Imports,Vins de Bordeaux,Bayonne,2600.0,detail_products
+Monde,Exports,Vin de liqueurs,Bayonne,1500.0,detail_products
+Monde,Imports,Vin de liqueurs,Bayonne,3230.0,detail_products
+France,Imports,Vin de liqueurs,Bayonne,14547.116,detail_products
+Fraude,Exports,Vin de liqueurs,Bayonne,16277.116000000002,detail_products
+Monde,Exports,Café,Bayonne,90500.0,detail_products
+France,Exports,Café,Bayonne,256.8,detail_products
+Colonies,Imports,Café,Bayonne,192366.0,detail_products
+Fraude,Exports,Café,Bayonne,101609.2,detail_products
+Monde,Exports,Sirop et mélasse,Bayonne,4230.0,detail_products
+Colonies,Imports,Sirop et mélasse,Bayonne,60.0,detail_products
+Fraude,Imports,Sirop et mélasse,Bayonne,4170.0,detail_products
+Monde,Exports,Sucre,Bayonne,326884.0,detail_products
+Monde,Imports,Sucre,Bayonne,46610.0,detail_products
+Colonies,Imports,Sucre,Bayonne,599740.0,detail_products
+France,Imports,Sucre,Bayonne,182940.3,detail_products
+Fraude,Exports,Sucre,Bayonne,502406.30000000005,detail_products
+France,Exports,Fruits secs et noix,Bayonne,15200.100092319999,detail_products
+France,Imports,Fruits secs et noix,Bayonne,768.0,detail_products
+Monde,Imports,Fruits secs et noix,Bayonne,1200.0,detail_products
+Fraude,Imports,Fruits secs et noix,Bayonne,13232.100092319999,detail_products
+France,Exports,"Armes, munitions, poudre et pierres à fusil",Bayonne,1845.38,detail_products
+Fraude,Imports,"Armes, munitions, poudre et pierres à fusil",Bayonne,1845.38,detail_products
+France,Exports,Cendres diverses,Bayonne,2170.0,detail_products
+Fraude,Imports,Cendres diverses,Bayonne,2170.0,detail_products
+France,Exports,"Bougies, chandelles et flambeaux",Bayonne,4903.75006705,detail_products
+France,Imports,"Bougies, chandelles et flambeaux",Bayonne,2828.3,detail_products
+Colonies,Exports,"Bougies, chandelles et flambeaux",Bayonne,160.0,detail_products
+Fraude,Imports,"Bougies, chandelles et flambeaux",Bayonne,2235.45006705,detail_products
+France,Exports,Coton non transformé,Bayonne,1013.0,detail_products
+Colonies,Imports,Coton non transformé,Bayonne,6718.0,detail_products
+Monde,Imports,Coton non transformé,Bayonne,1660.0,detail_products
+Fraude,Exports,Coton non transformé,Bayonne,7365.0,detail_products
+France,Exports,Étoffes de laine,Bayonne,49883.0,detail_products
+France,Imports,Étoffes de laine,Bayonne,5550.0,detail_products
+Monde,Imports,Étoffes de laine,Bayonne,246220.0,detail_products
+Fraude,Exports,Étoffes de laine,Bayonne,201887.0,detail_products
+France,Exports,Drogues médicinales diverses,Bayonne,891.8000172,detail_products
+France,Imports,Drogues médicinales diverses,Bayonne,4512.0,detail_products
+Colonies,Imports,Drogues médicinales diverses,Bayonne,1714.0,detail_products
+Fraude,Exports,Drogues médicinales diverses,Bayonne,5334.1999828,detail_products
+France,Exports,Fer,Bayonne,749.0,detail_products
+France,Imports,Fer,Bayonne,1633.0,detail_products
+Monde,Imports,Fer,Bayonne,660.0,detail_products
+Fraude,Exports,Fer,Bayonne,1544.0,detail_products
+France,Exports,Fromage,Bayonne,420.0,detail_products
+France,Imports,Fromage,Bayonne,24379.6,detail_products
+Monde,Imports,Fromage,Bayonne,105280.0,detail_products
+Fraude,Exports,Fromage,Bayonne,129239.6,detail_products
+France,Exports,Fruits frais,Bayonne,1836.0,detail_products
+France,Imports,Fruits frais,Bayonne,879.0,detail_products
+Monde,Imports,Fruits frais,Bayonne,170.0,detail_products
+Fraude,Imports,Fruits frais,Bayonne,787.0,detail_products
+France,Exports,Soieries diverses,Bayonne,2393.0,detail_products
+Fraude,Imports,Soieries diverses,Bayonne,2393.0,detail_products
+France,Exports,Riz,Bayonne,5040.600121920001,detail_products
+France,Imports,Riz,Bayonne,576.3,detail_products
+Colonies,Imports,Riz,Bayonne,3524.0,detail_products
+Fraude,Imports,Riz,Bayonne,940.3001219200005,detail_products
+France,Exports,Graines diverses et mélangées,Bayonne,253.0,detail_products
+Fraude,Imports,Graines diverses et mélangées,Bayonne,253.0,detail_products
+France,Exports,Graines grasses,Bayonne,6076.8,detail_products
+Fraude,Imports,Graines grasses,Bayonne,6076.8,detail_products
+France,Exports,Huile d'olive à manger,Bayonne,5717.55,detail_products
+France,Imports,Huile d'olive à manger,Bayonne,43542.200000000004,detail_products
+Monde,Imports,Huile d'olive à manger,Bayonne,127422.0,detail_products
+Fraude,Exports,Huile d'olive à manger,Bayonne,165246.65000000002,detail_products
+France,Exports,Marbre brut et ouvré,Bayonne,464.0,detail_products
+Fraude,Imports,Marbre brut et ouvré,Bayonne,464.0,detail_products
+France,Exports,Miel,Bayonne,107.9999976,detail_products
+Fraude,Imports,Miel,Bayonne,107.9999976,detail_products
+France,Exports,Argenterie et orfèvrerie,Bayonne,1035.0,detail_products
+France,Imports,Argenterie et orfèvrerie,Bayonne,14231.4,detail_products
+Colonies,Exports,Argenterie et orfèvrerie,Bayonne,21010.0,detail_products
+Fraude,Imports,Argenterie et orfèvrerie,Bayonne,7813.6,detail_products
+France,Exports,Cordonnerie et sellerie,Bayonne,200.0,detail_products
+Colonies,Exports,Cordonnerie et sellerie,Bayonne,2312.0,detail_products
+Monde,Imports,Cordonnerie et sellerie,Bayonne,985.0,detail_products
+Fraude,Imports,Cordonnerie et sellerie,Bayonne,1527.0,detail_products
+France,Exports,Fleurs artificielles et ouvrages de mode,Bayonne,1786.0,detail_products
+Fraude,Imports,Fleurs artificielles et ouvrages de mode,Bayonne,1786.0,detail_products
+France,Exports,Chapeaux d'écorce et de paille,Bayonne,870.0,detail_products
+Fraude,Imports,Chapeaux d'écorce et de paille,Bayonne,870.0,detail_products
+France,Exports,Toiles diverses,Bayonne,9114.0,detail_products
+Monde,Imports,Toiles diverses,Bayonne,885335.0,detail_products
+Fraude,Exports,Toiles diverses,Bayonne,876221.0,detail_products
+Colonies,Exports,Beurre,Bayonne,8172.0,detail_products
+Monde,Imports,Beurre,Bayonne,1019.0,detail_products
+France,Imports,Beurre,Bayonne,1576.6499999999999,detail_products
+France,Exports,Beurre,Bayonne,217.2,detail_products
+Fraude,Imports,Beurre,Bayonne,5793.550000000001,detail_products
+Colonies,Exports,Subsistances diverses et mélangées,Bayonne,4860.0,detail_products
+Colonies,Imports,Subsistances diverses et mélangées,Bayonne,256.0,detail_products
+France,Imports,Subsistances diverses et mélangées,Bayonne,900.0,detail_products
+France,Exports,Subsistances diverses et mélangées,Bayonne,481.5,detail_products
+Fraude,Imports,Subsistances diverses et mélangées,Bayonne,4185.5,detail_products
+Colonies,Exports,Céruse et blanc de plomb,Bayonne,1200.0,detail_products
+Monde,Imports,Céruse et blanc de plomb,Bayonne,375.0,detail_products
+France,Imports,Céruse et blanc de plomb,Bayonne,1201.2,detail_products
+Fraude,Exports,Céruse et blanc de plomb,Bayonne,376.20000000000005,detail_products
+Colonies,Exports,Fer-blanc,Bayonne,700.0,detail_products
+Monde,Imports,Fer-blanc,Bayonne,13090.0,detail_products
+France,Imports,Fer-blanc,Bayonne,4431.0,detail_products
+Fraude,Exports,Fer-blanc,Bayonne,16821.0,detail_products
+Monde,Imports,Acier,Bayonne,4760.0,detail_products
+France,Imports,Acier,Bayonne,3304.4,detail_products
+Fraude,Exports,Acier,Bayonne,8064.4,detail_products
+Monde,Imports,Quinquina,Bayonne,16850.0,detail_products
+France,Imports,Quinquina,Bayonne,13416.0,detail_products
+Fraude,Exports,Quinquina,Bayonne,30266.0,detail_products
+Monde,Imports,Poivre et piment,Bayonne,25900.0,detail_products
+France,Imports,Poivre et piment,Bayonne,37549.5,detail_products
+Fraude,Exports,Poivre et piment,Bayonne,63449.5,detail_products
+Monde,Imports,Lin,Bayonne,289231.0,detail_products
+France,Imports,Lin,Bayonne,44177.700000000004,detail_products
+Fraude,Exports,Lin,Bayonne,333408.7,detail_products
+Monde,Imports,Rubanerie et passementerie de soie,Bayonne,1713.0,detail_products
+Fraude,Exports,Rubanerie et passementerie de soie,Bayonne,1713.0,detail_products
+Monde,Imports,Étoffes diverses,Bayonne,3000.0,detail_products
+France,Exports,Étoffes diverses,Bayonne,56498.0,detail_products
+Fraude,Imports,Étoffes diverses,Bayonne,53498.0,detail_products
+Monde,Imports,"Mousseline, basin et nankin",Bayonne,82900.0,detail_products
+Fraude,Exports,"Mousseline, basin et nankin",Bayonne,82900.0,detail_products
+France,Imports,Bijouterie et pierres fines,Bayonne,1170.0,detail_products
+Fraude,Exports,Bijouterie et pierres fines,Bayonne,1170.0,detail_products
+France,Imports,Textiles manufacturés divers et mélangés,Bayonne,2128.0,detail_products
+France,Exports,Textiles manufacturés divers et mélangés,Bayonne,2560.0,detail_products
+Fraude,Imports,Textiles manufacturés divers et mélangés,Bayonne,432.0,detail_products
+France,Imports,Manne et médicaments,Bayonne,8873.0,detail_products
+Fraude,Exports,Manne et médicaments,Bayonne,8873.0,detail_products
+France,Imports,Séné,Bayonne,758.75,detail_products
+Fraude,Exports,Séné,Bayonne,758.75,detail_products
+France,Imports,Garance,Bayonne,648.0,detail_products
+Fraude,Exports,Garance,Bayonne,648.0,detail_products
+France,Imports,Girofle,Bayonne,7812.0,detail_products
+Fraude,Exports,Girofle,Bayonne,7812.0,detail_products
+France,Imports,Muscades,Bayonne,180.0,detail_products
+Fraude,Exports,Muscades,Bayonne,180.0,detail_products
+France,Imports,Étain,Bayonne,765.0,detail_products
+Fraude,Exports,Étain,Bayonne,765.0,detail_products
+France,Imports,Étoffes de soie,Bayonne,1825.0,detail_products
+France,Exports,Étoffes de soie,Bayonne,14215.0,detail_products
+Fraude,Imports,Étoffes de soie,Bayonne,12390.0,detail_products
+France,Imports,Librairie,Bayonne,439.0,detail_products
+Fraude,Exports,Librairie,Bayonne,439.0,detail_products
+France,Imports,Parfumerie et toilette,Bayonne,165.0,detail_products
+Fraude,Exports,Parfumerie et toilette,Bayonne,165.0,detail_products
+France,Imports,Plomb,Bayonne,14883.18,detail_products
+Fraude,Exports,Plomb,Bayonne,14883.18,detail_products
+France,Imports,"Faucilles, faux et limes",Bayonne,1544.0,detail_products
+Fraude,Exports,"Faucilles, faux et limes",Bayonne,1544.0,detail_products
+France,Imports,Rubanerie et passementerie diverse,Bayonne,238.0,detail_products
+France,Exports,Rubanerie et passementerie diverse,Bayonne,3990.0,detail_products
+Fraude,Imports,Rubanerie et passementerie diverse,Bayonne,3752.0,detail_products
+France,Imports,Soie,Bayonne,900.0,detail_products
+Fraude,Exports,Soie,Bayonne,900.0,detail_products
+France,Imports,Thé,Bayonne,147.0,detail_products
+Fraude,Exports,Thé,Bayonne,147.0,detail_products
+France,Exports,Bonneterie de soie,Bayonne,14208.0,detail_products
+Fraude,Imports,Bonneterie de soie,Bayonne,14208.0,detail_products
+France,Imports,Salsepareille,Bayonne,1710.0,detail_products
+Fraude,Exports,Salsepareille,Bayonne,1710.0,detail_products
+France,Imports,Poils et crin,Bayonne,12948.0004316,detail_products
+Fraude,Exports,Poils et crin,Bayonne,12948.0004316,detail_products
+France,Exports,Sels chimiques,Bayonne,560.0,detail_products
+Fraude,Imports,Sels chimiques,Bayonne,560.0,detail_products
+France,Imports,Métaux divers et mélangés,Bayonne,1100.0,detail_products
+Fraude,Exports,Métaux divers et mélangés,Bayonne,1100.0,detail_products
+France,Imports,autres produits,Bayonne,5160206.625222757,total_trade
+France,Exports,autres produits,Bayonne,3139840.4455255987,total_trade
+Monde,Exports,autres produits,Bayonne,3141882.0,total_trade
+Monde,Imports,autres produits,Bayonne,8370185.0,total_trade
+Colonies,Exports,autres produits,Bayonne,500164.0,total_trade
+Fraude,Exports,autres produits,Bayonne,6748505.179697159,total_trade
+Monde,Exports,produits coloniaux,Bayonne,417384.0,total_trade
+Colonies,Imports,produits coloniaux,Bayonne,890608.0,total_trade
+Fraude,Exports,produits coloniaux,Bayonne,473224.0,total_trade
+Monde,Exports,Cacao et chocolat,Marseille,196188.600018,detail_products
+Monde,Imports,Cacao et chocolat,Marseille,125262.99799475001,detail_products
+Colonies,Exports,Cacao et chocolat,Marseille,14630.0,detail_products
+Colonies,Imports,Cacao et chocolat,Marseille,98113.0,detail_products
+Fraude,Exports,Cacao et chocolat,Marseille,12557.397976750013,detail_products
+Monde,Exports,Café,Marseille,10338559.0,detail_products
+Monde,Imports,Café,Marseille,466215.2,detail_products
+Colonies,Imports,Café,Marseille,15241441.0,detail_products
+France,Imports,Café,Marseille,1055.6,detail_products
+Fraude,Exports,Café,Marseille,5370152.799999999,detail_products
+Monde,Exports,Coton non transformé,Marseille,449563.70104,detail_products
+Monde,Imports,Coton non transformé,Marseille,8103817.0,detail_products
+France,Exports,Coton non transformé,Marseille,10286.89961,detail_products
+France,Imports,Coton non transformé,Marseille,12148.0,detail_products
+Colonies,Imports,Coton non transformé,Marseille,971005.0,detail_products
+Fraude,Exports,Coton non transformé,Marseille,8627119.39935,detail_products
+Monde,Exports,Denrées coloniales et épiceries diverses,Marseille,278137.64996701,detail_products
+Monde,Imports,Denrées coloniales et épiceries diverses,Marseille,8389.900062,detail_products
+Colonies,Exports,Denrées coloniales et épiceries diverses,Marseille,1536.0,detail_products
+Colonies,Imports,Denrées coloniales et épiceries diverses,Marseille,9540.0,detail_products
+Fraude,Imports,Denrées coloniales et épiceries diverses,Marseille,261743.74990501002,detail_products
+Monde,Exports,Indigo,Marseille,1879838.0,detail_products
+Monde,Imports,Indigo,Marseille,1258750.25,detail_products
+Colonies,Imports,Indigo,Marseille,812862.0,detail_products
+Fraude,Exports,Indigo,Marseille,191774.25,detail_products
+Monde,Exports,Rocou,Marseille,38674.0,detail_products
+Monde,Imports,Rocou,Marseille,3162.5,detail_products
+Colonies,Imports,Rocou,Marseille,53337.0,detail_products
+Fraude,Exports,Rocou,Marseille,17825.5,detail_products
+Monde,Exports,Sucre,Marseille,12200117.3999885,detail_products
+Colonies,Imports,Sucre,Marseille,13853256.0,detail_products
+Fraude,Exports,Sucre,Marseille,1653138.6000114996,detail_products
+France,Exports,"Armes, munitions, poudre et pierres à fusil",Marseille,23529.0,detail_products
+Monde,Exports,"Armes, munitions, poudre et pierres à fusil",Marseille,15486.799799999999,detail_products
+Colonies,Exports,"Armes, munitions, poudre et pierres à fusil",Marseille,16725.0,detail_products
+Fraude,Imports,"Armes, munitions, poudre et pierres à fusil",Marseille,55740.7998,detail_products
+France,Exports,Bijouterie et pierres fines,Marseille,1250.0,detail_products
+Monde,Exports,Bijouterie et pierres fines,Marseille,9800.0,detail_products
+Monde,Imports,Bijouterie et pierres fines,Marseille,99178.5,detail_products
+Colonies,Exports,Bijouterie et pierres fines,Marseille,12759.0,detail_products
+Fraude,Exports,Bijouterie et pierres fines,Marseille,75369.5,detail_products
+France,Exports,Habits et lingerie,Marseille,152873.0,detail_products
+Monde,Exports,Habits et lingerie,Marseille,11103.599952,detail_products
+Monde,Imports,Habits et lingerie,Marseille,89582.251735,detail_products
+Colonies,Exports,Habits et lingerie,Marseille,113448.0,detail_products
+Fraude,Imports,Habits et lingerie,Marseille,187842.34821699996,detail_products
+France,Exports,Bonneterie hors soie,Marseille,348916.0,detail_products
+Monde,Exports,Bonneterie hors soie,Marseille,564164.0,detail_products
+Monde,Imports,Bonneterie hors soie,Marseille,18946.199969,detail_products
+Colonies,Exports,Bonneterie hors soie,Marseille,144.0,detail_products
+Fraude,Imports,Bonneterie hors soie,Marseille,894277.800031,detail_products
+France,Exports,Soieries diverses,Marseille,1239195.0,detail_products
+Monde,Exports,Soieries diverses,Marseille,2205.0,detail_products
+Monde,Imports,Soieries diverses,Marseille,3864951.0,detail_products
+Colonies,Exports,Soieries diverses,Marseille,144744.0,detail_products
+Fraude,Exports,Soieries diverses,Marseille,2478807.0,detail_products
+France,Exports,Gants,Marseille,25272.0,detail_products
+Colonies,Exports,Gants,Marseille,25981.0,detail_products
+Fraude,Imports,Gants,Marseille,51253.0,detail_products
+France,Exports,Chapeaux hors paille et écorce,Marseille,398880.0,detail_products
+Monde,Exports,Chapeaux hors paille et écorce,Marseille,222120.0,detail_products
+Colonies,Exports,Chapeaux hors paille et écorce,Marseille,1056147.0,detail_products
+Fraude,Imports,Chapeaux hors paille et écorce,Marseille,1677147.0,detail_products
+France,Exports,Étoffes de laine,Marseille,12341832.0,detail_products
+Monde,Exports,Étoffes de laine,Marseille,11418622.097937202,detail_products
+Monde,Imports,Étoffes de laine,Marseille,5056473.5901420005,detail_products
+Colonies,Exports,Étoffes de laine,Marseille,259960.0,detail_products
+Fraude,Imports,Étoffes de laine,Marseille,18963940.507795203,detail_products
+France,Exports,Dentelles,Marseille,500.0,detail_products
+Colonies,Exports,Dentelles,Marseille,1800.0,detail_products
+Monde,Imports,Dentelles,Marseille,600.0,detail_products
+Fraude,Imports,Dentelles,Marseille,1700.0,detail_products
+France,Exports,Dorure,Marseille,1023850.0,detail_products
+Monde,Exports,Dorure,Marseille,211565.0,detail_products
+Colonies,Exports,Dorure,Marseille,22515.0,detail_products
+Fraude,Imports,Dorure,Marseille,1257930.0,detail_products
+France,Exports,Toiles de chanvre et de lin,Marseille,295222.4999775,detail_products
+France,Imports,Toiles de chanvre et de lin,Marseille,20631.59978,detail_products
+Monde,Exports,Toiles de chanvre et de lin,Marseille,821258.9937,detail_products
+Monde,Imports,Toiles de chanvre et de lin,Marseille,694781.6090200001,detail_products
+Colonies,Exports,Toiles de chanvre et de lin,Marseille,335345.0,detail_products
+Fraude,Imports,Toiles de chanvre et de lin,Marseille,736413.2848774998,detail_products
+France,Exports,Drogues médicinales diverses,Marseille,2577.0,detail_products
+Monde,Exports,Drogues médicinales diverses,Marseille,34876.700054,detail_products
+Monde,Imports,Drogues médicinales diverses,Marseille,80989.79970750002,detail_products
+Colonies,Exports,Drogues médicinales diverses,Marseille,129238.0,detail_products
+Colonies,Imports,Drogues médicinales diverses,Marseille,77092.0,detail_products
+Fraude,Imports,Drogues médicinales diverses,Marseille,8609.900346499984,detail_products
+France,Exports,Étain,Marseille,675.0,detail_products
+Monde,Exports,Étain,Marseille,168184.79981199998,detail_products
+Monde,Imports,Étain,Marseille,117814.99,detail_products
+Fraude,Imports,Étain,Marseille,51044.80981199998,detail_products
+France,Exports,Étoffes diverses,Marseille,973853.75,detail_products
+Monde,Exports,Étoffes diverses,Marseille,161390.102059,detail_products
+Monde,Imports,Étoffes diverses,Marseille,347916.0,detail_products
+Colonies,Exports,Étoffes diverses,Marseille,32357.0,detail_products
+Fraude,Imports,Étoffes diverses,Marseille,819684.8520589999,detail_products
+France,Exports,Textiles manufacturés divers et mélangés,Marseille,34724.0,detail_products
+Colonies,Exports,Textiles manufacturés divers et mélangés,Marseille,7149.0,detail_products
+Monde,Imports,Textiles manufacturés divers et mélangés,Marseille,7988.0,detail_products
+Fraude,Imports,Textiles manufacturés divers et mélangés,Marseille,33885.0,detail_products
+France,Exports,Toiles de coton,Marseille,308834.2508,detail_products
+France,Imports,Toiles de coton,Marseille,6900.0,detail_products
+Monde,Exports,Toiles de coton,Marseille,283385.50632000004,detail_products
+Monde,Imports,Toiles de coton,Marseille,408936.8,detail_products
+Colonies,Exports,Toiles de coton,Marseille,969333.0,detail_products
+Fraude,Imports,Toiles de coton,Marseille,1145715.95712,detail_products
+France,Exports,Étoffes de soie,Marseille,3005011.0,detail_products
+Monde,Exports,Étoffes de soie,Marseille,2862414.0,detail_products
+Monde,Imports,Étoffes de soie,Marseille,159800.0,detail_products
+Colonies,Exports,Étoffes de soie,Marseille,462358.0,detail_products
+Fraude,Imports,Étoffes de soie,Marseille,6169983.0,detail_products
+France,Exports,Fer,Marseille,1297.0,detail_products
+Monde,Exports,Fer,Marseille,9985.279999999999,detail_products
+Monde,Imports,Fer,Marseille,19013.11944,detail_products
+Fraude,Exports,Fer,Marseille,7730.83944,detail_products
+France,Exports,Fils divers,Marseille,24881.0,detail_products
+Monde,Exports,Fils divers,Marseille,3292143.419804,detail_products
+Monde,Imports,Fils divers,Marseille,6568105.2019956,detail_products
+Colonies,Exports,Fils divers,Marseille,90756.0,detail_products
+Colonies,Imports,Fils divers,Marseille,23958.0,detail_products
+Fraude,Exports,Fils divers,Marseille,3184282.7821916,detail_products
+France,Exports,Châles et mouchoirs hors soie,Marseille,89518.0,detail_products
+France,Imports,Châles et mouchoirs hors soie,Marseille,17082.0,detail_products
+Colonies,Exports,Châles et mouchoirs hors soie,Marseille,365647.0,detail_products
+Fraude,Imports,Châles et mouchoirs hors soie,Marseille,438083.0,detail_products
+France,Exports,"Meubles, glaces et miroirs",Marseille,119234.0,detail_products
+Monde,Exports,"Meubles, glaces et miroirs",Marseille,7956.0,detail_products
+Colonies,Exports,"Meubles, glaces et miroirs",Marseille,71575.0,detail_products
+Fraude,Imports,"Meubles, glaces et miroirs",Marseille,198765.0,detail_products
+France,Exports,Ouvrages divers et mélangés,Marseille,59877.0,detail_products
+Monde,Exports,Ouvrages divers et mélangés,Marseille,78687.8300806,detail_products
+Monde,Imports,Ouvrages divers et mélangés,Marseille,137180.67475,detail_products
+Colonies,Exports,Ouvrages divers et mélangés,Marseille,294212.0,detail_products
+Fraude,Imports,Ouvrages divers et mélangés,Marseille,295596.1553306,detail_products
+France,Exports,Horlogerie,Marseille,4930.0,detail_products
+Monde,Exports,Horlogerie,Marseille,21462.0,detail_products
+Monde,Imports,Horlogerie,Marseille,54765.0,detail_products
+Fraude,Exports,Horlogerie,Marseille,28373.0,detail_products
+France,Exports,Librairie,Marseille,14688.00022,detail_products
+Monde,Exports,Librairie,Marseille,175835.9976528,detail_products
+Monde,Imports,Librairie,Marseille,15068.0,detail_products
+Colonies,Exports,Librairie,Marseille,5161.0,detail_products
+Fraude,Imports,Librairie,Marseille,180616.99787279998,detail_products
+France,Exports,Mercerie,Marseille,1288456.50049,detail_products
+France,Imports,Mercerie,Marseille,3128.32,detail_products
+Monde,Exports,Mercerie,Marseille,877223.550605,detail_products
+Monde,Imports,Mercerie,Marseille,199737.99842879997,detail_products
+Colonies,Exports,Mercerie,Marseille,230921.0,detail_products
+Fraude,Imports,Mercerie,Marseille,2193734.7326662,detail_products
+France,Exports,Châles et mouchoirs de soie,Marseille,140700.0,detail_products
+Monde,Exports,Châles et mouchoirs de soie,Marseille,82035.0,detail_products
+Monde,Imports,Châles et mouchoirs de soie,Marseille,61204.0,detail_products
+Colonies,Exports,Châles et mouchoirs de soie,Marseille,2880.0,detail_products
+Fraude,Imports,Châles et mouchoirs de soie,Marseille,164411.0,detail_products
+France,Exports,Argenterie et orfèvrerie,Marseille,52880.16,detail_products
+Monde,Exports,Argenterie et orfèvrerie,Marseille,3008.0,detail_products
+Monde,Imports,Argenterie et orfèvrerie,Marseille,6912.0,detail_products
+Colonies,Exports,Argenterie et orfèvrerie,Marseille,20392.0,detail_products
+Fraude,Imports,Argenterie et orfèvrerie,Marseille,69368.16,detail_products
+France,Exports,"Ouvrages de bois, liège et jonc",Marseille,11360.0,detail_products
+France,Imports,"Ouvrages de bois, liège et jonc",Marseille,9734.48007,detail_products
+Monde,Exports,"Ouvrages de bois, liège et jonc",Marseille,109704.38996400002,detail_products
+Monde,Imports,"Ouvrages de bois, liège et jonc",Marseille,884729.9085799999,detail_products
+Colonies,Exports,"Ouvrages de bois, liège et jonc",Marseille,67270.0,detail_products
+Colonies,Imports,"Ouvrages de bois, liège et jonc",Marseille,17645.0,detail_products
+Fraude,Exports,"Ouvrages de bois, liège et jonc",Marseille,723774.998686,detail_products
+France,Exports,Ouvrages métalliques,Marseille,108543.51014500001,detail_products
+Monde,Exports,Ouvrages métalliques,Marseille,1232755.9719470001,detail_products
+Monde,Imports,Ouvrages métalliques,Marseille,2729927.1041840003,detail_products
+Colonies,Exports,Ouvrages métalliques,Marseille,110616.0,detail_products
+Fraude,Exports,Ouvrages métalliques,Marseille,1278011.6220920002,detail_products
+France,Exports,Fleurs artificielles et ouvrages de mode,Marseille,21899.0,detail_products
+Colonies,Exports,Fleurs artificielles et ouvrages de mode,Marseille,8574.0,detail_products
+Fraude,Imports,Fleurs artificielles et ouvrages de mode,Marseille,30473.0,detail_products
+France,Exports,Papier,Marseille,26990.0,detail_products
+Monde,Exports,Papier,Marseille,271942.50025,detail_products
+Monde,Imports,Papier,Marseille,17159.0,detail_products
+Colonies,Exports,Papier,Marseille,134165.0,detail_products
+Fraude,Imports,Papier,Marseille,415938.50025,detail_products
+France,Exports,Divers mélangés,Marseille,3549.0,detail_products
+France,Imports,Divers mélangés,Marseille,184.0,detail_products
+Monde,Exports,Divers mélangés,Marseille,621.0,detail_products
+Monde,Imports,Divers mélangés,Marseille,5668.489906,detail_products
+Colonies,Exports,Divers mélangés,Marseille,44188.0,detail_products
+Colonies,Imports,Divers mélangés,Marseille,17782.0,detail_products
+Fraude,Imports,Divers mélangés,Marseille,24723.510094,detail_products
+France,Exports,Plumes brutes,Marseille,48900.0,detail_products
+Monde,Imports,Plumes brutes,Marseille,10574.19972,detail_products
+Fraude,Imports,Plumes brutes,Marseille,38325.800279999996,detail_products
+France,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,25753.760044,detail_products
+France,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,86580.00140000001,detail_products
+Monde,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,51911.69018360001,detail_products
+Monde,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,163355.91595818,detail_products
+Colonies,Exports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,199533.0,detail_products
+Fraude,Imports,"Porcelaine, poterie, faïence et ouvrages de terre",Marseille,27262.532869419985,detail_products
+France,Exports,Quincaillerie,Marseille,196919.399905,detail_products
+France,Imports,Quincaillerie,Marseille,3740.25,detail_products
+Monde,Exports,Quincaillerie,Marseille,277272.302915,detail_products
+Monde,Imports,Quincaillerie,Marseille,142751.59100000001,detail_products
+Colonies,Exports,Quincaillerie,Marseille,349104.0,detail_products
+Fraude,Imports,Quincaillerie,Marseille,676803.86182,detail_products
+France,Exports,Rubanerie et passementerie diverse,Marseille,11250.0,detail_products
+Monde,Exports,Rubanerie et passementerie diverse,Marseille,1317.0,detail_products
+Monde,Imports,Rubanerie et passementerie diverse,Marseille,17817.5,detail_products
+Colonies,Exports,Rubanerie et passementerie diverse,Marseille,2142.0,detail_products
+Fraude,Exports,Rubanerie et passementerie diverse,Marseille,3108.5,detail_products
+France,Exports,Rubanerie et passementerie de soie,Marseille,959145.0,detail_products
+Monde,Exports,Rubanerie et passementerie de soie,Marseille,161250.0,detail_products
+Monde,Imports,Rubanerie et passementerie de soie,Marseille,95080.0,detail_products
+Colonies,Exports,Rubanerie et passementerie de soie,Marseille,155012.0,detail_products
+Fraude,Imports,Rubanerie et passementerie de soie,Marseille,1180327.0,detail_products
+France,Exports,Soie,Marseille,15382.0,detail_products
+Monde,Exports,Soie,Marseille,640244.0,detail_products
+Monde,Imports,Soie,Marseille,4655569.0,detail_products
+Colonies,Exports,Soie,Marseille,2312.0,detail_products
+Fraude,Exports,Soie,Marseille,3997631.0,detail_products
+France,Exports,"Mousseline, basin et nankin",Marseille,1348224.5,detail_products
+France,Imports,"Mousseline, basin et nankin",Marseille,27530.0,detail_products
+Colonies,Exports,"Mousseline, basin et nankin",Marseille,886250.0,detail_products
+Fraude,Imports,"Mousseline, basin et nankin",Marseille,2206944.5,detail_products
+France,Exports,Toiles diverses,Marseille,461429.0,detail_products
+France,Imports,Toiles diverses,Marseille,12586.0,detail_products
+Monde,Exports,Toiles diverses,Marseille,22783.439784000002,detail_products
+Monde,Imports,Toiles diverses,Marseille,468640.4,detail_products
+Colonies,Exports,Toiles diverses,Marseille,38074.0,detail_products
+Fraude,Imports,Toiles diverses,Marseille,41060.039783999964,detail_products
+France,Exports,Verrerie,Marseille,26180.0,detail_products
+France,Imports,Verrerie,Marseille,214.92,detail_products
+Monde,Exports,Verrerie,Marseille,42857.70003,detail_products
+Monde,Imports,Verrerie,Marseille,26139.619339999997,detail_products
+Colonies,Exports,Verrerie,Marseille,51630.0,detail_products
+Fraude,Imports,Verrerie,Marseille,94313.16069000002,detail_products
+France,Exports,"Bière, cidre et vinaigre",Marseille,366.0,detail_products
+Monde,Exports,"Bière, cidre et vinaigre",Marseille,6002.89011,detail_products
+Monde,Imports,"Bière, cidre et vinaigre",Marseille,10454.00015,detail_products
+Colonies,Exports,"Bière, cidre et vinaigre",Marseille,1533.0,detail_products
+Fraude,Exports,"Bière, cidre et vinaigre",Marseille,2552.1100399999996,detail_products
+Monde,Exports,Acier,Marseille,8881.80006,detail_products
+Monde,Imports,Acier,Marseille,39224.930810000005,detail_products
+Fraude,Exports,Acier,Marseille,30343.130750000004,detail_products
+Monde,Exports,Matières premières diverses,Marseille,37475.5301435,detail_products
+Monde,Imports,Matières premières diverses,Marseille,380614.91541979957,detail_products
+France,Exports,Matières premières diverses,Marseille,1479.0,detail_products
+France,Imports,Matières premières diverses,Marseille,2259.3700000000003,detail_products
+Colonies,Exports,Matières premières diverses,Marseille,5659.0,detail_products
+Fraude,Exports,Matières premières diverses,Marseille,338260.75527629955,detail_products
+France,Exports,Fruits secs et noix,Marseille,87629.21072,detail_products
+Monde,Exports,Fruits secs et noix,Marseille,787772.7802889998,detail_products
+Monde,Imports,Fruits secs et noix,Marseille,333428.077204,detail_products
+Colonies,Exports,Fruits secs et noix,Marseille,163812.0,detail_products
+Fraude,Imports,Fruits secs et noix,Marseille,705785.9138049998,detail_products
+Monde,Exports,Beurre,Marseille,6665.75013,detail_products
+Monde,Imports,Beurre,Marseille,2968.199988,detail_products
+Fraude,Imports,Beurre,Marseille,3697.5501420000005,detail_products
+Monde,Exports,Bois divers hors combustible,Marseille,14103.470012,detail_products
+Monde,Imports,Bois divers hors combustible,Marseille,39321.310604,detail_products
+Colonies,Exports,Bois divers hors combustible,Marseille,4028.0,detail_products
+Colonies,Imports,Bois divers hors combustible,Marseille,37492.0,detail_products
+France,Imports,Bois divers hors combustible,Marseille,5001.6,detail_products
+Fraude,Exports,Bois divers hors combustible,Marseille,63683.440592000006,detail_products
+Monde,Exports,Bois des Indes,Marseille,1719.0,detail_products
+Monde,Imports,Bois des Indes,Marseille,22766.130026,detail_products
+France,Exports,Bois des Indes,Marseille,154.0,detail_products
+Fraude,Exports,Bois des Indes,Marseille,20893.130026,detail_products
+Monde,Exports,Matières brutes et transformées pour teinture,Marseille,549525.410595,detail_products
+Monde,Imports,Matières brutes et transformées pour teinture,Marseille,483081.9210750001,detail_products
+France,Exports,Matières brutes et transformées pour teinture,Marseille,3735.28,detail_products
+France,Imports,Matières brutes et transformées pour teinture,Marseille,306.0,detail_products
+Colonies,Exports,Matières brutes et transformées pour teinture,Marseille,8089.0,detail_products
+Colonies,Imports,Matières brutes et transformées pour teinture,Marseille,38976.0,detail_products
+Fraude,Imports,Matières brutes et transformées pour teinture,Marseille,38985.76951999997,detail_products
+Monde,Exports,Bonneterie de soie,Marseille,477216.0,detail_products
+Fraude,Imports,Bonneterie de soie,Marseille,477216.0,detail_products
+Monde,Exports,"Filoselle, fleuret et bourre de soie",Marseille,5025.0,detail_products
+Monde,Imports,"Filoselle, fleuret et bourre de soie",Marseille,5706.0,detail_products
+Fraude,Exports,"Filoselle, fleuret et bourre de soie",Marseille,681.0,detail_products
+Monde,Exports,"Brai, goudron et résines",Marseille,67269.31982,detail_products
+Monde,Imports,"Brai, goudron et résines",Marseille,142509.41787,detail_products
+Colonies,Exports,"Brai, goudron et résines",Marseille,2485.0,detail_products
+France,Imports,"Brai, goudron et résines",Marseille,15837.28,detail_products
+Fraude,Exports,"Brai, goudron et résines",Marseille,88592.37805,detail_products
+Monde,Exports,Drogues diverses,Marseille,526648.0238910001,detail_products
+Monde,Imports,Drogues diverses,Marseille,626064.4102335,detail_products
+France,Exports,Drogues diverses,Marseille,21657.19964,detail_products
+France,Imports,Drogues diverses,Marseille,257.25,detail_products
+Colonies,Exports,Drogues diverses,Marseille,39632.0,detail_products
+Fraude,Exports,Drogues diverses,Marseille,38384.436702499865,detail_products
+Monde,Exports,Cendres diverses,Marseille,92083.00011000001,detail_products
+Monde,Imports,Cendres diverses,Marseille,1763700.61919,detail_products
+France,Imports,Cendres diverses,Marseille,2200.08,detail_products
+Fraude,Exports,Cendres diverses,Marseille,1673817.6990800002,detail_products
+Monde,Exports,"Gravelée, potasse et védasse",Marseille,74158.5,detail_products
+Monde,Imports,"Gravelée, potasse et védasse",Marseille,344167.88,detail_products
+Fraude,Exports,"Gravelée, potasse et védasse",Marseille,270009.38,detail_products
+France,Exports,Alcalis,Marseille,2535.04,detail_products
+Monde,Imports,Alcalis,Marseille,1404790.97632,detail_products
+Fraude,Exports,Alcalis,Marseille,1402255.9363199999,detail_products
+Monde,Exports,Chairs et œufs,Marseille,9812.649815,detail_products
+Monde,Imports,Chairs et œufs,Marseille,27443.6105618,detail_products
+Colonies,Exports,Chairs et œufs,Marseille,225356.0,detail_products
+Fraude,Imports,Chairs et œufs,Marseille,207725.0392532,detail_products
+Monde,Exports,Subsistances diverses et mélangées,Marseille,84118.539712,detail_products
+Monde,Imports,Subsistances diverses et mélangées,Marseille,93067.24097117,detail_products
+Colonies,Exports,Subsistances diverses et mélangées,Marseille,129131.0,detail_products
+Colonies,Imports,Subsistances diverses et mélangées,Marseille,5958.0,detail_products
+Fraude,Imports,Subsistances diverses et mélangées,Marseille,114224.29874083,detail_products
+Monde,Exports,Chanvre,Marseille,249203.39177499997,detail_products
+Monde,Imports,Chanvre,Marseille,1624047.255225,detail_products
+France,Exports,Chanvre,Marseille,575.05000775,detail_products
+Fraude,Exports,Chanvre,Marseille,1374268.81344225,detail_products
+Monde,Exports,Chapeaux d'écorce et de paille,Marseille,2160.0,detail_products
+Monde,Imports,Chapeaux d'écorce et de paille,Marseille,15740.300544,detail_products
+Colonies,Exports,Chapeaux d'écorce et de paille,Marseille,4356.0,detail_products
+Fraude,Exports,Chapeaux d'écorce et de paille,Marseille,9224.300544,detail_products
+France,Exports,Combustibles dont charbons et bois,Marseille,964.40004,detail_products
+France,Imports,Combustibles dont charbons et bois,Marseille,142822.38,detail_products
+Monde,Exports,Combustibles dont charbons et bois,Marseille,7879.0,detail_products
+Monde,Imports,Combustibles dont charbons et bois,Marseille,136788.59797499998,detail_products
+Fraude,Exports,Combustibles dont charbons et bois,Marseille,270767.577935,detail_products
+Monde,Exports,"Bougies, chandelles et flambeaux",Marseille,48359.50115000001,detail_products
+Monde,Imports,"Bougies, chandelles et flambeaux",Marseille,7022.949901,detail_products
+France,Exports,"Bougies, chandelles et flambeaux",Marseille,3763.9,detail_products
+Colonies,Exports,"Bougies, chandelles et flambeaux",Marseille,1405697.0,detail_products
+Fraude,Imports,"Bougies, chandelles et flambeaux",Marseille,1450797.4512490002,detail_products
+Monde,Exports,Cire,Marseille,835037.376284,detail_products
+Monde,Imports,Cire,Marseille,740468.117086,detail_products
+France,Imports,Cire,Marseille,19466.7,detail_products
+Fraude,Imports,Cire,Marseille,75102.559198,detail_products
+Monde,Exports,Colles diverses,Marseille,8906.9198592,detail_products
+Monde,Imports,Colles diverses,Marseille,35779.88123,detail_products
+Colonies,Exports,Colles diverses,Marseille,396.0,detail_products
+Fraude,Exports,Colles diverses,Marseille,26476.9613708,detail_products
+Monde,Exports,Cordage et filets,Marseille,39869.38039005,detail_products
+Monde,Imports,Cordage et filets,Marseille,76746.49945,detail_products
+Colonies,Exports,Cordage et filets,Marseille,57642.0,detail_products
+Fraude,Imports,Cordage et filets,Marseille,20764.880940050003,detail_products
+Monde,Exports,Produits inconnus,Marseille,1753.499925,detail_products
+Fraude,Imports,Produits inconnus,Marseille,1753.499925,detail_products
+France,Exports,"Cuirs, peaux et pelleterie",Marseille,23571.05034,detail_products
+France,Imports,"Cuirs, peaux et pelleterie",Marseille,433200.290206,detail_products
+Monde,Exports,"Cuirs, peaux et pelleterie",Marseille,811221.1462857,detail_products
+Monde,Imports,"Cuirs, peaux et pelleterie",Marseille,2922917.9605372,detail_products
+Colonies,Exports,"Cuirs, peaux et pelleterie",Marseille,209864.0,detail_products
+Colonies,Imports,"Cuirs, peaux et pelleterie",Marseille,299730.0,detail_products
+Fraude,Exports,"Cuirs, peaux et pelleterie",Marseille,2611192.0541175,detail_products
+Monde,Exports,Cuivre,Marseille,103163.64829999999,detail_products
+Monde,Imports,Cuivre,Marseille,1240159.05,detail_products
+Fraude,Exports,Cuivre,Marseille,1136995.4017,detail_products
+Monde,Exports,Parfumerie et toilette,Marseille,317575.700056,detail_products
+Monde,Imports,Parfumerie et toilette,Marseille,153631.897653,detail_products
+France,Exports,Parfumerie et toilette,Marseille,2518.5,detail_products
+Colonies,Exports,Parfumerie et toilette,Marseille,16831.0,detail_products
+Fraude,Imports,Parfumerie et toilette,Marseille,183293.30240299998,detail_products
+Monde,Exports,Gommes diverses,Marseille,228042.750815,detail_products
+Monde,Imports,Gommes diverses,Marseille,834691.2976,detail_products
+France,Exports,Gommes diverses,Marseille,5870.39976,detail_products
+Colonies,Exports,Gommes diverses,Marseille,2320.0,detail_products
+Fraude,Exports,Gommes diverses,Marseille,598458.1470250001,detail_products
+France,Exports,Manne et médicaments,Marseille,19886.850270000003,detail_products
+Monde,Exports,Manne et médicaments,Marseille,80288.55135,detail_products
+Monde,Imports,Manne et médicaments,Marseille,270478.99875,detail_products
+Colonies,Exports,Manne et médicaments,Marseille,61007.0,detail_products
+Fraude,Exports,Manne et médicaments,Marseille,109296.59713000004,detail_products
+Monde,Exports,Quinquina,Marseille,55762.5,detail_products
+Monde,Imports,Quinquina,Marseille,61586.0,detail_products
+Colonies,Exports,Quinquina,Marseille,38332.0,detail_products
+Fraude,Imports,Quinquina,Marseille,32508.5,detail_products
+Monde,Exports,Safran,Marseille,62857.75064175,detail_products
+Monde,Imports,Safran,Marseille,486699.28945965995,detail_products
+France,Exports,Safran,Marseille,1304.79001403,detail_products
+Colonies,Exports,Safran,Marseille,1392.0,detail_products
+Fraude,Exports,Safran,Marseille,421144.74880387995,detail_products
+Monde,Exports,Salsepareille,Marseille,35665.00025,detail_products
+Monde,Imports,Salsepareille,Marseille,196711.2072,detail_products
+Colonies,Exports,Salsepareille,Marseille,57848.0,detail_products
+Fraude,Exports,Salsepareille,Marseille,103198.20695,detail_products
+France,Exports,Séné,Marseille,8854.999749999999,detail_products
+Monde,Exports,Séné,Marseille,46027.500875,detail_products
+Monde,Imports,Séné,Marseille,304606.047501,detail_products
+Colonies,Exports,Séné,Marseille,7075.0,detail_products
+Fraude,Exports,Séné,Marseille,242648.546876,detail_products
+Monde,Exports,Réglisse,Marseille,103585.0,detail_products
+Monde,Imports,Réglisse,Marseille,173172.78445500002,detail_products
+France,Exports,Réglisse,Marseille,20138.0005,detail_products
+Colonies,Exports,Réglisse,Marseille,265.0,detail_products
+Fraude,Exports,Réglisse,Marseille,49184.78395500002,detail_products
+Monde,Exports,Alun,Marseille,86868.3743125,detail_products
+Monde,Imports,Alun,Marseille,230449.48621,detail_products
+Colonies,Exports,Alun,Marseille,275.0,detail_products
+Fraude,Exports,Alun,Marseille,143306.1118975,detail_products
+Monde,Exports,"Alquifoux, mine de plomb et graphite",Marseille,72447.002575,detail_products
+Monde,Imports,"Alquifoux, mine de plomb et graphite",Marseille,89006.25099999999,detail_products
+Colonies,Exports,"Alquifoux, mine de plomb et graphite",Marseille,177.0,detail_products
+Fraude,Exports,"Alquifoux, mine de plomb et graphite",Marseille,16382.248424999983,detail_products
+Monde,Exports,Céruse et blanc de plomb,Marseille,2399.7600220000004,detail_products
+Monde,Imports,Céruse et blanc de plomb,Marseille,21850.8,detail_products
+Colonies,Exports,Céruse et blanc de plomb,Marseille,2094.0,detail_products
+Fraude,Exports,Céruse et blanc de plomb,Marseille,17357.039978,detail_products
+Monde,Exports,Cochenille,Marseille,1826664.0,detail_products
+Monde,Imports,Cochenille,Marseille,2122500.0,detail_products
+Colonies,Exports,Cochenille,Marseille,240.0,detail_products
+Fraude,Exports,Cochenille,Marseille,295596.0,detail_products
+Monde,Exports,Galle,Marseille,118921.50138,detail_products
+Monde,Imports,Galle,Marseille,939939.0,detail_products
+France,Exports,Galle,Marseille,6660.79977,detail_products
+Colonies,Exports,Galle,Marseille,419.0,detail_products
+Fraude,Exports,Galle,Marseille,813937.69885,detail_products
+Monde,Exports,Garance,Marseille,317139.082813,detail_products
+Monde,Imports,Garance,Marseille,227133.00312,detail_products
+Fraude,Imports,Garance,Marseille,90006.079693,detail_products
+Monde,Exports,Verdet,Marseille,233704.899948,detail_products
+Monde,Imports,Verdet,Marseille,1353.0,detail_products
+France,Exports,Verdet,Marseille,1372.8,detail_products
+Colonies,Exports,Verdet,Marseille,482.0,detail_products
+Fraude,Imports,Verdet,Marseille,234206.699948,detail_products
+France,Exports,Eaux-de-vie et liqueurs,Marseille,33452.1409183,detail_products
+France,Imports,Eaux-de-vie et liqueurs,Marseille,265.00001,detail_products
+Monde,Exports,Eaux-de-vie et liqueurs,Marseille,360540.9891789,detail_products
+Monde,Imports,Eaux-de-vie et liqueurs,Marseille,11654.0,detail_products
+Colonies,Exports,Eaux-de-vie et liqueurs,Marseille,236751.0,detail_products
+Colonies,Imports,Eaux-de-vie et liqueurs,Marseille,55403.0,detail_products
+Fraude,Imports,Eaux-de-vie et liqueurs,Marseille,563422.1300872001,detail_products
+Monde,Exports,"Cornes, corail, écailles, ivoire et nacre",Marseille,15998.749749999999,detail_products
+Monde,Imports,"Cornes, corail, écailles, ivoire et nacre",Marseille,31038.029888,detail_products
+Colonies,Imports,"Cornes, corail, écailles, ivoire et nacre",Marseille,9996.0,detail_products
+Fraude,Exports,"Cornes, corail, écailles, ivoire et nacre",Marseille,25035.280138000006,detail_products
+Monde,Exports,Cannelle,Marseille,42720.0,detail_products
+Monde,Imports,Cannelle,Marseille,227614.0,detail_products
+Colonies,Exports,Cannelle,Marseille,11940.0,detail_products
+Fraude,Exports,Cannelle,Marseille,172954.0,detail_products
+Monde,Exports,Girofle,Marseille,147180.0,detail_products
+Monde,Imports,Girofle,Marseille,383394.0,detail_products
+France,Exports,Girofle,Marseille,41364.0,detail_products
+Colonies,Exports,Girofle,Marseille,6252.0,detail_products
+Fraude,Exports,Girofle,Marseille,188598.0,detail_products
+Monde,Exports,Poivre et piment,Marseille,318939.203104,detail_products
+Monde,Imports,Poivre et piment,Marseille,1123298.2267190001,detail_products
+Colonies,Exports,Poivre et piment,Marseille,33242.0,detail_products
+Fraude,Exports,Poivre et piment,Marseille,771117.0236150001,detail_products
+Monde,Exports,"Farine, gruau, biscuits et pâtes",Marseille,19188.349961,detail_products
+Monde,Imports,"Farine, gruau, biscuits et pâtes",Marseille,445031.28969599993,detail_products
+France,Exports,"Farine, gruau, biscuits et pâtes",Marseille,63633.0025,detail_products
+Colonies,Exports,"Farine, gruau, biscuits et pâtes",Marseille,127578.0,detail_products
+Fraude,Exports,"Farine, gruau, biscuits et pâtes",Marseille,234631.93723499993,detail_products
+Monde,Exports,Bâtiments de mer et apparaux,Marseille,1506.75,detail_products
+Monde,Imports,Bâtiments de mer et apparaux,Marseille,32570.340088,detail_products
+Colonies,Exports,Bâtiments de mer et apparaux,Marseille,5917.0,detail_products
+Fraude,Exports,Bâtiments de mer et apparaux,Marseille,25146.590088,detail_products
+Monde,Exports,Fer-blanc,Marseille,32772.6,detail_products
+Monde,Imports,Fer-blanc,Marseille,113026.6,detail_products
+Colonies,Exports,Fer-blanc,Marseille,830.0,detail_products
+Fraude,Exports,Fer-blanc,Marseille,79424.0,detail_products
+Monde,Exports,Fromage,Marseille,81120.5492055,detail_products
+Monde,Imports,Fromage,Marseille,366042.755665,detail_products
+Colonies,Exports,Fromage,Marseille,291479.0,detail_products
+Fraude,Imports,Fromage,Marseille,6556.793540499988,detail_products
+France,Exports,Fruits frais,Marseille,2418.879943,detail_products
+Monde,Exports,Fruits frais,Marseille,17445.199943,detail_products
+Monde,Imports,Fruits frais,Marseille,449393.7100875,detail_products
+Colonies,Exports,Fruits frais,Marseille,48910.0,detail_products
+Fraude,Exports,Fruits frais,Marseille,380619.6302015,detail_products
+Monde,Exports,Blé et autres grains comestibles,Marseille,1345479.37,detail_products
+Monde,Imports,Blé et autres grains comestibles,Marseille,12705418.801439999,detail_products
+France,Exports,Blé et autres grains comestibles,Marseille,26250.0,detail_products
+France,Imports,Blé et autres grains comestibles,Marseille,100610.04,detail_products
+Colonies,Exports,Blé et autres grains comestibles,Marseille,7066.0,detail_products
+Fraude,Exports,Blé et autres grains comestibles,Marseille,11427233.471439999,detail_products
+France,Exports,Riz,Marseille,743.860013,detail_products
+Monde,Exports,Riz,Marseille,177186.09999999998,detail_products
+Monde,Imports,Riz,Marseille,1076381.77251,detail_products
+Colonies,Exports,Riz,Marseille,65521.0,detail_products
+Fraude,Exports,Riz,Marseille,832930.8124970001,detail_products
+Monde,Exports,Graines diverses et mélangées,Marseille,16828.749886,detail_products
+Monde,Imports,Graines diverses et mélangées,Marseille,42549.549615,detail_products
+France,Exports,Graines diverses et mélangées,Marseille,374.0,detail_products
+Colonies,Exports,Graines diverses et mélangées,Marseille,7277.0,detail_products
+Fraude,Exports,Graines diverses et mélangées,Marseille,18069.799729000002,detail_products
+Monde,Exports,Graines de jardin,Marseille,26443.0,detail_products
+Colonies,Exports,Graines de jardin,Marseille,1698.0,detail_products
+Fraude,Imports,Graines de jardin,Marseille,28141.0,detail_products
+Monde,Exports,Huiles diverses,Marseille,326.36,detail_products
+Monde,Imports,Huiles diverses,Marseille,19005678.949804,detail_products
+Colonies,Exports,Huiles diverses,Marseille,378.0,detail_products
+France,Imports,Huiles diverses,Marseille,1736.00008,detail_products
+Fraude,Exports,Huiles diverses,Marseille,19006710.589884,detail_products
+France,Exports,Huile d'olive à manger,Marseille,147989.0,detail_products
+Monde,Exports,Huile d'olive à manger,Marseille,1106722.0,detail_products
+Colonies,Exports,Huile d'olive à manger,Marseille,856930.0,detail_products
+Fraude,Imports,Huile d'olive à manger,Marseille,2111641.0,detail_products
+France,Exports,Huile de poisson,Marseille,153.74999625,detail_products
+France,Imports,Huile de poisson,Marseille,157.5,detail_products
+Monde,Exports,Huile de poisson,Marseille,3979.875,detail_products
+Colonies,Exports,Huile de poisson,Marseille,140.0,detail_products
+Fraude,Imports,Huile de poisson,Marseille,4116.12499625,detail_products
+Monde,Exports,Boissons diverses et mélangées,Marseille,180525.95784,detail_products
+Monde,Imports,Boissons diverses et mélangées,Marseille,18645.879664,detail_products
+France,Exports,Boissons diverses et mélangées,Marseille,4741.920072,detail_products
+Fraude,Imports,Boissons diverses et mélangées,Marseille,166621.998248,detail_products
+France,Exports,Laines non transformées diverses,Marseille,76372.2976,detail_products
+Monde,Exports,Laines non transformées diverses,Marseille,885324.8654309999,detail_products
+Monde,Imports,Laines non transformées diverses,Marseille,4006678.296806,detail_products
+Colonies,Exports,Laines non transformées diverses,Marseille,33128.0,detail_products
+Fraude,Exports,Laines non transformées diverses,Marseille,3011853.1337750005,detail_products
+France,Exports,Légumes,Marseille,135.0,detail_products
+Monde,Exports,Légumes,Marseille,214014.18830499996,detail_products
+Monde,Imports,Légumes,Marseille,427915.620114,detail_products
+Colonies,Exports,Légumes,Marseille,78607.0,detail_products
+Fraude,Exports,Légumes,Marseille,135159.43180900003,detail_products
+Monde,Exports,Bouchons principalement en liège,Marseille,15628.90035,detail_products
+Monde,Imports,Bouchons principalement en liège,Marseille,16637.7009,detail_products
+Colonies,Exports,Bouchons principalement en liège,Marseille,49414.0,detail_products
+Fraude,Imports,Bouchons principalement en liège,Marseille,48405.19945,detail_products
+Monde,Exports,Lin,Marseille,3673.64981,detail_products
+Monde,Imports,Lin,Marseille,2655.0,detail_products
+Fraude,Imports,Lin,Marseille,1018.6498099999999,detail_products
+Monde,Exports,Marbre brut et ouvré,Marseille,20916.48,detail_products
+Monde,Imports,Marbre brut et ouvré,Marseille,386119.599918,detail_products
+France,Exports,Marbre brut et ouvré,Marseille,561.0,detail_products
+Colonies,Exports,Marbre brut et ouvré,Marseille,59646.0,detail_products
+Fraude,Exports,Marbre brut et ouvré,Marseille,304996.119918,detail_products
+Monde,Exports,Miel,Marseille,13384.439694,detail_products
+Monde,Imports,Miel,Marseille,611.700003,detail_products
+Colonies,Exports,Miel,Marseille,282.0,detail_products
+Fraude,Imports,Miel,Marseille,13054.739691,detail_products
+Monde,Exports,Savon,Marseille,708541.99956,detail_products
+Monde,Imports,Savon,Marseille,4941.9998,detail_products
+France,Exports,Savon,Marseille,313446.5,detail_products
+Colonies,Exports,Savon,Marseille,1466356.0,detail_products
+Fraude,Imports,Savon,Marseille,2483402.49976,detail_products
+France,Exports,Plomb,Marseille,1010.0,detail_products
+Monde,Exports,Plomb,Marseille,2613.0,detail_products
+Monde,Imports,Plomb,Marseille,65348.0,detail_products
+Fraude,Exports,Plomb,Marseille,61725.0,detail_products
+Monde,Exports,Plumes ouvrées,Marseille,9500.0,detail_products
+Colonies,Exports,Plumes ouvrées,Marseille,5505.0,detail_products
+Fraude,Imports,Plumes ouvrées,Marseille,15005.0,detail_products
+France,Exports,Pêche et fruits de mer,Marseille,29772.73938,detail_products
+France,Imports,Pêche et fruits de mer,Marseille,43527.0,detail_products
+Monde,Exports,Pêche et fruits de mer,Marseille,1044601.1696899999,detail_products
+Monde,Imports,Pêche et fruits de mer,Marseille,658123.07804,detail_products
+Colonies,Exports,Pêche et fruits de mer,Marseille,57421.0,detail_products
+Fraude,Imports,Pêche et fruits de mer,Marseille,430144.83102999977,detail_products
+France,Exports,Salpêtre et soufre,Marseille,24550.62375,detail_products
+Monde,Exports,Salpêtre et soufre,Marseille,167733.72615749997,detail_products
+Monde,Imports,Salpêtre et soufre,Marseille,252549.151989,detail_products
+Colonies,Exports,Salpêtre et soufre,Marseille,1124.0,detail_products
+Fraude,Exports,Salpêtre et soufre,Marseille,59140.802081500035,detail_products
+Monde,Exports,Graisses diverses,Marseille,346.3199964,detail_products
+Monde,Imports,Graisses diverses,Marseille,595291.5771379999,detail_products
+France,Exports,Graisses diverses,Marseille,9544.32,detail_products
+France,Imports,Graisses diverses,Marseille,2131.69,detail_products
+Colonies,Exports,Graisses diverses,Marseille,98309.0,detail_products
+Fraude,Exports,Graisses diverses,Marseille,489223.6271415999,detail_products
+Monde,Exports,Tabac,Marseille,148856.7983707,detail_products
+Monde,Imports,Tabac,Marseille,335974.392,detail_products
+France,Exports,Tabac,Marseille,99466.796,detail_products
+Colonies,Imports,Tabac,Marseille,19965.0,detail_products
+Fraude,Exports,Tabac,Marseille,107615.79762929998,detail_products
+Monde,Exports,Thé,Marseille,2155.0,detail_products
+Monde,Imports,Thé,Marseille,13395.0,detail_products
+France,Imports,Thé,Marseille,6275.0,detail_products
+Fraude,Exports,Thé,Marseille,17515.0,detail_products
+Monde,Exports,Vins divers,Marseille,313982.72153603,detail_products
+Monde,Imports,Vins divers,Marseille,142099.8034354,detail_products
+France,Exports,Vins divers,Marseille,13205.96011614,detail_products
+France,Imports,Vins divers,Marseille,6244.0,detail_products
+Colonies,Exports,Vins divers,Marseille,1226923.0,detail_products
+Fraude,Imports,Vins divers,Marseille,1405767.87821677,detail_products
+Monde,Exports,Vins de Bordeaux,Marseille,10341.09985227,detail_products
+Fraude,Imports,Vins de Bordeaux,Marseille,10341.09985227,detail_products
+Colonies,Exports,Poils et crin,Marseille,40169.0,detail_products
+Monde,Imports,Poils et crin,Marseille,55667.850189,detail_products
+Fraude,Exports,Poils et crin,Marseille,15498.850188999997,detail_products
+Colonies,Exports,Mercure,Marseille,1689.0,detail_products
+Fraude,Imports,Mercure,Marseille,1689.0,detail_products
+Colonies,Exports,Sels chimiques,Marseille,7846.0,detail_products
+Monde,Imports,Sels chimiques,Marseille,33523.198704,detail_products
+Fraude,Exports,Sels chimiques,Marseille,25677.198704000002,detail_products
+Colonies,Exports,Muscades,Marseille,1155.0,detail_products
+Monde,Imports,Muscades,Marseille,11214.0,detail_products
+Fraude,Exports,Muscades,Marseille,10059.0,detail_products
+Colonies,Exports,Graines grasses,Marseille,145.0,detail_products
+Monde,Imports,Graines grasses,Marseille,13009.07949,detail_products
+Fraude,Exports,Graines grasses,Marseille,12864.07949,detail_products
+Colonies,Exports,Sirop et mélasse,Marseille,34554.0,detail_products
+Colonies,Imports,Sirop et mélasse,Marseille,3474.0,detail_products
+Fraude,Imports,Sirop et mélasse,Marseille,31080.0,detail_products
+Colonies,Exports,Monnaies et métaux précieux,Marseille,36989.0,detail_products
+Monde,Imports,Monnaies et métaux précieux,Marseille,31317.0,detail_products
+Fraude,Imports,Monnaies et métaux précieux,Marseille,5672.0,detail_products
+Colonies,Exports,Cordonnerie et sellerie,Marseille,866754.0,detail_products
+Fraude,Imports,Cordonnerie et sellerie,Marseille,866754.0,detail_products
+Colonies,Exports,Divers incertains,Marseille,1660684.0,detail_products
+Fraude,Imports,Divers incertains,Marseille,1660684.0,detail_products
+Monde,Imports,Métaux divers et mélangés,Marseille,9240.0,detail_products
+Fraude,Exports,Métaux divers et mélangés,Marseille,9240.0,detail_products
+Monde,Imports,Azur et cobalt,Marseille,4628.25,detail_products
+Fraude,Exports,Azur et cobalt,Marseille,4628.25,detail_products
+Monde,Imports,"Faucilles, faux et limes",Marseille,13240.20006,detail_products
+Fraude,Exports,"Faucilles, faux et limes",Marseille,13240.20006,detail_products
+Monde,Imports,Vin de liqueurs,Marseille,6197.12,detail_products
+Fraude,Exports,Vin de liqueurs,Marseille,6197.12,detail_products
+Monde,Exports,produits coloniaux,Marseille,24912626.0,total_trade
+Colonies,Imports,produits coloniaux,Marseille,31647025.0,total_trade
+Fraude,Exports,produits coloniaux,Marseille,6734399.0,total_trade
+France,Exports,autres produits,Marseille,26351491.29229197,total_trade
+France,Imports,autres produits,Marseille,983812.3515460002,total_trade
+Monde,Exports,autres produits,Marseille,40516525.090179704,total_trade
+Monde,Imports,autres produits,Marseille,98943860.15101588,total_trade
+Colonies,Exports,autres produits,Marseille,16611629.0,total_trade
+Fraude,Exports,autres produits,Marseille,16448027.120090201,total_trade
+Monde,Exports,Café,Dunkerque,1182957.0,detail_products
+Colonies,Imports,Café,Dunkerque,4071453.0,detail_products
+Fraude,Exports,Café,Dunkerque,2888496.0,detail_products
+Monde,Exports,Coton non transformé,Dunkerque,719051.0,detail_products
+Colonies,Imports,Coton non transformé,Dunkerque,1082427.0,detail_products
+Fraude,Exports,Coton non transformé,Dunkerque,363376.0,detail_products
+Monde,Exports,Indigo,Dunkerque,101042.0,detail_products
+Colonies,Imports,Indigo,Dunkerque,89556.0,detail_products
+Fraude,Imports,Indigo,Dunkerque,11486.0,detail_products
+Monde,Exports,Sucre,Dunkerque,2211754.0,detail_products
+Colonies,Imports,Sucre,Dunkerque,3269855.0,detail_products
+Fraude,Exports,Sucre,Dunkerque,1058101.0,detail_products
+Colonies,Imports,Cacao et chocolat,Dunkerque,4414.0,detail_products
+Fraude,Exports,Cacao et chocolat,Dunkerque,4414.0,detail_products
+Colonies,Imports,Bois divers hors combustible,Dunkerque,2724.0,detail_products
+Fraude,Exports,Bois divers hors combustible,Dunkerque,2724.0,detail_products
+Colonies,Imports,Matières brutes et transformées pour teinture,Dunkerque,16367.0,detail_products
+Fraude,Exports,Matières brutes et transformées pour teinture,Dunkerque,16367.0,detail_products
+Colonies,Imports,Fils divers,Dunkerque,1376.0,detail_products
+Fraude,Exports,Fils divers,Dunkerque,1376.0,detail_products
+Colonies,Imports,Subsistances diverses et mélangées,Dunkerque,150.0,detail_products
+Fraude,Exports,Subsistances diverses et mélangées,Dunkerque,150.0,detail_products
+Colonies,Imports,"Cuirs, peaux et pelleterie",Dunkerque,61376.0,detail_products
+Fraude,Exports,"Cuirs, peaux et pelleterie",Dunkerque,61376.0,detail_products
+Colonies,Imports,Eaux-de-vie et liqueurs,Dunkerque,19963.0,detail_products
+Fraude,Exports,Eaux-de-vie et liqueurs,Dunkerque,19963.0,detail_products
+Colonies,Imports,Sirop et mélasse,Dunkerque,210.0,detail_products
+Fraude,Exports,Sirop et mélasse,Dunkerque,210.0,detail_products
+Colonies,Imports,Tabac,Dunkerque,48931.0,detail_products
+Fraude,Exports,Tabac,Dunkerque,48931.0,detail_products
+Colonies,Imports,Divers mélangés,Dunkerque,1353.0,detail_products
+Fraude,Exports,Divers mélangés,Dunkerque,1353.0,detail_products
+France,Exports,autres produits,Dunkerque,3440713.1238665055,total_trade
+France,Imports,autres produits,Dunkerque,3618187.25966314,total_trade
+Colonies,Exports,autres produits,Dunkerque,1411503.0,total_trade
+Monde,Imports,autres produits,Dunkerque,34261785.0,total_trade
+Fraude,Exports,autres produits,Dunkerque,33027756.135796636,total_trade
+Monde,Exports,produits coloniaux,Dunkerque,4560525.0,total_trade
+Colonies,Imports,produits coloniaux,Dunkerque,8670155.0,total_trade
+Fraude,Exports,produits coloniaux,Dunkerque,4109630.0,total_trade
