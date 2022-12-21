@@ -1,3 +1,3 @@
-import EstimationParTonnageDK from './EstimationParTonnageDK';
+import EstimationParTonnageDk from './EstimationParTonnageDk';
 
-export default EstimationParTonnageDK;
+export default EstimationParTonnageDk;

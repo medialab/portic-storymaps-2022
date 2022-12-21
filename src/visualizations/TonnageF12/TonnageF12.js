@@ -34,6 +34,7 @@ const TonnageF12 = ({
             orientation='vertical'
             x={{
               field: field,
+              domain: [0, 90000],
               title:  translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
