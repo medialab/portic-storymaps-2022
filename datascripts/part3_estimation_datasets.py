@@ -3,6 +3,38 @@ import requests
 
 
 """
+-1 - correspondance tables in data
+"""
+
+navigo_f12_to_toflit18_simplification = {
+    'Levant et Etats du Grand Seigneur et de Barbarie': 'Empire Ottoman et Barbarie',
+    'Etat ecclésiastique': 'États ecclésiastiques',
+    'Piémont et Sardaigne': 'Royaume de Sardaigne',
+    'Naples et Sicile': 'Naples',
+    'Toscane et Lucques': 'Milanais, Toscane et Lucques',
+    'Etats de l\'Empereur': 'Allemagne'
+}
+
+terre_mer_to_toflit18_simplification = {
+  'Villes Anséatiques': 'Villes hanséatiques',
+  'Danemarck et Norwège': 'Danemark',
+  'République de Gênes': 'Gênes',
+  'Naples et Sicile': 'Naples',
+  'États du Roi de Sardaigne': 'Royaume de Sardaigne',
+  'Milanès et Toscane': 'Milanais, Toscane et Lucques',
+  'Angleterre, Ecosse et Irlande': 'Angleterre',
+  'Rome et Venise': 'Venise',
+  'États de l\'Empereur, en Flandre et Allemagne': 'Etats de l\'Empereur',
+  'Suisse, ses Alliées et Genève': 'Suisse'
+}
+
+navigo_partner_balance_1789_to_toflit18_simplification = {
+  'Quatre villes hanséatiques': 'Villes hanséatiques',
+  'Etats-Unis': 'États-Unis d\'Amérique',
+  # 'Etats de l\'Empereur':''
+}
+
+"""
 0 - lib
 """
 def get_online_csv(url):
@@ -46,6 +78,11 @@ def get_terre_mer_ratios():
       "somme_mer": values["mer"],
       "somme_terre": values["terre"]
     })
+  # print('===')
+  # print('Partenaires terre-mer : ')
+  # for p in output:
+  #   print(p['partner'])
+  # print('===')
   return output
 
 def get_navigo_f12_dict (with_lest = True) :
@@ -60,27 +97,16 @@ def get_navigo_f12_dict (with_lest = True) :
 # Turning the computation into a function
 def compute_price_per_barrel_per_destination(method="résumé", verbose = False):
     # compute destinations navigo general
-    transformation_map = {
-          'Quatre villes hanséatiques': 'Villes hanséatiques',
-          'Etats-Unis': 'États-Unis d\'Amérique',
-          # 'Etats de l\'Empereur':''
-        }
+    
     destinations_navigo_original = get_navigo_f12_dict(True)
     destinations_navigo_origina_without_lest = get_navigo_f12_dict(False)
-    navigo_f12_to_toflit18 = {
-        'Levant et Etats du Grand Seigneur et de Barbarie': 'Empire Ottoman et Barbarie',
-        'Etat ecclésiastique': 'États ecclésiastiques',
-        'Piémont et Sardaigne': 'Royaume de Sardaigne',
-        'Naples et Sicile': 'Naples',
-        'Toscane et Lucques': 'Milanais, Toscane et Lucques',
-        'Etats de l\'Empereur': 'Allemagne'
-    }
+    
     destinations_navigo_national = {}
     destinations_navigo_national_without_lest = {}
     for key, val in destinations_navigo_original.items():
-        if key in navigo_f12_to_toflit18:
-            destinations_navigo_national[navigo_f12_to_toflit18[key]] = val
-            destinations_navigo_national_without_lest[navigo_f12_to_toflit18[key]] = destinations_navigo_origina_without_lest[key]
+        if key in navigo_f12_to_toflit18_simplification:
+            destinations_navigo_national[navigo_f12_to_toflit18_simplification[key]] = val
+            destinations_navigo_national_without_lest[navigo_f12_to_toflit18_simplification[key]] = destinations_navigo_origina_without_lest[key]
         else:
             destinations_navigo_national[key] = val
             destinations_navigo_national_without_lest[key] = destinations_navigo_origina_without_lest[key]
@@ -95,19 +121,8 @@ def compute_price_per_barrel_per_destination(method="résumé", verbose = False)
     for row in rows_terremer:
       if row['partner'] not in terre_mer:
         partner = row['partner']
-        transformation_map = {
-          'Villes Anséatiques': 'Villes hanséatiques',
-          'Danemarck et Norwège': 'Danemark',
-          'République de Gênes': 'Gênes',
-          'Naples et Sicile': 'Naples',
-          'États du Roi de Sardaigne': 'Royaume de Sardaigne',
-          'Angleterre, Ecosse et Irlande': 'Angleterre',
-          'Rome et Venise': 'Venise',
-          'États de l\'Empereur, en Flandre et Allemagne': 'Etats de l\'Empereur',
-          'Suisse, ses Alliées et Genève': 'Suisse'
-        }
-        if partner in transformation_map:
-          partner = transformation_map[partner]
+        if partner in terre_mer_to_toflit18_simplification:
+          partner = terre_mer_to_toflit18_simplification[partner]
         terre_mer_ratio[partner] = float(row['ratio_terre_mer'])
         terre_mer[partner] = float(row['somme_mer']) + float(row['somme_terre'])
         mer_seule[partner] = float(row['somme_mer'])
@@ -170,6 +185,13 @@ def compute_price_per_barrel_per_destination(method="résumé", verbose = False)
         print(correspondance)
     return correspondance, terre_mer_ratio
 
+# correspondance, terre_mer_ratio = compute_price_per_barrel_per_destination()
+# print('===')
+# print('Pays des prix par baril : ')
+# for cor in correspondance:
+#   print(cor['partner'])
+# print('===')
+
 def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verbose = False):
   # build two models
   correspondance_resume, national_ratios = compute_price_per_barrel_per_destination(method='résumé')
@@ -184,11 +206,6 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   sum_travels = 0
   ports = set()
   with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
-    transformation_map = {
-        'Quatre villes hanséatiques': 'Villes hanséatiques',
-        'Etats-Unis': 'États-Unis d\'Amérique',
-        # 'Etats de l\'Empereur':''
-    }
     flows = csv.DictReader(csvfile)
     
     commodity_fields = ['commodity_standardized_fr', 'commodity_standardized2_fr', 'commodity_standardized3_fr', 'commodity_standardized4_fr']
@@ -211,8 +228,8 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
             bureau_clean = 'Tonnay-Charente'
       if bureau_clean == 'Saint-Martin île de Ré':
             bureau_clean = 'Saint-Martin-de-Ré'
-      if destination in transformation_map:
-        destination = transformation_map[destination]
+      if destination in navigo_partner_balance_1789_to_toflit18_simplification:
+        destination = navigo_partner_balance_1789_to_toflit18_simplification[destination]
       tonnage = float(flow['tonnage'] or 0)
       if flow['departure_function'] == 'O' \
         and bureau_clean == ferme_bureau \
@@ -241,27 +258,6 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   # print('Tonnage moyen des navires : ' + str(sum_tonnage / sum_travels))
 
   destinations_navigo_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
-  """
-  VegaLite({
-      "title": "Destinations des bateaux partis vers l'étranger depuis le ou les ports associés " + ("au bureau des fermes" if ferme_key == 'departure_ferme_bureau' else "à la direction des fermes") + " de " + ferme_bureau + " en 1789, agrégées par tonnage cumulé",
-      "width": 1000,
-      "data": {
-          "values": [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
-      },
-      "mark": {"type": "bar", "tooltip": True},
-        "encoding": {
-          "y": {
-              "field": "destination", 
-              "type": "nominal",
-              "title": "destination"
-          },
-          "x": {
-              "field": "tonnage",
-              "type": "quantitative"
-          }
-        }
-  })
-  """
 
   # =================================================
   # =================================================
@@ -310,76 +306,7 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
     sum_toflit18_corrected += (value * ratio)
 
   partners_toflit18_arr = [{"partenaire": partenaire, "valeur": valeur} for partenaire, valeur in partners_toflit18.items()]
-  """
-  VegaLite({
-      "title": "Partenaires toflit18 pour " + ("le bureau des fermes" if ferme_key == 'departure_ferme_bureau' else 'la direction des fermes') + " de " + ferme_bureau + ", agrégés par valeur en livre tournois",
-      "data": {
-          "values": [{"partenaire": partenaire, "valeur": valeur} for partenaire, valeur in partners_toflit18.items()]
-      },
-      "width": 1000,
-      "mark": {"type": "bar", "tooltip": True},
-        "encoding": {
-          "y": {
-              "field": "partenaire", 
-              "type": "nominal",
-              "title": "partenaire"
-          },
-          "x": {
-              "field": "valeur",
-              "type": "quantitative"
-          }
-        }
-  })
-  VegaLite({
-      "title": "Partenaires toflit18 pour " + ("le bureau des fermes" if ferme_key == 'departure_ferme_bureau' else 'la direction des fermes') + " de " + ferme_bureau + ", agrégés par valeur en livre tournois et modulés selon les ratios terre-mer",
-      "data": {
-          "values": [{"partenaire": partenaire, "valeur": valeur, "ratio": national_ratios[partenaire] if partenaire in national_ratios else 1} for partenaire, valeur in partners_toflit18_corrected.items()]
-      },
-      "width": 1000,
-      "mark": {"type": "bar", "tooltip": True},
-        "encoding": {
-          "y": {
-              "field": "partenaire", 
-              "type": "nominal",
-              "title": "partenaire"
-          },
-          "x": {
-              "field": "valeur",
-              "type": "quantitative"
-          },
-          "color": {
-              "type": "quantitative",
-              "field": "ratio"
-          }
-        }
-  })
-    
-  VegaLite({
-    "title": "Détail des valeurs produits exportés par " + ("le bureau des fermes" if ferme_key == 'departure_ferme_bureau' else 'la direction des fermes') + " de " + ferme_bureau + " par partenaire",
-    "data": {
-        "values": flows_detail
-    },
-    "mark": {"type": "rect", "tooltip": True},
-      "encoding": {
-        "x": {
-            "field": "partner_simplification",
-            "axis": {"title": "", "orient": "top"},
-            "sort": {"field": "-y"}
-        },
-        "y": {
-            "field": "product_revolutionempire", 
-            "type": "nominal",
-            "title": "produit exporté (revolution & empire)",
-            "sort": {"field": "-x"}
-        },
-        "color": {
-            "field": "value",
-            "title": "valeur cumulée",
-            "aggregate": "sum"
-        }
-      }
-  })
-  """
+ 
 
   # Compute relative values
   def compute_rel_pcts(dct) :
@@ -432,36 +359,6 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
               "group": "navigo",
               "value": tonnage_part
           })
-
-  """
-  VegaLite({
-      "title": "Comparaison entre destinations navigo et partenaires toflit18 pour " + ("le bureau" if ferme_key == 'departure_ferme_bureau' else "la direction") + " et port(s) de " + ferme_bureau + " en 1789 - comparaison des parts",
-      "data": {
-          "values": correspondances_in_pct
-      },
-      "width": 80,
-      "mark": {"type": "bar", "tooltip": True},
-        "encoding": {
-          "column": {
-              "field": "partner",
-              "axis": {"title": ""}
-          },
-          "y": {
-              "field": "value", 
-              "type": "quantitative",
-              "title": "% de l'ensemble des exports/tonneaux"
-          },
-          "x": {
-              "field": "group",
-              "axis": {"title": ""}
-          },
-          "color": {
-              "field": "group",
-              "title": "pourcentage par source"
-          }
-        }
-  })
-  """
 
   projection_resume = []
   sum_projection_resume = 0
@@ -522,32 +419,7 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
           })
   # print('Correspondance résumé : ')
   # print(correspondance_resume)
-  """    
-  VegaLite({
-      "title": "Comparaison entre la projection par les destinations navigo et les exports par partenaires toflit18 pour le(s) port(s) associé(s) à " + ferme_bureau + " 1789 - projection 'résumé'",
-      "data": {
-          "values": projection_resume
-      },
-      "width": 80,
-      "mark": {"type": "bar", "tooltip": True},
-        "encoding": {
-          "column": {"field": "partner"},
-          "y": {
-              "field": "value", 
-              "type": "quantitative",
-              "title": "valeur en lt"
-          },
-          "x": {
-              "field": "group",
-              "axis": {"title": ""}
-          },
-          "color": {
-              "field": "group",
-              "title": "pourcentage par source"
-          }
-        }
-  })
-  """
+  
   
   # print("Total des exports en lt selon la projection 'résumé' : " + f'{int(sum_projection_resume):,}' + " lt")
   # print("Total des exports en lt selon toflit18 : " + f'{int(sum_toflit18_raw):,}' + " lt")
@@ -575,16 +447,23 @@ national_partners = {}
 with open(INPUT, "r") as fr:
   reader = csv.DictReader(fr)
   for row in reader:
+    partner = row['partner_simplification']
     if row['year'] == '1787' \
-    and row['export_import'] == 'Export' \
-    and row['best_guess_national_prodxpart'] == '1':
-      partner = row['partner_simplification']
+    and row['export_import'] == 'Exports' \
+    and row['best_guess_national_prodxpart'] == '1' \
+    and row['partner_simplification'] != 'Colonies françaises':
       value = float(row['value']) if row['value'] != '' else 0
       if partner not in national_partners:
         national_partners[partner] = 0
       national_partners[partner] += value
 
 national_partners_arr = [{"partner": partner, "value": value} for partner, value in national_partners.items()]
+
+print('===')
+print('Partenaires toflit18 : exports ; 1787 ; != "Colonies françaises"; best_guess_national_prodxpart=1  (simplification)')
+for p in national_partners_arr:
+  print(p['partner'])
+print('===')
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = ['partner', 'value']
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -626,6 +505,12 @@ for item in results:
       else:
         el[to] = int(val) if len(val) else 0
     data.append(el)
+
+print('===')
+print('Partenaires F12')
+for p in data:
+  print(p['destination'])
+print('===')
 
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = transpal.values();
@@ -693,11 +578,6 @@ nb_trajets_angleterre = 0
 nb_trajets_angleterre_avec_cargo = 0
 nb_tonnage_angleterre = 0
 with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
-  transformation_map = {
-      'Quatre villes hanséatiques': 'Villes hanséatiques',
-      'Etats-Unis': 'États-Unis d\'Amérique',
-      # 'Etats de l\'Empereur':''
-  }
   flows = csv.DictReader(csvfile)
     
   commodity_fields = ['commodity_standardized_fr', 'commodity_standardized2_fr', 'commodity_standardized3_fr', 'commodity_standardized4_fr']
@@ -717,8 +597,8 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
     destination = flow['destination_partner_balance_1789']
     departure = flow['departure']
 #    departure = flow['departure_state_1789_fr']
-    if destination in transformation_map:
-      destination = transformation_map[destination]
+    if destination in navigo_partner_balance_1789_to_toflit18_simplification:
+      destination = navigo_partner_balance_1789_to_toflit18_simplification[destination]
     tonnage = float(flow['tonnage'] or 0)
     if flow['departure_function'] == 'O' \
       and departure == 'Dunkerque' \
@@ -748,6 +628,11 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
                     nb_trajets_angleterre_avec_cargo += 1
       
 destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
+print('===')
+print('Destinations Dunkerque 1789 : ')
+for el in destinations_arr:
+  print(el['destination'])
+print('===')
 OUTPUT = "../public/data/destinations-dk-pour-projection.csv";
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = ['destination', 'tonnage']
