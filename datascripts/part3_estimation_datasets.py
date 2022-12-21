@@ -748,7 +748,7 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
                     nb_trajets_angleterre_avec_cargo += 1
       
 destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
-OUTPUT = "../public/data/destinations-dk-pr-projection.csv";
+OUTPUT = "../public/data/destinations-dk-pour-projection.csv";
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = ['destination', 'tonnage']
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

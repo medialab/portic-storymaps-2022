@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import BarChart from "../../components/BarChart";
 import translate from '../../utils/translate';
 
-const TonnageF12 = ({
+const EstimationParTonnageDk = ({
   data,
   width,
   height,
@@ -61,4 +61,4 @@ const TonnageF12 = ({
   )
 }
 
-export default TonnageF12;
+export default EstimationParTonnageDk;
