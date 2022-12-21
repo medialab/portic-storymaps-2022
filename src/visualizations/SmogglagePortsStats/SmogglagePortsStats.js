@@ -33,7 +33,7 @@ export default function SmogglagePortsStats ({
                     domain: [0, 100],
                     tickFormat: f => f + '%'
                 }}
-                tooltip={item => item['port de départ']}
+                tooltip={item => item['total des trajets anglais'] + ' trajets de navires anglais depuis le port de ' + item['port de départ']}
                 margins={{
                   left: 250,
                   bottom: 40
