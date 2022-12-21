@@ -20,6 +20,7 @@ import TonnageF12 from './TonnageF12';
 import EstimationParTonnageDk from './EstimationParTonnageDk';
 import DestinationsDkPrProjection from './DestinationsDkPrProjection';
 import ValeurParTonneau from './ValeurParTonneau/ValeurParTonneau';
+import ExportsFr1787 from './ExportsFr1787/ExportsFr1787';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -158,7 +159,9 @@ export default function VisualizationController({
       case 'destinations-dk-pour-projection':
         return <DestinationsDkPrProjection {...{data, width, height, lang}} />
       case 'estimation-par-destination-dk':
-          return <EstimationParTonnageDk {...{data, width, height, lang}} />
+        return <EstimationParTonnageDk {...{data, width, height, lang}} />
+      case 'exports-fr-1787':
+        return <ExportsFr1787 {...{data, width, height, lang}} />;
       default:
         return (
           <img
