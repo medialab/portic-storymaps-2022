@@ -77,6 +77,7 @@ const VerticalBarChart = ({
   const [headersHeight, setHeadersHeight] = useState(0);
   const [legendWidth, setLegendWidth] = useState(0);
 
+
   const legendRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -198,7 +199,7 @@ const VerticalBarChart = ({
     ])
   , [data, y, autoSort, sortYAscending, sortYField, sortYType, sortXAscending, sortXField, sortXType, color, colorModalities]);
 
-  const xDomain = initialXDomain || layout === 'stack' ?
+  const xDomain = initialXDomain || (layout === 'stack' ?
     // stack -> max = max sum for a given x modality
     [0, max(
       groups.map(
@@ -209,7 +210,7 @@ const VerticalBarChart = ({
     ]
     :
     // group -> max = abs max
-    [0, max(data.map(d => +d[x.field]))];
+    [0, max(data.map(d => +d[x.field]))]);
   let bandHeight = layout === 'stack' ? rowHeight / 2 : (rowHeight / colorModalities.length) * .5;
   const xScale = scaleLinear().domain(xDomain).range([0, width - margins.left - margins.right]).nice();
   const xStackScale = xScale.copy().range([0, width - margins.left - margins.right]);

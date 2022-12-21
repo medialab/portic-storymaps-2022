@@ -16,7 +16,8 @@ import PecheMap from './PecheMap';
 import Pilotage from './Pilotage/Pilotage';
 import CommentedImage from '../components/CommentedImage';
 import TreemapChart from '../components/TreemapChart';
-import TonnageF12 from './TonnageF12/TonnageF12';
+import TonnageF12 from './TonnageF12';
+import EstimationParTonnageDk from './EstimationParTonnageDk';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -149,7 +150,9 @@ export default function VisualizationController({
           />
         );
       case 'tonnages-1787-f12':
-        return <TonnageF12 {...{data, width, height, lang}} />
+        return <TonnageF12 {...{data, width, height, lang}} />;
+      case 'estimation-par-destination-dk':
+          return <EstimationParTonnageDk {...{data, width, height, lang}} />
       default:
         return (
           <img
