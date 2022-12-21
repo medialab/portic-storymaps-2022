@@ -12,12 +12,12 @@ const ValeurParTonneau = ({
   const field = withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest';
   const actualData = useMemo(() => {
     return data.sort((a, b) => {
-      if (+a['price_per_barrel'] > +b['price_per_barrel']) {
-        return -1;
+      if (a['partner'] > b['partner']) {
+        return 1;
       }
-      return 1;
+      return -1;
     })
-    .filter(a => +a['price_per_barrel'] > 0)
+    // .filter(a => +a['price_per_barrel'] > 0)
     .map(a => ({...a, [field]: +a[field]}))
   }
   , [data, field])
@@ -35,6 +35,7 @@ const ValeurParTonneau = ({
             x={{
               field: field,
               domain: [0, 1200],
+              tickFormat: d => `${d} lt./t`,
               title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -46,12 +47,9 @@ const ValeurParTonneau = ({
               // title:  // translate('PecheTypeValue', 'color', lang)
             // }}
 
-            // tooltip={
-            //   (d) => translate('PecheTypeValue', 'tooltip', lang, {
-            //     value: formatNumber(d['value']),
-            //     year: d['annee']
-            //   })
-            // }
+            tooltip={
+              (d) => `${d[field].toFixed(2)} lt par tonneau pour le partenaire ${d.partner}`
+            }
           />
       <div className="buttons-container" style={{margin: '1rem'}}>
         <button className={`Button ${withLest ? 'is-active': ''}`} onClick={() => setWithLest(true)}>

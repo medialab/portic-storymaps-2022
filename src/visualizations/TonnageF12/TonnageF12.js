@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import BarChart from "../../components/BarChart";
+import { formatNumber } from "../../utils/misc";
 import translate from '../../utils/translate';
 
 const TonnageF12 = ({
@@ -12,12 +13,12 @@ const TonnageF12 = ({
   const field = withLest ? 'tonnage_hypothese_avec_lest' : 'tonnage_hypothese_sans_lest';
   const actualData = useMemo(() => {
     return data.sort((a, b) => {
-      if (+a['tonnage_hypothese_avec_lest'] > +b['tonnage_hypothese_avec_lest']) {
-        return -1;
+      if (a['destination'] > b['destination']) {
+        return 1;
       }
-      return 1;
+      return -1;
     })
-    .filter(a => +a['tonnage_hypothese_avec_lest'] > 0)
+    // .filter(a => +a['tonnage_hypothese_avec_lest'] > 0)
     .map(a => ({...a, [field]: +a[field]}))
   }
   , [data, field])
@@ -35,6 +36,7 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 90000],
+              tickFormat: d => `${formatNumber(d)} tx`,
               title:  translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -46,12 +48,10 @@ const TonnageF12 = ({
               // title:  // translate('PecheTypeValue', 'color', lang)
             // }}
 
-            // tooltip={
-            //   (d) => translate('PecheTypeValue', 'tooltip', lang, {
-            //     value: formatNumber(d['value']),
-            //     year: d['annee']
-            //   })
-            // }
+            tooltip={
+              // @todo translate
+              (d) => `${formatNumber(d[field])} tonneaux envoyé au partenaire ${d.destination} en 1787`
+            }
           />
       <div className="buttons-container" style={{margin: '1rem'}}>
         <button className={`Button ${withLest ? 'is-active': ''}`} onClick={() => setWithLest(true)}>

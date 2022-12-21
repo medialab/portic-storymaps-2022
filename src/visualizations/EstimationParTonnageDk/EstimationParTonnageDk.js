@@ -1,5 +1,7 @@
+import { lt } from "lodash";
 import { useState, useMemo } from "react";
 import BarChart from "../../components/BarChart";
+import { formatNumber } from "../../utils/misc";
 import translate from '../../utils/translate';
 
 const EstimationParTonnageDk = ({
@@ -33,6 +35,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: field,
+              tickFormat: d => `${formatNumber(d)} lt.`,
               title:  'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 3500000]
             }}
@@ -46,7 +49,7 @@ const EstimationParTonnageDk = ({
             // }}
 
             tooltip={
-              (d) => `estimation d'exports pour ${d.partenaire} : ${d[field]} lt. (pour ${d.tonnage} tonneaux cumulés)`
+              (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(d[field])} lt. (pour ${d.tonnage} tonneaux cumulés)`
             }
           />
       <div className="buttons-container" style={{margin: '1rem'}}>
