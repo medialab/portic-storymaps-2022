@@ -42,9 +42,15 @@ export default function EvolutionBudgetDunkerque({
             annotations={[
               {
                 axis: 'x',
-                start: 1744,
+                start: 1740,
                 end: 1748,
-                label: 'Guerre d\'Autriche',
+                label: 'Guerre de succession d\'Autriche',
+              },
+              {
+                axis: 'x',
+                start: 1701,
+                end: 1713,
+                label: 'Guerre de succession d\'Espagne',
               },
               {
                 axis: 'x',
