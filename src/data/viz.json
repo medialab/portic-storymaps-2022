@@ -510,7 +510,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "toflit18_exports_nationaux_1787"
+        ]
     },
     "valeur-par-tonneau": {
         "id": "valeur-par-tonneau",
@@ -525,7 +527,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "projection-valeur-par-tonneau.csv"
+        ]
     },
     "comparaisons-la-rochelle": {
         "id": "comparaisons-la-rochelle",
@@ -540,7 +544,11 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "comparaisons-la-rochelle-toflit18.csv",
+            "comparaisons-la-rochelle-navigo.csv",
+            "comparaisons-la-rochelle-projection.csv"
+        ]
     },
     "destinations-dk-pour-projection": {
         "id": "destinations-dk-pour-projection",
@@ -555,7 +563,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "destinations-dk-pour-projection.csv"
+        ]
     },
     "estimation-par-destination-dk": {
         "id": "estimation-par-destination-dk",
@@ -570,7 +580,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "estimation-exports-dk-1789-par-partenaire.csv"
+        ]
     },
     "comparaison-projection-destination-produits-coloniaux-dk": {
         "id": "comparaison-projection-destination-produits-coloniaux-dk",
@@ -585,7 +597,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "toflit18-dk-exports_produits-coloniaux.csv"
+        ]
     },
     "estimation-imports-exports": {
         "id": "estimation-imports-exports",
@@ -600,6 +614,8 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
+        "outputs": [
+            "misc-estimations-imports-exports-dk-1789.csv"
+        ]
     }
 }
