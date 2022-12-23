@@ -1,11 +1,11 @@
 label,type,valeur
-imports_bureau_Dunkerque,imports,42931940.0
-estimation_smogglage,exports,3047616
-projection,exports,5747601.261486415
-projection_sans_lest,exports,7557529.505379251
-projection_gb,exports,1760742.0257414663
-projection_gb_sans_lest,exports,3208921.7416642383
-toflit18_dk_vers_france,exports,4095745.5674924157
-toflit18_exports_dk_vers_gb,exports (détails),885066.0
-toflit18_exports_produits_coloniaux_dk,exports (détails),5972028.0
-cust_flandres_fr_vers_gb,exports (détails),2196171.6666666665
+imports du bf de Dunkerque,imports,42931940.0
+estimation smogglage,exports - projection,3047616
+estimation des exports par projection (hyp. lest),exports - projection,8702272.134369403
+estimation des exports par projection (hyp. sans lest),exports - projection,10675201.962589245
+projection angleterre uniquement (hyp lest),exports - projection (détail),1760742.0257414663
+projection angleterre uniquement (hyp sans lest),exports - projection (détail),3208921.7416642383
+toflit18 flux mirroir : dk > france,exports - tiré d'une source,4095745.5674924157
+toflit18 exports légitimes dk > angleterre,exports - tiré d'une source,885066.0
+toflit18 exports produits coloniaux (monde...),exports - tiré d'une source,5972028.0
+CUST Flandres > GB,exports - tiré d'une source,2196171.6666666665
