@@ -15,6 +15,30 @@ navigo_f12_to_toflit18_simplification = {
     'Etats de l\'Empereur': 'Allemagne'
 }
 
+navigo_f12_to_toflit18_grouping = {
+  'Danemark' : 'Nord',
+  'Angleterre' : 'Angleterre',
+  'Russie' : 'Nord',
+  'Espagne' : 'Espagne',
+  'Hollande' : 'Hollande',
+  'Portugal' : 'Portugal',
+  'Villes hanséatiques' : 'Nord',
+  'Suède' : 'Nord',
+  'États-Unis d\'Amérique' : 'États-Unis d\'Amérique',
+  'Etats de l\'Empereur' : 'Flandre et autres états de l\'Empereur',
+  'Prusse' : 'Nord',
+  'Piémont et Sardaigne' : 'Italie',
+  'Gênes' : 'Italie',
+  'Toscane et Lucques' : 'Italie',
+  'Etat ecclésiastique' : 'Italie',
+  'Naples et Sicile' : 'Italie',
+  'Venise' : 'Italie',
+  'Levant et Etats du Grand Seigneur et de Barbarie' : 'Levant et Barbarie',
+  'Prusse+ Courlande, Mecklenbourg, Oldenboug + Pologne - Dantzig' : 'Nord',
+  'vers la "Mer Baltique"' : 'Nord',
+  'Prusse etc + Russie + Suède + mer Baltique' : 'Nord',
+}
+
 terre_mer_to_toflit18_simplification = {
   'Villes Anséatiques': 'Villes hanséatiques',
   'Danemarck et Norwège': 'Danemark',
@@ -28,10 +52,72 @@ terre_mer_to_toflit18_simplification = {
   'Suisse, ses Alliées et Genève': 'Suisse'
 }
 
+terre_mer_to_toflit18_grouping = {
+  'Espagne' : 'Espagne',
+  'Portugal' : 'Portugal',
+  'États du Roi de Sardaigne' : 'Italie',
+  'République de Gênes' : 'Italie',
+  'Milanès et Toscane' : 'Italie',
+  'Naples et Sicile' : 'Italie',
+  'Rome et Venise' : 'Italie',
+  'Angleterre, Ecosse et Irlande' : 'Angleterre',
+  'Hollande' : 'Hollande',
+  'Villes Anséatiques' : 'Nord',
+  'États de l\'Empereur, en Flandre et Allemagne' : 'Flandre et autres états de l\'Empereur',
+  'Allemagne et Pologne' : 'Allemagne',
+  'Suisse, ses Alliées et Genève' : 'Suisse',
+  'Danemarck et Norwège' : 'Nord',
+  'Suède' : 'Nord',
+  'Prusse' : 'Nord',
+  'Russie' : 'Nord',
+  'États-Unis d\'Amérique' : 'États-Unis d\'Amérique',
+  'Le Levant et l\'Empire Ottoman' : 'Levant et Barbarie',
+  'Saint-Domingue' : 'Amériques',
+  'Martinique' : 'Amériques',
+  'Guadeloupe' : 'Amériques',
+  'Cayenne et Guyanne' : 'Amériques',
+  'Tabago et Sainte-Lucie' : 'Amériques',
+  'Traite des noirs et de la gomme' : 'Divers',
+  'Isles de France, de la Réunion et Mozambique' : 'Divers',
+  'Etats de l\'Inde' : 'Asie',
+  'La Chine' : 'Asie',
+  'La Morue à Terre-Neuve' : 'Divers',
+  'La Baleine, au Groënland, au Bresil et Madagascar' : 'Divers',
+  'Pêches sur nos côtes Hareng (simple apperçu)' : 'Divers',
+  'Pêches sur nos côtes Maquereaux (simple apperçu)' : 'Divers'
+}
+
 navigo_partner_balance_1789_to_toflit18_simplification = {
   'Quatre villes hanséatiques': 'Villes hanséatiques',
   'Etats-Unis': 'États-Unis d\'Amérique',
   # 'Etats de l\'Empereur':''
+}
+
+navigo_partner_balance_1789_to_toflit18_grouping = {
+  'Etats-Unis' : 'États-Unis d\'Amérique',
+  'Danemark' : 'Nord',
+  'Angleterre' : 'Angleterre',
+  'Quatre villes hanséatiques' : 'Nord',
+  'Portugal' : 'Portugal',
+  'Espagne' : 'Espagne',
+  'Hollande' : 'Hollande',
+  'Etats de l\'Empereur' : 'Flandre et autres états de l\'Empereur',
+  'Prusse' : 'Nord',
+  'Russie' : 'Nord',
+  'France': 'France',
+  'Marseille': 'France',
+  'Etranger': 'Divers',
+  '': 'Divers',
+  'Saint-Domingue': 'Amériques',
+  'Iles françaises de l\'Amérique': 'Amériques',
+  'Bayonne': 'France',
+  'Dunkerque': 'France',
+  'colonies françaises': 'Outre-mers',
+  'Lorient': 'France',
+  'Suède': 'Nord',
+  'Sénégal et Guinée': 'Outre-mers',
+  'Petites Iles': 'France',
+  'Saint-Jean de Luz': 'France'
 }
 
 """
@@ -58,7 +144,10 @@ def get_terre_mer_ratios():
   partners = {}
 
   for flow in csv_content:
-    partner = flow['partner_clean']
+    partner_initial = flow['partner_clean']
+    if partner_initial not in terre_mer_to_toflit18_grouping:
+      raise Exception(partner_initial + ' is not in terre_mer_to_toflit18_grouping')
+    partner = terre_mer_to_toflit18_grouping[partner_initial]
     flow_type = flow['terre_mer']
     value = flow['value']
     if partner not in partners: 
@@ -85,112 +174,111 @@ def get_terre_mer_ratios():
   # print('===')
   return output
 
-def get_navigo_f12_dict (with_lest = True) :
-    F12_SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHqTGjTMavPEw0Mf4RBjvXz5qhBjWV7a1gYuokEvaKRP-HzBSURdpCozaXzHHySXLKQWrQcO7LGk2K/pub?gid=249173198&single=true&output=csv'
-    field = 'tonnage_a_utiliser_clean' if with_lest == True else 'tonnage_hypothese_sans_lest'
-    destinations_f12 = get_online_csv(F12_SPREADSHEET_URL)
-    f12_dict = {}
-    for item in destinations_f12:
-      f12_dict[item['destination_state_1789_fr']] = float(item[field].replace("\u202f", "") or 0)
-    return f12_dict
+# def get_navigo_f12_dict (with_lest = True) :
+#     F12_SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHqTGjTMavPEw0Mf4RBjvXz5qhBjWV7a1gYuokEvaKRP-HzBSURdpCozaXzHHySXLKQWrQcO7LGk2K/pub?gid=249173198&single=true&output=csv'
+#     field = 'tonnage_a_utiliser_clean' if with_lest == True else 'tonnage_hypothese_sans_lest'
+#     destinations_f12 = get_online_csv(F12_SPREADSHEET_URL)
+#     f12_dict = {}
+#     for item in destinations_f12:
+#       f12_dict[item['destination_state_1789_fr']] = float(item[field].replace("\u202f", "") or 0)
+#     return f12_dict
 
 # Turning the computation into a function
 def compute_price_per_barrel_per_destination(method="résumé", verbose = False):
-    # compute destinations navigo general
-    
-    destinations_navigo_original = get_navigo_f12_dict(True)
-    destinations_navigo_origina_without_lest = get_navigo_f12_dict(False)
-    
-    destinations_navigo_national = {}
-    destinations_navigo_national_without_lest = {}
-    for key, val in destinations_navigo_original.items():
-        if key in navigo_f12_to_toflit18_simplification:
-            destinations_navigo_national[navigo_f12_to_toflit18_simplification[key]] = val
-            destinations_navigo_national_without_lest[navigo_f12_to_toflit18_simplification[key]] = destinations_navigo_origina_without_lest[key]
-        else:
-            destinations_navigo_national[key] = val
-            destinations_navigo_national_without_lest[key] = destinations_navigo_origina_without_lest[key]
+    # compute destinations f12 general
+    F12_SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHqTGjTMavPEw0Mf4RBjvXz5qhBjWV7a1gYuokEvaKRP-HzBSURdpCozaXzHHySXLKQWrQcO7LGk2K/pub?gid=249173198&single=true&output=csv'
+    destinations_f12_raw = get_online_csv(F12_SPREADSHEET_URL)
+    transpal = {
+      "destination_state_1789_fr": "destination",
+      "tonnage_a_utiliser_clean": "tonnage_hypothese_avec_lest",
+      "tonnage_hypothese_sans_lest": "tonnage_hypothese_sans_lest"
+    }
 
+    destinations_f12_arr = []
+    # formatting data
+    for item in destinations_f12_raw:
+      if len(item["destination_state_1789_fr"]) > 0:
+        el = {}
+        for fr, to in transpal.items():
+          # remove weird gspread symbols with numbers
+          val = item[fr].replace("\u202f", "")
+          if to == "destination":
+            el[to] = val
+          else:
+            el[to] = int(val) if len(val) else 0
+        destinations_f12_arr.append(el)
 
-            
-    rows_terremer = list(get_terre_mer_ratios())
+    # build dataset with F12 viewed by grouping
+    destinations_f12_grouping_map = {}
+    for d in destinations_f12_arr:
+      destination = d['destination']
+      if destination not in navigo_f12_to_toflit18_grouping:
+        raise Exception(destination + " not in navigo_f12_to_toflit18_grouping")
+      destination_grouping = navigo_f12_to_toflit18_grouping[destination]
+      tonnage_hypothese_avec_lest = d['tonnage_hypothese_avec_lest']
+      tonnage_hypothese_sans_lest = d['tonnage_hypothese_sans_lest']
 
+      if destination_grouping not in destinations_f12_grouping_map:
+        destinations_f12_grouping_map[destination_grouping] = {
+          "tonnage_hypothese_avec_lest": 0,
+          "tonnage_hypothese_sans_lest": 0
+        }
+      destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_avec_lest"] += tonnage_hypothese_avec_lest
+      destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_sans_lest"] += tonnage_hypothese_sans_lest
+
+    rows_terremer = get_terre_mer_ratios()
     terre_mer_ratio = {}
-    terre_mer = {}
-    mer_seule = {}
-    for row in rows_terremer:
-      if row['partner'] not in terre_mer:
-        partner = row['partner']
-        if partner in terre_mer_to_toflit18_simplification:
-          partner = terre_mer_to_toflit18_simplification[partner]
-        terre_mer_ratio[partner] = float(row['ratio_terre_mer'])
-        terre_mer[partner] = float(row['somme_mer']) + float(row['somme_terre'])
-        mer_seule[partner] = float(row['somme_mer'])
-    if verbose is True:
-        print("ratios obtenus : ")
-        print([{"partenaire": partenaire, "ratio": ratio} for partenaire, ratio in terre_mer_ratio.items()])
-            
+    for el in rows_terremer:
+      terre_mer_ratio[el["partner"]] = el["ratio_terre_mer"]
+
     toflit18_map = {}
-    if method == 'mer seule':
-        # rely on mer seule (@todo remove that)
-        toflit18_map = mer_seule 
-    elif method == 'résumé':
-        # compute sums of exports at national level
-        partners_toflit18_national = {}
-        with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
-          flows = csv.DictReader(csvfile)
-          for flow in flows:
-            if flow['source_type'] == 'Résumé' \
-              and flow['year'] == '1787' \
-              and flow['export_import'] == 'Exports':
+    # compute sums of exports at national level
+    partners_toflit18_national = {}
+    with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
+      flows = csv.DictReader(csvfile)
+      for flow in flows:
+        if flow['source_type'] == 'Résumé' \
+          and flow['year'] == '1787' \
+          and flow['export_import'] == 'Exports':
+          partner = flow['partner_grouping']
+          # if partner == 'États de l\'Empereur':
+          #   partner = 'Etats de l\'Empereur'
+          value = float(flow['value'] or 0)
+          if partner not in partners_toflit18_national:
+            partners_toflit18_national[partner] = 0
+          partners_toflit18_national[partner] += value
+    # correct sums of exports at national level with ratios
+    partners_toflit18_national_corrected = {}
+    for (partner, value) in partners_toflit18_national.items():
+      ratio = 1
 
-              partner = flow['partner_simplification']
-              if partner == 'États de l\'Empereur':
-                partner = 'Etats de l\'Empereur'
-              value = float(flow['value'] or 0)
-              if partner not in partners_toflit18_national:
-                partners_toflit18_national[partner] = 0
-              partners_toflit18_national[partner] += value
-        # correct sums of exports at national level with ratios
-        partners_toflit18_national_corrected = {}
-        for (partner, value) in partners_toflit18_national.items():
-          ratio = 1
-
-          if partner in terre_mer:
-            ratio = float(terre_mer_ratio[partner])
-          # else:
-          #  print('ratio : ce partenaire n\'est pas disponible dans la table des ratios : ', partner)
-          partners_toflit18_national_corrected[partner] = value * ratio
-        toflit18_map = partners_toflit18_national_corrected
-        
+      if partner in terre_mer_ratio:
+        ratio = float(terre_mer_ratio[partner])
+      else:
+       print('ratio : ce partenaire n\'est pas disponible dans la table des ratios : ', partner)
+      partners_toflit18_national_corrected[partner] = value * ratio
+    toflit18_map = partners_toflit18_national_corrected  
 
     correspondance = []
-    for destination, tonnage in destinations_navigo_national.items():
+    for destination, tonnages in destinations_f12_grouping_map.items():
       if destination not in toflit18_map:
-        if verbose == True:
-          print('problème, le pays de destination navigo suivant n\'est pas dans la source terre-mer pour 1787 :', destination)
+        # if verbose == True:
+        raise Exception('problème, le pays de destination navigo suivant n\'est pas dans la source terre-mer pour 1787 :', destination)
       else:
         value = toflit18_map[destination]
-        tonnage_without_lest = destinations_navigo_national_without_lest[destination]
+        # tonnage_without_lest = destinations_navigo_national_without_lest[destination]
         correspondance.append({
           "partner": destination,
-          "sum_tonnage": tonnage,
-          "sum_tonnage_without_lest": tonnage_without_lest,
+          "sum_tonnage": tonnages['tonnage_hypothese_avec_lest'],
+          "sum_tonnage_without_lest":  tonnages['tonnage_hypothese_sans_lest'],
           "sum_exports": value,
-          "price_per_barrel": value / tonnage,
-          "price_per_barrel_without_lest": value / tonnage_without_lest
+          "price_per_barrel": value /  tonnages['tonnage_hypothese_avec_lest'] if tonnages['tonnage_hypothese_avec_lest'] > 0 else 0,
+          "price_per_barrel_without_lest": value /  tonnages['tonnage_hypothese_sans_lest'] if tonnages['tonnage_hypothese_sans_lest'] > 0 else 0
         })
     if verbose:
         print('table de correspondance : ')
         print(correspondance)
     return correspondance, terre_mer_ratio
-
-# correspondance, terre_mer_ratio = compute_price_per_barrel_per_destination()
-# print('===')
-# print('Pays des prix par baril : ')
-# for cor in correspondance:
-#   print(cor['partner'])
-# print('===')
 
 def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verbose = False):
   # build two models
@@ -222,14 +310,19 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
     total_commodities = set()
     for flow in flows:
       destination = flow['destination_partner_balance_1789']
+      if destination == '':
+        destination = flow['destination_partner_balance_supp_1789']
+      if destination not in navigo_partner_balance_1789_to_toflit18_grouping:
+        raise Exception('The following navigo partner balance 1789 destination is not in navigo_partner_balance_1789_to_toflit18_grouping : ' + destination)
+      destination = navigo_partner_balance_1789_to_toflit18_grouping[destination]
       departure = flow['departure']
       bureau_clean = flow[ferme_key]
       if bureau_clean == 'Charente':
             bureau_clean = 'Tonnay-Charente'
       if bureau_clean == 'Saint-Martin île de Ré':
             bureau_clean = 'Saint-Martin-de-Ré'
-      if destination in navigo_partner_balance_1789_to_toflit18_simplification:
-        destination = navigo_partner_balance_1789_to_toflit18_simplification[destination]
+      # if destination in navigo_partner_balance_1789_to_toflit18_simplification:
+        # destination = navigo_partner_balance_1789_to_toflit18_simplification[destination]
       tonnage = float(flow['tonnage'] or 0)
       if flow['departure_function'] == 'O' \
         and bureau_clean == ferme_bureau \
@@ -258,7 +351,11 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   # print('Tonnage moyen des navires : ' + str(sum_tonnage / sum_travels))
 
   destinations_navigo_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
-
+  # print('===')
+  # for p in destinations_navigo_arr:
+  #   print(p["destination"])
+  # print('===')
+  
   # =================================================
   # =================================================
   # select flows from  - customs office = ferme_bureau
@@ -280,9 +377,10 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
         and flow['partner_grouping'] != 'France' \
         and flow['partner_simplification'] != 'Sénégal' \
         and flow['partner_simplification'] != 'Saint-Domingue':
-          partner = flow['partner_simplification']
-          if partner == "États de l'Empereur":
-            partner = "Etats de l'Empereur"
+          # partner = flow['partner_simplification']
+          partner = flow['partner_grouping']
+          # if partner == "États de l'Empereur":
+          #   partner = "Etats de l'Empereur"
           value = float(flow['value'] or 0)
           if partner not in partners_toflit18:
             partners_toflit18[partner] = 0
@@ -296,7 +394,6 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   sum_toflit18_corrected = 0
   for (partner, value) in partners_toflit18.items():
     ratio = 1
-    
     if partner in national_ratios:
       ratio = float(national_ratios[partner])
     else:
@@ -447,7 +544,8 @@ national_partners = {}
 with open(INPUT, "r") as fr:
   reader = csv.DictReader(fr)
   for row in reader:
-    partner = row['partner_simplification']
+    # partner = row['partner_simplification']
+    partner = row['partner_grouping']
     if row['year'] == '1787' \
     and row['export_import'] == 'Exports' \
     and row['best_guess_national_prodxpart'] == '1' \
@@ -459,11 +557,11 @@ with open(INPUT, "r") as fr:
 
 national_partners_arr = [{"partner": partner, "value": value} for partner, value in national_partners.items()]
 
-print('===')
-print('Partenaires toflit18 : exports ; 1787 ; != "Colonies françaises"; best_guess_national_prodxpart=1  (simplification)')
-for p in national_partners_arr:
-  print(p['partner'])
-print('===')
+# print('===')
+# print('Partenaires toflit18 : exports ; 1787 ; != "Colonies françaises"; best_guess_national_prodxpart=1  (simplification)')
+# for p in national_partners_arr:
+#   print(p['partner'])
+# print('===')
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = ['partner', 'value']
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -492,7 +590,7 @@ transpal = {
   "tonnage_hypothese_sans_lest": "tonnage_hypothese_sans_lest"
 }
 
-data = []
+destinations_f12_arr = []
 # formatting data
 for item in results:
   if len(item["destination_state_1789_fr"]) > 0:
@@ -504,19 +602,44 @@ for item in results:
         el[to] = val
       else:
         el[to] = int(val) if len(val) else 0
-    data.append(el)
+    destinations_f12_arr.append(el)
 
-print('===')
-print('Partenaires F12')
-for p in data:
-  print(p['destination'])
-print('===')
+# print('===')
+# print('Partenaires F12')
+# for p in data:
+#   print(p['destination'])
+# print('===')
 
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = transpal.values();
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
-  writer.writerows(data)
+  writer.writerows(destinations_f12_arr)
+
+# build dataset with F12 viewed by grouping
+OUTPUT = "../public/data/tonnages_f12_1787_aggregated_by_grouping.csv";
+destinations_f12_grouping_map = {}
+for d in destinations_f12_arr:
+  destination = d['destination']
+  if destination not in navigo_f12_to_toflit18_grouping:
+    raise Exception(destination + " not in navigo_f12_to_toflit18_grouping")
+  destination_grouping = navigo_f12_to_toflit18_grouping[destination]
+  tonnage_hypothese_avec_lest = d['tonnage_hypothese_avec_lest']
+  tonnage_hypothese_sans_lest = d['tonnage_hypothese_sans_lest']
+  if destination_grouping not in destinations_f12_grouping_map:
+    destinations_f12_grouping_map[destination_grouping] = {
+      "tonnage_hypothese_avec_lest": 0,
+      "tonnage_hypothese_sans_lest": 0
+    }
+  destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_avec_lest"] += tonnage_hypothese_avec_lest
+  destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_sans_lest"] += tonnage_hypothese_sans_lest
+destinations_f12_grouping_arr = [{"destination": destination, **vals} for destination, vals in destinations_f12_grouping_map.items()]
+
+with open(OUTPUT, 'w', newline='') as csvfile:
+  fieldnames = transpal.values();
+  writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+  writer.writeheader()
+  writer.writerows(destinations_f12_grouping_arr)
 
 """
 3 - computation prix par tonneau
@@ -571,7 +694,7 @@ def is_smoggleur(flow):
         # and ('Lisbonne' in flow['destination'] or flow['destination'] == 'Bergen') \
 
 
-destinations_navigo = {}
+destinations_navigo_dk = {}
 sum_tonnage = 0
 nb_trajets = 0
 nb_trajets_angleterre = 0
@@ -595,10 +718,13 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
   total_commodities = set()
   for flow in flows:
     destination = flow['destination_partner_balance_1789']
+    if destination == '':
+      destination = flow['destination_partner_balance_supp_1789']
+    if destination not in navigo_partner_balance_1789_to_toflit18_grouping:
+      raise Exception('The following navigo partner balance 1789 destination is not in navigo_partner_balance_1789_to_toflit18_grouping : ' + destination)
+    destination = navigo_partner_balance_1789_to_toflit18_grouping[destination]    
     departure = flow['departure']
 #    departure = flow['departure_state_1789_fr']
-    if destination in navigo_partner_balance_1789_to_toflit18_simplification:
-      destination = navigo_partner_balance_1789_to_toflit18_simplification[destination]
     tonnage = float(flow['tonnage'] or 0)
     if flow['departure_function'] == 'O' \
       and departure == 'Dunkerque' \
@@ -616,9 +742,9 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
           total_commodities.add(c)
         # print(departure + '->' + destination, flow['tonnage'] + '->' + str(tonnage))
         # at this point we have all the flows we want
-        if destination not in destinations_navigo:
-          destinations_navigo[destination] = 0
-        destinations_navigo[destination] += tonnage
+        if destination not in destinations_navigo_dk:
+          destinations_navigo_dk[destination] = 0
+        destinations_navigo_dk[destination] += tonnage
         sum_tonnage += tonnage
         nb_trajets += 1
         if flow['destination_state_1789_fr'] == 'Grande-Bretagne':
@@ -627,12 +753,12 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
               if len(commodities_ids) > 0:
                     nb_trajets_angleterre_avec_cargo += 1
       
-destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
-print('===')
-print('Destinations Dunkerque 1789 : ')
-for el in destinations_arr:
-  print(el['destination'])
-print('===')
+destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo_dk.items()]
+# print('===')
+# print('Destinations Dunkerque 1789 : ')
+# for el in destinations_arr:
+#   print(el['destination'])
+# print('===')
 OUTPUT = "../public/data/destinations-dk-pour-projection.csv";
 with open(OUTPUT, 'w', newline='') as csvfile:
   fieldnames = ['destination', 'tonnage']
@@ -647,39 +773,9 @@ with open(OUTPUT, 'w', newline='') as csvfile:
 # print('nombre de trajets vers l\'angleterre avec cargo : ', nb_trajets_angleterre_avec_cargo)
 # print('tonnage cumulée vers l\'angleterre : ', nb_tonnage_angleterre)
 
-"""
-7 - Dunkerque estimations des exports par partenaire de destination
-Visualisations : estimation-par-destination-dk
-Output : estimation-exports-dk-1789-par-partenaire.csv
-"""
-
-
-sum_estimates_resume = 0
-sum_estimates_resume_without_lest = 0
-estimates_resume = []
-for cor in correspondance:
-    partner = cor['partner']
-    if partner in destinations_navigo:
-        tonnage = destinations_navigo[partner]
-        estimates_resume.append({
-            "partenaire": partner,
-            "tonnage": tonnage,
-            "estimate": tonnage * cor['price_per_barrel'],
-            "estimate_without_lest": tonnage * cor['price_per_barrel_without_lest']
-        })
-        sum_estimates_resume += tonnage * cor['price_per_barrel']
-        sum_estimates_resume_without_lest += tonnage * cor['price_per_barrel_without_lest']
-
-
-OUTPUT = "../public/data/estimation-exports-dk-1789-par-partenaire.csv";
-with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = ['partenaire', 'tonnage', 'estimate', 'estimate_without_lest'];
-  writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-  writer.writeheader()
-  writer.writerows(estimates_resume)
 
 """
-8 - toflit18 exports produits coloniaux
+7 - toflit18 exports produits coloniaux
 Visualisations : comparaison-projection-destination-produits-coloniaux-dk
 Output : toflit18-dk-exports_produits-coloniaux.csv
 """
@@ -695,7 +791,8 @@ with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
       and flow['customs_office'] == "Dunkerque" \
       and flow['partner_grouping'] != 'France':
 
-      partner = flow['partner_simplification']
+      partner = flow['partner_grouping']
+      # partner = flow['partner_simplification']
       value = float(flow['value'] or 0)
       if partner not in exports_toflit18:
         exports_toflit18[partner] = 0
@@ -705,18 +802,23 @@ with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
       and flow['export_import'] == 'Imports' \
       and flow['customs_office'] == "Dunkerque":
 
-      partner = flow['partner_simplification']
+      # partner = flow['partner_simplification']
+      partner = flow['partner_grouping']
       value = float(flow['value'] or 0)
       if partner not in imports_toflit18:
         imports_toflit18[partner] = 0
       imports_toflit18[partner] += value
+print('exports toflit18 : ')
+print(exports_toflit18)
+print('imports toflit18 : ')
+print(imports_toflit18)
 
 comparaison = []
 
 for cor in correspondance:
     partner = cor['partner']
-    if partner in destinations_navigo:
-        tonnage = destinations_navigo[partner]
+    if partner in destinations_navigo_dk:
+        tonnage = destinations_navigo_dk[partner]
         comparaison.append({
             "partner": partner,
             "group": "estimation - m. 'résumé'",
@@ -745,6 +847,55 @@ with open(OUTPUT, 'w', newline='') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(comparaison)
+
+"""
+8 - Dunkerque estimations des exports par partenaire de destination
+Visualisations : estimation-par-destination-dk
+Output : estimation-exports-dk-1789-par-partenaire.csv
+"""
+
+correspondance, ratio = compute_price_per_barrel_per_destination()
+sum_estimates_resume = 0
+sum_estimates_resume_without_lest = 0
+estimates_resume = []
+correspondance_map = {}
+for c in correspondance:
+  correspondance_map[c['partner']] = c
+
+for destination in destinations_navigo_dk.keys():
+  tonnage = destinations_navigo_dk[destination]
+  if destination == "Divers":
+    estimates_resume.append({
+      "partenaire": destination,
+      "tonnage": tonnage,
+      "estimate": 0,
+      "estimate_without_lest": 0,
+    })
+    continue
+  if destination not in correspondance_map:
+    raise Exception('Dunkerque : the following destination is not in the correspondance map : ' + destination)
+  cor = correspondance_map[destination]
+  estimates_resume.append({
+      "partenaire": destination,
+      "tonnage": tonnage,
+      "exports_toflit18" : exports_toflit18[destination] if destination in exports_toflit18 else 0,
+      "imports_toflit18" : imports_toflit18[destination] if destination in imports_toflit18 else 0,
+      "price_per_barrel": cor['price_per_barrel'],
+      "price_per_barrel_without_lest": cor['price_per_barrel_without_lest'],
+      "estimate": tonnage * cor['price_per_barrel'],
+      "estimate_without_lest": tonnage * cor['price_per_barrel_without_lest']
+  })
+  sum_estimates_resume += tonnage * cor['price_per_barrel']
+  sum_estimates_resume_without_lest += tonnage * cor['price_per_barrel_without_lest']
+
+
+OUTPUT = "../public/data/estimation-exports-dk-1789-par-partenaire.csv";
+with open(OUTPUT, 'w', newline='') as csvfile:
+  fieldnames = ['partenaire', 'tonnage', 'estimate', 'estimate_without_lest', 'price_per_barrel', 'price_per_barrel_without_lest', 'exports_toflit18', 'imports_toflit18'];
+  writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+  writer.writeheader()
+  writer.writerows(estimates_resume)
+
 """
 9 - chiffres multiples imports & exports
 Visualisations : estimation-imports-exports
@@ -769,7 +920,7 @@ total_smogglage_price = nb_smgl * 3168
 # print('Estimation de la valeur du smogglage : ' + str(total_smogglage_price) + ' lt')
 
 # 2. quantité des exports légitimes
-sum_exports_legitimes = 0
+sum_exports_legitimes_vers_gb = 0
 with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
   flows = csv.DictReader(csvfile)
   # and flow['customs_office'].lower().find('dunkerque') != -1 \
@@ -778,8 +929,9 @@ with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
       and flow['export_import'] == 'Exports'  \
       and flow['customs_office'].lower().find('dunkerque') != -1 \
       and flow['partner_simplification'] == 'Angleterre':
+
       value = float(flow['value'] or 0)
-      sum_exports_legitimes += value
+      sum_exports_legitimes_vers_gb += value
 
 # 3. données anglaises CUST
 # récupération des imports depuis Flandres vers GB en livres anglaises
@@ -849,55 +1001,55 @@ for f, value in imports_toflit18.items():
 # print('somme exports selon la projection résumé : ' + f'{int(sum_projection_resume):,}' + ' lt')
 
 redux = [{
-    "label": "imports_bureau_Dunkerque",
+    "label": "imports du bf de Dunkerque",
     "type": "imports",
     "valeur": sum_imports
 },
 {
-    "label": "estimation_smogglage",
-    "type": "exports",
+    "label": "estimation smogglage",
+    "type": "exports - projection",
     "valeur": total_smogglage_price
 },
 {
-    "label": "projection",
-    "type": "exports",
+    "label": "estimation des exports par projection (hyp. lest)",
+    "type": "exports - projection",
     "valeur": sum_projection_resume
 }, 
 {
-    "label": "projection_sans_lest",
-    "type": "exports",
+    "label": "estimation des exports par projection (hyp. sans lest)",
+    "type": "exports - projection",
     "valeur": sum_projection_resume_sans_lest
 },
 
 {
-    "label": "projection_gb",
-    "type": "exports",
+    "label": "projection angleterre uniquement (hyp lest)",
+    "type": "exports - projection (détail)",
     "valeur": sum_projection_gb
 }, 
 {
-    "label": "projection_gb_sans_lest",
-    "type": "exports",
+    "label": "projection angleterre uniquement (hyp sans lest)",
+    "type": "exports - projection (détail)",
     "valeur": sum_projection_gb_sans_lest
 }, 
 
 {
-    "label": "toflit18_dk_vers_france",
-    "type": "exports",
+    "label": "toflit18 flux mirroir : dk > france",
+    "type": "exports - tiré d'une source",
     "valeur": sum_miroir
 },
 {
-    "label": "toflit18_exports_dk_vers_gb",
-    "type": "exports (détails)",
-    "valeur": sum_exports_legitimes
+    "label": "toflit18 exports légitimes dk > angleterre",
+    "type": "exports - tiré d'une source",
+    "valeur": sum_exports_legitimes_vers_gb
 },
 {
-    "label": "toflit18_exports_produits_coloniaux_dk",
-    "type": "exports (détails)",
+    "label": "toflit18 exports produits coloniaux (monde...)",
+    "type": "exports - tiré d'une source",
     "valeur": sum_exports
 },
 {
-    "label": "cust_flandres_fr_vers_gb",
-    "type": "exports (détails)",
+    "label": "CUST Flandres > GB",
+    "type": "exports - tiré d'une source",
     "valeur": estimation_ff
 },
 ]
