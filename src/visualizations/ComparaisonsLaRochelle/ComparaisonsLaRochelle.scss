@@ -1,0 +1,32 @@
+
+
+
+
+.ComparaisonsLaRochelle {
+  box-sizing: border-box;
+  .columns-container {
+    display: flex;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+    .column {
+
+     
+      flex: 1;
+      box-sizing: border-box;
+
+      h2 {
+        padding: 0;
+        padding-left: 1rem;
+        font-size:  1rem;
+      }
+
+      &.centered-arrow-container {
+        flex: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+    }
+  }
+}

@@ -23,6 +23,7 @@ import DestinationsDkPrProjection from './DestinationsDkPrProjection';
 import ValeurParTonneau from './ValeurParTonneau/ValeurParTonneau';
 import ExportsFr1787 from './ExportsFr1787/ExportsFr1787';
 import EstimationImportsExports from './EstimationImportsExports/EstimationImportsExports';
+import ComparaisonsLaRochelle from './ComparaisonsLaRochelle';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -168,6 +169,8 @@ export default function VisualizationController({
         return <ExportsFr1787 {...{data, width, height, lang}} />;
       case 'estimation-imports-exports':
         return <EstimationImportsExports {...{data, width, height, lang}} />;
+      case 'comparaisons-la-rochelle':
+        return <ComparaisonsLaRochelle {...{data, width, height, lang}} />
       default:
         return (
           <img

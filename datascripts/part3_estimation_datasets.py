@@ -477,12 +477,12 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
           #  print('estimate : ', estimate)
           projection_resume.append({
               "partner": partner,
-              "group": "estimation depuis navigo",
+              "group": "estimation par tonnage x prix par tonneau F12/1787",
               "value": estimate
           })
           projection_resume.append({
               "partner": partner,
-              "group": "estimation depuis navigo (sans lest)",
+              "group": "estimation par tonnage x prix par tonneau F12/1787 (sans lest)",
               "value": estimate_without_lest
           })
           sum_projection_resume += estimate
@@ -490,7 +490,12 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
       else:
           projection_resume.append({
               "partner": partner,
-              "group": "estimation depuis navigo",
+              "group": "estimation par tonnage x prix par tonneau F12/1787",
+              "value": 0
+          })
+          projection_resume.append({
+              "partner": partner,
+              "group": "estimation par tonnage x prix par tonneau F12/1787 (sans lest)",
               "value": 0
           })
           
@@ -501,11 +506,11 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
               "group": "vraie valeur dans toflit18 (pondéré avec terre-mer)",
               "value": toflit18_value_corrected
           })
-          projection_resume.append({
-              "partner": partner,
-              "group": "vraie valeur dans toflit18 (non pondéré)",
-              "value": partners_toflit18[partner]
-          })
+          # projection_resume.append({
+          #     "partner": partner,
+          #     "group": "vraie valeur dans toflit18 (non pondéré)",
+          #     "value": partners_toflit18[partner]
+          # })
           sum_toflit18_resume += toflit18_value_corrected
           handled_toflit18_partners.add(partner)
       else:
@@ -516,12 +521,26 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
           })
   # print('Correspondance résumé : ')
   # print(correspondance_resume)
+  projection_resume.append({
+    "partner": "total",
+    "group":  "vraie valeur dans toflit18 (non pondéré)",
+    "value": sum_toflit18_raw
+  })
+  projection_resume.append({
+    "partner": "total",
+    "group":  "vraie valeur dans toflit18 (pondéré avec terre-mer)",
+    "value": sum_toflit18_corrected
+  })
+  projection_resume.append({
+    "partner": "total",
+    "group":  "estimation par tonnage x prix par tonneau F12/1787",
+    "value": sum_projection_resume
+  })
   
-  
-  # print("Total des exports en lt selon la projection 'résumé' : " + f'{int(sum_projection_resume):,}' + " lt")
-  # print("Total des exports en lt selon toflit18 : " + f'{int(sum_toflit18_raw):,}' + " lt")
-  # print("Total des exports en lt selon toflit18 (corrigé avec ratios terre-mer) : " + f'{int(sum_toflit18_corrected):,}' + " lt")
-  # print('Méthode \'résumé\' - rapport projection/réalité : facteur de ' + str(sum_projection_resume / sum_toflit18_corrected))
+  print("Total des exports en lt selon la projection : " + f'{int(sum_projection_resume):,}' + " lt")
+  print("Total des exports en lt selon toflit18 : " + f'{int(sum_toflit18_raw):,}' + " lt")
+  print("Total des exports en lt selon toflit18 (corrigé avec ratios terre-mer) : " + f'{int(sum_toflit18_corrected):,}' + " lt")
+  print('Méthode \'résumé\' - rapport projection/réalité : facteur de ' + str(sum_projection_resume / sum_toflit18_corrected))
   
   return {
     "partners_toflit18": partners_toflit18_arr,
@@ -673,6 +692,7 @@ def output_la_rochelle(data, nickname):
     writer.writerows(data)
 
 
+# la_rochelle = project_for_bureau('La Rochelle', ferme_key='departure_ferme_bureau')
 la_rochelle = project_for_bureau('La Rochelle', ferme_key='departure_ferme_direction')
 la_rochelle_toflit18 = la_rochelle["partners_toflit18"]
 output_la_rochelle(la_rochelle_toflit18, 'toflit18')
@@ -808,10 +828,10 @@ with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
       if partner not in imports_toflit18:
         imports_toflit18[partner] = 0
       imports_toflit18[partner] += value
-print('exports toflit18 : ')
-print(exports_toflit18)
-print('imports toflit18 : ')
-print(imports_toflit18)
+# print('exports toflit18 : ')
+# print(exports_toflit18)
+# print('imports toflit18 : ')
+# print(imports_toflit18)
 
 comparaison = []
 
