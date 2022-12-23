@@ -1,6 +1,7 @@
 
 
 import BarChart from "../../components/BarChart";
+import { formatNumber } from "../../utils/misc";
 import translate from '../../utils/translate';
 
 const DestinationsDkPrProjection = ({
@@ -13,10 +14,10 @@ const DestinationsDkPrProjection = ({
     <BarChart
       {...{
         data: data.sort((a, b) => {
-          if (+a.tonnage > +b.tonnage) {
-            return -1;
+          if (a.destination > b.destination) {
+            return 1;
           }
-          return 1;
+          return -1;
         }),
         width,
         height,
@@ -26,6 +27,7 @@ const DestinationsDkPrProjection = ({
       orientation='vertical'
       x={{
         field: 'tonnage',
+        tickFormat: d => `${formatNumber(d)} tx`,
         title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
       }}
       y={{
@@ -38,7 +40,7 @@ const DestinationsDkPrProjection = ({
     // }}
 
     tooltip={
-      (d) => `${d.tonnage} tonneaux cumulés pour la destination ${d.destination}`
+      (d) => `${formatNumber(parseInt(d.tonnage))} tonneaux cumulés pour la destination ${d.destination}`
     }
     />
 
