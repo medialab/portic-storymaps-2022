@@ -588,6 +588,9 @@ tspan {
 // responsive nav
 .nav-drawer {
   display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
   .drawer-header {
     display: flex;
     flex-flow: row nowrap;
@@ -752,12 +755,13 @@ tspan {
   bottom: 0;
   left: 0;
   z-index: 3;
-  background: linear-gradient(to bottom, $color-background 10%, $color-background-blue 90%);
+  background: linear-gradient(to bottom, $color-accent-background 10%, #5d4832 90%);
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  color: white;
   .footer-contents {
     display: grid;
     grid-template-columns: repeat(2, auto);
