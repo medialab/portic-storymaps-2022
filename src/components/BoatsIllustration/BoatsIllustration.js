@@ -448,7 +448,8 @@ const BoatsIllustration = ({
     to: {transform: sunTransformModel},
     config: { duration: hourDuration }
   });
-  const lumScale = scaleLinear().domain([12, 0]).range(['#336d7c', '#ebebeb']);
+  // const lumScale = scaleLinear().domain([12, 0]).range(['#336d7c', '#ebebeb']);
+  const lumScale = scaleLinear().domain([12, 0]).range(['#340b0b', '#ebebeb']);
   const darkRadiusScale = scaleLinear().domain([12, 0]).range([5, 80])
   const bgColorModel = lumScale(Math.abs(hourOfTime - 12))
   const darkRadiusModel = darkRadiusScale(Math.abs(hourOfTime - 12)) + '%';
@@ -462,12 +463,12 @@ const BoatsIllustration = ({
     },
     config: { duration: hourDuration }
   });
-
+  const sunR = width > height ? width * 1.5 : height * 1.5;
   return (
     <svg className="BoatsIllustration" width={width} height={height}>
       <animated.g transform={sunTransform}>
         <animated.circle
-          r={width * 1.5}
+          r={sunR}
           cx={0}
           cy={0}
           fill={`url(#sun)`}

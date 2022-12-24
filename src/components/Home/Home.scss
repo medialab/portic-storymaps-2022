@@ -57,12 +57,12 @@
             top: $small-gutter;
           }
         }
-        transition: color 0.5s ease;
+        transition: color 1s ease;
         &.is-night-mode {
           color: white;
         }
       }
-      transition: color 0.5s ease;
+      transition: color 1s ease;
       &.is-night-mode {
         color: white;
       }

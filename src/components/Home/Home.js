@@ -198,13 +198,13 @@ function Home({
         <title>{title}</title>
       </Helmet>
       <div className="header">
-        <div className={`titles-container ${(hourOfTime >= 21 || hourOfTime <= 4) ? 'is-night-mode' : ''}`}>
+        <div className={`titles-container ${(hourOfTime >= 20 || hourOfTime <= 6) ? 'is-night-mode' : ''}`}>
           <h1 dangerouslySetInnerHTML={{__html: titleHTML}}/>
           <h2>{subtitle}</h2>
           {/* <CitationWidget
             lang={lang}
           /> */}
-          <button onClick={onClickOnStart} className={`go-to-start ${(hourOfTime >= 21 || hourOfTime <= 4) ? 'is-night-mode' : ''}`}>
+          <button onClick={onClickOnStart} className={`go-to-start ${(hourOfTime >= 20 || hourOfTime <= 6) ? 'is-night-mode' : ''}`}>
             <span>⌄</span>
           </button>
         </div>
