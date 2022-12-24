@@ -119,6 +119,18 @@ function Home({
   }
 
   /**
+   * Hour of time management
+   */
+  const [hourOfTime, setHourOfTime] = useState(Math.round(Math.random() * 23));
+  const hourDuration = 1000 * 2;
+  useEffect(() => {
+    setTimeout(() => {
+      const nextHour = hourOfTime >= 23 ? 0 : hourOfTime + 1;
+      setHourOfTime(nextHour);
+    }, hourDuration)
+  }, [hourOfTime]);
+
+  /**
    * Scroll to top on mount
    */
    useEffect(() => {
@@ -186,18 +198,18 @@ function Home({
         <title>{title}</title>
       </Helmet>
       <div className="header">
-        <div className="titles-container">
+        <div className={`titles-container ${(hourOfTime >= 21 || hourOfTime <= 4) ? 'is-night-mode' : ''}`}>
           <h1 dangerouslySetInnerHTML={{__html: titleHTML}}/>
           <h2>{subtitle}</h2>
           {/* <CitationWidget
             lang={lang}
           /> */}
-          <button onClick={onClickOnStart} className="go-to-start">
+          <button onClick={onClickOnStart} className={`go-to-start ${(hourOfTime >= 21 || hourOfTime <= 4) ? 'is-night-mode' : ''}`}>
             <span>⌄</span>
           </button>
         </div>
         
-        <BoatsContainer />
+        <BoatsContainer hourOfTime={hourOfTime} hourDuration={hourDuration} />
       </div>
       <main ref={introRef} className="intro-container">
         {/* <VisualizationControlContext.Provider

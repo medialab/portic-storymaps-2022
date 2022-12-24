@@ -61,7 +61,7 @@ export default function Header({
                 if (scrollY < screenHeight * .8) {
                     return {
                         fontColor: colorText,
-                        backgroundColor: colorBackgroundBlue,
+                        backgroundColor: 'transparent' // colorBackgroundBlue,
                     }
                 } else {
                     return {

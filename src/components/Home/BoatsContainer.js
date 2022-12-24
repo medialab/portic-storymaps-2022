@@ -5,7 +5,10 @@ import Measure from 'react-measure'
 import BoatsIllustration from '../../components/BoatsIllustration';
 
 
-const BoatsContainer = () => {
+const BoatsContainer = ({
+  hourOfTime,
+  hourDuration
+}) => {
   const [dimensions, setDimensions] = useState({});
   return (
     <Measure 
@@ -16,7 +19,11 @@ const BoatsContainer = () => {
     >
       {({ measureRef }) => (
         <div ref={measureRef} className="boats-container">
-          <BoatsIllustration {...{...dimensions}} />
+          <BoatsIllustration 
+            hourOfTime={hourOfTime} 
+            hourDuration={hourDuration}
+            {...{...dimensions}} 
+          />
         </div>
       )}
     </Measure>

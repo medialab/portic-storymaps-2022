@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo, useReducer } from "react";
 import { useSpring, animated } from "react-spring";
 import {v4 as genId} from 'uuid';
-
+import {scaleLinear, scaleLog} from 'd3-scale';
 import {useInterval} from '../../utils/hooks';
-import { fixSvgDimension } from "../../utils/misc";
+import { fixSvgDimension, polarToCartesian } from "../../utils/misc";
+import colorPalettes from '../../utils/colorPalettes';
 
 import './BoatsIllustration.scss';
 
@@ -19,12 +20,24 @@ const UPDATE_RATE = 4000;
 const Hull = ({
   width,
   height,
+  hourOfTime,
+  hourDuration,
 }) => {
   const bottomRightX = width * .7;
   const bottomLeftX = width * .05;
+
+  const colorScale = scaleLinear().domain([0, 12]).range(['darkgrey', 'black'])
+  const colorModel = colorScale(Math.abs(12 - hourOfTime));
+  const {fill: color} = useSpring({
+    to: {fill: colorModel},
+    config: { duration: hourDuration }
+  });
   return (
-    <path
+    <animated.path
       className="hull"
+      style={{
+        fill: color
+      }}
       d={`M 0 0 L ${width / 3} ${0} L ${width / 3} ${height / 4} L ${width * .6} ${height / 4} L ${width * .6} 0 L ${width} 0 L ${bottomRightX} ${height} L ${bottomLeftX} ${height} Z`}
     />
   )
@@ -43,7 +56,9 @@ const Sail = ({
   width,
   height,
   sailSpeed,
-  distance = 1
+  distance = 1,
+  hourOfTime,
+  hourDuration,
 }) => {
 
   const randomFactor = useMemo(() => Math.random() * .4 + 1, [])
@@ -66,11 +81,21 @@ const Sail = ({
     from: step1,
     config: { duration: 500 * sailSpeed * randomFactor }
   });
+  const colorScale = scaleLinear().domain([0, 12]).range(['lightgrey', 'rgb(20,20,20)'])
+  const colorModel = colorScale(Math.abs(12 - hourOfTime));
+  const {fill: color} = useSpring({
+    to: {fill: colorModel},
+    config: { duration: hourDuration }
+  });
+
   return (
     <>
       <animated.polygon
         points={points}
         className="sail"
+        style={{
+          fill: color
+        }}
       />
     </>
   )
@@ -88,16 +113,18 @@ const Matt = ({
   width,
   height,
   sailSpeed,
-  distance
+  distance,
+  hourOfTime,
+  hourDuration,
 }) => {
   const secondWidth = width * .7;
   return (
     <>
       <g transform={`translate(${width/2 - secondWidth/2}, ${height * .1})`}>
-        <Sail sailSpeed={sailSpeed} distance={distance} width={secondWidth} height={height /4} />
+        <Sail sailSpeed={sailSpeed} distance={distance} width={secondWidth} height={height /4} hourOfTime={hourOfTime} hourDuration={hourDuration} />
       </g>
       <g transform={`translate(0, ${height * .4})`}>
-        <Sail sailSpeed={sailSpeed} distance={distance} width={width} height={height * .45} />
+        <Sail sailSpeed={sailSpeed} distance={distance} width={width} height={height * .45} hourOfTime={hourOfTime} hourDuration={hourDuration} />
       </g>
       <line
         x1={width / 2}
@@ -119,7 +146,9 @@ const Matt = ({
 const Boat = ({
   x,
   height,
-  distance
+  distance,
+  hourOfTime,
+  hourDuration,
 }) => {
   const [hullHeightRatio, setHullHeightRatio] = useState(.2);
   const [mattNumber, setMattNumber] = useState(1);
@@ -173,6 +202,8 @@ const Boat = ({
                 height={height - height * hullHeightRatio}
                 sailSpeed={randomFactor * .5 + 1}
                 distance={distance}
+                hourOfTime={hourOfTime}
+                hourDuration={hourDuration}
               />
             </g>
           )
@@ -182,6 +213,8 @@ const Boat = ({
         <Hull
           width={boatWidth}
           height={height * hullHeightRatio}
+          hourOfTime={hourOfTime}
+          hourDuration={hourDuration}
         />
       </g>
     </animated.g>
@@ -201,7 +234,7 @@ const Bird = ({
   distance
 }) => {
   
-  const dimension = containerHeight / 20 * (distance / 2);
+  const dimension = containerHeight / 60 * (distance / 2);
   const step1 = {
     points: `0,${0}, ${dimension/2},${dimension/3} ${dimension},${0} ${dimension/2} ${dimension / 2}`
   }
@@ -259,7 +292,9 @@ const MovingBoat = ({
   rightToLeft,
   startAt,
   size,
-  distance = 1
+  distance = 1,
+  hourOfTime,
+  hourDuration,
 }) => {
   const birds = useMemo(() => {
     if (distance > .5 && Math.random() > .5) {
@@ -290,7 +325,7 @@ const MovingBoat = ({
     to: step2,
     config: { duration: PASS_DURATION * (2 - distance * (1 + randomFactor / 10)) }
   });
-  const height = containerHeight * 0.2 * size * distance;
+  const height = containerHeight * 0.06 * size * distance;
   return (
     <animated.g
       transform={transform}
@@ -301,6 +336,8 @@ const MovingBoat = ({
             x={0}
             height={height}
             distance={distance}
+            hourOfTime={hourOfTime}
+            hourDuration={hourDuration}
           />
         </g>
         {
@@ -329,6 +366,8 @@ const MovingBoat = ({
 const BoatsIllustration = ({
   width: inputWidth = 1200,
   height: inputHeight = 100,
+  hourOfTime = 12,
+  hourDuration = 2000,
 }) => {
   const width = fixSvgDimension(inputWidth);
   const height = fixSvgDimension(inputHeight);
@@ -400,8 +439,45 @@ const BoatsIllustration = ({
     }
   }, []);/* eslint react-hooks/exhaustive-deps : 0 */
 
+  const sunRadius = width * .4;
+  const sunAngleInDeg = 360 / 24 * hourOfTime + 90;
+  const sunAngle = sunAngleInDeg * (Math.PI / 180);
+  const [sunX, sunY] = polarToCartesian(sunRadius, sunAngle);
+  const sunTransformModel = `translate(${sunX + width/2},${sunY + height})`;
+  const {transform: sunTransform} = useSpring({
+    to: {transform: sunTransformModel},
+    config: { duration: hourDuration }
+  });
+  const lumScale = scaleLinear().domain([12, 0]).range(['#336d7c', '#ebebeb']);
+  const darkRadiusScale = scaleLinear().domain([12, 0]).range([5, 80])
+  const bgColorModel = lumScale(Math.abs(hourOfTime - 12))
+  const darkRadiusModel = darkRadiusScale(Math.abs(hourOfTime - 12)) + '%';
+  const {
+    offset: darkRadius,
+    stopColor: bgColor
+  } = useSpring({
+    to: {
+      offset: darkRadiusModel,
+      stopColor: bgColorModel
+    },
+    config: { duration: hourDuration }
+  });
+
   return (
     <svg className="BoatsIllustration" width={width} height={height}>
+      <animated.g transform={sunTransform}>
+        <animated.circle
+          r={width * 1.5}
+          cx={0}
+          cy={0}
+          fill={`url(#sun)`}
+        />
+        <radialGradient id={`sun`}>
+          <animated.stop offset={'0%'} stopColor={'rgb(238, 237, 192)'} />
+          <animated.stop offset={'5%'} stopColor={colorPalettes.ui.colorBackground} />
+          <animated.stop offset={darkRadius} stopColor={bgColor} />
+        </radialGradient>
+      </animated.g>
       {
         Object.entries(boats).map(([id, {
           distance, 
@@ -417,6 +493,8 @@ const BoatsIllustration = ({
             containerHeight={height} 
             containerWidth={width} 
             startAt={startAt}
+            hourOfTime={hourOfTime}
+            hourDuration={hourDuration}
           />
         ))
       }
