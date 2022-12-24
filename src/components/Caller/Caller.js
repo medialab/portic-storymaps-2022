@@ -80,7 +80,7 @@ export default function Caller ({
             onClick={(e) => onClickCallerScroll(callerPayload)}
         >
             {
-                process.env.NODE_ENV === 'development' &&
+               process.env.NODE_ENV === 'development' &&
                 <span>Caller viz&nbsp;
                     <code>{visualizationId}</code> : <code>{JSON.stringify({ ...props })}</code>
                 </span>

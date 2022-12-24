@@ -88,6 +88,7 @@
     ol,
     blockquote {
       font-size: 1.1rem;
+      margin: $small-gutter 0;
       @include tablet {
         font-size: 1rem;
       }

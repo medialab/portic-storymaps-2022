@@ -1,4 +1,3 @@
-
 @use "sass:math";
 // @import '../../node_modules/bulma/css/bulma.min.css';
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap");
@@ -121,13 +120,13 @@ dfn {
   background: $color-background-blue;
   border-radius: 50%;
   padding: 0;
-  padding-left: .5em;
-  padding-right: .5em;
-  padding-bottom: .1em;
-  font-size: .5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.1em;
+  font-size: 0.5em;
   position: relative;
-  top: -.7em;
-  transition: .5s ease all;
+  top: -0.7em;
+  transition: 0.5s ease all;
   &:hover {
     background: $color-text;
     color: $color-background;
@@ -139,7 +138,6 @@ dfn {
  * REUSABLE COMPONENTS
  * ==========
  */
-
 
 /**
  * Tooltip styling
@@ -159,26 +157,29 @@ dfn {
  * Caller component to display scrolly-telling change anchors on screen (for debug mode or display mode)
  */
 .Caller:not(.is-inline) {
-    background: $color-background-blue;
-    font-family: $font-family-1;
-    padding: $small-gutter;
-    font-size: 0.7rem;
-    cursor: pointer;
-    &.is-invalid {
-        background: rgba(192, 106, 106, 0.8);
-    }
-    &.is-active {
-        background: $color-accent-background;
-        color: white;
-    }
-    &.is-clearfix {
-        display: none;
-    }
-    &.is-hidden {
-        max-width: 2rem;
-        padding: 0.3rem;
-        margin: 0;
-    }
+  background: $color-background-blue;
+  font-family: $font-family-1;
+  padding: 0; // $small-gutter;
+  min-width: 5rem;
+  min-height:.5rem;
+  display: inline-block;
+  font-size: 0.7rem;
+  cursor: pointer;
+  &.is-invalid {
+    background: rgba(192, 106, 106, 0.8);
+  }
+  &.is-active {
+    background: $color-accent-background;
+    color: white;
+  }
+  &.is-clearfix {
+    display: none;
+  }
+  &.is-hidden {
+    max-width: 2rem;
+    padding: 0.3rem;
+    margin: 0;
+  }
 }
 .Caller.is-inline {
   font-family: inherit;
@@ -203,7 +204,6 @@ dfn {
 //   align-items: center;
 // }
 
-
 /**
  * ==========
  * SHARED LAYOUTS
@@ -213,107 +213,106 @@ dfn {
 /**
  * Shared layouts for loader placement in 2-columns layouts
  */
- .ScrollyPage + .Loader,
- .Home + .Loader {
-   width: 50vw;
-   left: 50vw;
- }
- 
- .Home + .Loader {
-   position: absolute;
-   top: 100vh;
-   height: 100vh;
-   .loader-container .loading-bar {
-     background: white;
-   }
- }
- 
- /**
+.ScrollyPage + .Loader,
+.Home + .Loader {
+  width: 50vw;
+  left: 50vw;
+}
+
+.Home + .Loader {
+  position: absolute;
+  top: 100vh;
+  height: 100vh;
+  .loader-container .loading-bar {
+    background: white;
+  }
+}
+
+/**
   * Secondary page layout (used in Atlas, PlainPage, ...)
   */
- .secondary-page {
-   margin: 0;
-   padding: 0;
-   padding-top: 3em;
-   width: 100vw;
-   min-height: calc(100vh - #{$footer_height});
-   background: $color-background;
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: center;
-   @media print {
+.secondary-page {
+  margin: 0;
+  padding: 0;
+  padding-top: 3em;
+  width: 100vw;
+  min-height: calc(100vh - #{$footer_height});
+  background: $color-background;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  @media print {
     background: white;
     display: block;
   }
- }
- 
- /**
+}
+
+/**
   * Centered contents layout (used in Atlas, PlainPage, ...)
   */
- .centered-contents {
-   min-width: $screen-md-min;
-   max-width: $screen-md-min;
-   @include tablet {
-     margin-top: $header_height;
-     min-width: unset;
-     max-width: unset;
-     width: 100%;
-     padding: 0 $medium-gutter 0 $medium_gutter;
-   }
- }
- 
- /**
+.centered-contents {
+  min-width: $screen-md-min;
+  max-width: $screen-md-min;
+  @include tablet {
+    margin-top: $header_height;
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+    padding: 0 $medium-gutter 0 $medium_gutter;
+  }
+}
+
+/**
   * Vis focus used in atlas and scrollypage views (two-columns vis + explanations)
   */
- .vis-focus-container {
-   position: fixed;
-   right: 0.5rem;
-   top: 0;
-   height: 100vh;
-   display: flex;
-   flex-flow: column nowrap;
-   justify-content: center;
-   transition: 0.5s ease all;
-   opacity: 0;
-   pointer-events: none;
-   button {
-     background: transparent;
-     border: none;
-     font-size: 1.5rem;
-     font-weight: 800;
-     pointer-events: none;
-     transition: 0.5s ease all;
-     cursor: pointer;
-     border-radius: 50%;
-     border: 1px solid black;
-     height: 1.5rem;
-     width: 1.5rem;
-     display: flex;
-     flex-flow: row nowrap;
-     align-items: center;
-     justify-content: center;
-     padding-top: 0.6em;
-   }
- 
-   @include phone {
-     &.is-visible {
-       opacity: 1;
-       button {
-         pointer-events: all;
-       }
-     }
- 
-     &.is-active {
-       right: calc(100vw - 3rem);
-       button {
-         rotate: -180deg;
-       }
-     }
-   }
- }
+.vis-focus-container {
+  position: fixed;
+  right: 0.5rem;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  transition: 0.5s ease all;
+  opacity: 0;
+  pointer-events: none;
+  button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    pointer-events: none;
+    transition: 0.5s ease all;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid black;
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.6em;
+  }
 
+  @include phone {
+    &.is-visible {
+      opacity: 1;
+      button {
+        pointer-events: all;
+      }
+    }
 
- /**
+    &.is-active {
+      right: calc(100vw - 3rem);
+      button {
+        rotate: -180deg;
+      }
+    }
+  }
+}
+
+/**
  * ===========
  * VISUALIZATIONS SHARED CLASSES
  * ===========
@@ -322,7 +321,7 @@ dfn {
 /**
  * Reusable visualization components shared classes
  */
- .visualization-title {
+.visualization-title {
   margin: 0;
   padding: 0;
   margin-bottom: 0.5rem;
@@ -336,7 +335,7 @@ dfn {
 /**
  * Reusable color legend
  */
- .ColorLegend {
+.ColorLegend {
   font-family: $font-family-1;
   background: inherit;
   padding: $small-gutter;
@@ -371,7 +370,6 @@ dfn {
   }
 }
 
-
 tspan {
   font-family: inherit;
   font-weight: inherit;
@@ -383,7 +381,7 @@ tspan {
 /**
  * GENERIC VISUALIZATIONS STYLING
  */
- .GenericVisualization {
+.GenericVisualization {
   margin: 0;
   padding: 0;
   .background-rect {
@@ -415,7 +413,7 @@ tspan {
       font-weight: bold;
       font-style: italic;
       // background: $color-text;
-      font-size: .7rem;
+      font-size: 0.7rem;
       font-family: $font-family-1;
       text-align: right;
 
@@ -449,8 +447,6 @@ tspan {
     }
   }
 }
- 
-
 
 /**
  * ==========
@@ -555,7 +551,7 @@ tspan {
     &.primary-nav-container {
       justify-content: start;
       .navitem-container:first-of-type {
-        padding-right: .5rem;
+        padding-right: 0.5rem;
         a.active {
           border-bottom: none;
         }
@@ -567,7 +563,7 @@ tspan {
   }
 
   li:not(:last-of-type):not(.lang-toggle) {
-    margin-right: .6rem;
+    margin-right: 0.6rem;
   }
   li.lang-toggle button {
     padding-right: 0;
@@ -580,7 +576,7 @@ tspan {
 
   @include xl-screen {
     .navitem-container a {
-        font-size: 0.9vw;
+      font-size: 0.9vw;
     }
   }
 

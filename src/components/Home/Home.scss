@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .Home {
   margin: 0;
@@ -110,9 +110,14 @@
         margin-left: $medium-gutter * 4;
       }
       .Caller:not(.is-inline) {
-        margin-left: $medium-gutter * 4;
+        // margin-left: $medium-gutter * 4;
         background: $color-background-blue;
         opacity: 0.5;
+        // padding: 0;
+        min-width: 5rem;
+        min-height: .5rem;
+        display: inline-block;
+
         &.is-active {
           opacity: 1;
         }
@@ -408,7 +413,6 @@
     }
   }
 
-
   @media print {
     .header {
       align-items: start;
@@ -460,12 +464,11 @@
           display: none;
         }
       }
-      
     }
-    
+
     .go-to-start,
     .boats-container,
-    .HomeSummary{
+    .HomeSummary {
       display: none;
     }
   }
