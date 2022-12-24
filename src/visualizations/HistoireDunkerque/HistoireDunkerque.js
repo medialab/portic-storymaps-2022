@@ -67,12 +67,14 @@ export default function HistoireDunkerque({
   const assiseData = inputData.get('histoire-dunkerque-assise.csv');
   // console.log(callerProps)
   const {displayassises} = callerProps;
-  const [displayedYear, setdisplayedYear] = useState(callerProps && callerProps.year ? +callerProps.year : inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
+  const [displayedYear, setDisplayedYear] = useState(callerProps && callerProps.year ? +callerProps.year : inputData.get('histoire-dunkerque-dates.csv')[0]['year_start']);
   useEffect(() => {
     if (callerProps && callerProps.year) {
-      setdisplayedYear(+callerProps.year);
+      setDisplayedYear(+callerProps.year);
     }
   }, [callerProps && callerProps.year])
+  const [displayedYearDigits, setDisplayedYearDigits] = useState(displayedYear);
+
   const data = useMemo(function computeDataYears() {
     return inputData.get('histoire-dunkerque-dates.csv').map((row, i) => {
       const { year_start, year_end } = row;
@@ -182,6 +184,28 @@ export default function HistoireDunkerque({
     ReactTooltip.rebuild();
   });
 
+  useEffect(() => {
+    if (displayedYear === +displayedYearDigits) {
+      return;
+    }
+    const gap = Math.abs(+displayedYearDigits - displayedYear);
+    const transitionDuration = 2000 / gap;
+    if (+displayedYearDigits < displayedYear) {
+      for (let i = +displayedYearDigits + 1 ; i <= +displayedYear ; i++ ) {
+        setTimeout(() => {
+          setDisplayedYearDigits(i);
+        }, transitionDuration)
+      }
+    } else {
+      for (let i = +displayedYearDigits - 1 ; i >= +displayedYear ; i-- ) {
+        setTimeout(() => {
+          setDisplayedYearDigits(i);
+        }, transitionDuration)
+      }
+    }
+    
+  }, [displayedYear])
+
   return (
     <div
       className={cx('HistoireDunkerque', { minMode })}
@@ -204,13 +228,13 @@ export default function HistoireDunkerque({
               <span
                 className='map-switch-spans'
                 style={{ visibility: (!!previousEvent) ? 'visible' : 'hidden' }}
-                onClick={(e) => { if (previousEvent) { setdisplayedYear(previousEvent); } }}
+                onClick={(e) => { if (previousEvent) { setDisplayedYear(previousEvent); } }}
               >← {previousEvent || '0000'}</span>
-              <h3>{displayedYear}</h3>
+              <h3>{displayedYearDigits}</h3>
               <span
                 className='map-switch-spans'
                 style={{ visibility: (!!nextEvent) ? 'visible' : 'hidden' }}
-                onClick={(e) => { if (nextEvent) { setdisplayedYear(nextEvent); } }}
+                onClick={(e) => { if (nextEvent) { setDisplayedYear(nextEvent); } }}
               >{nextEvent || '0000'} →</span>
             </div>
             <div className={`head ${headYear ? 'is-past' : ''}`}>{headYear ? `${headYear}${lang === 'fr' ? ' ' : ''}: ` : ''}{head}</div>
@@ -251,11 +275,11 @@ export default function HistoireDunkerque({
 
           <div className="map-switch-btns">
             <button
-              onClick={(e) => { if (previousEvent) { setdisplayedYear(previousEvent); } }}
+              onClick={(e) => { if (previousEvent) { setDisplayedYear(previousEvent); } }}
               style={{ visibility: (!!previousEvent) ? 'visible' : 'hidden' }}
             >{translate('HistoireDunkerque', 'btn_previous_step', lang)}</button>
             <button
-              onClick={(e) => { if (nextEvent) { setdisplayedYear(nextEvent); } }}
+              onClick={(e) => { if (nextEvent) { setDisplayedYear(nextEvent); } }}
               style={{ visibility: (!!nextEvent) ? 'visible' : 'hidden' }}
             >{translate('HistoireDunkerque', 'btn_next_step', lang)}</button>
           </div>
@@ -321,7 +345,7 @@ export default function HistoireDunkerque({
             }}
             palette={palette}
             data={data}
-            yearState={[displayedYear, setdisplayedYear]}
+            yearState={[displayedYear, setDisplayedYear]}
           />
         </footer>
       }

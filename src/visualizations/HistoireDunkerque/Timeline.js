@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useSpring, animated } from 'react-spring';
+import { G, Line } from '../../components/animatedPrimitives'
 
 import DiagonalHatching from "../../components/DiagonalHatching";
 
@@ -17,7 +17,8 @@ export default function Timeline({
   const { width, height } = dimensions;
   const [cursorX, setCursorX] = useState(undefined);
   const [yearTicks, setYearTicks] = useState(10);
-  const [diplayedYear, setDiplayedYear] = yearState;
+  const [isTransitionning, setIsTransitionning] = useState(false);
+  const [displayedYear, setDisplayedYear] = yearState;
 
   const svgRef = useRef(null);
 
@@ -80,6 +81,16 @@ export default function Timeline({
     else { setYearTicks(10); }
   }, [svgRef, width, minYear, maxYear]);
 
+  useEffect(() => {
+    if (!isTransitionning) {
+      setIsTransitionning(true);
+      setTimeout(() => {
+          setIsTransitionning(false);
+      }, 500)
+    }
+    
+  }, [displayedYear])
+
   const FONT_SIZE = 8;
   const TICK_MARGIN = 5;
 
@@ -90,7 +101,7 @@ export default function Timeline({
       onClick={(e) => {
         const { x } = getCursorCoordinates(e);
         let yearTarget = getYearWithX(x);
-        setDiplayedYear(yearTarget);
+        setDisplayedYear(yearTarget);
       }}
       onMouseMove={(e) => {
         const { x } = getCursorCoordinates(e);
@@ -160,16 +171,17 @@ export default function Timeline({
         })
       }
       {/* displayed year marker */}
-      <g
-        transform={`translate(${spanRange(diplayedYear)}, ${0})`}
+      <G
+        transform={`translate(${spanRange(displayedYear)}, ${0})`}
       >
-        <line
+        <Line
           x1={0}
           y1={0}
           x2={0}
           y2={height - 13}
           stroke='black'
-          strokeWidth={1}
+          strokeWidth={isTransitionning ? 5 : 1}
+          className="position-line"
         />
         {/* <path
           fill="black"
@@ -182,8 +194,8 @@ export default function Timeline({
           />
         </g> */}
         {/* <rect y={height - 10} x={2} width={20} height={10} fill='white' /> */}
-        {/* <text y={height} x={2} fontSize={8} x={2} fill='black'>{diplayedYear}</text> */}
-      </g>
+        {/* <text y={height} x={2} fontSize={8} x={2} fill='black'>{displayedYear}</text> */}
+      </G>
       {
         data.filter(({ type }) => type === 'event')
           .map(({ year_start, interests, head }, i) => {
@@ -261,9 +273,10 @@ export default function Timeline({
           y2={height}
           stroke='grey'
           strokeWidth={1.5}
+          className="cursor-line"
         />
         <rect y={height - 10} x={2} width={20} height={10} fill='white' />
-        <text y={height} x={2} fontSize={8} x={2} fill='black'>{getYearWithX(cursorX) || diplayedYear}</text>
+        <text y={height} x={2} fontSize={8} x={2} fill='black'>{getYearWithX(cursorX) || displayedYear}</text>
       </g>
     </svg>
   )
