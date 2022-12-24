@@ -115,13 +115,15 @@ export default function HistoireDunkerque({
     previousEvent,
     nextEvent
   } = useMemo(function getDisplayForCurrentYear() {
+    let currentEventIndex;
     let currentPeriod = periods.find((period) => {
       if (period['year_start'] <= displayedYear && period['year_end'] > displayedYear) {
         return true;
       }
     });
-    let currentEvent = events.find((event) => {
+    let currentEvent = events.find((event, index) => {
       if (event['year_start'] === displayedYear) {
+        currentEventIndex = index;
         return true;
       }
     });
@@ -133,14 +135,31 @@ export default function HistoireDunkerque({
     }
 
     let previousEvent, nextEvent;
-    for (const { year_start } of events) {
-      if (previousEvent && nextEvent) break;
-      if (year_start < displayedYear) {
-        previousEvent = year_start;
+    // for (const { year_start } of events) {
+    //   if (previousEvent && nextEvent) break;
+    //   if (year_start < displayedYear) {
+    //     previousEvent = year_start;
+    //     break;
+    //   }
+    //   else if (year_start > displayedYear) {
+    //     nextEvent = year_start;
+    //     break;
+    //   }
+    // }
+    const nextEventObj = events
+    .sort((a, b) => {
+      if (a.year_start > b.year_start) {
+        return 1;
       }
-      else if (year_start > displayedYear) {
-        nextEvent = year_start;
-      }
+      return -1;
+    })
+    .find(d => d.year_start > displayedYear);
+    if (nextEventObj) {
+      nextEvent = nextEventObj.year_start;
+    }
+    const previousEventObj = events.reverse().find(d => d.year_start < displayedYear);
+    if (previousEventObj) {
+      previousEvent = previousEventObj.year_start;
     }
 
     const reference = currentEvent || currentPeriod;
