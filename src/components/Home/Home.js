@@ -60,6 +60,22 @@ function Home({
     // la visualisation la plus haute de la page qui est
     // au-dessus du milieu de l'écran
     let firstOneY = Infinity;
+    if (introRef.current && introRef.current) {
+      const top = introRef.current.offsetTop;
+      const contentsHeight = introRef.current.querySelector('.Contents').getBoundingClientRect().height;
+      const endOfIntro = top + contentsHeight;
+      const pos = scrollY + DISPLACE_Y;
+      if (pos > endOfIntro) {
+        if (inVis) {
+          setInVis(false);
+        }
+        if (activeVisualization) {
+          setActiveVisualization();
+          setActiveCallerId();
+        }
+        return;
+      }
+    }
     for (let index = visualizationEntries.length - 1; index >= 0; index--) {
       const y = index === 0 ? scrollY + window.innerHeight * .2 : scrollY + DISPLACE_Y;
       const [_id, visualization] = visualizationEntries[index];/* eslint no-unused-vars : 0 */
@@ -112,7 +128,10 @@ function Home({
       if (newActiveVisualization) {
         setActiveCallerId(newActiveVisualization.callerId);
       }
-    } else if ((!activeVisualization && newActiveVisualization) || activeVisualization.visualizationId !== newActiveVisualization.visualizationId) {
+    } else if (
+      (!activeVisualization && newActiveVisualization) 
+      || activeVisualization.visualizationId !== newActiveVisualization.visualizationId
+    ) {
       setActiveVisualization(newActiveVisualization);
       setActiveCallerId(newActiveVisualization.callerId);
     }
