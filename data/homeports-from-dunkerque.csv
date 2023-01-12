@@ -1,14 +1,8 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
-île-de-Bréhat,île-de-Bréhat,France,France,France,145.0,3
-Camaret,Camaret,France,France,France,66.0,1
-Saint-Savinien,Saint-Savinien,France,France,France,1309.0,12
-La Flotte-en-Ré,La Flotte-en-Ré,France,France,France,42.0,1
-Ars-en-Ré,Ars-en-Ré,France,France,France,353.0,4
-île de Ré,île de Ré,France,France,France,205.0,3
-Ouessant,Ouessant,France,France,France,218.0,4
 Dunkerque,Dunkirk,France,France,France,29806.0,318
 île d'Arz,île d'Arz,France,France,France,46.0,1
 Londres,London,Grande Bretagne,Grande-Bretagne,Great Britain,7041.0,97
+Saint-Savinien,Saint-Savinien,France,France,France,1309.0,12
 Saint-Briac,Saint-Briac,France,France,France,494.0,5
 Fécamp,Fécamp,France,France,France,537.0,8
 Saint-Malo,Saint-Malo,France,France,France,6853.0,78
@@ -38,6 +32,7 @@ Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 Petersburg ,Petersburg ,étranger,Etats-Unis d'Amérique,United States,150.0,1
 Louisiane,Lousiana,étranger,Espagne,Spain,120.0,1
 Le Conquet,Le Conquet,France,France,France,2442.0,37
+Ouessant,Ouessant,France,France,France,218.0,4
 Rhuys,Rhuys,France,France,France,281.0,4
 île d'Yeu,île d'Yeu,France,France,France,661.0,11
 Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
@@ -45,6 +40,7 @@ Argenton,Argenton,France,France,France,486.0,8
 Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
 New York,New York,étranger,Etats-Unis d'Amérique,United States,12.0,1
 Brest,Brest,France,France,France,1233.0,17
+île-de-Bréhat,île-de-Bréhat,France,France,France,145.0,3
 Yarmouth,Yarmouth,Grande Bretagne,Grande-Bretagne,Great Britain,2363.0,33
 Oude Pekela,Oude Pekela,étranger,Provinces-Unies,United Provinces,928.0,14
 Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
@@ -79,6 +75,7 @@ Morlaix,Morlaix,France,France,France,287.0,5
 île d'Oléron,île d'Oléron,France,France,France,120.0,2
 Vannes,Vannes,France,France,France,481.0,5
 Cognac,Cognac,France,France,France,126.0,1
+Ars-en-Ré,Ars-en-Ré,France,France,France,353.0,4
 Honfleur,Honfleur,France,France,France,404.0,6
 Bayonne,Bayonne,France,France,France,454.0,4
 Aber-Wrac'h,Aber-Wrac'h,France,France,France,62.0,1
@@ -216,6 +213,7 @@ Nordnes ,Nordnes ,étranger,Danemark,Denmark,160.0,3
 Borrowstounness,Borrowstounness,Grande Bretagne,Grande-Bretagne,Great Britain,315.0,2
 Cromer,Cromer,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
 Tabago / Tobago,Tobago,France,France,France,40.0,1
+île de Ré,île de Ré,France,France,France,205.0,3
 Cley,Cley,Grande Bretagne,Grande-Bretagne,Great Britain,50.0,1
 Kristiansand ,Kristiansand ,étranger,Danemark,Denmark,132.0,2
 Katwijk,Katwijk,étranger,Provinces-Unies,United Provinces,312.0,26
@@ -254,3 +252,5 @@ Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
 Saint-Valery (indeterminé),Saint-Valery (undetermined),France,France,France,4.0,1
 Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
 Plymouth,Plymouth,étranger,Etats-Unis d'Amérique,United States,300.0,1
+Camaret,Camaret,France,France,France,66.0,1
+La Flotte-en-Ré,La Flotte-en-Ré,France,France,France,42.0,1
