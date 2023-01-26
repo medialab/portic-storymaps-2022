@@ -2,8 +2,8 @@ import { geoPath } from "d3-geo";
 import { generatePalette } from '../../utils/misc';
 import { uniq } from 'lodash';
 import cx from 'classnames';
-import { useSpring, animated } from 'react-spring'
-import { useEffect, useState } from "react";
+import { useSpring, useTransition, animated } from 'react-spring'
+import { useEffect, useState, useMemo } from "react";
 import ReactTooltip from "react-tooltip";
 
 /**
@@ -17,29 +17,29 @@ import ReactTooltip from "react-tooltip";
  * @param {number} height
  * @returns {React.ReactElement} - React component
  */
-const GeoPart = ({ 
-  d: initialD, 
-  projection, 
-  project, 
-  palette, 
-  layer, 
-  width, 
+const GeoPart = ({
+  d: initialD,
+  projection,
+  project,
+  palette,
+  layer,
+  width,
   height,
   animated: isAnimated
 }) => {
 
-  // @todo do this cleanly (removing out of bound objects to improve performance)
-  const boundsAbs = geoPath().bounds(initialD);
-  const [[x1, y1], [x2, y2]] = [projection(boundsAbs[0]), projection(boundsAbs[1])];
-  const [xMin, xMax] = [x1, x2].sort((a, b) => {
-    if (a > b) return 1;
-    return -1;
-  });
-  const [yMin, yMax] = [y1, y2].sort((a, b) => {
-    if (a > b) return 1;
-    return -1;
-  });
-  const outOfBounds = (isNaN(xMin) || isNaN(xMax) || isNaN(yMin) || isNaN(yMax)) ? false : xMin > width || yMin > height || xMax < 0 || yMax < 0;
+  // // @todo do this cleanly (removing out of bound objects to improve performance)
+  // const boundsAbs = geoPath().bounds(initialD);
+  // const [[x1, y1], [x2, y2]] = [projection(boundsAbs[0]), projection(boundsAbs[1])];
+  // const [xMin, xMax] = [x1, x2].sort((a, b) => {
+  //   if (a > b) return 1;
+  //   return -1;
+  // });
+  // const [yMin, yMax] = [y1, y2].sort((a, b) => {
+  //   if (a > b) return 1;
+  //   return -1;
+  // });
+  // const outOfBounds = (isNaN(xMin) || isNaN(xMax) || isNaN(yMin) || isNaN(yMax)) ? false : xMin > width || yMin > height || xMax < 0 || yMax < 0;
 
 
   const [isInited, setIsInited] = useState(false);
@@ -58,13 +58,12 @@ const GeoPart = ({
     immediate: !isInited
   });
 
-  
   useEffect(() => {
     ReactTooltip.rebuild();
   });
-  if (outOfBounds) {
-    return null;
-  }
+  // if (outOfBounds) {
+  //   return null;
+  // }
   if (!isAnimated) {
     return (
       <path
@@ -91,17 +90,17 @@ const GeoPart = ({
       }}
     />
   )
-  
+
 }
 
 
 // @TODO : mettre en place une palette de couleurs quantitative 
 
-const ChoroplethLayer = ({ 
-  layer, 
-  projection, 
-  width, 
-  height, 
+const ChoroplethLayer = ({
+  layer,
+  projection,
+  width,
+  height,
   reverseColors,
 }) => {
 
@@ -126,32 +125,78 @@ const ChoroplethLayer = ({
       }), {});
     }
   }
+  const partsData = useMemo(() => layer.data.features
+    .filter(d => d.geometry)
+    .filter(d => {
+      // @todo do this cleanly (removing out of bound objects to improve performance)
+      const boundsAbs = geoPath().bounds(d);
+      const [[x1, y1], [x2, y2]] = [projection(boundsAbs[0]), projection(boundsAbs[1])];
+      const [xMin, xMax] = [x1, x2].sort((a, b) => {
+        if (a > b) return 1;
+        return -1;
+      });
+      const [yMin, yMax] = [y1, y2].sort((a, b) => {
+        if (a > b) return 1;
+        return -1;
+      });
+      const outOfBounds = (isNaN(xMin) || isNaN(xMax) || isNaN(yMin) || isNaN(yMax)) ? false : xMin > width || yMin > height || xMax < 0 || yMax < 0;
+      return !outOfBounds;
+    })
+  , [projection, layer.data]);
 
+  const [transitions, api] = useTransition(
+    partsData
+    , () => ({
+      from: { opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 1 },
+      config: {
+        duration: 1000
+      }
+    }));
   return (
     <>
       <g className={cx("ChoroplethLayer", { 'reverse-colors': reverseColors })}>
         {
-          layer.data.features
-          .filter(d => d.geometry)
-          .map((d, i) => {
+          transitions((style, d) => {
             return (
-              <GeoPart 
-                key={d.properties.id || d.properties.name || i} 
-                {...{
-                  projection, 
-                  project, 
-                  palette, 
-                  layer, 
-                  d, 
-                  width, 
-                  height, 
-                  animated: layer.animated
-                }}
-              />
+              <animated.g style={style}>
+                <GeoPart
+                  key={d.properties.id || d.properties.name || i}
+                  {...{
+                    projection,
+                    project,
+                    palette,
+                    layer,
+                    d,
+                    width,
+                    height,
+                    animated: layer.animated
+                  }}
+                />
+              </animated.g>
             )
           })
+          // partsData
+          // .map((d, i) => {
+          //   return (
+          //     <GeoPart 
+          //       key={d.properties.id || d.properties.name || i} 
+          //       {...{
+          //         projection, 
+          //         project, 
+          //         palette, 
+          //         layer, 
+          //         d, 
+          //         width, 
+          //         height, 
+          //         animated: layer.animated
+          //       }}
+          //     />
+          //   )
+          // })
         }
-      </g>  
+      </g>
     </>
   );
 

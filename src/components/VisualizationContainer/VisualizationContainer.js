@@ -19,6 +19,7 @@ import visualizationsMetas from '../../data/viz';
 export default function VisualizationContainer({
   displayedVizId: vizId,
   canResetVizProps,
+  callerProps,
 
   onClickToggleFullScreen,
   introMode,
@@ -51,7 +52,7 @@ export default function VisualizationContainer({
           const { width, height, top } = contentRect.bounds;
           setDimensions({
             width,
-            height: height - top
+            height: introMode ? height : height - top
           })
         }}
       >
@@ -92,6 +93,7 @@ export default function VisualizationContainer({
                   dimensions,
                   lang,
                   vizId,
+                  callerProps,
                   ...props
                 }
               } />

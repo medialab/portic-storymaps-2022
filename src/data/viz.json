@@ -1,8 +1,8 @@
 {
-    "intro-part-1": {
-        "id": "intro-part-1",
+    "intro": {
+        "id": "intro",
         "n_chapitre": 0,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/intro-part-1",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/intro",
         "titre_fr": "Intro partie 1",
         "titre_en": "",
         "description_fr": "",
@@ -12,37 +12,9 @@
         "comment_cest_fait_fr": "",
         "comment_cest_fait_en": "",
         "inputs": [],
-        "outputs": []
-    },
-    "intro-part-2": {
-        "id": "intro-part-2",
-        "n_chapitre": 0,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/intro-part-2",
-        "titre_fr": "Intro partie 2",
-        "titre_en": "",
-        "description_fr": "",
-        "description_en": "",
-        "comment_lire_fr": "",
-        "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
-        "comment_cest_fait_en": "",
-        "inputs": [],
-        "outputs": []
-    },
-    "intro-part-3": {
-        "id": "intro-part-3",
-        "n_chapitre": 0,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/intro-part-3",
-        "titre_fr": "Intro partie 3",
-        "titre_en": "",
-        "description_fr": "",
-        "description_en": "",
-        "comment_lire_fr": "",
-        "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
-        "comment_cest_fait_en": "",
-        "inputs": [],
-        "outputs": []
+        "outputs": [
+            "map_backgrounds/world_map.geojson"
+        ]
     },
     "histoire-dunkerque": {
         "id": "histoire-dunkerque",
@@ -502,13 +474,13 @@
         "id": "exports-fr-1787",
         "n_chapitre": 3,
         "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/exports-fr-1787",
-        "titre_fr": "Exports par pays en 1787",
+        "titre_fr": "Exports par partenaire \"grouping\" en 1787",
         "titre_en": "",
-        "description_fr": "Utilisation de la classification \"grouping\"",
+        "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Utilisation de la classification \"grouping\"",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -542,7 +514,7 @@
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "navigo : pas de lest/lège/vide/futailles vides, pas de pêche,departure_function = O, departure_ferme_direction = \"La Rochelle\", destination_state_1789_fr != \"France\"toflit18 : flow['year'] == '1789' \\        and flow['customs_direction'] == \"La Rochelle\" \\        and flow['export_import'] == 'Exports' \\        and flow['partner_simplification'] != 'Îles françaises de l\\'Amérique' \\        and flow['partner_simplification'] != 'Colonies françaises' \\        and flow['partner_grouping'] != 'France' \\        and flow['partner_simplification'] != 'Sénégal' \\        and flow['partner_simplification'] != 'Saint-Domingue'",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [

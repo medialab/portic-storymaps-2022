@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+
+.Intro {
+
+  .GeographicMapChart {
+    .ChoroplethLayer {
+      .geopart {
+        stroke: white;
+      }
+    }
+
+    .map-label {
+      span {
+        background: black;
+        display: inline-block;
+        color: white;
+        font-family: $font-family-1;
+        padding: $small-gutter / 2;
+        margin-bottom: $small-gutter / 2;
+        font-size: $fontsize_part_title / 2;
+      }
+    }
+  }
+  &.is-atlas-mode {
+    .GeographicMapChart {
+      .ChoroplethLayer {
+        .geopart {
+          stroke: black;
+        }
+      }
+    }
+  }
+}

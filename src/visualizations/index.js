@@ -24,6 +24,7 @@ import ValeurParTonneau from './ValeurParTonneau/ValeurParTonneau';
 import ExportsFr1787 from './ExportsFr1787/ExportsFr1787';
 import EstimationImportsExports from './EstimationImportsExports/EstimationImportsExports';
 import ComparaisonsLaRochelle from './ComparaisonsLaRochelle';
+import Intro from './Intro/Intro';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -69,46 +70,46 @@ export default function VisualizationController({
 
     switch (vizId) {
       case 'carte-destinations':
-        return <CarteDestinations {...{ data, dimensions, lang, ...props }} />;
+        return <CarteDestinations {...{ data, dimensions, lang, atlasMode, ...props }} />;
       case 'peche-type-value':
         return (
-          <PecheTypeValue {...{ data, dimensions, lang, ...props }} />
+          <PecheTypeValue {...{ data, dimensions, lang, atlasMode, ...props }} />
         );
       case 'smoggleur-proportion':
         return (
-          <SmogglagePortsStats {...{ data, dimensions, lang, ...props }} />
+          <SmogglagePortsStats {...{ data, dimensions, lang, atlasMode, ...props }} />
         );
       case 'histoire-dunkerque':
         return (
-          <HistoireDunkerque {...{ data, dimensions, callerProps, lang }} />
+          <HistoireDunkerque {...{ data, dimensions, callerProps, atlasMode, lang }} />
         );
       case 'stigmates-smoggleurs-dunkerque':
         return (
-          <StigmatesSmoggleursDunkerque {...{ data, dimensions, lang }} />
+          <StigmatesSmoggleursDunkerque {...{ data, dimensions,atlasMode,  lang }} />
         );
       case 'fraude-exports-dunkerque':
         return (
-          <FraudeExportDunkerque {...{ data, dimensions, lang }} />
+          <FraudeExportDunkerque {...{ data, dimensions,atlasMode, lang }} />
         );
       case 'fraude-exports-ports-francs':
         return (
-          <FraudeExportPortFranc {...{ data, dimensions, lang }} />
+          <FraudeExportPortFranc {...{ data, dimensions, atlasMode, lang }} />
         );
       case 'evolution-budget-dunkerque':
         return (
-          <EvolutionBudgetDunkerque {...{ data, dimensions, lang }} />
+          <EvolutionBudgetDunkerque {...{ data, dimensions, atlasMode, lang }} />
         );
       case 'evolution-type-conges':
         return (
-          <EvolutionTypeConges {...{ data, dimensions, lang }} />
+          <EvolutionTypeConges {...{ data, dimensions, atlasMode, lang }} />
         );
       case 'tonnage-moyen-par-mois':
         return (
-          <TonnageMoyenMois {...{ data, dimensions, lang }} />
+          <TonnageMoyenMois {...{ data, dimensions, lang, atlasMode }} />
         );
       case 'peche-map':
         return (
-          <PecheMap {...{ data, dimensions, lang }} />
+          <PecheMap {...{ data, dimensions, lang, atlasMode  }} />
         );
       case 'pilotage':
         return (
@@ -134,6 +135,7 @@ export default function VisualizationController({
               data,
               width: dimensions.width,
               height: dimensions.height,
+              atlasMode, 
               lang,
               title: 'Parts des ports d\'attache pour les navires au départ de Dunkerque en 1789',
               tooltip: d => `${d.tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
@@ -156,21 +158,23 @@ export default function VisualizationController({
           />
         );
       case 'tonnages-1787-f12':
-        return <TonnageF12 {...{data, width, height, lang}} />;
+        return <TonnageF12 {...{data, width, height,atlasMode,  lang}} />;
       case 'valeur-par-tonneau':
-        return <ValeurParTonneau {...{data, width, height, lang}}  />
+        return <ValeurParTonneau {...{data, width, height,atlasMode,  lang}}  />
       case 'destinations-dk-pour-projection':
-        return <DestinationsDkPrProjection {...{data, width, height, lang}} />
+        return <DestinationsDkPrProjection {...{data, width, height,atlasMode, lang}} />
       case 'estimation-par-destination-dk':
-        return <EstimationParTonnageDk {...{data, width, height, lang}} />
+        return <EstimationParTonnageDk {...{data, width, height,atlasMode, lang}} />
       case 'comparaison-projection-destination-produits-coloniaux-dk':
-        return <ComparaisonProjectionDestinationProduitsColoniauxDk {...{data, width, height, lang}} />
+        return <ComparaisonProjectionDestinationProduitsColoniauxDk {...{data, width, height, atlasMode, lang}} />
       case 'exports-fr-1787':
-        return <ExportsFr1787 {...{data, width, height, lang}} />;
+        return <ExportsFr1787 {...{data, width, height, atlasMode, lang}} />;
       case 'estimation-imports-exports':
-        return <EstimationImportsExports {...{data, width, height, lang}} />;
+        return <EstimationImportsExports {...{data, width, height, atlasMode, lang}} />;
       case 'comparaisons-la-rochelle':
-        return <ComparaisonsLaRochelle {...{data, width, height, lang}} />
+        return <ComparaisonsLaRochelle {...{data, width, height, lang, atlasMode, callerProps}} />;
+      case 'intro':
+        return <Intro {...{data, width, height, lang, atlasMode, callerProps}} />
       default:
         return (
           <img

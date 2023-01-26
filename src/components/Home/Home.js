@@ -4,19 +4,21 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import cx from 'classnames';
 import ReactTooltip from 'react-tooltip';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
 /* eslint-disable import/no-webpack-loader-syntax */
 
 import ContentsFr from '../../content/fr/part-0.mdx';
 import ContentsEn from '../../content/en/part-0.mdx';
-
-import { useScrollYPosition } from 'react-use-scroll-position';
+import visualizationsMetas from '../../data/viz';
 
 // import CitationWidget from '../CitationWidget';
 import VisualizationContainer from '../VisualizationContainer';
 // import { VisualizationControlContext } from '../../utils/contexts';
 import { VisualisationContext } from '../../utils/contexts';
 import translate from '../../utils/translate';
+import { fetchDataFile } from '../../utils/fetch';
+
 
 import summary from '../../summary';
 
@@ -45,6 +47,8 @@ function Home({
   const subtitle = translate('site', 'subtitle', lang);
   const [activeCallerId, setActiveCallerId] = useState(undefined);
   const [activeVisualization, setActiveVisualization] = useState(undefined);
+  const [loadingState, setLoadingState] = useState('process');
+  const [datasets, setDatasets] = useState({});
   const [visualizations, setVisualizations] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {}
@@ -65,7 +69,7 @@ function Home({
       const contentsHeight = introRef.current.querySelector('.Contents').getBoundingClientRect().height;
       const endOfIntro = top + contentsHeight;
       const pos = scrollY + DISPLACE_Y;
-      if (pos > endOfIntro) {
+      if (pos > endOfIntro - DISPLACE_Y/2) {
         if (inVis) {
           setInVis(false);
         }
@@ -136,6 +140,39 @@ function Home({
       setActiveCallerId(newActiveVisualization.callerId);
     }
   }
+
+  useEffect(function getDataForChapter() {
+    setLoadingState('process');
+    const payload = new Map();
+
+    let filesCsvToLoad = new Set(
+      Object.values(visualizationsMetas)
+      // filter for intro
+        .filter(({ n_chapitre }) => n_chapitre === 0)
+        .map(({ outputs }) => outputs)
+        .flat()
+    );
+    filesCsvToLoad = Array.from(filesCsvToLoad);
+
+    Promise.all(
+      filesCsvToLoad.map(fileToLoad =>
+        fetchDataFile(fileToLoad).catch(error => null)
+      )
+    )
+      .then((datasets) => {
+        for (let i = 0; i < datasets.length; i++) {
+          const dataset = datasets[i];
+          if (dataset === null) { continue; }
+          payload.set(filesCsvToLoad[i], dataset);
+        }
+        setDatasets(payload);
+        setLoadingState('success');
+      })
+      .catch((error) => {
+        setLoadingState('failed');
+        console.error(error);
+      })
+  }, []);
 
   /**
    * Hour of time management
@@ -251,22 +288,29 @@ function Home({
               {lang === 'fr' ? <ContentsFr  components={{ Caller, Link }} /> : <ContentsEn  components={{ Caller, Link }} />}
             </section>
             <aside className={cx({'is-focused': focusOnViz, 'is-fixed': inVis})}>
-              <VisualizationContainer 
-                lang={lang} 
-                activeVisualization={activeVisualization} 
-                introMode
-                {...{
-                  displayedVizId: activeVisualization && activeVisualization.visualizationId,
-                  datasets: {},
-                  // canResetVizProps,
-                  // onClickToggleFullScreen: () => {
-                  //   setIsFullScreen(!isFullScreen);
-                  //   setScrollYBeforeFullScreen(scrollY);
-                  //   ReactTooltip.hide();
-                  // },
-                  // resetVizProps
-                }}
-              />
+              {
+                loadingState === 'success' ?
+                <VisualizationContainer 
+                  lang={lang} 
+                  activeVisualization={activeVisualization} 
+                  callerProps={activeVisualization && activeVisualization.props}
+                  introMode
+                  {...{
+                    displayedVizId: activeVisualization && activeVisualization.visualizationId,
+                    datasets,
+                    // canResetVizProps,
+                    // onClickToggleFullScreen: () => {
+                    //   setIsFullScreen(!isFullScreen);
+                    //   setScrollYBeforeFullScreen(scrollY);
+                    //   ReactTooltip.hide();
+                    // },
+                    // resetVizProps
+                  }}
+                />
+                :
+                <div>Chargement</div>
+              }
+              
             </aside>
             
           </div>

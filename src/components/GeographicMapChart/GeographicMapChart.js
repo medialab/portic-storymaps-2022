@@ -110,7 +110,6 @@ const GeographicMapChart = ({
    * d3 projection making
    */
   const projection = useMemo(() => { // def les bonnes valeurs pour la config de la projection // enregistrer dans le state // les appliquer dans la projection
-
     let projectionConfig = { ...defaultProjectionConfig } // casser la référence à defaultProj pour respecter principe react qu'on ne modifie pas un objet reçu en argument
 
     let projection = geoMercator();
@@ -125,7 +124,7 @@ const GeographicMapChart = ({
         rotationDegree: rotation,
         scale
       }
-      console.log('set projection config', projectionConfig);
+      // console.log('set projection config', projectionConfig);
       projection
       .scale(projectionConfig.scale)
 
@@ -140,6 +139,7 @@ const GeographicMapChart = ({
       return projection;
     }
 
+    // console.log('will set a projection config : ', projectionTemplate);
     switch (projectionTemplate) {
       case 'World':
         projectionConfig = {
@@ -172,47 +172,59 @@ const GeographicMapChart = ({
           translationY: height * 0.28
         }
         break;
-      case 'Poitou':
-        projectionConfig = {
-          ...projectionConfig,
-          scale: height * 30,
-          centerX: -1.7475927,
-          // centerY: 46.573872,
-          centerY: 47.4,
-          // translationX: width * 0.4,
-          translationX: width * 0.45,
-          translationY: 0
-        }
-        break;
-      case 'Poitou zoomed':
-        projectionConfig = {
-          ...projectionConfig,
-          scale: height * 23,
-          centerX: -1.7475927,
-          // centerY: 46.573872,
-          centerY: 47.4,
-          // translationX: width * 0.4,
-          translationX: width * 0.45,
-          translationY: 0
-        }
-        break;
-      case 'rotated Poitou':
-        projectionConfig = {
-          ...projectionConfig,
-          rotationDegree: 58,
-          scale: height * 32,
-          centerX: -1.7475027,
-          centerY: 46.573642,
-          translationX: width * 0.29,
-          translationY: height * 0.25
-        }
-        break;
+      // case 'Poitou':
+      //   projectionConfig = {
+      //     ...projectionConfig,
+      //     scale: height * 30,
+      //     centerX: -1.7475927,
+      //     // centerY: 46.573872,
+      //     centerY: 47.4,
+      //     // translationX: width * 0.4,
+      //     translationX: width * 0.45,
+      //     translationY: 0
+      //   }
+      //   break;
+      // case 'Poitou zoomed':
+      //   projectionConfig = {
+      //     ...projectionConfig,
+      //     scale: height * 23,
+      //     centerX: -1.7475927,
+      //     // centerY: 46.573872,
+      //     centerY: 47.4,
+      //     // translationX: width * 0.4,
+      //     translationX: width * 0.45,
+      //     translationY: 0
+      //   }
+      //   break;
+      // case 'rotated Poitou':
+      //   projectionConfig = {
+      //     ...projectionConfig,
+      //     rotationDegree: 58,
+      //     scale: height * 32,
+      //     centerX: -1.7475027,
+      //     centerY: 46.573642,
+      //     translationX: width * 0.29,
+      //     translationY: height * 0.25
+      //   }
+      //   break;
       case 'from France to England':
         projectionConfig = {
           ...projectionConfig,
-          scale: height * 3.5,
-          centerX: 2.4,
-          centerY:  48,
+          scale: height * 8,
+          centerX: 0,
+          centerY:  50,
+          translationX: width * .5,
+          translationY: height * .5,
+          // translationX: width * 0.4,
+          // translationY: height * 0.28
+        }
+        break;
+      case 'around Dunkerque':
+        projectionConfig = {
+          ...projectionConfig,
+          scale: height * 1000,
+          centerX: 2.2730677,
+          centerY:  51.026,
           translationX: width * .5,
           translationY: height * .5,
           // translationX: width * 0.4,
@@ -233,7 +245,7 @@ const GeographicMapChart = ({
         break;
       case 'France':
       default: // as France config 
-        console.log('projection config in dry version', projectionConfig);
+        // console.log('projection config in dry version', projectionConfig);
         // console.log(`we are taking the config as specified in config parameters ===> if not specified, the view should correspond to France`);
         break;
     }
