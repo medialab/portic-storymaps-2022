@@ -88,12 +88,18 @@ export default function VisualizationController({
           <StigmatesSmoggleursDunkerque {...{ data, dimensions,atlasMode,  lang }} />
         );
       case 'fraude-exports-dunkerque':
+        
         return (
-          <FraudeExportDunkerque {...{ data, dimensions,atlasMode, lang }} />
+          <FraudeExportDunkerque {...{ data, dimensions,atlasMode, lang}} />
         );
       case 'fraude-exports-ports-francs':
+        let showPorts;
+        if (callerProps && callerProps.showports) {
+          showPorts = callerProps.showports.split(',').map(p => p.trim());
+        }
+        
         return (
-          <FraudeExportPortFranc {...{ data, dimensions, atlasMode, lang }} />
+          <FraudeExportPortFranc {...{ data, dimensions, atlasMode, lang, showPorts }} />
         );
       case 'evolution-budget-dunkerque':
         return (

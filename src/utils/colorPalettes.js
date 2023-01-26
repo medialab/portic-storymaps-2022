@@ -96,7 +96,7 @@ const colorsPalettes = {
   
     'Monde': '#EBB2AD',
     'Colonies': '#e35027',
-    'France': '#EFC1BD',
+    'France': '#627FEE',
 
 
     // 'Lubeck': '#E7A39C',

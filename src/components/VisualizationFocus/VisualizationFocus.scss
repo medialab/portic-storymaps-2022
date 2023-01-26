@@ -128,6 +128,9 @@
         background: white;
         align-items: flex-start;
         height: auto;
+        > div {
+          background: white;
+        }
       }
     }
     @include tablet {

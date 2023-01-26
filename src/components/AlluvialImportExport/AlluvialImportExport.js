@@ -290,7 +290,7 @@ export default function AlluvialImportExport({
     };
   }, [products, partners, scaleValue]);
 
-  const labelMargin = 5;
+  const labelMargin = 2;
 
   return (
     <svg
@@ -308,13 +308,16 @@ export default function AlluvialImportExport({
         fill='transparent'
         onMouseMove={() => {
           if (focus) {
-            setFocus({actionType: 'reset'})
+            setFocus({ actionType: 'reset' })
           }
         }}
       />
       <defs>
         <marker id='arrow-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
           <path d='M0,0 V4 L2,2 Z' fill='black' />
+        </marker>
+        <marker id='arrow-head-white' orient='auto' markerWidth='20' markerHeight='12' refX='0.1' refY='4'>
+          <path d='M0,0 V8 L4,4 Z' fill='black' />
         </marker>
       </defs>
       <AnimatedGroup
@@ -354,7 +357,7 @@ export default function AlluvialImportExport({
                         mode: 'highlight',
                         itemValue: product
                       })
-                }
+                  }
                 }
                 key={i}
                 className="modality-group"
@@ -418,7 +421,7 @@ export default function AlluvialImportExport({
                         mode: 'highlight',
                         itemValue: partner
                       })
-                }
+                  }
                 }
                 className="modality-group"
               >
@@ -456,32 +459,105 @@ export default function AlluvialImportExport({
               <g
                 transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
                 key={i}
+                className="flow-group import"
+                // id={`from-${from.partner_type}-to-${to}-withproduct-${product.product_type}`}
                 style={{
                   mixBlendMode: 'multiply'
                 }}
               >
-                <AnimatedPath
-                  d={
-                    isFraude ?
-                      `
+                {
+                  isFraude ?
+                    <>
+                      <AnimatedPath
+                        transform={'scale(-1,1)'}
+                        d={`
+                        M ${0} ${-strokeWidth / 2}
+                        L ${width / 3 - 20} ${-strokeWidth / 2}
+                        L ${width / 3 - 40} ${0}
+                        L ${width / 3 - 20} ${strokeWidth / 2}
+                        L ${0} ${strokeWidth / 2}
+                        Z
+                        `
+                        }
+                        fill={color}
+                        fillOpacity={.5}
+                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+
+                      />
+                      <AnimatedPath
+                        transform={'scale(-1,1)'}
+
+                        d={`
+                        M ${0} ${-strokeWidth / 2}
+                        L ${width / 3 - 20} ${-strokeWidth / 2}
+                        L ${width / 3 - 40} ${0}
+                        L ${width / 3 - 20} ${strokeWidth / 2}
+                        L ${0} ${strokeWidth / 2}
+                        Z
+                        `
+                        }
+                        fill={'url(#diagonalHatch)'}
+                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+                        onMouseMove={
+                          () => {
+                            if (!(focus && focus.itemType === 'product' && focus.itemValue === product)) {
+                              setFocus({
+                                actionType: 'set',
+                                itemType: 'product',
+                                mode: 'highlight',
+                                itemValue: product
+                              })
+                            }
+                          }
+                        }
+                      />
+                    </>
+                    :
+                    <AnimatedPath
+                      d={
+                        partialCirclePathD(
+                          0,
+                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                          Math.PI / 2,
+                          Math.PI * 3 / 2,
+                        )
+                      }
+                      strokeWidth={strokeWidth}
+                      stroke={color}
+                      fill='transparent'
+
+                      opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+                    />
+                }
+                {
+                  !isTooSmallForText &&
+                  <AnimatedPath
+                    className="dashed-flow-arrow"
+                    d={
+                      isFraude ?
+                        `
                                             M ${0} ${0}
                                             L ${width} ${0}
                                             `
-                      :
-                      partialCirclePathD(
-                        0,
-                        (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                        (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                        Math.PI / 2,
-                        Math.PI * 3 / 2,
-                      )
-                  }
-                  strokeWidth={strokeWidth}
-                  stroke={color}
-                  fill='transparent'
-              
-                  opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                />
+                        :
+                        partialCirclePathD(
+                          0,
+                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                          Math.PI / 2,
+                          Math.PI * 3 / 2,
+                        )
+                    }
+                    strokeWidth={'1'}
+                    stroke='black'
+                    strokeDasharray='5, 5'
+                    fill={'none'}
+                    markerEnd='url(#arrow-head-white)'
+                    opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.05 : .5)}
+                  />
+                }
+
                 {isTooSmallForText === false &&
                   <text x={-5} y={5} className="number-label left">
                     {formatNumber(value) + ' lt.'}
@@ -493,74 +569,116 @@ export default function AlluvialImportExport({
         }
         {
           links['Exports']
-          .reverse()
-          .map(({ from, to, value, product, isFraude, isHighlight }, i) => {
-            const color = colorPalette[product] || iwanthue(1, { seed: product });
-            const strokeWidth = scaleValue(value);
-            const strokeWidthMiddle = strokeWidth / 2;
-            const isTooSmallForText = strokeWidth < 25;
-            return (
-              <g
-                transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
-                key={i}
-                style={{
-                  mixBlendMode: 'multiply'
-                }}
-              >
-                {
-                  isFraude ?
-                    <>
-                     <AnimatedPath
-                        d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
-                        }
-                        fill={color}
-                        fillOpacity={.5}
-                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                      />
-                      <AnimatedPath
-                        d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
-                        }
-                        fill={'url(#diagonalHatch)'}
-                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                      />
-                    </>
-                    :
-                    <AnimatedPath
-                      transform='scale(-1, 1)'
-                      d={
-                        partialCirclePathD(
-                          0,
-                          (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                          (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                          Math.PI / 2,
-                          Math.PI * 3 / 2,
-                        )
-                      }
-                      strokeWidth={strokeWidth}
-                      fill='transparent'
-                      stroke={color}
-                      opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                    />
+            .reverse()
+            .map(({ from, to, value, product, isFraude, isHighlight }, i) => {
+              const color = colorPalette[product] || iwanthue(1, { seed: product });
+              const strokeWidth = scaleValue(value);
+              const strokeWidthMiddle = strokeWidth / 2;
+              const isTooSmallForText = strokeWidth < 25;
 
-                }
-                {isTooSmallForText === false && <text x={5} y={5} className="number-label right">{`${formatNumber(value)} lt. ${isFraude ? ' (fraude)' : ''}`}</text>}
-              </g>
-            )
-          })
+              return (
+                <g
+                  transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
+                  key={i}
+                  className="flow-group export"
+                  id={`from-${from.product}-to-${to.partner_type}`}
+                  style={{
+                    mixBlendMode: 'multiply'
+                  }}
+
+                >
+                  {
+                    isFraude ?
+                      <>
+                        <AnimatedPath
+                          d={`
+                        M ${0} ${-strokeWidth / 2}
+                        L ${width / 3 - 20} ${-strokeWidth / 2}
+                        L ${width / 3} ${0}
+                        L ${width / 3 - 20} ${strokeWidth / 2}
+                        L ${0} ${strokeWidth / 2}
+                        Z
+                        `
+                          }
+                          fill={color}
+                          fillOpacity={.5}
+                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+
+                        />
+                        <AnimatedPath
+                          d={`
+                        M ${0} ${-strokeWidth / 2}
+                        L ${width / 3 - 20} ${-strokeWidth / 2}
+                        L ${width / 3} ${0}
+                        L ${width / 3 - 20} ${strokeWidth / 2}
+                        L ${0} ${strokeWidth / 2}
+                        Z
+                        `
+                          }
+                          fill={'url(#diagonalHatch)'}
+                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+                          onMouseMove={
+                            () => {
+                              if (!(focus && focus.itemType === 'product' && focus.itemValue === product)) {
+                                setFocus({
+                                  actionType: 'set',
+                                  itemType: 'product',
+                                  mode: 'highlight',
+                                  itemValue: product
+                                })
+                              }
+                            }
+                          }
+                        />
+                      </>
+                      :
+                      <>
+                        <AnimatedPath
+                          transform='scale(-1, 1)'
+                          d={
+                            partialCirclePathD(
+                              0,
+                              (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                              (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                              Math.PI / 2,
+                              Math.PI * 3 / 2,
+                            )
+                          }
+                          strokeWidth={strokeWidth}
+                          fill='transparent'
+                          stroke={color}
+                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+                        />
+                        {
+                          !isTooSmallForText &&
+                          <AnimatedPath
+                            transform='scale(-1, 1)'
+                            className="dashed-flow-arrow"
+                            d={
+                              partialCirclePathD(
+                                0,
+                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
+                                Math.PI * 3 / 2,
+                                Math.PI / 2,
+                              )
+                            }
+                            strokeWidth={'1'}
+                            stroke='black'
+                            strokeDasharray='5, 5'
+                            fill={'none'}
+                            markerEnd='url(#arrow-head-white)'
+                            opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.05 : .5)}
+                          />
+                        }
+
+                      </>
+
+                  }
+                  {isTooSmallForText === false && <text x={5} y={5} className="number-label right">{`${formatNumber(value)} lt. ${isFraude ? ' (fraude ?)' : ''}`}</text>}
+                </g>
+              )
+            })
         }
       </g>
       <g

@@ -1,5 +1,5 @@
-import React, { useMemo, useReducer } from "react";
-
+import React, { useMemo, useReducer, useState, useEffect } from "react";
+import cx from 'classnames';
 import colorsPalettes from "../../utils/colorPalettes";
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
@@ -8,17 +8,29 @@ import './FraudeExportPortFranc.scss';
 
 const {importsExports: palette} = colorsPalettes;
 
+// const AVAILABLE_PORTS = ['Marseille']
+const AVAILABLE_PORTS = [ 'Dunkerque', 'Bayonne', 'Marseille']
+
 export default function FraudeExportPortFranc({
     data: inputData,
     dimensions,
+    atlasMode,
+    showPorts = AVAILABLE_PORTS,// Lorient also available
     ...props
 }) {
+    const [visiblePorts, setVisiblePorts] = useState(showPorts);
+    useEffect(() => {
+      setVisiblePorts(showPorts);
+    }, [showPorts]);
+    console.log(visiblePorts)
     const [focus, setFocus] = useReducer((lastState, newState) => {
         if (lastState === newState) { return undefined; }
         return newState;
     }, undefined);
 
     const { width, height } = dimensions;
+    const refDimension = atlasMode ? width : height;
+    const margin = 30;
 
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
@@ -32,76 +44,68 @@ export default function FraudeExportPortFranc({
             });
         return preparedData;
     }, [inputData]);
-
-    const focusRatio = 0.7;
-
     return (
         <div
-            className='FraudeExportPortFranc'
+            className={cx('FraudeExportPortFranc', {'is-atlas-mode': atlasMode})}
             style={{
                 width,
                 height
             }}
         >
-            <div className='FraudeExportPortFranc-row' >
-                {/* <div className='FraudeExportPortFranc-box'>
-                    <h3 onClick={() => setFocus('Dunkerque')}>Dunkerque</h3>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: width * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio)),
-                            height: height * (focus === undefined ? 0.5 : (focus === 'Dunkerque' ? focusRatio : 1 - focusRatio))
-                        }}
-                        colorPalette={palette}
-                        data={data.filter(({ port, aggregate_type }) => port === 'Dunkerque' && aggregate_type === 'detail_products')}
-                    />
-                </div> */}
-                <div className='FraudeExportPortFranc-box'>
-                    <h3 onClick={() => setFocus('Marseille')}>Marseille</h3>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: width * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio)),
-                            height: height * (focus === undefined ? 0.5 : (focus === 'Marseille' ? focusRatio : 1 - focusRatio))
-                        }}
-                        colorPalette={palette}
-                        data={data.filter(({ port, aggregate_type }) => port === 'Marseille' && aggregate_type === 'detail_products')}
-                    />
-                </div>
-                <div className='FraudeExportPortFranc-box'>
-                    <h3 onClick={() => setFocus('Bayonne')}>Bayonne</h3>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: width * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio)),
-                            height: height * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio))
-                        }}
-                        colorPalette={palette}
-                        data={data.filter(({ port, aggregate_type }) => port === 'Bayonne' && aggregate_type === 'detail_products')}
-                    />
-                </div>
+            <div className='FraudeExportPortFranc-list' >
+              {
+                AVAILABLE_PORTS.map((port) => {
+                  const isVisible = visiblePorts.includes(port);
+                  return (
+                    <div 
+                      key={port} 
+                      
+                      className={cx('FraudeExportPortFranc-box', {'is-visible': isVisible})}>
+                        <h3 onClick={() => setFocus(port)}>{port}</h3>
+                        <AlluvialImportExport
+                            dimensions={{
+                                width: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) - margin : Math.max(width * .7, refDimension / visiblePorts.length * 1.2)),
+                                height: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .7 - margin : refDimension / visiblePorts.length - 10)
+                            }}
+                            colorPalette={palette}
+                            data={data.filter(({ port, aggregate_type }) => port === 'Marseille' && aggregate_type === 'detail_products')}
+                        />
+                    </div>
+                  )
+                })
+              }
+              
             </div>
-            <div className='FraudeExportPortFranc-row'>
-                {/* <div className='FraudeExportPortFranc-box'>
-                    <h3 onClick={() => setFocus('Lorient')}>Lorient</h3>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: width * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio)),
-                            height: height * (focus === undefined ? 0.5 : (focus === 'Lorient' ? focusRatio : 1 - focusRatio))
-                        }}
-                        colorPalette={palette}
-                        data={data.filter(({ port, aggregate_type }) => port === 'Lorient' && aggregate_type === 'detail_products')}
-                    />
-                </div> */}
-                {/* <div className='FraudeExportPortFranc-box'>
-                    <h3 onClick={() => setFocus('Bayonne')}>Bayonne</h3>
-                    <AlluvialImportExport
-                        dimensions={{
-                            width: width * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio)),
-                            height: height * (focus === undefined ? 0.5 : (focus === 'Bayonne' ? focusRatio : 1 - focusRatio))
-                        }}
-                        colorPalette={palette}
-                        data={data.filter(({ port, aggregate_type }) => port === 'Bayonne' && aggregate_type === 'detail_products')}
-                    />
-                </div> */}
-            </div>
+            {
+              atlasMode ?
+              <ul className="selector-container">
+                {
+                  AVAILABLE_PORTS
+                  .map(port => {
+                    const handleClick = () => {
+                      if (visiblePorts.includes(port)) {
+                        setVisiblePorts(
+                          visiblePorts.filter(p => p !== port)
+                          .sort()
+                        )
+                      } else {
+                        setVisiblePorts([...visiblePorts, port])
+                        .sort()
+                      }
+                    }
+                    return (
+                      <li onClick={handleClick} key={port}>
+                        <input type="radio" readOnly checked={visiblePorts.includes(port)}/>
+                        <span>
+                          {port}
+                        </span>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+              : null
+            }
         </div>
     )
 }

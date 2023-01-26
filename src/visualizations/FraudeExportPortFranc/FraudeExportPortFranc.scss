@@ -8,17 +8,48 @@
         h3 {
             position: absolute;
             margin: 0;
-            float: le;
+            float: left;
         }
+      transition: .5s ease all;
+      opacity: 0;
+      overflow: hidden;
+      max-height: 0;
+      &.is-visible {
+        opacity: 1;
+        max-height: 100vh;
+      }
     }
 
 
-    .FraudeExportPortFranc-row {
+    .FraudeExportPortFranc-list {
         display: flex;
+        flex-flow: column nowrap;
         justify-content: space-between;
+        align-items: center;
+    }
 
-        // div {
-        //    margin: 20px;
-        // }
+    .selector-container {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        cursor: pointer;
+      }
+    }
+    &.is-atlas-mode {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
+      // align-items: center;
+      .FraudeExportPortFranc-list {
+        flex-flow: row wrap;
+        align-items: center;
+        width: 100%;
+      }
     }
 }

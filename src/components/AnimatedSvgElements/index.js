@@ -73,12 +73,15 @@ export function AnimatedLine({
 }
 
 export function AnimatedPath({
-    ...props
+  onClick,
+  ...props
 }) {
+  const mouseProps = Object.keys(props).filter(key => key.includes('Mouse'))
+  .reduce((res, key) => ({...res, [key]: props[key]}), {});
     const animatedProps = useSpring(props);
 
     return (
-        <animated.path {...animatedProps} />
+        <animated.path onClick={onClick} {...animatedProps} {...mouseProps} />
     )
 }
 

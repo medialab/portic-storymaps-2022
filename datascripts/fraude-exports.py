@@ -15,6 +15,7 @@ autres_port_francs = [
 ]
 dunkerque_port_franc = "Dunkerque"
 product_classification = 'product_revolutionempire'
+# product_classification = 'product_RE_aggregate'
 
 def import_partner_class(partner):
     if partner in ["Asie", "Afrique", "Amériques"]:
@@ -29,7 +30,8 @@ product_factories = {
     "colonial_others": lambda row: "colonial"
     if import_partner_class(row["partner_grouping"]) == "colonies"
     else "other",
-    "colonial_products": lambda row: row[product_classification],
+    "colonial_products": lambda row: row["product_revolutionempire"],
+    # "colonial_products": lambda row: row[product_classification],
 }
 
 detail_products_trade = {
@@ -62,7 +64,6 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
 
         product = row[product_classification]
         partner_type = import_partner_class(row["partner_grouping"])
-
         # trade reporting by Dunkerque port franc
         if office == dunkerque_port_franc:
             if row["export_import"] == "Exports":
@@ -118,6 +119,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                 )
         # trade reported by other ports francs
         elif office in autres_port_francs:
+            product = row["product_RE_aggregate"]
             if row["export_import"] == "Exports":
 
                 detail_products_trade[office][product][partner_type][
