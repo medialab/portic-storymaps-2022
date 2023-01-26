@@ -97,7 +97,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
           />
         </div>
       </div>
-      <div className="buttons-container" style={{ margin: '1rem' }}>
+      <div className="buttons-container">
         <button className={`Button ${withLest ? 'is-active' : ''}`} onClick={() => setWithLest(true)}>
           {translate('TonnagesF12', 'hyp_with_lest', lang)}
         </button>

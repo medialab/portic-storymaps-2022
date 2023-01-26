@@ -2,6 +2,15 @@
 
 .TonnageF12 {
   box-sizing: border-box;
+
+  .buttons-container {
+    display: flex;
+    flex-flow: row nowrap;
+    button {
+      font-size: .8rem;
+      text-align: left;
+    }
+  }
   .columns-container {
     display: flex;
     flex-flow: row nowrap;

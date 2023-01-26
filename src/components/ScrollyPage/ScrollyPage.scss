@@ -123,6 +123,12 @@
       position: relative;
       // top: -1em;
     }
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    .VisualizationContainer {
+      flex: 1;
+    }
   }
 
   .option-buttons-container {

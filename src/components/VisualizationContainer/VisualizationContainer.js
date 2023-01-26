@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Measure from 'react-measure'
 
@@ -28,6 +28,8 @@ export default function VisualizationContainer({
   ...props
 }) {
   const { lang } = useParams();
+  const titleRef = useRef(null);
+  const titleHeight = titleRef.current ? titleRef.current.getBoundingClientRect().height : 0;
 
   const title = useMemo(() => {
     const vizMetas = visualizationsMetas[vizId];
@@ -45,7 +47,7 @@ export default function VisualizationContainer({
 
   return (
     <>
-      {!introMode && <h3>{title}</h3>}
+      {!introMode && <h3 ref={titleRef}>{title}</h3>}
       <Measure
         bounds
         onResize={contentRect => {

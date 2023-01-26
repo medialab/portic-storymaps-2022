@@ -69,7 +69,7 @@ function Home({
       const contentsHeight = introRef.current.querySelector('.Contents').getBoundingClientRect().height;
       const endOfIntro = top + contentsHeight;
       const pos = scrollY + DISPLACE_Y;
-      if (pos > endOfIntro - DISPLACE_Y/2) {
+      if (pos > endOfIntro) {
         if (inVis) {
           setInVis(false);
         }
