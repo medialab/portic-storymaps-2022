@@ -415,8 +415,14 @@
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": []
+        "inputs": [
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output=csv",
+            "https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv"
+        ],
+        "outputs": [
+            "smogglage-estimation-par-produit.csv",
+            "smogglage-vs-exports-par-homeport.csv"
+        ]
     },
     "homeports-from-dunkerque": {
         "id": "homeports-from-dunkerque",

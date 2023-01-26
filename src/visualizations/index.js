@@ -25,6 +25,7 @@ import ExportsFr1787 from './ExportsFr1787/ExportsFr1787';
 import EstimationImportsExports from './EstimationImportsExports/EstimationImportsExports';
 import ComparaisonsLaRochelle from './ComparaisonsLaRochelle';
 import Intro from './Intro/Intro';
+import ExportsVsSmogglage from './ExportsVsSmogglage/ExportsVsSmogglage';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -180,7 +181,9 @@ export default function VisualizationController({
       case 'comparaisons-la-rochelle':
         return <ComparaisonsLaRochelle {...{data, width, height, lang, atlasMode, callerProps}} />;
       case 'intro':
-        return <Intro {...{data, width, height, lang, atlasMode, callerProps}} />
+        return <Intro {...{data, width, height, lang, atlasMode, callerProps}} />;
+      case 'exports-vs-smogglage':
+        return <ExportsVsSmogglage {...{data, width, height, lang, atlasMode, callerProps}}  />
       default:
         return (
           <img
