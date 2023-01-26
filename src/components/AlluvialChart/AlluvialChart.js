@@ -4,7 +4,7 @@ import { groups, sum, max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import iwanthue from 'iwanthue';
 
-import { AnimatedPath, AnimatedGroup } from '../AnimatedSvgElements';
+import { AnimatedPath, AnimatedGroup, AnimatedText } from '../AnimatedSvgElements';
 import { isEqual } from "lodash";
 
 import './AlluvialChart.scss';
@@ -185,23 +185,24 @@ export default function AlluvialChart({
                 steps.map((stepName, iStep) => {
                     let iItem = 0;
                     const isHoverMode = isHighlightedCategoryName !== undefined;
-                    const nodeWidth = 5;
+                    const nodeWidth = 10;
                     const itemHeight = itemRange(1);
                     const itemWidth = widthRange(1) - nodeWidth;
                     const itemWidthMiddle = widthRange(1 / 2);
                     const isFinalStep = iStep === steps.length - 1;
                     return (
-                        <g
+                        <AnimatedGroup
                             transform={`translate(${widthRange(iStep)}, ${0})`}
                             key={iStep}
                         >
                             <text
-                                y={height - 6}
-                                x={isFinalStep ? -5 : 5}
-                                fontSize={16}
-                                fill='black'
+                              className="step-title"
+                                y={height - 5}
+                                x={isFinalStep ? 0 : 0}
                                 textAnchor={isFinalStep ? 'end' : 'start'}
-                            >{stepName}</text>
+                            >
+                              {stepName}
+                            </text>
 
                             {
                                 stepsGroup.get(stepName).map(([categoryName, categoryArray], iCategory) => {
@@ -211,39 +212,45 @@ export default function AlluvialChart({
                                     const linksLength = sum(categoryLinks, d => d.length);
                                     const isTooSmallForText = itemRange(linksLength) < 15;
 
+                                    const handleClick = (e) => {
+                                      e.stopPropagation();
+                                      if (isHighlightedCategoryName) { 
+                                        setIsHighlightedCategoryName(undefined); 
+                                      }
+                                      const linesId = new Set(categoryArray.map(({ id }) => id));
+                                      if (isEqual(isHighlightedLinesId, linesId)) {
+                                          setIsHighlightedLinesId(undefined);
+                                          return;
+                                      }
+                                      setIsHighlightedLinesId(linesId);
+                                  }
+
                                     if (isFinalStep) {
                                         const text = (
-                                            <g
+                                            <AnimatedGroup
                                                 transform={`translate(${0} ${itemRange(iItem)})`}
                                                 key={iCategory}
                                             >
                                                 <rect
-                                                    className="tto"
+                                                    className="bar"
                                                     x={-nodeWidth}
                                                     y={0}
                                                     width={nodeWidth}
                                                     height={itemRange(categoryArray.length)}
-                                                    fill={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? 'grey' : 'black'}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        if (isHighlightedCategoryName) { setIsHighlightedCategoryName(undefined); }
-                                                        const linesId = new Set(categoryArray.map(({ id }) => id));
-                                                        if (isEqual(isHighlightedLinesId, linesId)) {
-                                                            setIsHighlightedLinesId(undefined);
-                                                            return;
-                                                        }
-                                                        setIsHighlightedLinesId(linesId);
-                                                    }}
+                                                    fill={color}
+                                                    opacity={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? .5 : 1}
+                                                    onClick={handleClick}
                                                 />
-                                                <text
+                                                <AnimatedText
+                                                    className="modality-label"
                                                     y={itemRange(categoryArray.length / 2)}
-                                                    x={-5} fontSize={10} fontWeight='bold'
-                                                    fill='black'
+                                                    x={-nodeWidth * 1.5} 
                                                     textAnchor='end'
+                                                    onClick={handleClick}
                                                 >
                                                     {categoryName}
-                                                </text>
-                                            </g>
+                                                </AnimatedText>
+                                            </AnimatedGroup>
                                         )
 
                                         iItem += categoryArray.length;
@@ -252,7 +259,7 @@ export default function AlluvialChart({
                                     }
 
                                     return (
-                                        <g
+                                        <AnimatedGroup
                                             key={iCategory}
                                             onClick={(e) => {
                                                 if (isHighlightedLinesId) { setIsHighlightedLinesId(undefined); }
@@ -263,37 +270,32 @@ export default function AlluvialChart({
                                                 setIsHighlightedCategoryName(categoryName);
                                             }}
                                         >
-                                            <g
+                                            <AnimatedGroup
                                                 transform={`translate(${0} ${itemRange(iItem)})`}
                                             >
                                                 <rect
+                                                    className="bar"
                                                     x={0}
                                                     y={0}
                                                     width={nodeWidth}
                                                     height={itemRange(linksLength)}
-                                                    fill={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? 'grey' : 'black'}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        if (isHighlightedCategoryName) { setIsHighlightedCategoryName(undefined); }
-                                                        const linesId = new Set(categoryArray.map(({ id }) => id));
-                                                        if (isEqual(isHighlightedLinesId, linesId)) {
-                                                            setIsHighlightedLinesId(undefined);
-                                                            return;
-                                                        }
-                                                        setIsHighlightedLinesId(linesId);
-                                                    }}
+                                                    // fill={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? 'grey' : 'black'}
+                                                    fill={color}
+                                                    opacity={isHighlightedCategoryName && categoryName !== isHighlightedCategoryName ? .5 : 1}
+                                                    onClick={handleClick}
                                                 />
                                                 {
                                                     (isTooSmallForText === false || isCategoryHover === true) &&
-                                                    <text
+                                                    <AnimatedText
                                                         y={itemRange(linksLength) / 2}
-                                                        x={5 + nodeWidth} fontSize={10} fontWeight='bold'
-                                                        fill='black'
+                                                        x={nodeWidth * 1.5} 
+                                                        className="modality-label"
+                                                        onClick={handleClick}
                                                     >
                                                         {categoryName}
-                                                    </text>
+                                                    </AnimatedText>
                                                 }
-                                            </g>
+                                            </AnimatedGroup>
 
                                             {
                                                 categoryLinks.map(({ to, length, isHighlighted }, iCategoryItem) => {
@@ -313,6 +315,7 @@ export default function AlluvialChart({
                                                                 mixBlendMode: 'multiply'
                                                             }}
                                                             key={iCategoryItem}
+                                                            className="link"
                                                         >
                                                             <AnimatedPath
                                                                 d={`
@@ -331,11 +334,11 @@ export default function AlluvialChart({
                                                     return path;
                                                 })
                                             }
-                                        </g>
+                                        </AnimatedGroup>
                                     )
                                 })
                             }
-                        </g>
+                        </AnimatedGroup>
                     )
                 })
             }

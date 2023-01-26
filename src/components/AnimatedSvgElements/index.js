@@ -30,12 +30,13 @@ export function AnimatedForeignObject({
 export function AnimatedText({
   children,
   style,
+  onClick,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-      <animated.text {...animatedProps} style={style}>
+      <animated.text {...animatedProps} onClick={onClick} style={style}>
           {children}
       </animated.text>
   )

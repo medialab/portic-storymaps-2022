@@ -1,6 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 
 import AlluvialChart from '../../components/AlluvialChart';
+
+import './StigmatesSmoggleursDunkerque.scss';
 
 /**
  * @param {Object} props
@@ -12,69 +14,66 @@ import AlluvialChart from '../../components/AlluvialChart';
  */
 
 export default function StigmatesSmoggleursDunkerque({
-    data: inputData,
-    dimensions,
-    ...props
+  data: inputData,
+  dimensions,
+  ...props
 }) {
-    const [year, setYear] = useState('1787');
+  const [year, setYear] = useState('1787');
+  const buttonsRef = useRef(null);
+  const data = useMemo(() => {
+    return inputData
+    .filter(({ year: rowYear }) => year === rowYear)
+    .sort((a, b) => {
+      if (a.tonnage === "12") {
+        return 1;
+      }
+      return -1;
+    })
+  }, [inputData, year]);
 
-    const data = useMemo(() => {
-        return inputData.filter(({ year: rowYear }) => year === rowYear);
-    }, [inputData, year]);
+  const steps = ['tonnage', 'destination'];
+  const years = ['1787', '1789'];
+  const { width, height } = dimensions;
 
-    const steps = ['destination', 'tonnage'];
-    const years = ['1787', '1789'];
-    const { width, height } = dimensions;
-
-    const { chartHeight, formHeight } = useMemo(() => {
-        return {
-            chartHeight: height * 0.9,
-            formHeight: height * 0.1
-        }
-    }, [height])
-
-    function onInputChange(e) {
-        const { target } = e;
-        const { value } = target;
-        setYear(value);
+  const { chartHeight, formHeight } = useMemo(() => {
+    return {
+      chartHeight: height - (buttonsRef.current ? buttonsRef.current.getBoundingClientRect().height : 0)
     }
+  }, [height, buttonsRef])
 
-    return (
-        <>
-            <AlluvialChart
-                dimensions = {{
-                    width,
-                    height: chartHeight
-                }}
-                {...{
-                    data,
-                    steps
-                }}
-            />
-            <form
-                onSubmit={(e) => e.preventDefault()}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
-                {
-                    years.map((inputYear, i) => (
-                        <span key={i}>
-                            <input
-                                onChange={onInputChange}
-                                type="radio"
-                                id={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}
-                                name="year"
-                                value={inputYear}
-                                checked={year === inputYear}
-                            />
-                            <label htmlFor={`stigmates-smoggleurs-dunkerque_year_${inputYear}`}>{inputYear}</label>
-                        </span>
-                    ))
-                }
-            </form>
-        </>
-    )
+  function onInputChange(e) {
+    const { target } = e;
+    const { value } = target;
+    setYear(value);
+  }
+
+  return (
+    <div className="StigmatesSmoggleursDunkerque">
+      <AlluvialChart
+        dimensions={{
+          width,
+          height: chartHeight
+        }}
+        {...{
+          data,
+          steps,
+          colorPalette: {
+            '12': 'red',
+            '[21-50]': 'lightgrey',
+            '[51-100]': 'grey',
+            '[101-200]': 'darkgrey',
+          }
+        }}
+      />
+      <div className="buttons-container" ref={buttonsRef}>
+        {
+          years.map((inputYear, i) => (
+            <button key={i} className={`Button ${year === inputYear ? 'is-active' : ''}`} onClick={() => setYear(inputYear)}>
+              {inputYear}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  )
 }
