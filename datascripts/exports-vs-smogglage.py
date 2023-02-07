@@ -31,11 +31,11 @@ prices_sheet = get_online_csv(prices_sheet_url)
 
 smogglers_pointcalls_url = 'https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv';
 smogglers_pointcalls = get_online_csv(smogglers_pointcalls_url)
-print('\n'.join(smogglers_pointcalls[0].keys()))
+# print('\n'.join(smogglers_pointcalls[0].keys()))
 homeports_states = set()
 for p in smogglers_pointcalls:
   homeports_states.add(p['homeport_state_1789_fr'])
-print(homeports_states)
+# print(homeports_states)
 
 prices_path = get_viz_metas('exports-vs-smogglage')['outputs'][0]
 by_port_path = get_viz_metas('exports-vs-smogglage')['outputs'][1]
@@ -138,7 +138,7 @@ for p in smogglers_pointcalls:
     ports[port][field] += val
   
 ports = list(ports.values())
-print(ports)
+# print(ports)
 with open(by_port_path, 'w') as ports_writer:
   writer = csv.DictWriter(ports_writer, fieldnames=ports[0].keys())
   writer.writeheader()

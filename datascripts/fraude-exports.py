@@ -18,7 +18,7 @@ product_classification = 'product_revolutionempire'
 # product_classification = 'product_RE_aggregate'
 
 def import_partner_class(partner):
-    if partner in ["Asie", "Afrique", "Amériques"]:
+    if partner in ["Asie", "Afrique", "Amériques", "Outre-mers", "Outre-mer"]:
         return "colonies"
     if partner == "France":
         return "France"
@@ -93,9 +93,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     + value
                 )
                 if partner_type == "France":
-                    print(
-                        "destination France dans export produtis coloniaux Dunkerque"
-                    )
+                    print("destination France dans export produtis coloniaux Dunkerque")
             elif row["export_import"] == "Imports":
                 product_type = "autres produits"
                 if partner_type == "colonies":
@@ -119,15 +117,12 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                 )
         # trade reported by other ports francs
         elif office in autres_port_francs:
-            product = row["product_RE_aggregate"]
+            # product = row["product_RE_aggregate"]
+            product = row["product_threesectorsM"]
             if row["export_import"] == "Exports":
 
-                detail_products_trade[office][product][partner_type][
-                    row["export_import"]
-                ] = (
-                    detail_products_trade[office][product][partner_type].get(
-                        row["export_import"], 0
-                    )
+                detail_products_trade[office][product][partner_type][row["export_import"]] = (
+                    detail_products_trade[office][product][partner_type].get(row["export_import"], 0)
                     + value
                 )
             elif row["export_import"] == "Imports":
@@ -187,7 +182,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     #     + value
                     # )
             if row["partner_simplification"] in ["Bayonne", "Saint-Jean de Luz"]:
-
+                product = row["product_threesectorsM"]
                 if product:
                     total_trade["Bayonne"]["autres produits"]["France"][
                         row["export_import"]
@@ -207,8 +202,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     )
 
     export_data = {
-        p: {"detail_products": [], "total_trade": []}
-        for p in autres_port_francs + [dunkerque_port_franc]
+        p: {"detail_products": [], "total_trade": []} for p in autres_port_francs + [dunkerque_port_franc]
     }
     total_Dunkerque_export_colonial_to_France = 0
     for (port, colional_products) in detail_products_trade.items():
