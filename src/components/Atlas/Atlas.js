@@ -69,6 +69,8 @@ export default function Atlas({
   // scroll top when arriving on the view
   useEffect(() => window.scrollTo({ top: 0 }), []);
 
+  console.log('visualizationsMetas', visualizationsMetas)
+
   return (
     <div className='Atlas secondary-page'>
       <Helmet>
@@ -78,7 +80,9 @@ export default function Atlas({
         <h1 className='title'>{translate('atlas', 'title', lang)}</h1>
         <ul className='visualizations-list'>
           {
-            Object.values(visualizationsMetas).map((metas, i) => {
+            Object.values(visualizationsMetas)
+            .filter(meta => meta.cacher_atlas !== 'oui')
+            .map((metas, i) => {
               const title = metas['titre_' + lang] || false;
 
               const { id, output } = metas;
