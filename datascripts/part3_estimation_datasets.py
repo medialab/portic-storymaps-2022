@@ -1,5 +1,7 @@
 import csv
+import json
 import requests
+import re
 
 
 """
@@ -123,6 +125,29 @@ navigo_partner_balance_1789_to_toflit18_grouping = {
 """
 0 - lib
 """
+def singleQuoteToDoubleQuote(singleQuoted):
+  '''
+  convert a single quoted string to a double quoted one
+  Args:
+      singleQuoted(string): a single quoted string e.g. {'cities': [{'name': "Upper Hell's Gate"}]}
+  Returns:
+      string: the double quoted version of the string e.g. 
+  see
+      - https://stackoverflow.com/questions/55600788/python-replace-single-quotes-with-double-quotes-but-leave-ones-within-double-q 
+  '''
+  cList=list(singleQuoted)
+  inDouble=False;
+  inSingle=False;
+  for i,c in enumerate(cList):
+      #print ("%d:%s %r %r" %(i,c,inSingle,inDouble))
+      if c=="'":
+          if not inDouble:
+              inSingle=not inSingle
+              cList[i]='"'
+      elif c=='"':
+          inDouble=not inDouble
+  doubleQuoted="".join(cList)    
+  return doubleQuoted
 def get_online_csv(url):
   """
   Cette fonction permet de récupérer le contenu d'un csv en ligne.
@@ -330,9 +355,21 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
         and destination != 'France' \
         and flow['destination_state_1789_fr'] != 'France' :
         ports.add(departure)
-        commodities = [flow[field].lower() for field in commodity_fields if flow[field] != '']
-        commodities_ids = [flow[field] for field in commodity_id_fields if flow[field] != '']
+        # commodities = [flow[field].lower() for field in commodity_fields if  flow[field] != '']
+        # commodities_ids = [flow[field] for field in commodity_id_fields if flow[field] != '']
+        # change done after API response changed
+        commodities = []
+        commodities_ids = []
+        if flow['all_cargos'] != '':
+          cargos = singleQuoteToDoubleQuote(flow['all_cargos'])
+          cargos = json.loads(cargos)
+          for cargo in cargos:
+            if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
+              commodities += cargo['commodity_standardized_fr']
+              commodities_ids += cargo['commodity_id']
+
         forbidden_commodities_ids = [commodity for commodity in commodities_ids if commodity in stop_commodities_ids]
+
         not_stop = [commodity for commodity in commodities if commodity not in stop_commodities]
         # take the flow if no commodity specified or no 'stop' commodity specified
         if len(commodities_ids) == 0 or len(forbidden_commodities_ids) == 0:
@@ -751,9 +788,19 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
       and destination != '' \
       and destination != 'France' \
       and flow['destination_state_1789_fr'] != 'France' \
-      and not is_smoggleur(flow):          
-      commodities = [flow[field].lower() for field in commodity_fields if flow[field] != '']
-      commodities_ids = [flow[field] for field in commodity_id_fields if flow[field] != '']
+      and not is_smoggleur(flow):   
+      # commodities = [flow[field].lower() for field in commodity_fields if flow[field] != '']
+      # commodities_ids = [flow[field] for field in commodity_id_fields if flow[field] != '']
+      # change done after API response changed
+      commodities = []
+      commodities_ids = []
+      if flow['all_cargos'] != '':
+          cargos = singleQuoteToDoubleQuote(flow['all_cargos'])
+          cargos = json.loads(cargos)
+          for cargo in cargos:
+            if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
+              commodities += cargo['commodity_standardized_fr']
+              commodities_ids += cargo['commodity_id']
       not_stop = [commodity for commodity in commodities if commodity not in stop_commodities]
       forbidden_commodities_ids = [commodity_id for commodity_id in commodities_ids if commodity_id in stop_commodities_ids]
       # take the flow if no commodity specified or at least one 'not stop' commodity speciied
