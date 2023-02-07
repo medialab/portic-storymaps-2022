@@ -83,6 +83,7 @@ const GeoPart = ({
       title={initialD.properties.shortname}
       d={animationProps.d}
       className="geopart"
+      id={`geopart-${initialD.properties.shortname}`}
       data-tip={layer.tooltip ? layer.tooltip(initialD) : undefined}
       data-for="geo-tooltip"
       style={{
