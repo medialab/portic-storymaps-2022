@@ -20,7 +20,7 @@ jobs:
           yarn
           sh install.sh
           yarn run thumbnails
-        continue-on-error: true
+        # continue-on-error: true
       - name: Build 🔧
         # continue-on-error: true
         run: |
