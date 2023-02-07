@@ -148,9 +148,9 @@ const ChoroplethLayer = ({
   const [transitions, api] = useTransition(
     partsData
     , () => ({
-      from: { opacity: 0 },
+      from: { opacity: 1 },
       enter: { opacity: 1 },
-      leave: { opacity: 1 },
+      leave: { opacity: 0 },
       config: {
         duration: 1000
       }
