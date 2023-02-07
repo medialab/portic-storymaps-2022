@@ -1,3 +1,5 @@
+import json
+
 def is_gb_destination(row):
     """
     True si la destination est la Grande-Bretagne et non les colonies anglaises à travers le monde
@@ -9,17 +11,49 @@ def is_gb_destination(row):
         return True
     return False
 
+def singleQuoteToDoubleQuote(singleQuoted):
+  '''
+  convert a single quoted string to a double quoted one
+  Args:
+      singleQuoted(string): a single quoted string e.g. {'cities': [{'name': "Upper Hell's Gate"}]}
+  Returns:
+      string: the double quoted version of the string e.g. 
+  see
+      - https://stackoverflow.com/questions/55600788/python-replace-single-quotes-with-double-quotes-but-leave-ones-within-double-q 
+  '''
+  cList=list(singleQuoted)
+  inDouble=False;
+  inSingle=False;
+  for i,c in enumerate(cList):
+      #print ("%d:%s %r %r" %(i,c,inSingle,inDouble))
+      if c=="'":
+          if not inDouble:
+              inSingle=not inSingle
+              cList[i]='"'
+      elif c=='"':
+          inDouble=not inDouble
+  doubleQuoted="".join(cList)    
+  return doubleQuoted
+
 def is_illegal_commodities(row):
     """
     True si l'un des champs 'commodity_standardized' contient un produit de contrebande
     :return boolean
     """
     illegal_products = {'eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites'}
-    if row['commodity_purpose'].lower() in illegal_products \
-        or row['commodity_purpose2'].lower() in illegal_products \
-        or row['commodity_purpose3'].lower() in illegal_products \
-        or row['commodity_purpose4'].lower() in illegal_products:
-        return True
+    # if row['commodity_purpose'].lower() in illegal_products \
+    #     or row['commodity_purpose2'].lower() in illegal_products \
+    #     or row['commodity_purpose3'].lower() in illegal_products \
+    #     or row['commodity_purpose4'].lower() in illegal_products:
+    #     return True
+    # change after apparent API change for flows endpoint
+    if row['all_cargos'] != '':
+      cargos = singleQuoteToDoubleQuote(row['all_cargos'])
+      cargos = json.loads(cargos)
+      for cargo in cargos:
+        if 'commodity_purpose' in cargo and cargo['commodity_purpose'] != '' and cargo['commodity_purpose'].lower() in illegal_products:
+          print('returning true')
+          return True
     return False
 
 def is_empty_strict_commodities(row):

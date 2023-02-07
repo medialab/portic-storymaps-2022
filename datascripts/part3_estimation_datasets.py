@@ -1,8 +1,6 @@
 import csv
 import json
 import requests
-import re
-
 
 """
 -1 - correspondance tables in data
@@ -148,6 +146,7 @@ def singleQuoteToDoubleQuote(singleQuoted):
           inDouble=not inDouble
   doubleQuoted="".join(cList)    
   return doubleQuoted
+
 def get_online_csv(url):
   """
   Cette fonction permet de récupérer le contenu d'un csv en ligne.

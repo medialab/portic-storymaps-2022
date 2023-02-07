@@ -110,7 +110,7 @@ quantitative_fields = [
 "poudre à poudrer (livres poids)",
 "shipment_price",
 ]
-print('\n'.join(list(smogglers_pointcalls[0].keys())))
+# print('\n'.join(list(smogglers_pointcalls[0].keys())))
 for p in smogglers_pointcalls:
   port = p['homeport_standardized_fr']
   port = port if port.strip() != "" else "Indéfini"
