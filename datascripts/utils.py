@@ -52,7 +52,6 @@ def is_illegal_commodities(row):
       cargos = json.loads(cargos)
       for cargo in cargos:
         if 'commodity_purpose' in cargo and cargo['commodity_purpose'] != '' and cargo['commodity_purpose'].lower() in illegal_products:
-          print('returning true')
           return True
     return False
 
