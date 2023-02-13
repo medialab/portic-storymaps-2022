@@ -37,8 +37,8 @@ for p in smogglers_pointcalls:
   homeports_states.add(p['homeport_state_1789_fr'])
 # print(homeports_states)
 
-prices_path = get_viz_metas('exports-vs-smogglage')['outputs'][0]
-by_port_path = get_viz_metas('exports-vs-smogglage')['outputs'][1]
+prices_path = get_viz_metas('exports-vs-smogglage')['outputs'][0] # 
+by_port_path = get_viz_metas('exports-vs-smogglage')['outputs'][1] # 
 
 # fetch and write data from https://docs.google.com/spreadsheets/d/1NdzRMa2JvuDndKk_sJNukT0yACxqj2BJoOvQcHCauDo/edit#gid=736079474
 with open(prices_path, 'w') as prices_writer:
@@ -111,16 +111,21 @@ quantitative_fields = [
 "shipment_price",
 ]
 # print('\n'.join(list(smogglers_pointcalls[0].keys())))
+ports_names_list = set()
 for p in smogglers_pointcalls:
-  port = p['homeport_standardized_fr']
-  port = port if port.strip() != "" else "Indéfini"
-  lat =  p['homeport_lat']
+  port = p['homeport_standardized_fr'].strip()
+  port = port if port != "" else "Indéfini"
+  port = port if port != "pas identifié" else "Indéfini"
+  latitude =  p['homeport_lat']
+  # latitude = latitude[0] + '.' + ''.join(latitude[1:]) if len(latitude) > 1 else latitude[0]
   longitude = p['homeport_long']
+  # longitude = longitude[0] + '.' + ''.join(longitude[1:]) if len(longitude) > 1 else longitude[0]
   comte = p["homeport_comte"]
   if port not in ports:
+    ports_names_list.add(port)
     ports[port] = {
       "port": port,
-      "latitude": lat,
+      "latitude": latitude,
       "longitude": longitude,
       "comte": comte,
       "tonnage": 0,
@@ -136,7 +141,32 @@ for p in smogglers_pointcalls:
     val = p[field]
     val = float(val) if val != "" else 0
     ports[port][field] += val
-  
+
+done_ports = set()
+with open('../data/navigo_all_pointcalls_1787.csv', 'r') as loc_reader:
+  reader = csv.DictReader(loc_reader)
+  for row in reader:
+    port_name = row['homeport_toponyme_fr']
+    if port_name in ports_names_list and port_name not in done_ports:
+      done_ports.add(port_name)
+      ports[port_name]['latitude'] = row['homeport_latitude']
+      ports[port_name]['longitude'] = row['homeport_longitude']
+## manual fix for Whistable
+ports["Whistable"] = {
+  **ports["Whistable"],
+  "latitude": "51.3607",
+  "longitude": "1.0257"
+}
+done_ports.add('Whistable')
+ports["Indéfini"] = {
+  **ports["Indéfini"],
+  "latitude": "50.4255258",
+  "longitude": "-0.9838481"
+}
+done_ports.add('Indéfini')
+print('ports for which we did not find a correct lat/on : ', list(ports_names_list.difference(done_ports)))
+# print('ports : ')
+# print('\n'.join(ports.keys()))
 ports = list(ports.values())
 # print(ports)
 with open(by_port_path, 'w') as ports_writer:

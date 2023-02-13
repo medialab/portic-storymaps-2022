@@ -83,15 +83,15 @@ const GeographicMapChart = ({
   // trick for nice animations
   useEffect(() => {
     // setTimeout(() => {
-      setProjectionTemplate(initialProjectionTemplate);
+    setProjectionTemplate(initialProjectionTemplate);
     // })
   }, [initialProjectionTemplate])
 
   // fix default translationX after size change during startup
   useEffect(() => {
     if (width !== 1) {
-      setTranslationX(width/2)
-      setTranslationY(height/2)
+      setTranslationX(width / 2)
+      setTranslationY(height / 2)
     }
   }, [width, height])
 
@@ -126,7 +126,7 @@ const GeographicMapChart = ({
       }
       // console.log('set projection config', projectionConfig);
       projection
-      .scale(projectionConfig.scale)
+        .scale(projectionConfig.scale)
 
       projection.center([projectionConfig.centerX, projectionConfig.centerY])
 
@@ -146,7 +146,7 @@ const GeographicMapChart = ({
           ...projectionConfig,
           scale: height * .5,
           centerX: -1,
-          centerY:  15,
+          centerY: 15,
           // translationX: width * 0.4,
           // translationY: height * 0.28
         }
@@ -212,7 +212,19 @@ const GeographicMapChart = ({
           ...projectionConfig,
           scale: height * 8,
           centerX: 0,
-          centerY:  50,
+          centerY: 50,
+          translationX: width * .5,
+          translationY: height * .5,
+          // translationX: width * 0.4,
+          // translationY: height * 0.28
+        }
+        break;
+      case 'England':
+        projectionConfig = {
+          ...projectionConfig,
+          scale: height * 3,
+          centerX: -3,
+          centerY: 54,
           translationX: width * .5,
           translationY: height * .5,
           // translationX: width * 0.4,
@@ -224,7 +236,7 @@ const GeographicMapChart = ({
           ...projectionConfig,
           scale: height * 1000,
           centerX: 2.2730677,
-          centerY:  51.026,
+          centerY: 51.026,
           translationX: width * .5,
           translationY: height * .5,
           // translationX: width * 0.4,
@@ -292,7 +304,7 @@ const GeographicMapChart = ({
     centerX,
     centerY,
     translationX,
-    translationY, rotation]) 
+    translationY, rotation])
 
 
 
@@ -409,7 +421,7 @@ const GeographicMapChart = ({
                   height={height}
                 />
 
-              case 'flows': 
+              case 'flows':
                 return <FlowsLayer
                   key={layerIndex}
                   layer={layer}
@@ -450,8 +462,8 @@ const GeographicMapChart = ({
       </svg>
       {
         withLegend ?
-        <Legend layerFilter={legendLayerFilter} layers={layers} position={withLegend} />
-        : null
+          <Legend layerFilter={legendLayerFilter} layers={layers} position={withLegend} />
+          : null
       }
       <ReactTooltip id="geo-tooltip" />
     </div>

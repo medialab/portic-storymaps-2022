@@ -2,5 +2,29 @@
 
 
 .ExportsVsSmogglage {
-  
+  .ChoroplethLayer {
+    .geopart {
+      fill: lightgrey!important;
+      stroke: white;
+    }
+  }
+  .CustomObjectsLayer {
+    .PortObject {
+      cursor: pointer;
+      &.is-dimmed {
+        opacity: .5;
+      }
+      &.is-hidden{
+        opacity: 0;
+      }
+    }
+    // &:hover {
+    //   .PortObject {
+    //     opacity: 0.2;
+    //     &:hover {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
+  }
 }

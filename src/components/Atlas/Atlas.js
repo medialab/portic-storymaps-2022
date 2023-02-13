@@ -69,7 +69,7 @@ export default function Atlas({
   // scroll top when arriving on the view
   useEffect(() => window.scrollTo({ top: 0 }), []);
 
-  console.log('visualizationsMetas', visualizationsMetas)
+  // console.log('visualizationsMetas', visualizationsMetas)
 
   return (
     <div className='Atlas secondary-page'>

@@ -68,7 +68,8 @@ export default function FraudeExportPortFranc({
                                 height: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .7 - margin : refDimension / visiblePorts.length - 10)
                             }}
                             colorPalette={palette}
-                            data={data.filter(({ port, aggregate_type }) => port === 'Marseille' && aggregate_type === 'detail_products')}
+                            data={
+                              data.filter(({ port: thatPort, aggregate_type }) => thatPort === port && aggregate_type === 'detail_products')}
                         />
                     </div>
                   )

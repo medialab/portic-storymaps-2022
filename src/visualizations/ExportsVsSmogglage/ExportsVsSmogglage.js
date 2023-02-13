@@ -1,104 +1,118 @@
 import { useMemo, useState } from "react";
-import BarChart from "../../components/BarChart";
+import { max, min } from 'd3-array';
 
-const productsQuantiFields = [
-  "quantité_smogglée",
-  "nombre_observations_avec_unité_exacte_toutes_custom_regions",
-  "nombre_observations_versAngleterre",
-  "estimation_prix1_moyenne",
-  "valeur_smogglé1",
-  "estimation_prix2_moyenne",
-  "valeur_smogglé2",
-];
+import BarChart from '../../components/BarChart';
+import GeographicMapChart from '../../components/GeographicMapChart'
+import renderObjects from './renderObjects';
 
-const portsQuantiFields = [
-  "geniève (pintes de Paris)",
-"eau-de-vie (pintes de Paris)",
-"Taffia (pintes de Paris)",
-"tabac en feuilles (livres poids)",
-"thé (livres poids)",
-"corinthes (livres poids)",
-"vin rouge (pintes)",
-"vin fin (pintes)",
-"vin (barriques)",
-"vin (pots)",
-"liqueurs (pintes)",
-"tabac en poudre (livre poids)",
-"tabac fabriqué (livres poids)",
-"tabac en côtes (livres poids)",
-"drogues (livres poids)",
-"rhubarbre (livres poids)",
-"amidon (livres poids)",
-"café (livres poids)",
-"sucre brut (livres poids)",
-"sucre rafiné (livres)",
-"sucre en pain (livres poids)",
-"mousseline (livres poids)",
-"mousseline (livres tounois)",
-"mousseline des Indes (livres tournois)",
-"mousselines et mouchoirs (livres tournois)",
-"mouchoirs de mousseline (livres poids)",
-"mouchoirs de mousselin (valeur en £-stg)",
-"mouchoirs de soie (livres poids)",
-"mouchoirs de soie (livres tournois)",
-"perses (livres poids)",
-"nankins (livres poids)",
-"nankins (pièces)",
-"mouchoirs de Bandannoes (livres poids)",
-"Bandanoes (livres poids)",
-"bandanoes (valeur livres tournois)",
-"Bandanoes (pièces)",
-"Dimity (?) (livres poids)",
-"crêpes (livres poids)",
-"Soie des Indes (livres poids)",
-"soie et mousseline (livres tournois)",
-"marchandises des Indes (livres tournois)",
-"soieries (livres tournois)",
-"Jalap (livres poids)",
-"Taffetas (livres poids)",
-"Cambray (en livres tournois)",
-"Cambray (en £ stg)",
-"cambray (livres poids)",
-"Gauzes (livres poids)",
-"mercerie fine (livres poids)",
-"sené (livres poids)",
-"nacres de perle (livres tournois)",
-"pots de vess (en bouteiilles) /  potjevleesch???",
-"porcelaine (livres tournois)",
-"voiture",
-"Chocolat (livres poids)",
-"cartes à jouer (en livres poids)",
-"poudre à poudrer (livres poids)"
-]
+import './ExportsVsSmogglage.scss';
+
+import {
+  portsProductsGroups,
+  // portsProductsMap,
+  // productsQuantiFields,
+  portsQuantiFields,
+} from './groupings';
+import RadarChart from "../../components/RadarChart";
+import { formatNumber } from "../../utils/misc";
+
 
 export default function ExportsVsSmogglage({
   width,
   height,
-  data
+  data,
+  atlasMode,
+  lang,
 }) {
+
+  const [selectedPortsOverviewQuantiField, setPortsOverviewQuantiField] = useState('shipment_price');
+  const [selectedPort, setSelectedPort] = useState(undefined );
+  const [highlightedPort, setHighlightedPort] = useState(undefined );
+
+  const maxCircleArea = useMemo(() => {
+    const maxDimension = max([width, height]);
+    const maxObjectRadius = maxDimension * .01;
+    return Math.PI * maxObjectRadius * maxObjectRadius;
+  }, [width, height]);
+
   const {
-    productsData,
+    // productsData,
     homeportsData,
-    portsList
+    // portsList
   } = useMemo(() => {
     return {
-      productsData: data.get('smogglage-estimation-par-produit.csv')
-        .map(input => {
-          return Object.keys(input).reduce((res, key) => {
-            return {
-              ...res,
-              [key]: productsQuantiFields.includes(key) ? +input[key].replace(',', '.') : input[key]
-            }
-          }, {})
-        }),
+      // productsData: data.get('smogglage-estimation-par-produit.csv')
+      //   .map(input => {
+      //     return Object.keys(input).reduce((res, key) => {
+      //       return {
+      //         ...res,
+      //         [key]: productsQuantiFields.includes(key) ? +input[key].replace(',', '.') : input[key]
+      //       }
+      //     }, {})
+      //   }),
       homeportsData: data.get('smogglage-vs-exports-par-homeport.csv'),
-      portsList: data.get('smogglage-vs-exports-par-homeport.csv').map(p => p.port)
+      // portsList: data.get('smogglage-vs-exports-par-homeport.csv').map(p => p.port)
     }
   }, [data]);
 
-  const [selectedQuantiField, setSelectedQuantiField] = useState('nombre_observations_versAngleterre');
-  const [selectedPortsOverviewQuantiField, setPortsOverviewQuantiField] = useState('nb_pointcalls');
-  const [selectedPort, setSelectedPort] = useState('Deal');
+  const radarAxis = Object.keys(portsProductsGroups)
+  const radarData = useMemo(() => {
+    let absoluteMaxValue = -Infinity;
+    let output =  homeportsData.map((port) => {
+      const values = Object.keys(portsProductsGroups).reduce((current, groupKey) => {
+        const children = portsProductsGroups[groupKey].children;
+        const value = children.reduce((sum, childKey) => sum + +port[childKey], 0);
+        return {
+          ...current,
+          [groupKey]: value
+        }
+      }, {});
+      const maxValue = max(Object.values(values));
+      if (maxValue > absoluteMaxValue) {
+        absoluteMaxValue = maxValue;
+      }
+      // normalize values to 0-1
+      const normalizedData = Object.keys(values).reduce((cur, key) => ({
+        ...cur,
+        [key]: values[key] / maxValue
+      }), {})
+      return {
+        meta: {
+          name: port.port,
+          color: 'rgba(255,0,0,0.5)',
+        },
+        data: values,
+        normalizedData
+      }
+    })
+    if (selectedPort) {
+      return output
+      .filter(p => p.meta.name === selectedPort)
+      .map((port) => {
+        return {
+          ...port,
+          absoluteData: port.data,
+          data: port.normalizedData
+        }
+      })
+    }
+    // normalize values to absolute 0-1
+    output = output.map((port) => {
+      return {
+        ...port,
+        absoluteData: port.data,
+        data: Object.keys(port.data).reduce((current, key) => {
+          const value = port.data[key];
+          const normalized = value / absoluteMaxValue;
+          return {
+            ...current,
+            [key]: normalized
+          }
+        }, {})
+      }
+    })
+    return output;
+  }, [homeportsData, selectedPort]);
 
   const detailsData = useMemo(() => {
     if (homeportsData) {
@@ -114,84 +128,94 @@ export default function ExportsVsSmogglage({
         })
       }
     }
-    return '';
-  }, [selectedPort, data])
+    return undefined;
+  }, [selectedPort, data]);
 
+  const [projectionLatitude, projectionLongitude] = useMemo(() => {
+    if (selectedPort && homeportsData) {
+      const port = homeportsData.find(({port}) => port === selectedPort);
+      if (port) {
+        return [
+          port.latitude,
+          port.longitude
+        ]
+      }
+    }
+    return [];
+  }, [homeportsData, selectedPort]);
 
   const portsOverviewFieldsChoices = [
     'tonnage',
     'nb_pointcalls',
     'shipment_price'
-  ]
+  ];
+
+  const radarSize = selectedPort ? width / 2 : width / 3;
 
   return (
     <div className='ExportsVsSmogglage'>
-      <img
-        src={`${process.env.BASE_PATH}/assets/exports-vs-smogglage.jpg`}
-        {...{ width, height }}
-        style={{ objectFit: 'contain' }}
+      <GeographicMapChart
+      // title={'Smoggled products by homeport'}
+      projectionTemplate={'England'}
+      projectionConfig={selectedPort ? {
+        centerX: projectionLongitude,
+        centerY: projectionLatitude,
+        scale: height * 50
+      } : undefined}
+      layers={[
+        {
+          type: 'choropleth',
+          animated: true,
+          data: data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+          // reverseColors: atlasMode ? undefined : true,
+        },
+        {
+          type: 'custom',
+          data: {
+            homeportsData,
+            maxCircleArea,
+            circleSizeVariable: selectedPortsOverviewQuantiField,
+            selectedPort, 
+            setSelectedPort,
+            highlightedPort,
+            onMouseOver: (port) => setHighlightedPort(port),
+            onMouseOut: () => setHighlightedPort(),
+            // flagGroupModalities,
+            lang,
+            // highlightedDestination,
+            // setHighlightedDestination,
+            // containerWidth: width,
+            // containerHeight: height,
+            // showOffscreenPorts,
+            // showDetailsInMap,
+          },
+          renderObjects
+        }
+      ]}
+      height={atlasMode ? window.innerHeight * .9 : height}
+      width={width}
       />
-      <div>
-        <h3>Attention les visualisations suivantes sont des visualisations de travail ! à ce stade l'important est la vérification des données, par le modèle visuel</h3>
+      <div className="radar-container"
+        style={{
+          position: 'absolute',
+          transition: '.5s all ease',
+          right: selectedPort ? width / 2 - radarSize / 2 : width / 8,
+          top: selectedPort ? radarSize / 4 : 0
+        }}
+      >
+        <RadarChart
+          lang={lang}
+          data={radarData}
+          axis={radarAxis}
+          size={radarSize}
+          highlightedObjectName={highlightedPort}
+          onMouseOverObject={(port) => setHighlightedPort(port)}
+          onMouseOutObject={() => setHighlightedPort()}
+        />
       </div>
-      <h4>1. Prix des produits smogglés</h4>
       <div>
-        Choisir la quantité à afficher dans l'histogramme de travail suivant (tiré du <a href="https://docs.google.com/spreadsheets/d/1NdzRMa2JvuDndKk_sJNukT0yACxqj2BJoOvQcHCauDo/edit#gid=736079474" target="blank">tableau de Pierre Niccolo</a> ) :
-        <ul>
-          {
-            productsQuantiFields
-              .map(field => {
-                const handleClick = () => {
-                  setSelectedQuantiField(field)
-                }
-                return (
-                  <li key={field} onClick={handleClick}>
-                    <input
-                      type="radio"
-                      checked={selectedQuantiField === field}
-                      readOnly
-                    />
-                    <span>
-                      {field}
-                    </span>
-                  </li>
-                )
-              })
-          }
-        </ul>
+        Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
       </div>
-      <BarChart
-        {...{
-          data: productsData,
-          width: width,
-          height,
-        }}
-
-        // layout='stack'
-        orientation='vertical'
-
-        y={{
-          field: 'produit_smogglé',
-          // tickFormat: d => `${formatNumber(d)} lt.`,
-          // tickSpan: 5000000,
-          // domain: [0, 15000001],
-          // title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
-        }}
-        x={{
-          field: selectedQuantiField,
-          title: selectedQuantiField, // translate('TonnagesF12', 'destination', lang)
-        }}
-
-        color={{
-          field: 'unité',
-          // title:  // translate('PecheTypeValue', 'color', lang)
-        }}
-
-      // tooltip={
-      //   (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field]))} lt. (pour ${formatNumber(parseInt(d.tonnage))} tonneaux cumulés)`
-      // }
-      />
-      <h4>2. Estimation des valeurs et produits smogglés par homeport</h4>
       <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div>
       <ul>
         {
@@ -215,90 +239,46 @@ export default function ExportsVsSmogglage({
             })
         }
       </ul>
-      <BarChart
-        {...{
-          data: homeportsData
-          .sort((a, b) => {
-            if (+a[selectedPortsOverviewQuantiField] > +b[selectedPortsOverviewQuantiField]) {
-              return -1;
-            }
-            return 1;
-          }),
-          width: width,
-          height: height * 2,
-        }}
+      
+      {/* <img
+        src={`${process.env.BASE_PATH}/assets/exports-vs-smogglage.jpg`}
+        {...{ width, height }}
+        style={{ objectFit: 'contain' }}
+      /> */}
+      
+      {
+        detailsData &&
+        <BarChart
+          {...{
+            data: detailsData
+              .sort((a, b) => {
+                if (a.quantity > b.quantity) {
+                  return -1;
+                }
+                return 1;
+              })
+            ,
+            width: width,
+            height: height * 2,
+          }}
+          orientation='vertical'
 
-        // layout='stack'
-        orientation='vertical'
+          y={{
+            field: 'field',
+          }}
+          x={{
+            field: 'quantity',
+            tickFormat: d => `${formatNumber(d)} lt`,
+            title: 'quantity', // translate('TonnagesF12', 'destination', lang)
+          }}
 
-        y={{
-          field: 'port',
-          // tickFormat: d => `${formatNumber(d)} lt.`,
-          // tickSpan: 5000000,
-          // domain: [0, 15000001],
-          // title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
-        }}
-        x={{
-          field: selectedPortsOverviewQuantiField,
-          title: selectedPortsOverviewQuantiField, // translate('TonnagesF12', 'destination', lang)
-        }}
+          color={{
+            field: 'group',
+          }}
 
-        color={{
-          field: 'comte',
-          // title:  // translate('PecheTypeValue', 'color', lang)
-        }}
+        />
+      }
 
-      // tooltip={
-      //   (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field]))} lt. (pour ${formatNumber(parseInt(d.tonnage))} tonneaux cumulés)`
-      // }
-      />
-
-      <div>
-        <p>Sélectionner un port à inspecter en détail :</p>
-        <select>
-          {
-            portsList
-            .map(port => {
-              const handleClick = () => {
-                setSelectedPort(port);
-              }
-              return (
-                <option onClick={handleClick} value={port}>
-                  {port}
-                </option>
-              )
-            })
-          }
-        </select>
-      </div>
-      <BarChart
-        {...{
-          data: detailsData
-          .sort((a, b) => {
-            if (a.quantity > b.quantity) {
-              return -1;
-            }
-            return 1;
-          })
-          ,
-          width: width,
-          height: height * 2,
-        }}
-        orientation='vertical'
-
-        y={{
-          field: 'field',
-        }}
-        x={{
-          field: 'quantity',
-          title: 'quantity', // translate('TonnagesF12', 'destination', lang)
-        }}
-
-        color={{
-          field: 'group',
-        }}
-
-      />
     </div>
   )
 }
