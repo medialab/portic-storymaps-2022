@@ -147,7 +147,7 @@ for output in inputs_csv_online.keys():
         f.write(decoded_content)
         f.close()
         # Duplicate CSV in doc
-        f = open(doc_dir_path + '/' + id + '/' + output, "w")
+        f = open(doc_dir_path + '/' + id + '/' + output.replace("/", "_"), "w")
         f.write(decoded_content)
         f.close()
 
