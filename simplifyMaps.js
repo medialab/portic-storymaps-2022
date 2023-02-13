@@ -2,8 +2,8 @@ const simplify = require('simplify-geojson')
 const fs = require('fs-extra');
 
 // let original = fs.readFileSync('./public/data/cartoweb_france_1789_geojson_original.geojson', 'utf8');
-let output = `./public/data/map_backgrounds/intro_map.geojson`;
-let original = fs.readFileSync('./public/data/map_backgrounds/intro_map_source.geojson', 'utf8');
+let output = `./datascripts/resources/intro_map.geojson`;
+let original = fs.readFileSync('./datascripts/resources/intro_map_source.geojson', 'utf8');
 
 let originalLength = original.length
 console.log('length before : ', originalLength);
