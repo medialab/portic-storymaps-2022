@@ -13,8 +13,9 @@
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
-            "map_backgrounds/world_map.geojson"
-        ]
+            "map_backgrounds/intro_map.geojson"
+        ],
+        "cacher_atlas": "oui"
     },
     "histoire-dunkerque": {
         "id": "histoire-dunkerque",
@@ -37,7 +38,8 @@
             "histoire-dunkerque-dates.csv",
             "histoire-dunkerque-points.csv",
             "histoire-dunkerque-assise.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "smoggleur-proportion": {
         "id": "smoggleur-proportion",
@@ -57,7 +59,8 @@
         ],
         "outputs": [
             "smogglage_ports_stats.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "smoggleur-statut": {
         "id": "smoggleur-statut",
@@ -77,7 +80,8 @@
         ],
         "outputs": [
             "smoggleur-statut.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "peche-type-value": {
         "id": "peche-type-value",
@@ -96,7 +100,8 @@
         ],
         "outputs": [
             "peche-type-value.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "peche-map": {
         "id": "peche-map",
@@ -118,7 +123,8 @@
             "evolution-peche-zones.geojson",
             "peche-map-stats.csv",
             "map_backgrounds/world_map.geojson"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "evolution-budget-dunkerque": {
         "id": "evolution-budget-dunkerque",
@@ -137,7 +143,8 @@
         ],
         "outputs": [
             "evolution-budget-dunkerque.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "schema-sources": {
         "id": "schema-sources",
@@ -152,7 +159,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "pilotage": {
         "id": "pilotage",
@@ -171,7 +179,8 @@
         ],
         "outputs": [
             "pilotage.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "evolution-type-conges": {
         "id": "evolution-type-conges",
@@ -190,7 +199,8 @@
         ],
         "outputs": [
             "evolution-type-conges.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "tonnage-moyen-par-mois": {
         "id": "tonnage-moyen-par-mois",
@@ -209,7 +219,8 @@
         ],
         "outputs": [
             "tonnage-moyen-par-mois.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "carte-destinations-dunkerquois": {
         "id": "carte-destinations-dunkerquois",
@@ -224,7 +235,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "carte-destinations-non-dunkerquois": {
         "id": "carte-destinations-non-dunkerquois",
@@ -239,7 +251,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "carte-destinations": {
         "id": "carte-destinations",
@@ -257,10 +270,10 @@
             "navigo_all_flows_1789.csv"
         ],
         "outputs": [
-            "map_backgrounds/world_map.svg",
             "map_backgrounds/world_map.geojson",
             "destinations_from_dunkerque.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "evolution-peche": {
         "id": "evolution-peche",
@@ -275,7 +288,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "resume-activite-dunkerquois-1787": {
         "id": "resume-activite-dunkerquois-1787",
@@ -290,7 +304,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "stigmates-smoggleurs-dunkerque": {
         "id": "stigmates-smoggleurs-dunkerque",
@@ -307,7 +322,8 @@
         "inputs": [],
         "outputs": [
             "stigmates-smoggleurs-dunkerque.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "departs-fr-vers-angleterre": {
         "id": "departs-fr-vers-angleterre",
@@ -322,7 +338,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "destinations-gb-vers-gb": {
         "id": "destinations-gb-vers-gb",
@@ -337,7 +354,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "fraude-exports-dunkerque": {
         "id": "fraude-exports-dunkerque",
@@ -354,7 +372,8 @@
         "inputs": [],
         "outputs": [
             "fraude-exports.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "fraude-exports-ports-francs": {
         "id": "fraude-exports-ports-francs",
@@ -371,7 +390,8 @@
         "inputs": [],
         "outputs": [
             "fraude-exports.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "fausses-declarations": {
         "id": "fausses-declarations",
@@ -386,7 +406,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "imports-dunkerque-vs-ports-francs": {
         "id": "imports-dunkerque-vs-ports-francs",
@@ -401,7 +422,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "exports-vs-smogglage": {
         "id": "exports-vs-smogglage",
@@ -421,8 +443,28 @@
         ],
         "outputs": [
             "smogglage-estimation-par-produit.csv",
-            "smogglage-vs-exports-par-homeport.csv"
-        ]
+            "smogglage-vs-exports-par-homeport.csv",
+            "map_backgrounds/england_map.geojson"
+        ],
+        "cacher_atlas": ""
+    },
+    "prix-smogglage-general": {
+        "id": "prix-smogglage-general",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/prix-smogglage-general",
+        "titre_fr": "Étude des produits transportés par les smoggleurs (global)",
+        "titre_en": "Study of products transported by smoggers (global)",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [
+            "smogglage-estimation-par-produit.csv"
+        ],
+        "cacher_atlas": ""
     },
     "homeports-from-dunkerque": {
         "id": "homeports-from-dunkerque",
@@ -441,7 +483,8 @@
         ],
         "outputs": [
             "homeports-from-dunkerque.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "gravure-smoggleurs": {
         "id": "gravure-smoggleurs",
@@ -456,7 +499,8 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": []
+        "outputs": [],
+        "cacher_atlas": ""
     },
     "tonnages-1787-f12": {
         "id": "tonnages-1787-f12",
@@ -474,7 +518,8 @@
         "outputs": [
             "tonnages_f12_1787.csv",
             "tonnages_f12_1787_aggregated_by_grouping.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "exports-fr-1787": {
         "id": "exports-fr-1787",
@@ -491,7 +536,8 @@
         "inputs": [],
         "outputs": [
             "toflit18_exports_nationaux_1787.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "valeur-par-tonneau": {
         "id": "valeur-par-tonneau",
@@ -508,7 +554,8 @@
         "inputs": [],
         "outputs": [
             "projection-valeur-par-tonneau.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "comparaisons-la-rochelle": {
         "id": "comparaisons-la-rochelle",
@@ -527,7 +574,8 @@
             "comparaisons-la-rochelle-toflit18.csv",
             "comparaisons-la-rochelle-navigo.csv",
             "comparaisons-la-rochelle-projection.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "destinations-dk-pour-projection": {
         "id": "destinations-dk-pour-projection",
@@ -544,7 +592,8 @@
         "inputs": [],
         "outputs": [
             "destinations-dk-pour-projection.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "estimation-par-destination-dk": {
         "id": "estimation-par-destination-dk",
@@ -561,7 +610,8 @@
         "inputs": [],
         "outputs": [
             "estimation-exports-dk-1789-par-partenaire.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "comparaison-projection-destination-produits-coloniaux-dk": {
         "id": "comparaison-projection-destination-produits-coloniaux-dk",
@@ -578,7 +628,8 @@
         "inputs": [],
         "outputs": [
             "estimation-exports-dk-1789-par-partenaire.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     },
     "estimation-imports-exports": {
         "id": "estimation-imports-exports",
@@ -595,6 +646,7 @@
         "inputs": [],
         "outputs": [
             "misc-estimations-imports-exports-dk-1789.csv"
-        ]
+        ],
+        "cacher_atlas": ""
     }
 }

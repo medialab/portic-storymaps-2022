@@ -26,6 +26,7 @@ import EstimationImportsExports from './EstimationImportsExports/EstimationImpor
 import ComparaisonsLaRochelle from './ComparaisonsLaRochelle';
 import Intro from './Intro/Intro';
 import ExportsVsSmogglage from './ExportsVsSmogglage/ExportsVsSmogglage';
+import PrixSmogglageGeneral from './PrixSmogglageGeneral';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -86,19 +87,19 @@ export default function VisualizationController({
         );
       case 'stigmates-smoggleurs-dunkerque':
         return (
-          <StigmatesSmoggleursDunkerque {...{ data, dimensions,atlasMode,  lang }} />
+          <StigmatesSmoggleursDunkerque {...{ data, dimensions, atlasMode, lang }} />
         );
       case 'fraude-exports-dunkerque':
-        
+
         return (
-          <FraudeExportDunkerque {...{ data, dimensions,atlasMode, lang}} />
+          <FraudeExportDunkerque {...{ data, dimensions, atlasMode, lang }} />
         );
       case 'fraude-exports-ports-francs':
         let showPorts;
         if (callerProps && callerProps.showports) {
           showPorts = callerProps.showports.split(',').map(p => p.trim());
         }
-        
+
         return (
           <FraudeExportPortFranc {...{ data, dimensions, atlasMode, lang, showPorts }} />
         );
@@ -116,7 +117,7 @@ export default function VisualizationController({
         );
       case 'peche-map':
         return (
-          <PecheMap {...{ data, dimensions, lang, atlasMode  }} />
+          <PecheMap {...{ data, dimensions, lang, atlasMode }} />
         );
       case 'pilotage':
         return (
@@ -142,7 +143,7 @@ export default function VisualizationController({
               data,
               width: dimensions.width,
               height: dimensions.height,
-              atlasMode, 
+              atlasMode,
               lang,
               title: 'Parts des ports d\'attache pour les navires au départ de Dunkerque en 1789',
               tooltip: d => `${d.tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
@@ -165,25 +166,27 @@ export default function VisualizationController({
           />
         );
       case 'tonnages-1787-f12':
-        return <TonnageF12 {...{data, width, height,atlasMode,  lang}} />;
+        return <TonnageF12 {...{ data, width, height, atlasMode, lang }} />;
       case 'valeur-par-tonneau':
-        return <ValeurParTonneau {...{data, width, height,atlasMode,  lang}}  />
+        return <ValeurParTonneau {...{ data, width, height, atlasMode, lang }} />
       case 'destinations-dk-pour-projection':
-        return <DestinationsDkPrProjection {...{data, width, height,atlasMode, lang}} />
+        return <DestinationsDkPrProjection {...{ data, width, height, atlasMode, lang }} />
       case 'estimation-par-destination-dk':
-        return <EstimationParTonnageDk {...{data, width, height,atlasMode, lang}} />
+        return <EstimationParTonnageDk {...{ data, width, height, atlasMode, lang }} />
       case 'comparaison-projection-destination-produits-coloniaux-dk':
-        return <ComparaisonProjectionDestinationProduitsColoniauxDk {...{data, width, height, atlasMode, lang}} />
+        return <ComparaisonProjectionDestinationProduitsColoniauxDk {...{ data, width, height, atlasMode, lang }} />
       case 'exports-fr-1787':
-        return <ExportsFr1787 {...{data, width, height, atlasMode, lang}} />;
+        return <ExportsFr1787 {...{ data, width, height, atlasMode, lang }} />;
       case 'estimation-imports-exports':
-        return <EstimationImportsExports {...{data, width, height, atlasMode, lang}} />;
+        return <EstimationImportsExports {...{ data, width, height, atlasMode, lang }} />;
       case 'comparaisons-la-rochelle':
-        return <ComparaisonsLaRochelle {...{data, width, height, lang, atlasMode, callerProps}} />;
+        return <ComparaisonsLaRochelle {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'intro':
-        return <Intro {...{data, width, height, lang, atlasMode, callerProps}} />;
+        return <Intro {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'exports-vs-smogglage':
-        return <ExportsVsSmogglage {...{data, width, height, lang, atlasMode, callerProps}}  />
+        return <ExportsVsSmogglage {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'prix-smogglage-general':
+        return <PrixSmogglageGeneral {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:
         return (
           <img
@@ -196,7 +199,7 @@ export default function VisualizationController({
   }, [vizId, callerProps, dimensions, lang, data])
 
   return (
-    <div style={{height}} onClick={e => e.stopPropagation()} className='VisualizationController viz-render' ref={ref}>
+    <div style={{ height }} onClick={e => e.stopPropagation()} className='VisualizationController viz-render' ref={ref}>
       {vizContent}
     </div>
   )
