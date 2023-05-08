@@ -1,0 +1,17 @@
+
+
+
+.PecheMap {
+  .background-map {
+    .geopart {
+      stroke: none!important;
+      fill: rgba(0,0,0,0.1)!important;
+    }
+  }
+  .peche-zones {
+    .geopart {
+      stroke: none!important;
+      opacity: .8!important;
+    }
+  }
+}

@@ -246,7 +246,7 @@ const GeographicMapChart = ({
       case 'world north':
         projectionConfig = {
           ...projectionConfig,
-          scale: 500,
+          scale: height * .8,
           centerX: -30,
           centerY: 60,
           translationX: width * .5,

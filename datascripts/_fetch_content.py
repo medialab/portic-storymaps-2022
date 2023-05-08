@@ -305,7 +305,7 @@ for lang in GDOC_URL.keys():
             for next_tag in title.find_all_next():
                 if next_tag.name == 'h1':
                     break
-                if next_tag.name not in {'p', 'h1', 'h2', 'h3'}:
+                if next_tag.name not in {'p', 'ul', 'ol', 'h1', 'h2', 'h3'}:
                     continue
                 part_root.append(next_tag)
             parts_soup.append(part_soup)

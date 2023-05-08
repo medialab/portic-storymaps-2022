@@ -86,7 +86,6 @@ const LineChart = ({
   const svgRef = useRef(null);
   const legendRef = useRef(null);
   const headerRef = useRef(null);
-
   const width = fixSvgDimension(initialWidth - legendWidth);
   const height = fixSvgDimension(initialHeight - headersHeight);
 
@@ -198,6 +197,7 @@ const LineChart = ({
     legendTitle = color.title;
   }
 
+
   return (
     <>
       <figure style={{ width: initialWidth, height: initialHeight }} className={cx("LineChart GenericVisualization", {'is-brushable': isBrushable})}>
@@ -252,7 +252,7 @@ const LineChart = ({
             }}
           >
             {
-              brushState[0] && brushState[0].mouse !== 'up' &&
+              brushState[0] && brushState[0].mouse && brushState[0].mouse !== 'up' &&
                 <rect
                   x={xScale(brushState[0]['start'])}
                   width={xScale(brushState[0]['end']) - xScale(brushState[0]['start'])}

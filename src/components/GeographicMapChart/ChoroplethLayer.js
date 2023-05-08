@@ -19,7 +19,7 @@ import ReactTooltip from "react-tooltip";
  */
 const GeoPart = ({
   d: initialD,
-  projection,
+  // projection,
   project,
   palette,
   layer,
@@ -49,7 +49,12 @@ const GeoPart = ({
     })
   }, [])
 
-  const currentD = project(initialD);
+  let currentD = project(initialD);
+
+  // @todo this is awful but no time & need to move forward
+  if (initialD.properties.identifiant == 'Shetlands') {
+    currentD = currentD.split('Z').reverse().pop() + 'Z';
+  }
 
   const animationProps = useSpring({
     to: {
@@ -57,6 +62,11 @@ const GeoPart = ({
     },
     immediate: !isInited
   });
+
+  // if (initialD.properties.identifiant == 'Shetlands') {
+  //   console.log(currentD, initialD)
+  // }
+  
 
   useEffect(() => {
     ReactTooltip.rebuild();
@@ -83,7 +93,7 @@ const GeoPart = ({
       title={initialD.properties.shortname}
       d={animationProps.d}
       className="geopart"
-      id={`geopart-${initialD.properties.shortname}`}
+      id={`geopart-${initialD.properties.shortname || initialD.properties.identifiant}`}
       data-tip={layer.tooltip ? layer.tooltip(initialD) : undefined}
       data-for="geo-tooltip"
       style={{
@@ -106,7 +116,8 @@ const ChoroplethLayer = ({
 }) => {
 
   let palette;
-  const project = geoPath().projection(projection);
+  const project = useMemo(() => geoPath().projection(projection), [projection]);
+
 
   if (!layer.data) {
     console.info('no data for layer:', layer);
@@ -157,13 +168,13 @@ const ChoroplethLayer = ({
     }));
   return (
     <>
-      <g className={cx("ChoroplethLayer", { 'reverse-colors': reverseColors })}>
+      <g className={cx("ChoroplethLayer", layer.className, { 'reverse-colors': reverseColors })}>
         {
           transitions((style, d) => {
             return (
               <animated.g style={style}>
                 <GeoPart
-                  key={d.properties.id || d.properties.name || i}
+                  key={d.properties.id || d.properties.name || d.properties.identifiant}
                   {...{
                     projection,
                     project,

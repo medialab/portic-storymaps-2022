@@ -115,7 +115,7 @@ export default function VisualizationController({
         return (
           <TonnageMoyenMois {...{ data, dimensions, lang, atlasMode }} />
         );
-      case 'peche-map':
+      case 'evolution-peche':
         return (
           <PecheMap {...{ data, dimensions, lang, atlasMode }} />
         );

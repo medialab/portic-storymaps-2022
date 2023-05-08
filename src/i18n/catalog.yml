@@ -100,7 +100,7 @@ TonnageMoyenMois:
     en: "Select one or several years to take into account by brushing a rectangle:"
 PecheMap:
   tooltip:
-    fr: Pêche en ${type} d'une valeur de ${value} en ${year}
+    fr: En ${year}, la pêche en ${type} a généré une valeur de ${value} livres tournois
     en: 
   x:
     fr: Valeur
