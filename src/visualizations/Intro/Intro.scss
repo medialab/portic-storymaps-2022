@@ -16,9 +16,9 @@
         display: inline-block;
         color: white;
         font-family: $font-family-1;
-        padding: $small-gutter / 2;
-        margin-bottom: $small-gutter / 2;
-        font-size: $fontsize_part_title / 2;
+        padding: calc($small-gutter / 2);
+        margin-bottom: calc($small-gutter / 2);
+        font-size: calc($fontsize_part_title / 2);
       }
     }
   }
