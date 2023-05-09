@@ -351,12 +351,13 @@ const LineChart = ({
                 annotations
                   .filter(a => a.axis === 'x')
                   .map((annotation, annotationIndex) => {
-                    const { start, end, label, labelPosition = 20 } = annotation;
+                    const { start: initialStart, end, label, labelPosition = 20 } = annotation;
+                    const start = initialStart < xAxisValues[0] ? xAxisValues[0] : initialStart;
                     const thatHeight = height - yScale(yAxisValues[yAxisValues.length - 1]) - margins.bottom;
                     const thatY1 = height - margins.bottom;
                     const thatY2 = yScale(yAxisValues[yAxisValues.length - 1]);
                     const x = xScale(start);
-                    const maxWidth = Math.abs(height - x + margins.right);
+                    const maxWidth = Math.max(Math.abs(height - x + margins.right), 100);
                     return (
                       <AnimatedGroup className="annotation x-axis-annotation" key={annotationIndex}>
                         <AnimatedRect
