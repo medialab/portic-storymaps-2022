@@ -7,8 +7,8 @@ export const Line = ({style, className, onClick, ...inputProps}) => {
   )
 }
 
-export const G =({children, className, onClick, ...inputProps})  => {
-  const props = useSpring(inputProps);
+export const G =({children, className, onClick, config = {}, ...inputProps})  => {
+  const props = useSpring({to: inputProps, config});
   return (
     <animated.g className={className} onClick={onClick} {...props}>
       {children}

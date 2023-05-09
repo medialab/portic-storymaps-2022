@@ -210,7 +210,7 @@ const GeographicMapChart = ({
       case 'from France to England':
         projectionConfig = {
           ...projectionConfig,
-          scale: height * 8,
+          scale: height * 7,
           centerX: 0,
           centerY: 50,
           translationX: width * .5,

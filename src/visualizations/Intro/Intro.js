@@ -99,6 +99,7 @@ export default function Intro({
               return (
                 <G
                   transform={`translate(${x}, ${y})`}
+                  config={{duration: 500}}
                 >
                   <DunkerqueDisplay
                     projection={projection}

@@ -60,18 +60,25 @@ const GeoPart = ({
     to: {
       d: currentD
     },
-    immediate: !isInited
+    immediate: !isInited,
+    config: {
+      duration: 500,
+    }
   });
 
   // if (initialD.properties.identifiant == 'Shetlands') {
   //   console.log(currentD, initialD)
   // }
-  
+
 
   useEffect(() => {
     ReactTooltip.rebuild();
   });
   // if (outOfBounds) {
+  //   return null;
+  // }
+  const id = initialD.properties.id || initialD.properties.shortname || initialD.properties.identifiant;
+  // if (!id) {
   //   return null;
   // }
   if (!isAnimated) {
@@ -80,6 +87,7 @@ const GeoPart = ({
         title={initialD.properties.shortname}
         d={currentD}
         className="geopart"
+        id={`geopart-${id}`}
         data-tip={layer.tooltip ? layer.tooltip(initialD) : undefined}
         data-for="geo-tooltip"
         style={{
@@ -88,12 +96,15 @@ const GeoPart = ({
       />
     )
   }
+  if (!id) {
+    return null;
+  }
   return (
     <animated.path
       title={initialD.properties.shortname}
       d={animationProps.d}
       className="geopart"
-      id={`geopart-${initialD.properties.shortname || initialD.properties.identifiant}`}
+      id={`geopart-${id}`}
       data-tip={layer.tooltip ? layer.tooltip(initialD) : undefined}
       data-for="geo-tooltip"
       style={{
@@ -154,7 +165,7 @@ const ChoroplethLayer = ({
       const outOfBounds = (isNaN(xMin) || isNaN(xMax) || isNaN(yMin) || isNaN(yMax)) ? false : xMin > width || yMin > height || xMax < 0 || yMax < 0;
       return !outOfBounds;
     })
-  , [projection, layer.data]);
+    , [projection, layer.data]);
 
   const [transitions, api] = useTransition(
     partsData
@@ -171,10 +182,11 @@ const ChoroplethLayer = ({
       <g className={cx("ChoroplethLayer", layer.className, { 'reverse-colors': reverseColors })}>
         {
           transitions((style, d) => {
+            const id = d.properties.id || d.properties.name || d.properties.identifiant;
             return (
               <animated.g style={style}>
                 <GeoPart
-                  key={d.properties.id || d.properties.name || d.properties.identifiant}
+                  key={id}
                   {...{
                     projection,
                     project,
