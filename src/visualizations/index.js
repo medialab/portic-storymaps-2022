@@ -29,6 +29,7 @@ import ComparaisonsLaRochelle from './ComparaisonsLaRochelle';
 import Intro from './Intro/Intro';
 import ExportsVsSmogglage from './ExportsVsSmogglage/ExportsVsSmogglage';
 import PrixSmogglageGeneral from './PrixSmogglageGeneral';
+import SmogglageStatus from './SmogglageStatus';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -188,6 +189,9 @@ export default function VisualizationController({
         return <Intro {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'exports-vs-smogglage':
         return <ExportsVsSmogglage {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'smoggleur-statut':
+
+        return <SmogglageStatus {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'prix-smogglage-general':
         return <PrixSmogglageGeneral {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:

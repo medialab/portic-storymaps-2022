@@ -44,7 +44,6 @@ export default function Atlas({
     const { outputs, ...metas } = visualizationsMetas[vizId];
 
     const payload = new Map();
-
     Promise.all(
       outputs.map(fileToLoad =>
         fetchDataFile(fileToLoad).catch(error => null)
