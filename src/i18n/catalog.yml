@@ -64,7 +64,7 @@ EvolutionBudgetDunkerque:
     en: 
 EvolutionTypeConges:
   tooltip:
-    fr: ${value} congés pour l'année ${year} pour les congés de type ${type}
+    fr: En ${year}, ${value} congés de type ${type} ont été délivrés
     en:
   x:
     fr: Année

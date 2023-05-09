@@ -52,6 +52,7 @@ const TreemapChart = ({
   leaf: {
     labelField,
     countField,
+    labelFormat,
   },
   color,
   tooltip,
@@ -138,7 +139,7 @@ const TreemapChart = ({
                 const {x0, y0, x1, y1} = datum;
                 const rectWidth = x1 - x0;
                 const rectHeight = y1 - y0;
-                const labelText = `${datum.data[labelField]} (${datum.data[countField]})`;
+                const labelText = labelFormat ? labelFormat(datum.data) : `${datum.data[labelField]} (${datum.data[countField]})`;
                 let fontSize = (rectWidth * rectHeight) * 0.0005;
                 fontSize = fontSize < MIN_FONT_SIZE ? MIN_FONT_SIZE : fontSize;
                 const fitsWidth = f => f * labelText.length * .6 < rectWidth;

@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 
 import visualizationsMetas from '../data/viz';
 
+import { formatNumber } from '../utils/misc';
+
 import SmogglagePortsStats from './SmogglagePortsStats';
 import PecheTypeValue from './PecheTypeValue';
 import HistoireDunkerque from './HistoireDunkerque';
@@ -146,7 +148,7 @@ export default function VisualizationController({
               atlasMode,
               lang,
               title: 'Parts des ports d\'attache pour les navires au départ de Dunkerque en 1789',
-              tooltip: d => `${d.tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
+              tooltip: d => `En 1789, ${formatNumber(parseInt(d.tonnage))} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
               // tooltip: d => translate('partie-1-ports-dattache', 'tooltip', props.lang, { 
               //   tonnage: formatNumber(d.tonnage), 
               //   homeport: d[`homeport_${props.lang}`], 
@@ -159,7 +161,8 @@ export default function VisualizationController({
               },
               leaf: {
                 labelField: 'homeport_' + lang,
-                countField: 'tonnage'
+                countField: 'tonnage',
+                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage))} tx)`
               }
             }
             }
