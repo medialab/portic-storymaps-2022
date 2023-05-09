@@ -2,18 +2,33 @@
     padding: 0 1rem;
     box-sizing: border-box;
 
-    .bar {
-      stroke: white;
-      stroke-width: 1px;
+    .category {
       cursor: pointer;
+      .modality-label {
+        font-size: 10px;
+        font-weight: bold;
+        fill: black;
+        cursor: pointer;
+        opacity: 1;
+        transition: .5s ease all;
+        &.is-overflowing {
+          opacity: 0;
+        }
+      }
+      &:hover,
+      &.is-highlighted {
+        .modality-label.is-overflowing {
+          opacity: 1;
+        }
+      }
+
+      .bar {
+        stroke: white;
+        stroke-width: 1px;
+      }
     }
 
-    .modality-label {
-      font-size: 10px;
-      font-weight: bold;
-      fill: black;
-      cursor: pointer;
-    }
+    
 
     .step-title {
       font-size: 16px;

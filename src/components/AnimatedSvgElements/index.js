@@ -3,12 +3,13 @@ import { useSpring, animated } from 'react-spring';
 export function AnimatedGroup({
     children,
     style,
+    onClick,
     ...props
 }) {
     const animatedProps = useSpring(props);
 
     return (
-        <animated.g {...animatedProps} style={style}>
+        <animated.g {...animatedProps} onClick={onClick} style={style}>
             {children}
         </animated.g>
     )

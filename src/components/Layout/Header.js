@@ -42,7 +42,6 @@ export default function Header({
     const pageColorScale = scaleLinear().range([colorBackgroundBlue, colorBackground]).domain([0, 1]);
     const { fontColor, backgroundColor } = useMemo(() => {
         const screenHeight = window.innerHeight;
-
         switch (pageType) {
             case 'intro':
             case 'chapter':
@@ -60,7 +59,8 @@ export default function Header({
             case 'home':
                 if (scrollY < screenHeight * .8) {
                     return {
-                        fontColor: colorText,
+                        fontColor: 'white',
+                        // fontColor: colorText,
                         backgroundColor: 'transparent' // colorBackgroundBlue,
                     }
                 } else {

@@ -8,8 +8,12 @@ export default function SmogglageStatus ({
 }) {
     const data = inputData['smoggleur-statut.csv'];
     const steps = [
-        'departure_fr',
-        'is_smoggleur'
+      {
+        field: 'departure_fr'
+      },
+      {
+        field: 'is_smoggleur'
+      },
     ]
 
     return (
