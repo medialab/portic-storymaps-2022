@@ -75,6 +75,7 @@ export default function TonnageMoyenMois({
                 x={{
                     field: 'value',
                     title: translate('TonnageMoyenMois', 'x', lang),
+                    tickSpan: width > 600 ? 1000 : 5000,
                     tickFormat: (value, valueIndex) => formatNumber(value) + ' tx',
                     domain: [0, max(monthsValue.map(d => d.value))]
                 }}
