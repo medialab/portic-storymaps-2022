@@ -1,0 +1,15 @@
+
+
+.DepartsFrVersAngleterre {
+  .geopart {
+    fill: lightgrey!important;
+    stroke: white!important;
+  }
+  .port-group {
+    &.legend {
+      text {
+        font-style: italic;
+      }
+    }
+  }
+}

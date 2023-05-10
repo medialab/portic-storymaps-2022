@@ -97,7 +97,7 @@ with requests.Session() as s:
         if row['statut'] == 'désactivé':
             continue
         del row['statut']
-        row['n_chapitre'] = int(row['n_chapitre'])
+        row['n_chapitre'] = int(row['n_chapitre'] or 1)
         row['inputs'] = [] if row['inputs'] == '' else row['inputs'].split(',')
         row['outputs'] = [] if row['outputs'] == '' else row['outputs'].split(',')
         # Create Markdown file with infos

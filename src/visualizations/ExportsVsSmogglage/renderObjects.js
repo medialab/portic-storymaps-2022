@@ -126,7 +126,6 @@ const renderObjects = ({
     }
   }, [circleSizeVariable, maxSizeValue]);
 
-
   const vizData = useMemo(() => {
     return homeportsData.map(({
       latitude,
@@ -179,7 +178,6 @@ const renderObjects = ({
       return vizDataMap[label];
     }),
   }
-
   Object.keys(vizDataMap).forEach(label => {
     if (!donePorts.has(label)) {
       throw new Error(label + ' has no group so it wont be displayed !!')

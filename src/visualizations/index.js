@@ -31,6 +31,7 @@ import ExportsVsSmogglage from './ExportsVsSmogglage/ExportsVsSmogglage';
 import PrixSmogglageGeneral from './PrixSmogglageGeneral';
 import SmogglageStatus from './SmogglageStatus';
 import HomeportSmoggleurs from './HomeportSmoggleurs';
+import DepartsFrVersAngleterre from './DepartsFrVersAngleterre/DepartsFrVersAngleterre';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -197,6 +198,8 @@ export default function VisualizationController({
         return <PrixSmogglageGeneral {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'carte-homeport-smoggleurs':
         return <HomeportSmoggleurs {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'departs-fr-vers-angleterre':
+        return <DepartsFrVersAngleterre {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:
         return (
           <img

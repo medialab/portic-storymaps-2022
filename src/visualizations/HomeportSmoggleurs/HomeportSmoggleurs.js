@@ -1,7 +1,5 @@
-import React, { useMemo, useReducer, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import LineChart from '../../components/LineChart';
-import { formatNumber, reducerBrush } from "../../utils/misc";
 import translate from '../../utils/translate';
 import { range } from 'lodash';
 import BarChart from '../../components/BarChart';
@@ -34,16 +32,6 @@ export default function HomeportSmoggleurs({
       features: obj.features.filter(({ properties }) => properties.dominant === 'Grande-Bretagne' || properties.shortname === 'Grande-Bretagne')
     }
   }, [inputData]);
-  // console.log('backgroundMap', backgroundMap)
-  const [brush, setBrush] = useReducer(reducerBrush, { start: undefined, end: undefined, mouse: undefined });
-  // const data = useMemo(function filterData() {
-  //     const { start = 1700, end = 1800, mouse } = brush;
-  //     if (mouse !== undefined && mouse !== 'up') {
-  //         return inputData.filter((row) => +row['Années comptables'] < 1793);
-  //     }
-  //     return inputData.filter((row) => +row['Années comptables'] < 1793 && +row['Années comptables'] >= start && +row['Années comptables'] <= end);
-  // }, [inputData, brush])
-  // console.log('coucou homeport', data);
 
   const years = useMemo(() => range(1781, 1791), []);
 

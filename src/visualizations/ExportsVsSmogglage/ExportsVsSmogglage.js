@@ -151,7 +151,6 @@ export default function ExportsVsSmogglage({
   ];
 
   const radarSize = selectedPort ? width / 2 : width / 3;
-
   return (
     <div className='ExportsVsSmogglage'>
       <GeographicMapChart

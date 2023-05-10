@@ -343,8 +343,14 @@
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": [],
+        "inputs": [
+            "map_backgrounds/world_map.geojson",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "map_backgrounds/world_map.geojson",
+            "departs-fr-vers-angleterre.csv"
+        ],
         "cacher_atlas": ""
     },
     "destinations-gb-vers-gb": {
@@ -359,8 +365,14 @@
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": [],
+        "inputs": [
+            "map_backgrounds/world_map.geojson",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "map_backgrounds/world_map.geojson",
+            "destinations-gb-vers-gb.csv"
+        ],
         "cacher_atlas": ""
     },
     "fraude-exports-dunkerque": {
