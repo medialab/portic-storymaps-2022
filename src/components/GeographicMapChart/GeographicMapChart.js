@@ -219,12 +219,24 @@ const GeographicMapChart = ({
           // translationY: height * 0.28
         }
         break;
+        case 'south of England':
+          projectionConfig = {
+            ...projectionConfig,
+            scale: height * 7,
+            centerX: -1.5,
+            centerY: 52,
+            translationX: width * .5,
+            translationY: height * .5,
+            // translationX: width * 0.4,
+            // translationY: height * 0.28
+          }
+          break;
       case 'England':
         projectionConfig = {
           ...projectionConfig,
-          scale: height * 3,
+          scale: height * 2.5,
           centerX: -3,
-          centerY: 54,
+          centerY: 54.5,
           translationX: width * .5,
           translationY: height * .5,
           // translationX: width * 0.4,

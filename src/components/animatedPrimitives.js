@@ -7,11 +7,20 @@ export const Line = ({style, className, onClick, ...inputProps}) => {
   )
 }
 
-export const G =({children, className, onClick, config = {}, ...inputProps})  => {
+export const G =({children, className, onClick, onMouseEnter, onMouseLeave, config = {}, ...inputProps})  => {
   const props = useSpring({to: inputProps, config});
   return (
-    <animated.g className={className} onClick={onClick} {...props}>
+    <animated.g className={className} {...{onMouseEnter, onMouseLeave, onClick}} {...props}>
       {children}
     </animated.g>
+  )
+}
+
+export const Text =({children, style, className, onClick, config = {}, ...inputProps})  => {
+  const props = useSpring({to: inputProps, config});
+  return (
+    <animated.text className={className} style={style} onClick={onClick} {...props}>
+      {children}
+    </animated.text>
   )
 }

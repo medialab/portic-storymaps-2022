@@ -275,6 +275,28 @@
         ],
         "cacher_atlas": ""
     },
+    "carte-homeport-smoggleurs": {
+        "id": "carte-homeport-smoggleurs",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-homeport-smoggleurs",
+        "titre_fr": "Carte des ports d'attache des smoggleurs",
+        "titre_en": "",
+        "description_fr": "",
+        "description_en": "",
+        "comment_lire_fr": "",
+        "comment_lire_en": "",
+        "comment_cest_fait_fr": "",
+        "comment_cest_fait_en": "",
+        "inputs": [
+            "map_backgrounds/world_map.geojson",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vRq2TJOb7Ima9hBKiO1Kde_yFYoS6grucmtb6KRh6QpF4nwzjJF34WvpsGjS4wtrQ/pub?gid=1735395597&single=true&output=csv"
+        ],
+        "outputs": [
+            "map_backgrounds/world_map.geojson",
+            "homeport-smoggleurs.csv"
+        ],
+        "cacher_atlas": ""
+    },
     "resume-activite-dunkerquois-1787": {
         "id": "resume-activite-dunkerquois-1787",
         "n_chapitre": 1,
@@ -295,11 +317,11 @@
         "id": "stigmates-smoggleurs-dunkerque",
         "n_chapitre": 2,
         "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/stigmates-smoggleurs-dunkerque",
-        "titre_fr": "Repérer les smoggleurs",
-        "titre_en": "Locate smoggers",
+        "titre_fr": "Destination déclarée par les navires britanniques quittant Dunkerque, par classe de tonnage",
+        "titre_en": "Destination declared by British ships leaving Dunkirk, by tonnage class",
         "description_fr": "Les smoggleurs ont des caractéristiques particulières en fonction de leur ville de provenance.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Isolation des navires britaniques au départ de Dunkerque.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

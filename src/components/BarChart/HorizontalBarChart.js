@@ -1,16 +1,27 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 
 import { scaleLinear, scaleBand } from 'd3-scale';
-import { extent, range, max } from 'd3-array';
+import { extent, max } from 'd3-array';
 import { axisPropsFromTickScale } from 'react-d3-axis';
 import { groupBy } from 'lodash';
-import { uniq } from 'lodash';
+import { uniq, range } from 'lodash';
 import Tooltip from 'react-tooltip';
 
 import colorsPalettes from '../../utils/colorPalettes';
 import { fixSvgDimension, generatePalette } from '../../utils/misc';
 
 const { generic } = colorsPalettes;
+
+function Rect({
+  ...props
+}) {
+  const animatedProps = useSpring(props);
+
+  return (
+      <animated.rect {...animatedProps} />
+  )
+}
 
 /**
  * BarChart component - returns a <figure> containing a svg linechart
@@ -69,7 +80,7 @@ const { generic } = colorsPalettes;
 const HorizontalBarChart = ({
   data,
   title,
-  orientation = 'horizontal',
+  // orientation = 'horizontal',
   layout = 'stack',
   width: initialWidth = 1000,
   height: initialHeight = 400,
@@ -161,7 +172,7 @@ const HorizontalBarChart = ({
   let xScale = scaleBand().domain(xDomain).range([margins.left + columnWidth / 2, width - margins.right - columnWidth / 2]);
 
   if (initialXDomain) {
-    xDomain = range(initialXDomain);
+    xDomain = range(...initialXDomain);
     xValues = xDomain;
     bandsNb = xValues.length;
     columnWidth = vizWidth / bandsNb;
@@ -476,7 +487,8 @@ const HorizontalBarChart = ({
                                 <>
                                   {
                                     +item[y.field] > 0 ?
-                                      <rect key={itemIndex}
+                                      <rect 
+                                        key={itemIndex}
                                         fill={thatColor}
                                         width={fixSvgDimension(bandWidth)}
                                         x={thatX}
