@@ -222,38 +222,6 @@
         ],
         "cacher_atlas": ""
     },
-    "carte-destinations-dunkerquois": {
-        "id": "carte-destinations-dunkerquois",
-        "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-dunkerquois",
-        "titre_fr": "Les destinations des Dunkerquois",
-        "titre_en": "Dunkerquois destinations",
-        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": [],
-        "cacher_atlas": ""
-    },
-    "carte-destinations-non-dunkerquois": {
-        "id": "carte-destinations-non-dunkerquois",
-        "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-non-dunkerquois",
-        "titre_fr": "Les destinations des non-dunkerquois",
-        "titre_en": "The destinations of non-Dunkirk",
-        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": [],
-        "cacher_atlas": ""
-    },
     "carte-destinations": {
         "id": "carte-destinations",
         "n_chapitre": 1,
@@ -409,22 +377,6 @@
         "outputs": [
             "fraude-exports.csv"
         ],
-        "cacher_atlas": ""
-    },
-    "fausses-declarations": {
-        "id": "fausses-declarations",
-        "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fausses-declarations",
-        "titre_fr": "Un inventaire des (supposément) fausses déclarations de navigation",
-        "titre_en": "An inventory of (supposedly) false declarations of navigation",
-        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "inputs": [],
-        "outputs": [],
         "cacher_atlas": ""
     },
     "imports-dunkerque-vs-ports-francs": {
@@ -666,5 +618,53 @@
             "misc-estimations-imports-exports-dk-1789.csv"
         ],
         "cacher_atlas": ""
+    },
+    "carte-destinations-dunkerquois": {
+        "id": "carte-destinations-dunkerquois",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-dunkerquois",
+        "titre_fr": "oui",
+        "titre_en": "Yes",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [],
+        "cacher_atlas": "oui"
+    },
+    "fausses-declarations": {
+        "id": "fausses-declarations",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fausses-declarations",
+        "titre_fr": "Un inventaire des (supposément) fausses déclarations de navigation",
+        "titre_en": "An inventory of (supposedly) false declarations of navigation",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [],
+        "cacher_atlas": "oui"
+    },
+    "carte-destinations-non-dunkerquois": {
+        "id": "carte-destinations-non-dunkerquois",
+        "n_chapitre": 1,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-non-dunkerquois",
+        "titre_fr": "Les destinations des non-dunkerquois",
+        "titre_en": "The destinations of non-Dunkirk",
+        "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "inputs": [],
+        "outputs": [],
+        "cacher_atlas": "oui"
     }
 }

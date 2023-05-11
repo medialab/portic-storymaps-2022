@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import VisualizationController from '../../visualizations/index';
 
 import visualizationsMetas from '../../data/viz.json';
-import { fetchDataCsv } from '../../utils/fetch';
+import { fetchDataFile } from '../../utils/fetch';
 import './StandaloneVisualization.scss'
 
 export default function StandaloneVisualization({
@@ -25,10 +25,11 @@ export default function StandaloneVisualization({
         setLoadingState('process');
         const { outputs, ...metas } = visualizationsMetas[vizId];
         const payload = new Map();
+        console.log('outputs', outputs)
 
         Promise.all(
             outputs.map(fileToLoad =>
-                fetchDataCsv(fileToLoad).catch(error => null)
+              fetchDataFile(fileToLoad).catch(error => null)
             )
         )
         .then((datasets) => {
@@ -55,12 +56,13 @@ export default function StandaloneVisualization({
                         { ...{
                             vizId,
                             lang,
-                            datasets
+                            datasets,
+                            atlasMode: true,
+                            dimensions: {
+                              width: 1200,
+                              height: 800
+                            }
                         } }
-                        dimensions={{
-                            width: 1200,
-                            height: 800
-                        }}
                     />
                     :
                     {

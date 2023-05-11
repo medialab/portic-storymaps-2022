@@ -31,6 +31,12 @@ const basePath = path.join(__dirname, 'public');
     }
 });
 
+function delay(time) {
+  return new Promise(function(resolve) { 
+      setTimeout(resolve, time)
+  });
+}
+
 (async () => {
     console.log('preparation');
 
@@ -55,6 +61,7 @@ const basePath = path.join(__dirname, 'public');
             const url = `http://localhost:${devServerOptions.port}/#/${lang}/visualization/${vizId}`;
             console.log('goto', url);
             await page.goto(url);
+            await delay(2000);
 
             try {
                 await page.waitForSelector('.viz-render', {
