@@ -33,7 +33,8 @@ import SmogglageStatus from './SmogglageStatus';
 import HomeportSmoggleurs from './HomeportSmoggleurs';
 import DepartsFrVersAngleterre from './DepartsFrVersAngleterre';
 import DestinationsGbVersGb from './DestinationsGbVersGb';
-import SchemaSources from './SchemaSources/SchemaSources';
+import SchemaSources from './SchemaSources';
+import ResumeActivitesDunkerquois from './ResumeActivitesDunkerquois';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -205,6 +206,8 @@ export default function VisualizationController({
         return <DestinationsGbVersGb {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'schema-sources':
         return <SchemaSources {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'resume-activite-dunkerquois':
+        return <ResumeActivitesDunkerquois {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:
         return (
           <img

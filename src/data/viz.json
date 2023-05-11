@@ -41,33 +41,12 @@
         ],
         "cacher_atlas": ""
     },
-    "smoggleur-proportion": {
-        "id": "smoggleur-proportion",
-        "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-proportion",
-        "titre_fr": "Proportion des smoggleurs au départ de Dunkerque et d'autres ports français",
-        "titre_en": "Proportion of smoggers from Dunkirk and other French ports",
-        "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
-        "description_en": "Proportions of boats departures according to their status as smogger or non-semogleur.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "inputs": [
-            "navigo_all_flows_1787.csv",
-            "navigo_all_flows_1789.csv"
-        ],
-        "outputs": [
-            "smogglage_ports_stats.csv"
-        ],
-        "cacher_atlas": ""
-    },
     "smoggleur-statut": {
         "id": "smoggleur-statut",
         "n_chapitre": 1,
         "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-statut",
-        "titre_fr": "Départs de bateaux anglais en 1787 avec une précision sur leur statut de smoggleur",
-        "titre_en": "Departures of English boats in 1787 with a precision on their status as smogger",
+        "titre_fr": "Les navires anglais et le smogglage dans la France du Ponant en 1787",
+        "titre_en": "English ships and smoggling in Ponant's France in 1787",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -80,6 +59,27 @@
         ],
         "outputs": [
             "smoggleur-statut.csv"
+        ],
+        "cacher_atlas": ""
+    },
+    "smoggleur-proportion": {
+        "id": "smoggleur-proportion",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-proportion",
+        "titre_fr": "Les navires anglais et le smogglage dans la France du Ponant en 1787",
+        "titre_en": "English ships and smoggling in Ponant's France in 1787",
+        "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
+        "description_en": "Proportions of boats departures according to their status as smogger or non-semogleur.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            "navigo_all_flows_1787.csv",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
         ],
         "cacher_atlas": ""
     },
@@ -265,12 +265,12 @@
         ],
         "cacher_atlas": ""
     },
-    "resume-activite-dunkerquois-1787": {
-        "id": "resume-activite-dunkerquois-1787",
+    "resume-activite-dunkerquois": {
+        "id": "resume-activite-dunkerquois",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/resume-activite-dunkerquois-1787",
-        "titre_fr": "Activités des dunkerquois en 1787",
-        "titre_en": "Dunkerquois activities in 1787",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/resume-activite-dunkerquois",
+        "titre_fr": "Activités des dunkerquois",
+        "titre_en": "Dunkerquois activities",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -278,7 +278,9 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": [],
+        "outputs": [
+            "resume-activite-dunkerquois.csv"
+        ],
         "cacher_atlas": ""
     },
     "stigmates-smoggleurs-dunkerque": {

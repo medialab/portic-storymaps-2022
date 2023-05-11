@@ -34,6 +34,7 @@ export default function AlluvialChart({
   data: inputData,
   steps,
   dimensions = { width: 800, height: 500 },
+  quantifierField,
   colorPalette = {},
 }) {
   const { width, height } = dimensions;
@@ -70,12 +71,24 @@ export default function AlluvialChart({
       }
     // default : length sorting
     } else {
-      if (aCategoryArray.length < bCategoryArray.length) {
-        result = -1;
+      if (quantifierField) {
+        const aWeightSum = aCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]) , 0)
+        const bWeightSum = bCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]) , 0)
+        if (aWeightSum< bWeightSum) {
+          result = -1;
+        }
+        else if (aWeightSum > bWeightSum) {
+          result = 1;
+        }
+      }else {
+        if (aCategoryArray.length < bCategoryArray.length) {
+          result = -1;
+        }
+        else if (aCategoryArray.length > bCategoryArray.length) {
+          result = 1;
+        }
       }
-      else if (aCategoryArray.length > bCategoryArray.length) {
-        result = 1;
-      }
+      
     }
     if (sortOrder === 'descending') {
       result = -result;
@@ -131,7 +144,13 @@ export default function AlluvialChart({
     const stepsItemsNb = [];
     for (const step of steps) {
       const category = stepsGroup.get(step.field);
-      const stepItemsNbFromAllCategories = sum(category, d => d[1].length);
+      const stepItemsNbFromAllCategories = sum(category, d => {
+        let localSize = d[1].length;
+        if (quantifierField) {
+          localSize = sum(d[1], datum => datum[quantifierField]);
+        }
+        return localSize
+      });
       stepsItemsNb.push(stepItemsNbFromAllCategories);
     }
     const stepsItemsNbMax = max(stepsItemsNb);
