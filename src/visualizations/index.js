@@ -33,6 +33,7 @@ import SmogglageStatus from './SmogglageStatus';
 import HomeportSmoggleurs from './HomeportSmoggleurs';
 import DepartsFrVersAngleterre from './DepartsFrVersAngleterre';
 import DestinationsGbVersGb from './DestinationsGbVersGb';
+import SchemaSources from './SchemaSources/SchemaSources';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -193,7 +194,6 @@ export default function VisualizationController({
       case 'exports-vs-smogglage':
         return <ExportsVsSmogglage {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'smoggleur-statut':
-
         return <SmogglageStatus {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'prix-smogglage-general':
         return <PrixSmogglageGeneral {...{ data, width, height, lang, atlasMode, callerProps }} />
@@ -203,6 +203,8 @@ export default function VisualizationController({
         return <DepartsFrVersAngleterre {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'destinations-gb-vers-gb':
         return <DestinationsGbVersGb {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'schema-sources':
+        return <SchemaSources {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:
         return (
           <img
