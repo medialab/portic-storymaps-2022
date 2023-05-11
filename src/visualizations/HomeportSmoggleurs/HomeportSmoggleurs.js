@@ -89,12 +89,13 @@ export default function HomeportSmoggleurs({
 
 
   const dataGroups = useMemo(() => {
-    const ouestPorts = ['Newcastle'];
+    const ouestPorts = ['Newcastle', ];
     const nordPorts = [
       'Dublin', 'Glasgow', 'Ayr', 'Donaghadee', 'Belfast', 'Wick', 'Banff', 'Aberseen', 'Leith', 'Woodbridge', 'Sunderland', 'Whitby',
       'Whitehaven', 'Ramsay (I de Man)','Mersey',
       'Robin Hood Bay', 'Scarborough', 'York', 'Hull',
       'Leigh', 'Cumberland', 'Saint-Helen\'s',
+      'Milton',
     ];
     const sudPorts = [
       'Penzance', 'Aurigny', 'Guernesey',
@@ -111,7 +112,7 @@ export default function HomeportSmoggleurs({
         &&
         (!nordPorts.includes(destination) && !sudPorts.includes(destination))
       ),
-      'Sud': mapData.filter(({ Facade, lat, destination }) => Facade === 'Sud' || sudPorts.includes(destination))
+      'Sud': mapData.filter(({ Facade, lat, destination }) => (Facade === 'Sud' || sudPorts.includes(destination)) && !ouestPorts.includes(destination))
         .sort((a, b) => {
           if (+a.lon > +b.lon) {
             return 1;

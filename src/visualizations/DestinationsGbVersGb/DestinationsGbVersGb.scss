@@ -1,0 +1,21 @@
+
+
+
+.DestinationsGbVersGb {
+
+
+  .CustomObjectsLayer {
+    .port-group {
+      transition: .5s ease all;
+      opacity: 1;
+    }
+    &:hover {
+      .port-group {
+        opacity: .2;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
