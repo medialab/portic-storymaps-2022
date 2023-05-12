@@ -36,10 +36,15 @@ export default function AlluvialChart({
   dimensions = { width: 800, height: 500 },
   quantifierField,
   colorPalette = {},
+  className = '',
 }) {
   const { width, height } = dimensions;
   const [highlightedCategoryName, setHighlightedCategoryName] = useState(undefined);
-  const [highlightedLinesId, setHighlightedLinesId] = useState(undefined);
+  // const [highlightedLinesId, setHighlightedLinesId] = useState(undefined);
+  const [highlightedLinkCategoryNames, setHighlightedLinkCategoryNames] = useState(undefined);
+
+  const nodeWidth = 10;
+
   /**
    * We should to order steps as the 'steps' prop and sort
    * categories by their values
@@ -69,18 +74,18 @@ export default function AlluvialChart({
       else {
         result = 1;
       }
-    // default : length sorting
+      // default : length sorting
     } else {
       if (quantifierField) {
-        const aWeightSum = aCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]) , 0)
-        const bWeightSum = bCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]) , 0)
-        if (aWeightSum< bWeightSum) {
+        const aWeightSum = aCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]), 0)
+        const bWeightSum = bCategoryArray.reduce((sum, datum) => sum + +(datum[quantifierField]), 0)
+        if (aWeightSum < bWeightSum) {
           result = -1;
         }
         else if (aWeightSum > bWeightSum) {
           result = 1;
         }
-      }else {
+      } else {
         if (aCategoryArray.length < bCategoryArray.length) {
           result = -1;
         }
@@ -88,7 +93,7 @@ export default function AlluvialChart({
           result = 1;
         }
       }
-      
+
     }
     if (sortOrder === 'descending') {
       result = -result;
@@ -109,12 +114,12 @@ export default function AlluvialChart({
    * We should to group values as categories for each step to define what
    * are the categories for each one
    */
-  const stepsGroup = useMemo(function groupEachDataRowBySteps() {
+  const stepsGroups = useMemo(function groupEachDataRowBySteps() {
     const payload = new Map();
     for (const step of steps) {
       const stepGroup = groups(data, row => row[step.field]);
       const stepGroupSorted = stepGroup
-      .sort((a, b) => sortCategories(a, b, step));
+        .sort((a, b) => sortCategories(a, b, step));
       const stepGroupMap = new Map();
       for (const [category, categoryArray] of stepGroupSorted) {
         stepGroupMap.set(category, categoryArray)
@@ -137,138 +142,283 @@ export default function AlluvialChart({
     }
   }, [height])
 
+  const getCategorySize = useMemo(function getCategorySize() {
+    // quantifier > size = sum of row values
+    if (quantifierField) {
+      return (categoryArray) => sum(categoryArray, d => +d[quantifierField]);
+    }
+    // no quantifier > size = number of rows
+    return (categoryArray) => categoryArray.length;
+  }, [quantifierField])
+
   /**
    * We should divide steps categories on height space
    */
-  const itemRange = useMemo(function getScaleLinearForHeight() {
-    const stepsItemsNb = [];
+  const heightScale = useMemo(function getScaleLinearForHeight() {
+    const stepsSizes = [];
     for (const step of steps) {
-      const category = stepsGroup.get(step.field);
-      const stepItemsNbFromAllCategories = sum(category, d => {
-        let localSize = d[1].length;
-        if (quantifierField) {
-          localSize = sum(d[1], datum => datum[quantifierField]);
-        }
-        return localSize
+      const category = stepsGroups.get(step.field);
+      const stepTotalSize = sum(category, d => {
+        // let localSize = d[1].length;
+        return getCategorySize(d[1])
+        // if (quantifierField) {
+        //   localSize = sum(d[1], datum => datum[quantifierField]);
+        // }
+        // return localSize
       });
-      stepsItemsNb.push(stepItemsNbFromAllCategories);
+      stepsSizes.push(stepTotalSize);
     }
-    const stepsItemsNbMax = max(stepsItemsNb);
+    const stepsItemsNbMax = max(stepsSizes);
     return scaleLinear()
       .domain([0, stepsItemsNbMax])
       .range([0, bodyHeight]);
-  }, [steps, stepsGroup, bodyHeight]);
+  }, [steps, stepsGroups, bodyHeight, getCategorySize]);
 
   /**
    * We should know what is the with for each step as a column
    */
-  const widthRange = useMemo(function getScaleLinearForWidth() {
+  const xScale = useMemo(function getScaleLinearForWidth() {
     return scaleLinear()
       .domain([0, steps.length - 1]) // -1 because last step had not outputs, so last column would be empty
       .range([0, width]);
   }, [steps, width]);
 
+  const computedSteps = useMemo(function computeSteps() {
+    return steps.map(({ field: stepName, title: stepTitle, label: labelField }, iStep) => {
+      // const isHoverMode = highlightedCategoryName !== undefined;
+      // const nodeWidth = 10;
+      // const itemHeight = heightScale(1);
+      const x = xScale(iStep)
+      // const isFinalStep = iStep === steps.length - 1;
+      const group = stepsGroups.get(stepName);
+      // const nextStep = steps[iStep + 1];
+      const title = stepTitle || stepName;
+      let yDisplace = 0;
+      return {
+        title,
+        labelsPosition: iStep === steps.length - 1 ? 'left' : 'right',
+        x,
+        stepName,
+        items: group.map(([categoryName, categoryArray]) => {
+          // const isHighlighted = categoryName === highlightedCategoryName;
+          // const categoryLinks = links.filter(({ from }) => from === categoryName);
+          const color = colorPalette[categoryName] || iwanthue(1, { seed: categoryName });
+          // const linksLength = sum(categoryLinks, d => d.length);
+          const categorySize = getCategorySize(categoryArray);
+          const barHeight = heightScale(categorySize);
+          const isTooSmallForText = barHeight < 10;
+          const label = labelField ? categoryArray[0][labelField] : categoryName;
+          const result = {
+            categoryName,
+            rows: categoryArray,
+            label,
+            y: yDisplace,
+            barHeight,
+            hideLabel: isTooSmallForText,
+            color
+          }
+          yDisplace += barHeight;
+          return result;
+        })
+      }
+    });
+  }, [steps, width, height, stepsGroups])
+
   /**
    * We should link values between steps
    */
-  const links = useMemo(function getLinksBetweenSteps() {
-    const links = [];
-    for (let iStep = steps.length - 1; iStep > 0; iStep--) {
-      const step = steps[iStep];
-      const previousStep = steps[iStep - 1];
+  const computedLinks = useMemo(function computeLinks() {
+    // not computing last step
+    return computedSteps.slice(0, computedSteps.length - 1).reduce((allLinks, {
 
-      let iRow = 0;
+      // title,
+      // labelsPosition,
+      x,
+      stepName,
+      items,
+    }, stepIndex) => {
+      const { items: nextStepItems, x: nextStepX } = computedSteps[stepIndex + 1];
+      // keys = next categories, values = next displaces
+      const nextStepYDisplaces = nextStepItems.reduce((categoriesMap, {categoryName: nextCategoryName}) => ({
+        ...categoriesMap,
+        [nextCategoryName]: 0
+      }), {})
+      return items.reduce((linksFromThatItemToNextStep, item) => {
+        const {
+          categoryName,
+          label,
+          y,
+          // barHeight,
+          // hideLabel,
+          color,
+        } = item;
+        let yDisplace = y;
+        
+        return nextStepItems.reduce((linksFromThatItemToThatNextItem, nextItem) => {
+          const {
+            rows: nextRows,
+            categoryName: nextCategoryName,
+            label: nextLabel,
+            y: nextStepY
+          } = nextItem;
+          const matchingRows = nextRows.filter(datum => datum[stepName] === categoryName);
+          const matchingRowsSize = getCategorySize(matchingRows);
+          const matchingRowsHeight = heightScale(matchingRowsSize);
+          yDisplace += matchingRowsHeight;
+          nextStepYDisplaces[nextCategoryName] += matchingRowsHeight;
+          return [
+            ...linksFromThatItemToThatNextItem,
+            {
+              id: `from-${categoryName}-to-${nextCategoryName}`,
+              pathWidth: matchingRowsHeight,
+              labels: [label, nextLabel],
+              color,
+              from: {
+                x: x + nodeWidth,
+                y: yDisplace - matchingRowsHeight / 2,
+                categoryName
+              },
+              to: {
+                x: nextStepX,
+                y: nextStepY + nextStepYDisplaces[nextCategoryName] - matchingRowsHeight / 2,
+                categoryName: nextCategoryName,
+              }
+            }
+          ];
+        }, linksFromThatItemToNextStep)
+      }, allLinks)
+    }, [])
+  }, [computedSteps, getCategorySize, heightScale]);
 
-      const categories = stepsGroup.get(step.field)
-        .sort((a, b) => sortCategories(a, b, step))
 
-      for (let iCategory = 0; iCategory < categories.length; iCategory++) {
-        const [category, rows] = categories[iCategory];
-        rows.sort((a, b) => { // group rows
-          if (a[previousStep.field] < b[previousStep.field]) { return -1; }
-          if (a[previousStep.field] > b[previousStep.field]) { return 1; }
-          return 0;
-        })
-        // aggregate rows by steps
-        let lastRow = undefined;
-        for (const row of rows) {
-          if (lastRow &&
-            lastRow[step.field] === row[step.field] &&
-            lastRow[previousStep.field] === row[previousStep.field]
-          ) {
-            const lastLink = links[links.length - 1];
-            lastLink.length += 1;
-            iRow++;
-            continue;
-          }
-          links.push({
-            from: row[previousStep.field],
-            to: {
-              category: row[step.field],
-              y: iRow
-            },
-            length: 1,
-            id: row.id,
-            isHighlighted: highlightedLinesId && highlightedLinesId.has(row.id)
-          })
-          iRow++;
-          lastRow = row;
-        }
-      }
-    }
-    return links
-  }, [stepsGroup, steps, highlightedLinesId])
-
+  const hasHighlights = highlightedCategoryName !== undefined || highlightedLinkCategoryNames !== undefined;
   return (
     <svg
       {...{ height, width }}
       viewBox={`0 0 ${width} ${height}`}
-      className='AlluvialChart'
+      className={`AlluvialChart ${className} ${hasHighlights ? 'has-highlights' : ''}`}
     >
       {
-        steps.map(({ field: stepName, title: stepTitle, label: labelField }, iStep) => {
-          let iItem = 0;
-          const isHoverMode = highlightedCategoryName !== undefined;
-          const nodeWidth = 10;
-          const itemHeight = itemRange(1);
-          const itemWidth = widthRange(1) - nodeWidth;
-          const itemWidthMiddle = widthRange(1 / 2);
-          const isFinalStep = iStep === steps.length - 1;
-          const group = stepsGroup.get(stepName);
-          const nextStep = steps[iStep + 1];
-          const title = stepTitle || stepName;
+        computedLinks.map(({
+          id,
+          pathWidth,
+          color,
+          from: {
+            x: x1,
+            y: y1,
+            categoryName: fromCategoryName
+          },
+          to: {
+            x: x2,
+            y: y2,
+            categoryName: toCategoryName
+          }
+        }) => {
+          // const reduceOpacity = (isHoverMode && isHighlighted === false) || (highlightedLinesId && isHighlighted === false);
+          const isHighlighted = highlightedCategoryName ?
+           [fromCategoryName, toCategoryName].includes(highlightedCategoryName) :
+            highlightedLinkCategoryNames ?
+            fromCategoryName === highlightedLinkCategoryNames[0] && toCategoryName === highlightedLinkCategoryNames[1]
+            : false;
+          const xMiddle = (x1 + x2) / 2;
+          const handleLinkClick = e => {
+            e.stopPropagation();
+            if (highlightedLinkCategoryNames) {
+              setHighlightedLinkCategoryNames();
+              setHighlightedCategoryName();
+            }
+            else {
+              setHighlightedCategoryName();
+              setHighlightedLinkCategoryNames([fromCategoryName, toCategoryName]);
+            }
+          }
           return (
             <AnimatedGroup
-              transform={`translate(${widthRange(iStep)}, ${0})`}
+              transform={`translate(${0}, ${0})`}
+              
+              key={id}
+              id={id}
+              className={`link ${isHighlighted ? 'is-highlighted' : ''}`}
+              onClick={handleLinkClick}
+            >
+              <AnimatedPath
+                d={`
+                  M ${x1} ${y1}
+                  C ${xMiddle} ${y1}, ${xMiddle} ${y2}, ${x2} ${y2}
+                  `}
+                fill='transparent'
+                stroke={color}
+                strokeWidth={pathWidth}
+              ></AnimatedPath>
+            </AnimatedGroup>
+          )
+        })
+      }
+      {
+        computedSteps.map(({
+          title,
+          labelsPosition,
+          x,
+          stepName,
+          items,
+        }, iStep) => {
+          return (
+            <AnimatedGroup
+              transform={`translate(${x}, ${0})`}
               key={iStep}
               className="step"
             >
               <text
                 className="step-title"
                 y={height}
-                x={isFinalStep ? 0 : 0}
-                textAnchor={isFinalStep ? 'end' : 'start'}
+                x={0}
+                textAnchor={labelsPosition === 'left' ? 'end' : 'start'}
               >
                 {title}
               </text>
 
-              {
-                group.map(([categoryName, categoryArray], iCategory) => {
-                  const isHighlighted = categoryName === highlightedCategoryName;
-                  const categoryLinks = links.filter(({ from }) => from === categoryName);
-                  const color = colorPalette[categoryName] || iwanthue(1, { seed: categoryName });
-                  const linksLength = sum(categoryLinks, d => d.length);
-                  const barHeight = itemRange(categoryArray.length);
-                  const isTooSmallForText = barHeight < 10;
-                  const label = labelField ? categoryArray[0][labelField] : categoryName;
-                  // console.log(categoryName, highlightedCategoryName, isHighlighted)
-                  // const isTooSmallForText = itemRange(linksLength) < 15;
+              { // render step groups
+                items.map(({
+                  categoryName,
+                  label,
+                  y,
+                  barHeight,
+                  hideLabel,
+                  color
+                }, iCategory) => {
+                  let isHighlighted = false;
+                  if (highlightedCategoryName) {
+                    if (categoryName === highlightedCategoryName) {
+                      isHighlighted = true;
+                    } else {
+                      const relatedLink = computedLinks.find((link) => {
+                        if (
+                        (
+                          link.from.categoryName === categoryName  && link.to.categoryName === highlightedCategoryName
+                        )
+                        || 
+                        (
+                          link.to.categoryName === categoryName  && link.from.categoryName === highlightedCategoryName
+                        )
+                        ) {
+                          return true
+                        }
+                      });
+                      if (relatedLink) {
+                        isHighlighted = true;
+                      }
+                    }
+                  } else if (highlightedLinkCategoryNames && highlightedLinkCategoryNames.includes(categoryName)) {
+                    isHighlighted = true;
+                  } 
 
                   const handleClick = (e) => {
                     e.stopPropagation();
                     if (highlightedCategoryName) {
+                      setHighlightedLinkCategoryNames();
                       setHighlightedCategoryName(undefined);
                     } else {
+                      setHighlightedLinkCategoryNames();
                       setHighlightedCategoryName(categoryName);
                     }
                     const linesId = new Set(categoryArray.map(({ id }) => id));
@@ -279,118 +429,30 @@ export default function AlluvialChart({
                     setHighlightedLinesId(linesId);
                   }
                   // labels on the left
-                  if (isFinalStep) {
-                    const text = (
-                      <AnimatedGroup
-                        transform={`translate(${0} ${itemRange(iItem)})`}
-                        key={categoryName}
-                        className={`category ${isHighlighted ? 'is-highlighted' : ''}`}
-                        onClick={handleClick}
-                      >
-                        <rect
-                          className="bar"
-                          x={-nodeWidth}
-                          y={0}
-                          width={nodeWidth}
-                          height={barHeight}
-                          fill={color}
-                          opacity={highlightedCategoryName && categoryName !== highlightedCategoryName ? .5 : 1}
-                        />
-                        <AnimatedText
-                          className={`modality-label ${isTooSmallForText ? 'is-overflowing' : ''}`}
-                          y={itemRange(categoryArray.length / 2) + 5}
-                          x={-nodeWidth * 1.5}
-                          textAnchor='end'
-                        >
-                          {label}
-                        </AnimatedText>
-                      </AnimatedGroup>
-                    )
-
-                    iItem += categoryArray.length;
-
-                    return text;
-                  }
-
-                  // default : labels on the left
+                  // if (isFinalStep) {
                   return (
                     <AnimatedGroup
+                      transform={`translate(${0}, ${y})`}
                       key={categoryName}
                       className={`category ${isHighlighted ? 'is-highlighted' : ''}`}
                       onClick={handleClick}
                     >
-                      <AnimatedGroup
-                        transform={`translate(${0} ${itemRange(iItem)})`}
+                      <rect
+                        className="bar"
+                        x={labelsPosition === 'left' ? -nodeWidth : 0}
+                        y={0}
+                        width={nodeWidth}
+                        height={barHeight}
+                        fill={color}
+                      />
+                      <AnimatedText
+                        className={`modality-label ${hideLabel ? 'is-overflowing' : ''}`}
+                        y={barHeight / 2 + 5}
+                        x={labelsPosition === 'left' ? -nodeWidth * 1.5 : nodeWidth * 1.5}
+                        textAnchor={labelsPosition === 'left' ? 'end' : 'start'}
                       >
-                        <rect
-                          className="bar"
-                          x={0}
-                          y={0}
-                          width={nodeWidth}
-                          height={barHeight}
-                          // fill={highlightedCategoryName && categoryName !== highlightedCategoryName ? 'grey' : 'black'}
-                          fill={color}
-                          opacity={highlightedCategoryName && categoryName !== highlightedCategoryName ? .5 : 1}
-                        />
-                        <AnimatedText
-                          y={itemRange(linksLength) / 2 + 5}
-                          x={nodeWidth * 1.5}
-                          className={`modality-label ${isTooSmallForText ? 'is-overflowing' : ''}`}
-                        >
-                          {label}
-                        </AnimatedText>
-                      </AnimatedGroup>
-
-                      {
-                        categoryLinks.map(({ from, to, length, id, isHighlighted }, iCategoryItem) => {
-                          const reduceOpacity = (isHoverMode && isHighlighted === false) || (highlightedLinesId && isHighlighted === false);
-                          // path stroke grow from the middle of the path, we must balance coordinates by 'strokeWidth'
-                          const middlePath = itemHeight * length / 2;
-                          const curve = {
-                            a1: `${itemWidthMiddle} ${itemRange(iItem) + middlePath}`,
-                            b1: `${itemWidthMiddle} ${itemRange(to.y) + middlePath}`,
-                            b: `${itemWidth} ${itemRange(to.y) + middlePath}`
-                          }
-                          links.filter(({ highlighted }) => highlighted === true);
-                          const handleLinkClick = e => {
-                            e.stopPropagation();
-                            const linesId = new Set(categoryArray.filter((obj) => {
-                              const thatTo = obj[nextStep.field];
-                              return thatTo === to.category;
-                            }).map(({ id }) => id));
-                            if (isEqual(highlightedLinesId, linesId)) {
-                              setHighlightedLinesId(undefined);
-                              return;
-                            }
-                            setHighlightedLinesId(linesId);
-                          }
-                          const path = (
-                            <AnimatedGroup
-                              transform={`translate(${nodeWidth}, ${0})`}
-                              style={{
-                                mixBlendMode: 'multiply'
-                              }}
-                              key={`${from}-${to.category}`}
-                              className="link"
-                              onClick={handleLinkClick}
-                            >
-                              <AnimatedPath
-                                d={`
-                                                                M 0 ${itemRange(iItem) + middlePath}
-                                                                C ${curve.a1}, ${curve.b1}, ${curve.b}
-                                                                `}
-                                fill='transparent'
-                                stroke={color}
-                                strokeWidth={itemHeight * length}
-                                opacity={reduceOpacity ? 0.2 : 1}
-                              ></AnimatedPath>
-                            </AnimatedGroup>
-                          )
-                          iItem += length;
-
-                          return path;
-                        })
-                      }
+                        {label}
+                      </AnimatedText>
                     </AnimatedGroup>
                   )
                 })
@@ -399,6 +461,6 @@ export default function AlluvialChart({
           )
         })
       }
-    </svg>
+    </svg >
   )
 }

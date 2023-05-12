@@ -1,43 +1,60 @@
 .AlluvialChart {
-    padding: 0 1rem;
-    box-sizing: border-box;
+  padding: 0 1rem;
+  box-sizing: border-box;
 
-    .category {
-      cursor: pointer;
-      .modality-label {
-        font-size: 10px;
-        font-weight: bold;
-        fill: black;
-        cursor: pointer;
-        opacity: 1;
-        transition: .5s ease all;
-        &.is-overflowing {
-          opacity: 0;
-        }
-      }
-      &:hover,
-      &.is-highlighted {
-        .modality-label.is-overflowing {
-          opacity: 1;
-        }
-      }
-
-      .bar {
-        stroke: white;
-        stroke-width: 1px;
-      }
-    }
-
-    
-
-    .step-title {
-      font-size: 16px;
-      fill: black;
-      font-style: italic;
+  .category {
+    transition: 0.5s ease all;
+    cursor: pointer;
+    .modality-label {
+      font-size: 10px;
       font-weight: bold;
+      fill: black;
+
+      cursor: pointer;
+      opacity: 1;
+      transition: 0.5s ease all;
+      &.is-overflowing {
+        opacity: 0;
+      }
+    }
+    &:hover,
+    &.is-highlighted {
+      .modality-label.is-overflowing {
+        opacity: 1;
+      }
     }
 
-    .link{
-      // pointer-events: none;
+    .bar {
+      stroke: white;
+      stroke-width: 1px;
     }
+  }
+
+  .link {
+    mix-blend-mode: multiply;
+    cursor: pointer;
+  }
+
+  .step-title {
+    font-size: 16px;
+    fill: black;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  &.has-highlights {
+    .category {
+      opacity: 0.1;
+      &.is-highlighted {
+        opacity: 1;
+      }
+    }
+
+    .link {
+      opacity: 0.1;
+      &.is-highlighted {
+        opacity: 1;
+      }
+    }
+  }
 }
