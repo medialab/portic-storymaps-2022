@@ -3,16 +3,16 @@ import { useState, useEffect } from "react";
 import AlluvialChart from "../../components/AlluvialChart";
 
 
-export default function ResumeActivitesDunkerquois ({
-  data, 
-  width, 
-  height, 
-  lang, 
-  atlasMode, 
+export default function ResumeActivitesDunkerquois({
+  data,
+  width,
+  height,
+  lang,
+  atlasMode,
   callerProps = {}
 }) {
   const {
-    year  : inputYear = '1787'
+    year: inputYear = '1787'
   } = callerProps;
 
   const [year, setYear] = useState(inputYear)
@@ -53,31 +53,32 @@ export default function ResumeActivitesDunkerquois ({
 
   return (
     <div className="ResumeActivitesDunkerquois">
-      <AlluvialChart {...{
-        data,
-        steps,
-        // quantifierField: 'rel_tonnage',
-        dimensions: { width, height },
-        colorPalette: {
-          ...Array.from(new Set(data
-            .sort((a, b) => {
-              if (a.ship_tonnage_class_ranking > b.ship_tonnage_class_ranking) {
-                return 1;
-              }
-              return -1;
-            })
-            .map(d => d.ship_tonnage_class)))
-          .reduce((res, tonnageClass, index) => ({...res, [tonnageClass]: `rgba(0,0,0, ${(index + 1) / 7})`}), {}),
+      <AlluvialChart
+        {...{
+          data,
+          steps,
+          quantifierField: 'rel_tonnage',
+          dimensions: { width, height },
+          colorPalette: {
+            ...Array.from(new Set(data
+              .sort((a, b) => {
+                if (a.ship_tonnage_class_ranking > b.ship_tonnage_class_ranking) {
+                  return 1;
+                }
+                return -1;
+              })
+              .map(d => d.ship_tonnage_class)))
+              .reduce((res, tonnageClass, index) => ({ ...res, [tonnageClass]: `rgba(0,0,0, ${(index + 1) / 7})` }), {}),
 
-          ...Array.from(new Set(data.map(d => d.departure)))
-          .reduce((res, port) => ({...res, [port]: 'grey'}), {}),
-          ...Array.from(new Set(data.map(d => d.destination_state)))
-          .reduce((res, port) => ({...res, [port]: 'grey'}), {}),
+            ...Array.from(new Set(data.map(d => d.departure)))
+              .reduce((res, port) => ({ ...res, [port]: 'grey' }), {}),
+            ...Array.from(new Set(data.map(d => d.destination_state)))
+              .reduce((res, port) => ({ ...res, [port]: 'grey' }), {}),
 
-          'Dunkerque': 'red',
-          'France': 'red',
-        }
-      }} 
+            'Dunkerque': 'red',
+            'France': 'red',
+          }
+        }}
       />
     </div>
   )
