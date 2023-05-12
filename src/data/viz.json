@@ -394,7 +394,9 @@
         "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
-        "outputs": [],
+        "outputs": [
+            "imports-dunkerque-vs-ports-francs.csv"
+        ],
         "cacher_atlas": ""
     },
     "exports-vs-smogglage": {

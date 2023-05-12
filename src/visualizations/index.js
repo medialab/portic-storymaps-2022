@@ -35,6 +35,7 @@ import DepartsFrVersAngleterre from './DepartsFrVersAngleterre';
 import DestinationsGbVersGb from './DestinationsGbVersGb';
 import SchemaSources from './SchemaSources';
 import ResumeActivitesDunkerquois from './ResumeActivitesDunkerquois';
+import ImportsDunkerqueVsPortsFrancs from './ImportsDunkerqueVsPortsFrancs';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -208,6 +209,8 @@ export default function VisualizationController({
         return <SchemaSources {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'resume-activite-dunkerquois':
         return <ResumeActivitesDunkerquois {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'imports-dunkerque-vs-ports-francs':
+        return <ImportsDunkerqueVsPortsFrancs {...{ data, width, height, lang, atlasMode, callerProps }} />
       default:
         return (
           <img
