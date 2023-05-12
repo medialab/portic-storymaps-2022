@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useMemo } from 'react';
 
 import AlluvialChart from '../../components/AlluvialChart'
 
+import './SmogglageStatus.scss';
+
 export default function SmogglageStatus({
   data,
   width,
@@ -52,7 +54,9 @@ export default function SmogglageStatus({
 
   return (
     <>
-      <AlluvialChart {...{
+      <AlluvialChart 
+        className="SmogglageStatus"
+      {...{
         data: vizData,
         steps,
         dimensions: { width, height },
