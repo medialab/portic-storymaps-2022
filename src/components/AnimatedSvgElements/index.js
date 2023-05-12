@@ -1,18 +1,21 @@
 import { useSpring, animated } from 'react-spring';
 
 export function AnimatedGroup({
-    children,
-    style,
-    onClick,
-    ...props
+  children,
+  style,
+  onClick,
+  className,
+  onMouseEnter,
+  onMouseLeave,
+  ...props
 }) {
-    const animatedProps = useSpring(props);
+  const animatedProps = useSpring(props);
 
-    return (
-        <animated.g {...animatedProps} onClick={onClick} style={style}>
-            {children}
-        </animated.g>
-    )
+  return (
+    <animated.g {...animatedProps} className={className} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={style}>
+      {children}
+    </animated.g>
+  )
 }
 export function AnimatedForeignObject({
   children,
@@ -22,9 +25,9 @@ export function AnimatedForeignObject({
   const animatedProps = useSpring(props);
 
   return (
-      <animated.foreignObject {...animatedProps} style={style}>
-          {children}
-      </animated.foreignObject>
+    <animated.foreignObject {...animatedProps} style={style}>
+      {children}
+    </animated.foreignObject>
   )
 }
 
@@ -37,9 +40,9 @@ export function AnimatedText({
   const animatedProps = useSpring(props);
 
   return (
-      <animated.text {...animatedProps} onClick={onClick} style={style}>
-          {children}
-      </animated.text>
+    <animated.text {...animatedProps} onClick={onClick} style={style}>
+      {children}
+    </animated.text>
   )
 }
 
@@ -52,9 +55,9 @@ export function AnimatedCircle({
   const animatedProps = useSpring(props);
 
   return (
-      <animated.circle {...animatedProps} style={style}>
-          {children}
-      </animated.circle>
+    <animated.circle {...animatedProps} style={style}>
+      {children}
+    </animated.circle>
   )
 }
 
@@ -67,23 +70,24 @@ export function AnimatedLine({
   const animatedProps = useSpring(props);
 
   return (
-      <animated.line {...animatedProps} style={style}>
-          {children}
-      </animated.line>
+    <animated.line {...animatedProps} style={style}>
+      {children}
+    </animated.line>
   )
 }
 
 export function AnimatedPath({
   onClick,
+  className,
   ...props
 }) {
   const mouseProps = Object.keys(props).filter(key => key.includes('Mouse'))
-  .reduce((res, key) => ({...res, [key]: props[key]}), {});
-    const animatedProps = useSpring(props);
+    .reduce((res, key) => ({ ...res, [key]: props[key] }), {});
+  const animatedProps = useSpring(props);
 
-    return (
-        <animated.path onClick={onClick} {...animatedProps} {...mouseProps} />
-    )
+  return (
+    <animated.path className={className} onClick={onClick} {...animatedProps} {...mouseProps} />
+  )
 }
 
 export function AnimatedRect({
@@ -92,6 +96,6 @@ export function AnimatedRect({
   const animatedProps = useSpring(props);
 
   return (
-      <animated.rect {...animatedProps} />
+    <animated.rect {...animatedProps} />
   )
 }

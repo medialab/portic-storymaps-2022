@@ -1,0 +1,49 @@
+
+
+.ImportsDunkerqueVsPortsFrancs {
+
+  .ui-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .ui-column {
+      flex: 1;
+      text-align: center;
+      &:first-of-type {
+        text-align: left;
+      }
+      &:last-of-type {
+        text-align: right;
+      }
+
+      select {
+        background: inherit;
+        color: inherit;
+        font-size: inherit;
+        border: none;
+        font-weight: inherit;
+        font-family: inherit;
+      }
+    }
+  }
+  .link {
+    fill: transparent;
+    stroke: lightgrey;
+    stroke-dasharray: 2,2;
+  }
+  .link,
+  .group {
+    transition: .5s ease all;
+  }
+
+  &.has-highlights {
+    .link,
+    .group {
+      opacity: .1;
+      &.is-highlighted {
+        opacity: 1;
+      }
+    }
+  }
+}
