@@ -11,17 +11,17 @@ Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
 Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
 Noirmoutier,Noirmoutier,France,France,France,2010.0,27
+Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
+Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Saint-Malo,Saint-Malo,France,France,France,6853.0,78
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
 Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
 Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
-Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
 Marennes,Marennes,France,France,France,405.0,7
 Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
 Dort,Dort,étranger,Provinces-Unies,United Provinces,772.0,8
 Nantes,Nantes,France,France,France,2439.0,32
-Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Burnham,Burnham,Grande Bretagne,Grande-Bretagne,Great Britain,840.0,70
 Roque de Thau,Roque de Thau,France,France,France,624.0,9
 Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
@@ -214,27 +214,21 @@ Rhode Island,Rhode Island,étranger,Etats-Unis d'Amérique,United States,160.0,1
 Charleston,Charleston,étranger,Etats-Unis d'Amérique,United States,100.0,1
 Dublin,Dublin,Grande Bretagne,Grande-Bretagne,Great Britain,160.0,1
 Newry,Newry,Grande Bretagne,Grande-Bretagne,Great Britain,180.0,1
+Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
 Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
 Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Roscoff,Roscoff,France,France,France,96.0,1
 Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
 Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
-Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
-Quiberon,Quiberon,France,France,France,90.0,1
-Arzon,Arzon,France,France,France,90.0,1
-Norden,Norden,étranger,Prusse,Prussia,50.0,1
 Christiania / Oslo,Oslo,étranger,Danemark,Denmark,570.0,4
 Tabago / Tobago,Tobago,France,France,France,40.0,1
 Durgerdam,Durgerdam,étranger,Provinces-Unies,United Provinces,110.0,1
 Delfzijl,Delfzijl,étranger,Provinces-Unies,United Provinces,200.0,2
 Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
 Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
-île d'Aix,île d'Aix,France,France,France,110.0,1
-Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Quimper,Quimper,France,France,France,95.0,1
-Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
-Moss,Moss,étranger,Danemark,Denmark,295.0,2
-Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
+Quiberon,Quiberon,France,France,France,90.0,1
+Arzon,Arzon,France,France,France,90.0,1
+Norden,Norden,étranger,Prusse,Prussia,50.0,1
 Petersburg,Petersburg,étranger,Etats-Unis d'Amérique,United States,150.0,1
 Cowes,Cowes,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Quillebeuf,Quillebeuf,France,France,France,96.0,1
@@ -243,6 +237,7 @@ Pornic,Pornic,France,France,France,50.0,1
 Belle-Île-en-Mer,Belle-Île-en-Mer,France,France,France,140.0,2
 Winchelsea,Winchelsea,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Hartlepool,Hartlepool,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
+Moss,Moss,étranger,Danemark,Denmark,295.0,2
 Southend,Southend,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Aldeburgh,Aldeburgh,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Kragerø,Kragerø,étranger,Danemark,Denmark,80.0,1
@@ -254,4 +249,9 @@ Anstruther,Anstruther,Grande Bretagne,Grande-Bretagne,Great Britain,110.0,1
 Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
+île d'Aix,île d'Aix,France,France,France,110.0,1
+Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
+Quimper,Quimper,France,France,France,95.0,1
+Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
+Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
 Camaret,Camaret,France,France,France,66.0,1
