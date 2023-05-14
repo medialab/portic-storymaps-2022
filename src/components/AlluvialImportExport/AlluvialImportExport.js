@@ -5,7 +5,7 @@ import { groups, max, sum } from 'd3-array'
 import { formatNumber, partialCirclePathD } from "../../utils/misc";
 import iwanthue from 'iwanthue';
 
-import { AnimatedPath, AnimatedGroup, AnimatedRect } from '../AnimatedSvgElements';
+// import { path, g, rect } from '../AnimatedSvgElements';
 
 import './AlluvialImportExport.scss';
 
@@ -36,20 +36,21 @@ export default function AlluvialImportExport({
   colorPalette = {},
   ...props
 }) {
-  const [focus, setFocus] = useReducer((currentState, action) => {
-    let { actionType, itemType, itemValue, mode } = action;
-    if (currentState && itemValue === currentState.itemValue) { actionType = 'reset' }
-    switch (actionType) {
-      case 'set':
-        return {
-          itemType,
-          itemValue,
-          mode
-        }
-      case 'reset':
-        return undefined;
-    }
-  }, undefined);
+  const [highlightedItem, setHighlightedItem] = useState();
+  // const [focus, setFocus] = useReducer((currentState, action) => {
+  //   let { actionType, itemType, itemValue, mode } = action;
+  //   if (currentState && itemValue === currentState.itemValue) { actionType = 'reset' }
+  //   switch (actionType) {
+  //     case 'set':
+  //       return {
+  //         itemType,
+  //         itemValue,
+  //         mode
+  //       }
+  //     case 'reset':
+  //       return undefined;
+  //   }
+  // }, undefined);
 
   const { width, height } = dimensions;
   const barWidth = 70;
@@ -62,50 +63,11 @@ export default function AlluvialImportExport({
 
   const data = useMemo(() => {
     // sort to get 'fraude' partner type on top of alluvial
-    inputData = inputData.sort(({ partner_type: aPartner }) => {
+    return inputData.sort(({ partner_type: aPartner }) => {
       if (aPartner === 'Fraude') { return -1; }
       if (aPartner !== 'Fraude') { return 1; }
       return 0;
     })
-    if (focus && focus.mode === 'filter') {
-      switch (focus.itemType) {
-        case 'product':
-          return inputData.filter(({ product_type }) => product_type === focus.itemValue);
-        case 'partner':
-          return inputData.filter(({ partner_type }) => partner_type === focus.itemValue);
-      }
-    }
-    if (focus && focus.mode === 'highlight') {
-      switch (focus.itemType) {
-        case 'product':
-          return inputData.map((row) => {
-            if (row['product_type'] === focus.itemValue) {
-              return {
-                isHighlight: true,
-                ...row
-              }
-            }
-            return {
-              isHighlight: false,
-              ...row
-            }
-          })
-        case 'partner':
-          return inputData.map((row) => {
-            if (row['partner_type'] === focus.itemValue) {
-              return {
-                isHighlight: true,
-                ...row
-              }
-            }
-            return {
-              isHighlight: false,
-              ...row
-            }
-          })
-      }
-    }
-    return inputData;
   }, [inputData, focus])
 
   const products = useMemo(function groupProducts() {
@@ -122,7 +84,9 @@ export default function AlluvialImportExport({
     centerCircleHeight,
     scaleValue,
     productsImportValue,
-    partnersMaxValue
+    partnersMaxValue,
+    sumFraudeImports,
+    sumFraudeExports
   } = useMemo(function getHeightForDraw() {
     /**
      * To size product bar,
@@ -145,6 +109,14 @@ export default function AlluvialImportExport({
         max([productImportTotal, productExportTotal])
       ];
     });
+    const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && p.partner_type === 'Fraude')], []);
+    const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && p.partner_type === 'Fraude')], []);
+    const sumFraudeImports = sum(
+      fraudeImports
+    , d => d.value);
+    const sumFraudeExports = sum(
+      fraudeExports
+    , d => d.value);
     const productsTotalImportValue = sum(productsImportValue, d => d[1]);
     productsImportValue = Object.fromEntries(productsImportValue);
 
@@ -188,109 +160,135 @@ export default function AlluvialImportExport({
       centerCircleHeight,
       scaleValue,
       productsImportValue,
-      partnersMaxValue
+      partnersMaxValue,
+      sumFraudeImports,
+      sumFraudeExports,
     }
   }, [height, products, partners]);
-
   /**
    * We sum the value, item by item, to increment the value and deduce the 'y'
    * position of product/partners.
    */
 
   const {
-    productsDraw, // each product with its initial value, sum with previous elements, ready to be scaled on pixels ('y' position)
-    partnersDraw,
+    visProducts, // each product with its initial value, sum with previous elements, ready to be scaled on pixels ('y' position)
+    visPartners,
     links // each data line, refactor as a directionnal link, 'from' -> 'to
   } = useMemo(function positionElements() {
     const productsImportSorted = Object.entries(productsImportValue).sort(sortEntriesByValue);
-    const productsDraw = [];
-    let iProductsImportValue = 0;
+    const visProducts = [];
+    const visProductsMap = {};
+    let displacement = 0;
     for (const [product, value] of productsImportSorted) {
-      productsDraw.push([
+      const item = {
         product,
-        iProductsImportValue
-      ]);
-      iProductsImportValue += value;
+        barHeight: scaleValue(value),
+        y: scaleValue(displacement),
+      };
+      visProducts.push(item);
+      visProductsMap[product] = item.y;
+      displacement += value;
     }
 
     const partnersMaxSorted = Object.entries(partnersMaxValue).sort(sortEntriesByValue);
-    const partnersDraw = [];
-    let iPartnersImportValue = 0;
+    const visPartners = [];
+    const visPartnersMap = {};
+    displacement = 0;
     for (const [partner, value] of partnersMaxSorted) {
-      partnersDraw.push([
+      const item = {
         partner,
-        iPartnersImportValue
-      ]);
-      iPartnersImportValue += value;
-    }
-
-    const links = {
-      ['Imports']: [], // left side
-      ['Exports']: [] // right side
-    };
-    // dict to increment value ('y' position) for each product/partner, on left side and right side
-    const iProduct = {
-      ['Imports']: Object.fromEntries(productsDraw),
-      ['Exports']: Object.fromEntries(productsDraw)
-    };
-    const iPartner = {
-      ['Imports']: Object.fromEntries(partnersDraw),
-      ['Exports']: Object.fromEntries(partnersDraw)
-    };
-
-    for (const [product, productArray] of products) {
-      for (const { value, partner_type, importsexports, isHighlight } of productArray) {
-        const yProduct = iProduct[importsexports][product];
-        const yPartner = iPartner[importsexports][partner_type];
-        const isFraude = partner_type === 'Fraude';
-        let item = {
-          value,
-          product,
-          isFraude,
-          isHighlight
-        };
-        switch (importsexports) {
-          case 'Imports':
-            item = {
-              ...item,
-              from: {
-                partner_type,
-                y: scaleValue(yPartner)
-              },
-              to: {
-                product,
-                y: scaleValue(yProduct)
-              }
-            }
-            break;
-
-          case 'Exports':
-            item = {
-              ...item,
-              from: {
-                product,
-                y: scaleValue(yProduct)
-              },
-              to: {
-                partner_type,
-                y: scaleValue(yPartner)
-              }
-            }
-            break;
-        }
-        links[importsexports].push(item);
-        iProduct[importsexports][product] += value; // increment
-        iPartner[importsexports][partner_type] += value;
+        barHeight: scaleValue(value),
+        y: scaleValue(displacement),
       }
+      visPartners.push(item);
+      visPartnersMap[partner] = item.y;
+      displacement += value;
     }
+
+    const displacementsMaps = {
+      'Imports': {},
+      'Exports': {}
+    }
+    let { importsLinks, exportsLinks } = products
+      .sort((a, b) => {
+        if (visProductsMap[a[0]] > visProductsMap[b[0]]) {
+          return -1;
+        }
+        return 1;
+      })
+      .reduce((res, [product, flows]) => {
+        return flows.filter(f => f)
+          .sort((a, b) => {
+            // if (a.importexports === b.importexports && a.partner_type && 'Fraude' && b.partner_type !== 'Fraude') {
+            //   return -1;
+            // }
+            // else 
+            if (a.partner_type === 'Fraude') {
+              return -1;
+            }
+            else if (visPartnersMap[a.partner_type] > visPartnersMap[b.partner_type]) {
+              return -1;
+            }
+            return 1;
+          })
+          .reduce((res2, { value, partner_type, importsexports }) => {
+            const yProduct = visProductsMap[product];
+            const yPartner = visPartnersMap[partner_type];
+            const strokeWidth = scaleValue(value)
+            if (displacementsMaps[importsexports][partner_type] === undefined) {
+              displacementsMaps[importsexports][partner_type] = 0;
+            }
+            if (displacementsMaps[importsexports][product] === undefined) {
+              displacementsMaps[importsexports][product] = 0;
+            }
+            const isFraude = partner_type === 'Fraude';
+            const arrKey = importsexports === 'Exports' ? 'exportsLinks' : 'importsLinks';
+            const fromKey = importsexports === 'Exports' ? partner_type : product;
+            const toKey = importsexports === 'Exports' ? product : partner_type;
+            const fromY = importsexports === 'Imports' ? yPartner + displacementsMaps[importsexports][partner_type] : yProduct + displacementsMaps[importsexports][product];
+            const toY = importsexports === 'Imports' ? yProduct + displacementsMaps[importsexports][product] : yPartner + + displacementsMaps[importsexports][partner_type];
+            displacementsMaps[importsexports][partner_type] += strokeWidth;
+            displacementsMaps[importsexports][product] += strokeWidth;
+            return {
+              ...res2,
+              [arrKey]: [
+                ...res2[arrKey],
+                {
+                  value,
+                  strokeWidth,
+                  product,
+                  isFraude,
+                  type: importsexports,
+                  from: {
+                    key: fromKey,
+                    y: fromY
+                  },
+                  to: {
+                    key: toKey,
+                    y: toY
+                  }
+                }
+              ]
+            }
+          }, res)
+      }, {
+        importsLinks: [],
+        exportsLinks: []
+      });
+
     return {
-      links,
-      productsDraw,
-      partnersDraw
+      links: {
+        'Imports': importsLinks,
+        'Exports': exportsLinks,
+      },
+      visProducts,
+      visPartners
     };
   }, [products, partners, scaleValue]);
 
   const labelMargin = 2;
+
+  const arrowSize = 20;
 
   return (
     <svg
@@ -298,7 +296,8 @@ export default function AlluvialImportExport({
         width,
         height
       }}
-      className="AlluvialImportExport"
+      className={`AlluvialImportExport ${highlightedItem ? 'has-highlights' : ''}`}
+
     >
       <rect
         x={0}
@@ -306,376 +305,307 @@ export default function AlluvialImportExport({
         width={width}
         height={height}
         fill='transparent'
-        onMouseMove={() => {
-          if (focus) {
-            setFocus({ actionType: 'reset' })
-          }
-        }}
+        onMouseOver={() => setHighlightedItem()}
+
+      // onMouseMove={() => {
+      //   if (focus) {
+      //     setFocus({ actionType: 'reset' })
+      //   }
+      // }}
       />
       <defs>
         <marker id='arrow-head' orient='auto' markerWidth='10' markerHeight='6' refX='0.1' refY='2'>
           <path d='M0,0 V4 L2,2 Z' fill='black' />
         </marker>
-        <marker id='arrow-head-white' orient='auto' markerWidth='20' markerHeight='12' refX='0.1' refY='4'>
+        <marker id='arrow-head-white' orient='auto' markerWidth={arrowSize} markerHeight='12' refX='0.1' refY='4'>
           <path d='M0,0 V8 L4,4 Z' fill='black' />
         </marker>
       </defs>
-      <AnimatedGroup
+      <g
         className="product-bar"
         transform={`translate(${width / 2 - barWidth / 2}, ${0})`}
       >
         {
-          productsDraw.map(([product, y], i) => {
-            y = scaleValue(y);
-            const productScale = scaleValue(productsImportValue[product]);
+          visProducts.map(({ product, barHeight, y }, i) => {
+            // @todo improve resilience of the following
+            const labelNbLines = product.length > 10 ? 2 : 1;
             const color = colorPalette[product] || iwanthue(1, { seed: product });
-            const isTooSmallForText = productScale < 25;
-            const isNotHighlight = (focus && focus.mode === 'highlight' && focus.itemValue !== product)
+            const isTooSmallForText = barHeight < 25;
+            let isHighlighted = false;
+            if (highlightedItem) {
+              if (highlightedItem.type === 'product' && highlightedItem.value === product) {
+                isHighlighted = true;
+              } else if (highlightedItem.type === 'link' && highlightedItem.value.includes(product)) {
+                isHighlighted = true;
+              }
+            }
             return (
               <g
                 transform={`translate(${0}, ${y})`}
-                onDoubleClick={() => setFocus({
-                  actionType: 'set',
-                  itemType: 'product',
-                  mode: 'filter',
-                  itemValue: product
-                })}
-                onClick={
-                  () => setFocus({
-                    actionType: 'set',
-                    itemType: 'product',
-                    mode: 'highlight',
-                    itemValue: product
-                  })
-                }
-                onMouseMove={
-                  () => {
-                    if (!(focus && focus.itemType === 'product' && focus.itemValue === product))
-                      setFocus({
-                        actionType: 'set',
-                        itemType: 'product',
-                        mode: 'highlight',
-                        itemValue: product
-                      })
-                  }
-                }
+                onMouseOver={() => setHighlightedItem({ type: 'product', value: product })}
                 key={i}
-                className="modality-group"
+                className={`modality-group ${isHighlighted ? 'is-highlighted' : ''} ${isTooSmallForText ? 'is-overflowing' : ''}`}
               >
-                <AnimatedRect
-                  x={0}
+                <rect
+                  x={1}
                   y={0}
-                  width={barWidth}
-                  height={productScale}
+                  width={barWidth - 2}
+                  height={barHeight - 1}
                   fill={color}
-                  opacity={(isNotHighlight ? 0.2 : 1)}
                   className="modality-rect"
                 />
-                {(isTooSmallForText === false || isNotHighlight === false) &&
-                  <text
-                    y={productScale / 2 + labelMargin}
-                    x={barWidth / 2}
+                <foreignObject
+                  x={0}
+                  y={barHeight / 2 - labelNbLines * 5 - 5}
+                  width={barWidth}
+                  height={barHeight}
+                >
+                  <div
+                    xmlns="http://www.w3.org/1999/xhtml"
                     className="modality-label"
-                  >
-                    {product}
-                  </text>
-                }
+                  >{product}</div>
+                </foreignObject>
               </g>
             )
           })
         }
-      </AnimatedGroup>
-      <AnimatedGroup
+      </g>
+      <g
         className="partner-bar"
         transform={`translate(${width / 2 - barWidth / 2}, ${productBarHeight + centerCircleHeight})`}
       >
         {
-          partnersDraw.map(([partner, y], i) => {
-            y = scaleValue(y);
-            const partnerScale = scaleValue(partnersMaxValue[partner]);
+          visPartners.map(({ partner, barHeight, y }, i) => {
             const color = colorPalette[partner] || iwanthue(1, { seed: partner });
+            const isTooSmallForText = barHeight < 25;
+            let isHighlighted = false;
+            const labelNbLines = partner.length > 10 ? 2 : 1;
+            if (highlightedItem) {
+              if (highlightedItem.type === 'partner' && highlightedItem.value === partner) {
+                isHighlighted = true;
+              } else if (highlightedItem.type === 'link' && highlightedItem.value.includes(partner)) {
+                isHighlighted = true;
+              }
+            }
             return (
               <g
                 transform={`translate(${0}, ${y})`}
+                onMouseOver={() => setHighlightedItem({ type: 'partner', value: partner })}
                 key={i}
-                onDoubleClick={() => setFocus({
-                  actionType: 'set',
-                  itemType: 'partner',
-                  mode: 'filter',
-                  itemValue: partner
-                })}
-                onClick={
-                  () => setFocus({
-                    actionType: 'set',
-                    itemType: 'partner',
-                    mode: 'highlight',
-                    itemValue: partner
-                  })
-                }
-                onMouseMove={
-                  () => {
-                    if (!(focus && focus.itemType === 'partner' && focus.itemValue === partner))
-                      setFocus({
-                        actionType: 'set',
-                        itemType: 'partner',
-                        mode: 'highlight',
-                        itemValue: partner
-                      })
-                  }
-                }
-                className="modality-group"
+                className={`modality-group ${isHighlighted ? 'is-highlighted' : ''} ${isTooSmallForText ? 'is-overflowing' : ''}`}
               >
                 <rect
-                  x={0}
+                  x={1}
                   y={0}
-                  width={barWidth}
-                  height={partnerScale}
+                  width={barWidth - 2}
+                  height={barHeight - 1}
                   fill={color}
                   className="modality-rect"
                 />
                 {
                   partner !== 'Fraude' &&
-                  <text
-                    y={partnerScale / 2 - labelMargin}
-                    x={barWidth / 2}
-                    className="modality-label"
+                  <foreignObject
+                    x={0}
+                    y={barHeight / 2 - labelNbLines * 5 - 5}
+                    width={barWidth}
+                    height={barHeight}
                   >
-                    {partner}
-                  </text>
+                    <div
+                      xmlns="http://www.w3.org/1999/xhtml"
+                      className="modality-label"
+                    >{partner}</div>
+                  </foreignObject>
+                  // <text
+                  //   y={barHeight / 2 - labelMargin}
+                  //   x={barWidth / 2}
+                  //   className="modality-label"
+                  // >
+                  //   {partner}
+                  // </text>
                 }
               </g>
             )
           })
         }
-      </AnimatedGroup>
+      </g>
       <g>
         {
-          links['Imports'].map(({ from, to, value, product, isFraude, isHighlight }, i) => {
-            const color = colorPalette[product] || iwanthue(1, { seed: product });
-            const strokeWidth = scaleValue(value);
-            const strokeWidthMiddle = strokeWidth / 2;
-            const isTooSmallForText = strokeWidth < 25;
-            return (
-              <g
-                transform={`translate(${width / 2 - barWidth / 2}, ${to.y + strokeWidthMiddle})`}
-                key={i}
-                className="flow-group import"
-                // id={`from-${from.partner_type}-to-${to}-withproduct-${product.product_type}`}
-                style={{
-                  mixBlendMode: 'multiply'
-                }}
-              >
-                {
-                  isFraude ?
-                    <>
-                      <AnimatedPath
-                        transform={'scale(-1,1)'}
-                        d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3 - 40} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
-                        }
-                        fill={color}
-                        fillOpacity={.5}
-                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-
-                      />
-                      <AnimatedPath
-                        transform={'scale(-1,1)'}
-
-                        d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3 - 40} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
-                        }
-                        fill={'url(#diagonalHatch)'}
-                        opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                        onMouseMove={
-                          () => {
-                            if (!(focus && focus.itemType === 'product' && focus.itemValue === product)) {
-                              setFocus({
-                                actionType: 'set',
-                                itemType: 'product',
-                                mode: 'highlight',
-                                itemValue: product
-                              })
-                            }
-                          }
-                        }
-                      />
-                    </>
-                    :
-                    <AnimatedPath
-                      d={
-                        partialCirclePathD(
-                          0,
-                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                          Math.PI / 2,
-                          Math.PI * 3 / 2,
-                        )
-                      }
-                      strokeWidth={strokeWidth}
-                      stroke={color}
-                      fill='transparent'
-
-                      opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                    />
-                }
-                {
-                  !isTooSmallForText &&
-                  <AnimatedPath
-                    className="dashed-flow-arrow"
-                    d={
-                      isFraude ?
-                        `
-                                            M ${0} ${0}
-                                            L ${width} ${0}
-                                            `
-                        :
-                        partialCirclePathD(
-                          0,
-                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                          (height - (to.y) - (partnerBarHeight - from.y)) / 2,
-                          Math.PI / 2,
-                          Math.PI * 3 / 2,
-                        )
-                    }
-                    strokeWidth={'1'}
-                    stroke='black'
-                    strokeDasharray='5, 5'
-                    fill={'none'}
-                    markerEnd='url(#arrow-head-white)'
-                    opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.05 : .5)}
-                  />
-                }
-
-                {isTooSmallForText === false &&
-                  <text x={-5} y={5} className="number-label left">
-                    {formatNumber(value) + ' lt.'}
-                  </text>
-                }
-              </g>
-            )
-          })
-        }
-        {
-          links['Exports']
-            .reverse()
-            .map(({ from, to, value, product, isFraude, isHighlight }, i) => {
-              const color = colorPalette[product] || iwanthue(1, { seed: product });
-              const strokeWidth = scaleValue(value);
-              const strokeWidthMiddle = strokeWidth / 2;
-              const isTooSmallForText = strokeWidth < 25;
-
+          Object.entries(links)
+            .map(([linkType, theseLinks]) => {
               return (
-                <g
-                  transform={`translate(${width / 2 + barWidth / 2}, ${from.y + strokeWidthMiddle})`}
-                  key={i}
-                  className="flow-group export"
-                  id={`from-${from.product}-to-${to.partner_type}`}
-                  style={{
-                    mixBlendMode: 'multiply'
-                  }}
-
-                >
+                <g key={linkType} id={linkType}>
                   {
-                    isFraude ?
-                      <>
-                        <AnimatedPath
-                          d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
-                          }
-                          fill={color}
-                          fillOpacity={.5}
-                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
+                    theseLinks
+                      // .sort((a, b) => {
+                      //   const [aRadius, bRadius] = [a, b].map(({ linkType, from, to }) => {
+                      //     const startY = linkType === 'Imports' ? productBarHeight + centerCircleHeight + from.y : from.y;
+                      //     const endY = linkType === 'Imports' ? to.y : productBarHeight + centerCircleHeight + to.y;
+                      //     const radius = Math.abs(endY - startY) / 2;
+                      //     return radius;
+                      //   })
+                      //   let operator
+                      //   if (aRadius > bRadius) {
+                      //     operator = -1;
+                      //   } else {
+                      //     operator = -1;
+                      //   }
+                      //   return operator;
+                      // })
+                      .map(({ from, to, value, strokeWidth, product, isFraude }, i) => {
 
-                        />
-                        <AnimatedPath
-                          d={`
-                        M ${0} ${-strokeWidth / 2}
-                        L ${width / 3 - 20} ${-strokeWidth / 2}
-                        L ${width / 3} ${0}
-                        L ${width / 3 - 20} ${strokeWidth / 2}
-                        L ${0} ${strokeWidth / 2}
-                        Z
-                        `
+                        const color = colorPalette[product] || iwanthue(1, { seed: product });
+                        const startY = linkType === 'Imports' ? productBarHeight + centerCircleHeight + from.y : from.y;
+                        const endY = linkType === 'Imports' ? to.y : productBarHeight + centerCircleHeight + to.y;
+                        const radius = Math.abs(endY - startY) / 2;
+                        const centerY = linkType === 'Imports' ? endY + radius : startY + radius;
+                        // const strokeWidth = scaleValue(value);
+                        // const strokeWidthMiddle = strokeWidth / 2;
+                        const isTooSmallForText = strokeWidth < 15;
+                        let isHighlighted = false;
+                        if (highlightedItem) {
+                          if (highlightedItem.type === 'link' && highlightedItem.value.join('|') === [from.key, to.key].join('|')) {
+                            isHighlighted = true;
+                          } else if ([from.key, to.key].includes(highlightedItem.value)) {
+                            isHighlighted = true;
                           }
-                          fill={'url(#diagonalHatch)'}
-                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                          onMouseMove={
-                            () => {
-                              if (!(focus && focus.itemType === 'product' && focus.itemValue === product)) {
-                                setFocus({
-                                  actionType: 'set',
-                                  itemType: 'product',
-                                  mode: 'highlight',
-                                  itemValue: product
-                                })
-                              }
-                            }
-                          }
-                        />
-                      </>
-                      :
-                      <>
-                        <AnimatedPath
-                          transform='scale(-1, 1)'
-                          d={
-                            partialCirclePathD(
-                              0,
-                              (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                              (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                              Math.PI / 2,
-                              Math.PI * 3 / 2,
-                            )
-                          }
-                          strokeWidth={strokeWidth}
-                          fill='transparent'
-                          stroke={color}
-                          opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.2 : 1)}
-                        />
-                        {
-                          !isTooSmallForText &&
-                          <AnimatedPath
-                            transform='scale(-1, 1)'
-                            className="dashed-flow-arrow"
-                            d={
-                              partialCirclePathD(
-                                0,
-                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                                (height - (from.y) - (partnerBarHeight - to.y)) / 2,
-                                Math.PI * 3 / 2,
-                                Math.PI / 2,
-                              )
-                            }
-                            strokeWidth={'1'}
-                            stroke='black'
-                            strokeDasharray='5, 5'
-                            fill={'none'}
-                            markerEnd='url(#arrow-head-white)'
-                            opacity={(focus && focus.mode === 'highlight' && isHighlight === false ? 0.05 : .5)}
-                          />
                         }
+                        return (
+                          <g
+                            transform={`translate(${linkType === 'Imports' ? width / 2 - barWidth / 2 : width / 2 + barWidth / 2}, 0)`}
+                            key={i}
+                            className={`flow-group ${linkType} ${isHighlighted ? 'is-highlighted' : ''} ${isTooSmallForText ? 'is-overflowing' : ''}`}
+                            id={`link-from-${from.key}-to-${to.key}`}
+                          // style={{ zIndex: i }}
+                          // @todo disabling for now because of bug
+                          // onMouseOver={() => setHighlightedItem({ type: 'link', value: [from.key, to.key] })}
+                          >
+                            {
+                              isFraude ?
+                                linkType === 'Imports' ?
+                                  <g className="fraude-group Imports" transform={`translate(0, ${from.y + strokeWidth / 2})`}>
+                                    <path
+                                      transform={`translate(0, ${to.y})`}
+                                      className="fraude-flow"
+                                      d={`
+                                      M ${0} ${-strokeWidth / 2}
+                                      L ${-width / 50} ${0}
+                                      L ${0} ${strokeWidth / 2}
+                                      Z`
+                                      }
+                                      //         d={`
+                                      //         M ${0} ${-strokeWidth / 2}
+                                      //         L ${width / 3 - 20} ${-strokeWidth / 2}
+                                      //         L ${width / 3 - 40} ${0}
+                                      //         L ${width / 3 - 20} ${strokeWidth / 2}
+                                      //         L ${0} ${strokeWidth / 2}
+                                      // Z
+                                      // `
+                                      //         }
+                                      fill={color}
+                                      fillOpacity={.5}
+                                    />
+                                    <path
+                                      transform={`translate(0, ${to.y})`}
+                                      className="fraude-flow diagonals-flow"
 
-                      </>
+                                      d={`
+                                      M ${0} ${-strokeWidth / 2}
+                                      L ${-width / 50} ${0}
+                                      L ${0} ${strokeWidth / 2}
+                                      Z`
+                                      }
+                                      fill={'url(#diagonalHatch)'}
+                                    />
+                                    {/* <text x={-5} y={10} className="number-label right">{`${formatNumber(value)} lt. (fraude ?)`}</text> */}
+                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value)} lt. (fraude ?)`}</text>
 
+                                  </g>
+                                  :
+                                  <g className="fraude-group Exports" transform={`translate(0, ${from.y + strokeWidth / 2})`}>
+                                    <path
+                                      d={`
+                                          M ${0} ${-strokeWidth / 2}
+                                          L ${width / 3 - 20} ${-strokeWidth / 2}
+                                          L ${width / 3} ${0}
+                                          L ${width / 3 - 20} ${strokeWidth / 2}
+                                          L ${0} ${strokeWidth / 2}
+                                          Z`
+                                      }
+                                      fill={color}
+                                      fillOpacity={.5}
+                                    />
+                                    <path
+                                      d={`
+                                        M ${0} ${-strokeWidth / 2}
+                                        L ${width / 3 - 20} ${-strokeWidth / 2}
+                                        L ${width / 3} ${0}
+                                        L ${width / 3 - 20} ${strokeWidth / 2}
+                                        L ${0} ${strokeWidth / 2}
+                                        Z`
+                                      }
+                                      fill={'url(#diagonalHatch)'}
+                                    />
+                                    <text x={5} y={5} className="number-label right">{`${formatNumber(value)} lt. (fraude ?)`}</text>
+                                  </g>
+                                :
+                                // not fraude
+                                <g className="flow-group-detail">
+                                  <path
+                                    className="big-flow"
+                                    d={
+                                      partialCirclePathD(
+                                        0,
+                                        centerY + strokeWidth / 2,
+                                        radius,
+                                        // (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                                        // (height - (to.y) - (partnerBarHeight - from.y)) / 2,
+                                        Math.PI / 2,
+                                        Math.PI * 3 / 2,
+                                      )
+                                    }
+                                    strokeWidth={strokeWidth - 1}
+                                    stroke={color}
+                                    fill='none'
+                                    transform={`${linkType === 'Exports' ? 'scale(-1, 1)' : ''}`}
+                                  />
+                                  <path
+                                    className={`dashed-flow-arrow`}
+                                    transform={`translate(${linkType === 'Exports' ? 5 : -5}, 0)${linkType === 'Exports' ? 'scale(-1, 1)' : ''}`}
+                                    d={
+                                      isFraude ?
+                                        `
+                                                  M ${0} ${0}
+                                                  L ${width} ${0}
+                                                  `
+                                        :
+                                        partialCirclePathD(
+                                          0,
+                                          centerY + strokeWidth / 2,
+                                          radius,
+                                          linkType === 'Imports' ? Math.PI / 2 : Math.PI * 3 / 2,
+                                          linkType === 'Imports' ? Math.PI * 3 / 2 : Math.PI / 2,
+                                        )
+                                    }
+                                    strokeWidth={'1'}
+                                    stroke='black'
+                                    strokeDasharray='5, 5'
+                                    fill={'none'}
+                                    markerEnd={'url(#arrow-head-white)'}
+                                  />
+                                  <text
+                                    x={linkType === 'Imports' ? -5 : 5}
+                                    y={endY + strokeWidth / 2 - 2}
+                                    className={`number-label ${linkType === 'Imports' ? 'left' : 'right'}`}>
+                                    {formatNumber(value) + ' lt.'}
+                                  </text>
+                                </g>
+                            }
+
+
+                          </g>
+                        )
+                      })
                   }
-                  {isTooSmallForText === false && <text x={5} y={5} className="number-label right">{`${formatNumber(value)} lt. ${isFraude ? ' (fraude ?)' : ''}`}</text>}
                 </g>
               )
             })
@@ -700,6 +630,7 @@ export default function AlluvialImportExport({
             stroke='black'
             fill='transparent'
             markerEnd='url(#arrow-head)'
+            transform={`translate(-5, 0)`}
           />
           <text
             x={20}
@@ -725,7 +656,7 @@ export default function AlluvialImportExport({
             stroke='black'
             fill='transparent'
             markerEnd='url(#arrow-head)'
-            transform='rotate(180)'
+            transform={`translate(5, 0)rotate(180)`}
           />
           <text
             x={15}
@@ -748,6 +679,20 @@ export default function AlluvialImportExport({
           }}
         />
       </pattern>
+
+      <foreignObject
+        x={width / 2 + barWidth / 2}
+        y={height - centerCircleHeight * .75}
+        width={width / 2 - barWidth / 2}
+        height={centerCircleHeight * 3}
+      >
+        <div
+          xmlns="http://www.w3.org/1999/xhtml"
+          style={{fontSize: width / 50}}
+        >
+        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports)} lt.`}
+          </div>
+      </foreignObject>
     </svg>
   )
 }

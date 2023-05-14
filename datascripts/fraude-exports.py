@@ -55,7 +55,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
     for i, row in enumerate(reader):
         if row["year"] != "1789":
             continue
-        value = float(row["value"] or 0.0)
+        value = int(row["value"].split('.')[0] or 0)
         office = (
             row["customs_office"]
             if row["customs_office"] != "Port franc de Bayonne et Saint Jean de Luz"
@@ -116,7 +116,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     + value
                 )
         # trade reported by other ports francs
-        elif office in autres_port_francs:
+        elif office in autres_port_francs:            
             # product = row["product_RE_aggregate"]
             product = row["product_threesectorsM"]
             if row["export_import"] == "Exports":

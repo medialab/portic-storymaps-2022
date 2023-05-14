@@ -98,6 +98,10 @@ const colorsPalettes = {
     'Colonies': '#e35027',
     'France': '#627FEE',
 
+    'Produits primaires': '#41BEA3',
+    'Produits manufacturés': '#A07BEE',
+    'Produits agricoles': '#98a9d9',
+
 
     // 'Lubeck': '#E7A39C',
     // 'Brême': '#EBB2AD',

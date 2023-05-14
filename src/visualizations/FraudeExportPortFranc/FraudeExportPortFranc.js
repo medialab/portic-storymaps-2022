@@ -22,7 +22,6 @@ export default function FraudeExportPortFranc({
     useEffect(() => {
       setVisiblePorts(showPorts);
     }, [showPorts]);
-    console.log(visiblePorts)
     const [focus, setFocus] = useReducer((lastState, newState) => {
         if (lastState === newState) { return undefined; }
         return newState;
@@ -35,7 +34,7 @@ export default function FraudeExportPortFranc({
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
         let preparedData = inputData
-            .filter(({ aggregate_type }) => aggregate_type === 'detail_products')
+            // .filter(({ aggregate_type }) => aggregate_type === 'detail_products')
             .map(({ value, ...rest }) => {
                 return {
                     value: +value, // string to number
@@ -64,8 +63,8 @@ export default function FraudeExportPortFranc({
                         <h3 onClick={() => setFocus(port)}>{port}</h3>
                         <AlluvialImportExport
                             dimensions={{
-                                width: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) - margin : Math.max(width * .7, refDimension / visiblePorts.length * 1.2)),
-                                height: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .7 - margin : refDimension / visiblePorts.length - 10)
+                                width: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) - margin : Math.max(width * .6, refDimension / visiblePorts.length * 1.2)),
+                                height: (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .6 - margin : refDimension / visiblePorts.length - 10)
                             }}
                             colorPalette={palette}
                             data={
