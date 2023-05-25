@@ -681,14 +681,14 @@ export default function AlluvialImportExport({
       </pattern>
 
       <foreignObject
-        x={width / 2 + barWidth / 2}
+        x={width / 2 + barWidth}
         y={height - centerCircleHeight * .75}
         width={width / 2 - barWidth / 2}
         height={centerCircleHeight * 3}
       >
         <div
           xmlns="http://www.w3.org/1999/xhtml"
-          style={{fontSize: width / 50}}
+          style={{fontSize: width / 100}}
         >
         {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports)} lt.`}
           </div>
