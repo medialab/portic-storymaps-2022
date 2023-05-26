@@ -1,0 +1,74 @@
+.EstimationImportsExports {
+  .ColumnsComparison {
+    h2,
+    h3 {
+      margin: 0;
+    }
+  }
+  .legend {
+    div {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: .8rem;
+    }
+  }
+  .group {
+    .quantity-group {
+      .label-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        pointer-events: none;
+        &.is-overflowing {
+          align-items: start;
+        }
+        p {
+          margin: 0;
+          pointer-events: all;
+          font-size: 0.8rem;
+        }
+
+        
+      }
+      rect {
+          stroke: white;
+        }
+      &.source {
+        .label-container {
+          color: red;
+        }
+        rect {
+          fill: red;
+        }
+      }
+      &.estimation {
+        .label-container {
+          color: blue;
+        }
+        rect {
+          fill: blue;
+        }
+      }
+      &.diff {
+        .label-container {
+          color: grey;
+        }
+        rect {
+          fill: grey;
+        }
+      }
+    }
+
+    &.left-group {
+      h3 {
+        text-align: right;
+      }
+      .label-container {
+        p {
+          text-align: right;
+        }
+      }
+    }
+    &.right-group {
+    }
+  }
+}

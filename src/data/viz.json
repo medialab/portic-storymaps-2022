@@ -2,7 +2,7 @@
     "intro": {
         "id": "intro",
         "n_chapitre": 0,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/intro",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/intro",
         "titre_fr": "Intro partie 1",
         "titre_en": "",
         "description_fr": "",
@@ -20,15 +20,15 @@
     "histoire-dunkerque": {
         "id": "histoire-dunkerque",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/histoire-dunkerque",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/histoire-dunkerque",
         "titre_fr": "L'histoire de Dunkerque",
         "titre_en": "The story of Dunkirk",
         "description_fr": "Présentation des différents États et des institutions dominant le port de Dunkerque de 1580 à 1800.",
         "description_en": "Presentation of the different states and institutions dominating the port of Dunkirk from 1580 to 1800.",
         "comment_lire_fr": "La visualisation est à la fois composée d'une frise chronologique et d'une carte. Toutes deux sont interactives. Vous pouvez lire la frise pour savoir quel État dirige le port et cliquer pour vous déplacer dans le temps et voir la carte évoluer. Vous pouvez également vous déplacer dans la frise en cliquant sur les boutons \"Étape précédente\" ou \"Étape suivante\" (à gauche de la carte ou en haut si vous êtes sur petit écran) ou bien sur les appels dans le texte. Vous vous déplacer alors d'évènement en évènement. Chaque évènement est symbolisé par un point sur la frise. Lors de chaque évènement, des repères apparaissent sur la carte pour marquer l'emplacement d'anciennes institutions du port. Vous pouvez survoler ces repères avec le pointeur de votre souris afin d'afficher l'étiquette du repère.",
         "comment_lire_en": "The visualization is composed of both a timeline and a map. Both are interactive. You can read the timeline to see which state runs the port and click to move through time and see the map evolve. You can also move through the timeline by clicking on the \"Previous Step\" or \"Next Step\" buttons (on the left side of the map or at the top if you are on a small screen) or by clicking on the calls in the text. You then move from event to event. Each event is symbolized by a dot on the frieze. At each event, markers appear on the map to mark the location of former port institutions. You can hover over these markers with your mouse pointer to display the marker label.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Sources de données à préciser (archives, cartes) - @todo",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQx54SFuzSu4Vh7GnqXVhem4MTsx8MrjIBibTwLRsr44TMPL_JmAQxw8kK9yWqmm80j5RQ9NQzv--W/pub?gid=1555689051&single=true&output=csv",
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQx54SFuzSu4Vh7GnqXVhem4MTsx8MrjIBibTwLRsr44TMPL_JmAQxw8kK9yWqmm80j5RQ9NQzv--W/pub?gid=0&single=true&output=csv",
@@ -44,15 +44,15 @@
     "smoggleur-statut": {
         "id": "smoggleur-statut",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-statut",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/smoggleur-statut",
         "titre_fr": "Les navires anglais et le smogglage dans la France du Ponant en 1787",
         "titre_en": "English ships and smoggling in Ponant's France in 1787",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Source navigo flows 1787.Règles de définition des smoggleurs :- Dunkerque : tonnage 12tx et pavillon britannique- Calais : tonnage inférieur ou égale à 50 tx, pavillon britannique et direction GB- Boulogne : pavillon britanique et direction GB- Roscoff : direction GB ou ('A1964976', 'A0912818', 'A0864873'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')- Lorient : pavillon britanique et direction ('A0840357', 'A0912818', 'A1964976')- Bordeaux : pavillon britanique, et direction ('A1964976', 'A0912818'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')Agrégation par nombre de voyages (car tonnages parfois délibéremment faux)",
+        "comment_cest_fait_en": "",
         "inputs": [
             "navigo_all_flows_1787.csv",
             "navigo_all_flows_1789.csv"
@@ -62,39 +62,18 @@
         ],
         "cacher_atlas": ""
     },
-    "smoggleur-proportion": {
-        "id": "smoggleur-proportion",
-        "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/smoggleur-proportion",
-        "titre_fr": "Les navires anglais et le smogglage dans la France du Ponant en 1787",
-        "titre_en": "English ships and smoggling in Ponant's France in 1787",
-        "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
-        "description_en": "Proportions of boats departures according to their status as smogger or non-semogleur.",
-        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "inputs": [
-            "navigo_all_flows_1787.csv",
-            "navigo_all_flows_1789.csv"
-        ],
-        "outputs": [
-            "smogglage_ports_stats.csv"
-        ],
-        "cacher_atlas": ""
-    },
     "peche-type-value": {
         "id": "peche-type-value",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/peche-type-value",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/peche-type-value",
         "titre_fr": "Valeur du poisson importé à Dunkerque",
         "titre_en": "Value of fish imported in Dunkirk",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Données issues de PFISTER_PORTS_NAVIRES_A_XXVII_p_538 - Valeur pêche Dunkerque par an 1763-1792 par type de pêche.xlsx - https://docs.google.com/spreadsheets/d/e/2PACX-1vSRy3fIKwWXSRg4QI_A9sQRNmWKnsNSA-TpgMenVz0twxfRmJGiFKN8Q8VSpBwxNw/pub?gid=576116289&single=true&output=csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRy3fIKwWXSRg4QI_A9sQRNmWKnsNSA-TpgMenVz0twxfRmJGiFKN8Q8VSpBwxNw/pub?gid=576116289&single=true&output=csv"
         ],
@@ -106,15 +85,15 @@
     "evolution-peche": {
         "id": "evolution-peche",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-peche",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/evolution-peche",
         "titre_fr": "Les dunkerquois et la pêche",
         "titre_en": "Dunkirk and fishing",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Données issues de PFISTER_PORTS_NAVIRES_A_XXVII_p_538 - Valeur pêche Dunkerque par an 1763-1792 par type de pêche.xlsx - https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/post_datasprint/peche/zones_peche_4326.geojson,https://docs.google.com/spreadsheets/d/e/2PACX-1vRwEjSbHXd4e4itz0st-8OuSXfNk1vrVJ9QlC7Q7KKMK-Wr4sW2h3FckYf5D65XCQ/pub?gid=576116289&single=true&output=csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/post_datasprint/peche/zones_peche_4326.geojson",
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vRwEjSbHXd4e4itz0st-8OuSXfNk1vrVJ9QlC7Q7KKMK-Wr4sW2h3FckYf5D65XCQ/pub?gid=576116289&single=true&output=csv"
@@ -129,15 +108,15 @@
     "evolution-budget-dunkerque": {
         "id": "evolution-budget-dunkerque",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-budget-dunkerque",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/evolution-budget-dunkerque",
         "titre_fr": "Évolution du budget de Dunkerque au XVIIIème siècle",
         "titre_en": "Evolution of the Dunkirk budget in the 18th century",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données issues de Evaluation annuelle des recettes, des dépenses et des soldes comptables de la ville de Dunkerque de 1713 à 1793.xlsx - transcription Christian Pfister",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmd4hLWgCWE_7QSDAPq1G4C3ShRw-d53EoNnRSzX4je2fk-4SQlaC0cGIL1MNprQ/pub?gid=461109929&single=true&output=csv"
         ],
@@ -149,15 +128,15 @@
     "schema-sources": {
         "id": "schema-sources",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/schema-sources",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/schema-sources",
         "titre_fr": "Sources à disposition",
         "titre_en": "Sources available",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "/",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [],
         "cacher_atlas": ""
@@ -165,15 +144,15 @@
     "pilotage": {
         "id": "pilotage",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/pilotage",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/pilotage",
         "titre_fr": "Évolution du pilotage et de la navigation selon les sources disponibles",
         "titre_en": "Evolution of management and navigation according to available sources",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données issues de 2 Tableau général congés G5 - Pilotage Marine 1689-1791 - données Pfister mars 2022 - CSV - https://docs.google.com/spreadsheets/d/e/2PACX-1vT4b175TPBBvErXLXefq-3c2LOfLPGDjiVk7luTL8unUhDueGMF68nu9nZtoM78McqwFmndheA9eSYc/pub?gid=810260739&single=true&output=csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vT4b175TPBBvErXLXefq-3c2LOfLPGDjiVk7luTL8unUhDueGMF68nu9nZtoM78McqwFmndheA9eSYc/pub?gid=810260739&single=true&output=csv"
         ],
@@ -185,15 +164,15 @@
     "evolution-type-conges": {
         "id": "evolution-type-conges",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/evolution-type-conges",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/evolution-type-conges",
         "titre_fr": "Évolution des types de congés",
         "titre_en": "Evolution of types of leave",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données issues de Tableau_comptes rendus congés Dunkerque_ par type et par an 1765-1791_pns.xlsx - https://docs.google.com/spreadsheets/d/e/2PACX-1vSxBxqnzHK1HEDjh5dBwJ9gBG5CJCSNfDpVeEDFHvCHxl3nXyuA2aLhiCf_JGib9A/pub?gid=1209238320&single=true&output=csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxBxqnzHK1HEDjh5dBwJ9gBG5CJCSNfDpVeEDFHvCHxl3nXyuA2aLhiCf_JGib9A/pub?gid=1209238320&single=true&output=csv"
         ],
@@ -205,15 +184,15 @@
     "tonnage-moyen-par-mois": {
         "id": "tonnage-moyen-par-mois",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/tonnage-moyen-par-mois",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/tonnage-moyen-par-mois",
         "titre_fr": "Tonnage moyen par mois",
         "titre_en": "Average tonnage per month",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données issues de PFISTER_PORTS_NAVIRES_A_XVIII_page_521.xlsx - https://docs.google.com/spreadsheets/d/e/2PACX-1vRtEHMi-XI37xMlMXvDSS2Tnfy_DqSmpyx320i9iT7Wa1bTBEDqg1Y76AgF5WQW-g/pub?gid=1647345428&single=true&output=csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtEHMi-XI37xMlMXvDSS2Tnfy_DqSmpyx320i9iT7Wa1bTBEDqg1Y76AgF5WQW-g/pub?gid=1647345428&single=true&output=csv"
         ],
@@ -225,15 +204,15 @@
     "carte-destinations": {
         "id": "carte-destinations",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/carte-destinations",
         "titre_fr": "Carte des destinations des navires partis de Dunkerque",
         "titre_en": "Map of the destinations of the ships who left Dunkirk",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données issues de navigo - flows - 1789.Filtrage : départ de Dunkerque.Agrégation par tonnage agrégé.",
+        "comment_cest_fait_en": "",
         "inputs": [
             "navigo_all_flows_1789.csv"
         ],
@@ -246,14 +225,14 @@
     "carte-homeport-smoggleurs": {
         "id": "carte-homeport-smoggleurs",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-homeport-smoggleurs",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/carte-homeport-smoggleurs",
         "titre_fr": "Carte des ports d'attache des smoggleurs",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Données tirées de Smoggleurs GB 1781-91_Dunkerque_relevé C_Pfister.xlsx - https://docs.google.com/spreadsheets/d/e/2PACX-1vRq2TJOb7Ima9hBKiO1Kde_yFYoS6grucmtb6KRh6QpF4nwzjJF34WvpsGjS4wtrQ/pub?gid=1735395597&single=true&output=csv",
         "comment_cest_fait_en": "",
         "inputs": [
             "map_backgrounds/world_map.geojson",
@@ -268,15 +247,15 @@
     "resume-activite-dunkerquois": {
         "id": "resume-activite-dunkerquois",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/resume-activite-dunkerquois",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/resume-activite-dunkerquois",
         "titre_fr": "Activités des dunkerquois",
         "titre_en": "Dunkerquois activities",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Données tirées de navigo, flows, 1787 et 1789.Agrégation par nombre de voyages.",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "resume-activite-dunkerquois.csv"
@@ -286,15 +265,15 @@
     "stigmates-smoggleurs-dunkerque": {
         "id": "stigmates-smoggleurs-dunkerque",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/stigmates-smoggleurs-dunkerque",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/stigmates-smoggleurs-dunkerque",
         "titre_fr": "Destination déclarée par les navires britanniques quittant Dunkerque, par classe de tonnage",
         "titre_en": "Destination declared by British ships leaving Dunkirk, by tonnage class",
         "description_fr": "Les smoggleurs ont des caractéristiques particulières en fonction de leur ville de provenance.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Isolation des navires britaniques au départ de Dunkerque.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : navigo flows 1787 & 1789.Agrégation par nombre de voyages.",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "stigmates-smoggleurs-dunkerque.csv"
@@ -304,15 +283,15 @@
     "departs-fr-vers-angleterre": {
         "id": "departs-fr-vers-angleterre",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/departs-fr-vers-angleterre",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/departs-fr-vers-angleterre",
         "titre_fr": "Les départs vers l'Angleterre",
         "titre_en": "Departures to England",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : navigo flows 1789.Filtres : destination GB hors \"colonies britaniques\" (substate).Agrégation par tonnage cumulé.",
+        "comment_cest_fait_en": "",
         "inputs": [
             "map_backgrounds/world_map.geojson",
             "navigo_all_flows_1789.csv"
@@ -326,15 +305,15 @@
     "destinations-gb-vers-gb": {
         "id": "destinations-gb-vers-gb",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/destinations-gb-vers-gb",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/destinations-gb-vers-gb",
         "titre_fr": "Les destinations des britanniques partant de Dunkerque vers le Royaume Unis",
         "titre_en": "British destinations from Dunkirk to the United Kingdom",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : navigo flows 1789.Filtres : departure_function O, départ de Dunkerque, pavillon britannique.Les bateaux \"fausses destination\" sont ceux qui pour lesquels est indiqué [\"Lisbonne [mais: Angleterre]\" ou \"Bergen\"] dans le champ destination. ",
+        "comment_cest_fait_en": "",
         "inputs": [
             "map_backgrounds/world_map.geojson",
             "navigo_all_flows_1789.csv"
@@ -348,15 +327,15 @@
     "fraude-exports-dunkerque": {
         "id": "fraude-exports-dunkerque",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fraude-exports-dunkerque",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/fraude-exports-dunkerque",
         "titre_fr": "Les masses manquantes de la balance dunkerquoise",
         "titre_en": "The missing masses of the Dunkerquoise balance",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Partenaires groupés selon les règles suivantes :- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]- France : france,- monde : resteGroupement des produits :- produits coloniaux : utilisation de product_revolutionempire- produits des colonies : partner_grouping = \"colonies\"",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "fraude-exports.csv"
@@ -366,15 +345,15 @@
     "fraude-exports-ports-francs": {
         "id": "fraude-exports-ports-francs",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fraude-exports-ports-francs",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/fraude-exports-ports-francs",
         "titre_fr": "Les masses manquantes de la balance dunkerquoise comparées aux autres ports francs",
         "titre_en": "The missing masses of the Dunkerquoise balance compared to the other franc ports",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : toflit18.Partenaires groupés selon les règles suivantes :- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]- France : france,- monde : resteGroupement des produits :- produits coloniaux : utilisation de product_revolutionempire- produits des colonies : partner_grouping = \"colonies\"",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "fraude-exports.csv"
@@ -384,15 +363,15 @@
     "imports-dunkerque-vs-ports-francs": {
         "id": "imports-dunkerque-vs-ports-francs",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/imports-dunkerque-vs-ports-francs",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/imports-dunkerque-vs-ports-francs",
         "titre_fr": "Imports : Dunkerque comparée aux autres ports francs",
         "titre_en": "Imports: Dunkirk compared to other frank ports",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : toflit18, 1789, classement des produits selon product_revolutionempire, agrégation par valeur en livres tournois agrégées",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "imports-dunkerque-vs-ports-francs.csv"
@@ -402,15 +381,15 @@
     "exports-vs-smogglage": {
         "id": "exports-vs-smogglage",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/exports-vs-smogglage",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/exports-vs-smogglage",
         "titre_fr": "Étude des produits transportés par les smoggleurs",
         "titre_en": "Study of products transported by smoggers",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Sources : - estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
+        "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output=csv",
             "https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv"
@@ -425,15 +404,15 @@
     "prix-smogglage-general": {
         "id": "prix-smogglage-general",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/prix-smogglage-general",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/prix-smogglage-general",
         "titre_fr": "Étude des produits transportés par les smoggleurs (global)",
         "titre_en": "Study of products transported by smoggers (global)",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Sources : - estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
             "smogglage-estimation-par-produit.csv"
@@ -443,15 +422,15 @@
     "homeports-from-dunkerque": {
         "id": "homeports-from-dunkerque",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/homeports-from-dunkerque",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/homeports-from-dunkerque",
         "titre_fr": "Ports d'attache des bateaux partis de Dunkerque en 1789",
         "titre_en": "",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source : navigo pointcalls, Dunkerque.",
+        "comment_cest_fait_en": "",
         "inputs": [
             "navigo_all_pointcalls_1789.csv"
         ],
@@ -463,15 +442,15 @@
     "gravure-smoggleurs": {
         "id": "gravure-smoggleurs",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/gravure-smoggleurs",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/gravure-smoggleurs",
         "titre_fr": "Les techniques navales des smoggleurs",
         "titre_en": "",
         "description_fr": "",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_cest_fait_fr": "Source à retrouver",
+        "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [],
         "cacher_atlas": ""
@@ -479,14 +458,14 @@
     "tonnages-1787-f12": {
         "id": "tonnages-1787-f12",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/tonnages-1787-f12",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/tonnages-1787-f12",
         "titre_fr": "Tonnages par pays selon F12 en 1787",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Source : F12 - Tonnage destinations étrangères navigo 1787 - export_navigo_1787_destinations_flows.csv - https://docs.google.com/spreadsheets/d/e/2PACX-1vRHqTGjTMavPEw0Mf4RBjvXz5qhBjWV7a1gYuokEvaKRP-HzBSURdpCozaXzHHySXLKQWrQcO7LGk2K/pub?output=csv",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -498,14 +477,14 @@
     "exports-fr-1787": {
         "id": "exports-fr-1787",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/exports-fr-1787",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/exports-fr-1787",
         "titre_fr": "Exports par partenaire \"grouping\" en 1787",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "Utilisation de la classification \"grouping\"",
+        "comment_cest_fait_fr": "Source : toflit18 exports.Utilisation de la classification \"grouping\"",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -516,14 +495,14 @@
     "valeur-par-tonneau": {
         "id": "valeur-par-tonneau",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/valeur-par-tonneau",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/valeur-par-tonneau",
         "titre_fr": "Calcul des valeurs par tonneau",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Sources : F12 et tofit18.",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -534,7 +513,7 @@
     "comparaisons-la-rochelle": {
         "id": "comparaisons-la-rochelle",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/comparaisons-la-rochelle",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/comparaisons-la-rochelle",
         "titre_fr": "Comparaisons des valeurs pour la direction des fermes de La Rochelle",
         "titre_en": "",
         "description_fr": "",
@@ -554,14 +533,14 @@
     "destinations-dk-pour-projection": {
         "id": "destinations-dk-pour-projection",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/destinations-dk-pour-projection",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/destinations-dk-pour-projection",
         "titre_fr": "Destinations des bateaux partis vers l'étranger depuis le port de Dunkerque en 1789, agrégées par tonnage cumulé (sans pêche et sans smoggleurs)",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Source : navigo flows, aggrégation par destination_partner_balance_1789",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -572,14 +551,14 @@
     "estimation-par-destination-dk": {
         "id": "estimation-par-destination-dk",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/estimation-par-destination-dk",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/estimation-par-destination-dk",
         "titre_fr": "Estimation des valeurs d'exports par destination pour Dunkerque en 1789",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Sources : voir étapes précédentes",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -590,14 +569,14 @@
     "comparaison-projection-destination-produits-coloniaux-dk": {
         "id": "comparaison-projection-destination-produits-coloniaux-dk",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/comparaison-projection-destination-produits-coloniaux-dk",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/comparaison-projection-destination-produits-coloniaux-dk",
         "titre_fr": "Comparaison entre la projection par les destinations navigo et les imports du bureau des fermes de Dunkerque en 1789 pour les mêmes destinations",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "Source pour la comparaison: toflit18, customs_office=Dunkerque, partner_grouping=France.Agrégation selon partner_grouping, par valeur agrégée en livres tournois. ",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -608,14 +587,14 @@
     "estimation-imports-exports": {
         "id": "estimation-imports-exports",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/estimation-imports-exports",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/estimation-imports-exports",
         "titre_fr": "Estimation des imports et exports de Dunkerque",
         "titre_en": "",
         "description_fr": "",
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "",
+        "comment_cest_fait_fr": "TODO, plusieurs sources de différents endroits.Estimation : voir étapes précédentes.toflit18 flux miroir : imports de la France depuis le partenaire Dunkerque.toflit18 exports produits coloniaux : monde, exports depuis customs_office Dunkerque.CUST : sources anglaises.",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -626,7 +605,7 @@
     "carte-destinations-dunkerquois": {
         "id": "carte-destinations-dunkerquois",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-dunkerquois",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/carte-destinations-dunkerquois",
         "titre_fr": "oui",
         "titre_en": "Yes",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -642,7 +621,7 @@
     "fausses-declarations": {
         "id": "fausses-declarations",
         "n_chapitre": 3,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/fausses-declarations",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/fausses-declarations",
         "titre_fr": "Un inventaire des (supposément) fausses déclarations de navigation",
         "titre_en": "An inventory of (supposedly) false declarations of navigation",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -658,7 +637,7 @@
     "carte-destinations-non-dunkerquois": {
         "id": "carte-destinations-non-dunkerquois",
         "n_chapitre": 1,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/vizualisation/carte-destinations-non-dunkerquois",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/carte-destinations-non-dunkerquois",
         "titre_fr": "Les destinations des non-dunkerquois",
         "titre_en": "The destinations of non-Dunkirk",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -669,6 +648,27 @@
         "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "inputs": [],
         "outputs": [],
+        "cacher_atlas": "oui"
+    },
+    "smoggleur-proportion": {
+        "id": "smoggleur-proportion",
+        "n_chapitre": 2,
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/smoggleur-proportion",
+        "titre_fr": "Les navires anglais et le smogglage dans la France du Ponant en 1787",
+        "titre_en": "English ships and smoggling in Ponant's France in 1787",
+        "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
+        "description_en": "Proportions of boats departures according to their status as smogger or non-semogleur.",
+        "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "comment_cest_fait_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
+        "inputs": [
+            "navigo_all_flows_1787.csv",
+            "navigo_all_flows_1789.csv"
+        ],
+        "outputs": [
+            "smogglage_ports_stats.csv"
+        ],
         "cacher_atlas": "oui"
     }
 }

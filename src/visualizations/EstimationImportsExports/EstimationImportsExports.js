@@ -1,7 +1,9 @@
-import BarChart from "../../components/BarChart";
-import { formatNumber } from "../../utils/misc";
+import { useState } from "react";
+// import { formatNumber } from "../../utils/misc";
 import translate from '../../utils/translate';
 import ColumnsComparison from "./ColumnsComparison";
+
+import './EstimationImportsExports.scss';
 
 const EstimationImportsExports = ({
   data,
@@ -9,34 +11,41 @@ const EstimationImportsExports = ({
   height,
   lang,
 }) => {
+
+  const [withLest, setWithLest] = useState(true);
   const globalModel = {
-    title: 'Résumé des quantités observées et projetées',
+    title: 'Estimation des exports de Dunkerque',
     left: {
       title: 'Imports connus',
       items: [
         {
           field: 'imports du bf de Dunkerque',
-          title: 'imports du bureau des fermes de Dunkerque'
+          title: 'imports du bureau des fermes de Dunkerque',
+          isSource: true
         }
       ]
     },
     right: {
-      title: 'Compte des exports',
+      title: 'Exports connus et estimés',
       items: [
+        {
+          field: withLest ? 'estimation des exports par projection (hyp. lest)' : 'estimation des exports par projection (hyp. sans lest)',
+          title: 'estimation des exports totaux (hors smogglage) par projection tonnage/prix'
+        },
         {
           field: 'estimation smogglage'
         },
-        {
-          field: 'estimation des exports par projection (hyp. lest)',
-          title: 'estimation des exports par projection tonnage/prix'
-        },
+        
         {
           field: 'toflit18 flux mirroir : dk > france',
-          title: 'dk > france (toflit18)'
+          title: 'exports connus de Dunkerque vers la France',
+          // title: 'imports déclarés par la France avec le partenaire Dunkerque (toflit18)',
+          isSource: true
         },
         {
           field: 'toflit18 exports produits coloniaux (monde...)',
-          title: 'exports coloniaux (toflit18)'
+          title: 'exports connus de produits coloniaux depuis Dunkerque (toflit18)',
+          isSource: true,
         }
       ]
     }
@@ -47,8 +56,9 @@ const EstimationImportsExports = ({
       title: 'Vu par le Royaume Uni',
       items: [
         {
-          title: 'imports depuis Flandres françaises selon les royal customs',
-          field: 'CUST Flandres > GB'
+          title: 'imports au RU depuis Flandres françaises selon les royal customs',
+          field: 'CUST Flandres > GB',
+          isSource: true,
         }
       ]
     },
@@ -57,11 +67,12 @@ const EstimationImportsExports = ({
       items: [
         {
           field: 'toflit18 exports légitimes dk > angleterre',
-          title: 'exports > GB déclarés toflit18'
+          title: 'exports connus vers le RU déclarés (toflit18)',
+          isSource: true,
         },
         {
-          field: 'projection angleterre uniquement (hyp lest)',
-          title: 'projection GB'
+          field: withLest ? 'projection angleterre uniquement (hyp lest)' : 'projection angleterre uniquement (hyp sans lest)',
+          title: 'estimation des exports vers le RU uniquement'
         },
         {
           field: 'estimation smogglage'
@@ -71,8 +82,8 @@ const EstimationImportsExports = ({
     }
   }
   return (
-    <>
-      <BarChart
+    <div className="EstimationImportsExports">
+      {/* <BarChart
         {...{
           data,
           width: width,
@@ -103,7 +114,7 @@ const EstimationImportsExports = ({
         tooltip={
           (d) => `métrique pour ${d.label} : ${formatNumber(parseInt(d.valeur))} lt.`
         }
-      />
+      /> */}
       <ColumnsComparison
         {
           ...{
@@ -111,7 +122,6 @@ const EstimationImportsExports = ({
             height: height,
             data,
             ...globalModel,
-            title: 'Estimation globale',
           }
         }
       />
@@ -122,11 +132,18 @@ const EstimationImportsExports = ({
             height: height,
             data,
             ...englandZoomModel,
-            title: 'Zoom sur le royaume uni',
           }
         }
       />
-    </>
+      <div className="buttons-container" style={{ margin: '1rem' }}>
+        <button className={`Button ${withLest ? 'is-active' : ''}`} onClick={() => setWithLest(true)}>
+          {translate('TonnagesF12', 'hyp_with_lest', lang)}
+        </button>
+        <button className={`Button ${!withLest ? 'is-active' : ''}`} onClick={() => setWithLest(false)}>
+          {translate('TonnagesF12', 'hyp_without_lest', lang)}
+        </button>
+      </div>
+    </div>
   )
 }
 
