@@ -162,6 +162,14 @@ export default function ExportsVsSmogglage({
     // 'shipment_price'
   ];
 
+
+  const backgroundMap = useMemo(() => {
+    const obj = data.get('map_backgrounds/england_map.geojson')
+    return {
+      ...obj,
+      features: obj.features.filter(({ properties }) => properties.dominant === 'Grande-Bretagne' || properties.shortname === 'Grande-Bretagne')
+    }
+  }, [data]);
   const radarSize = selectedPort ? width / 2 : width / 3;
   return (
     <div className='ExportsVsSmogglage'>
@@ -177,7 +185,7 @@ export default function ExportsVsSmogglage({
           {
             type: 'choropleth',
             animated: true,
-            data: data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            data: backgroundMap// data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // reverseColors: atlasMode ? undefined : true,
           },
           {

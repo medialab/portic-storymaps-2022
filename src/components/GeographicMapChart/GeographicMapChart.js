@@ -146,11 +146,31 @@ const GeographicMapChart = ({
           ...projectionConfig,
           scale: height * .5,
           centerX: -1,
-          centerY: 15,
+          centerY: 44,
           // translationX: width * 0.4,
           // translationY: height * 0.28
         }
         break;
+        case 'South Europe':
+          projectionConfig = {
+            ...projectionConfig,
+            scale: height * 3,
+            centerX: 3,
+            centerY: 42,
+            // translationX: width * 0.4,
+            // translationY: height * 0.28
+          }
+          break;
+          case 'North Europe':
+            projectionConfig = {
+              ...projectionConfig,
+              scale: height * 2,
+              centerX: 3,
+              centerY: 55,
+              // translationX: width * 0.4,
+              // translationY: height * 0.28
+            }
+            break;
       case 'coast from Bretagne to Flandres':
         projectionConfig = {
           ...projectionConfig,
