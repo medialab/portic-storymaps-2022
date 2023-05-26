@@ -1,6 +1,7 @@
 @import "../../styles/variables.scss";
 
 .CarteDestinations {
+  position: relative;
   .GeographicMapChart {
     .geopart {
       stroke: white;

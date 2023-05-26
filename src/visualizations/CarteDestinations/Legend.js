@@ -1,13 +1,50 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { scaleLinear } from 'd3-scale';
 import SliderRange from '../../components/SliderRange';
 
 import palettes from '../../utils/colorPalettes';
 import translate from '../../utils/translate';
 import { formatNumber } from '../../utils/misc';
+import { debounce } from 'lodash';
 
 const { generic20colors } = palettes;
+
+const DebouncedSlider = ({
+  min,
+  max,
+  value,
+  onChange
+}) => {
+  const [localMin, setLocalMin] = useState(min);
+  useEffect(() => {
+    setLocalMin(min)
+  }, [min]);
+  const [localMax, setLocalMax] = useState(max);
+  useEffect(() => {
+    setLocalMax(max)
+  }, [min]);
+  const [localValue, setLocalValue] = useState(value);
+  useEffect(() => {
+    setLocalValue(value)
+  }, [value]);
+  const onChangeDebounced = useMemo(() => 
+  debounce((newValue) => onChange(newValue), 1000)
+  , [])
+
+  const handleChange = newValue => {
+    setLocalValue(newValue);
+    onChangeDebounced(newValue);
+  }
+  return (
+    <SliderRange
+      min={localMin}
+      max={localMax}
+      value={localValue}
+      onChange={handleChange}
+    />
+  )
+}
 
 const Legend = ({
   flagGroupModalities,
@@ -347,14 +384,14 @@ const Legend = ({
               min: +minTonnage,
               max: +maxTonnage
             })}</h4>
-            <div className="slider-container">
-              <SliderRange
+            <div className="slider-container" onMouseUp={e => e.stopPropagation()}>
+              <DebouncedSlider
                 min={0}
-                max={maxPossibleTonnage}
-                value={[minTonnage, maxTonnage]}
+                max={+maxPossibleTonnage}
+                value={[+minTonnage, +maxTonnage]}
                 onChange={([newMin, newMax]) => {
-                  setMinTonnage(newMin);
-                  setMaxTonnage(newMax);
+                  setMinTonnage(+newMin);
+                  setMaxTonnage(+newMax);
                 }}
               />
             </div>

@@ -21,7 +21,7 @@ export default function FraudeExportDunkerque({
   lang = 'fr',
   projectionTemplate: projectionTemplateFromProps = 'from France to England',
   minTonnage: minTonnageFromProps = 0,
-  maxTonnage: maxTonnageFromProps = 1000,
+  maxTonnage: maxTonnageFromProps = 550,
   groupStrangers: groupStrangersFromProps = true,
   longCoursOnly: longCoursOnlyFromProps = false,
   flagGroupFilters: flagGroupFiltersFromProps = '',
@@ -138,8 +138,8 @@ export default function FraudeExportDunkerque({
     // create groups
     let maxPossibleTonnageTemp = -Infinity;
     let groups = filteredTravels.reduce((res, travel) => {
-      if (travel.tonnage > maxPossibleTonnageTemp) {
-        maxPossibleTonnageTemp = travel.tonnage;
+      if (+travel.tonnage > maxPossibleTonnageTemp) {
+        maxPossibleTonnageTemp = +travel.tonnage;
       }
       const isDunkerquois = travel.homeport == 'Dunkerque';
       let flagGroup;
@@ -228,7 +228,7 @@ export default function FraudeExportDunkerque({
         layers={[
           // {
           //   type: 'svg',
-          //   data: data.get('map_backgrounds/world_map.svg'),//: data['map_backgrounds/map_france_1789.geojson'],
+          //   data: data.get('map_backmaxPossibleTonnagegrounds/world_map.svg'),//: data['map_backgrounds/map_france_1789.geojson'],
           //   animated: true
           // },
           {
@@ -335,6 +335,15 @@ export default function FraudeExportDunkerque({
                 id: 'World',
                 title: 'Monde',
               },
+              {
+                id: 'South Europe',
+                title: 'Europe du Sud'
+              },
+              {
+                id: 'North Europe',
+                title: 'Europe du Nord'
+              },
+              
             ]
               .map(({ id, title }) => {
                 return (
