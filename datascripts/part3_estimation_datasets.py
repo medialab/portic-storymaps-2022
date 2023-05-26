@@ -1030,7 +1030,7 @@ with open('../data/toflit18_all_flows.csv', newline='') as csvfile:
   # and flow['customs_office'].lower().find('dunkerque') != -1 \
   for flow in flows:
     if flow['year'] == '1789' \
-      and flow['export_import'] != 'Imports'  \
+      and flow['export_import'] == 'Imports'  \
       and flow['partner_simplification'] == 'Dunkerque':
       value = float(flow['value'] or 0)
       sum_miroir += value
