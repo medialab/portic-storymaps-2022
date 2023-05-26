@@ -60,7 +60,7 @@ const EstimationImportsExports = ({
           title: 'exports > GB déclarés toflit18'
         },
         {
-          field: 'projection angleterre uniquement (hyp sans lest)',
+          field: 'projection angleterre uniquement (hyp lest)',
           title: 'projection GB'
         },
         {

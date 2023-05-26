@@ -102,7 +102,7 @@ function ColumnsComparison({
           width={width / 2 - margins.right}
           height={margins.top}
         >
-          <h3 style={{ margin: 0 }}>
+          <h3 style={{ margin: 0, textAlign: 'right' }}>
             {leftTitle}
           </h3>
         </foreignObject>
