@@ -154,7 +154,7 @@ export default function VisualizationController({
               height: dimensions.height,
               atlasMode,
               lang,
-              title: 'Parts des ports d\'attache pour les navires au départ de Dunkerque en 1789',
+              title: `onnage agrégé des navires partis de Dunkerque en 1789, par port d’attache`,
               tooltip: d => `En 1789, ${formatNumber(parseInt(d.tonnage))} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
               // tooltip: d => translate('partie-1-ports-dattache', 'tooltip', props.lang, { 
               //   tonnage: formatNumber(d.tonnage), 

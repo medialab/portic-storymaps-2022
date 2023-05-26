@@ -271,7 +271,8 @@ export default function HistoireDunkerque({
                   field: 'annee'
                 }}
                 y={{
-                  field: 'rapport_assise_recettes'
+                  field: 'assise'
+                  // field: 'rapport_assise_recettes'
                 }}
               />
             </div>

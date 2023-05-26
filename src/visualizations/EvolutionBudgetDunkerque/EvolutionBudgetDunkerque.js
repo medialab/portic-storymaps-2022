@@ -64,7 +64,7 @@ export default function EvolutionBudgetDunkerque({
                 axis: 'x',
                 start: 1778,
                 end: 1781,
-                label: 'Guerre d\'indépendance des USA',
+                label: 'Guerre d\'indépendance américaine',
                 labelPosition: dimensions.height / 5 * 2.5
               }
             ]}

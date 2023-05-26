@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import translate from '../../utils/translate';
 import { range } from 'lodash';
@@ -17,11 +17,16 @@ export default function HomeportSmoggleurs({
   height: initialHeight,
   lang,
   atlasMode,
+  callerProps = {},
   ...props
 }) {
   const data = inputData.get('homeport-smoggleurs.csv');
 
-  const [highlightedDestination, setHighlightedDestination] = useState();
+  const [highlightedDestination, setHighlightedDestination] = useState(callerProps.port);
+
+  useEffect(() => {
+    setHighlightedDestination(callerProps.port);
+  }, [callerProps.port])
 
   const height = atlasMode ? window.innerHeight * .95 : initialHeight;
 

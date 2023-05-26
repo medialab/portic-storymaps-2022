@@ -1,5 +1,6 @@
-import { extent, range } from "d3-array";
+import { extent, max, range } from "d3-array";
 import { scaleLinear } from "d3-scale";
+import { formatNumber } from "../../utils/misc";
 
 
 const MiniLinechart = ({
@@ -9,14 +10,17 @@ const MiniLinechart = ({
   x,
   y,
 }) => {
-  const data = inputData.map(d => ({ ...d, [y.field]: +d[y.field].split(',').slice(0, 1) }));
+  const data = inputData.map(d => ({ ...d, [y.field]: +(d[y.field].replace(/\s/, '').split(',').slice(0, 1)) }));
   const margin = 10;
-  const xAxisWidth = 50;
+  const xAxisWidth = 70;
   const yAxisHeight = 30;
   const xExtent = extent(data.map(d => +d[x.field]));
   // const yExtent = extent(data.map(d => +d[y.field]));
-  const xScale = scaleLinear().domain(xExtent).range([xAxisWidth, width - margin - xAxisWidth]);
-  const yScale = scaleLinear().domain([0, 100]).range([height - yAxisHeight - margin, margin]).nice();
+  const xScale = scaleLinear().domain(xExtent).range([xAxisWidth, width - xAxisWidth]);
+  const yScale = scaleLinear()
+  // .domain([0, 100])
+  .domain([0, max(data.map(d => +d[y.field]))])
+  .range([height - yAxisHeight - margin, margin]).nice();
   const xAxisValues = range(xExtent[1] - xExtent[0] + 1).map(y => y + xExtent[0]).filter(y => y % 2 === 0);
   let radius = width / 200;
   radius = radius < 3 ? 3 : radius;
@@ -40,7 +44,8 @@ const MiniLinechart = ({
           stroke="black"
         />
         {
-          range(11).map(n => n * 10)
+          // range(11).map(n => n * 10)
+          range(6).map(n => n * 40000)
             .map(pct => {
               const yPos = yScale(pct);
               return (
@@ -48,14 +53,14 @@ const MiniLinechart = ({
                   <text
                     x={xAxisWidth - 7}
                     y={3}
-                    fontSize={12}
+                    fontSize={8}
                     textAnchor={'end'}
                   >
-                    {pct}%
+                    {formatNumber(pct)} lt.
                   </text>
                   <line
                     x1={xAxisWidth - 5}
-                    x2={width - margin - xAxisWidth}
+                    x2={width - xAxisWidth}
                     y1={0}
                     y2={0}
                     stroke="grey"
@@ -70,7 +75,7 @@ const MiniLinechart = ({
       <g className="axis x-axis">
         <line
           x1={xAxisWidth}
-          x2={width - margin - xAxisWidth}
+          x2={width - xAxisWidth}
           y1={height - yAxisHeight - margin}
           y2={height - yAxisHeight - margin}
           stroke="black"
@@ -127,7 +132,7 @@ const MiniLinechart = ({
                 r={radius * 3}
                 fill="transparent"
                 data-for="histoire-dunkerque-tooltip"
-                data-tip={`${datum[x.field]} : ${datum[y.field]}%`}
+                data-tip={`${datum[x.field]} : ${formatNumber(datum[y.field])} lt`}
                 key={`${index}-tip`}
               />
 

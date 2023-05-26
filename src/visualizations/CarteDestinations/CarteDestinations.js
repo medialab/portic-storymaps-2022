@@ -201,7 +201,7 @@ export default function FraudeExportDunkerque({
 
     return {
       maxPossibleTonnage: maxPossibleTonnageTemp,
-      flagGroupModalities: Array.from(flagGroupModalitiesTemp),
+      flagGroupModalities: Array.from(flagGroupModalitiesTemp).reverse(),
       vizData
     }
   }, [travels, minTonnage, maxTonnage, flagGroupFilters, groupStrangers, longCoursOnly]);

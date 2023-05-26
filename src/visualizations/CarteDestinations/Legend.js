@@ -83,7 +83,8 @@ const Legend = ({
                   className={'background-circle'}
                 />
                 {
-                  flagGroupModalities.map((modality, i) => {
+                  flagGroupModalities
+                  .map((modality, i) => {
                     const isIncluded = flagGroupFilters.length ? flagGroupFilters.includes(modality) : true
                     const deg = (i / flagGroupModalities.length) * 360 - 90;
                     const theta = deg * Math.PI / 180;
