@@ -157,6 +157,11 @@ ports["Whistable"] = {
   "latitude": "51.3607",
   "longitude": "1.0257"
 }
+ports["Lee on Solent"] = {
+  **ports["Lee on Solent"],
+  "latitude": "50.7971097",
+  "longitude": "-1.241016"
+}
 done_ports.add('Whistable')
 ports["Indéfini"] = {
   **ports["Indéfini"],

@@ -28,7 +28,9 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
       const val = item[field];
       return sum + val;
     }, 0)
-  }, [actualData, field])
+  }, [actualData, field]);
+
+  const maxDomain = withLest ?  15000001 : 25000001;
   return (
     <div className="ComparaisonProjectionDestinationProduitsColoniauxDk">
       <div className="columns-container">
@@ -47,7 +49,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
               field: field,
               tickFormat: d => `${formatNumber(d)} lt.`,
               tickSpan: 5000000,
-              domain: [0, 15000001],
+              domain: [0, maxDomain],
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -79,7 +81,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
               field: 'imports_toflit18',
               tickFormat: d => `${formatNumber(d)} lt.`,
               tickSpan: 5000000,
-              domain: [0, 15000001],
+              domain: [0, maxDomain],
               title: 'imports toflit18', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -92,7 +94,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             // }}
 
             tooltip={
-              (d) => `estimation d'imports pour ${d.partenaire} : ${formatNumber(parseInt(d.imports_toflit18))} lt.`
+              (d) => `imports du BF de Dunkerque pour ${d.partenaire} : ${formatNumber(parseInt(d.imports_toflit18))} lt.`
             }
           />
         </div>

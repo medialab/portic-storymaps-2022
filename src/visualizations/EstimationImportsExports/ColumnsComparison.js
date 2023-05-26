@@ -46,11 +46,11 @@ function ColumnsComparison({
     let finalLeftItems = leftItems;
     let finalRightItems = rightItems;
     if (sums[0] < sums[1]) {
-      finalLeftItems = [...leftItems, {field: 'diff', title: 'différentiel entre imports et exports'}]
+      finalLeftItems = [...leftItems, { field: 'diff', title: 'différentiel entre imports et exports' }]
     } else {
-      finalRightItems = [...rightItems, {field: 'diff', title: 'différentiel entre imports et exports'}]
+      finalRightItems = [...rightItems, { field: 'diff', title: 'différentiel entre imports et exports' }]
     }
-    
+
     const max = Math.max(...sums);
     const yScale = scaleLinear().domain([0, max]).range([0, height - margins.top * 2.5 - margins.bottom])
     return {
@@ -85,7 +85,7 @@ function ColumnsComparison({
           displace += height;
         }
         const y = isSource ? displaceSource - height : displace - height;
-        
+
         return {
           items: [...items, {
             title: finalTitle,
@@ -122,6 +122,13 @@ function ColumnsComparison({
         </h2>
       </foreignObject>
       <g className="group left-group" transform={`translate(${margins.left}, ${margins.top})`}>
+      <rect
+          x={-margins.left / 2}
+          y={margins.top / 2}
+          width={width / 2 - margins.right + margins.left / 2 - 10}
+          height={height - margins.top * 1.5 - margins.bottom}
+          fill={'rgba(0,0,0,0.05)'}
+        />
         <foreignObject
           x={0}
           y={margins.top / 2}
@@ -146,18 +153,18 @@ function ColumnsComparison({
                   width={10}
                   height={height}
                 />
-               <foreignObject
+                <foreignObject
                   x={20}
                   y={0}
                   width={width / 2 - margins.right * 2 - 40}
                   height={textHeight}
                 >
                   <div className={`label-container ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
-                  <p>
+                    <p>
                       {title} <i>({formatNumber(parseInt(value))} lt.)</i>
                     </p>
                   </div>
-                  
+
                 </foreignObject>
               </g>
             )
@@ -165,6 +172,13 @@ function ColumnsComparison({
         }
       </g>
       <g className="group right-group" transform={`translate(${margins.left + width / 2}, ${margins.top})`}>
+        <rect
+          x={-margins.left / 2}
+          y={margins.top / 2}
+          width={width / 2 - margins.right + margins.left / 2}
+          height={height - margins.top * 1.5 - margins.bottom}
+          fill={'rgba(0,0,0,0.1)'}
+        />
         <foreignObject
           x={0}
           y={margins.top / 2}
@@ -192,22 +206,30 @@ function ColumnsComparison({
                 <foreignObject
                   x={20}
                   y={0}
-                  width={width / 2 - margins.right - (isSource ? 40 : 20)}
+                  width={width / 2 - margins.right - 10 - (isSource ? 40 : 20)}
                   height={textHeight}
                 >
                   <div className={`label-container ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
-                  <p >
+                    <p >
                       {title} <i>({formatNumber(parseInt(value))} lt.)</i>
                     </p>
                   </div>
-                  
+
                 </foreignObject>
               </g>
             )
           })
         }
       </g>
-      <g className="legend" transform={`translate(${margins.left}, ${height - margins.bottom - 120})`}>
+      <g className="legend" transform={`translate(${margins.left * 1.5}, ${height - margins.bottom - 120})`}>
+        <rect
+          x={-10}
+          y={-10}
+          width={width / 2 - margins.left * 2 - margins.right}
+          height={height - (height - margins.bottom - 60)}
+          fill={'white'}
+          stroke='none'
+        />
         {
           [
             {
@@ -223,35 +245,35 @@ function ColumnsComparison({
               label: 'Différentiels entre sources et projections'
             },
           ]
-          .map(({color, label}, index) => {
-            return (
-              <g 
-                className={'legend-item'}
-                key={index}
-                transform={`translate(0, ${index * 20})`}
-              >
-                <rect
-                  x={0}
-                  y={5}
-                  width={10}
-                  height={10}
-                  fill={color}
-                  stroke='none'
-                />
-                <foreignObject
-                  x={20}
-                  y={0}
-                  width={width / 2 - margins.left * 2 - margins.right}
-                  height={width / 2}
+            .map(({ color, label }, index) => {
+              return (
+                <g
+                  className={'legend-item'}
+                  key={index}
+                  transform={`translate(0, ${index * 20})`}
                 >
-                  <div>
-                    {label}
-                  </div>
-                  
-                </foreignObject>
-              </g>
-            )
-          })
+                  <rect
+                    x={0}
+                    y={5}
+                    width={10}
+                    height={10}
+                    fill={color}
+                    stroke='none'
+                  />
+                  <foreignObject
+                    x={20}
+                    y={0}
+                    width={width / 2 - margins.left * 2 - margins.right * 3}
+                    height={width / 2}
+                  >
+                    <div>
+                      {label}
+                    </div>
+
+                  </foreignObject>
+                </g>
+              )
+            })
         }
       </g>
     </svg>

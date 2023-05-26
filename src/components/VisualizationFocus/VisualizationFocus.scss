@@ -51,6 +51,7 @@
       padding: $medium-gutter;
       padding-top: 0;
       order: 2;
+      max-width: calc(30vw - 2rem);
       .details-header {
         pointer-events: all;
         display: flex;
@@ -141,6 +142,7 @@
       }
       .visualization-details {
         order: unset;
+        max-width: unset;
       }
       .visualization-wrapper {
         max-width: calc(100% - #{$medium-gutter});
@@ -173,6 +175,7 @@
       .visualization-details {
         color: black;
         order: unset;
+        max-width: unset;
       }
     }
   }
