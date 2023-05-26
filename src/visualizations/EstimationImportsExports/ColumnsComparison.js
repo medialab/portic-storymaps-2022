@@ -110,7 +110,7 @@ function ColumnsComparison({
       height={height}
       className="ColumnsComparison"
     >
-      <rect x={0} y={0} width={width} height={height} fill="white" />
+      {/* <rect x={0} y={0} width={width} height={height} fill="white" /> */}
       <foreignObject
         x={margins.left}
         y={margins.top / 2}

@@ -44,7 +44,7 @@ const EstimationImportsExports = ({
         },
         {
           field: 'toflit18 exports produits coloniaux (monde...)',
-          title: 'exports connus de produits coloniaux depuis Dunkerque (toflit18)',
+          title: 'exports connus de produits coloniaux depuis Dunkerque',
           isSource: true,
         }
       ]
@@ -67,7 +67,7 @@ const EstimationImportsExports = ({
       items: [
         {
           field: 'toflit18 exports légitimes dk > angleterre',
-          title: 'exports connus vers le RU déclarés (toflit18)',
+          title: 'exports connus vers le RU déclarés',
           isSource: true,
         },
         {
