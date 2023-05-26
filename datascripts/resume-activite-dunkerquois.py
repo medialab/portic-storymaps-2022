@@ -99,7 +99,8 @@ for year in years:
                 'cargo_type': cargo,
                 'ship_tonnage': ship_tonnage,
                 'ship_tonnage_class': flow['tonnage_class'] or "inconnu",
-                "ship_tonnage_class_ranking": tonnage_classes_ranking[flow['tonnage_class']]
+                "ship_tonnage_class_ranking": tonnage_classes_ranking[flow['tonnage_class']],
+                'year': year
             })  
 with open(output_path, 'w', newline='') as csvfile:
   fieldnames = output_data[0].keys()

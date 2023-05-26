@@ -55,7 +55,7 @@ export default function ResumeActivitesDunkerquois({
     <div className="ResumeActivitesDunkerquois">
       <AlluvialChart
         {...{
-          data,
+          data: data.filter(d => d.year === year),
           steps,
           quantifierField: 'rel_tonnage',
           dimensions: { width, height },
@@ -80,6 +80,14 @@ export default function ResumeActivitesDunkerquois({
           }
         }}
       />
+      <div className="buttons-container" style={{ margin: '1rem' }}>
+        <button className={`Button ${year === '1787' ? 'is-active' : ''}`} onClick={() => setYear('1787')}>
+          1787
+        </button>
+        <button className={`Button ${year === '1789' ? 'is-active' : ''}`} onClick={() => setYear('1789')}>
+          1789
+        </button>
+      </div>
     </div>
   )
 }
