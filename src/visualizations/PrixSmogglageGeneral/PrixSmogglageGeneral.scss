@@ -1,15 +1,23 @@
-
-
-
 .PrixSmogglageGeneral {
   display: flex;
   flex-flow: row nowrap;
+  margin-top: 1rem;
 
   .legend-container {
     width: 30%;
+    h4 {
+      margin: 0;
+    }
     ul {
       list-style-type: none;
       padding: 0;
+      li {
+        display: flex;
+        align-items: start;
+        margin-bottom: 0.5rem;
+        font-family: "IBM Plex Sans", sans-serif;
+        cursor: pointer;
+      }
     }
   }
 }

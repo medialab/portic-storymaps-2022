@@ -26,8 +26,8 @@ export default function ExportsVsSmogglage({
 }) {
 
   const [selectedPortsOverviewQuantiField, setPortsOverviewQuantiField] = useState('shipment_price');
-  const [selectedPort, setSelectedPort] = useState(undefined );
-  const [highlightedPort, setHighlightedPort] = useState(undefined );
+  const [selectedPort, setSelectedPort] = useState(undefined);
+  const [highlightedPort, setHighlightedPort] = useState(undefined);
 
   const maxCircleArea = useMemo(() => {
     const maxDimension = max([width, height]);
@@ -58,7 +58,7 @@ export default function ExportsVsSmogglage({
   const radarAxis = Object.keys(portsProductsGroups)
   const radarData = useMemo(() => {
     let absoluteMaxValue = -Infinity;
-    let output =  homeportsData.map((port) => {
+    let output = homeportsData.map((port) => {
       const values = Object.keys(portsProductsGroups).reduce((current, groupKey) => {
         const children = portsProductsGroups[groupKey].children;
         const value = children.reduce((sum, childKey) => sum + +port[childKey], 0);
@@ -87,14 +87,14 @@ export default function ExportsVsSmogglage({
     })
     if (selectedPort) {
       return output
-      .filter(p => p.meta.name === selectedPort)
-      .map((port) => {
-        return {
-          ...port,
-          absoluteData: port.data,
-          data: port.normalizedData
-        }
-      })
+        .filter(p => p.meta.name === selectedPort)
+        .map((port) => {
+          return {
+            ...port,
+            absoluteData: port.data,
+            data: port.normalizedData
+          }
+        })
     }
     // normalize values to absolute 0-1
     output = output.map((port) => {
@@ -133,7 +133,7 @@ export default function ExportsVsSmogglage({
 
   const [projectionLatitude, projectionLongitude] = useMemo(() => {
     if (selectedPort && homeportsData) {
-      const port = homeportsData.find(({port}) => port === selectedPort);
+      const port = homeportsData.find(({ port }) => port === selectedPort);
       if (port) {
         return [
           port.latitude,
@@ -145,54 +145,66 @@ export default function ExportsVsSmogglage({
   }, [homeportsData, selectedPort]);
 
   const portsOverviewFieldsChoices = [
-    'tonnage',
-    'nb_pointcalls',
-    'shipment_price'
+    {
+      field: 'tonnage',
+      label: 'tonnage'
+    },
+    {
+      field: 'nb_pointcalls',
+      label: 'nombre de voyages'
+    },
+    {
+      field: 'shipment_price',
+      label: 'prix de la cargaison'
+    }
+    // 'tonnage',
+    // 'nb_pointcalls',
+    // 'shipment_price'
   ];
 
   const radarSize = selectedPort ? width / 2 : width / 3;
   return (
     <div className='ExportsVsSmogglage'>
       <GeographicMapChart
-      // title={'Smoggled products by homeport'}
-      projectionTemplate={'England'}
-      projectionConfig={selectedPort ? {
-        centerX: projectionLongitude,
-        centerY: projectionLatitude,
-        scale: height * 50
-      } : undefined}
-      layers={[
-        {
-          type: 'choropleth',
-          animated: true,
-          data: data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
-          // reverseColors: atlasMode ? undefined : true,
-        },
-        {
-          type: 'custom',
-          data: {
-            homeportsData,
-            maxCircleArea,
-            circleSizeVariable: selectedPortsOverviewQuantiField,
-            selectedPort, 
-            setSelectedPort,
-            highlightedPort,
-            onMouseOver: (port) => setHighlightedPort(port),
-            onMouseOut: () => setHighlightedPort(),
-            // flagGroupModalities,
-            lang,
-            // highlightedDestination,
-            // setHighlightedDestination,
-            // containerWidth: width,
-            // containerHeight: height,
-            // showOffscreenPorts,
-            // showDetailsInMap,
+        title={'Produits smogglés par port d\'attache des smoggleurs'}
+        projectionTemplate={'England'}
+        projectionConfig={selectedPort ? {
+          centerX: projectionLongitude,
+          centerY: projectionLatitude,
+          scale: height * 50
+        } : undefined}
+        layers={[
+          {
+            type: 'choropleth',
+            animated: true,
+            data: data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            // reverseColors: atlasMode ? undefined : true,
           },
-          renderObjects
-        }
-      ]}
-      height={atlasMode ? window.innerHeight * .9 : height}
-      width={width}
+          {
+            type: 'custom',
+            data: {
+              homeportsData,
+              maxCircleArea,
+              circleSizeVariable: selectedPortsOverviewQuantiField,
+              selectedPort,
+              setSelectedPort,
+              highlightedPort,
+              onMouseOver: (port) => setHighlightedPort(port),
+              onMouseOut: () => setHighlightedPort(),
+              // flagGroupModalities,
+              lang,
+              // highlightedDestination,
+              // setHighlightedDestination,
+              // containerWidth: width,
+              // containerHeight: height,
+              // showOffscreenPorts,
+              // showDetailsInMap,
+            },
+            renderObjects
+          }
+        ]}
+        height={atlasMode ? window.innerHeight * .9 : height}
+        width={width}
       />
       <div className="radar-container"
         style={{
@@ -212,70 +224,74 @@ export default function ExportsVsSmogglage({
           onMouseOutObject={() => setHighlightedPort()}
         />
       </div>
-      <div>
-        Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
+      <div className="legend-container">
+        <p>
+          <i>
+            Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
+          </i>
+        </p>
+        {/* <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div> */}
+        <div>Représenter les ports sur la carte par :</div>
+        <ul>
+          {
+            portsOverviewFieldsChoices
+              .map(({ field, label }) => {
+                const handleClick = () => {
+                  setPortsOverviewQuantiField(field)
+                }
+                return (
+                  <li key={field} onClick={handleClick}>
+                    <input
+                      type="radio"
+                      checked={selectedPortsOverviewQuantiField === field}
+                      readOnly
+                    />
+                    <span>
+                      {label}
+                    </span>
+                  </li>
+                )
+              })
+          }
+        </ul>
       </div>
-      <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div>
-      <ul>
-        {
-          portsOverviewFieldsChoices
-            .map(field => {
-              const handleClick = () => {
-                setPortsOverviewQuantiField(field)
-              }
-              return (
-                <li key={field} onClick={handleClick}>
-                  <input
-                    type="radio"
-                    checked={selectedPortsOverviewQuantiField === field}
-                    readOnly
-                  />
-                  <span>
-                    {field}
-                  </span>
-                </li>
-              )
-            })
-        }
-      </ul>
-      
       {/* <img
         src={`${process.env.BASE_PATH}/assets/exports-vs-smogglage.jpg`}
         {...{ width, height }}
         style={{ objectFit: 'contain' }}
       /> */}
-      
+
       {
-        detailsData &&
-        <BarChart
-          {...{
-            data: detailsData
-              .sort((a, b) => {
-                if (a.quantity > b.quantity) {
-                  return -1;
-                }
-                return 1;
-              })
-            ,
-            width: width,
-            height: height * 2,
-          }}
-          orientation='vertical'
+        // detailsData &&
+        // <BarChart
+        //   {...{
+        //     data: detailsData
+        //       .sort((a, b) => {
+        //         if (a.quantity > b.quantity) {
+        //           return -1;
+        //         }
+        //         return 1;
+        //       })
+        //     ,
+        //     width: width,
+        //     height: height * 2,
+        //   }}
+        //   orientation='vertical'
 
-          y={{
-            field: 'field',
-          }}
-          x={{
-            field: 'quantity',
-            tickFormat: d => `${formatNumber(d)} lt`,
-            title: 'quantity', // translate('TonnagesF12', 'destination', lang)
-          }}
+        //   y={{
+        //     field: 'field',
+        //   }}
+        //   x={{
+        //     field: 'quantity',
+        //     tickFormat: d => `${formatNumber(d)} lt`,
+        //     title: 'quantity', // translate('TonnagesF12', 'destination', lang)
+        //   }}
 
-          color={{
-            field: 'group',
-          }}
+        //   color={{
+        //     field: 'group',
+        //   }}
 
-        />
+        // />
       }
 
     </div>

@@ -27,4 +27,24 @@
     //   }
     // }
   }
+
+  .legend-container {
+    position: absolute;
+    left: 0rem;
+    top: 90%;
+    max-width: 300px;
+    font-size: .8rem;
+    padding: 1rem;
+    background: rgba(255,255,255,.5);
+    box-sizing: border-box;
+    ul {
+      margin: 0;
+      list-style: none;
+      padding: 0;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
 }
