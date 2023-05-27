@@ -29,7 +29,7 @@ export default function VisualizationContainer({
 }) {
   const { lang } = useParams();
   const titleRef = useRef(null);
-  const titleHeight = titleRef.current ? titleRef.current.getBoundingClientRect().height : 0;
+  // const titleHeight = titleRef.current ? titleRef.current.getBoundingClientRect().height : 0;
 
   const title = useMemo(() => {
     const vizMetas = visualizationsMetas[vizId];
@@ -44,7 +44,6 @@ export default function VisualizationContainer({
   function handleClickToggleFullScreen() {
     onClickToggleFullScreen();
   }
-
   return (
     <>
       {!introMode && <h3 ref={titleRef}>{title}</h3>}
@@ -90,15 +89,17 @@ export default function VisualizationContainer({
               }
 
 
-              <VisualizationController {
-                ...{
-                  dimensions,
-                  lang,
-                  vizId,
-                  callerProps,
-                  ...props
-                }
-              } />
+              <VisualizationController 
+                {
+                  ...{
+                    dimensions,
+                    lang,
+                    vizId,
+                    callerProps,
+                    ...props
+                  }
+                } 
+              />
             </div>
           )
         }
