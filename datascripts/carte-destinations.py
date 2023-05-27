@@ -1,9 +1,22 @@
 import csv
+import requests
 
 from index import get_viz_metas
 
 output = get_viz_metas('carte-destinations')['outputs'][-1]
-input = get_viz_metas('carte-destinations')['inputs'][0]
+input = get_viz_metas('carte-destinations')['inputs'][1]
+
+# map_input =  get_viz_metas('carte-destinations')['inputs'][0]
+map_output =  get_viz_metas('carte-destinations')['outputs'][0]
+
+
+with open(map_output, "w") as mr:
+  with requests.Session() as s:
+    download = s.get("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_land.geojson")
+    decoded_content = download.content.decode('utf-8')
+    mr.write(decoded_content)
+  mr.close()
+
 
 with open(input, "r") as fr:
     reader = csv.DictReader(fr)

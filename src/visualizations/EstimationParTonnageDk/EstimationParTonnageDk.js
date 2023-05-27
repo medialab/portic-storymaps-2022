@@ -8,9 +8,10 @@ import './EstimationParTonnageDk.scss';
 const EstimationParTonnageDk = ({
   data,
   width,
-  height,
+  height: inputHeight,
   lang,
 }) => {
+  const height = inputHeight - 100;
   const [withLest, setWithLest] = useState(true);
   const field = useMemo(() => withLest ? 'estimate' : 'estimate_without_lest', [withLest]);
   const actualData = useMemo(() => {

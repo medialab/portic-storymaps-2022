@@ -12,7 +12,7 @@ const MiniLinechart = ({
 }) => {
   const data = inputData.map(d => ({ ...d, [y.field]: +(d[y.field].replace(/\s/, '').split(',').slice(0, 1)) }));
   const margin = 10;
-  const xAxisWidth = 70;
+  const xAxisWidth = 50;
   const yAxisHeight = 30;
   const xExtent = extent(data.map(d => +d[x.field]));
   // const yExtent = extent(data.map(d => +d[y.field]));

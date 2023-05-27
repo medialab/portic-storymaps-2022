@@ -13,8 +13,8 @@ export default function TonnageMoyenMois({
     dimensions,
     lang,
     callerProps: {
-      startYear,
-      endYear
+      debut,
+      fin
     } = {},
     ...props
 }) {
@@ -23,8 +23,8 @@ export default function TonnageMoyenMois({
     const [yearBrush, setYearBrush] = useState([minYear, minYear]);
 
     useEffect(() => {
-      setYearBrush([startYear || minYear, endYear || maxYear]);
-    }, [startYear, endYear])
+      setYearBrush([debut || minYear, fin || maxYear]);
+    }, [debut, fin])
 
     const data = useMemo(() => {
         return inputData

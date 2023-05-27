@@ -28,8 +28,8 @@ export default function Pilotage({
     const { width, height } = dimensions;
 
     const {
-      methodo_uniquement = false,
-      resultat_uniquement = false
+      methodo_uniquement,
+      resultat_uniquement
     } = callerProps;
 
 
@@ -80,7 +80,7 @@ export default function Pilotage({
     }, [dataForProjection]);
 
     return (
-        <div className={`Pilotage ${isSlim ? 'is-slim': ''} ${atlasMode ? 'is-atlas-mode' : 'is-scrolly-mode'} ${methodo_uniquement ? 'methodo-only': ''} ${resultat_uniquement ? 'result-only': ''}`}
+        <div className={`Pilotage ${isSlim ? 'is-slim': ''} ${atlasMode ? 'is-atlas-mode' : 'is-scrolly-mode'} ${methodo_uniquement !== undefined ? 'methodo-only': ''} ${resultat_uniquement !== undefined ? 'result-only': ''}`}
           style={{
             maxWidth: width,
             maxHeight: atlasMode ? undefined : height
@@ -103,7 +103,7 @@ export default function Pilotage({
                         <PilotageLegend
                             {...{ colorPalette, lang }}
                             dimensions={{
-                                width: isSlim && methodo_uniquement ? width : width * .5,
+                                width: isSlim && methodo_uniquement !== undefined ? width : width * .5,
                                 height: 40
                             }}
                         />
@@ -112,8 +112,8 @@ export default function Pilotage({
                         {...{ colorPalette, lang }}
                         data={dataForProjection}
                         dimensions={{
-                            width: isSlim && methodo_uniquement ? width : width * .5,
-                            height: methodo_uniquement ? height / 4 : 250
+                            width: isSlim && methodo_uniquement !== undefined ? width : width * .5,
+                            height: methodo_uniquement !== undefined ? height / 4 : 250
                         }}
                     />
                 </div>
@@ -126,7 +126,7 @@ export default function Pilotage({
                       {...{ lang, colorPalette, projectionStats }}
                       data={dataForProjection}
                       dimensions={{
-                          width: isSlim && methodo_uniquement ? width : width * .5 - 10,
+                          width: isSlim && methodo_uniquement !== undefined ? width : width * .5 - 10,
                           height: isSlim ? height / 3 : 300
                       }}
                   />
@@ -138,7 +138,7 @@ export default function Pilotage({
                   {...{ colorPalette, lang, data, yearPeriodForProjection, projectionStats }}
                   dimensions={{
                       width: width - 50,
-                      height: (!atlasMode && isSlim) ? resultat_uniquement ? height : height / 2 : 400
+                      height: (!atlasMode && isSlim) ? resultat_uniquement !== undefined ? height : height / 2 : 400
                   }}
               />
             </div>

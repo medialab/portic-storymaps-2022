@@ -96,7 +96,7 @@ export default function MapPoints({
                                     y={-5}
                                     x={20}
                                     width='250px'
-                                    height='30px'
+                                    height='40px'
                                 >
                                     <animated.p
                                         xmlns="http://www.w3.org/1999/xhtml"

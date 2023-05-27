@@ -8,9 +8,10 @@ import './ComparaisonsLaRochelle.scss';
 const ComparaisonsLaRochelle = ({
   data,
   width,
-  height,
+  height: inputHeight,
   lang,
 }) => {
+  const height = inputHeight - 250;
   const [withLest, setWithLest] = useState(true);
   // const field = useMemo(() => withLest ? 'estimate' : 'estimate_without_lest', [withLest]);
   // const actualData = useMemo(() => {
@@ -30,21 +31,6 @@ const ComparaisonsLaRochelle = ({
   //   }, 0)
   // }, [actualData, field])
   const totaux = data.get('comparaisons-la-rochelle-projection.csv').filter(d => d.partner === "total")
-  console.log('totaux',
-    totaux.find(({ group }) => group == 'estimation par tonnage x prix par tonneau F12/1787').value,
-    data.get('comparaisons-la-rochelle-projection.csv')
-      .filter(({ group }) => {
-        if (group.includes('(non pondéré)')) {
-          return false;
-        }
-        if (!withLest && group.includes('(sans lest)')) {
-          return true;
-        } else if (withLest && !group.includes('(sans lest)')) {
-          return true
-        }
-      })
-      .reduce((sum, { value }) => sum + (+value), 0)
-  )
 
   const estimationSettings = {
     'vraie valeur dans toflit18 (pondéré avec terre-mer)': {

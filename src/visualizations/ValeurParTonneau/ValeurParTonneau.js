@@ -7,9 +7,10 @@ import './ValeurParTonneau.scss';
 const ValeurParTonneau = ({
   data,
   width,
-  height,
+  height: inputHeight,
   lang,
 }) => {
+  const height = inputHeight - 100;
   const [withLest, setWithLest] = useState(true);
   const field = withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest';
   const actualData = useMemo(() => {
@@ -66,8 +67,8 @@ const ValeurParTonneau = ({
             orientation='vertical'
             x={{
               field: withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest',
-              domain: [0, 400000],
-              tickSpan: 100000,
+              domain: [0, 400001],
+              tickSpan: 200000,
               tickFormat: d => `${formatNumber(d)} tx`,
               title: 'somme des tonnages', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -81,7 +82,7 @@ const ValeurParTonneau = ({
           />
         </div>
         <div className="column">
-           <h2>Prix par tonneau</h2>
+           <h2>Valeur par tonneau</h2>
           <BarChart
             {...{
               data: actualData,
@@ -93,8 +94,8 @@ const ValeurParTonneau = ({
             orientation='vertical'
             x={{
               field: field,
-              domain: [0, 1000],
-              tickSpan: 200,
+              domain: [0, 1001],
+              tickSpan: 300,
               tickFormat: d => `${d} lt./t`,
               title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
             }}

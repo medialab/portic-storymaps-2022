@@ -34,6 +34,7 @@ export default function AlluvialImportExport({
   data: inputData,
   dimensions,
   colorPalette = {},
+  atlasMode,
   ...props
 }) {
   const [highlightedItem, setHighlightedItem] = useState();
@@ -296,7 +297,7 @@ export default function AlluvialImportExport({
         width,
         height
       }}
-      className={`AlluvialImportExport ${highlightedItem ? 'has-highlights' : ''}`}
+      className={`AlluvialImportExport ${atlasMode ? 'atlas-mode': ''} ${highlightedItem ? 'has-highlights' : ''}`}
 
     >
       <rect

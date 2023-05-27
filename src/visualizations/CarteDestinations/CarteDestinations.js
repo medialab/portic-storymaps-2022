@@ -19,16 +19,22 @@ export default function FraudeExportDunkerque({
   },
   atlasMode,
   lang = 'fr',
-  projectionTemplate: projectionTemplateFromProps = 'from France to England',
-  minTonnage: minTonnageFromProps = 0,
-  maxTonnage: maxTonnageFromProps = 550,
-  groupStrangers: groupStrangersFromProps = true,
-  longCoursOnly: longCoursOnlyFromProps = false,
-  flagGroupFilters: flagGroupFiltersFromProps = '',
-  showOffscreenPorts: showOffscreenPortsFromProps = false,
-  showDetailsInMap: showDetailsInMapFromProps = false,
+  callerProps = {},
   ...props
 }) {
+  const {
+    projection: projectionTemplateFromProps = 'from France to England',
+    mintonnage: minTonnageFromProps = 0,
+    maxtonnage: maxTonnageFromProps = 550,
+    detailleretrangers = undefined,
+    longcours: longCoursOnlyFromProps,
+    filtrespavillons: flagGroupFiltersFromProps = '',
+    montrerhorschamp: showOffscreenPortsFromProps,
+    montrerdetails: showDetailsInMapFromProps,
+    destination = undefined
+  } = callerProps;
+
+  const groupStrangersFromProps = detailleretrangers === undefined;
 
   // states
   const [minTonnage, setMinTonnage] = useState(minTonnageFromProps);
@@ -40,22 +46,22 @@ export default function FraudeExportDunkerque({
   const [showOffscreenPorts, setShowOffscreenPorts] = useState(showOffscreenPortsFromProps);
   const [showDetailsInMap, setShowDetailsInMap] = useState(showDetailsInMapFromProps);
   const [templatesVisible, setTemplatesVisible] = useState(false);
-  const [highlightedDestination, setHighlightedDestination] = useState();
+  const [highlightedDestination, setHighlightedDestination] = useState(destination);
 
   // update state from props
   // @todo factorize that with a custom hook
   useEffect(() => {
-    setMinTonnage(minTonnageFromProps);
+    setMinTonnage(+minTonnageFromProps);
   }, [minTonnageFromProps]);
   useEffect(() => {
-    setMaxTonnage(maxTonnageFromProps);
+    setMaxTonnage(+maxTonnageFromProps);
   }, [maxTonnageFromProps]);
   useEffect(() => {
     setGroupStrangers(groupStrangersFromProps);
     setFlagGroupFilters('');
   }, [groupStrangersFromProps]);
   useEffect(() => {
-    setLongCoursOnly(longCoursOnlyFromProps);
+    setLongCoursOnly(longCoursOnlyFromProps !== undefined);
   }, [longCoursOnlyFromProps]);
   useEffect(() => {
     setFlagGroupFilters(flagGroupFiltersFromProps);
@@ -65,11 +71,14 @@ export default function FraudeExportDunkerque({
   }, [projectionTemplateFromProps]);
 
   useEffect(() => {
-    setShowOffscreenPorts(showOffscreenPortsFromProps);
+    setShowOffscreenPorts(showOffscreenPortsFromProps !== undefined);
   }, [showOffscreenPortsFromProps]);
+  useEffect(() => {
+    setHighlightedDestination(destination)
+  }, [destination])
 
   useEffect(() => {
-    setShowDetailsInMap(showDetailsInMapFromProps);
+    setShowDetailsInMap(showDetailsInMapFromProps !== undefined);
   }, [showDetailsInMapFromProps]);
 
   useEffect(() => {
@@ -223,7 +232,7 @@ export default function FraudeExportDunkerque({
       }}
     >
       <GeographicMapChart
-        title={'Carte des destinations des navires partis de Dunkerque'}
+        title={'Carte des destinations des navires partis de Dunkerque en 1789'}
         projectionTemplate={projectionTemplate}
         layers={[
           // {
@@ -233,8 +242,8 @@ export default function FraudeExportDunkerque({
           // },
           {
             type: 'choropleth',
-            animated: true,
-            data: data.get('map_backgrounds/world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            animated: false,
+            data:  data.get('map_backgrounds/physical_world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // reverseColors: atlasMode ? undefined : true,
           },
           {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import visualizationsMetas from '../data/viz';
 
@@ -57,10 +57,16 @@ export default function VisualizationController({
   ref,
   dimensions,
   lang,
-  callerProps = undefined,
+  callerProps: inputCallerProps,
   atlasMode,
   ...props
 }) {
+  // trying to dirtyfix a nasty bug with caller props
+  const [callerProps, setCallerProps] = useState(inputCallerProps)
+  useEffect(() => {
+    setCallerProps(inputCallerProps);
+  }, [inputCallerProps])
+
   const { width, height } = dimensions;
 
   const data = useMemo(function getVizDataFromId() {
@@ -78,10 +84,9 @@ export default function VisualizationController({
     if (data === undefined) {
       return <>Les données de cette visualisation n'ont pu être chargées.</>;
     }
-
     switch (vizId) {
       case 'carte-destinations':
-        return <CarteDestinations {...{ data, dimensions, lang, atlasMode, ...props }} />;
+        return <CarteDestinations {...{ data, dimensions, lang, atlasMode, callerProps, ...props }} />;
       case 'peche-type-value':
         return (
           <PecheTypeValue {...{ data, dimensions, lang, atlasMode, ...props }} />
@@ -122,15 +127,15 @@ export default function VisualizationController({
         );
       case 'tonnage-moyen-par-mois':
         return (
-          <TonnageMoyenMois {...{ data, dimensions, lang, atlasMode }} />
+          <TonnageMoyenMois {...{ data, dimensions, lang, atlasMode, callerProps }} />
         );
-      case 'evolution-peche':
+      case 'carte-peche':
         return (
-          <PecheMap {...{ data, dimensions, lang, atlasMode }} />
+          <PecheMap {...{ data, dimensions, lang, atlasMode, callerProps }} />
         );
       case 'pilotage':
         return (
-          <Pilotage {...{ data, dimensions, lang, atlasMode }} />
+          <Pilotage {...{ data, dimensions, lang, atlasMode, callerProps }} />
         );
       case 'gravure-smoggleurs':
         const legend = {
@@ -144,6 +149,15 @@ export default function VisualizationController({
             legend={legend[lang]}
           />
         );
+      case 'formule-estimation':
+        return (
+          <CommentedImage
+            src={`${process.env.BASE_PATH}/assets/${vizId}.png`}
+            width={width}
+            height={height}
+            legend={''}
+          />
+        );
       case 'homeports-from-dunkerque':
         return (
           <TreemapChart
@@ -154,7 +168,7 @@ export default function VisualizationController({
               height: dimensions.height,
               atlasMode,
               lang,
-              title: `onnage agrégé des navires partis de Dunkerque en 1789, par port d’attache`,
+              title: `Tonnage agrégé des navires partis de Dunkerque en 1789, par port d’attache`,
               tooltip: d => `En 1789, ${formatNumber(parseInt(d.tonnage))} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
               // tooltip: d => translate('partie-1-ports-dattache', 'tooltip', props.lang, { 
               //   tonnage: formatNumber(d.tonnage), 

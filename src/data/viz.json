@@ -51,7 +51,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
-        "comment_cest_fait_fr": "Source navigo flows 1787.Règles de définition des smoggleurs :- Dunkerque : tonnage 12tx et pavillon britannique- Calais : tonnage inférieur ou égale à 50 tx, pavillon britannique et direction GB- Boulogne : pavillon britanique et direction GB- Roscoff : direction GB ou ('A1964976', 'A0912818', 'A0864873'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')- Lorient : pavillon britanique et direction ('A0840357', 'A0912818', 'A1964976')- Bordeaux : pavillon britanique, et direction ('A1964976', 'A0912818'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')Agrégation par nombre de voyages (car tonnages parfois délibéremment faux)",
+        "comment_cest_fait_fr": "Source navigo flows 1787.<br />Règles de définition des smoggleurs :- Dunkerque : tonnage 12tx et pavillon britannique<br />- Calais : tonnage inférieur ou égale à 50 tx, pavillon britannique et direction GB<br />- Boulogne : pavillon britanique et direction GB<br />- Roscoff : direction GB ou ('A1964976', 'A0912818', 'A0864873'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')<br />- Lorient : pavillon britanique et direction ('A0840357', 'A0912818', 'A1964976')- Bordeaux : pavillon britanique, et direction ('A1964976', 'A0912818'), et transporte des produits illégaux ('eau de vie', 'genèvre', 'taffia', 'tabac', 'tabac en feuilles', 'thé', 'thé vert', 'thé boay', 'vin', 'bière', 'corintes', 'café', 'schites')<br />Agrégation par nombre de voyages (car tonnages parfois délibéremment faux)",
         "comment_cest_fait_en": "",
         "inputs": [
             "navigo_all_flows_1787.csv",
@@ -82,10 +82,10 @@
         ],
         "cacher_atlas": ""
     },
-    "evolution-peche": {
-        "id": "evolution-peche",
+    "carte-peche": {
+        "id": "carte-peche",
         "n_chapitre": 2,
-        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/evolution-peche",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/carte-peche",
         "titre_fr": "Les dunkerquois et la pêche",
         "titre_en": "Dunkirk and fishing",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
@@ -211,13 +211,14 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Données issues de navigo - flows - 1789.Filtrage : départ de Dunkerque.Agrégation par tonnage agrégé.",
+        "comment_cest_fait_fr": "Données issues de navigo - flows - 1789.<br />Filtrage : départ de Dunkerque.<br />Agrégation par tonnage agrégé.",
         "comment_cest_fait_en": "",
         "inputs": [
+            " https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_land.geojson",
             "navigo_all_flows_1789.csv"
         ],
         "outputs": [
-            "map_backgrounds/world_map.geojson",
+            "map_backgrounds/physical_world_map.geojson",
             "destinations_from_dunkerque.csv"
         ],
         "cacher_atlas": ""
@@ -254,7 +255,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Données tirées de navigo, flows, 1787 et 1789.Agrégation par nombre de voyages.",
+        "comment_cest_fait_fr": "Données tirées de navigo, flows, 1787 et 1789.<br />Agrégation par nombre de voyages.",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -272,7 +273,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Isolation des navires britaniques au départ de Dunkerque.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Source : navigo flows 1787 & 1789.Agrégation par nombre de voyages.",
+        "comment_cest_fait_fr": "Source : navigo flows 1787 & 1789.<br />Agrégation par nombre de voyages.",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -290,7 +291,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Source : navigo flows 1789.Filtres : destination GB hors \"colonies britaniques\" (substate).Agrégation par tonnage cumulé.",
+        "comment_cest_fait_fr": "Source : navigo flows 1789.<br />Filtres : destination GB hors \"colonies britaniques\" (substate).<br />Agrégation par tonnage cumulé.",
         "comment_cest_fait_en": "",
         "inputs": [
             "map_backgrounds/world_map.geojson",
@@ -312,7 +313,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Source : navigo flows 1789.Filtres : departure_function O, départ de Dunkerque, pavillon britannique.Les bateaux \"fausses destination\" sont ceux qui pour lesquels est indiqué [\"Lisbonne [mais: Angleterre]\" ou \"Bergen\"] dans le champ destination. ",
+        "comment_cest_fait_fr": "Source : navigo flows 1789.<br />Filtres : departure_function O, départ de Dunkerque, pavillon britannique.<br />Les bateaux \"fausses destination\" sont ceux qui pour lesquels est indiqué [\"Lisbonne [mais: Angleterre]\" ou \"Bergen\"] dans le champ destination. ",
         "comment_cest_fait_en": "",
         "inputs": [
             "map_backgrounds/world_map.geojson",
@@ -334,7 +335,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Partenaires groupés selon les règles suivantes :- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]- France : france,- monde : resteGroupement des produits :- produits coloniaux : utilisation de product_revolutionempire- produits des colonies : partner_grouping = \"colonies\"",
+        "comment_cest_fait_fr": "Partenaires groupés selon les règles suivantes :<br />- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]<br />- France : france,<br />- monde : reste<br />Groupement des produits :<br />- produits coloniaux : utilisation de product_revolutionempire<br />- produits des colonies : partner_grouping = \"colonies\"<br />",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -352,7 +353,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Source : toflit18.Partenaires groupés selon les règles suivantes :- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]- France : france,- monde : resteGroupement des produits :- produits coloniaux : utilisation de product_revolutionempire- produits des colonies : partner_grouping = \"colonies\"",
+        "comment_cest_fait_fr": "Source : toflit18.<br />Partenaires groupés selon les règles suivantes :<br />- colonies : [\"Asie\", \"Afrique\", \"Amériques\", \"Outre-mers\", \"Outre-mer\"]<br />- France : france,<br />- monde : reste<br />Groupement des produits :<br />- produits coloniaux : utilisation de product_revolutionempire<br />- produits des colonies : partner_grouping = \"colonies\"",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -388,7 +389,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Sources : - estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
+        "comment_cest_fait_fr": "Sources : <br />- estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa<br />- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
         "comment_cest_fait_en": "",
         "inputs": [
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output=csv",
@@ -411,7 +412,7 @@
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "comment_lire_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "comment_cest_fait_fr": "Sources : - estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
+        "comment_cest_fait_fr": "Sources : <br />- estimation_smogglage_1787 - https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/e/2PACX-1vRFUMKd1Wfgo9vuETmpsnvp3BLbwzxtN_HSikGN-MtXz6wEvaO_tyQf9G1z2TlBWfByUH3u4-abpnFk/pub?output%3Dcsv&sa=D&source=editors&ust=1685032528909027&usg=AOvVaw2T2yyxxkuFiaVA2SBxR8Aa<br />- dunkerque_smugglers_shipmentvalues.csv (module 5 du datasprint) : https://raw.githubusercontent.com/medialab/portic-datasprint-2022/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -423,7 +424,7 @@
         "id": "homeports-from-dunkerque",
         "n_chapitre": 1,
         "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/homeports-from-dunkerque",
-        "titre_fr": "Ports d'attache des bateaux partis de Dunkerque en 1789",
+        "titre_fr": "Tonnage agrégé des navires partis de Dunkerque en 1789, par port d’attache",
         "titre_en": "",
         "description_fr": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.",
         "description_en": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -455,6 +456,22 @@
         "outputs": [],
         "cacher_atlas": ""
     },
+    "formule-estimation": {
+        "id": "formule-estimation",
+        "n_chapitre": 3,
+        "lien_permanent_visualisation": "",
+        "titre_fr": "Formule utilisée pour estimer la valeur exportée par Dunkerque",
+        "titre_en": "",
+        "description_fr": "",
+        "description_en": "",
+        "comment_lire_fr": "",
+        "comment_lire_en": "",
+        "comment_cest_fait_fr": "",
+        "comment_cest_fait_en": "",
+        "inputs": [],
+        "outputs": [],
+        "cacher_atlas": "oui"
+    },
     "tonnages-1787-f12": {
         "id": "tonnages-1787-f12",
         "n_chapitre": 3,
@@ -484,7 +501,7 @@
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "Source : toflit18 exports.Utilisation de la classification \"grouping\"",
+        "comment_cest_fait_fr": "Source : toflit18 exports.<br />Utilisation de la classification \"grouping\"",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -520,7 +537,7 @@
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "navigo : pas de lest/lège/vide/futailles vides, pas de pêche,departure_function = O, departure_ferme_direction = \"La Rochelle\", destination_state_1789_fr != \"France\"toflit18 : flow['year'] == '1789' \\        and flow['customs_direction'] == \"La Rochelle\" \\        and flow['export_import'] == 'Exports' \\        and flow['partner_simplification'] != 'Îles françaises de l\\'Amérique' \\        and flow['partner_simplification'] != 'Colonies françaises' \\        and flow['partner_grouping'] != 'France' \\        and flow['partner_simplification'] != 'Sénégal' \\        and flow['partner_simplification'] != 'Saint-Domingue'",
+        "comment_cest_fait_fr": "navigo : pas de lest/lège/vide/futailles vides, pas de pêche,departure_function = O, departure_ferme_direction = \"La Rochelle\", destination_state_1789_fr != \"France\"<br />toflit18 : flow['year'] == '1789' \\        and flow['customs_direction'] == \"La Rochelle\" \\        and flow['export_import'] == 'Exports' \\        and flow['partner_simplification'] != 'Îles françaises de l\\'Amérique' \\        and flow['partner_simplification'] != 'Colonies françaises' \\        and flow['partner_grouping'] != 'France' \\        and flow['partner_simplification'] != 'Sénégal' \\        and flow['partner_simplification'] != 'Saint-Domingue'",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [
@@ -576,7 +593,7 @@
         "description_en": "",
         "comment_lire_fr": "",
         "comment_lire_en": "",
-        "comment_cest_fait_fr": "Source pour la comparaison: toflit18, customs_office=Dunkerque, partner_grouping=France.Agrégation selon partner_grouping, par valeur agrégée en livres tournois. ",
+        "comment_cest_fait_fr": "Source pour la comparaison: toflit18, customs_office=Dunkerque, partner_grouping=France.<br />Agrégation selon partner_grouping, par valeur agrégée en livres tournois. ",
         "comment_cest_fait_en": "",
         "inputs": [],
         "outputs": [

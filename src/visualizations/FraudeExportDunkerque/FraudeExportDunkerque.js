@@ -8,6 +8,7 @@ const {importsExports: palette} = colorsPalettes;
 export default function FraudeExportDunkerque({
     data: inputData,
     dimensions,
+    atlasMode,
     ...props
 }) {
     /** @type {Object[]} */
@@ -27,6 +28,7 @@ export default function FraudeExportDunkerque({
         <AlluvialImportExport
             {...{
                 dimensions,
+                atlasMode,
                 data
             }}
             colorPalette={palette}
