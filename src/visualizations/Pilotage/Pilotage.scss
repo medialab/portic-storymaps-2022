@@ -1,101 +1,133 @@
 @import "../../styles/variables.scss";
 
 .Pilotage {
-    box-sizing: border-box;
-    font-family: $font-family-1;
-    font-size: 1rem;
+  box-sizing: border-box;
+  font-family: $font-family-1;
+  font-size: 1rem;
 
-    .ArrowNote {
-      p {
-        font-size: 1.3vmin;
-      }
-
-      line,
-      path {
-        stroke: black;
-        stroke-width: 2px;
-      }
+  .ArrowNote {
+    p {
+      font-size: 1.3vmin;
     }
 
-    h3{
-      margin-top: 0;
+    line,
+    path {
+      stroke: black;
+      stroke-width: 2px;
     }
-    .top-barchart {
-        display: flex;
-        align-items: center;
-    }
+  }
 
-    .upper-row {
+  h3 {
+    margin-top: 0;
+  }
+  .top-barchart {
+    display: flex;
+    align-items: center;
+  }
+
+  .upper-row,
+  .lower-row {
+    transition: 0.5s ease all;
+    overflow: hidden;
+    max-height: 100%;
+    opacity: 1;
+  }
+
+  .upper-row {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    padding: 1rem;
+    padding-bottom: 0;
+    .explanation-left,
+    .explanation-right {
+      flex: 1;
+      max-width: 50%;
+    }
+    .explanation-left {
       display: flex;
-      justify-content: space-between;
-      flex-flow: row nowrap;
-      padding: 1rem;
-      padding-bottom: 0;
-      .explanation-left {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+      flex-direction: column;
+      padding-bottom: 1rem;
+      .legend-container {
         padding-bottom: 1rem;
-        .legend-container {
-          padding-bottom: 1rem;
-        }
-      }
-      .explanation-right {
-        flex: 1;
-        padding: 1rem;
-        box-sizing: border-box;
-        .mean-explanation {
-          margin-top: .5rem;
-          font-size: .8rem;          
-          i {
-            font-style : normal;
-            color: darkgreen;
-          }
-        }
       }
     }
-    .lower-row {
+    .explanation-right {
       padding: 1rem;
-      padding-top: 0;
-      
-      .back-label {
-        display: flex;
-        justify-content: center;
-        p {
-          padding: 2px 1rem;
-          font-size: 1.3vh;
-          border: 1px solid black;
-          border-radius: 10px;
-          text-align: center;
-          background-color: white;
-          display: inline-block;
-        }
-        &.is-black {
-          p {
-            color: white;
-            background: black;
-          }
-          
+      box-sizing: border-box;
+      .mean-explanation {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        i {
+          font-style: normal;
+          color: darkgreen;
         }
       }
-      
     }
+  }
+  .lower-row {
+    padding: 1rem;
+    padding-top: 0;
 
-    &.is-slim {
+    .back-label {
+      display: flex;
+      justify-content: center;
+      p {
+        padding: 2px 1rem;
+        font-size: 1.3vh;
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: center;
+        background-color: white;
+        display: inline-block;
+      }
+      &.is-black {
+        p {
+          color: white;
+          background: black;
+        }
+      }
+    }
+  }
+
+  &.is-scrolly-mode {
+    .lower-row {
+      h3 {
+        margin: 0;
+      }
+    }
+    &.result-only,
+    &.methodo-only {
       .row {
         max-height: 50%;
       }
       .upper-row {
         flex-direction: column;
       }
-
-      &.is-scrolly-mode {
-        .upper-row {
-          display: none;
-        }
-        .lower-row h3 {
-          display: none;
+    }
+    &.result-only {
+      .upper-row {
+        max-height: 0;
+        opacity: 0;
+      }
+      .lower-row h3 {
+        display: none;
+      }
+    }
+    &.methodo-only {
+      // transform: scale(.6);
+      .lower-row {
+        max-height: 0;
+        opacity: 0;
+      }
+    }
+    &:not(.methodo-only):not(.result-only) {
+      .lower-row {
+        svg {
+          position: relative;
+          top: -3rem;
         }
       }
     }
+  }
 }
