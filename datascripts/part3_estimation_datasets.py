@@ -120,6 +120,24 @@ navigo_partner_balance_1789_to_toflit18_grouping = {
   'Saint-Jean de Luz': 'France'
 }
 
+navigo_divers_to_toflit18_grouping = {
+   'Royaume de Piémont-Sardaigne': 'Italie', 
+   '': 'Divers', 
+   'Principauté de Lampédouse': 'Italie', 
+   'Maroc': 'Italie', 
+   'multi-Etat': 'Divers', 
+   'Principauté de Piombino': 'Italie', 
+   'Toscane': 'Italie', 
+   'Monaco': 'Italie', 
+   'Duché de Massa et Carrare': 'Italie', 
+   'République de Gênes': 'Italie', 
+   'Malte': 'Italie', 
+   'Etats pontificaux': 'Italie', 
+   'zone maritime': 'Divers', 
+   'Royaume de Naples': 'Italie', 
+   'Empire ottoman': 'Levant et Barbarie'
+}
+
 """
 0 - lib
 """
@@ -572,6 +590,11 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
     "group":  "estimation par tonnage x prix par tonneau F12/1787",
     "value": sum_projection_resume
   })
+  projection_resume.append({
+    "partner": "total",
+    "group":  "estimation par tonnage x prix par tonneau F12/1787 (sans lest)",
+    "value": sum_projection_resume_without_lest
+  })
   
   print("Total des exports en lt selon la projection : " + f'{int(sum_projection_resume):,}' + " lt")
   print("Total des exports en lt selon toflit18 : " + f'{int(sum_toflit18_raw):,}' + " lt")
@@ -778,7 +801,12 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
       destination = flow['destination_partner_balance_supp_1789']
     if destination not in navigo_partner_balance_1789_to_toflit18_grouping:
       raise Exception('The following navigo partner balance 1789 destination is not in navigo_partner_balance_1789_to_toflit18_grouping : ' + destination)
-    destination = navigo_partner_balance_1789_to_toflit18_grouping[destination]    
+    destination = navigo_partner_balance_1789_to_toflit18_grouping[destination]
+    if destination == 'Divers':
+       destination = navigo_divers_to_toflit18_grouping[flow['destination_state_1789_fr']]
+    # if destination is still divers
+    if destination == 'Divers':
+       continue
     departure = flow['departure']
 #    departure = flow['departure_state_1789_fr']
     tonnage = float(flow['tonnage'] or 0)
@@ -818,7 +846,6 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
               nb_tonnage_angleterre += tonnage
               if len(commodities_ids) > 0:
                     nb_trajets_angleterre_avec_cargo += 1
-      
 destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo_dk.items()]
 # print('===')
 # print('Destinations Dunkerque 1789 : ')

@@ -25,7 +25,7 @@ function ColumnsComparison({
 
   const margins = {
     top: 40,
-    bottom: 40,
+    bottom: 0,
     left: 20,
     right: 20
   }
@@ -226,22 +226,22 @@ function ColumnsComparison({
           x={-10}
           y={-10}
           width={width / 2 - margins.left * 2 - margins.right}
-          height={height - (height - margins.bottom - 60)}
+          height={height - (height - margins.bottom - 100)}
           fill={'white'}
           stroke='none'
         />
         {
           [
             {
-              color: 'red',
+              color: '#e93d15',
               label: 'Sources'
             },
             {
-              color: 'blue',
+              color: '#514EEE',
               label: 'Projections'
             },
             {
-              color: 'grey',
+              color: '#34495e',
               label: 'Différentiels entre sources et projections'
             },
           ]

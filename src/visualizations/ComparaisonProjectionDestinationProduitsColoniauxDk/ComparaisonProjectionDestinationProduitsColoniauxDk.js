@@ -29,6 +29,12 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
       return sum + val;
     }, 0)
   }, [actualData, field]);
+  const totalImports = useMemo(() => {
+    return actualData.reduce((sum, item) => {
+      const val = +item['imports_toflit18'];
+      return sum + val;
+    }, 0)
+  }, [actualData, field]);
 
   const maxDomain = withLest ?  15000001 : 25000001;
   return (
@@ -67,7 +73,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
           />
         </div>
         <div className="column">
-          <h2>Importations à Dunkerque hors France correspondantes</h2>
+          <h2>Observation des imports pour les partenaires correspondant (total : {formatNumber(totalImports)} lt.)</h2>
           <BarChart
             {...{
               data: actualData,

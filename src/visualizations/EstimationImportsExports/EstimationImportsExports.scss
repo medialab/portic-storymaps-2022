@@ -4,6 +4,12 @@
     h3 {
       margin: 0;
     }
+    h2 {
+      font-size: 1.3rem;
+    }
+    h3 {
+      font-size: 1rem;
+    }
   }
   .legend {
     div {
@@ -34,26 +40,26 @@
         }
       &.source {
         .label-container {
-          color: red;
+          color: #e93d15;
         }
         rect {
-          fill: red;
+          fill: #e93d15;
         }
       }
       &.estimation {
         .label-container {
-          color: blue;
+          color: #514EEE;
         }
         rect {
-          fill: blue;
+          fill: #514EEE;
         }
       }
       &.diff {
         .label-container {
-          color: grey;
+          color: #34495e;
         }
         rect {
-          fill: grey;
+          fill: #34495e;
         }
       }
     }
