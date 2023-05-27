@@ -11,10 +11,12 @@ map_output =  get_viz_metas('carte-destinations')['outputs'][0]
 
 
 with open(map_output, "w") as mr:
+  print("get map background https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_land.geojson")
   with requests.Session() as s:
     download = s.get("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_land.geojson")
     decoded_content = download.content.decode('utf-8')
     mr.write(decoded_content)
+   print("done")
   mr.close()
 
 
