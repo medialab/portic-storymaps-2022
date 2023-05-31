@@ -39,17 +39,17 @@
         cursor: pointer;
       }
     }
-    &.is-atlas-mode {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      padding: 1rem;
-      box-sizing: border-box;
-      // align-items: center;
-      .FraudeExportPortFranc-list {
-        flex-flow: row wrap;
-        align-items: center;
-        width: 100%;
-      }
-    }
+    // &.is-atlas-mode {
+    //   display: flex;
+    //   flex-flow: row nowrap;
+    //   justify-content: center;
+    //   padding: 1rem;
+    //   box-sizing: border-box;
+    //   // align-items: center;
+    //   .FraudeExportPortFranc-list {
+    //     flex-flow: row wrap;
+    //     align-items: center;
+    //     width: 100%;
+    //   }
+    // }
 }

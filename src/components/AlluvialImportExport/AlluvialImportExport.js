@@ -35,6 +35,7 @@ export default function AlluvialImportExport({
   dimensions,
   colorPalette = {},
   atlasMode,
+  notDunkerque,
   ...props
 }) {
   const [highlightedItem, setHighlightedItem] = useState();
@@ -518,7 +519,7 @@ export default function AlluvialImportExport({
                                       fill={'url(#diagonalHatch)'}
                                     />
                                     {/* <text x={-5} y={10} className="number-label right">{`${formatNumber(value)} lt. (fraude ?)`}</text> */}
-                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value)} lt. (fraude ?)`}</text>
+                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value)} lt. (${notDunkerque ? 'fraude ou consommation' : 'fraude ?'})`}</text>
 
                                   </g>
                                   :
@@ -682,16 +683,16 @@ export default function AlluvialImportExport({
       </pattern>
 
       <foreignObject
-        x={width / 2 + barWidth}
-        y={height - centerCircleHeight * .75}
-        width={width / 2 - barWidth / 2}
+        x={width - barWidth * 4}
+        y={height * .8}
+        width={barWidth * 2}
         height={centerCircleHeight * 3}
       >
         <div
           xmlns="http://www.w3.org/1999/xhtml"
-          style={{fontSize: width / 100}}
+          style={{fontSize: 12, textAlign: 'right'}}
         >
-        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports)} lt.`}
+        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports - sumFraudeImports)} lt.`}
           </div>
       </foreignObject>
     </svg>
