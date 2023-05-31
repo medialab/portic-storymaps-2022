@@ -62,7 +62,11 @@ export default function Intro({
         layers={[
           {
             type: 'choropleth',
-            data,
+            // fix issue with map background when animating
+            data: {
+              ...data,
+              features: data.features.filter(f => f.id !== 95)
+            },
             animated: true,
             color: {
               field: 'unitlevel',
