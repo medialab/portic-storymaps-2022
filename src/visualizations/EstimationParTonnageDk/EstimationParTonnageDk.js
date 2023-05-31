@@ -47,9 +47,9 @@ const EstimationParTonnageDk = ({
             x={{
               field: 'tonnage',
               tickFormat: d => `${formatNumber(d)} tx.`,
-              tickSpan: 5000,
+              tickSpan: 20000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
-              domain: [0, 8001]
+              domain: [0, 31001]
             }}
             y={{
               field: 'partenaire',
@@ -121,9 +121,9 @@ const EstimationParTonnageDk = ({
             x={{
               field: field,
               tickFormat: d => `${formatNumber(d)} lt.`,
-              tickSpan: 1000000,
+              tickSpan: 5000000,
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
-              domain: [0, 3000001]
+              domain: [0, 15000001]
             }}
             y={{
               field: 'partenaire',
