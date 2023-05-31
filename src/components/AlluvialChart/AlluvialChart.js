@@ -36,6 +36,7 @@ export default function AlluvialChart({
   dimensions = { width: 800, height: 500 },
   quantifierField,
   colorPalette = {},
+  displayCounts,
   className = '',
 }) {
   const { width, height } = dimensions;
@@ -207,10 +208,14 @@ export default function AlluvialChart({
           const categorySize = getCategorySize(categoryArray);
           const barHeight = heightScale(categorySize);
           const isTooSmallForText = barHeight < 10;
-          const label = labelField ? categoryArray[0][labelField] : categoryName;
+          let label = labelField ? categoryArray[0][labelField] : categoryName;
+          if (displayCounts) {
+            label = `${label}${displayCounts(categorySize)}`
+          }
           const result = {
             categoryName,
             rows: categoryArray,
+            categorySize,
             label,
             y: yDisplace,
             barHeight,

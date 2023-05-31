@@ -6,8 +6,8 @@ export const productsQuantiFields = {
     tickSpan: 250000,
     domain: [0, 1250001],
     labels: {
-      fr: "Valeur smogglée",
-      en: "Valeur smogglée"
+      fr: "Estimation de la valeur à partir des quantités",
+      en: "Estimation de la valeur à partir des quantités"
     }
   },
   // "estimation_prix2_moyenne": {

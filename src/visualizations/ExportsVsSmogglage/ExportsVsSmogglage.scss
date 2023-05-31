@@ -47,4 +47,11 @@
       margin-bottom: 0;
     }
   }
+
+  .RadarChart {
+    pointer-events: none;
+    .objects-container {
+      pointer-events: all;
+    }
+  }
 }
