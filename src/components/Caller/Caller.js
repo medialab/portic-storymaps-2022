@@ -85,6 +85,7 @@ export default function Caller ({
                     <code>{visualizationId}</code> : <code>{JSON.stringify({ ...props })}</code>
                 </span>
             }
+            {children}
         </span>
     )
 }

@@ -288,7 +288,8 @@ for lang in GDOC_URL.keys():
                         break
                 continue
             """
-            is_inline_caller = len(caller.parent.find_all()) == 1
+            is_inline_caller = str(caller.parent).index('<caller') == 3 # len(caller.parent.find_all()) == 1
+
             if is_inline_caller == False:
                 caller['class'] = 'is-inblock'
             """

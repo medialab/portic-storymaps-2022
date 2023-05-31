@@ -189,6 +189,10 @@ dfn {
   &:hover {
     color: brown;
   }
+  &.is-active {
+    background: $color-accent-background;
+    color: white;
+  }
 }
 
 /**
