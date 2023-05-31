@@ -102,10 +102,10 @@ PecheMap:
   tooltip:
     fr: En ${year}, la pêche en ${type} a généré une valeur de ${value} livres tournois
     en: 
-  x:
-    fr: Valeur
-    en: Value
   y:
+    fr: Valeur des pêches dunkerquoises
+    en: Value
+  x:
     fr: Année
     en: Year
 HistoireDunkerque:
