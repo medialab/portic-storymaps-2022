@@ -92,7 +92,7 @@ const HorizontalBarChart = ({
   annotations = []
 }) => {
   const [headersHeight, setHeadersHeight] = useState(0);
-  // const [legendWidth, setLegendWidth] = useState(0);
+  const [legendWidth, setLegendWidth] = useState(0);
 
   const legendRef = useRef(null);
   const headerRef = useRef(null);
@@ -107,9 +107,9 @@ const HorizontalBarChart = ({
   useEffect(() => {
     setTimeout(() => {
       const newHeadersHeight = headerRef.current ? headerRef.current.getBoundingClientRect().height : 0;
-      // const newLegendWidth = legendRef.current ?  legendRef.current.getBoundingClientRect().width : 0;
+      const newLegendWidth = legendRef.current ?  legendRef.current.getBoundingClientRect().width : 0;
       setHeadersHeight(newHeadersHeight);
-      // setLegendWidth(newLegendWidth);
+      setLegendWidth(newLegendWidth);
     })
   }, [width, height, color, data])
 
@@ -169,7 +169,7 @@ const HorizontalBarChart = ({
   let xDomain = xValues;
   let bandsNb = xValues.length;
   let columnWidth = vizWidth / bandsNb;
-  let xScale = scaleBand().domain(xDomain).range([margins.left + columnWidth / 2, width - margins.right - columnWidth / 2]);
+  let xScale = scaleBand().domain(xDomain).range([margins.left + columnWidth / 2, width - margins.right - columnWidth / 2 - legendWidth]);
 
   if (initialXDomain) {
     xDomain = range(...initialXDomain);

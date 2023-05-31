@@ -23,12 +23,14 @@ export default function PecheTypeValue({
             { ...{
                 data,
                 width,
-                height,
+                height
             }}
 
             layout='stack'
             x={{
                 field: 'annee',
+                tickSpan: 2,
+                fillGaps: true,
                 title: translate('PecheTypeValue', 'x', lang)
             }}
             y={{
