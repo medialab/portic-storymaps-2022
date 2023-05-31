@@ -11,18 +11,17 @@ export default function SmogglageStatus({
 }) {
   const steps = [
     {
-      field: 'is_smoggleur',
-      label: 'smoggleurLabel',
-      title: 'type de trajet des navires anglais',
-      sortOrder: 'descending'
-    },
-    {
       field: 'departure_fr',
       title: 'port de départ',
       sortOrder: 'descending',
       label: 'portLabel'
     },
-
+    {
+      field: 'is_smoggleur',
+      label: 'smoggleurLabel',
+      title: 'type de trajet des navires anglais',
+      sortOrder: 'descending'
+    },
   ];
 
   // const vizId = 'smoggleur-statut';
@@ -51,7 +50,6 @@ export default function SmogglageStatus({
     }
   });
   }, [data])
-
   return (
     <>
       <AlluvialChart 
@@ -65,11 +63,11 @@ export default function SmogglageStatus({
           '1': 'red',
 
           'Lorient': 'lightgrey',
-          'Roscoff': 'grey',
+          'Roscoff': 'lightgrey',
           'Bordeaux': 'lightgrey',
           'Calais': 'grey',
-          'Boulogne-sur-Mer': 'lightgrey',
-          'Dunkerque': 'grey',
+          'Boulogne-sur-Mer': 'grey',
+          'Dunkerque': 'red',
         }
       }} />
       {/* <img
