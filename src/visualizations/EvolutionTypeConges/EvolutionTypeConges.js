@@ -33,7 +33,7 @@ export default function EvolutionTypeConges({
               {
                 axis: 'x',
                 start: 1778,
-                end: 1781,
+                end: 1783,
                 label: 'Guerre d\'indépendance américaine'
               }
             ]}
