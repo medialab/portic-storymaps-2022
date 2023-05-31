@@ -39,7 +39,7 @@ function ColumnsComparison({
 
     const sums = [
       leftItems.reduce((sum, { field }) => sum + (dataDict[field] || 0), 0),
-      rightItems.filter(d => !d.isSource).reduce((sum, { field }) => sum + (dataDict[field] || 0), 0),
+      rightItems.filter(d => !d.isSource || d.isCounted).reduce((sum, { field }) => sum + (dataDict[field] || 0), 0),
     ];
     const diff = Math.abs(sums[1] - sums[0]);
     dataDict['diff'] = diff;
@@ -54,15 +54,23 @@ function ColumnsComparison({
     const max = Math.max(...sums);
     const yScale = scaleLinear().domain([0, max]).range([0, height - margins.top * 2.5 - margins.bottom])
     return {
-      vizLeftItems: finalLeftItems.reduce(({ displace, displaceSource, items }, { field, title: itemTitle, isSource }) => {
+      vizLeftItems: finalLeftItems.reduce(({ displace, displaceSource, items }, { field, title: itemTitle, isSource, isCounted, displaceValue = 0 }) => {
         const finalTitle = itemTitle || field;
         const height = yScale(dataDict[field] || 0);
-        if (isSource || field === 'diff') {
+        if (displaceValue) {
+          const displaceRel = yScale(displaceValue);
+          if ((isSource && !isCounted) || field === 'diff') {
+            displaceSource += displaceRel;
+          } else {
+            displace += displaceRel;
+          }
+        }
+        if ((isSource && !isCounted) || field === 'diff') {
           displaceSource += height;
         } else {
           displace += height;
         }
-        const y = isSource || field === 'diff' ? displaceSource - height : displace - height;
+        const y = (isSource && !isCounted) || field === 'diff' ? displaceSource - height : displace - height;
         return {
           items: [...items, {
             title: finalTitle,
@@ -71,20 +79,29 @@ function ColumnsComparison({
             value: dataDict[field] || 0,
             type: isSource ? 'source' : field === 'diff' ? 'diff' : 'estimation',
             isSource,
+            isCounted,
           }],
           displace,
           displaceSource,
         }
       }, { displace: 0, displaceSource: 0, items: [] }).items,
-      vizRightItems: finalRightItems.reduce(({ displace, displaceSource, items }, { field, title: itemTitle, isSource }) => {
+      vizRightItems: finalRightItems.reduce(({ displace, displaceSource, items }, { field, title: itemTitle, isSource, isCounted, displaceValue = 0}) => {
         const finalTitle = itemTitle || field;
         const height = yScale(dataDict[field] || 0);
-        if (isSource) {
+        if (displaceValue) {
+          const displaceRel = yScale(displaceValue);
+          if ((isSource && !isCounted) || field === 'diff') {
+            displaceSource += displaceRel;
+          } else {
+            displace += displaceRel;
+          }
+        }
+        if (isSource && !isCounted) {
           displaceSource += height;
         } else {
           displace += height;
         }
-        const y = isSource ? displaceSource - height : displace - height;
+        const y = (isSource && !isCounted) ? displaceSource - height : displace - height;
 
         return {
           items: [...items, {
@@ -94,6 +111,7 @@ function ColumnsComparison({
             value: dataDict[field] || 0,
             type: isSource ? 'source' : field === 'diff' ? 'diff' : 'estimation',
             isSource,
+            isCounted,
           }],
           displace,
           displaceSource,
@@ -190,12 +208,12 @@ function ColumnsComparison({
           </h3>
         </foreignObject>
         {
-          vizRightItems.map(({ title, y, height, value, isSource, type }) => {
+          vizRightItems.map(({ title, y, height, value, isSource, isCounted, type }) => {
             const textHeight = Math.max(height, minLabelHeight)
             return (
               <g key={title}
                 className={`quantity-group ${type}`}
-                transform={`translate(${isSource ? 20 : 0}, ${margins.top * 1.5 + y})`}
+                transform={`translate(${isSource && !isCounted ? 20 : 0}, ${margins.top * 1.5 + y})`}
               >
                 <rect
                   x={0}

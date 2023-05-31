@@ -29,24 +29,25 @@ const EstimationImportsExports = ({
       title: 'Exports connus et estimés',
       items: [
         {
+          field: 'toflit18 flux mirroir : dk > france',
+          title: 'exports connus de Dunkerque vers la France',
+          // title: 'imports déclarés par la France avec le partenaire Dunkerque (toflit18)',
+          isSource: true,
+          isCounted: true,
+        },
+        {
+          field: 'toflit18 exports produits coloniaux (monde...)',
+          title: 'exports connus de produits coloniaux depuis Dunkerque vers l\'étranger',
+          isSource: true,
+          displaceValue: 3734878,
+        },
+        {
           field: withLest ? 'estimation des exports par projection (hyp. lest)' : 'estimation des exports par projection (hyp. sans lest)',
           title: 'estimation des exports totaux (hors smogglage) par projection tonnage/prix'
         },
         {
           field: 'estimation smogglage'
         },
-        
-        {
-          field: 'toflit18 flux mirroir : dk > france',
-          title: 'exports connus de Dunkerque vers la France',
-          // title: 'imports déclarés par la France avec le partenaire Dunkerque (toflit18)',
-          isSource: true
-        },
-        {
-          field: 'toflit18 exports produits coloniaux (monde...)',
-          title: 'exports connus de produits coloniaux depuis Dunkerque',
-          isSource: true,
-        }
       ]
     }
   }
