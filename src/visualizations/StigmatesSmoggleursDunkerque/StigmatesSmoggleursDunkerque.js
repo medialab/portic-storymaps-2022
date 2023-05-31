@@ -93,6 +93,7 @@ export default function StigmatesSmoggleursDunkerque({
         {...{
           data,
           steps,
+          displayCounts: d => ` - ${d} trajets`,
           colorPalette: {
             '12': 'red',
             '[21-50]': 'lightgrey',
