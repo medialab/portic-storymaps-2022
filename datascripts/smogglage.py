@@ -40,6 +40,9 @@ for source in VIZ_METAS['inputs']:
         reader = csv.DictReader(csvfile)
 
         for row in reader:
+            # we want 1787 only
+            if '1787' not in row['indate_fixed']:
+                continue
             row['tonnage'] = int(row['tonnage']) if row['tonnage'].isnumeric() == True else 0
 
             if row['departure_fr'] == 'Dunkerque':
