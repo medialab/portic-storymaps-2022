@@ -12,9 +12,10 @@ with open(flows1789, "r") as muerte:
     reader = csv.DictReader(muerte)
     for i, row in enumerate(reader):
         
-        if "1789" in row["outdate_fixed"] \
+        if "1787" in row["outdate_fixed"] \
         and row["departure_function"] == "O" \
         and row["departure"] == "Dunkerque" \
+        and row["destination"] != "Marseille" \
         and row["flag"] == "British" \
         :
             destination_state = row['destination_state_1789_fr']
