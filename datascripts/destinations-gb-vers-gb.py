@@ -44,6 +44,9 @@ with open(flows1789, "r") as muerte:
             ports[port]["nb_pointcalls"] += 1
             ports[port]["tonnage"] += tonnage
 
+print('in destinations-gb-vers-gb.py')
+print('ports : ')
+print(ports)
 csv_data = []
 for port, data in ports.items():
     csv_data.append({
