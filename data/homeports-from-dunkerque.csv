@@ -1,13 +1,14 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
 Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
-Lydd,Lydd,Grande Bretagne,Grande-Bretagne,Great Britain,108.0,9
 Londres,London,Grande Bretagne,Grande-Bretagne,Great Britain,7041.0,97
-Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
+Lydd,Lydd,Grande Bretagne,Grande-Bretagne,Great Britain,108.0,9
 Dunkerque,Dunkirk,France,France,France,29806.0,318
 Douvres,Dover,Grande Bretagne,Grande-Bretagne,Great Britain,1249.0,103
+Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Le Conquet,Le Conquet,France,France,France,2442.0,37
+Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
+Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
-Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
 Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
 Noirmoutier,Noirmoutier,France,France,France,2010.0,27
@@ -15,13 +16,12 @@ Saint-Malo,Saint-Malo,France,France,France,6853.0,78
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
 Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
 Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
-Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Marennes,Marennes,France,France,France,405.0,7
 Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
 Dort,Dort,étranger,Provinces-Unies,United Provinces,772.0,8
 Nantes,Nantes,France,France,France,2439.0,32
-Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
+Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
 Burnham,Burnham,Grande Bretagne,Grande-Bretagne,Great Britain,840.0,70
 Roque de Thau,Roque de Thau,France,France,France,624.0,9
 Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
@@ -48,8 +48,6 @@ Newcastle,Newcastle,Grande Bretagne,Grande-Bretagne,Great Britain,899.0,11
 Cognac,Cognac,France,France,France,211.0,2
 Hythe,Hythe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
-Saint-Gilles-sur-Vie,Saint-Gilles-sur-Vie,France,France,France,126.0,2
-Kampen,Kampen,étranger,Provinces-Unies,United Provinces,300.0,6
 Port-d'Envaux,Port-d'Envaux,France,France,France,713.0,9
 Argenton,Argenton,France,France,France,486.0,8
 Zierikzee,Zierikzee,étranger,Provinces-Unies,United Provinces,120.0,10
@@ -57,6 +55,8 @@ Saint-Savinien,Saint-Savinien,France,France,France,1309.0,12
 île-de-Bréhat,île-de-Bréhat,France,France,France,145.0,3
 Plassac,Plassac,France,France,France,790.0,9
 Greenwich,Greenwich,Grande Bretagne,Grande-Bretagne,Great Britain,72.0,6
+Saint-Gilles-sur-Vie,Saint-Gilles-sur-Vie,France,France,France,126.0,2
+Kampen,Kampen,étranger,Provinces-Unies,United Provinces,300.0,6
 Rhuys,Rhuys,France,France,France,281.0,4
 Weymouth,Weymouth,Grande Bretagne,Grande-Bretagne,Great Britain,275.0,3
 Fécamp,Fécamp,France,France,France,537.0,8
