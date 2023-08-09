@@ -1,8 +1,8 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
 Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
 Londres,London,Grande Bretagne,Grande-Bretagne,Great Britain,7041.0,97
-Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
 Dunkerque,Dunkirk,France,France,France,29806.0,318
+Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Le Conquet,Le Conquet,France,France,France,2442.0,37
 Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
@@ -14,12 +14,12 @@ Saint-Malo,Saint-Malo,France,France,France,6853.0,78
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
 Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
 Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
+Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
 Marennes,Marennes,France,France,France,405.0,7
 Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
 Dort,Dort,étranger,Provinces-Unies,United Provinces,772.0,8
 Nantes,Nantes,France,France,France,2439.0,32
-Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Burnham,Burnham,Grande Bretagne,Grande-Bretagne,Great Britain,840.0,70
 Roque de Thau,Roque de Thau,France,France,France,624.0,9
 Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
@@ -100,6 +100,7 @@ Bourcefranc,Bourcefranc,France,France,France,226.0,4
 Vannes,Vannes,France,France,France,481.0,5
 Bayonne,Bayonne,France,France,France,454.0,4
 Savannah,Savannah,étranger,Etats-Unis d'Amérique,United States,120.0,1
+Philadelphie,Philadelphia,étranger,Etats-Unis d'Amérique,United States,12.0,1
 Southampton,Southampton,Grande Bretagne,Grande-Bretagne,Great Britain,580.0,7
 Sunderland,Sunderland,Grande Bretagne,Grande-Bretagne,Great Britain,7652.0,56
 Flessingue,Vlissingen,étranger,Provinces-Unies,United Provinces,350.0,7
@@ -111,6 +112,7 @@ Cork,Cork,Grande Bretagne,Grande-Bretagne,Great Britain,80.0,2
 Juist,Juist,étranger,Prusse,Prussia,120.0,1
 Wemyss,Wemyss,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Rouen,Rouen,France,France,France,650.0,7
+Honfleur,Honfleur,France,France,France,404.0,6
 Southwold,Southwold,Grande Bretagne,Grande-Bretagne,Great Britain,212.0,2
 Farsund,Farsund,étranger,Danemark,Denmark,135.0,4
 Hambourg,Hamburg,étranger,Hambourg,Hamburg,1438.0,10
@@ -161,7 +163,6 @@ Makkum,Makkum,étranger,Provinces-Unies,United Provinces,150.0,1
 Saint-Valery (indeterminé),Saint-Valery (undetermined),France,France,France,4.0,1
 Queenborough,Queenborough,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Maassluis,Maassluis,étranger,Provinces-Unies,United Provinces,72.0,6
-Honfleur,Honfleur,France,France,France,404.0,6
 Nieuwendam,Nieuwendam,étranger,Provinces-Unies,United Provinces,135.0,2
 Montrose,Montrose,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,2
 Sandwich,Sandwich,Grande Bretagne,Grande-Bretagne,Great Britain,45.0,2
@@ -254,4 +255,3 @@ Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
 Camaret,Camaret,France,France,France,66.0,1
-Philadelphie,Philadelphia,étranger,Etats-Unis d'Amérique,United States,12.0,1
