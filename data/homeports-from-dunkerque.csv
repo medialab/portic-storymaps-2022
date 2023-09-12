@@ -32,11 +32,31 @@ Veendam,Veendam,étranger,Provinces-Unies,United Provinces,1501.0,23
 Franeker,Franeker,étranger,Provinces-Unies,United Provinces,120.0,2
 Blaye,Blaye,France,France,France,249.0,4
 Indéterminé,Undefined,étranger,Indéterminé,Undefined,1008.0,18
+Le Conquet,Le Conquet,France,France,France,2442.0,37
+Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
+Nantes,Nantes,France,France,France,2439.0,32
+Tonnay-Charente,Tonnay-Charente,France,France,France,776.0,9
+Sogn,Sogn,étranger,Danemark,Denmark,355.0,2
+Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
+Scarborough,Scarborough,Grande Bretagne,Grande-Bretagne,Great Britain,470.0,5
+Mandal,Mandal,étranger,Danemark,Denmark,270.0,2
+Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
+Roscoff,Roscoff,France,France,France,96.0,1
+Hambourg,Hamburg,étranger,Hambourg,Hamburg,1438.0,10
+Kirkcaldy,Kirkcaldy,Grande Bretagne,Grande-Bretagne,Great Britain,678.0,6
+Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
+Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
 Groningue,Groningen,étranger,Provinces-Unies,United Provinces,680.0,9
 Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
 Paimpol,Paimpol,France,France,France,521.0,9
-Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
-Nantes,Nantes,France,France,France,2439.0,32
+Christiania / Oslo,Oslo,étranger,Danemark,Denmark,570.0,4
+Tabago / Tobago,Tobago,France,France,France,40.0,1
+Aber-Ildut,Aber-Ildut,France,France,France,404.0,7
+Durgerdam,Durgerdam,étranger,Provinces-Unies,United Provinces,110.0,1
+Delfzijl,Delfzijl,étranger,Provinces-Unies,United Provinces,200.0,2
+Sappemeer,Sappemeer,étranger,Provinces-Unies,United Provinces,140.0,2
+Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
+Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
 Quiberon,Quiberon,France,France,France,90.0,1
 Fécamp,Fécamp,France,France,France,537.0,8
 Arzon,Arzon,France,France,France,90.0,1
@@ -49,26 +69,6 @@ Stettin,Szczecin,étranger,Prusse,Prussia,400.0,2
 Newcastle,Newcastle,Grande Bretagne,Grande-Bretagne,Great Britain,899.0,11
 Vannes,Vannes,France,France,France,481.0,5
 Rouen,Rouen,France,France,France,650.0,7
-Hambourg,Hamburg,étranger,Hambourg,Hamburg,1438.0,10
-Christiania / Oslo,Oslo,étranger,Danemark,Denmark,570.0,4
-Tabago / Tobago,Tobago,France,France,France,40.0,1
-Aber-Ildut,Aber-Ildut,France,France,France,404.0,7
-Durgerdam,Durgerdam,étranger,Provinces-Unies,United Provinces,110.0,1
-Delfzijl,Delfzijl,étranger,Provinces-Unies,United Provinces,200.0,2
-Sappemeer,Sappemeer,étranger,Provinces-Unies,United Provinces,140.0,2
-Kirkcaldy,Kirkcaldy,Grande Bretagne,Grande-Bretagne,Great Britain,678.0,6
-Le Conquet,Le Conquet,France,France,France,2442.0,37
-Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
-Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
-Tonnay-Charente,Tonnay-Charente,France,France,France,776.0,9
-Sogn,Sogn,étranger,Danemark,Denmark,355.0,2
-Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
-Scarborough,Scarborough,Grande Bretagne,Grande-Bretagne,Great Britain,470.0,5
-Mandal,Mandal,étranger,Danemark,Denmark,270.0,2
-Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
-Roscoff,Roscoff,France,France,France,96.0,1
-Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
-Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
 Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
 Glasgow,Glasgow,Grande Bretagne,Grande-Bretagne,Great Britain,1060.0,8
 Bordeaux,Bordeaux,France,France,France,654.0,7
@@ -244,10 +244,6 @@ Perth,Perth,Grande Bretagne,Grande-Bretagne,Great Britain,70.0,1
 Les Sables-d'Olonne,Les Sables-d'Olonne,France,France,France,75.0,1
 Banff,Banff,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Sète,Sète,France,France,France,240.0,1
-île d'Aix,île d'Aix,France,France,France,110.0,1
-Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Quimper,Quimper,France,France,France,95.0,1
-Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Great Yarmouth,Great Yarmouth,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Saint-Servant,Saint-Servant,France,France,France,110.0,1
 Molde,Molde,étranger,Danemark,Denmark,100.0,1
@@ -255,3 +251,7 @@ Tollesbury,Tollesbury,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Baltimore,Baltimore,étranger,Etats-Unis d'Amérique,United States,100.0,1
 Larvik,Larvik,étranger,Danemark,Denmark,70.0,1
 Vatteville,Vatteville,France,France,France,132.0,1
+île d'Aix,île d'Aix,France,France,France,110.0,1
+Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
+Quimper,Quimper,France,France,France,95.0,1
+Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
