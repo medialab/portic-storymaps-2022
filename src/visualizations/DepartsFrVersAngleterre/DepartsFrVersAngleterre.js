@@ -132,7 +132,7 @@ export default function DepartsFrVersAngleterre({
   return (
     <div className="DepartsFrVersAngleterre">
       <GeographicMapChart
-        title={'Les départs depuis la France vers l\'Angleterre en 1789, par provinces'}
+        title={'Les départs depuis la France vers l\'Angleterre en 1787, par provinces'}
         projectionTemplate={'France'}
         projectionConfig={{
           centerY: 48,

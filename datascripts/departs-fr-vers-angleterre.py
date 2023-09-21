@@ -7,14 +7,16 @@ from index import get_viz_metas
 
 metas =  get_viz_metas('departs-fr-vers-angleterre')
 flows1789 = get_viz_metas('departs-fr-vers-angleterre')['inputs'][1]
+flows1787 = '../data/navigo_all_flows_1787.csv'
 
 output = get_viz_metas('departs-fr-vers-angleterre')['outputs'][1]
 
 ports = {}
-with open(flows1789, "r") as muerte:
+with open(flows1787, "r") as muerte:
     reader = csv.DictReader(muerte)
     for i, row in enumerate(reader):
-        if "1789" in row["outdate_fixed"] \
+        # if "1789" in row["outdate_fixed"] \
+        if "1787" in row["outdate_fixed"] \
         and row["departure_function"] == "O" \
         :
             port_detail = row["departure_fr"]
@@ -24,7 +26,7 @@ with open(flows1789, "r") as muerte:
             port = departure_province
             latitude = row["departure_latitude"]
             longitude = row["departure_longitude"]
-            tonnage = int(row["tonnage"] or 0)
+            tonnage = float(row["tonnage"] or 0)
             if port == "":
                 continue
             if port not in ports:
