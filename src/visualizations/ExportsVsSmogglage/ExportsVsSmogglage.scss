@@ -2,6 +2,7 @@
 
 
 .ExportsVsSmogglage {
+  position: relative;
   .ChoroplethLayer {
     .geopart {
       fill: lightgrey!important;
@@ -11,6 +12,8 @@
   .CustomObjectsLayer {
     .PortObject {
       cursor: pointer;
+
+      
       &.is-dimmed {
         opacity: .5;
       }
@@ -30,27 +33,34 @@
 
   .legend-container {
     position: absolute;
-    left: 0rem;
-    top: 90%;
-    max-width: 300px;
+    left: 30px;
+    top: 2.5rem;
+    max-width: 25rem;
     font-size: .8rem;
     padding: 1rem;
-    background: rgba(255,255,255,.5);
+    // background: rgba(255,255,255,.5);
     box-sizing: border-box;
     ul {
       margin: 0;
       list-style: none;
       padding: 0;
+      display: flex;
+      li {
+        cursor: pointer;
+      }
     }
     p {
-      margin-top: 0;
+       margin-top: .5rem;
       margin-bottom: 0;
     }
   }
 
   .RadarChart {
     pointer-events: none;
-    .objects-container {
+    .background-container {
+      pointer-events: none;
+    }
+    .VisObject {
       pointer-events: all;
     }
   }

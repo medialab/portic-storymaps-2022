@@ -233,11 +233,8 @@ export default function ExportsVsSmogglage({
         />
       </div>
       <div className="legend-container">
-        <p>
-          <i>
-            Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
-          </i>
-        </p>
+
+
         {/* <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div> */}
         <div>Représenter les ports sur la carte par :</div>
         <ul>
@@ -261,7 +258,15 @@ export default function ExportsVsSmogglage({
                 )
               })
           }
+          
         </ul>
+        {atlasMode ?
+            <p>
+              <i>
+                Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
+              </i>
+            </p>
+            : null}
       </div>
       {/* <img
         src={`${process.env.BASE_PATH}/assets/exports-vs-smogglage.jpg`}
