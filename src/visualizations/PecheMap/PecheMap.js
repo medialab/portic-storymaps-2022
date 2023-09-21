@@ -65,13 +65,13 @@ export default function PecheMap({
         layers={[
           {
             type: 'choropleth',
-            animated: true,
+            animated: false,
             className: 'background-map',
             data: dataMap,// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
           },
           {
             type: 'choropleth',
-            animated: true,
+            animated: false,
             data: data.get('evolution-peche-zones.geojson'),
             tooltip: (d) => d.properties.shortname,
             className: 'peche-zones',
