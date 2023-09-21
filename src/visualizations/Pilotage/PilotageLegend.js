@@ -6,13 +6,14 @@ export default function PilotageLegend({
     dimensions,
     colorPalette,
     lang,
+    style = {},
     ...props
 }) {
     const { width, height } = dimensions;
 
     return (
         <svg
-            {...{ width, height }}
+            {...{ width, height, style }}
         >
             <g
                 className='legend_pilotage'
