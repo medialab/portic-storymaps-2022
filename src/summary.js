@@ -42,7 +42,7 @@ export default [
       en: 'part-2'
     },
     titles: {
-      fr: 'II. Le Smogglage',
+      fr: 'II. Dunkerque, un port pour la contrebande vers l’Angleterre ?',
       en: 'Part 2'
     },
     contents: {
@@ -59,7 +59,7 @@ export default [
       en: 'part-3'
     },
     titles: {
-      fr: 'III. Port d\'entrepôt européen ou fraudeur ?',
+      fr: 'III. Port d\'entrepôt européen ou port fraudeur ?',
       en: 'Part 3'
     },
     contents: {
