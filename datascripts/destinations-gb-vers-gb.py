@@ -23,8 +23,8 @@ with open(flows1789, "r") as muerte:
             category = "port_specifie"
             if port in ["Lisbonne [mais: Angleterre]", "Bergen"]:
                 category = "fausse_destination"
-            elif port == "":
-                category = "gb_no_port"
+            # elif port == "":
+            #     category = "gb_no_port"
             elif destination_state != "Grande-Bretagne":
                 continue
             
