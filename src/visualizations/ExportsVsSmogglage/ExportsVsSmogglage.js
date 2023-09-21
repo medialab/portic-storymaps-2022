@@ -218,6 +218,7 @@ export default function ExportsVsSmogglage({
         style={{
           position: 'absolute',
           transition: '.5s all ease',
+          pointerEvents: 'none',
           right: selectedPort ? width / 2 - radarSize / 2 : width / 8,
           top: selectedPort ? radarSize / 4 : 0
         }}
