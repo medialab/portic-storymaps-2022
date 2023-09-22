@@ -175,8 +175,8 @@ export default function VisualizationController({
               //   homeport: d[`homeport_${props.lang}`], 
               //   category: props.lang === 'fr' ? d.category_2 : d.category_2_en 
               // }),
-              fieldsHierarchy: ['state_category', 'homeport'],
-              // fieldsHierarchy: ['state_category', 'homeport', 'homeport_state_fr'],
+              // fieldsHierarchy: ['state_category', 'homeport'],
+              fieldsHierarchy: ['state_category', 'homeport_state_fr', 'homeport', ],
               color: {
                 field: lang === 'fr' ? 'homeport_state_fr' : 'homeport_state_en',
                 // palette: props.lang === 'fr' ? colorPalettes.portsTreemaps :  colorPalettes.portsTreemapsEn
