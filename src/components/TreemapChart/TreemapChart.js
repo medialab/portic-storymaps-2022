@@ -87,7 +87,7 @@ const TreemapChart = ({
     treemap()
     .size([width, height])
     .tile(treemapBinary)
-    .round(true)
+    // .round(true)
     (result);
     return result;
   }, [data, fieldsHierarchy, width, height, countField])
