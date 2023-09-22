@@ -442,6 +442,7 @@ const GeographicMapChart = ({
                   width={width}
                   height={height}
                   reverseColors={layer.reverseColors}
+                  showAllParts={layer.showAllParts}
                 />
 
               case 'points':

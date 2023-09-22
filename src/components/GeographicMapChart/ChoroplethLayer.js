@@ -124,8 +124,8 @@ const ChoroplethLayer = ({
   width,
   height,
   reverseColors,
+  showAllParts = false,
 }) => {
-
   let palette;
   const project = useMemo(() => geoPath().projection(projection), [projection]);
 
@@ -151,6 +151,9 @@ const ChoroplethLayer = ({
   const partsData = useMemo(() => layer.data.features
     .filter(d => d.geometry)
     .filter(d => {
+      if (showAllParts) {
+        return true;
+      }
       // @todo do this cleanly (removing out of bound objects to improve performance)
       const boundsAbs = geoPath().bounds(d);
       const [[x1, y1], [x2, y2]] = [projection(boundsAbs[0]), projection(boundsAbs[1])];

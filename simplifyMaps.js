@@ -115,3 +115,38 @@ simplified = JSON.stringify(simplified);
 console.log('length after : ', simplified.length, ', gain : ', -parseInt((1 - simplified.length / originalLength) * 100) + '%' );
 
 fs.writeFileSync(output, simplified, 'utf8')
+
+/**
+ * PHYSICAL MAP
+ */
+original = fs.readFileSync('./datascripts/resources/physical_world_map.geojson', 'utf8');
+
+originalLength = original.length
+console.log('physical map : length before : ', originalLength);
+try {
+  original = JSON.parse(original)
+} catch(e) {
+  console.log('damn')
+}
+
+// let simplified = simplify(original, .003); // works
+simplified = {
+  ...original,
+  features: original.features
+  // .filter(feature => acceptedDominants.includes(feature.properties.dominant) || acceptedProvinces.includes(feature.properties.shortname))
+  .map(feature => {
+    return {
+      ...simplify(feature, .07), // works,
+      properties: {}
+    }
+  })
+}
+
+
+simplified = JSON.stringify(simplified);
+
+console.log('physical map, length after : ', simplified.length, ', gain : ', -parseInt((1 - simplified.length / originalLength) * 100) + '%' );
+
+output = `./datascripts/resources/physical_world_map.geojson`;
+
+fs.writeFileSync(output, simplified, 'utf8')
