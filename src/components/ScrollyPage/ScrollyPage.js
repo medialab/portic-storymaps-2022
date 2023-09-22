@@ -222,7 +222,7 @@ export default function ScrollyPage({
     }
 
     const yFraction = window.innerHeight * CENTER_FRACTION;
-    const yBottom = scrollY + window.innerHeight
+    const yBottom = scrollY + window.innerHeight * .75
     const yMatch = scrollY + yFraction;
     const { height: pageHeight } = pageRef.current.getBoundingClientRect();
 
