@@ -243,7 +243,10 @@ export default function FraudeExportDunkerque({
           {
             type: 'choropleth',
             animated: false,
-            data:  data.get('map_backgrounds/physical_world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            showAllParts: true,
+            // data: data.get('map_backgrounds/physical_world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            data: data.get('map_backgrounds/physical_world_map_light.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
+            // data: projectionTemplate.includes('France') ? data.get('map_backgrounds/physical_world_map.geojson') : data.get('map_backgrounds/physical_world_map_light.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // reverseColors: atlasMode ? undefined : true,
           },
           {
@@ -298,6 +301,7 @@ export default function FraudeExportDunkerque({
           containerWidth: width,
           containerHeight: height,
           lang,
+          atlasMode,
         }
         }
       />

@@ -76,6 +76,7 @@ const Legend = ({
   containerWidth,
   containerHeight,
   lang,
+  atlasMode,
 }) => {
   const [legendIsEdited, setLegendIsEdited] = useState(false);
   const svgDimension = containerWidth / 8;
@@ -102,7 +103,9 @@ const Legend = ({
               translate('CarteDestinations', 'legend_title', lang)
             }
           </span>
+          {atlasMode ? 
           <button onClick={() => setLegendIsEdited(!legendIsEdited)}>{!legendIsEdited ? translate('CarteDestinations', 'edit_legend', lang) : translate('CarteDestinations', 'unedit_legend', lang)}</button>
+          : null}
         </h3>
         <div className="object-explanation-container">
           <div className={`object-svg-container ${dominantMode ? 'is-hidden' : ''}`}>
