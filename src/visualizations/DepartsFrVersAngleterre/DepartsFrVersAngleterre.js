@@ -174,8 +174,8 @@ export default function DepartsFrVersAngleterre({
                 const fontSize = fontSizeScale(parseInt(departs_vers_gb_tonnage) + parseInt(departs_hors_gb_tonnage));
                 const leftRadius = Math.sqrt((areaScale(departs_vers_gb_tonnage) / Math.PI));
                 const rightRadius = Math.sqrt((areaScale(departs_hors_gb_tonnage) / Math.PI));
-                const leftTooltip = `En 1789, ${formatNumber(departs_vers_gb_tonnage)} tx partaient des ports de ${port} vers des ports de Grande-Bretagne (ports concernés : ${ports})`
-                const rightTooltip = `En 1789, ${formatNumber(departs_hors_gb_tonnage)} tx partaient des ports de ${port} vers des ports hors Grande-Bretagne (ports concernés : ${ports})`
+                const leftTooltip = `En 1787, ${formatNumber(parseInt(departs_vers_gb_tonnage))} tx partaient des ports de ${port} vers des ports de Grande-Bretagne (ports concernés : ${ports})`
+                const rightTooltip = `En 1787, ${formatNumber(parseInt(departs_hors_gb_tonnage))} tx partaient des ports de ${port} vers des ports hors Grande-Bretagne (ports concernés : ${ports})`
                 return (
                   <g className="port-group"
                     transform={`translate(${x}, ${y})`}
