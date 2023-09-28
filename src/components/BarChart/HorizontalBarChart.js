@@ -183,13 +183,12 @@ const HorizontalBarChart = ({
       xExtent[0] = xExtent[0] - xExtent[0] % xTickSpan;
       xExtent[1] = xExtent[1] + xExtent[1] % xTickSpan;
     }
-    xDomain = range(xExtent[0], xExtent[1]);
+    xDomain = range(xExtent[0], xExtent[1] + 1);
     xValues = xDomain;
     bandsNb = xValues.length;
     columnWidth = vizWidth / bandsNb;
-    xScale = scaleLinear().domain(extent(xDomain)).range([margins.left + columnWidth / 2, width - margins.right - columnWidth / 2]).nice();
+    xScale = scaleLinear().domain(extent(xDomain)).range([margins.left + columnWidth / 2, width - margins.right - columnWidth / 2 - legendWidth]).nice();
   }
-
   const groups = Object.entries(groupBy(data, d => d[x.field])) // color ? Object.entries(groupBy(data, d => d[color.field])) : [[undefined, data]];
 
   let yDomain;
@@ -215,7 +214,7 @@ const HorizontalBarChart = ({
   const yScale = scaleLinear().domain(yDomain).range([height - margins.bottom, margins.top]).nice();
   const yStackScale = yScale.copy().range([0, height - margins.bottom - margins.top]);
 
-  const xAxisValues = xTickSpan ? range(xDomain[0], xDomain[xDomain.length - 1], xTickSpan) : xValues;
+  const xAxisValues = xTickSpan ? range(xDomain[0], xDomain[xDomain.length - 1] + 1, xTickSpan) : xValues;
   let { values: yAxisValues } = axisPropsFromTickScale(yScale, 10);
 
   if (yTickSpan) {
