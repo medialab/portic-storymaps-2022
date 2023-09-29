@@ -3,6 +3,19 @@ import json
 import requests
 
 """
+-2 - Compute cargos map
+"""
+print("loading cargos map")
+cargos_map = {}
+with open("../data/navigo_cargo.csv", "r") as fr:
+  reader = csv.DictReader(fr)
+  for row in reader:
+    id = row["pointcall__data_block_local_id"]
+    if id not in cargos_map:
+       cargos_map[id] = []
+    cargos_map[id].append(row)
+
+"""
 -1 - correspondance tables in data
 """
 
@@ -335,7 +348,7 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   sum_tonnage = 0
   sum_travels = 0
   ports = set()
-  with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
+  with open('../data/navigo_all_flows.csv', newline='') as csvfile:
     flows = csv.DictReader(csvfile)
     
     commodity_fields = ['commodity_standardized_fr', 'commodity_standardized2_fr', 'commodity_standardized3_fr', 'commodity_standardized4_fr']
@@ -352,6 +365,9 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
     total_commodities = set()
     for flow in flows:
       destination = flow['destination_partner_balance_1789']
+      # limit to 1789
+      if "1789" not in flow["outdate_fixed"]:
+         continue
       if destination == '':
         destination = flow['destination_partner_balance_supp_1789']
       if destination not in navigo_partner_balance_1789_to_toflit18_grouping:
@@ -377,13 +393,13 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
         # change done after API response changed
         commodities = []
         commodities_ids = []
-        if flow['all_cargos'] != '':
-          cargos = singleQuoteToDoubleQuote(flow['all_cargos'])
-          cargos = json.loads(cargos)
+        cargos = cargos_map[flow["source_doc_id"]] if flow["source_doc_id"] in cargos_map else []
+        cargos = [dict(c) for c in cargos]
+        if len(cargos) > 0:
           for cargo in cargos:
             if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
-              commodities += cargo['commodity_standardized_fr']
-              commodities_ids += cargo['commodity_id']
+              commodities.append(cargo['commodity_standardized_fr'])
+              commodities_ids.append(cargo['commodity_id'])
 
         forbidden_commodities_ids = [commodity for commodity in commodities_ids if commodity in stop_commodities_ids]
 
@@ -608,7 +624,6 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
     "projection": projection_resume
   }
 
-
 """
 1 - toflit18 partners in 1787
 Visualisations : exports-fr-1787
@@ -779,7 +794,7 @@ nb_trajets = 0
 nb_trajets_angleterre = 0
 nb_trajets_angleterre_avec_cargo = 0
 nb_tonnage_angleterre = 0
-with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
+with open('../data/navigo_all_flows.csv', newline='') as csvfile:
   flows = csv.DictReader(csvfile)
     
   commodity_fields = ['commodity_standardized_fr', 'commodity_standardized2_fr', 'commodity_standardized3_fr', 'commodity_standardized4_fr']
@@ -797,6 +812,8 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
   total_commodities = set()
   for flow in flows:
     destination = flow['destination_partner_balance_1789']
+    if "1789" not in flow["outdate_fixed"]:
+       continue
     if destination == '':
       destination = flow['destination_partner_balance_supp_1789']
     if destination not in navigo_partner_balance_1789_to_toflit18_grouping:
@@ -821,13 +838,14 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
       # change done after API response changed
       commodities = []
       commodities_ids = []
-      if flow['all_cargos'] != '':
-          cargos = singleQuoteToDoubleQuote(flow['all_cargos'])
-          cargos = json.loads(cargos)
-          for cargo in cargos:
-            if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
-              commodities += cargo['commodity_standardized_fr']
-              commodities_ids += cargo['commodity_id']
+      cargos = cargos_map[flow["source_doc_id"]] if flow["source_doc_id"] in cargos_map else []
+      cargos = [dict(c) for c in cargos]
+      if len(cargos) > 0:
+        for cargo in cargos:
+          if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
+            commodities.append(cargo['commodity_standardized_fr'])
+            commodities_ids.append(cargo['commodity_id'])
+            
       not_stop = [commodity for commodity in commodities if commodity not in stop_commodities]
       forbidden_commodities_ids = [commodity_id for commodity_id in commodities_ids if commodity_id in stop_commodities_ids]
       # take the flow if no commodity specified or at least one 'not stop' commodity speciied
@@ -998,9 +1016,11 @@ Output : misc-estimations-imports-exports-dk-1789.csv
 # 1. count number of smogglers
 nb_smgl = 0
 
-with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
+with open('../data/navigo_all_flows.csv', newline='') as csvfile:
   flows = csv.DictReader(csvfile)
   for flow in flows:
+        if "1789" not in flow["outdate_fixed"]:
+          continue
         if flow['departure_function'] == 'O' \
         and flow['departure'] == 'Dunkerque' \
         and ('Lisbonne' in flow['destination'] or flow['destination'] == 'Bergen') \

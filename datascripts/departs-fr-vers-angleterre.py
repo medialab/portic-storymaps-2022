@@ -6,13 +6,14 @@ import sys
 from index import get_viz_metas
 
 metas =  get_viz_metas('departs-fr-vers-angleterre')
-flows1789 = get_viz_metas('departs-fr-vers-angleterre')['inputs'][1]
-flows1787 = '../data/navigo_all_flows_1787.csv'
+# flows1789 = get_viz_metas('departs-fr-vers-angleterre')['inputs'][1]
+# flows1787 = '../data/navigo_all_flows_1787.csv'
+flows = '../data/navigo_all_flows.csv'
 
 output = get_viz_metas('departs-fr-vers-angleterre')['outputs'][1]
 
 ports = {}
-with open(flows1787, "r") as muerte:
+with open(flows, "r") as muerte:
     reader = csv.DictReader(muerte)
     for i, row in enumerate(reader):
         # if "1789" in row["outdate_fixed"] \

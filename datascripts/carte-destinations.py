@@ -4,7 +4,7 @@ import requests
 from index import get_viz_metas
 
 output = get_viz_metas('carte-destinations')['outputs'][-1]
-input = get_viz_metas('carte-destinations')['inputs'][1]
+input = '../data/navigo_all_flows.csv' # get_viz_metas('carte-destinations')['inputs'][1]
 
 # map_input =  get_viz_metas('carte-destinations')['inputs'][0]
 # map_output =  get_viz_metas('carte-destinations')['outputs'][0]
@@ -37,7 +37,8 @@ with open(input, "r") as fr:
       writer = csv.DictWriter(fw, fieldnames=fieldnames)
       writer.writeheader()
       for row in reader:
-        if row['departure'] == 'Dunkerque' and row['departure_function'] == 'O':
+        year = row["departure_out_date"][0: 4]
+        if year == "1789" and row['departure'] == 'Dunkerque' and row['departure_function'] == 'O':
           tonnage = int(row['tonnage'] or 0)
           destination = row['destination']
           destination_state = row['destination_state_1789_fr']
@@ -46,7 +47,9 @@ with open(input, "r") as fr:
           if flag_fr == 'espagne, undeterminé':
             flag_fr = 'espagnol'
           homeport = row['homeport']
-          is_long_cours = "long cours" in row["all_taxes"]
+          taxes_fields = ["tax_concept1", "tax_concept2", "tax_concept3", "tax_concept4", "tax_concept5"]
+          all_taxes = " ".join([row[f] for f in taxes_fields])
+          is_long_cours = "long cours" in all_taxes
           writer.writerow({
             "destination": destination,
             "destination_state": destination_state,

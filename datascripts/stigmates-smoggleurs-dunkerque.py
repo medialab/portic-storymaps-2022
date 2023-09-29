@@ -43,7 +43,6 @@ with open(output, 'w', newline='') as csvfile:
                     row['tonnage'] = 12
                 else:
                     row['tonnage'] = row['tonnage_class']
-
                 writer.writerow(
                     {key: value for key, value in row.items() if key in fieldnames}
                 )
