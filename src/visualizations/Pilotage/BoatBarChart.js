@@ -140,15 +140,18 @@ export default function BoatBarChart({
                         fill='transparent'
                     />
                     <foreignObject
-                            y={maxValueScalePilotage}
-                            x={45}
-                            width={150}
-                            height={100}
-                        >
-                            <p
-                                xmlns="http://www.w3.org/1999/xhtml"
-                                style={{ fontSize: 14, }}
-                            >{translate('Pilotage', 'description_pilotage', lang, { mean: Math.round(meanPilotage) })}</p>
+                      y={maxValueScalePilotage}
+                      x={45}
+                      width={150}
+                      height={height / 2}
+                      className="max-value-scale-label-container"
+                    >
+                      <p
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style={{ fontSize: 14, }}
+                      >
+                        {translate('Pilotage', 'description_pilotage', lang, { mean: Math.round(meanPilotage) })}
+                      </p>
                     </foreignObject>
                 </g>
             </g>

@@ -247,7 +247,7 @@ export default function SchemaDemonstration({
             <ArrowNote
               arrowId='arrow-note-head'
               textWidth={130}
-              textHeight={70}
+              textHeight={height / 4}
               x1={0}
               y1={80}
               x2={margin.left - 20}
@@ -258,7 +258,7 @@ export default function SchemaDemonstration({
             <ArrowNote
               arrowId='arrow-note-head'
               textWidth={160}
-              textHeight={40}
+              textHeight={height / 4}
               x1={20}
               y1={40}
               x2={scaleYear(1774)}
@@ -270,7 +270,7 @@ export default function SchemaDemonstration({
             <ArrowNote
               arrowId='arrow-note-head'
               textWidth={130}
-              textHeight={50}
+              textHeight={height / 4}
               x1={0}
               y1={240}
               x2={scaleYear(1764)}
