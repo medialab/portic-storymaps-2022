@@ -382,8 +382,8 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
           cargos = json.loads(cargos)
           for cargo in cargos:
             if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
-              commodities += cargo['commodity_standardized_fr']
-              commodities_ids += cargo['commodity_id']
+              commodities.append(cargo['commodity_standardized_fr'])
+              commodities_ids.append(cargo['commodity_id'])
 
         forbidden_commodities_ids = [commodity for commodity in commodities_ids if commodity in stop_commodities_ids]
 
@@ -814,6 +814,7 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
       and departure == 'Dunkerque' \
       and destination != '' \
       and destination != 'France' \
+      and not flow["destination_uhgs_id"][0] == 'C' \
       and flow['destination_state_1789_fr'] != 'France' \
       and not is_smoggleur(flow):   
       # commodities = [flow[field].lower() for field in commodity_fields if flow[field] != '']
@@ -826,8 +827,8 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
           cargos = json.loads(cargos)
           for cargo in cargos:
             if 'commodity_standardized_fr' in cargo and cargo['commodity_standardized_fr'] != '':
-              commodities += cargo['commodity_standardized_fr']
-              commodities_ids += cargo['commodity_id']
+              commodities.append(cargo['commodity_standardized_fr'])
+              commodities_ids.append(cargo['commodity_id'])
       not_stop = [commodity for commodity in commodities if commodity not in stop_commodities]
       forbidden_commodities_ids = [commodity_id for commodity_id in commodities_ids if commodity_id in stop_commodities_ids]
       # take the flow if no commodity specified or at least one 'not stop' commodity speciied

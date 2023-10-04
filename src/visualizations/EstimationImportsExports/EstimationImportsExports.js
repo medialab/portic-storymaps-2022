@@ -43,7 +43,8 @@ const EstimationImportsExports = ({
         },
         {
           field: withLest ? 'estimation des exports par projection (hyp. lest)' : 'estimation des exports par projection (hyp. sans lest)',
-          title: 'estimation des exports totaux (hors smogglage) par projection tonnage/prix'
+          // title: 'estimation des exports totaux (hors smogglage) par projection tonnage/prix'
+          title: 'estimation des exports totaux'
         },
         {
           field: 'estimation smogglage'

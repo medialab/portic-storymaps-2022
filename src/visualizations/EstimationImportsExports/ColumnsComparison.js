@@ -177,7 +177,7 @@ function ColumnsComparison({
                   width={width / 2 - margins.right * 2 - 40}
                   height={textHeight}
                 >
-                  <div className={`label-container ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
+                  <div className={`label-container ${type === 'diff' ? 'align-top' : ''} ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
                     <p>
                       {title} <i>({formatNumber(parseInt(value))} lt.)</i>
                     </p>
@@ -208,7 +208,7 @@ function ColumnsComparison({
           </h3>
         </foreignObject>
         {
-          vizRightItems.map(({ title, y, height, value, isSource, isCounted, type }) => {
+          vizRightItems.map(({ title, y, height, value, isSource, isCounted, type }, index) => {
             const textHeight = Math.max(height, minLabelHeight)
             return (
               <g key={title}
@@ -227,7 +227,7 @@ function ColumnsComparison({
                   width={width / 2 - margins.right - 10 - (isSource ? 40 : 20)}
                   height={textHeight}
                 >
-                  <div className={`label-container ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
+                  <div className={`label-container ${type === 'estimation' && index !== vizRightItems.length - 1 ? 'align-bottom' : ''} ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
                     <p >
                       {title} <i>({formatNumber(parseInt(value))} lt.)</i>
                     </p>
