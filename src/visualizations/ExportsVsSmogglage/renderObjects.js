@@ -32,14 +32,15 @@ const labelGroups = {
     'Lyme Regis',
     'Padstow',
     'Fowey',
-  ],
-  'bottom': [
-    'Plymouth',
-    'Dartmouth',
+    
 
     'Lee on Solent',
     'Portsmouth',
     'Cowes',
+    'Dartmouth',
+    'Plymouth',
+  ],
+  'bottom': [
 
     'Yarmouth',
     'Saint Helens',
@@ -160,7 +161,7 @@ const renderObjects = ({
         donePorts.add(label);
       }
       return vizDataMap[label];
-    }),
+    }).filter(p => p),
     right: labelGroups.right.map(label => {
       if (!vizDataMap[label]) {
         console.warn('no port ', label);
@@ -168,7 +169,7 @@ const renderObjects = ({
         donePorts.add(label);
       }
       return vizDataMap[label];
-    }),
+    }).filter(p => p),
     bottom: labelGroups.bottom.map(label => {
       if (!vizDataMap[label]) {
         console.warn('no port ', label);
@@ -176,7 +177,7 @@ const renderObjects = ({
         donePorts.add(label);
       }
       return vizDataMap[label];
-    }),
+    }).filter(p => p),
   }
   Object.keys(vizDataMap).forEach(label => {
     if (!donePorts.has(label)) {

@@ -30,6 +30,7 @@ export default function ExportsVsSmogglage({
   const [selectedPort, setSelectedPort] = useState(undefined);
   const [highlightedPort, setHighlightedPort] = useState(undefined);
 
+
   const maxCircleArea = useMemo(() => {
     const maxDimension = max([width, height]);
     const maxObjectRadius = maxDimension * .01;
@@ -55,6 +56,8 @@ export default function ExportsVsSmogglage({
       // portsList: data.get('smogglage-vs-exports-par-homeport.csv').map(p => p.port)
     }
   }, [data]);
+
+  console.log(homeportsData)
 
   const radarAxis = Object.keys(portsProductsGroups)
   const radarData = useMemo(() => {
