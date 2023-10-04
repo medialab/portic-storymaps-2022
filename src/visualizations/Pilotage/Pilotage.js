@@ -58,6 +58,8 @@ export default function Pilotage({
     });
     const pilotageOnTotalPourcentagePerYearMean = mean(pilotageOnTotalPourcentagePerYear);
     const projectionPerYear = dataForProjection.map(({ sorties_pilotage, total, year }) => {
+      const proportion = (sorties_pilotage / total) * 100;
+      console.log(year, proportion + '%', ', mean : ', pilotageOnTotalPourcentagePerYearMean, pilotageOnTotalPourcentagePerYearMean - proportion)
       const pilotageByProjection = (sorties_pilotage * 100) / pilotageOnTotalPourcentagePerYearMean;
       const realityGap = total - pilotageByProjection;
       const realityGapPourcentage = (realityGap / pilotageByProjection) * 100;
@@ -65,7 +67,8 @@ export default function Pilotage({
         year,
         pilotageByProjection,
         realityGap,
-        realityGapPourcentage
+        proportion,
+        realityGapPourcentage: proportion - pilotageOnTotalPourcentagePerYearMean
       };
     });
     let [minProjectionPerYear, maxProjectionPerYear] = extent(projectionPerYear, d => d['realityGapPourcentage']);

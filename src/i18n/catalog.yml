@@ -225,8 +225,8 @@ Pilotage:
     en: 
   description_demonstration:
     fr: >-
-      À partir de la moyenne des rapports entre nombre de sorties avec un pilotage et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec un pilotage).
-      La comparaison avec les données des congés permet de constater une marge d'erreur entre <i>+${value_max}%</i> et <i>${value_min}%</i>.
+      À partir de la moyenne des rapports entre nombre de sorties avec un pilote et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec un pilotage).
+      La comparaison avec les données des congés permet de constater une marge de variation entre <i>+${value_max} points de pourcentage</i> et <i>${value_min} points de pourcentage</i> par rapport à la moyenne de ${mean}%.
     en: 
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
@@ -235,31 +235,31 @@ Pilotage:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque
     en:
   tooltip_pilotage:
-    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec un pilotage
+    fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec un pilote
     en:
   tooltip_estimation:
     fr: En ${year}, on estime qu'entre ${value_min} et ${value_max} navires sont sortis du port de Dunkerque
     en:
   tooltip_projection_positive:
-    fr: En ${year}, le rapport entre pilotage et sorties était ${value}% supérieur au rapport moyen de 1765 à 1791
+    fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage supérieur au rapport moyen de 1765 à 1791
     en:
   tooltip_projection_negative:
-    fr: En ${year}, le rapport entre pilotage et sorties était ${value}% inférieur au rapport moyen de 1765 à 1791
+    fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage inférieur au rapport moyen de 1765 à 1791
     en:
   note_schema_mean:
     fr: Moyenne du rapport entre nombre de pilotages et nombre de sorties
     en: 
   note_schema_sup:
-    fr: Les données relevées sont supérieures à la moyenne
+    fr: Plus de bateaux avec pilote que la moyenne
     en: 
   note_schema_inf:
-    fr: Les données relevées sont inférieures à la moyenne
+    fr: Moins de bateaux avec pilote que la moyenne
     en: 
   note_demonstration_pilotage:
-    fr: Navires sortis avec un pilotage
+    fr: Navires sortis avec un pilote
     en: 
   note_demonstration_margin:
-    fr: Marge d'erreur
+    fr: Marge de variation de la projection
     en: 
   note_demonstration_projection:
     fr: Projection du nombre total de sorties

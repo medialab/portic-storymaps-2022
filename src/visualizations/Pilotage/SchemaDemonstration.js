@@ -55,7 +55,7 @@ export default function SchemaDemonstration({
     <>
       <p className="mean-explanation"
         dangerouslySetInnerHTML={{
-          __html: translate('Pilotage', 'description_demonstration', lang, { value_max: Math.round(maxProjectionPerYear), value_min: Math.round(minProjectionPerYear) })
+          __html: translate('Pilotage', 'description_demonstration', lang, { mean: Math.round(meanProjectionPerYear), value_max: Math.round(maxProjectionPerYear), value_min: Math.round(minProjectionPerYear) })
         }}
       />
       <svg {...{ width, height }} >
@@ -79,7 +79,7 @@ export default function SchemaDemonstration({
         <g className='chart'>
           <g className='bars'>
             {
-              projectionPerYear.map(({ year, realityGapPourcentage }, projectionIndex) => {
+              projectionPerYear.map(({ year, realityGapPourcentage, proportion }, projectionIndex) => {
                 return (
                   <g
                     key={projectionIndex}
@@ -96,7 +96,7 @@ export default function SchemaDemonstration({
                         stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(1), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(1), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: realityGapPourcentage.toFixed(1), year, proportion: proportion.toFixed(1) }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -realityGapPourcentage.toFixed(1), year, proportion: proportion.toFixed(1) })}
                       />
                     }
                     {
@@ -109,7 +109,7 @@ export default function SchemaDemonstration({
                         stroke='url(#diag-hatch-projection)'
                         strokeWidth={barFromBarChartWidth}
                         data-for="bar-tooltip"
-                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: Math.round(realityGapPourcentage), year }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -Math.round(realityGapPourcentage), year })}
+                        data-tip={realityGapPourcentage > 0 ? translate('Pilotage', 'tooltip_projection_positive', lang, { value: Math.round(realityGapPourcentage), year,  proportion: proportion.toFixed(1) }) : translate('Pilotage', 'tooltip_projection_negative', lang, { value: -Math.round(realityGapPourcentage), year, proportion: proportion.toFixed(1) })}
                       />
                     }
                   </g>
@@ -237,7 +237,7 @@ export default function SchemaDemonstration({
                       x={0}
                       y={0}
                       textAnchor={value === minProjectionPerYear ? 'end' : 'start'}
-                    >{value > 0 ? '+' : ''}{Math.round(value)}%</text>
+                    >{value > 0 ? '+' : ''}{Math.round(value)} pt</text>
                   </g>
                 )
               })
@@ -257,15 +257,15 @@ export default function SchemaDemonstration({
             />
             <ArrowNote
               arrowId='arrow-note-head'
-              textWidth={160}
+              textWidth={120}
               textHeight={height / 4}
-              x1={20}
+              x1={10}
               y1={40}
-              x2={scaleYear(1774)}
-              y2={120}
+              x2={scaleYear(1764)}
+              y2={50}
               text={translate('Pilotage', 'note_schema_sup', lang)}
-              arrowPosition={'bottom right'}
-              textAlign='right'
+              arrowPosition={'middle right'}
+              textAlign='left'
             />
             <ArrowNote
               arrowId='arrow-note-head'
@@ -273,7 +273,7 @@ export default function SchemaDemonstration({
               textHeight={height / 4}
               x1={0}
               y1={240}
-              x2={scaleYear(1764)}
+              x2={scaleYear(1774)}
               y2={230}
               text={translate('Pilotage', 'note_schema_inf', lang)}
               textAlign='right'

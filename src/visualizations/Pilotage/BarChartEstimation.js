@@ -65,7 +65,7 @@ export default function PilotageLegend({
     const maxValue = max(data, d => d['total']);
     return scaleLinear()
       .domain([0, maxValue])
-      .range([height - margin.bottom, margin.bottom]);
+      .range([height - margin.bottom, margin.bottom]).nice();
   }, [data, maxPilotage, height]);
 
   useEffect(() => {
@@ -156,8 +156,11 @@ export default function PilotageLegend({
                         className='moustach'
                       >
                         {
-                          projectionPerYear.map(({ realityGapPourcentage }, projectionIndex) => {
-                            const estimateAbs = sorties_pilotage / meanPilotage + (realityGapPourcentage / 100) * (sorties_pilotage / meanPilotage);
+                          projectionPerYear.map(({ realityGapPourcentage, proportion }, projectionIndex) => {
+                            console.log(sorties_pilotage, realityGapPourcentage)
+                            const estimateAbs = (sorties_pilotage * 100) / proportion // 
+                            console.log({sorties_pilotage, realityGapPourcentage, estimateAbs})
+                            // const estimateAbs = sorties_pilotage / meanPilotage + (realityGapPourcentage / 100) * (sorties_pilotage / meanPilotage);
 
                             return (
                               <path
@@ -253,7 +256,7 @@ export default function PilotageLegend({
         </g>
         <g className='body-axis'>
           {
-            [...axisPropsFromTickScale(scaleTotal, 3).values, 2800].map((value, i) => {
+            [...axisPropsFromTickScale(scaleTotal, 3).values].map((value, i) => {
               return (
                 <path key={i} className='ticks-x-bar' d={`M${margin.left - 15},${scaleTotal(value)} H${width}`} stroke='gray' strokeWidth={0.5} />
               )
@@ -306,10 +309,10 @@ export default function PilotageLegend({
             arrowId='arrow-note-head'
             textWidth={scaleYear(1736) - scaleYear(1733)}
             textHeight={scaleTotal(1100)}
-            x1={scaleYear(1732)}
+            x1={scaleYear(1733)}
             x2={scaleYear(1731.6)}
-            y1={scaleTotal(800)}
-            y2={scaleTotal(150)}
+            y1={scaleTotal(1000)}
+            y2={scaleTotal(50)}
             text={translate('Pilotage', 'note_demonstration_pilotage', lang)}
             arrowPosition={'bottom left'}
           />
@@ -317,24 +320,24 @@ export default function PilotageLegend({
             arrowId='arrow-note-head'
             textWidth={scaleYear(1736) - scaleYear(1732)}
             textHeight={80}
-            x1={scaleYear(1729)}
+            x1={scaleYear(1734)}
+            x2={scaleYear(1731.5)}
             y1={scaleTotal(2600)}
-            x2={scaleYear(1735.4)}
             y2={scaleTotal(900)}
-            textAlign='right'
+            textAlign='left'
             text={translate('Pilotage', 'note_demonstration_projection', lang)}
-            arrowPosition={'bottom right'}
+            arrowPosition={'bottom left'}
           />
           <ArrowNote
             arrowId='arrow-note-head'
-            textWidth={130}
+            textWidth={100}
             textHeight={40}
             x1={scaleYear(1755)}
-            y1={scaleTotal(1900)}
+            y1={scaleTotal(2700)}
             x2={scaleYear(1752.5)}
-            y2={scaleTotal(2400)}
+            y2={scaleTotal(2000)}
             text={translate('Pilotage', 'note_demonstration_margin', lang)}
-            arrowPosition={'top left'}
+            arrowPosition={'bottom left'}
           />
         </g>
       </svg>
