@@ -146,7 +146,7 @@ export default function VisualizationFocus({
                                     <section className="details-contents-section">
                                         <h3>{messages.howItsMade}</h3>
                                         <Md>
-                                            {howItsMade.replace(/<br\/>/g, '\n\n')}
+                                            {howItsMade.replace(/<br ?\/>/g, '\n\n')}
                                         </Md>
                                     </section>
                                     : null
@@ -156,7 +156,7 @@ export default function VisualizationFocus({
                                     <section className="details-contents-section">
                                         <h3>{messages.howToRead}</h3>
                                         <Md>
-                                            {howToRead.replace(/<br\/>/g, '\n\n')}
+                                            {howToRead.replace(/<br ?\/>/g, '\n\n')}
                                         </Md>
                                     </section>
                                     : null
