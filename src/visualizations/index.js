@@ -149,6 +149,19 @@ export default function VisualizationController({
             legend={legend[lang]}
           />
         );
+      case 'annexe-an-1790':
+        // nom du document initial Bouchette arcpa_0000-0000_1885_num_20_1_8807_t1_0170_0000_6.pdf
+        const legend2 = {
+          fr: `**Réclamation contre la franchise de Dunkerque par M. Bouchette, en annexe de la séance du 31 octobre 1790**, François-Joseph Bouchette`
+        }
+        return (
+          <CommentedImage
+            src={`${process.env.BASE_PATH}/assets/seance-an-1790.png`}
+            width={width}
+            height={height}
+            legend={legend2[lang]}
+          />
+        );
       case 'formule-estimation':
         return (
           <CommentedImage
