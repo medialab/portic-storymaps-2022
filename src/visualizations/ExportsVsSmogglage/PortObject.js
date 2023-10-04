@@ -37,7 +37,7 @@ export default function PortObject({
     fontSize = radius * .1;
     textAnchor = 'middle';
     labelX = x;
-    labelY = y + radius + fontSize * 2;
+    labelY = y + radius + fontSize * 4;
   }
   return (
     <g  
@@ -67,6 +67,8 @@ export default function PortObject({
             opacity: isActive ? 0 : 1
           }}
           title={label}
+          data-for="smogglage-tip"
+          data-tip={isActive ? undefined : "Cliquer pour voir le détail du port de " + label}
         />
 
       </AnimatedGroup>

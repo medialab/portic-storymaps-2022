@@ -15,6 +15,7 @@ import {
 } from './groupings';
 import RadarChart from "../../components/RadarChart";
 import { formatNumber } from "../../utils/misc";
+import ReactTooltip from "react-tooltip";
 
 
 export default function ExportsVsSmogglage({
@@ -145,10 +146,10 @@ export default function ExportsVsSmogglage({
   }, [homeportsData, selectedPort]);
 
   const portsOverviewFieldsChoices = [
-    {
-      field: 'tonnage',
-      label: 'tonnage'
-    },
+    // {
+    //   field: 'tonnage',
+    //   label: 'tonnage'
+    // },
     {
       field: 'nb_pointcalls',
       label: 'nombre de voyages'
@@ -233,7 +234,7 @@ export default function ExportsVsSmogglage({
           onMouseOutObject={() => setHighlightedPort()}
         />
       </div>
-      <div className="legend-container">
+      <div className={`legend-container ${selectedPort ? 'is-hidden' : ''}`}>
 
 
         {/* <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div> */}
@@ -243,7 +244,8 @@ export default function ExportsVsSmogglage({
             portsOverviewFieldsChoices
               .map(({ field, label }) => {
                 const handleClick = () => {
-                  setPortsOverviewQuantiField(field)
+                  setPortsOverviewQuantiField(field);
+                  ReactTooltip.rebuild();
                 }
                 return (
                   <li key={field} onClick={handleClick}>
@@ -307,7 +309,7 @@ export default function ExportsVsSmogglage({
 
         // />
       }
-
+      <ReactTooltip id="smogglage-tip" />
     </div>
   )
 }
