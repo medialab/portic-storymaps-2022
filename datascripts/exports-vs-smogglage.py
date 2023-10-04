@@ -113,6 +113,10 @@ quantitative_fields = [
 # print('\n'.join(list(smogglers_pointcalls[0].keys())))
 ports_names_list = set()
 for p in smogglers_pointcalls:
+  tonnage = int(p["ship_tonnage"].split(".")[0] if p["ship_tonnage"] != "" else 0)
+  print(tonnage)
+  if tonnage != 12:
+    continue
   port = p['homeport_standardized_fr'].strip()
   port = port if port != "" else "Indéfini"
   port = port if port != "pas identifié" else "Indéfini"
@@ -147,9 +151,6 @@ with open('../data/navigo_all_pointcalls_1787.csv', 'r') as loc_reader:
   reader = csv.DictReader(loc_reader)
   for row in reader:
     port_name = row['homeport_toponyme_fr']
-    tonnage = int(row["tonnage"].split(".")[0] if row["tonnage"] != "" else 0)
-    if tonnage != 12:
-      continue
     if port_name in ports_names_list and port_name not in done_ports:
       done_ports.add(port_name)
       ports[port_name]['latitude'] = row['homeport_latitude']
