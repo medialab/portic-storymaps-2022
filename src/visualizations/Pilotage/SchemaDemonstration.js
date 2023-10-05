@@ -249,11 +249,11 @@ export default function SchemaDemonstration({
               textWidth={130}
               textHeight={height / 4}
               x1={0}
-              y1={80}
+              y1={150}
               x2={margin.left - 20}
               y2={scaleProjection(0)}
               text={translate('Pilotage', 'note_schema_mean', lang)}
-              arrowPosition={'bottom center'}
+              arrowPosition={'top right'}
             />
             <ArrowNote
               arrowId='arrow-note-head'
