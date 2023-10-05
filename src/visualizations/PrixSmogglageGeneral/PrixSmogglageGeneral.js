@@ -9,6 +9,19 @@ import {
 } from './groupings';
 
 
+const unitsSup = {
+  // 'Boissons alcoolisées tout type': 'pintes de Paris',
+  'eau de vie, taffia, genieve': 'pintes',
+  'vins': 'pintes',
+  // 'Tabac en feuilles': 'livres poids',
+  'tabac en feuilles': 'livres poids',
+  'café': 'livres poids',
+  'thé': 'livres poids',
+  'sucre': 'livres poids',
+  'sucre brut': 'livres poids',
+}
+
+
 export default function PrixSmogglageGeneral({
   width,
   height,
@@ -32,7 +45,7 @@ export default function PrixSmogglageGeneral({
       })
       .map(obj => ({
         ...obj,
-        unité: obj.unité.length ? obj.unité : 'unité inconnue'
+        unité: obj.unité.length ? obj.unité : unitsSup[obj.produit_smogglé] || 'unité inconnue'
       }))
       .sort((a, b) => {
         if (+a.valeur_smogglé1 > +b.valeur_smogglé1) {
@@ -41,6 +54,8 @@ export default function PrixSmogglageGeneral({
         return 1;
       })
   }, [data]);
+
+  console.log(productsData.filter(p => p.unité === 'unité inconnue'))
 
   const quantiFieldOptions = productsQuantiFields[selectedQuantiField]
 
