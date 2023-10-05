@@ -55,21 +55,23 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
     for i, row in enumerate(reader):
         if row["year"] != "1789":
             continue
+        # values correction/normalization
         value = int(row["value"].split('.')[0] or 0)
         office = (
             row["customs_office"]
             if row["customs_office"] != "Port franc de Bayonne et Saint Jean de Luz"
             else "Bayonne"
         )
-
         product = row[product_classification]
         partner_type = import_partner_class(row["partner_grouping"])
+
         # trade reporting by Dunkerque port franc
         if office == dunkerque_port_franc:
+            # Dunkerque exports
             if row["export_import"] == "Exports":
                 if partner_type != "colonies":
                     # export in Dunkerque are necessarly colonial products
-                    # detail prodcuts only depicts colonial products for Dunkerque
+                    # detail products only depicts colonial products for Dunkerque
                     detail_products_trade[office][product][partner_type][
                         row["export_import"]
                     ] = (
@@ -80,20 +82,20 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     )
                 export_type_total = (
                     "produits coloniaux"
-                    if partner_type != "colonies"
+                    # if partner_type != "colonies"
+                    if partner_type == "colonies"
                     else "autres produits"
                 )
 
-                total_trade[office][export_type_total][partner_type][
-                    row["export_import"]
-                ] = (
+                total_trade[office][export_type_total][partner_type][row["export_import"]] = (
                     total_trade[office][export_type_total][partner_type].get(
                         row["export_import"], 0
                     )
                     + value
                 )
                 if partner_type == "France":
-                    print("destination France dans export produtis coloniaux Dunkerque")
+                    print("destination France dans export produits coloniaux Dunkerque")
+            # Dunkerque imports
             elif row["export_import"] == "Imports":
                 product_type = "autres produits"
                 if partner_type == "colonies":
@@ -115,6 +117,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                     )
                     + value
                 )
+        # end of Dunkerque parsing
         # trade reported by other ports francs
         elif office in autres_port_francs:            
             # product = row["product_RE_aggregate"]
@@ -184,9 +187,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
             if row["partner_simplification"] in ["Bayonne", "Saint-Jean de Luz"]:
                 product = row["product_threesectorsM"]
                 if product:
-                    total_trade["Bayonne"]["autres produits"]["France"][
-                        row["export_import"]
-                    ] = (
+                    total_trade["Bayonne"]["autres produits"]["France"][row["export_import"]] = (
                         total_trade["Bayonne"]["autres produits"]["France"].get(
                             row["export_import"], 0
                         )
@@ -205,8 +206,8 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
         p: {"detail_products": [], "total_trade": []} for p in autres_port_francs + [dunkerque_port_franc]
     }
     total_Dunkerque_export_colonial_to_France = 0
-    for (port, colional_products) in detail_products_trade.items():
-        for product, product_trade in colional_products.items():
+    for (port, products) in detail_products_trade.items():
+        for product, product_trade in products.items():
             # filter deatil product to keep only colonial products for Dunkerque
             # NOTE: this filter is deprecated as we desactivated to complement ANOM products with mirors flows in detail product
             if port != "Dunkerque" or product in colonial_products_other_ports[port]:
