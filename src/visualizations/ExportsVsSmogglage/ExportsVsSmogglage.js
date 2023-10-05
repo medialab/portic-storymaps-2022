@@ -57,8 +57,6 @@ export default function ExportsVsSmogglage({
     }
   }, [data]);
 
-  console.log(homeportsData)
-
   const radarAxis = Object.keys(portsProductsGroups)
   const radarData = useMemo(() => {
     let absoluteMaxValue = -Infinity;
