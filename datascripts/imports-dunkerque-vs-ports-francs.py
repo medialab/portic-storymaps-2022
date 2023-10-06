@@ -21,7 +21,7 @@ with open(input, 'r') as muerte:
           port = None
           source_import = None
           # France to Port Franc
-          if flow['export_import'] == 'Imports' \
+          if flow['export_import'] == 'Exports' \
           and flow['partner_simplification'] in ports_francs_partners \
           :
               source_import = 'france'
