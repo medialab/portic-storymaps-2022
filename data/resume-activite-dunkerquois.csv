@@ -1,16 +1,16 @@
 departure,departure_state,destination,destination_state,rel_tonnage,cargo_type,ship_tonnage,ship_tonnage_class,ship_tonnage_class_ranking,year
 Cherbourg,France,Charente,France,90.0,Matières premières,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,36.0,cargaison inconnue,36,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,160.0,cargaison inconnue,160,[101-200],d,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,36.0,Pêche,36,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,160.0,Pêche,160,[101-200],d,1787
 Dunkerque,France,Nieuport,Autriche,20.0,Subsistances,20,[1-20],a,1787
-Dunkerque,France,Islande,Danemark,220.0,cargaison inconnue,220,[201-500],e,1787
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,70.0,cargaison inconnue,70,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,80.0,cargaison inconnue,80,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,220.0,Pêche,220,[201-500],e,1787
+Dunkerque,France,Islande,Danemark,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,70.0,Pêche,70,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,80.0,Pêche,80,[51-100],c,1787
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,20.0,[vide],40,[21-50],b,1787
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,20.0,[vide],40,[21-50],b,1787
 Baie d' Authie,France,Dunkerque,France,52.0,Subsistances,52,[51-100],c,1787
@@ -97,10 +97,10 @@ Dunkerque,France,Petersbourg,Empire russe,320.0,Divers,320,[201-500],e,1787
 Dunkerque,France,La Louisianne,Espagne,43.333333333333336,Subsistances,130,[101-200],d,1787
 Dunkerque,France,La Louisianne,Espagne,43.333333333333336,Objets manufacturés,130,[101-200],d,1787
 Dunkerque,France,La Louisianne,Espagne,43.333333333333336,[vide],130,[101-200],d,1787
-Dunkerque,France,Côte du Brésil,Portugal,220.0,cargaison inconnue,220,[201-500],e,1787
-Dunkerque,France,Côte du Brésil,Portugal,270.0,cargaison inconnue,270,[201-500],e,1787
-Dunkerque,France,Groenland,Danemark,350.0,cargaison inconnue,350,[201-500],e,1787
-Dunkerque,France,Groenland,Danemark,400.0,cargaison inconnue,400,[201-500],e,1787
+Dunkerque,France,Côte du Brésil,Portugal,220.0,Pêche,220,[201-500],e,1787
+Dunkerque,France,Côte du Brésil,Portugal,270.0,Pêche,270,[201-500],e,1787
+Dunkerque,France,Groenland,Danemark,350.0,Pêche,350,[201-500],e,1787
+Dunkerque,France,Groenland,Danemark,400.0,Pêche,400,[201-500],e,1787
 Dunkerque,France,La Martinique,France,37.5,Industrie française et étrangère,150,[101-200],d,1787
 Dunkerque,France,La Martinique,France,37.5,Industrie française et étrangère,150,[101-200],d,1787
 Dunkerque,France,La Martinique,France,37.5,Divers,150,[101-200],d,1787
@@ -154,49 +154,49 @@ Abbeville,France,Amsterdam,Provinces-Unies,43.0,Subsistances,43,[21-50],b,1787
 Dunkerque,France,Ostende,Autriche,6.0,Subsistances,18,[1-20],a,1787
 Dunkerque,France,Ostende,Autriche,6.0,Subsistances,18,[1-20],a,1787
 Dunkerque,France,Ostende,Autriche,6.0,[vide],18,[1-20],a,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,70.0,cargaison inconnue,70,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,60.0,cargaison inconnue,60,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,60.0,cargaison inconnue,60,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,30.0,cargaison inconnue,30,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,60.0,cargaison inconnue,60,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,130.0,cargaison inconnue,130,[101-200],d,1787
-Dunkerque,France,Islande,Danemark,30.0,cargaison inconnue,30,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,54.0,cargaison inconnue,54,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,80.0,cargaison inconnue,80,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,0.0,cargaison inconnue,0,inconnu,f,1787
-Dunkerque,France,Islande,Danemark,60.0,cargaison inconnue,60,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,110.0,cargaison inconnue,110,[101-200],d,1787
-Dunkerque,France,Islande,Danemark,35.0,cargaison inconnue,35,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
-Dunkerque,France,Islande,Danemark,70.0,cargaison inconnue,70,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,70.0,Pêche,70,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,60.0,Pêche,60,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,60.0,Pêche,60,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,60.0,Pêche,60,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,130.0,Pêche,130,[101-200],d,1787
+Dunkerque,France,Islande,Danemark,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,54.0,Pêche,54,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,80.0,Pêche,80,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,0.0,Pêche,0,inconnu,f,1787
+Dunkerque,France,Islande,Danemark,60.0,Pêche,60,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,110.0,Pêche,110,[101-200],d,1787
+Dunkerque,France,Islande,Danemark,35.0,Pêche,35,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
+Dunkerque,France,Islande,Danemark,70.0,Pêche,70,[51-100],c,1787
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,10.0,[vide],30,[21-50],b,1787
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,10.0,[vide],30,[21-50],b,1787
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,10.0,Matières premières,30,[21-50],b,1787
@@ -212,17 +212,17 @@ Dunkerque,France,Amsterdam,Provinces-Unies,70.0,[vide],70,[51-100],c,1787
 Dunkerque,France,Amsterdam,Provinces-Unies,45.0,[vide],90,[51-100],c,1787
 Dunkerque,France,Amsterdam,Provinces-Unies,45.0,Subsistances,90,[51-100],c,1787
 Dunkerque,France,Amsterdam,Provinces-Unies,40.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Terre Neuve,Grande-Bretagne,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Islande,Danemark,45.0,cargaison inconnue,45,[21-50],b,1787
+Dunkerque,France,Terre Neuve,Grande-Bretagne,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Islande,Danemark,45.0,Pêche,45,[21-50],b,1787
 Rouen,France,Dunkerque,France,38.0,cargaison inconnue,38,[21-50],b,1787
 Etaples,France,Dunkerque,France,25.0,Subsistances,25,[21-50],b,1787
 Dunkerque,France,Malaga,Espagne,130.0,Industrie française et étrangère,130,[101-200],d,1787
 Dunkerque,France,Marseille,France,160.0,[vide],160,[101-200],d,1787
 Le Havre,France,Dunkerque,France,20.0,cargaison inconnue,20,[1-20],a,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
 Rouen,France,Dunkerque,France,25.0,cargaison inconnue,25,[21-50],b,1787
 Dunkerque,France,Etaples,France,4.166666666666667,Subsistances,25,[21-50],b,1787
 Dunkerque,France,Etaples,France,4.166666666666667,Matières premières,25,[21-50],b,1787
@@ -233,26 +233,22 @@ Dunkerque,France,Etaples,France,4.166666666666667,Subsistances,25,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,13.333333333333334,Objets manufacturés,40,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,13.333333333333334,Matières premières,40,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,13.333333333333334,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,75.0,cargaison inconnue,75,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,75.0,Pêche,75,[51-100],c,1787
 Dunkerque,France,Bayonne,France,30.0,Matières premières,90,[51-100],c,1787
 Dunkerque,France,Bayonne,France,30.0,Industrie française et étrangère,90,[51-100],c,1787
 Dunkerque,France,Bayonne,France,30.0,Objets manufacturés,90,[51-100],c,1787
-Dunkerque,France,Rouen,France,25.0,Matières premières,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,25.0,Objets manufacturés,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,25.0,Subsistances,75,[51-100],c,1787
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1787
 Dunkerque,France,Saint Valéry sur Somme,France,25.0,Matières premières,25,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,30.0,Matières premières,30,[21-50],b,1787
 Dunkerque,France,Cherbourg,France,8.0,Subsistances,8,[1-20],a,1787
 Dunkerque,France,Bayonne,France,40.0,Matières premières,80,[51-100],c,1787
 Dunkerque,France,Bayonne,France,40.0,Objets manufacturés,80,[51-100],c,1787
 Dunkerque,France,Marseille,France,120.0,[vide],120,[101-200],d,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,cargaison inconnue,100,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,Pêche,100,[51-100],c,1787
 Dunkerque,France,Noirmoutier,France,260.0,Divers,260,[201-500],e,1787
 Etaples,France,Dunkerque,France,42.0,Divers,42,[21-50],b,1787
 Etaples,France,Dunkerque,France,25.0,Divers,25,[21-50],b,1787
-Dunkerque,France,Calais,France,6.0,Objets manufacturés,18,[1-20],a,1787
-Dunkerque,France,Calais,France,6.0,Subsistances,18,[1-20],a,1787
-Dunkerque,France,Calais,France,6.0,Industrie française et étrangère,18,[1-20],a,1787
+Dunkerque,France,Calais,France,18.0,Pêche,18,[1-20],a,1787
 Bordeaux,France,Dunkerque,France,45.0,[vide],90,[51-100],c,1787
 Bordeaux,France,Dunkerque,France,45.0,Subsistances,90,[51-100],c,1787
 Bordeaux,France,Dunkerque,France,75.0,Subsistances,150,[101-200],d,1787
@@ -260,10 +256,9 @@ Bordeaux,France,Dunkerque,France,75.0,[vide],150,[101-200],d,1787
 Bordeaux,France,Dunkerque,France,41.5,[vide],83,[51-100],c,1787
 Bordeaux,France,Dunkerque,France,41.5,Subsistances,83,[51-100],c,1787
 Dunkerque,France,Cherbourg,France,90.0,[vide],90,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,150.0,cargaison inconnue,150,[101-200],d,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,110.0,cargaison inconnue,110,[101-200],d,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,150.0,Pêche,150,[101-200],d,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,110.0,Pêche,110,[101-200],d,1787
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1787
 Le Havre,France,Dunkerque,France,75.0,cargaison inconnue,75,[51-100],c,1787
 Le Havre,France,Dunkerque,France,38.0,cargaison inconnue,38,[21-50],b,1787
 Le Havre,France,Dunkerque,France,50.0,cargaison inconnue,50,[21-50],b,1787
@@ -303,7 +298,6 @@ Boulogne sur Mer,France,Dunkerque,France,30.0,Matières premières,30,[21-50],b,
 Boulogne sur Mer,France,Dunkerque,France,30.0,Matières premières,30,[21-50],b,1787
 Charente,France,Dunkerque,France,90.0,cargaison inconnue,90,[51-100],c,1787
 Bordeaux,France,La Rochelle,France,110.0,[vide],110,[101-200],d,1787
-Marseille,France,Sette,France,180.0,cargaison inconnue,180,[101-200],d,1787
 Le Havre,France,Brest,France,240.0,cargaison inconnue,240,[201-500],e,1787
 Bayonne,France,Bordeaux,France,50.0,Subsistances,100,[51-100],c,1787
 Bayonne,France,Bordeaux,France,50.0,Industrie française et étrangère,100,[51-100],c,1787
@@ -335,56 +329,35 @@ Dunkerque,France,Barcelonne,Espagne,160.0,[vide],160,[101-200],d,1787
 Dunkerque,France,Barcelonne,Espagne,125.0,Objets manufacturés,250,[201-500],e,1787
 Dunkerque,France,Barcelonne,Espagne,125.0,[vide],250,[201-500],e,1787
 Dunkerque,France,Cadix,Espagne,300.0,Objets manufacturés,300,[201-500],e,1787
-Dunkerque,France,Rouen,France,38.0,Subsistances,38,[21-50],b,1787
-Dunkerque,France,Rouen,France,8.333333333333334,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,8.333333333333334,Objets manufacturés,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,8.333333333333334,Matières premières,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,25.0,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,30.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Matières premières,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,25.0,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,40.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,18.75,Matières premières,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,18.75,Subsistances,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,18.75,Matières premières,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,18.75,Industrie française et étrangère,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,6.25,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,6.25,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,6.25,Matières premières,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,6.25,Objets manufacturés,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,40.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,7.5,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,7.5,Matières premières,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,7.5,Objets manufacturés,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,7.5,[vide],30,[21-50],b,1787
-Dunkerque,France,Rouen,France,31.0,Subsistances,62,[51-100],c,1787
-Dunkerque,France,Rouen,France,31.0,Matières premières,62,[51-100],c,1787
+Dunkerque,France,Rouen,France,38.0,Pêche,38,[21-50],b,1787
+Dunkerque,France,Rouen,France,25.0,Pêche,25,[21-50],b,1787
+Dunkerque,France,Rouen,France,25.0,Pêche,25,[21-50],b,1787
+Dunkerque,France,Rouen,France,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,25.0,Pêche,25,[21-50],b,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1787
+Dunkerque,France,Rouen,France,25.0,Pêche,25,[21-50],b,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Rouen,France,62.0,Pêche,62,[51-100],c,1787
 Dunkerque,France,Rouen,France,8.333333333333334,[vide],25,[21-50],b,1787
 Dunkerque,France,Rouen,France,8.333333333333334,Industrie française et étrangère,25,[21-50],b,1787
 Dunkerque,France,Rouen,France,8.333333333333334,Objets manufacturés,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,18.0,Subsistances,18,[1-20],a,1787
+Dunkerque,France,Rouen,France,18.0,Pêche,18,[1-20],a,1787
 Dunkerque,France,Rouen,France,6.0,Drogues,30,[21-50],b,1787
 Dunkerque,France,Rouen,France,6.0,Matières premières,30,[21-50],b,1787
 Dunkerque,France,Rouen,France,6.0,Subsistances,30,[21-50],b,1787
 Dunkerque,France,Rouen,France,6.0,Industrie française et étrangère,30,[21-50],b,1787
 Dunkerque,France,Rouen,France,6.0,Matières premières,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Matières premières,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
 Dunkerque,France,Rouen,France,25.0,Matières premières,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,10.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,10.0,Matières premières,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,10.0,Objets manufacturés,30,[21-50],b,1787
-Dunkerque,France,Rouen,France,16.666666666666668,Objets manufacturés,50,[21-50],b,1787
-Dunkerque,France,Rouen,France,16.666666666666668,Subsistances,50,[21-50],b,1787
-Dunkerque,France,Rouen,France,16.666666666666668,Matières premières,50,[21-50],b,1787
-Dunkerque,France,Rouen,France,75.0,Subsistances,75,[51-100],c,1787
-Dunkerque,France,Rouen,France,20.0,Matières premières,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1787
-Dunkerque,France,Rouen,France,12.5,Matières premières,25,[21-50],b,1787
-Dunkerque,France,Rouen,France,12.5,Subsistances,25,[21-50],b,1787
+Dunkerque,France,Rouen,France,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Rouen,France,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1787
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1787
+Dunkerque,France,Rouen,France,25.0,Pêche,25,[21-50],b,1787
 Dunkerque,France,Calais,France,7.5,Subsistances,15,[1-20],a,1787
 Dunkerque,France,Calais,France,7.5,Industrie française et étrangère,15,[1-20],a,1787
 Dunkerque,France,Calais,France,4.0,Objets manufacturés,8,[1-20],a,1787
@@ -407,16 +380,11 @@ Dunkerque,France,Le Havre,France,5.0,Objets manufacturés,20,[1-20],a,1787
 Dunkerque,France,Le Havre,France,5.0,Bêtes de somme,20,[1-20],a,1787
 Dunkerque,France,Le Havre,France,5.0,Subsistances,20,[1-20],a,1787
 Dunkerque,France,Le Havre,France,5.0,Industrie française et étrangère,20,[1-20],a,1787
-Dunkerque,France,Le Havre,France,80.0,Subsistances,240,[201-500],e,1787
-Dunkerque,France,Le Havre,France,80.0,Objets manufacturés,240,[201-500],e,1787
-Dunkerque,France,Le Havre,France,80.0,[vide],240,[201-500],e,1787
+Dunkerque,France,Le Havre,France,240.0,Pêche,240,[201-500],e,1787
 Dunkerque,France,Le Havre,France,10.0,Objets manufacturés,20,[1-20],a,1787
 Dunkerque,France,Le Havre,France,10.0,Industrie française et étrangère,20,[1-20],a,1787
 Dunkerque,France,Le Havre,France,250.0,Divers,250,[201-500],e,1787
-Dunkerque,France,Le Havre,France,9.5,Industrie française et étrangère,38,[21-50],b,1787
-Dunkerque,France,Le Havre,France,9.5,Matières premières,38,[21-50],b,1787
-Dunkerque,France,Le Havre,France,9.5,Objets manufacturés,38,[21-50],b,1787
-Dunkerque,France,Le Havre,France,9.5,Subsistances,38,[21-50],b,1787
+Dunkerque,France,Le Havre,France,38.0,Pêche,38,[21-50],b,1787
 Dunkerque,France,Etaples,France,14.0,Objets manufacturés,42,[21-50],b,1787
 Dunkerque,France,Etaples,France,14.0,Subsistances,42,[21-50],b,1787
 Dunkerque,France,Etaples,France,14.0,Subsistances,42,[21-50],b,1787
@@ -501,7 +469,9 @@ Dunkerque,France,Nieuport,Autriche,6.666666666666667,Subsistances,20,[1-20],a,17
 Dunkerque,France,Tabago,France,66.66666666666667,Objets manufacturés,200,[101-200],d,1787
 Dunkerque,France,Tabago,France,66.66666666666667,Bêtes de somme,200,[101-200],d,1787
 Dunkerque,France,Tabago,France,66.66666666666667,[vide],200,[101-200],d,1787
-Dunkerque,France,Ostende,Autriche,13.0,cargaison inconnue,13,[1-20],a,1787
+Dunkerque,France,Ostende,Autriche,4.333333333333333,Matières premières,13,[1-20],a,1787
+Dunkerque,France,Ostende,Autriche,4.333333333333333,Objets manufacturés,13,[1-20],a,1787
+Dunkerque,France,Ostende,Autriche,4.333333333333333,Subsistances,13,[1-20],a,1787
 Dunkerque,France,Amsterdam,Provinces-Unies,120.0,[vide],120,[101-200],d,1787
 Dunkerque,France,Nieuport,Autriche,10.0,Matières premières,20,[1-20],a,1787
 Dunkerque,France,Nieuport,Autriche,10.0,Subsistances,20,[1-20],a,1787
@@ -517,12 +487,11 @@ Rouen,France,Le Havre,France,40.0,cargaison inconnue,40,[21-50],b,1787
 Rouen,France,Le Havre,France,40.0,cargaison inconnue,40,[21-50],b,1787
 Calais,France,Le Havre,France,30.0,cargaison inconnue,30,[21-50],b,1787
 Marennes,France,Bayonne,France,67.0,Subsistances,67,[51-100],c,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,8.0,[vide],24,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,8.0,Subsistances,24,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,8.0,Métaux,24,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,25.0,Subsistances,25,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1787
 Rouen,France,Dunkerque,France,30.0,cargaison inconnue,30,[21-50],b,1787
 Rouen,France,Dunkerque,France,25.0,cargaison inconnue,25,[21-50],b,1787
 Rouen,France,Dunkerque,France,25.0,cargaison inconnue,25,[21-50],b,1787
@@ -557,33 +526,28 @@ Etaples,France,Dunkerque,France,42.0,Divers,42,[21-50],b,1787
 Calais,France,Cherbourg,France,65.0,cargaison inconnue,65,[51-100],c,1787
 Dunkerque,France,Marseille,France,195.0,[vide],195,[101-200],d,1787
 Brest,France,Setubal,Portugal,440.0,Matières premières,440,[201-500],e,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,cargaison inconnue,120,[101-200],d,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,50.0,cargaison inconnue,50,[21-50],b,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,200.0,cargaison inconnue,200,[101-200],d,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,cargaison inconnue,70,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,cargaison inconnue,100,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,cargaison inconnue,70,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,Pêche,120,[101-200],d,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,50.0,Pêche,50,[21-50],b,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,200.0,Pêche,200,[101-200],d,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,Pêche,70,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,Pêche,100,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,Pêche,70,[51-100],c,1787
 Calais,France,Cherbourg,France,8.0,cargaison inconnue,8,[1-20],a,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,cargaison inconnue,120,[101-200],d,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,Pêche,120,[101-200],d,1787
 Dunkerque,France,Noirmoutier,France,260.0,Divers,260,[201-500],e,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,cargaison inconnue,90,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,90.0,Pêche,90,[51-100],c,1787
 Dunkerque,France,Nantes,France,50.0,Industrie française et étrangère,150,[101-200],d,1787
 Dunkerque,France,Nantes,France,50.0,[vide],150,[101-200],d,1787
 Dunkerque,France,Nantes,France,50.0,Objets manufacturés,150,[101-200],d,1787
-Dunkerque,France,Saint Valéry sur Somme,France,10.0,Objets manufacturés,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,10.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,10.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Objets manufacturés,25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,15.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,15.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Objets manufacturés,25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,30.0,Pêche,30,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1787
 Etaples,France,Dunkerque,France,42.0,Matières premières,42,[21-50],b,1787
 Dunkerque,France,Ostende,Autriche,5.0,[vide],20,[1-20],a,1787
 Dunkerque,France,Ostende,Autriche,5.0,Objets manufacturés,20,[1-20],a,1787
@@ -592,7 +556,7 @@ Dunkerque,France,Ostende,Autriche,5.0,Subsistances,20,[1-20],a,1787
 Dunkerque,France,Amsterdam,Provinces-Unies,30.0,Subsistances,30,[21-50],b,1787
 Dunkerque,France,Ostende,Autriche,15.0,Subsistances,30,[21-50],b,1787
 Dunkerque,France,Ostende,Autriche,15.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,cargaison inconnue,70,[51-100],c,1787
+Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,Pêche,70,[51-100],c,1787
 Dunkerque,France,Nieuport,Autriche,18.0,Matières premières,18,[1-20],a,1787
 Dunkerque,France,Ostende,Autriche,15.0,Subsistances,30,[21-50],b,1787
 Dunkerque,France,Ostende,Autriche,15.0,Objets manufacturés,30,[21-50],b,1787
@@ -632,8 +596,7 @@ Dunkerque,France,Amsterdam,Provinces-Unies,100.0,[vide],100,[51-100],c,1787
 Dunkerque,France,Saint Valéry sur Somme,France,42.0,Matières premières,42,[21-50],b,1787
 Dunkerque,France,Boulogne sur Mer,France,30.0,Subsistances,30,[21-50],b,1787
 Dunkerque,France,Saint Valéry sur Somme,France,25.0,[vide],25,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,15.0,Subsistances,30,[21-50],b,1787
-Dunkerque,France,Saint Valéry sur Somme,France,15.0,Subsistances,30,[21-50],b,1787
+Dunkerque,France,Saint Valéry sur Somme,France,30.0,Pêche,30,[21-50],b,1787
 Dunkerque,France,Brest,France,43.5,Subsistances,87,[51-100],c,1787
 Dunkerque,France,Brest,France,43.5,[vide],87,[51-100],c,1787
 Dunkerque,France,Saint Valéry sur Somme,France,25.0,Subsistances,25,[21-50],b,1787
@@ -653,22 +616,25 @@ Bordeaux,France,Sables d' Olonne,France,70.0,Matières premières,70,[51-100],c,
 Dunkerque,France,Marseille,France,46.666666666666664,Industrie française et étrangère,140,[101-200],d,1789
 Dunkerque,France,Marseille,France,46.666666666666664,Matières premières,140,[101-200],d,1789
 Dunkerque,France,Marseille,France,46.666666666666664,Objets manufacturés,140,[101-200],d,1789
-Dunkerque,France,Ostende,Autriche,10.0,Objets manufacturés,40,[21-50],b,1789
-Dunkerque,France,Ostende,Autriche,10.0,Subsistances,40,[21-50],b,1789
-Dunkerque,France,Ostende,Autriche,10.0,Subsistances,40,[21-50],b,1789
-Dunkerque,France,Ostende,Autriche,10.0,[vide],40,[21-50],b,1789
+Dunkerque,France,Ostende,Autriche,40.0,Pêche,40,[21-50],b,1789
 Dunkerque,France,Terver,Provinces-Unies,20.0,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Terver,Provinces-Unies,20.0,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,Subsistances,45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,Subsistances,90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
 Dunkerque,France,Ostende,Autriche,14.0,Subsistances,42,[21-50],b,1789
 Dunkerque,France,Ostende,Autriche,14.0,Objets manufacturés,42,[21-50],b,1789
 Dunkerque,France,Ostende,Autriche,14.0,Subsistances,42,[21-50],b,1789
 Dunkerque,France,Ostende,Autriche,30.0,Objets manufacturés,30,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1789
-Dunkerque,France,Islande,Danemark,60.0,cargaison inconnue,60,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,Subsistances,90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,20.0,[vide],60,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,20.0,Subsistances,60,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,20.0,[vide],60,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,13.333333333333334,Industrie française et étrangère,40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,13.333333333333334,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,13.333333333333334,[vide],40,[21-50],b,1789
@@ -676,7 +642,7 @@ Dunkerque,France,Islande,Danemark,15.0,Industrie française et étrangère,45,[2
 Dunkerque,France,Islande,Danemark,15.0,Subsistances,45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
 Dunkerque,France,Guernesey,Grande-Bretagne,15.0,cargaison inconnue,15,[1-20],a,1789
-Dunkerque,France,Terre Neuve,Grande-Bretagne,120.0,cargaison inconnue,120,[101-200],d,1789
+Dunkerque,France,Terre Neuve,Grande-Bretagne,120.0,Pêche,120,[101-200],d,1789
 Dunkerque,France,Cap [Français],France,110.0,Objets manufacturés,220,[201-500],e,1789
 Dunkerque,France,Cap [Français],France,110.0,Bêtes de somme,220,[201-500],e,1789
 Dunkerque,France,Islande,Danemark,16.666666666666668,[vide],50,[21-50],b,1789
@@ -746,7 +712,9 @@ Dunkerque,France,La Martinique,France,73.33333333333333,Subsistances,220,[201-50
 Dunkerque,France,La Martinique,France,73.33333333333333,Objets manufacturés,220,[201-500],e,1789
 Dunkerque,France,La Martinique,France,200.0,Objets manufacturés,200,[101-200],d,1789
 Dunkerque,France,La Martinique,France,200.0,[vide],200,[101-200],d,1789
-Dunkerque,France,La Martinique,France,280.0,cargaison inconnue,280,[201-500],e,1789
+Dunkerque,France,La Martinique,France,93.33333333333333,Objets manufacturés,280,[201-500],e,1789
+Dunkerque,France,La Martinique,France,93.33333333333333,[vide],280,[201-500],e,1789
+Dunkerque,France,La Martinique,France,93.33333333333333,Bêtes de somme,280,[201-500],e,1789
 Dunkerque,France,La Martinique,France,75.0,Bêtes de somme,150,[101-200],d,1789
 Dunkerque,France,La Martinique,France,75.0,Objets manufacturés,150,[101-200],d,1789
 Dunkerque,France,La Martinique,France,62.5,Industrie française et étrangère,250,[201-500],e,1789
@@ -775,9 +743,7 @@ Dunkerque,France,Cap [Français],France,73.33333333333333,Matières premières,2
 Dunkerque,France,Cap [Français],France,73.33333333333333,[vide],220,[201-500],e,1789
 Dunkerque,France,Cap [Français],France,73.33333333333333,Objets manufacturés,220,[201-500],e,1789
 Dunkerque,France,Cap [Français],France,160.0,Objets manufacturés,160,[101-200],d,1789
-Dunkerque,France,Cap [Français],France,100.0,Subsistances,300,[201-500],e,1789
-Dunkerque,France,Cap [Français],France,100.0,Subsistances,300,[201-500],e,1789
-Dunkerque,France,Cap [Français],France,100.0,Objets manufacturés,300,[201-500],e,1789
+Dunkerque,France,Cap [Français],France,300.0,Pêche,300,[201-500],e,1789
 Dunkerque,France,Cayes Saint Louis,France,105.0,Subsistances,420,[201-500],e,1789
 Dunkerque,France,Cayes Saint Louis,France,105.0,Subsistances,420,[201-500],e,1789
 Dunkerque,France,Cayes Saint Louis,France,105.0,Objets manufacturés,420,[201-500],e,1789
@@ -822,29 +788,38 @@ Dunkerque,France,Islande,Danemark,40.0,[vide],80,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,40.0,[vide],80,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,30.0,[vide],60,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,30.0,[vide],60,[51-100],c,1789
-Dunkerque,France,Islande,Danemark,100.0,cargaison inconnue,100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,[vide],100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,Subsistances,100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,Objets manufacturés,100,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,15.0,Subsistances,45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,120.0,cargaison inconnue,120,[101-200],d,1789
+Dunkerque,France,Islande,Danemark,120.0,Pêche,120,[101-200],d,1789
 Dunkerque,France,Islande,Danemark,18.333333333333332,[vide],55,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,18.333333333333332,Subsistances,55,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,18.333333333333332,[vide],55,[51-100],c,1789
-Dunkerque,France,Islande,Danemark,160.0,cargaison inconnue,160,[101-200],d,1789
+Dunkerque,France,Islande,Danemark,160.0,[vide],160,[101-200],d,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,20.0,[vide],40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,20.0,[vide],40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1789
+Dunkerque,France,Islande,Danemark,13.333333333333334,[vide],40,[21-50],b,1789
+Dunkerque,France,Islande,Danemark,13.333333333333334,[vide],40,[21-50],b,1789
+Dunkerque,France,Islande,Danemark,13.333333333333334,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,22.5,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,20.0,[vide],40,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,20.0,[vide],40,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,100.0,cargaison inconnue,100,[51-100],c,1789
-Dunkerque,France,Islande,Danemark,90.0,cargaison inconnue,90,[51-100],c,1789
-Dunkerque,France,Islande,Danemark,75.0,cargaison inconnue,75,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,Subsistances,100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,Objets manufacturés,100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,33.333333333333336,[vide],100,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,Subsistances,90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,30.0,[vide],90,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,37.5,[vide],75,[51-100],c,1789
+Dunkerque,France,Islande,Danemark,37.5,Subsistances,75,[51-100],c,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,[vide],45,[21-50],b,1789
 Dunkerque,France,Islande,Danemark,15.0,Subsistances,45,[21-50],b,1789
@@ -939,23 +914,23 @@ Dunkerque,France,Tabago,France,50.0,Matières premières,200,[101-200],d,1789
 Dunkerque,France,Tabago,France,50.0,Objets manufacturés,200,[101-200],d,1789
 Dunkerque,France,Tabago,France,50.0,Subsistances,200,[101-200],d,1789
 Dunkerque,France,Tabago,France,50.0,Matières premières,200,[101-200],d,1789
-Dunkerque,France,Terre Neuve,Grande-Bretagne,100.0,cargaison inconnue,100,[51-100],c,1789
-Dunkerque,France,Terre Neuve,Grande-Bretagne,90.0,cargaison inconnue,90,[51-100],c,1789
-Dunkerque,France,Terre Neuve,Grande-Bretagne,70.0,cargaison inconnue,70,[51-100],c,1789
+Dunkerque,France,Terre Neuve,Grande-Bretagne,100.0,Pêche,100,[51-100],c,1789
+Dunkerque,France,Terre Neuve,Grande-Bretagne,90.0,Pêche,90,[51-100],c,1789
+Dunkerque,France,Terre Neuve,Grande-Bretagne,70.0,Pêche,70,[51-100],c,1789
 Dunkerque,France,Ostende,Autriche,42.0,Matières premières,42,[21-50],b,1789
-Dunkerque,France,Islande,Danemark,40.0,cargaison inconnue,40,[21-50],b,1789
+Dunkerque,France,Islande,Danemark,20.0,Objets manufacturés,40,[21-50],b,1789
+Dunkerque,France,Islande,Danemark,20.0,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Calais,France,12.0,Divers,24,[21-50],b,1789
 Dunkerque,France,Calais,France,12.0,Matières premières,24,[21-50],b,1789
 Dunkerque,France,,inconnu,40.0,Divers,40,[21-50],b,1789
-Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,cargaison inconnue,70,[51-100],c,1789
+Dunkerque,France,Banc de Terre Neuve,zone maritime,70.0,Pêche,70,[51-100],c,1789
 Dunkerque,France,Marseille,France,170.0,[vide],170,[101-200],d,1789
-Dunkerque,France,Banc de Terre Neuve,zone maritime,150.0,cargaison inconnue,150,[101-200],d,1789
+Dunkerque,France,Banc de Terre Neuve,zone maritime,150.0,Pêche,150,[101-200],d,1789
 Dunkerque,France,Marseille,France,180.0,[vide],180,[101-200],d,1789
 Charente,France,Nantes,France,42.5,Subsistances,85,[51-100],c,1789
 Charente,France,Nantes,France,42.5,Objets manufacturés,85,[51-100],c,1789
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Subsistances,25,[21-50],b,1789
-Dunkerque,France,Saint Valéry sur Somme,France,12.5,Objets manufacturés,25,[21-50],b,1789
-Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,cargaison inconnue,100,[51-100],c,1789
+Dunkerque,France,Saint Valéry sur Somme,France,25.0,Pêche,25,[21-50],b,1789
+Dunkerque,France,Banc de Terre Neuve,zone maritime,100.0,Pêche,100,[51-100],c,1789
 Ars en Ré,France,Dunkerque,France,70.0,Subsistances,70,[51-100],c,1789
 Marennes,France,Dunkerque,France,200.0,Subsistances,200,[101-200],d,1789
 Marennes,France,Dunkerque,France,120.0,Subsistances,120,[101-200],d,1789
@@ -974,46 +949,33 @@ Dunkerque,France,Barcelonne,Espagne,130.0,[vide],130,[101-200],d,1789
 Dunkerque,France,Rouen,France,75.0,[vide],75,[51-100],c,1789
 Dunkerque,France,Rouen,France,20.0,[vide],40,[21-50],b,1789
 Dunkerque,France,Rouen,France,20.0,Objets manufacturés,40,[21-50],b,1789
-Dunkerque,France,Rouen,France,70.0,Subsistances,70,[51-100],c,1789
-Dunkerque,France,Rouen,France,15.0,Matières premières,30,[21-50],b,1789
-Dunkerque,France,Rouen,France,15.0,Subsistances,30,[21-50],b,1789
-Dunkerque,France,Rouen,France,10.0,Objets manufacturés,20,[1-20],a,1789
-Dunkerque,France,Rouen,France,10.0,Subsistances,20,[1-20],a,1789
-Dunkerque,France,Rouen,France,35.0,Subsistances,70,[51-100],c,1789
-Dunkerque,France,Rouen,France,35.0,Objets manufacturés,70,[51-100],c,1789
-Dunkerque,France,Rouen,France,37.5,[vide],75,[51-100],c,1789
-Dunkerque,France,Rouen,France,37.5,Subsistances,75,[51-100],c,1789
-Dunkerque,France,Rouen,France,60.0,Subsistances,60,[51-100],c,1789
-Dunkerque,France,Rouen,France,37.5,Subsistances,75,[51-100],c,1789
-Dunkerque,France,Rouen,France,37.5,Objets manufacturés,75,[51-100],c,1789
-Dunkerque,France,Rouen,France,23.0,Industrie française et étrangère,46,[21-50],b,1789
-Dunkerque,France,Rouen,France,23.0,Subsistances,46,[21-50],b,1789
-Dunkerque,France,Rouen,France,15.333333333333334,Subsistances,46,[21-50],b,1789
-Dunkerque,France,Rouen,France,15.333333333333334,Matières premières,46,[21-50],b,1789
-Dunkerque,France,Rouen,France,15.333333333333334,Objets manufacturés,46,[21-50],b,1789
+Dunkerque,France,Rouen,France,70.0,Pêche,70,[51-100],c,1789
+Dunkerque,France,Rouen,France,30.0,Pêche,30,[21-50],b,1789
+Dunkerque,France,Rouen,France,20.0,Pêche,20,[1-20],a,1789
+Dunkerque,France,Rouen,France,70.0,Pêche,70,[51-100],c,1789
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1789
+Dunkerque,France,Rouen,France,60.0,Pêche,60,[51-100],c,1789
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1789
+Dunkerque,France,Rouen,France,46.0,Pêche,46,[21-50],b,1789
+Dunkerque,France,Rouen,France,46.0,Pêche,46,[21-50],b,1789
 Dunkerque,France,Rouen,France,38.0,Industrie française et étrangère,38,[21-50],b,1789
 Dunkerque,France,Rouen,France,37.5,Objets manufacturés,75,[51-100],c,1789
 Dunkerque,France,Rouen,France,37.5,[vide],75,[51-100],c,1789
-Dunkerque,France,Rouen,France,20.0,Objets manufacturés,60,[51-100],c,1789
-Dunkerque,France,Rouen,France,20.0,Matières premières,60,[51-100],c,1789
-Dunkerque,France,Rouen,France,20.0,Subsistances,60,[51-100],c,1789
-Dunkerque,France,Rouen,France,43.0,Subsistances,43,[21-50],b,1789
+Dunkerque,France,Rouen,France,60.0,Pêche,60,[51-100],c,1789
+Dunkerque,France,Rouen,France,43.0,Pêche,43,[21-50],b,1789
 Dunkerque,France,Rouen,France,25.0,Matières premières,50,[21-50],b,1789
 Dunkerque,France,Rouen,France,25.0,Objets manufacturés,50,[21-50],b,1789
-Dunkerque,France,Rouen,France,60.0,Subsistances,60,[51-100],c,1789
-Dunkerque,France,Rouen,France,62.0,Subsistances,62,[51-100],c,1789
-Dunkerque,France,Rouen,France,42.0,Subsistances,42,[21-50],b,1789
-Dunkerque,France,Rouen,France,38.0,Subsistances,38,[21-50],b,1789
+Dunkerque,France,Rouen,France,60.0,Pêche,60,[51-100],c,1789
+Dunkerque,France,Rouen,France,62.0,Pêche,62,[51-100],c,1789
+Dunkerque,France,Rouen,France,42.0,Pêche,42,[21-50],b,1789
+Dunkerque,France,Rouen,France,38.0,Pêche,38,[21-50],b,1789
 Dunkerque,France,Rouen,France,20.0,Objets manufacturés,60,[51-100],c,1789
 Dunkerque,France,Rouen,France,20.0,Matières premières,60,[51-100],c,1789
 Dunkerque,France,Rouen,France,20.0,Matières premières,60,[51-100],c,1789
 Dunkerque,France,Rouen,France,50.0,[vide],50,[21-50],b,1789
-Dunkerque,France,Rouen,France,37.5,Subsistances,75,[51-100],c,1789
-Dunkerque,France,Rouen,France,37.5,Objets manufacturés,75,[51-100],c,1789
-Dunkerque,France,Rouen,France,21.0,Subsistances,42,[21-50],b,1789
-Dunkerque,France,Rouen,France,21.0,Objets manufacturés,42,[21-50],b,1789
-Dunkerque,France,Rouen,France,20.0,Subsistances,40,[21-50],b,1789
-Dunkerque,France,Rouen,France,20.0,[vide],40,[21-50],b,1789
+Dunkerque,France,Rouen,France,75.0,Pêche,75,[51-100],c,1789
+Dunkerque,France,Rouen,France,42.0,Pêche,42,[21-50],b,1789
+Dunkerque,France,Rouen,France,40.0,Pêche,40,[21-50],b,1789
 Dunkerque,France,Rouen,France,60.0,Matières premières,60,[51-100],c,1789
 Dunkerque,France,Rouen,France,12.5,[vide],25,[21-50],b,1789
 Dunkerque,France,Rouen,France,12.5,Objets manufacturés,25,[21-50],b,1789
@@ -1077,11 +1039,9 @@ Dunkerque,France,Elseneur,Danemark,230.0,Divers,230,[201-500],e,1789
 Dunkerque,France,Gothembourg,Suède,160.0,Divers,160,[101-200],d,1789
 Dunkerque,France,Gothembourg,Suède,100.0,Divers,100,[51-100],c,1789
 Dunkerque,France,Gothembourg,Suède,160.0,Divers,160,[101-200],d,1789
-Dunkerque,France,Saint Valery,France,58.0,Subsistances,58,[51-100],c,1789
-Dunkerque,France,Saint Valery,France,19.0,Subsistances,38,[21-50],b,1789
-Dunkerque,France,Saint Valery,France,19.0,Objets manufacturés,38,[21-50],b,1789
-Dunkerque,France,Saint Valery,France,15.0,Subsistances,30,[21-50],b,1789
-Dunkerque,France,Saint Valery,France,15.0,Objets manufacturés,30,[21-50],b,1789
+Dunkerque,France,Saint Valery,France,58.0,Pêche,58,[51-100],c,1789
+Dunkerque,France,Saint Valery,France,38.0,Pêche,38,[21-50],b,1789
+Dunkerque,France,Saint Valery,France,30.0,Pêche,30,[21-50],b,1789
 Dunkerque,France,Saint Valery,France,23.0,Subsistances,46,[21-50],b,1789
 Dunkerque,France,Saint Valery,France,23.0,Subsistances,46,[21-50],b,1789
 Dunkerque,France,Marennes,France,200.0,Divers,200,[101-200],d,1789
@@ -1108,7 +1068,7 @@ Dunkerque,France,Tabago,France,300.0,Objets manufacturés,300,[201-500],e,1789
 Dunkerque,France,Marseille,France,180.0,Divers,180,[101-200],d,1789
 Dunkerque,France,Marseille,France,150.0,Divers,150,[101-200],d,1789
 Dunkerque,France,Nieuport,Autriche,6.0,Subsistances,6,[1-20],a,1789
-Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,cargaison inconnue,120,[101-200],d,1789
+Dunkerque,France,Banc de Terre Neuve,zone maritime,120.0,Pêche,120,[101-200],d,1789
 Dunkerque,France,Genes,République de Gênes,50.0,Objets manufacturés,150,[101-200],d,1789
 Dunkerque,France,Genes,République de Gênes,50.0,Industrie française et étrangère,150,[101-200],d,1789
 Dunkerque,France,Genes,République de Gênes,50.0,Matières premières,150,[101-200],d,1789
@@ -1118,13 +1078,12 @@ Dunkerque,France,Nieuport,Autriche,10.0,Matières premières,20,[1-20],a,1789
 Dunkerque,France,Nieuport,Autriche,10.0,Matières premières,20,[1-20],a,1789
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,24.0,[vide],48,[21-50],b,1789
 Dunkerque,France,Itlands [Shetland],Grande-Bretagne,24.0,[vide],48,[21-50],b,1789
-Dunkerque,France,Terre Neuve,Grande-Bretagne,120.0,cargaison inconnue,120,[101-200],d,1789
+Dunkerque,France,Terre Neuve,Grande-Bretagne,120.0,Pêche,120,[101-200],d,1789
 Ostende,Autriche,Malaga,Espagne,82.5,Objets manufacturés,165,[101-200],d,1789
 Ostende,Autriche,Malaga,Espagne,82.5,Industrie française et étrangère,165,[101-200],d,1789
 Dunkerque,France,Boulogne sur Mer,France,40.0,Subsistances,40,[21-50],b,1789
 Dunkerque,France,Boulogne sur Mer,France,25.0,[vide],25,[21-50],b,1789
-Dunkerque,France,Saint Valéry sur Somme,France,10.0,Matières premières,20,[1-20],a,1789
-Dunkerque,France,Saint Valéry sur Somme,France,10.0,Subsistances,20,[1-20],a,1789
+Dunkerque,France,Saint Valéry sur Somme,France,20.0,Pêche,20,[1-20],a,1789
 Dunkerque,France,Memel,Prusse,230.0,Divers,230,[201-500],e,1789
 Dunkerque,France,Marseille,France,60.0,Industrie française et étrangère,120,[101-200],d,1789
 Dunkerque,France,Marseille,France,60.0,Objets manufacturés,120,[101-200],d,1789
