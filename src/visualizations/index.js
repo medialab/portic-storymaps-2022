@@ -83,6 +83,7 @@ export default function VisualizationController({
 
   const vizContent = useMemo(() => {
     if (data === undefined) {
+      console.info('data not found', {visualizationsMetas: visualizationsMetas[vizId], vizDataFiles})
       return <>Les données de cette visualisation n'ont pu être chargées.</>;
     }
     switch (vizId) {
