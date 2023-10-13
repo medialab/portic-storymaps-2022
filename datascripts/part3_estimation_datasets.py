@@ -1094,6 +1094,77 @@ for f, value in imports_toflit18.items():
 # print('somme exports coloniaux : ' + f'{int(sum_exports):,}' + ' lt')
 # print('somme exports selon la projection résumé : ' + f'{int(sum_projection_resume):,}' + ' lt')
 
+total_exports = total_smogglage_price + sum_miroir + sum_projection_resume
+
+# snail = [
+# {
+#    "value": sum_imports - total_exports,
+#    "product_type": "Différentiel avec imports du bureau des fermes de Dunkerque",
+#    "importsexports": "Imports",
+#    "partner_type": "bureau des fermes de Dunkerque"
+# },
+# {
+#    "value": sum_miroir,
+#    "product_type": "Exports connus de Dunkerque",
+#    "importsexports": "Exports",
+#    "partner_type": "bureau des fermes de Dunkerque"
+# },
+# {
+#    "value": total_smogglage_price,
+#    "product_type": "Estimation du smogglage",
+#    "importsexports": "Exports",
+#    "partner_type": "bureau des fermes de Dunkerque"
+# },
+# {
+#    "value": sum_exports,
+#    "product_type": "Exports de produits coloniaux",
+#    "importsexports": "Exports",
+#    "partner_type": "bureau des fermes de Dunkerque"
+# },
+# {
+#    "value": sum_projection_resume - sum_exports,
+#    "product_type": "Estimation des exports de produits hors coloniaux",
+#    "importsexports": "Exports",
+#    "partner_type": "bureau des fermes de Dunkerque"
+# },
+# ]
+
+snail = [
+{
+   "value": sum_imports,
+   "product_type": "",
+   "importsexports": "Imports",
+   "partner_type": "bureau des fermes de Dunkerque"
+},
+{
+   "value": sum_miroir,
+   "product_type": "Exports connus de Dunkerque",
+   "importsexports": "Exports",
+   "partner_type": "bureau des fermes de Dunkerque"
+},
+{
+   "value": total_smogglage_price,
+   "product_type": "Estimation du smogglage",
+   "importsexports": "Exports",
+   "partner_type": "bureau des fermes de Dunkerque"
+},
+{
+   "value": sum_exports,
+   "product_type": "Exports de produits coloniaux",
+   "importsexports": "Exports",
+   "partner_type": "bureau des fermes de Dunkerque"
+},
+{
+   "value": sum_projection_resume - sum_exports,
+   "product_type": "Estimation exports hors col.",
+   "importsexports": "Exports",
+   "partner_type": "bureau des fermes de Dunkerque"
+},
+]
+
+snails = [{**d, "port": "Dunkerque", "aggregate_type": "counts"} for d in snail]
+
+
 redux = [{
     "label": "imports du bf de Dunkerque",
     "type": "imports",
@@ -1154,3 +1225,10 @@ with open(OUTPUT, 'w', newline='') as csvfile:
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(redux)
+
+OUTPUT = "../public/data/snail-estimations-imports-exports-dk-1789.csv";
+with open(OUTPUT, 'w', newline='') as csvfile:
+  fieldnames = ['value', 'product_type', 'importsexports', 'partner_type', 'port', 'aggregate_type']
+  writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+  writer.writeheader()
+  writer.writerows(snail)

@@ -36,6 +36,7 @@ import DestinationsGbVersGb from './DestinationsGbVersGb';
 import SchemaSources from './SchemaSources';
 import ResumeActivitesDunkerquois from './ResumeActivitesDunkerquois';
 import ImportsDunkerqueVsPortsFrancs from './ImportsDunkerqueVsPortsFrancs';
+import EstimationExportsDkSnail from './EstimationExportsDkSnail/EstimationExportsDkSnail';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -108,6 +109,10 @@ export default function VisualizationController({
         return (
           <FraudeExportDunkerque {...{ data, dimensions, atlasMode, lang }} />
         );
+      case 'estimation-exports-dk-snail':
+        return (
+          <EstimationExportsDkSnail {...{ data, dimensions, atlasMode, lang }} />
+        )
       case 'fraude-exports-ports-francs':
         let showPorts;
         if (callerProps && callerProps.showports) {

@@ -9,6 +9,23 @@ import iwanthue from 'iwanthue';
 
 import './AlluvialImportExport.scss';
 
+function pickTextColor(bgColor, lightColor = 'white', darkColor = 'black') {
+  const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+  const r = parseInt(color.substring(0, 2), 16); // hexToR
+  const g = parseInt(color.substring(2, 4), 16); // hexToG
+  const b = parseInt(color.substring(4, 6), 16); // hexToB
+  const uicolors = [r / 255, g / 255, b / 255];
+  const c = uicolors.map((col) => {
+    if (col <= 0.03928) {
+      return col / 12.92;
+    }
+    return Math.pow((col + 0.055) / 1.055, 2.4);
+  });
+  const L = (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
+  return (L > 0.179) ? darkColor : lightColor;
+}
+
+
 /**
  * @typedef Line
  * @type {object}
@@ -36,6 +53,7 @@ export default function AlluvialImportExport({
   colorPalette = {},
   atlasMode,
   notDunkerque,
+  hideArrows = false,
   ...props
 }) {
   const [highlightedItem, setHighlightedItem] = useState();
@@ -58,6 +76,11 @@ export default function AlluvialImportExport({
   const barWidth = 70;
 
   function sortEntriesByValue([aName, aValue], [bName, bValue]) {
+    if (aName === '' && bName !== '') {
+      return 1;
+    } else if (aName !== '' && bName === '') {
+      return -1;
+    }
     if (aValue < bValue) { return -1; }
     if (aValue > bValue) { return 1; }
     return 0;
@@ -95,7 +118,8 @@ export default function AlluvialImportExport({
      * need for each product the max value between imports and exports
      */
     let productsImportValue = products.map(([product, productArray]) => {
-      let productImportArray = [], productExportArray = [];
+      const productImportArray = [];
+      const productExportArray = [];
       for (const item of productArray) {
         switch (item['importsexports']) {
           case 'Imports':
@@ -111,17 +135,22 @@ export default function AlluvialImportExport({
         max([productImportTotal, productExportTotal])
       ];
     });
-    const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && p.partner_type === 'Fraude')], []);
-    const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && p.partner_type === 'Fraude')], []);
+    const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && (p.partner_type === 'Fraude'))], []);
+    const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && (p.partner_type === 'Fraude'))], []);
     const sumFraudeImports = sum(
       fraudeImports
     , d => d.value);
-    const sumFraudeExports = sum(
+    let sumFraudeExports = sum(
       fraudeExports
     , d => d.value);
-    const productsTotalImportValue = sum(productsImportValue, d => d[1]);
-    productsImportValue = Object.fromEntries(productsImportValue);
 
+    const globalImport = productsImportValue.find(d => d[0] === '');
+   
+    const productsTotalImportValue = globalImport ? globalImport[1] : sum(productsImportValue, d => d[1]);
+    if (globalImport) {
+      sumFraudeExports = globalImport[1] - sum(products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports')], []).map(d => d.value));
+    }
+    productsImportValue = Object.fromEntries(productsImportValue);
     /**
      * To size partner bar,
      * need for each partner the max value between imports and exports
@@ -177,11 +206,21 @@ export default function AlluvialImportExport({
     visPartners,
     links // each data line, refactor as a directionnal link, 'from' -> 'to
   } = useMemo(function positionElements() {
-    const productsImportSorted = Object.entries(productsImportValue).sort(sortEntriesByValue);
+    let productsImportSorted = Object.entries(productsImportValue).sort(sortEntriesByValue);
     const visProducts = [];
     const visProductsMap = {};
+    let globalImport = productsImportSorted.find(d => d[0] === '');
+    globalImport = globalImport && globalImport[1];
+    if (globalImport) {
+      visProductsMap[''] = 0;
+    }
+    const importGap = globalImport ? globalImport - sum(productsImportSorted.filter(d => d[0] !== '').map(d => d[1])) : 0;
+    productsImportSorted = importGap ? [['Fraude', importGap], ...productsImportSorted.filter(d => d[0] !== "")] : productsImportSorted;
     let displacement = 0;
     for (const [product, value] of productsImportSorted) {
+      if (product === '') {
+        continue;
+      }
       const item = {
         product,
         barHeight: scaleValue(value),
@@ -197,6 +236,9 @@ export default function AlluvialImportExport({
     const visPartnersMap = {};
     displacement = 0;
     for (const [partner, value] of partnersMaxSorted) {
+      if (partner === '') {
+        break;
+      }
       const item = {
         partner,
         barHeight: scaleValue(value),
@@ -206,12 +248,29 @@ export default function AlluvialImportExport({
       visPartnersMap[partner] = item.y;
       displacement += value;
     }
+    let usableProducts = products;
+    if (globalImport && importGap) {
+      usableProducts = [...products, 
+        [
+          'Fraude',
+          [{
+            aggregate_type: '',
+            importsexports: 'Exports',
+            partner_type: 'bureau des fermes de Dunkerque',
+            port: '',
+            product_type: '',
+            value: importGap
+          }]
+        ]
+      ]
+    }
 
     const displacementsMaps = {
       'Imports': {},
       'Exports': {}
     }
-    let { importsLinks, exportsLinks } = products
+    console.log('usableProducts', usableProducts);
+    let { importsLinks, exportsLinks } = usableProducts
       .sort((a, b) => {
         if (visProductsMap[a[0]] > visProductsMap[b[0]]) {
           return -1;
@@ -227,6 +286,8 @@ export default function AlluvialImportExport({
             // else 
             if (a.partner_type === 'Fraude') {
               return -1;
+            } else if (product === '') {
+              return -1;
             }
             else if (visPartnersMap[a.partner_type] > visPartnersMap[b.partner_type]) {
               return -1;
@@ -234,6 +295,7 @@ export default function AlluvialImportExport({
             return 1;
           })
           .reduce((res2, { value, partner_type, importsexports }) => {
+ 
             const yProduct = visProductsMap[product];
             const yPartner = visPartnersMap[partner_type];
             const strokeWidth = scaleValue(value)
@@ -243,7 +305,7 @@ export default function AlluvialImportExport({
             if (displacementsMaps[importsexports][product] === undefined) {
               displacementsMaps[importsexports][product] = 0;
             }
-            const isFraude = partner_type === 'Fraude';
+            const isFraude = partner_type === 'Fraude' || product === 'Fraude';
             const arrKey = importsexports === 'Exports' ? 'exportsLinks' : 'importsLinks';
             const fromKey = importsexports === 'Exports' ? partner_type : product;
             const toKey = importsexports === 'Exports' ? product : partner_type;
@@ -331,7 +393,7 @@ export default function AlluvialImportExport({
           visProducts.map(({ product, barHeight, y }, i) => {
             // @todo improve resilience of the following
             const labelNbLines = product.length > 10 ? 2 : 1;
-            const color = colorPalette[product] || iwanthue(1, { seed: product });
+            const color = colorPalette[product] || iwanthue(1, { seed: product })[0];
             const isTooSmallForText = barHeight < 25;
             let isHighlighted = false;
             if (highlightedItem) {
@@ -360,11 +422,14 @@ export default function AlluvialImportExport({
                   x={0}
                   y={barHeight / 2 - labelNbLines * 5 - 5}
                   width={barWidth}
-                  height={barHeight}
+                  height={barHeight * 2}
                 >
                   <div
                     xmlns="http://www.w3.org/1999/xhtml"
                     className="modality-label"
+                    style={{
+                      color: pickTextColor(color)
+                    }}
                   >{product}</div>
                 </foreignObject>
               </g>
@@ -378,7 +443,7 @@ export default function AlluvialImportExport({
       >
         {
           visPartners.map(({ partner, barHeight, y }, i) => {
-            const color = colorPalette[partner] || iwanthue(1, { seed: partner });
+            const color = colorPalette[partner] || iwanthue(1, { seed: partner })[0];
             const isTooSmallForText = barHeight < 25;
             let isHighlighted = false;
             const labelNbLines = partner.length > 10 ? 2 : 1;
@@ -415,6 +480,9 @@ export default function AlluvialImportExport({
                     <div
                       xmlns="http://www.w3.org/1999/xhtml"
                       className="modality-label"
+                      style={{
+                        color: pickTextColor(color)
+                      }}
                     >{partner}</div>
                   </foreignObject>
                   // <text
@@ -454,7 +522,6 @@ export default function AlluvialImportExport({
                       //   return operator;
                       // })
                       .map(({ from, to, value, strokeWidth, product, isFraude }, i) => {
-
                         const color = colorPalette[product] || iwanthue(1, { seed: product });
                         const startY = linkType === 'Imports' ? productBarHeight + centerCircleHeight + from.y : from.y;
                         const endY = linkType === 'Imports' ? to.y : productBarHeight + centerCircleHeight + to.y;
@@ -592,7 +659,7 @@ export default function AlluvialImportExport({
                                     stroke='black'
                                     strokeDasharray='5, 5'
                                     fill={'none'}
-                                    markerEnd={'url(#arrow-head-white)'}
+                                    markerEnd={hideArrows ? undefined : 'url(#arrow-head-white)'}
                                   />
                                   <text
                                     x={linkType === 'Imports' ? -5 : 5}
@@ -631,7 +698,7 @@ export default function AlluvialImportExport({
             strokeWidth={2}
             stroke='black'
             fill='transparent'
-            markerEnd='url(#arrow-head)'
+            markerEnd={hideArrows ? undefined : 'url(#arrow-head)'}
             transform={`translate(-5, 0)`}
           />
           <text
@@ -657,7 +724,7 @@ export default function AlluvialImportExport({
             strokeWidth={2}
             stroke='black'
             fill='transparent'
-            markerEnd='url(#arrow-head)'
+            markerEnd={hideArrows ? undefined : 'url(#arrow-head)'}
             transform={`translate(5, 0)rotate(180)`}
           />
           <text
@@ -692,7 +759,7 @@ export default function AlluvialImportExport({
           xmlns="http://www.w3.org/1999/xhtml"
           style={{fontSize: 12, textAlign: 'right'}}
         >
-        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports - sumFraudeImports)} lt.`}
+        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports - sumFraudeImports)} lt.`}
           </div>
       </foreignObject>
     </svg>
