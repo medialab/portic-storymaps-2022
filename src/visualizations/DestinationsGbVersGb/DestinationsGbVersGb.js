@@ -95,7 +95,7 @@ export default function DestinationsGbVersGb({
   return (
     <div className="DestinationsGbVersGb">
       <GeographicMapChart
-        title={'Destinations des navires britanniques partis de Dunkerque en 1789'}
+        title={'Destinations des navires britanniques partis de Dunkerque en 1787'}
         // projectionTemplate={'Angleterre'}
         projectionTemplate={'England'}
         layers={[

@@ -3,12 +3,12 @@ import csv
 from index import get_viz_metas
 
 metas =  get_viz_metas('destinations-gb-vers-gb')
-flows1789 = get_viz_metas('destinations-gb-vers-gb')['inputs'][1]
+flows1787 = get_viz_metas('destinations-gb-vers-gb')['inputs'][1]
 
 output = get_viz_metas('destinations-gb-vers-gb')['outputs'][1]
 
 ports = {}
-with open(flows1789, "r") as muerte:
+with open(flows1787, "r") as muerte:
     reader = csv.DictReader(muerte)
     for i, row in enumerate(reader):
         
