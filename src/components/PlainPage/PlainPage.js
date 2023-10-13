@@ -1,5 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
+
+import Caller from '../../components/Caller';
 
 import { buildPageTitle } from '../../utils/misc';
 
@@ -19,7 +21,7 @@ export default function PlainPage ({
 
             <div className='centered-contents'>
                 <h1>{sectionTitle}</h1>
-                <Content />
+                <Content components={{ Caller, Link }} />
             </div>
         </div>
     )
