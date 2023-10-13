@@ -35,7 +35,8 @@ export default function PecheMap({
   }), {});
   const { width = 100, height = 100 } = dimensions;
   // const [brush, setBrush] = useReducer(reducerBrush, [undefined, undefined, undefined]);
-  const dataMap = data.get('map_backgrounds/physical_world_map_light.geojson');
+  const dataMap = data.get('map_backgrounds/physical_world_map.geojson');
+  // const dataMap = data.get('map_backgrounds/physical_world_map_light.geojson');
   const dataStats = useMemo(function prepareData() {
     return data.get('peche-map-stats.csv').map(row => {
       return {
