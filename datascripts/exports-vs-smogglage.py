@@ -114,7 +114,6 @@ quantitative_fields = [
 ports_names_list = set()
 for p in smogglers_pointcalls:
   tonnage = int(p["ship_tonnage"].split(".")[0] if p["ship_tonnage"] != "" else 0)
-  print(tonnage)
   if tonnage != 12:
     continue
   port = p['homeport_standardized_fr'].strip()
