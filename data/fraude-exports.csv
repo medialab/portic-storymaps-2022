@@ -1,155 +1,155 @@
-importsexports,aggregate_type,value,partner_type,product_type,port
-Exports,detail_products,266344,Monde,Produits manufacturés,Lorient
-Imports,detail_products,1113886,Monde,Produits manufacturés,Lorient
-Exports,detail_products,75970,France,Produits manufacturés,Lorient
-Imports,detail_products,49194,France,Produits manufacturés,Lorient
-Exports,detail_products,820766,Fraude,Produits manufacturés,Lorient
-Exports,detail_products,31170,Monde,Produits primaires,Lorient
-Imports,detail_products,688413,Monde,Produits primaires,Lorient
-Exports,detail_products,335,France,Produits primaires,Lorient
-Imports,detail_products,3322,France,Produits primaires,Lorient
-Exports,detail_products,660230,Fraude,Produits primaires,Lorient
-Exports,detail_products,743614,Monde,Produits agricoles,Lorient
-Imports,detail_products,1029365,Monde,Produits agricoles,Lorient
-Exports,detail_products,4149,France,Produits agricoles,Lorient
-Imports,detail_products,60041,France,Produits agricoles,Lorient
-Exports,detail_products,341643,Fraude,Produits agricoles,Lorient
-Exports,detail_products,500000,Monde,Inconnus,Lorient
-Imports,detail_products,2379,Monde,Inconnus,Lorient
-Exports,detail_products,1067534,Colonies,Inconnus,Lorient
-Imports,detail_products,1088,France,Inconnus,Lorient
-Imports,detail_products,1564067,Fraude,Inconnus,Lorient
-Exports,detail_products,24600,Monde,,Lorient
-Imports,detail_products,828,Monde,,Lorient
-Imports,detail_products,23772,Fraude,,Lorient
-Exports,total_trade,1563856,Monde,autres produits,Lorient
-Imports,total_trade,2834871,Monde,autres produits,Lorient
-Exports,total_trade,80454,France,autres produits,Lorient
-Imports,total_trade,113645,France,autres produits,Lorient
-Exports,total_trade,1067534,Colonies,autres produits,Lorient
-Exports,total_trade,236672,Fraude,autres produits,Lorient
-Exports,total_trade,1872,Monde,produits coloniaux,Lorient
-Imports,total_trade,1872,Fraude,produits coloniaux,Lorient
-Imports,detail_products,2347016,France,Produits primaires,Bayonne
-Exports,detail_products,146759,France,Produits primaires,Bayonne
-Exports,detail_products,683389,Monde,Produits primaires,Bayonne
-Imports,detail_products,1499445,Monde,Produits primaires,Bayonne
-Exports,detail_products,16514,Colonies,Produits primaires,Bayonne
-Imports,detail_products,13347,Colonies,Produits primaires,Bayonne
-Exports,detail_products,3013146,Fraude,Produits primaires,Bayonne
-Imports,detail_products,1908591,France,Produits agricoles,Bayonne
-Exports,detail_products,2372297,France,Produits agricoles,Bayonne
-Exports,detail_products,2421377,Monde,Produits agricoles,Bayonne
-Imports,detail_products,2955426,Monde,Produits agricoles,Bayonne
-Exports,detail_products,269567,Colonies,Produits agricoles,Bayonne
-Imports,detail_products,839327,Colonies,Produits agricoles,Bayonne
-Exports,detail_products,640103,Fraude,Produits agricoles,Bayonne
-Imports,detail_products,886125,France,Produits manufacturés,Bayonne
-Exports,detail_products,579208,France,Produits manufacturés,Bayonne
-Exports,detail_products,433396,Monde,Produits manufacturés,Bayonne
-Imports,detail_products,3511212,Monde,Produits manufacturés,Bayonne
-Exports,detail_products,138324,Colonies,Produits manufacturés,Bayonne
-Imports,detail_products,37634,Colonies,Produits manufacturés,Bayonne
-Exports,detail_products,3284043,Fraude,Produits manufacturés,Bayonne
-Imports,detail_products,9396,France,Inconnus,Bayonne
-Exports,detail_products,2567,France,Inconnus,Bayonne
-Exports,detail_products,1344,Monde,Inconnus,Bayonne
-Imports,detail_products,80,Monde,Inconnus,Bayonne
-Exports,detail_products,1401,Colonies,Inconnus,Bayonne
-Imports,detail_products,300,Colonies,Inconnus,Bayonne
-Exports,detail_products,4464,Fraude,Inconnus,Bayonne
-Exports,detail_products,19760,Monde,,Bayonne
-Imports,detail_products,404022,Monde,,Bayonne
-Exports,detail_products,74358,Colonies,,Bayonne
-Exports,detail_products,309904,Fraude,,Bayonne
-Imports,total_trade,5151128,France,autres produits,Bayonne
-Exports,total_trade,3100831,France,autres produits,Bayonne
-Exports,total_trade,3559266,Monde,autres produits,Bayonne
-Imports,total_trade,8370185,Monde,autres produits,Bayonne
-Exports,total_trade,500164,Colonies,autres produits,Bayonne
-Exports,total_trade,6361052,Fraude,autres produits,Bayonne
-Imports,total_trade,890608,Colonies,produits coloniaux,Bayonne
-Exports,total_trade,890608,Fraude,produits coloniaux,Bayonne
-Exports,detail_products,28969876,Monde,Produits agricoles,Marseille
-Imports,detail_products,40219004,Monde,Produits agricoles,Marseille
-Exports,detail_products,588319,France,Produits agricoles,Marseille
-Imports,detail_products,118473,France,Produits agricoles,Marseille
-Exports,detail_products,3713115,Colonies,Produits agricoles,Marseille
-Imports,detail_products,29297146,Colonies,Produits agricoles,Marseille
-Exports,detail_products,36363313,Fraude,Produits agricoles,Marseille
-Exports,detail_products,7963926,Monde,Produits primaires,Marseille
-Imports,detail_products,29996619,Monde,Produits primaires,Marseille
-Exports,detail_products,146815,France,Produits primaires,Marseille
-Imports,detail_products,180572,France,Produits primaires,Marseille
-Exports,detail_products,161963,Colonies,Produits primaires,Marseille
-Imports,detail_products,1913672,Colonies,Produits primaires,Marseille
-Exports,detail_products,23818159,Fraude,Produits primaires,Marseille
-Exports,detail_products,25582992,France,Produits manufacturés,Marseille
-Imports,detail_products,641045,France,Produits manufacturés,Marseille
-Exports,detail_products,27448008,Monde,Produits manufacturés,Marseille
-Imports,detail_products,28064179,Monde,Produits manufacturés,Marseille
-Exports,detail_products,10974258,Colonies,Produits manufacturés,Marseille
-Imports,detail_products,418425,Colonies,Produits manufacturés,Marseille
-Imports,detail_products,34881609,Fraude,Produits manufacturés,Marseille
-Exports,detail_products,3549,France,Inconnus,Marseille
-Imports,detail_products,184,France,Inconnus,Marseille
-Exports,detail_products,2374,Monde,Inconnus,Marseille
-Imports,detail_products,5668,Monde,Inconnus,Marseille
-Exports,detail_products,1704872,Colonies,Inconnus,Marseille
-Imports,detail_products,17782,Colonies,Inconnus,Marseille
-Imports,detail_products,1687161,Fraude,Inconnus,Marseille
-Exports,detail_products,29772,France,,Marseille
-Imports,detail_products,43527,France,,Marseille
-Exports,detail_products,1044597,Monde,,Marseille
-Imports,detail_products,658120,Monde,,Marseille
-Exports,detail_products,57421,Colonies,,Marseille
-Imports,detail_products,430143,Fraude,,Marseille
-Exports,total_trade,24912626,Monde,produits coloniaux,Marseille
-Imports,total_trade,31647025,Colonies,produits coloniaux,Marseille
-Exports,total_trade,6734399,Fraude,produits coloniaux,Marseille
-Exports,total_trade,26351447,France,autres produits,Marseille
-Imports,total_trade,983801,France,autres produits,Marseille
-Exports,total_trade,40516155,Monde,autres produits,Marseille
-Imports,total_trade,98943590,Monde,autres produits,Marseille
-Exports,total_trade,16611629,Colonies,autres produits,Marseille
-Exports,total_trade,16448160,Fraude,autres produits,Marseille
-Exports,detail_products,1182957,Monde,Café,Dunkerque
-Imports,detail_products,4071453,Colonies,Café,Dunkerque
-Exports,detail_products,2888496,Fraude,Café,Dunkerque
-Exports,detail_products,719051,Monde,Coton non transformé,Dunkerque
-Imports,detail_products,1082427,Colonies,Coton non transformé,Dunkerque
-Exports,detail_products,363376,Fraude,Coton non transformé,Dunkerque
-Exports,detail_products,101042,Monde,Indigo,Dunkerque
-Imports,detail_products,89556,Colonies,Indigo,Dunkerque
-Imports,detail_products,11486,Fraude,Indigo,Dunkerque
-Exports,detail_products,2211754,Monde,Sucre,Dunkerque
-Imports,detail_products,3269855,Colonies,Sucre,Dunkerque
-Exports,detail_products,1058101,Fraude,Sucre,Dunkerque
-Imports,detail_products,4414,Colonies,Cacao et chocolat,Dunkerque
-Exports,detail_products,4414,Fraude,Cacao et chocolat,Dunkerque
-Imports,detail_products,2724,Colonies,Bois divers hors combustible,Dunkerque
-Exports,detail_products,2724,Fraude,Bois divers hors combustible,Dunkerque
-Imports,detail_products,16367,Colonies,Matières brutes et transformées pour teinture,Dunkerque
-Exports,detail_products,16367,Fraude,Matières brutes et transformées pour teinture,Dunkerque
-Imports,detail_products,1376,Colonies,Fils divers,Dunkerque
-Exports,detail_products,1376,Fraude,Fils divers,Dunkerque
-Imports,detail_products,150,Colonies,Subsistances diverses et mélangées,Dunkerque
-Exports,detail_products,150,Fraude,Subsistances diverses et mélangées,Dunkerque
-Imports,detail_products,61376,Colonies,"Cuirs, peaux et pelleterie",Dunkerque
-Exports,detail_products,61376,Fraude,"Cuirs, peaux et pelleterie",Dunkerque
-Imports,detail_products,19963,Colonies,Eaux-de-vie et liqueurs,Dunkerque
-Exports,detail_products,19963,Fraude,Eaux-de-vie et liqueurs,Dunkerque
-Imports,detail_products,210,Colonies,Sirop et mélasse,Dunkerque
-Exports,detail_products,210,Fraude,Sirop et mélasse,Dunkerque
-Imports,detail_products,48931,Colonies,Tabac,Dunkerque
-Exports,detail_products,48931,Fraude,Tabac,Dunkerque
-Imports,detail_products,1353,Colonies,Divers mélangés,Dunkerque
-Exports,detail_products,1353,Fraude,Divers mélangés,Dunkerque
-Exports,total_trade,3440696,France,autres produits,Dunkerque
-Imports,total_trade,3618163,France,autres produits,Dunkerque
-Exports,total_trade,4560525,Monde,autres produits,Dunkerque
-Imports,total_trade,34261785,Monde,autres produits,Dunkerque
-Exports,total_trade,29878727,Fraude,autres produits,Dunkerque
-Exports,total_trade,1411503,Colonies,produits coloniaux,Dunkerque
-Imports,total_trade,8670155,Colonies,produits coloniaux,Dunkerque
-Exports,total_trade,7258652,Fraude,produits coloniaux,Dunkerque
+product_type,value,importsexports,aggregate_type,partner_type,port
+Produits manufacturés,266344,Exports,detail_products,Monde,Lorient
+Produits manufacturés,1113886,Imports,detail_products,Monde,Lorient
+Produits manufacturés,75970,Exports,detail_products,France,Lorient
+Produits manufacturés,49194,Imports,detail_products,France,Lorient
+Produits manufacturés,820766,Exports,detail_products,Fraude,Lorient
+Produits primaires,31170,Exports,detail_products,Monde,Lorient
+Produits primaires,688413,Imports,detail_products,Monde,Lorient
+Produits primaires,335,Exports,detail_products,France,Lorient
+Produits primaires,3322,Imports,detail_products,France,Lorient
+Produits primaires,660230,Exports,detail_products,Fraude,Lorient
+Produits agricoles,743614,Exports,detail_products,Monde,Lorient
+Produits agricoles,1029365,Imports,detail_products,Monde,Lorient
+Produits agricoles,4149,Exports,detail_products,France,Lorient
+Produits agricoles,60041,Imports,detail_products,France,Lorient
+Produits agricoles,341643,Exports,detail_products,Fraude,Lorient
+Inconnus,500000,Exports,detail_products,Monde,Lorient
+Inconnus,2379,Imports,detail_products,Monde,Lorient
+Inconnus,1067534,Exports,detail_products,Colonies,Lorient
+Inconnus,1088,Imports,detail_products,France,Lorient
+Inconnus,1564067,Imports,detail_products,Fraude,Lorient
+,24600,Exports,detail_products,Monde,Lorient
+,828,Imports,detail_products,Monde,Lorient
+,23772,Imports,detail_products,Fraude,Lorient
+autres produits,1563856,Exports,total_trade,Monde,Lorient
+autres produits,2834871,Imports,total_trade,Monde,Lorient
+autres produits,80454,Exports,total_trade,France,Lorient
+autres produits,113645,Imports,total_trade,France,Lorient
+autres produits,1067534,Exports,total_trade,Colonies,Lorient
+autres produits,236672,Exports,total_trade,Fraude,Lorient
+produits coloniaux,1872,Exports,total_trade,Monde,Lorient
+produits coloniaux,1872,Imports,total_trade,Fraude,Lorient
+Produits primaires,2347016,Imports,detail_products,France,Bayonne
+Produits primaires,146759,Exports,detail_products,France,Bayonne
+Produits primaires,683389,Exports,detail_products,Monde,Bayonne
+Produits primaires,1499445,Imports,detail_products,Monde,Bayonne
+Produits primaires,16514,Exports,detail_products,Colonies,Bayonne
+Produits primaires,13347,Imports,detail_products,Colonies,Bayonne
+Produits primaires,3013146,Exports,detail_products,Fraude,Bayonne
+Produits agricoles,1908591,Imports,detail_products,France,Bayonne
+Produits agricoles,2372297,Exports,detail_products,France,Bayonne
+Produits agricoles,2421377,Exports,detail_products,Monde,Bayonne
+Produits agricoles,2955426,Imports,detail_products,Monde,Bayonne
+Produits agricoles,269567,Exports,detail_products,Colonies,Bayonne
+Produits agricoles,839327,Imports,detail_products,Colonies,Bayonne
+Produits agricoles,640103,Exports,detail_products,Fraude,Bayonne
+Produits manufacturés,886125,Imports,detail_products,France,Bayonne
+Produits manufacturés,579208,Exports,detail_products,France,Bayonne
+Produits manufacturés,433396,Exports,detail_products,Monde,Bayonne
+Produits manufacturés,3511212,Imports,detail_products,Monde,Bayonne
+Produits manufacturés,138324,Exports,detail_products,Colonies,Bayonne
+Produits manufacturés,37634,Imports,detail_products,Colonies,Bayonne
+Produits manufacturés,3284043,Exports,detail_products,Fraude,Bayonne
+Inconnus,9396,Imports,detail_products,France,Bayonne
+Inconnus,2567,Exports,detail_products,France,Bayonne
+Inconnus,1344,Exports,detail_products,Monde,Bayonne
+Inconnus,80,Imports,detail_products,Monde,Bayonne
+Inconnus,1401,Exports,detail_products,Colonies,Bayonne
+Inconnus,300,Imports,detail_products,Colonies,Bayonne
+Inconnus,4464,Exports,detail_products,Fraude,Bayonne
+,19760,Exports,detail_products,Monde,Bayonne
+,404022,Imports,detail_products,Monde,Bayonne
+,74358,Exports,detail_products,Colonies,Bayonne
+,309904,Exports,detail_products,Fraude,Bayonne
+autres produits,5151128,Imports,total_trade,France,Bayonne
+autres produits,3100831,Exports,total_trade,France,Bayonne
+autres produits,3559266,Exports,total_trade,Monde,Bayonne
+autres produits,8370185,Imports,total_trade,Monde,Bayonne
+autres produits,500164,Exports,total_trade,Colonies,Bayonne
+autres produits,6361052,Exports,total_trade,Fraude,Bayonne
+produits coloniaux,890608,Imports,total_trade,Colonies,Bayonne
+produits coloniaux,890608,Exports,total_trade,Fraude,Bayonne
+Produits agricoles,28969876,Exports,detail_products,Monde,Marseille
+Produits agricoles,40219004,Imports,detail_products,Monde,Marseille
+Produits agricoles,588319,Exports,detail_products,France,Marseille
+Produits agricoles,118473,Imports,detail_products,France,Marseille
+Produits agricoles,3713115,Exports,detail_products,Colonies,Marseille
+Produits agricoles,29297146,Imports,detail_products,Colonies,Marseille
+Produits agricoles,36363313,Exports,detail_products,Fraude,Marseille
+Produits primaires,7963926,Exports,detail_products,Monde,Marseille
+Produits primaires,29996619,Imports,detail_products,Monde,Marseille
+Produits primaires,146815,Exports,detail_products,France,Marseille
+Produits primaires,180572,Imports,detail_products,France,Marseille
+Produits primaires,161963,Exports,detail_products,Colonies,Marseille
+Produits primaires,1913672,Imports,detail_products,Colonies,Marseille
+Produits primaires,23818159,Exports,detail_products,Fraude,Marseille
+Produits manufacturés,25582992,Exports,detail_products,France,Marseille
+Produits manufacturés,641045,Imports,detail_products,France,Marseille
+Produits manufacturés,27448008,Exports,detail_products,Monde,Marseille
+Produits manufacturés,28064179,Imports,detail_products,Monde,Marseille
+Produits manufacturés,10974258,Exports,detail_products,Colonies,Marseille
+Produits manufacturés,418425,Imports,detail_products,Colonies,Marseille
+Produits manufacturés,34881609,Imports,detail_products,Fraude,Marseille
+Inconnus,3549,Exports,detail_products,France,Marseille
+Inconnus,184,Imports,detail_products,France,Marseille
+Inconnus,2374,Exports,detail_products,Monde,Marseille
+Inconnus,5668,Imports,detail_products,Monde,Marseille
+Inconnus,1704872,Exports,detail_products,Colonies,Marseille
+Inconnus,17782,Imports,detail_products,Colonies,Marseille
+Inconnus,1687161,Imports,detail_products,Fraude,Marseille
+,29772,Exports,detail_products,France,Marseille
+,43527,Imports,detail_products,France,Marseille
+,1044597,Exports,detail_products,Monde,Marseille
+,658120,Imports,detail_products,Monde,Marseille
+,57421,Exports,detail_products,Colonies,Marseille
+,430143,Imports,detail_products,Fraude,Marseille
+produits coloniaux,24912626,Exports,total_trade,Monde,Marseille
+produits coloniaux,31647025,Imports,total_trade,Colonies,Marseille
+produits coloniaux,6734399,Exports,total_trade,Fraude,Marseille
+autres produits,26351447,Exports,total_trade,France,Marseille
+autres produits,983801,Imports,total_trade,France,Marseille
+autres produits,40516155,Exports,total_trade,Monde,Marseille
+autres produits,98943590,Imports,total_trade,Monde,Marseille
+autres produits,16611629,Exports,total_trade,Colonies,Marseille
+autres produits,16448160,Exports,total_trade,Fraude,Marseille
+Café,1182957,Exports,detail_products,Monde,Dunkerque
+Café,4071453,Imports,detail_products,Colonies,Dunkerque
+Café,2888496,Exports,detail_products,Fraude,Dunkerque
+Coton non transformé,719051,Exports,detail_products,Monde,Dunkerque
+Coton non transformé,1082427,Imports,detail_products,Colonies,Dunkerque
+Coton non transformé,363376,Exports,detail_products,Fraude,Dunkerque
+Indigo,101042,Exports,detail_products,Monde,Dunkerque
+Indigo,89556,Imports,detail_products,Colonies,Dunkerque
+Indigo,11486,Imports,detail_products,Fraude,Dunkerque
+Sucre,2211754,Exports,detail_products,Monde,Dunkerque
+Sucre,3269855,Imports,detail_products,Colonies,Dunkerque
+Sucre,1058101,Exports,detail_products,Fraude,Dunkerque
+Cacao et chocolat,4414,Imports,detail_products,Colonies,Dunkerque
+Cacao et chocolat,4414,Exports,detail_products,Fraude,Dunkerque
+Bois divers hors combustible,2724,Imports,detail_products,Colonies,Dunkerque
+Bois divers hors combustible,2724,Exports,detail_products,Fraude,Dunkerque
+Matières brutes et transformées pour teinture,16367,Imports,detail_products,Colonies,Dunkerque
+Matières brutes et transformées pour teinture,16367,Exports,detail_products,Fraude,Dunkerque
+Fils divers,1376,Imports,detail_products,Colonies,Dunkerque
+Fils divers,1376,Exports,detail_products,Fraude,Dunkerque
+Subsistances diverses et mélangées,150,Imports,detail_products,Colonies,Dunkerque
+Subsistances diverses et mélangées,150,Exports,detail_products,Fraude,Dunkerque
+"Cuirs, peaux et pelleterie",61376,Imports,detail_products,Colonies,Dunkerque
+"Cuirs, peaux et pelleterie",61376,Exports,detail_products,Fraude,Dunkerque
+Eaux-de-vie et liqueurs,19963,Imports,detail_products,Colonies,Dunkerque
+Eaux-de-vie et liqueurs,19963,Exports,detail_products,Fraude,Dunkerque
+Sirop et mélasse,210,Imports,detail_products,Colonies,Dunkerque
+Sirop et mélasse,210,Exports,detail_products,Fraude,Dunkerque
+Tabac,48931,Imports,detail_products,Colonies,Dunkerque
+Tabac,48931,Exports,detail_products,Fraude,Dunkerque
+Divers mélangés,1353,Imports,detail_products,Colonies,Dunkerque
+Divers mélangés,1353,Exports,detail_products,Fraude,Dunkerque
+autres produits,3440696,Exports,total_trade,France,Dunkerque
+autres produits,3618163,Imports,total_trade,France,Dunkerque
+autres produits,4560525,Exports,total_trade,Monde,Dunkerque
+autres produits,34261785,Imports,total_trade,Monde,Dunkerque
+autres produits,29878727,Exports,total_trade,Fraude,Dunkerque
+produits coloniaux,1411503,Exports,total_trade,Colonies,Dunkerque
+produits coloniaux,8670155,Imports,total_trade,Colonies,Dunkerque
+produits coloniaux,7258652,Exports,total_trade,Fraude,Dunkerque
