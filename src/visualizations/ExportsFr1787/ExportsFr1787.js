@@ -29,7 +29,9 @@ const ExportsFr1787 = ({
         field: 'value',
         tickFormat: d => `${formatNumber(d)} lt.`,
         tickSpan: 10000000,
+        domain: [0, 100000000],
         title: 'valeur', // translate('TonnagesF12', 'with_lest_title', lang)
+        
       }}
       y={{
         field: 'partner',
