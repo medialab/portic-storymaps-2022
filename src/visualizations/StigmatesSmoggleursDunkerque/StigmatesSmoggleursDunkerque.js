@@ -100,7 +100,7 @@ export default function StigmatesSmoggleursDunkerque({
             '[51-100]': 'grey',
             '[101-200]': 'darkgrey',
             'Angleterre': 'grey',
-            'Lisbonne': 'red'
+            'Lisbonne ou Bergen': 'red'
           }
         }}
       />

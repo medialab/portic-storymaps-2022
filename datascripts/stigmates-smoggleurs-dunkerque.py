@@ -35,10 +35,11 @@ with open(output, 'w', newline='') as csvfile:
                 row['tonnage'] = int(row['tonnage'] or 0)
                 if row['destination'] == '':
                     row['destination'] = 'Inconnue'
-                if row['destination'] == 'Lisbonne [mais: Angleterre]':
-                    row['destination'] = 'Lisbonne'
-                if row['destination'] not in {'Lisbonne', 'Bergen'}:
+                elif row['destination'] == 'Lisbonne [mais: Angleterre]':
+                    row['destination'] = 'Lisbonne ou Bergen'
+                elif row['destination'] not in {'Lisbonne', 'Bergen'}:
                     row['destination'] = row['destination_substate_1789_fr']
+                    
                 if row['tonnage'] == 12:
                     row['tonnage'] = 12
                 else:
