@@ -170,7 +170,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
 
   const selectFilterItems = [
     {
-      label: 'tous les ports francs',
+      label: 'tous les autres ports francs',
       value: undefined,
     },
     ...['Bayonne', 'Lorient', 'Marseille']
