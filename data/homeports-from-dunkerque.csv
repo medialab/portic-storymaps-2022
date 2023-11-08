@@ -3,20 +3,18 @@ Noirmoutier,Noirmoutier,France,France,France,2010.0,27
 Dunkerque,Dunkirk,France,France,France,29806.0,318
 Saint-Malo,Saint-Malo,France,France,France,6853.0,78
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
-Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
-Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
-Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
-Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
 Londres,London,Grande Bretagne,Grande-Bretagne,Great Britain,7041.0,97
-Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
-Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
+Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
 Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
+Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
 Marennes,Marennes,France,France,France,405.0,7
 Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
 Dort,Dort,étranger,Provinces-Unies,United Provinces,772.0,8
+Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
 Nantes,Nantes,France,France,France,2439.0,32
+Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
 Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
 Hull,Hull,Grande Bretagne,Grande-Bretagne,Great Britain,1772.0,19
 Burnham,Burnham,Grande Bretagne,Grande-Bretagne,Great Britain,840.0,70
@@ -34,6 +32,7 @@ Douvres,Dover,Grande Bretagne,Grande-Bretagne,Great Britain,1249.0,103
 Wells on Sea,Wells on Sea,Grande Bretagne,Grande-Bretagne,Great Britain,633.0,10
 Poole,Poole,Grande Bretagne,Grande-Bretagne,Great Britain,632.0,8
 Maldon,Maldon,Grande Bretagne,Grande-Bretagne,Great Britain,672.0,56
+Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
 Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Ipswich,Ipswich,Grande Bretagne,Grande-Bretagne,Great Britain,137.0,7
 King's Lynn,King's Lynn,Grande Bretagne,Grande-Bretagne,Great Britain,2189.0,26
@@ -45,6 +44,7 @@ Shoreham,Shoreham,Grande Bretagne,Grande-Bretagne,Great Britain,48.0,4
 Rochester,Rochester,Grande Bretagne,Grande-Bretagne,Great Britain,204.0,17
 île d'Yeu,île d'Yeu,France,France,France,661.0,11
 Newcastle,Newcastle,Grande Bretagne,Grande-Bretagne,Great Britain,899.0,11
+Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
 Cognac,Cognac,France,France,France,211.0,2
 Hythe,Hythe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
@@ -64,19 +64,19 @@ Brighton,Brighton,Grande Bretagne,Grande-Bretagne,Great Britain,48.0,4
 Plouharnel,Plouharnel,France,France,France,110.0,2
 Erquy,Erquy,France,France,France,176.0,3
 île de Ré,île de Ré,France,France,France,205.0,3
+Tonnay-Charente,Tonnay-Charente,France,France,France,776.0,9
+Glasgow,Glasgow,Grande Bretagne,Grande-Bretagne,Great Britain,1060.0,8
+Greenock,Greenock,Grande Bretagne,Grande-Bretagne,Great Britain,902.0,9
+Padstow,Padstow,Grande Bretagne,Grande-Bretagne,Great Britain,377.0,10
+Broadstairs,Broadstairs,Grande Bretagne,Grande-Bretagne,Great Britain,24.0,2
+pas identifié,To be identified,étranger,Indéterminé,Undefined,542.0,12
 Noordwijk,Noordwijk,étranger,Provinces-Unies,United Provinces,108.0,9
 Amsterdam,Amsterdam,étranger,Provinces-Unies,United Provinces,4768.0,41
 Newhaven,Newhaven,Grande Bretagne,Grande-Bretagne,Great Britain,150.0,2
 Groningue,Groningen,étranger,Provinces-Unies,United Provinces,680.0,9
 Stralsund,Stralsund,étranger,Suède,Sweden,310.0,2
-Tonnay-Charente,Tonnay-Charente,France,France,France,776.0,9
 Veendam,Veendam,étranger,Provinces-Unies,United Provinces,1501.0,23
-Glasgow,Glasgow,Grande Bretagne,Grande-Bretagne,Great Britain,1060.0,8
-Greenock,Greenock,Grande Bretagne,Grande-Bretagne,Great Britain,902.0,9
-Padstow,Padstow,Grande Bretagne,Grande-Bretagne,Great Britain,377.0,10
 Morlaix,Morlaix,France,France,France,287.0,5
-Broadstairs,Broadstairs,Grande Bretagne,Grande-Bretagne,Great Britain,24.0,2
-pas identifié,To be identified,étranger,Indéterminé,Undefined,542.0,12
 Paimpol,Paimpol,France,France,France,521.0,9
 Dieppe,Dieppe,France,France,France,332.0,3
 Indéterminé,Undefined,étranger,Indéterminé,Undefined,1008.0,18
@@ -229,11 +229,6 @@ Durgerdam,Durgerdam,étranger,Provinces-Unies,United Provinces,110.0,1
 Delfzijl,Delfzijl,étranger,Provinces-Unies,United Provinces,200.0,2
 Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
 Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
-île d'Aix,île d'Aix,France,France,France,110.0,1
-Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Quimper,Quimper,France,France,France,95.0,1
-Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
-Moss,Moss,étranger,Danemark,Denmark,295.0,2
 Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
 Petersburg,Petersburg,étranger,Etats-Unis d'Amérique,United States,150.0,1
 Cowes,Cowes,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
@@ -243,6 +238,7 @@ Pornic,Pornic,France,France,France,50.0,1
 Belle-Île-en-Mer,Belle-Île-en-Mer,France,France,France,140.0,2
 Winchelsea,Winchelsea,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Hartlepool,Hartlepool,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
+Moss,Moss,étranger,Danemark,Denmark,295.0,2
 Southend,Southend,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Aldeburgh,Aldeburgh,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Kragerø,Kragerø,étranger,Danemark,Denmark,80.0,1
@@ -251,6 +247,10 @@ Le Légué,Le Légué,France,France,France,98.0,1
 Gravesend,Gravesend,Grande Bretagne,Grande-Bretagne,Great Britain,24.0,2
 Dumbarton,Dumbarton,Grande Bretagne,Grande-Bretagne,Great Britain,85.0,1
 Anstruther,Anstruther,Grande Bretagne,Grande-Bretagne,Great Britain,110.0,1
+île d'Aix,île d'Aix,France,France,France,110.0,1
+Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
+Quimper,Quimper,France,France,France,95.0,1
+Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
