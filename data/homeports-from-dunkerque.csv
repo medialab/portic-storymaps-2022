@@ -26,10 +26,15 @@ Le Conquet,Le Conquet,France,France,France,2442.0,37
 Bourgneuf,Bourgneuf,France,France,France,128.0,2
 Pagelsham,Pagelsham,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Île-aux-Moines,Île-aux-Moines,France,France,France,288.0,5
+Nøtterøy,Nøtterøy,étranger,Danemark,Denmark,375.0,3
+Boston,Boston,étranger,Etats-Unis d'Amérique,United States,228.0,6
 Lorient,Lorient,France,France,France,958.0,16
+Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
+Douvres,Dover,Grande Bretagne,Grande-Bretagne,Great Britain,1249.0,103
+Wells on Sea,Wells on Sea,Grande Bretagne,Grande-Bretagne,Great Britain,633.0,10
+Poole,Poole,Grande Bretagne,Grande-Bretagne,Great Britain,632.0,8
 Maldon,Maldon,Grande Bretagne,Grande-Bretagne,Great Britain,672.0,56
 Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
-Douvres,Dover,Grande Bretagne,Grande-Bretagne,Great Britain,1249.0,103
 Ipswich,Ipswich,Grande Bretagne,Grande-Bretagne,Great Britain,137.0,7
 King's Lynn,King's Lynn,Grande Bretagne,Grande-Bretagne,Great Britain,2189.0,26
 Corton,Corton,Grande Bretagne,Grande-Bretagne,Great Britain,168.0,14
@@ -43,11 +48,6 @@ Newcastle,Newcastle,Grande Bretagne,Grande-Bretagne,Great Britain,899.0,11
 Cognac,Cognac,France,France,France,211.0,2
 Hythe,Hythe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
-Nøtterøy,Nøtterøy,étranger,Danemark,Denmark,375.0,3
-Boston,Boston,étranger,Etats-Unis d'Amérique,United States,228.0,6
-Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
-Wells on Sea,Wells on Sea,Grande Bretagne,Grande-Bretagne,Great Britain,633.0,10
-Poole,Poole,Grande Bretagne,Grande-Bretagne,Great Britain,632.0,8
 Saint-Gilles-sur-Vie,Saint-Gilles-sur-Vie,France,France,France,126.0,2
 Kampen,Kampen,étranger,Provinces-Unies,United Provinces,300.0,6
 Port-d'Envaux,Port-d'Envaux,France,France,France,713.0,9
@@ -154,6 +154,7 @@ Dungeness,Dungeness,Grande Bretagne,Grande-Bretagne,Great Britain,72.0,6
 Lannion,Lannion,France,France,France,74.0,2
 Le Faou,Le Faou,France,France,France,92.0,2
 Sappemeer,Sappemeer,étranger,Provinces-Unies,United Provinces,140.0,2
+Whitehaven,Whitehaven,Grande Bretagne,Grande-Bretagne,Great Britain,192.0,2
 Varberg,Varberg,étranger,Suède,Sweden,220.0,2
 Limekilns,Limekilns,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
 Dundee,Dundee,Grande Bretagne,Grande-Bretagne,Great Britain,405.0,5
@@ -189,7 +190,6 @@ Grou,Grou,étranger,Provinces-Unies,United Provinces,210.0,1
 Barking,Barking,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Newburyport,Newburyport,étranger,Etats-Unis d'Amérique,United States,170.0,1
 Lyme Regis,Lyme Regis,Grande Bretagne,Grande-Bretagne,Great Britain,77.0,2
-Whitehaven,Whitehaven,Grande Bretagne,Grande-Bretagne,Great Britain,192.0,2
 île d'Arz,île d'Arz,France,France,France,46.0,1
 La Flotte-en-Ré,La Flotte-en-Ré,France,France,France,42.0,1
 Ars-en-Ré,Ars-en-Ré,France,France,France,353.0,4
@@ -214,12 +214,7 @@ Rhode Island,Rhode Island,étranger,Etats-Unis d'Amérique,United States,160.0,1
 Charleston,Charleston,étranger,Etats-Unis d'Amérique,United States,100.0,1
 Dublin,Dublin,Grande Bretagne,Grande-Bretagne,Great Britain,160.0,1
 Newry,Newry,Grande Bretagne,Grande-Bretagne,Great Britain,180.0,1
-Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
 Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
-Roscoff,Roscoff,France,France,France,96.0,1
-Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
-Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
-Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
 Quiberon,Quiberon,France,France,France,90.0,1
 Arzon,Arzon,France,France,France,90.0,1
 Norden,Norden,étranger,Prusse,Prussia,50.0,1
@@ -229,12 +224,17 @@ Durgerdam,Durgerdam,étranger,Provinces-Unies,United Provinces,110.0,1
 Delfzijl,Delfzijl,étranger,Provinces-Unies,United Provinces,200.0,2
 Portsoy,Portsoy,Grande Bretagne,Grande-Bretagne,Great Britain,74.0,1
 Kirkcudbright,Kirkcudbright,Grande Bretagne,Grande-Bretagne,Great Britain,100.0,1
-île d'Aix,île d'Aix,France,France,France,110.0,1
+Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
+Roscoff,Roscoff,France,France,France,96.0,1
+Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
+Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
+Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
 Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Quimper,Quimper,France,France,France,95.0,1
-Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Moss,Moss,étranger,Danemark,Denmark,295.0,2
 Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
+île d'Aix,île d'Aix,France,France,France,110.0,1
+Quimper,Quimper,France,France,France,95.0,1
+Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Petersburg,Petersburg,étranger,Etats-Unis d'Amérique,United States,150.0,1
 Cowes,Cowes,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Quillebeuf,Quillebeuf,France,France,France,96.0,1
@@ -244,8 +244,6 @@ Belle-Île-en-Mer,Belle-Île-en-Mer,France,France,France,140.0,2
 Winchelsea,Winchelsea,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Hartlepool,Hartlepool,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
 Southend,Southend,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
-Aldeburgh,Aldeburgh,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
-Kragerø,Kragerø,étranger,Danemark,Denmark,80.0,1
 Loix,Loix,France,France,France,76.0,1
 Le Légué,Le Légué,France,France,France,98.0,1
 Gravesend,Gravesend,Grande Bretagne,Grande-Bretagne,Great Britain,24.0,2
@@ -255,3 +253,5 @@ Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
 Camaret,Camaret,France,France,France,66.0,1
+Aldeburgh,Aldeburgh,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
+Kragerø,Kragerø,étranger,Danemark,Denmark,80.0,1
