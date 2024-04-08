@@ -1,12 +1,12 @@
-year_start,year_end,x,y,label_fr,label_en,color_type,shape
-1700,1750,500,264,Chambre de commerce,Chamber of Commerce,point-port,circle
-1713,,140,543,Postes de douane,Customs posts,point-kingdom,cross
-1713,,295,550,Postes de douane,Customs posts,point-kingdom,cross
-1713,,435,604,Postes de douane,Customs posts,point-kingdom,cross
-1713,,526,647,Postes de douane,Customs posts,point-kingdom,cross
-1713,,557,627,Postes de douane,Customs posts,point-kingdom,cross
-1729,1786,571,206,Pilotage,Piloting,point-kingdom,circle
-1731,,591,152,Entrepôt colonial,Colonial warehouse,point-port,circle
-1750,,571,206,Nouvelle chambre de commerce,New Chamber of Commerce,point-port,circle
-1786,,571,206,Amirauté,Admiralty,point-kingdom,circle
-1786,,337,554,Hôtel des fermes,Farm Hotel,point-kingdom,circle
+year_start,year_end,x,y,y_original,label_fr,label_en,color_type,shape
+1700,1750,500,264,264,Chambre de commerce,Chamber of Commerce,point-port,circle
+1713,,140,543,543,Postes de douane,Customs posts,point-kingdom,cross
+1713,,295,550,550,Postes de douane,Customs posts,point-kingdom,cross
+1713,,435,604,604,Postes de douane,Customs posts,point-kingdom,cross
+1713,,526,647,647,Postes de douane,Customs posts,point-kingdom,cross
+1713,,557,627,627,Postes de douane,Customs posts,point-kingdom,cross
+1729,1786,571,206,206,Pilotage,Piloting,point-kingdom,circle
+1731,,591,152,152,Entrepôt colonial,Colonial warehouse,point-port,circle
+1750,,571,206,206,Nouvelle chambre de commerce,New Chamber of Commerce,point-port,circle
+1786,,571,206,206,Amirauté,Admiralty,point-kingdom,circle
+1786,,337,554,564,Hôtel des fermes,Farm Hotel,point-kingdom,circle
