@@ -176,7 +176,7 @@ export default function ExportsVsSmogglage({
   return (
     <div className='ExportsVsSmogglage'>
       <GeographicMapChart
-        title={'Produits smogglés par port d\'attache des smoggleurs'}
+        title={'Produits smogglés par port d\'attache des smoggleurs (1781-1790)'}
         hideTitle={!atlasMode}
         projectionTemplate={'England'}
         projectionConfig={selectedPort ? {
