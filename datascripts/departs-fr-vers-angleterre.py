@@ -21,6 +21,12 @@ with open(flows1787, "r") as muerte:
         :
             port_detail = row["departure_fr"]
             departure_province = row["departure_province"]
+            if departure_province == 'Provence':
+                if port_detail == 'Marseille':
+                    continue
+                else:
+                    departure_province = port_detail
+                
             if departure_province in ["Aunis", "Poitou", "Saintonge"]:
                 departure_province = "Aunis, Poitou, Saintonge"
             port = departure_province
