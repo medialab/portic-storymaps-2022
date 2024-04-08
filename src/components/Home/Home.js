@@ -148,7 +148,7 @@ function Home({
     let filesCsvToLoad = new Set(
       Object.values(visualizationsMetas)
       // filter for intro
-        .filter(({ n_chapitre }) => n_chapitre === 0)
+        .filter(({ n_chapitre }) => n_chapitre === '0')
         .map(({ outputs }) => outputs)
         .flat()
     );
