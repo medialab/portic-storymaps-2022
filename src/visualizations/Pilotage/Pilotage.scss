@@ -43,6 +43,7 @@
     .explanation-right {
       flex: 1;
       max-width: 50%;
+      box-sizing: border-box;
     }
     .explanation-left {
       display: flex;
@@ -119,6 +120,7 @@
       .lower-row {
         max-height: 0;
         opacity: 0;
+        padding: 0;
       }
     }
     &:not(.methodo-only):not(.result-only) {
