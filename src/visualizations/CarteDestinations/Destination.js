@@ -147,13 +147,164 @@ const Destination = ({
     }
     return 0;
   }, [overflowing, arrowDirection]);
+  // return (
+  //   <G
+  //     transform={`translate(${x}, ${y})`}
+  //     className={`destination ${highlighted ? 'is-highlighted' : ''}`}
+  //     onClick={onClick}
+  //   >
+  //     <Circle
+  //       cx={0}
+  //       cy={0}
+  //       r={radius}
+  //       className={'background-circle'}
+  //       data-for="destinations-tooltip"
+  //       data-tip={`${destination} - ${formatNumber(sumTonnage)} tx - pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%`}
+  //       style={{
+  //         fill: dominantMode ? dominantColor : undefined,
+  //         filter: dominantMode ? `saturate(${parseInt(maxTonnage / sumTonnage * 100)}%)`: undefined,
+  //         opacity: dominantMode ? '.8' : undefined,
+  //         stroke: dominantMode ? 'transparent': undefined
+  //       }}
+  //     />
+  //     {
+  //       dominantMode ? null :
+  //       flagGroupModalities.map((modality, i) => {
+  //         const deg = (i / flagGroupModalities.length) * 360 - 90;
+  //         const theta = deg  * Math.PI / 180;
+  //         const x2 = radius * Math.cos(theta);
+  //         const y2 = radius * Math.sin(theta);
+  //         return (
+  //           <Line
+  //             x1={0}
+  //             y1={0}
+  //             x2={x2}
+  //             y2={y2}
+  //             className="radar-line"
+  //             key={modality}
+  //           />
+  //         )
+  //       })
+  //     }
+  //     {
+  //       highlighted ?
+  //       <g className="ticks-container">
+  //         {
+  //           ticks.slice(0, ticks.length - 1)
+  //           .map((tickValue) => {
+  //             const startDeg = -90;
+  //             const endDeg = -90 + 360 * ((flagGroupModalities.length - 1) / (flagGroupModalities.length));
+  //             const startRad = startDeg * (Math.PI / 180);
+  //             const endRad = endDeg * (Math.PI / 180);
+  //             return (
+  //               <g className="radar-tick" key={tickValue}>
+  //                 {/* <circle
+  //                   cx={0}
+  //                   cy={0}
+  //                   r={radarScale(tickValue)}
+  //                   stroke="black"
+  //                   fill="transparent"
+  //                 /> */}
+  //                 <Path
+  //                   d={
+  //                     partialCirclePathD(
+  //                       0,
+  //                       0,
+  //                       radarScale(tickValue),
+  //                       startRad,
+  //                       endRad,
+  //                     )
+  //                   }
+  //                 />
+  //                 <Text
+  //                   x={-5}
+  //                   y={-radarScale(tickValue) + 5}
+  //                 >
+  //                   {`${tickValue} tx.`}
+  //                 </Text>
+  //               </g>
+  //             )
+  //           })
+  //         }
+  //       </g>
+  //       : null
+  //     }
+  //     {
+  //       dominantMode ? null :
+  //       // triangles
+  //       points
+  //       .map(([x, y], pointIndex) => {
+  //         const next = pointIndex < points.length - 1 ? points[pointIndex + 1] : points[0]
+  //         const [nextX, nextY] = next;
+  //         const midX = 0;
+  //         const midY = 0;
+  //         const triangleD = `M ${x} ${y} L ${nextX} ${nextY} L ${midX} ${midY} Z`;
+  //         const colorVar = 30 + parseInt(pointIndex / points.length * 30);
+  //         return (
+  //           <path
+  //             d={triangleD}
+  //             className="radar-triangle"
+  //             stroke="none"
+  //             fill={`hsl(192,42%, ${colorVar}%)`}
+  //             fillOpacity={.8}
+  //             key={pointIndex}
+  //           />
+  //         )
+  //       })
+  //     }
+  //     { dominantMode ? null :
+  //       points
+  //       .filter(([_x, _y, isMid = true]) => isMid)
+  //       .map(([x, y], pointIndex) => {
+  //         const flag = flagGroupModalities[pointIndex];
+  //         const tonnage = flagGroups[flag]?.tonnage || 0;
+  //         return (
+  //           <circle
+  //             cx={x}
+  //             cy={y}
+  //             key={pointIndex}
+  //             r={highlighted ? radius / 30 : radius / 15}
+  //             className="radar-point"
+  //             style={{fill: generic20colors[pointIndex]}}
+  //             data-for="destinations-tooltip"
+  //             data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage: formatNumber(tonnage)}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
+  //           />
+  //         )
+  //       })
+  //     }
+  //     <Text 
+  //       x={radius + radius /10}
+  //       y={0}
+  //       fontSize={fontSize}
+  //       className="radar-label"
+  //     >
+  //       {destination}
+  //     </Text>
+  //     {
+  //       overflowing ?
+  //       <G
+  //         transform={`rotate(${arrowRotate})translate(${radius}, 0)`}
+  //       >
+  //         <Line
+  //           x1={2}
+  //           x2={2}
+  //           y1={0}
+  //           y2={0}
+  //           className="arrow"
+  //           markerEnd="url(#arrowhead)"
+  //         />
+  //       </G>
+  //       : null
+  //     }
+  //   </G>
+  // );
   return (
-    <G
+    <g
       transform={`translate(${x}, ${y})`}
       className={`destination ${highlighted ? 'is-highlighted' : ''}`}
       onClick={onClick}
     >
-      <Circle
+      <circle
         cx={0}
         cy={0}
         r={radius}
@@ -175,7 +326,7 @@ const Destination = ({
           const x2 = radius * Math.cos(theta);
           const y2 = radius * Math.sin(theta);
           return (
-            <Line
+            <line
               x1={0}
               y1={0}
               x2={x2}
@@ -229,10 +380,6 @@ const Destination = ({
         </g>
         : null
       }
-      {/* <path
-        d={d}
-        className="radar-chart"
-      /> */}
       {
         dominantMode ? null :
         // triangles
@@ -276,20 +423,20 @@ const Destination = ({
           )
         })
       }
-      <Text 
+      <text 
         x={radius + radius /10}
         y={0}
         fontSize={fontSize}
         className="radar-label"
       >
         {destination}
-      </Text>
+      </text>
       {
         overflowing ?
-        <G
+        <g
           transform={`rotate(${arrowRotate})translate(${radius}, 0)`}
         >
-          <Line
+          <line
             x1={2}
             x2={2}
             y1={0}
@@ -297,10 +444,10 @@ const Destination = ({
             className="arrow"
             markerEnd="url(#arrowhead)"
           />
-        </G>
+        </g>
         : null
       }
-    </G>
+    </g>
   );
 }
 

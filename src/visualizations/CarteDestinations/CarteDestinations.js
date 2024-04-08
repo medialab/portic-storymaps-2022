@@ -218,9 +218,12 @@ export default function FraudeExportDunkerque({
 
   const maxCircleArea = useMemo(() => {
     const maxDimension = max([width, height]);
-    const maxObjectRadius = maxDimension * .03;
+    let maxObjectRadius = maxDimension * .03;
+    if (projectionTemplate === 'World') {
+      maxObjectRadius /= 3;
+    }
     return Math.PI * maxObjectRadius * maxObjectRadius;
-  }, [width, height]);
+  }, [width, height, projectionTemplate]);
 
 
   return (
@@ -234,6 +237,7 @@ export default function FraudeExportDunkerque({
       <GeographicMapChart
         title={'Carte des destinations des navires partis de Dunkerque en 1789'}
         projectionTemplate={projectionTemplate}
+        hideTitle={!atlasMode}
         layers={[
           // {
           //   type: 'svg',
@@ -243,7 +247,7 @@ export default function FraudeExportDunkerque({
           {
             type: 'choropleth',
             animated: false,
-            showAllParts: true,
+            showAllParts: false,
             data: data.get('map_backgrounds/physical_world_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // data: data.get('map_backgrounds/physical_world_map_light.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // data: projectionTemplate.includes('France') ? data.get('map_backgrounds/physical_world_map.geojson') : data.get('map_backgrounds/physical_world_map_light.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],

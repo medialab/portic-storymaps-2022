@@ -18,6 +18,7 @@ export default function PecheMap({
   data,
   dimensions,
   lang,
+  atlasMode,
   // colorPalette = {
   //   'Islande': 'red',
   //   'Terre-Neuve': 'blue',
@@ -62,17 +63,20 @@ export default function PecheMap({
     <div className="PecheMap">
       <GeographicMapChart
         // projectionTemplate={'France'}
+        hideTitle={!atlasMode}
         projectionTemplate={'world north'}
         layers={[
           {
             type: 'choropleth',
             animated: false,
+            showAllParts: false,
             className: 'background-map',
             data: dataMap,// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
           },
           {
             type: 'choropleth',
             animated: false,
+            showAllParts: false,
             data: data.get('evolution-peche-zones.geojson'),
             tooltip: (d) => d.properties.shortname,
             className: 'peche-zones',

@@ -183,11 +183,11 @@ const ChoroplethLayer = ({
   return (
     <>
       <g className={cx("ChoroplethLayer", layer.className, { 'reverse-colors': reverseColors })}>
-        {
+        {layer.animated ?
           transitions((style, d) => {
             const id = d.properties.id || d.properties.name || d.properties.identifiant;
             return (
-              <animated.g style={style}>
+              <animated.g className="geopart-container animated" style={style}>
                 <GeoPart
                   key={id}
                   {...{
@@ -198,12 +198,35 @@ const ChoroplethLayer = ({
                     d,
                     width,
                     height,
-                    animated: layer.animated
+                    animated: true
                   }}
                 />
               </animated.g>
             )
+
           })
+          :
+          partsData.map((d, index) => {
+            const id = d.properties.id || d.properties.name || d.properties.identifiant || index;
+            return (
+              <g className="geopart-container static" title={id}>
+              <GeoPart
+                key={id}
+                {...{
+                  projection,
+                  project,
+                  palette,
+                  layer,
+                  d,
+                  width,
+                  height,
+                  animated: false
+                }}
+              />
+            </g>
+            )
+          })
+          
           // partsData
           // .map((d, i) => {
           //   return (

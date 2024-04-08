@@ -64,7 +64,8 @@ const GeographicMapChart = ({
   debug = false, // @todo : à réparer
   withLegend,
   legendLayerFilter,
-  className
+  className,
+  hideTitle,
 }) => {
   const width = fixSvgDimension(inputWidth);
   const height = fixSvgDimension(inputHeight);
@@ -344,7 +345,7 @@ const GeographicMapChart = ({
   return (
     <div className={cx("GeographicMapChartWrapper", className)}>
 
-      {title ? <h5 className="visualization-title">{title}</h5> : null}
+      {title && !hideTitle ? <h5 className="visualization-title">{title}</h5> : null}
 
       {
         debug ?
