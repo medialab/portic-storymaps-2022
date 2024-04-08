@@ -45,6 +45,7 @@ const formatNestResults = (input) => {
 const TreemapChart = ({
   data,
   fieldsHierarchy = [],
+  atlasMode,
   title,
   width : initialWidth = 1000,
   height: initialHeight = 400,
@@ -129,7 +130,7 @@ const TreemapChart = ({
     <>
       <figure style={{width: initialWidth, height: initialHeight}} className="TreemapChart GenericVisualization">
         <div ref={headerRef} className="row">
-          {title ? <h5 className="visualization-title" >{title}</h5> : null}
+          {title && atlasMode ? <h5 className="visualization-title" >{title}</h5> : null}
         </div>
         <div className="row vis-row">
           <svg className="chart" width={width} height={height}>
