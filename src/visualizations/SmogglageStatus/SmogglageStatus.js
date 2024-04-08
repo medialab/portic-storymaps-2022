@@ -12,7 +12,7 @@ export default function SmogglageStatus({
   const steps = [
     {
       field: 'departure_fr',
-      title: 'port de départ',
+      title: 'port de départ (en nombre de départs)',
       sortOrder: 'descending',
       label: 'portLabel'
     },
