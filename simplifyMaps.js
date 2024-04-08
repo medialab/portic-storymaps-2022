@@ -1,5 +1,6 @@
 const simplify = require('simplify-geojson')
 const fs = require('fs-extra');
+const turf = require('turf');
 
 // let original = fs.readFileSync('./public/data/cartoweb_france_1789_geojson_original.geojson', 'utf8');
 let output = `./datascripts/resources/intro_map.geojson`;
@@ -128,18 +129,39 @@ try {
 } catch(e) {
   console.log('damn')
 }
-
 // let simplified = simplify(original, .003); // works
 simplified = {
   ...original,
   features: original.features
   // .filter(feature => acceptedDominants.includes(feature.properties.dominant) || acceptedProvinces.includes(feature.properties.shortname))
-  .map(feature => {
-    return {
-      ...simplify(feature, .07), // works,
-      properties: {}
-    }
+  .map((feature, index) => {
+    const area = turf.area(feature);
+    if (area > 0) {
+      try {
+        // const simplified = turf.simplify(feature, 0.07);
+        const simplified = turf.simplify(feature, 0.1);
+        if ([1359, 1355, 1378].includes(index)) {
+          return null;
+        }
+        // if (area > 12093433177500 ) {
+        //   console.log(parseInt(turf.area(feature)))
+        //   return null;
+        // }
+        return {
+          // ...simplify(feature, 0.07), // works,
+          // ...simplify(feature, .07), // works,
+          ...simplified,
+          properties: {
+            id: index
+          }
+        }
+      } catch(e) {
+        return null;
+      }
+      
+    }    
   })
+  .filter(f => f)
 }
 
 
@@ -147,6 +169,6 @@ simplified = JSON.stringify(simplified);
 
 console.log('physical map, length after : ', simplified.length, ', gain : ', -parseInt((1 - simplified.length / originalLength) * 100) + '%' );
 
-output = `./datascripts/resources/physical_world_map.geojson`;
+output = `./datascripts/resources/physical_world_map_simplified.geojson`;
 
 fs.writeFileSync(output, simplified, 'utf8')
