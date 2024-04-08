@@ -15,9 +15,9 @@ import enPart3 from './content/en/part-3.mdx';
 
 import frConclusion from './content/fr/part-4.mdx';
 import frMethodo from './content/fr/part-5.mdx';
-import frAnnexes from './content/fr/part-6.mdx';
-import frAbout from './content/fr/part-7.mdx';
-import frBiblio from './content/fr/part-8.mdx';
+// import frAnnexes from './content/fr/part-6.mdx';
+import frAbout from './content/fr/part-6.mdx';
+import frBiblio from './content/fr/part-7.mdx';
 
 export default [
   {
@@ -105,23 +105,23 @@ export default [
     routeGroup: 'secondary',
     navGroup: 'secondary'
   },
-  {
-    routes: {
-      fr: 'annexe',
-      en: 'annex'
-    },
-    titles: {
-      fr: 'Annexe',
-      en: 'Annex'
-    },
-    contents: {
-      fr: frAnnexes,
-      en: frAnnexes
-    },
-    Component: ScrollyPage,
-    routeGroup: 'secondary',
-    navGroup: 'secondary'
-  },
+  // {
+  //   routes: {
+  //     fr: 'annexe',
+  //     en: 'annex'
+  //   },
+  //   titles: {
+  //     fr: 'Annexe',
+  //     en: 'Annex'
+  //   },
+  //   contents: {
+  //     fr: frAnnexes,
+  //     en: frAnnexes
+  //   },
+  //   Component: ScrollyPage,
+  //   routeGroup: 'secondary',
+  //   navGroup: 'secondary'
+  // },
   {
     routes: {
       fr: 'sources',
