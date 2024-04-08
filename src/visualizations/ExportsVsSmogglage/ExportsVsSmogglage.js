@@ -177,6 +177,7 @@ export default function ExportsVsSmogglage({
     <div className='ExportsVsSmogglage'>
       <GeographicMapChart
         title={'Produits smogglés par port d\'attache des smoggleurs'}
+        hideTitle={!atlasMode}
         projectionTemplate={'England'}
         projectionConfig={selectedPort ? {
           centerX: projectionLongitude,
@@ -186,7 +187,7 @@ export default function ExportsVsSmogglage({
         layers={[
           {
             type: 'choropleth',
-            animated: true,
+            animated: false,
             data: backgroundMap// data.get('map_backgrounds/england_map.geojson'),// currentProjectionTemplate === 'World' ? datasets['map_world_1789.geojson'] : datasets['map_france_1789.geojson'],
             // reverseColors: atlasMode ? undefined : true,
           },

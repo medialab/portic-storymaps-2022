@@ -128,7 +128,9 @@ const renderObjects = ({
   }, [circleSizeVariable, maxSizeValue]);
 
   const vizData = useMemo(() => {
-    return homeportsData.map(({
+    return homeportsData
+    // .filter(d => d.pointcall_name.length && !['Lisbonne [mais: Angleterre]'].includes(d.pointcall_name))
+    .map(({
       latitude,
       longitude,
       port,

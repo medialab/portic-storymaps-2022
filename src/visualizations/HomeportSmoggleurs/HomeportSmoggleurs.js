@@ -139,6 +139,7 @@ export default function HomeportSmoggleurs({
     <div className="HomeportSmoggleurs">
       <GeographicMapChart
         title={'Carte des ports d\'attache des smoggleurs'}
+        hideTitle={!atlasMode}
         projectionTemplate={'England'}
         // projectionTemplate={'south of England'}
         layers={[

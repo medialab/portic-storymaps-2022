@@ -96,6 +96,7 @@ export default function DestinationsGbVersGb({
     <div className="DestinationsGbVersGb">
       <GeographicMapChart
         title={'Destinations des navires britanniques partis de Dunkerque en 1787'}
+        hideTitle={!atlasMode}
         // projectionTemplate={'Angleterre'}
         projectionTemplate={'England'}
         layers={[
