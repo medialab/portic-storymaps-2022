@@ -258,9 +258,10 @@ export default function ScrollyPage({
     setLoadingState('process');
     const payload = new Map();
 
+
     let filesCsvToLoad = new Set(
       Object.values(visualizationsMetas)
-        .filter(({ n_chapitre }) => n_chapitre === chapter)
+        .filter(({ n_chapitre }) => ('' + n_chapitre).split(',').includes(chapter + ''))
         .map(({ outputs }) => outputs)
         .flat()
     );

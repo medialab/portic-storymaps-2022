@@ -98,7 +98,7 @@ with requests.Session() as s:
         if row['statut'] == 'désactivé':
             continue
         del row['statut']
-        row['n_chapitre'] = int(row['n_chapitre'] or 1)
+        # row['n_chapitre'] = int(row['n_chapitre'] or 1)
         row['inputs'] = [] if row['inputs'] == '' else row['inputs'].split(',')
         row['outputs'] = [] if row['outputs'] == '' else row['outputs'].split(',')
         # Create Markdown file with infos
@@ -320,7 +320,7 @@ for lang in GDOC_URL.keys():
                 title_link['to'] = title_link['href']
                 del title_link['href']
             for caller in part_soup.find_all('caller'):
-                part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if viz_id_list[viz_id]['n_chapitre'] == part_nb]
+                part_viz_id_list = [viz_id for viz_id in viz_id_list.keys() if str(part_nb) in viz_id_list[viz_id]['n_chapitre']]
                 if caller.has_attr('id') == False:
                     caller['class'] = 'is-blank'
                     continue
