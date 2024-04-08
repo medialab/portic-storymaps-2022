@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Measure from 'react-measure'
 
@@ -40,6 +40,7 @@ export default function VisualizationContainer({
     width: -1,
     height: -1
   });
+
   /** @type {[Boolean, Function]} */
   function handleClickToggleFullScreen() {
     onClickToggleFullScreen();
@@ -51,6 +52,7 @@ export default function VisualizationContainer({
         bounds
         onResize={contentRect => {
           const { width, height, top } = contentRect.bounds;
+
           setDimensions({
             width,
             height: introMode ? height : height - top
@@ -89,16 +91,16 @@ export default function VisualizationContainer({
               }
 
 
-              <VisualizationController 
+              <VisualizationController
                 {
-                  ...{
-                    dimensions,
-                    lang,
-                    vizId,
-                    callerProps,
-                    ...props
-                  }
-                } 
+                ...{
+                  dimensions,
+                  lang,
+                  vizId,
+                  callerProps,
+                  ...props
+                }
+                }
               />
             </div>
           )

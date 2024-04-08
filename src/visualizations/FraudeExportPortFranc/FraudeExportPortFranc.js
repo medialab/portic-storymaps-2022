@@ -10,6 +10,7 @@ const {importsExports: palette} = colorsPalettes;
 
 // const AVAILABLE_PORTS = ['Marseille']
 // const AVAILABLE_PORTS = [ 'Dunkerque', 'Bayonne', 'Marseille']
+
 const AVAILABLE_PORTS = [ 'Bayonne', 'Marseille']
 
 export default function FraudeExportPortFranc({
@@ -56,16 +57,19 @@ export default function FraudeExportPortFranc({
               {
                 AVAILABLE_PORTS.map((port) => {
                   const isVisible = visiblePorts.includes(port);
+                  // const vizHeight = (visiblePorts.length > 1 ? height / 2 + margin : height);
+                  const vizHeight = (visiblePorts.length > 1 ? height / 2 + margin : height);
                   return (
                     <div 
                       key={port} 
                       
                       className={cx('FraudeExportPortFranc-box', {'is-visible': isVisible})}>
                         <h3 onClick={() => setFocus(port)}>{port}</h3>
+                       
                         <AlluvialImportExport
                             dimensions={{
                               width: width, // atlasMode ? (refDimension / 2 - margin) : refDimension,
-                              height: visiblePorts.length > 1 ? height / 2 + margin : height // atlasMode ? height * .6 : refDimension
+                              height: vizHeight // atlasMode ? height * .6 : refDimension
                                 // width:  (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) - margin : Math.max(width * .6, refDimension / visiblePorts.length * 1.2)),
                                 // height:  (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .6 - margin : refDimension / visiblePorts.length - 10)
                             }}

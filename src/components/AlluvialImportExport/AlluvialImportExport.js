@@ -135,6 +135,9 @@ export default function AlluvialImportExport({
         max([productImportTotal, productExportTotal])
       ];
     });
+    /**
+     * Isolate fraude imports and exports
+     */
     const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && (p.partner_type === 'Fraude'))], []);
     const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && (p.partner_type === 'Fraude'))], []);
     const sumFraudeImports = sum(
@@ -144,10 +147,19 @@ export default function AlluvialImportExport({
       fraudeExports
     , d => d.value);
 
+    // console.log({
+    //   sumFraudeImports, 
+    //   sumFraudeExports,
+    //   fraudeImports,
+    //   fraudeExports,
+    // })
+
     const globalImport = productsImportValue.find(d => d[0] === '');
+    const sumOfImports = sum(productsImportValue.filter(d => d[0] !== ''), d => d[1]);
    
-    const productsTotalImportValue = globalImport ? globalImport[1] : sum(productsImportValue, d => d[1]);
-    if (globalImport) {
+    const productsTotalImportValue = globalImport && globalImport[1] > sumOfImports ? globalImport[1] : sum(productsImportValue, d => d[1]);
+    // console.log('comparison', {global: formatNumber(globalImport[1]), sum: formatNumber(sum(productsImportValue.filter(d => d[0] !== ''), d => d[1]))})
+    if (globalImport && globalImport[1] > sumOfImports) {
       sumFraudeExports = globalImport[1] - sum(products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports')], []).map(d => d.value));
     }
     productsImportValue = Object.fromEntries(productsImportValue);
@@ -156,7 +168,9 @@ export default function AlluvialImportExport({
      * need for each partner the max value between imports and exports
      */
     let partnersMaxValue = partners.map(([partner, partnerArray]) => {
-      if (partner === 'Fraude') { return [partner, 0]; }
+      if (partner === 'Fraude') { 
+        return [partner, 0]; 
+      }
       let partnerImportArray = [];
       let partnerExportArray = [];
       for (const { importsexports, value } of partnerArray) {
@@ -176,15 +190,22 @@ export default function AlluvialImportExport({
     const partnerTotalValue = sum(partnersMaxValue, d => d[1]);
     partnersMaxValue = Object.fromEntries(partnersMaxValue);
 
+    // const importGap = globalImport ? globalImport[1] - sum(Object.entries(productsImportValue).filter(d => d[0] !== '').map(d => d[1])) : 0;
     /**
      * Size of the center loop draw
      */
     const centerCircleHeight = 50;
-
     const scaleValue = scaleLinear()
       .domain([0, sum([productsTotalImportValue, partnerTotalValue])])
+      // .domain([0, sum([productsTotalImportValue, partnerTotalValue])])
       .range([0, height - centerCircleHeight]);
 
+      // console.log({
+      //     productBarHeight: scaleValue(productsTotalImportValue),
+      //     productBarHeightBis: scaleValue(productsTotalImportValue),
+      //     importGap: scaleValue(-importGap),
+      //     partnerBarHeight: scaleValue(partnerTotalValue),
+      // })
     return {
       productBarHeight: scaleValue(productsTotalImportValue),
       partnerBarHeight: scaleValue(partnerTotalValue),
@@ -214,21 +235,28 @@ export default function AlluvialImportExport({
     if (globalImport) {
       visProductsMap[''] = 0;
     }
-    const importGap = globalImport ? globalImport - sum(productsImportSorted.filter(d => d[0] !== '').map(d => d[1])) : 0;
+    const sumOfImports = sum(productsImportSorted.filter(d => d[0] !== ''), d => d[1]);
+    const importGap = (globalImport && globalImport > sumOfImports ? globalImport : sumOfImports) - sum(productsImportSorted.filter(d => d[0] !== '').map(d => d[1]));// : 0;
     productsImportSorted = importGap ? [['Fraude', importGap], ...productsImportSorted.filter(d => d[0] !== "")] : productsImportSorted;
     let displacement = 0;
     for (const [product, value] of productsImportSorted) {
       if (product === '') {
         continue;
       }
+      console.log({
+        displacement,
+        value,
+        y: scaleValue(displacement),
+        product,
+      })
       const item = {
         product,
-        barHeight: scaleValue(value),
+        barHeight: scaleValue(Math.abs(value)),
         y: scaleValue(displacement),
       };
       visProducts.push(item);
       visProductsMap[product] = item.y;
-      displacement += value;
+      displacement += Math.abs(value);
     }
 
     const partnersMaxSorted = Object.entries(partnersMaxValue).sort(sortEntriesByValue);
@@ -269,7 +297,7 @@ export default function AlluvialImportExport({
       'Imports': {},
       'Exports': {}
     }
-    console.log('usableProducts', usableProducts);
+    // console.log('usableProducts', usableProducts);
     let { importsLinks, exportsLinks } = usableProducts
       .sort((a, b) => {
         if (visProductsMap[a[0]] > visProductsMap[b[0]]) {
@@ -351,9 +379,7 @@ export default function AlluvialImportExport({
   }, [products, partners, scaleValue]);
 
   const labelMargin = 2;
-
   const arrowSize = 20;
-
   return (
     <svg
       {...{
@@ -363,6 +389,21 @@ export default function AlluvialImportExport({
       className={`AlluvialImportExport ${atlasMode ? 'atlas-mode': ''} ${highlightedItem ? 'has-highlights' : ''}`}
 
     >
+
+      <rect
+        x={width / 2 - barWidth / 2}
+        y={0}
+        width={barWidth}
+        height={productBarHeight}
+        fill='lightgrey'
+      />
+      <rect
+        x={width / 2 - barWidth / 2}
+        y={productBarHeight + centerCircleHeight}
+        width={barWidth}
+        height={partnerBarHeight}
+        fill='grey'
+      />
       <rect
         x={0}
         y={0}
@@ -759,7 +800,7 @@ export default function AlluvialImportExport({
           xmlns="http://www.w3.org/1999/xhtml"
           style={{fontSize: 12, textAlign: 'right'}}
         >
-        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(sumFraudeExports - sumFraudeImports)} lt.`}
+        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(Math.abs(sumFraudeExports - sumFraudeImports))} lt.`}
           </div>
       </foreignObject>
     </svg>
