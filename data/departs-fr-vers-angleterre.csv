@@ -1,12 +1,11 @@
 port,latitude,longitude,departs_vers_gb_nb_pointcalls,departs_vers_gb_tonnage,departs_hors_gb_nb_pointcalls,departs_hors_gb_tonnage,ports
-Picardie,50.716667,1.616667,2540,32267.0,639,41916.0,"Boulogne-sur-Mer, Saint-Valery-sur-Somme, Calais, Baie d'Authie, Abbeville, Le Crotoy, Étaples"
-"Aunis, Poitou, Saintonge",46.166667,-1.15,111,12847.0,6877,301998.0,"La Rochelle, Noirmoutier, Ars-en-Ré, Beauvoir-sur-Mer, Tonnay-Charente, Esnandes, La Flotte-en-Ré, Le Château-d'Oléron, Marans, Ribérou, Saint-Denis d'Oléron, Rochefort, Royan, Meschers, Saint-Martin-de-Ré, île de Bouin, Marennes, Mortagne, Les Sables-d'Olonne, Soubise, Moricq, La Tranche-sur-Mer, La Perrotine, Saint-Gilles-sur-Vie, Saint-Michel-en-l'Herm, Talmont, Champagné-les-Marais"
-Normandie,49.640322,-1.615534,807,51063.0,7824,492308.0,"Cherbourg, Dieppe, Quillebeuf, Le Havre, Rouen, Fécamp, Granville, Port-Bail, Honfleur, Isigny, La Hougue, Harfleur, Diélette, Omonville, Le Tréport, Saint-Valery-en-Caux, Pont-Audemer, Barfleur, Touques, Caudebec, îles Chausey, Courtils, Grandcamp, Genêts"
-Flandre,51.05,2.366667,1292,35451.0,901,71563.0,"Dunkerque, Gravelines"
-Canada,46.833333,-56.333333,6,250.0,115,9777.0,Saint-Pierre-et-Miquelon
-Guyenne,43.483333,-1.483333,156,20876.0,2734,290003.0,"Bayonne, Blaye, Bordeaux, La Teste, Bourg, Socoa, Saint-Jean-de-Luz"
-Bretagne,47.3,-2.516667,404,19730.0,4270,320454.5,"Le Croisic, Saint-Malo, Roscoff, Le Passage, Portsall, Pornic, La Roche-Bernard, Lorient, Nantes, Landerneau, Le Pouliguen, Brest, Saint-Nazaire, Bourgneuf, Mesquer, Aber-Ildut, Penpoul, Argenton, Le Conquet"
-Corse,42.702778,9.45,0,0,375,791.0,"Bastia, Ajaccio, Calvi"
-Roussillon,42.766667,2.983333,1,120.0,231,13777.0,"Saint-Laurent-de-la-Salanque, Collioure, Le Canet"
-Saint-Tropez,43.266667,6.633333,0,0,535,17386.0,Saint-Tropez
-Guyane,4.933333,-52.333333,0,0,24,392.0,Cayenne
+Picardie,50.716667,1.616667,1470,11250.0,35,2980.0,"Boulogne-sur-Mer, Saint-Valery-sur-Somme, Calais, Baie d'Authie"
+"Aunis, Poitou, Saintonge",46.166667,-1.15,104,11814.0,278,34310.0,"La Rochelle, Noirmoutier, Ars-en-Ré, Beauvoir-sur-Mer, Tonnay-Charente, Esnandes, La Flotte-en-Ré, Le Château-d'Oléron, Marans, Ribérou, Saint-Denis d'Oléron, Rochefort, Royan, Meschers, Saint-Martin-de-Ré, île de Bouin, Marennes, Mortagne, Les Sables-d'Olonne, Soubise, Moricq, La Tranche-sur-Mer"
+Normandie,49.640322,-1.615534,545,32241.0,490,56211.0,"Cherbourg, Dieppe, Quillebeuf, Le Havre, Rouen, Fécamp, Granville, Port-Bail, Honfleur, Isigny, La Hougue, Harfleur, Diélette, Omonville, Le Tréport, Saint-Valery-en-Caux, Pont-Audemer, Barfleur"
+Flandre,51.05,2.366667,1011,30065.0,79,5598.0,"Dunkerque, Gravelines"
+Canada,46.833333,-56.333333,0,0,1,60.0,Saint-Pierre-et-Miquelon
+Guyenne,43.483333,-1.483333,122,17337.0,535,116817.0,"Bayonne, Blaye, Bordeaux, La Teste, Bourg, Socoa"
+Bretagne,47.3,-2.516667,234,13840.0,357,56957.0,"Le Croisic, Saint-Malo, Roscoff, Le Passage, Portsall, Pornic, La Roche-Bernard, Lorient, Nantes, Landerneau, Le Pouliguen, Brest, Saint-Nazaire, Bourgneuf, Mesquer"
+Corse,42.702778,9.45,0,0,43,0.0,"Bastia, Ajaccio"
+Roussillon,42.766667,2.983333,0,0,22,2212.0,"Saint-Laurent-de-la-Salanque, Collioure"
+Saint-Tropez,43.266667,6.633333,0,0,23,1295.0,Saint-Tropez

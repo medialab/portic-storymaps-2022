@@ -1,8 +1,8 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
 Harwich,Harwich,Grande Bretagne,Grande-Bretagne,Great Britain,504.0,38
 Guernesey,Guernesey,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,3
-Dunkerque,Dunkirk,France,France,France,29806.0,318
 Amsterdam,Amsterdam,étranger,Provinces-Unies,United Provinces,4768.0,41
+Dunkerque,Dunkirk,France,France,France,29806.0,318
 Ouessant,Ouessant,France,France,France,218.0,4
 Lorient,Lorient,France,France,France,958.0,16
 Yarmouth,Yarmouth,Grande Bretagne,Grande-Bretagne,Great Britain,2363.0,33
@@ -81,7 +81,8 @@ Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
 Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
 Groningue,Groningen,étranger,Provinces-Unies,United Provinces,680.0,9
 Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
-Moss,Moss,étranger,Danemark,Denmark,295.0,2
+Quimper,Quimper,France,France,France,95.0,1
+Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Bordeaux,Bordeaux,France,France,France,654.0,7
 Boston,Boston,étranger,Etats-Unis d'Amérique,United States,228.0,6
 Oude Pekela,Oude Pekela,étranger,Provinces-Unies,United Provinces,928.0,14
@@ -126,6 +127,7 @@ Ars-en-Ré,Ars-en-Ré,France,France,France,353.0,4
 Bourcefranc,Bourcefranc,France,France,France,226.0,4
 Liverpool,Liverpool,Grande Bretagne,Grande-Bretagne,Great Britain,110.0,2
 Arendal,Arendal,étranger,Danemark,Denmark,530.0,4
+Moss,Moss,étranger,Danemark,Denmark,295.0,2
 Rochester,Rochester,Grande Bretagne,Grande-Bretagne,Great Britain,204.0,17
 Southend,Southend,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
 Maassluis,Maassluis,étranger,Provinces-Unies,United Provinces,72.0,6
@@ -158,15 +160,13 @@ Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
 Hythe,Hythe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Brightlingsea,Brightlingsea,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,3
 Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
-Roque de Thau,Roque de Thau,France,France,France,624.0,9
-Camaret,Camaret,France,France,France,66.0,1
-Argenton,Argenton,France,France,France,486.0,8
 île d'Aix,île d'Aix,France,France,France,110.0,1
 Southwold,Southwold,Grande Bretagne,Grande-Bretagne,Great Britain,212.0,2
 Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Quimper,Quimper,France,France,France,95.0,1
-Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
 Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
+Roque de Thau,Roque de Thau,France,France,France,624.0,9
+Camaret,Camaret,France,France,France,66.0,1
+Argenton,Argenton,France,France,France,486.0,8
 Lydd,Lydd,Grande Bretagne,Grande-Bretagne,Great Britain,108.0,9
 Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
