@@ -1,23 +1,26 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
-Dunkerque,Dunkirk,France,France,France,29806.0,318
-Maldon,Maldon,Grande Bretagne,Grande-Bretagne,Great Britain,672.0,56
 Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
-Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
+Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Deal,Deal,Grande Bretagne,Grande-Bretagne,Great Britain,3024.0,252
-Fécamp,Fécamp,France,France,France,537.0,8
-Greenwich,Greenwich,Grande Bretagne,Grande-Bretagne,Great Britain,72.0,6
+Colchester,Colchester,Grande Bretagne,Grande-Bretagne,Great Britain,696.0,58
 pas identifié,To be identified,étranger,Indéterminé,Undefined,542.0,12
+Dunkerque,Dunkirk,France,France,France,29806.0,318
 Cherbourg,Cherbourg,France,France,France,1861.0,14
 Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
 Lee-on-Solent,Lee-on-the-Solent,Grande Bretagne,Grande-Bretagne,Great Britain,420.0,35
 Burnham,Burnham,Grande Bretagne,Grande-Bretagne,Great Britain,840.0,70
 Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
-Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Nieuport,Nieuwpoort,étranger,Autriche,Austria,960.0,12
 Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 Saint-Briac,Saint-Briac,France,France,France,494.0,5
 Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
 Saint-Valery-sur-Somme,Saint-Valery-sur-Somme,France,France,France,362.0,4
+Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
+Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
+Nantes,Nantes,France,France,France,2439.0,32
+Maldon,Maldon,Grande Bretagne,Grande-Bretagne,Great Britain,672.0,56
+Fécamp,Fécamp,France,France,France,537.0,8
+Greenwich,Greenwich,Grande Bretagne,Grande-Bretagne,Great Britain,72.0,6
 Roque de Thau,Roque de Thau,France,France,France,624.0,9
 Tonnay-Charente,Tonnay-Charente,France,France,France,776.0,9
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
@@ -60,8 +63,6 @@ Shoreham,Shoreham,Grande Bretagne,Grande-Bretagne,Great Britain,48.0,4
 Rhuys,Rhuys,France,France,France,281.0,4
 Boulogne-sur-Mer,Boulogne-sur-Mer,France,France,France,587.0,17
 Nøtterøy,Nøtterøy,étranger,Danemark,Denmark,375.0,3
-Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
-Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
 Hythe,Hythe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Corton,Corton,Grande Bretagne,Grande-Bretagne,Great Britain,168.0,14
@@ -71,7 +72,6 @@ Molde,Molde,étranger,Danemark,Denmark,100.0,1
 Bourgneuf,Bourgneuf,France,France,France,128.0,2
 Plassac,Plassac,France,France,France,790.0,9
 Tollesbury,Tollesbury,Grande Bretagne,Grande-Bretagne,Great Britain,12.0,1
-Nantes,Nantes,France,France,France,2439.0,32
 Amsterdam,Amsterdam,étranger,Provinces-Unies,United Provinces,4768.0,41
 Ars-en-Ré,Ars-en-Ré,France,France,France,353.0,4
 Wells on Sea,Wells on Sea,Grande Bretagne,Grande-Bretagne,Great Britain,633.0,10
@@ -118,12 +118,12 @@ Dublin,Dublin,Grande Bretagne,Grande-Bretagne,Great Britain,160.0,1
 Newry,Newry,Grande Bretagne,Grande-Bretagne,Great Britain,180.0,1
 Franeker,Franeker,étranger,Provinces-Unies,United Provinces,120.0,2
 Blaye,Blaye,France,France,France,249.0,4
+Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
+Roscoff,Roscoff,France,France,France,96.0,1
 Sogn,Sogn,étranger,Danemark,Denmark,355.0,2
 Scarborough,Scarborough,Grande Bretagne,Grande-Bretagne,Great Britain,470.0,5
 Mandal,Mandal,étranger,Danemark,Denmark,270.0,2
 Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
-Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
-Roscoff,Roscoff,France,France,France,96.0,1
 Jemgum,Jemgum,étranger,Prusse,Prussia,120.0,1
 Nijhuixum,Nijhuixum,étranger,Provinces-Unies,United Provinces,110.0,1
 Workum,Workum,étranger,Provinces-Unies,United Provinces,132.0,1
@@ -140,10 +140,7 @@ Norden,Norden,étranger,Prusse,Prussia,50.0,1
 Stettin,Szczecin,étranger,Prusse,Prussia,400.0,2
 Østerrisør,Østerrisør,étranger,Danemark,Denmark,460.0,4
 île d'Aix,île d'Aix,France,France,France,110.0,1
-Southwold,Southwold,Grande Bretagne,Grande-Bretagne,Great Britain,212.0,2
-Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
-Barmouth,Barmouth,Grande Bretagne,Grande-Bretagne,Great Britain,675.0,9
-Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
+Île-aux-Moines,Île-aux-Moines,France,France,France,288.0,5
 Glasgow,Glasgow,Grande Bretagne,Grande-Bretagne,Great Britain,1060.0,8
 Newhaven,Newhaven,Grande Bretagne,Grande-Bretagne,Great Britain,150.0,2
 Saint-Martin-de-Ré,Saint-Martin-de-Ré,France,France,France,280.0,4
@@ -183,10 +180,13 @@ Anstruther,Anstruther,Grande Bretagne,Grande-Bretagne,Great Britain,110.0,1
 Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Ipswich,Ipswich,Grande Bretagne,Grande-Bretagne,Great Britain,137.0,7
+Barmouth,Barmouth,Grande Bretagne,Grande-Bretagne,Great Britain,675.0,9
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
+Southwold,Southwold,Grande Bretagne,Grande-Bretagne,Great Britain,212.0,2
+Ilfracombe,Ilfracombe,Grande Bretagne,Grande-Bretagne,Great Britain,36.0,1
 Quimper,Quimper,France,France,France,95.0,1
 Swansea,Swansea,Grande Bretagne,Grande-Bretagne,Great Britain,140.0,1
-Île-aux-Moines,Île-aux-Moines,France,France,France,288.0,5
+Providence,Providence,étranger,Etats-Unis d'Amérique,United States,120.0,1
 Camaret,Camaret,France,France,France,66.0,1
 Lydd,Lydd,Grande Bretagne,Grande-Bretagne,Great Britain,108.0,9
 Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
