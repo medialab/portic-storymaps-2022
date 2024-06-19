@@ -1,5 +1,4 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
-Marennes,Marennes,France,France,France,405.0,7
 Whitstable,Whitstable,Grande Bretagne,Grande-Bretagne,Great Britain,912.0,76
 Londres,London,Grande Bretagne,Grande-Bretagne,Great Britain,7041.0,97
 Faversham,Faversham,Grande Bretagne,Grande-Bretagne,Great Britain,600.0,50
@@ -66,6 +65,7 @@ Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
 Blaye,Blaye,France,France,France,249.0,4
 Saint-Valery-sur-Somme,Saint-Valery-sur-Somme,France,France,France,362.0,4
 Le Havre,Le Havre,France,France,France,264.0,6
+Marennes,Marennes,France,France,France,405.0,7
 Saint-Brieuc,Saint-Brieuc,France,France,France,602.0,9
 Aber-Wrac'h,Aber-Wrac'h,France,France,France,62.0,1
 Cherbourg,Cherbourg,France,France,France,1861.0,14
@@ -210,7 +210,10 @@ Baltimore,Baltimore,étranger,Etats-Unis d'Amérique,United States,100.0,1
 Larvik,Larvik,étranger,Danemark,Denmark,70.0,1
 Vatteville,Vatteville,France,France,France,132.0,1
 Limerick,Limerick,Grande Bretagne,Grande-Bretagne,Great Britain,200.0,2
+Rhode Island,Rhode Island,étranger,Etats-Unis d'Amérique,United States,160.0,1
+Charleston,Charleston,étranger,Etats-Unis d'Amérique,United States,100.0,1
 Dublin,Dublin,Grande Bretagne,Grande-Bretagne,Great Britain,160.0,1
+Newry,Newry,Grande Bretagne,Grande-Bretagne,Great Britain,180.0,1
 Cardigan,Cardigan,Grande Bretagne,Grande-Bretagne,Great Britain,90.0,1
 Exeter,Exeter,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Roscoff,Roscoff,France,France,France,96.0,1
@@ -252,6 +255,3 @@ Whitby,Whitby,Grande Bretagne,Grande-Bretagne,Great Britain,60.0,1
 Diksmude,Diksmuide,étranger,Autriche,Austria,36.0,1
 Rothesay,Rothesay,Grande Bretagne,Grande-Bretagne,Great Britain,86.0,1
 Camaret,Camaret,France,France,France,66.0,1
-Rhode Island,Rhode Island,étranger,Etats-Unis d'Amérique,United States,160.0,1
-Charleston,Charleston,étranger,Etats-Unis d'Amérique,United States,100.0,1
-Newry,Newry,Grande Bretagne,Grande-Bretagne,Great Britain,180.0,1
