@@ -1,6 +1,8 @@
 homeport_fr,homeport_en,state_category,homeport_state_fr,homeport_state_en,tonnage,nb_pointcalls
-Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
 Dunkerque,Dunkirk,France,France,France,29806.0,318
+Le Conquet,Le Conquet,France,France,France,2442.0,37
+Wivenhoe,Wivenhoe,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
+Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 Veere,Veere,étranger,Provinces-Unies,United Provinces,2035.0,41
 Saint-Malo,Saint-Malo,France,France,France,6853.0,78
 Noirmoutier,Noirmoutier,France,France,France,2010.0,27
@@ -14,14 +16,12 @@ Le Croisic,Le Croisic,France,France,France,568.0,7
 Dieppe,Dieppe,France,France,France,332.0,3
 île d'Yeu,île d'Yeu,France,France,France,661.0,11
 Brest,Brest,France,France,France,1233.0,17
-Le Conquet,Le Conquet,France,France,France,2442.0,37
 Argenton,Argenton,France,France,France,486.0,8
 Bourcefranc,Bourcefranc,France,France,France,226.0,4
 Port-d'Envaux,Port-d'Envaux,France,France,France,713.0,9
 Saint-Brieuc,Saint-Brieuc,France,France,France,602.0,9
 Bordeaux,Bordeaux,France,France,France,654.0,7
 Barmouth,Barmouth,Grande Bretagne,Grande-Bretagne,Great Britain,675.0,9
-Ostende,Ostend,étranger,Autriche,Austria,2290.0,50
 King's Lynn,King's Lynn,Grande Bretagne,Grande-Bretagne,Great Britain,2189.0,26
 Douvres,Dover,Grande Bretagne,Grande-Bretagne,Great Britain,1249.0,103
 Hasting,Hasting,Grande Bretagne,Grande-Bretagne,Great Britain,864.0,72
@@ -48,10 +48,9 @@ Folkestone,Folkestone,Grande Bretagne,Grande-Bretagne,Great Britain,1476.0,123
 Margate,Margate,Grande Bretagne,Grande-Bretagne,Great Britain,362.0,22
 Dort,Dort,étranger,Provinces-Unies,United Provinces,772.0,8
 Nantes,Nantes,France,France,France,2439.0,32
-Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
 Bourgneuf,Bourgneuf,France,France,France,128.0,2
 Pagelsham,Pagelsham,Grande Bretagne,Grande-Bretagne,Great Britain,144.0,12
-Nøtterøy,Nøtterøy,étranger,Danemark,Denmark,375.0,3
+Oldenbourg,Oldenburg,étranger,Duché d'Oldenbourg,Duchy of Oldenburg,660.0,11
 Boston,Boston,étranger,Etats-Unis d'Amérique,United States,228.0,6
 Aberdeen,Aberdeen,Grande Bretagne,Grande-Bretagne,Great Britain,302.0,7
 Wells on Sea,Wells on Sea,Grande Bretagne,Grande-Bretagne,Great Britain,633.0,10
@@ -70,12 +69,13 @@ Vlaardingen,Vlaardingen,étranger,Provinces-Unies,United Provinces,24.0,2
 Saint-Gilles-sur-Vie,Saint-Gilles-sur-Vie,France,France,France,126.0,2
 Kampen,Kampen,étranger,Provinces-Unies,United Provinces,300.0,6
 Zierikzee,Zierikzee,étranger,Provinces-Unies,United Provinces,120.0,10
+Nøtterøy,Nøtterøy,étranger,Danemark,Denmark,375.0,3
 île-de-Bréhat,île-de-Bréhat,France,France,France,145.0,3
 Plassac,Plassac,France,France,France,790.0,9
 Greenwich,Greenwich,Grande Bretagne,Grande-Bretagne,Great Britain,72.0,6
-Rhuys,Rhuys,France,France,France,281.0,4
 Weymouth,Weymouth,Grande Bretagne,Grande-Bretagne,Great Britain,275.0,3
 Brighton,Brighton,Grande Bretagne,Grande-Bretagne,Great Britain,48.0,4
+Rhuys,Rhuys,France,France,France,281.0,4
 Plouharnel,Plouharnel,France,France,France,110.0,2
 Erquy,Erquy,France,France,France,176.0,3
 île de Ré,île de Ré,France,France,France,205.0,3
