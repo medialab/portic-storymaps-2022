@@ -195,6 +195,36 @@ dfn {
   }
 }
 
+.CommentedImage {
+  max-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  > img {
+    flex: 1;
+    cursor: pointer;
+  }
+}
+
+.PlainPageVisualization {
+  min-height: 500px;
+  max-height: 100vh;
+  width: 100%;
+  .VisualizationController {
+    position: relative;
+    height: 100%;
+  }
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /**
  * controller wrapping visualizations in several contexts and displaying a margin
  */

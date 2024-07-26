@@ -149,7 +149,7 @@ export default function VisualizationController({
         }
         return (
           <CommentedImage
-            src={`${process.env.BASE_PATH}/assets/${vizId}.jpg`}
+            src={[`${process.env.BASE_PATH}/assets/${vizId}.jpg`]}
             width={width}
             height={height}
             legend={legend[lang]}
@@ -162,7 +162,7 @@ export default function VisualizationController({
         }
         return (
           <CommentedImage
-            src={`${process.env.BASE_PATH}/assets/seance-an-1790.png`}
+            src={[`${process.env.BASE_PATH}/assets/seance-an-1790.png`]}
             width={width}
             height={height}
             legend={legend2[lang]}
@@ -171,7 +171,7 @@ export default function VisualizationController({
       case 'formule-estimation':
         return (
           <CommentedImage
-            src={`${process.env.BASE_PATH}/assets/${vizId}.png`}
+            src={[`${process.env.BASE_PATH}/assets/${vizId}.png`]}
             width={width}
             height={height}
             legend={''}
@@ -245,6 +245,90 @@ export default function VisualizationController({
         return <ResumeActivitesDunkerquois {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'imports-dunkerque-vs-ports-francs':
         return <ImportsDunkerqueVsPortsFrancs {...{ data, width, height, lang, atlasMode, callerProps }} />
+      case 'video-pleniere':
+        return (
+          <figure className="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/DbGCRRJjE2k?si=ZMkw2C0kOB7xqFML"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            />
+          </figure>
+        );
+      case 'modules-recherche':
+        return (
+          <figure className="video-container">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/E2YkZU_9Mes?si=OU46Bi5O5h1rUvAT&amp;controls=0" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen
+            />
+          </figure>
+        );
+      case 'photos-datasprint':
+        const legendPhotosDatasprint = {
+          fr: `Photographies prises durant le datasprint PORTIC 2022`
+        }
+        const datasprintPhotos = [];
+        let i = 1;
+        while (i <= 24) {
+          datasprintPhotos.push(`${process.env.BASE_PATH}/assets/photo-datasprint-${i}.jpg`);
+          i++;
+        }
+        return (
+          <CommentedImage
+            src={datasprintPhotos}
+            width={width}
+            height={height}
+            legend={legendPhotosDatasprint[lang]}
+          />
+        );
+        case 'croquis-visualisations':
+          const legendCroquis = {
+            fr: `Croquis préliminaires pour les visualisations de la publication`
+          }
+          return (
+            <CommentedImage
+              src={[
+`${process.env.BASE_PATH}/assets/croquis-carte-destinations-dunkerquois.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-carte-homeport-smoggleurs.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-departs-fr-vers-angleterre.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-destinations-gb-vers-gb.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-evolution-peche.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-evolution-type-conges.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-exports-vs-smogglage.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-fausses-declarations.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-fraude-exports-dunkerque.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-fraude-exports-ports-francs.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-imports-dunkerque-vs-ports-francs.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-pilotage.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-resume-activite-dunkerquois-1787.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-smogglage-par-port-fr.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-smoggleur-statut.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-smoggleurs-produits-vs-departs.jpg`,
+`${process.env.BASE_PATH}/assets/croquis-stigmates-smoggleurs-dunkerque.jpg`,
+              ]}
+              width={width}
+              height={height}
+              legend={legendCroquis[lang]}
+            />
+          );
+      case 'making-of-alignement-tonneaux':
+        const legendTonneaux = {
+          fr: `Schéma réalisé pour l'alignement des données dans le cadre des calculs finaux de la troisième partie`
+        }
+        return (
+          <CommentedImage
+            src={[`${process.env.BASE_PATH}/assets/making-of-tonneaux.png`]}
+            width={width}
+            height={height}
+            legend={legendTonneaux[lang]}
+          />
+        );
       default:
         return (
           <img

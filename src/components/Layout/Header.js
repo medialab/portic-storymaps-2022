@@ -94,7 +94,7 @@ export default function Header({
             >
                 <ul className="primary-nav-container">
                     <li className="navitem-container">
-                        <Link to='/'>
+                        <Link to={`/${lang}/`}>
                             {
                                 fontColor === 'white' ?
                                     <img src={`${process.env.BASE_PATH}/assets/rose_des_vents_white.svg`} alt="logo" />

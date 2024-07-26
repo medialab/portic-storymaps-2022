@@ -19,6 +19,9 @@ import frMethodo from './content/fr/part-5.mdx';
 import frAbout from './content/fr/part-6.mdx';
 import frBiblio from './content/fr/part-7.mdx';
 
+import enConclusion from './content/en/part-4.mdx';
+import enMethodo from './content/en/part-5.mdx';
+
 export default [
   {
     routes: {
@@ -27,7 +30,7 @@ export default [
     },
     titles: {
       fr: 'I. Dunkerque et sa navigation au XVIIIe siècle',
-      en: 'Part 1'
+      en: 'I. Dunkirk and its shipping in the 18th century'
     },
     contents: {
       fr: frPart1,
@@ -44,7 +47,7 @@ export default [
     },
     titles: {
       fr: 'II. Dunkerque, un port pour la contrebande vers l’Angleterre ?',
-      en: 'Part 2'
+      en: 'II. Dunkirk, a port for smuggling to England?'
     },
     contents: {
       fr: frPart2,
@@ -61,7 +64,7 @@ export default [
     },
     titles: {
       fr: 'III. Port d\'entrepôt européen ou port fraudeur ?',
-      en: 'Part 3'
+      en: 'III. European staple port or smuggling port?'
     },
     contents: {
       fr: frPart3,
@@ -74,7 +77,7 @@ export default [
   {
     routes: {
       fr: 'conclusion',
-      en: 'conclusion'
+      en: 'conclusion-english'
     },
     titles: {
       fr: 'Conclusion',
@@ -82,7 +85,7 @@ export default [
     },
     contents: {
       fr: frConclusion,
-      en: frConclusion
+      en: enConclusion
     },
     Component: PlainPage,
     routeGroup: 'chapter',
@@ -99,7 +102,7 @@ export default [
     },
     contents: {
       fr: frMethodo,
-      en: frMethodo
+      en: enMethodo
     },
     Component: ScrollyPage,
     routeGroup: 'secondary',
