@@ -40,7 +40,7 @@ sanitizer = Sanitizer({
 
 GDOC_URL = {
     'fr': 'https://docs.google.com/document/d/e/2PACX-1vSaD-AW8-Zr-oq_tJzJDdQx3GlkjUQwwEQV_frnivUgmO5lLUBrbF0XW91b4M0SjNQeJ96ZobgXPMza/pub',
-    'en': 'https://docs.google.com/document/d/e/2PACX-1vTF3c5EOop-BVFtcUZc0XJ7gabi-3cVlrQlskse3cBxOptjL1ecDaWWvKUecUKqYjF3r7jpt1k5YhTh/pub'
+    'en': 'https://docs.google.com/document/d/e/2PACX-1vRb9bdMVF1cgRD7vj0fRgdpQWENdJMJDGFcPnxX0ucf-g7eLB2TO1sVixE1lWp2rw/pub'
 }
 GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjllJXqWEPJ2cBWNNBAnKR4Kwt10LOR9AiLe4xyM5LNoC-c8y3AzNKJs4BtlEizuenQDFcYkoZvwJj/pub?gid=0&single=true&output=csv'
 
@@ -186,6 +186,8 @@ for lang in GDOC_URL.keys():
 
         soup = BeautifulSoup(decoded_content, 'html.parser')
         title = soup.title.get_text()
+        if lang == 'en':
+            print('title', title)
 
         # Ignore and delete useless content
         soup = soup.find(id='contents')
@@ -202,7 +204,8 @@ for lang in GDOC_URL.keys():
                 'part': title_part_number,
                 'name': title.name
             }
-
+        if lang == 'en':
+            print('titles_per_part', titles_per_part)
         for link in soup.find_all('a'):
             if link.has_attr('href') == False:
                 continue
