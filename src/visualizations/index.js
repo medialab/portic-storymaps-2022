@@ -17,6 +17,7 @@ import FraudeExportPortFranc from './FraudeExportPortFranc';
 import PecheMap from './PecheMap';
 import Pilotage from './Pilotage/Pilotage';
 import CommentedImage from '../components/CommentedImage';
+import CommentedVideo from '../components/CommentedVideo';
 import TreemapChart from '../components/TreemapChart';
 import TonnageF12 from './TonnageF12';
 import EstimationParTonnageDk from './EstimationParTonnageDk';
@@ -246,28 +247,32 @@ export default function VisualizationController({
       case 'imports-dunkerque-vs-ports-francs':
         return <ImportsDunkerqueVsPortsFrancs {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'video-pleniere':
+        const legendPleniere = {
+          fr: `Enregistrement de la séance de plénière`
+        }
         return (
-          <figure className="video-container">
-            <iframe
-              src="https://www.youtube.com/embed/DbGCRRJjE2k?si=ZMkw2C0kOB7xqFML"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            />
-          </figure>
+          <CommentedVideo
+            {...{
+              width,
+              height,
+              legend: legendPleniere[lang],
+              src: "https://www.youtube.com/embed/DbGCRRJjE2k?si=ZMkw2C0kOB7xqFML" 
+            }}
+          />
         );
       case 'modules-recherche':
+        const legendModules = {
+          fr: `Document rédigé collectivement en amont du datasprint pour définir les lignes de recherche durant l'atelier`
+        }
         return (
-          <figure className="video-container">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/E2YkZU_9Mes?si=OU46Bi5O5h1rUvAT&amp;controls=0" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen
-            />
-          </figure>
+          <CommentedVideo
+            {...{
+              width,
+              height,
+              legend: legendModules[lang],
+              src: "https://www.youtube-nocookie.com/embed/E2YkZU_9Mes?si=OU46Bi5O5h1rUvAT&amp;controls=0" 
+            }}
+          />
         );
       case 'photos-datasprint':
         const legendPhotosDatasprint = {

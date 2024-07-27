@@ -13,47 +13,42 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
-function CommentedImage({
+function CommentedVideo({
   src,
+  legend,
   width,
   height,
-  legend
 }) {
   const [captionDimensions, setCaptionDimensions] = useState({
     width: 100,
     height: 100
   });
-  const [isOpen, setOpen] = useState(false);
   return (
-    <figure className="CommentedImage">
+    <figure className="CommentedVideo">
       <Measure
-      bounds
-      onResize={contentRect => {
-        setCaptionDimensions(contentRect.bounds)
-      }}
-    >
-      {({ measureRef }) => (
-        <>
-        <img
-            src={[src[0]]}
-            {...{ width, height: height - captionDimensions.height }}
-            style={{ objectFit: 'contain' }}
-            onClick={() => setOpen(true)}
-        />
-        <figcaption ref={measureRef}>
-          <Md>{legend}</Md>
-        </figcaption>
-        </>
-      )}
-    </Measure>
-    <Lightbox
-        open={isOpen}
-        close={() => setOpen(false)}
-        slides={src.map(src => ({src}))}
-        plugins={[Captions, Fullscreen, Slideshow, Thumbnails, Video, Zoom]}
-      />
+        bounds
+        onResize={contentRect => {
+          setCaptionDimensions(contentRect.bounds)
+        }}
+      >
+        {({ measureRef }) => (
+          <>
+            <iframe
+              src={src}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              height={height - captionDimensions.height}
+            />
+            <figcaption ref={measureRef}>
+              <Md>{legend}</Md>
+            </figcaption>
+          </>
+        )}
+      </Measure>
     </figure>
   )
 }
 
-export default CommentedImage;
+export default CommentedVideo;

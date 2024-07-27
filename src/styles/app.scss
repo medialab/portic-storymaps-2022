@@ -195,33 +195,53 @@ dfn {
   }
 }
 
-.CommentedImage {
+.CommentedImage,
+.CommentedVideo {
+  margin: 0;
   max-height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  > img {
+  > img,
+  > iframe {
+    flex: 1;
     flex: 1;
     cursor: pointer;
+    transition: .5s ease all;
+    background: rgba(0,0,0,0.02);
+    &:hover {
+      background: rgba(0,0,0,0.05);
+
+    }
   }
 }
 
-.PlainPageVisualization {
-  min-height: 500px;
-  max-height: 100vh;
-  width: 100%;
-  .VisualizationController {
-    position: relative;
-    height: 100%;
-  }
-}
-
-.video-container {
+.CommentedVideo {
   width: 100%;
   height: 100%;
   margin: 0;
   iframe {
     width: 100%;
     height: 100%;
+  }
+}
+
+.PlainPageVisualization {
+  min-height: 500px;
+  max-height: 70vh;
+  width: 100%;
+  // border: 1px solid rgba(100,100,100,0.3);
+  padding: 0;
+  .VisualizationController {
+    position: relative;
+    height: 100%;
+  }
+  figcaption {
+    border-top: 1px solid rgba(100,100,100,0.3);
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    
   }
 }
 

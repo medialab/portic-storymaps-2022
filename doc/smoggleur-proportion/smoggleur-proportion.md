@@ -16,5 +16,5 @@ values aggregated by cumulated value in livre tournois
 
 # Notes/warnings
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales felis a odio convallis condimentum. Phasellus dictum felis et quam gravida, ac interdum nisl dignissim.
+
 
