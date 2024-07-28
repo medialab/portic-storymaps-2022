@@ -24,6 +24,7 @@ import summary from '../../summary';
 
 import BoatsContainer from './BoatsContainer';
 import HomeSummary from './HomeSummary';
+import CitationWidget from '../../components/CitationWidget';
 import Caller from '../../components/Caller';
 
 import './Home.scss';
@@ -257,9 +258,9 @@ function Home({
         <div className={`titles-container ${(hourOfTime >= 20 || hourOfTime <= 6) ? 'is-night-mode' : ''}`}>
           <h1 dangerouslySetInnerHTML={{__html: titleHTML}}/>
           <h2>{subtitle}</h2>
-          {/* <CitationWidget
+          <CitationWidget
             lang={lang}
-          /> */}
+          />
           <button onClick={onClickOnStart} className={`go-to-start ${(hourOfTime >= 20 || hourOfTime <= 6) ? 'is-night-mode' : ''}`}>
             <span>⌄</span>
           </button>
