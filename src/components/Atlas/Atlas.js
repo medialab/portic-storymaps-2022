@@ -80,7 +80,7 @@ export default function Atlas({
         <ul className='visualizations-list'>
           {
             Object.values(visualizationsMetas)
-            .filter(meta => meta.cacher_atlas !== 'oui')
+            .filter(meta => meta.cacher_atlas !== 'oui' && meta.titre_fr)
             .map((metas, i) => {
               const title = metas['titre_' + lang] || false;
 

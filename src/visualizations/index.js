@@ -87,6 +87,7 @@ export default function VisualizationController({
       // console.info('data not found', {visualizationsMetas: visualizationsMetas[vizId], vizDataFiles})
       return <>Les données de cette visualisation n'ont pu être chargées.</>;
     }
+    let commentedImageLegend;
     switch (vizId) {
       case 'carte-destinations':
         return <CarteDestinations {...{ data, dimensions, lang, atlasMode, callerProps, ...props }} />;
@@ -145,33 +146,36 @@ export default function VisualizationController({
           <Pilotage {...{ data, dimensions, lang, atlasMode, callerProps }} />
         );
       case 'gravure-smoggleurs':
-        const legend = {
+        commentedImageLegend = {
           fr: `**Dany Guillou-Beuzit, Jacques Cambry,** voyage dans le Finistère ou état de ce département en 1794 et 1795, **Rennes, PUR, 2011 (dessin de Dany Guillou-Beuzit d’après le texte de Cambry)**`
         }
         return (
           <CommentedImage
+            lang={lang}
             src={[`${process.env.BASE_PATH}/assets/${vizId}.jpg`]}
             width={width}
             height={height}
-            legend={legend[lang]}
+            legend={commentedImageLegend[lang]}
           />
         );
       case 'annexe-an-1790':
         // nom du document initial Bouchette arcpa_0000-0000_1885_num_20_1_8807_t1_0170_0000_6.pdf
-        const legend2 = {
+        commentedImageLegend = {
           fr: `**Réclamation contre la franchise de Dunkerque par M. Bouchette, en annexe de la séance du 31 octobre 1790**, François-Joseph Bouchette`
         }
         return (
           <CommentedImage
+            lang={lang}
             src={[`${process.env.BASE_PATH}/assets/seance-an-1790.png`]}
             width={width}
             height={height}
-            legend={legend2[lang]}
+            legend={commentedImageLegend[lang]}
           />
         );
       case 'formule-estimation':
         return (
           <CommentedImage
+            lang={lang}
             src={[`${process.env.BASE_PATH}/assets/${vizId}.png`]}
             width={width}
             height={height}
@@ -247,36 +251,39 @@ export default function VisualizationController({
       case 'imports-dunkerque-vs-ports-francs':
         return <ImportsDunkerqueVsPortsFrancs {...{ data, width, height, lang, atlasMode, callerProps }} />
       case 'video-pleniere':
-        const legendPleniere = {
-          fr: `Enregistrement de la séance de plénière`
+        commentedImageLegend = {
+          fr: `Enregistrement de la séance de plénière finale du datasprint`,
+          en: `Recording of the final plenary session of the datasprint`
         }
         return (
           <CommentedVideo
             {...{
               width,
               height,
-              legend: legendPleniere[lang],
-              src: "https://www.youtube.com/embed/DbGCRRJjE2k?si=ZMkw2C0kOB7xqFML" 
+              legend: commentedImageLegend[lang],
+              src: "https://www.youtube.com/embed/DbGCRRJjE2k?si=ZMkw2C0kOB7xqFML"
             }}
           />
         );
       case 'modules-recherche':
-        const legendModules = {
-          fr: `Document rédigé collectivement en amont du datasprint pour définir les lignes de recherche durant l'atelier`
+        commentedImageLegend = {
+          fr: `Document rédigé collectivement en amont du datasprint pour définir les lignes de recherche durant l'atelier`,
+          en: `Document collectively written prior to the datasprint to define the research lines during the workshop`
         }
         return (
           <CommentedVideo
             {...{
               width,
               height,
-              legend: legendModules[lang],
-              src: "https://www.youtube-nocookie.com/embed/E2YkZU_9Mes?si=OU46Bi5O5h1rUvAT&amp;controls=0" 
+              legend: commentedImageLegend[lang],
+              src: "https://www.youtube-nocookie.com/embed/E2YkZU_9Mes?si=OU46Bi5O5h1rUvAT&amp;controls=0"
             }}
           />
         );
       case 'photos-datasprint':
-        const legendPhotosDatasprint = {
-          fr: `Photographies prises durant le datasprint PORTIC 2022`
+        commentedImageLegend = {
+          fr: `Photographies prises durant le datasprint PORTIC 2022`,
+          en: `Photographs taken during the PORTIC 2022 datasprint`,
         }
         const datasprintPhotos = [];
         let i = 1;
@@ -286,52 +293,190 @@ export default function VisualizationController({
         }
         return (
           <CommentedImage
+            lang={lang}
             src={datasprintPhotos}
             width={width}
             height={height}
-            legend={legendPhotosDatasprint[lang]}
+            legend={commentedImageLegend[lang]}
           />
         );
-        case 'croquis-visualisations':
-          const legendCroquis = {
-            fr: `Croquis préliminaires pour les visualisations de la publication`
-          }
-          return (
-            <CommentedImage
-              src={[
-`${process.env.BASE_PATH}/assets/croquis-carte-destinations-dunkerquois.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-carte-homeport-smoggleurs.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-departs-fr-vers-angleterre.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-destinations-gb-vers-gb.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-evolution-peche.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-evolution-type-conges.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-exports-vs-smogglage.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-fausses-declarations.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-fraude-exports-dunkerque.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-fraude-exports-ports-francs.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-imports-dunkerque-vs-ports-francs.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-pilotage.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-resume-activite-dunkerquois-1787.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-smogglage-par-port-fr.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-smoggleur-statut.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-smoggleurs-produits-vs-departs.jpg`,
-`${process.env.BASE_PATH}/assets/croquis-stigmates-smoggleurs-dunkerque.jpg`,
-              ]}
-              width={width}
-              height={height}
-              legend={legendCroquis[lang]}
-            />
-          );
-      case 'making-of-alignement-tonneaux':
-        const legendTonneaux = {
-          fr: `Schéma réalisé pour l'alignement des données dans le cadre des calculs finaux de la troisième partie`
+      case 'croquis-visualisations':
+        commentedImageLegend = {
+          fr: `Croquis préliminaires pour les visualisations de la publication`,
+          en: `Preliminary sketches for the visualizations of the publication`
         }
         return (
           <CommentedImage
-            src={[`${process.env.BASE_PATH}/assets/making-of-tonneaux.png`]}
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/croquis-carte-destinations-dunkerquois.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-carte-homeport-smoggleurs.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-departs-fr-vers-angleterre.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-destinations-gb-vers-gb.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-evolution-peche.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-evolution-type-conges.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-exports-vs-smogglage.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-fausses-declarations.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-fraude-exports-dunkerque.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-fraude-exports-ports-francs.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-imports-dunkerque-vs-ports-francs.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-pilotage.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-resume-activite-dunkerquois-1787.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-smogglage-par-port-fr.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-smoggleur-statut.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-smoggleurs-produits-vs-departs.jpg`,
+              `${process.env.BASE_PATH}/assets/croquis-stigmates-smoggleurs-dunkerque.jpg`,
+            ]}
             width={width}
             height={height}
-            legend={legendTonneaux[lang]}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'datasprint-programme':
+        commentedImageLegend = {
+          fr: `Programme de la semaine de datasprint`,
+          en: `Schedule of the datasprint week`,
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/datasprint-programme.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'datasprint-infrastructure':
+        commentedImageLegend = {
+          fr: `Infrastructure spatiale et numérique du datasprint`,
+          en: `Digital and spatial infrastructure of the datasprint`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-1.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-2.jpg`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-2.5.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-3.jpg`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-4.jpg`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-5.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-6.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-infrastructure-7.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'viz-preparatoires-christine':
+        commentedImageLegend = {
+          fr: `Cartes réalisées par Christine Plumejeaud en vue de préparer le travail sur les données navigocorpus concernant les échanges entre Dunkerque et la Grande-Bretagne`,
+          en: `Maps created by Christine Plumejeaud to prepare the work on Navigocorpus data concerning exchanges between Dunkirk and Great Britain`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/viz-preparatoires-christine-plumejeaud1.png`,
+              `${process.env.BASE_PATH}/assets/viz-preparatoires-christine-plumejeaud2.png`,
+              `${process.env.BASE_PATH}/assets/viz-preparatoires-christine-plumejeaud3.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'about-modeles':
+        commentedImageLegend = {
+          fr: `Diagrammes représentant les modélisations informatiques inventés pour transformer en données les différentes sources historiques`,
+          en: `Diagrams representing computer models invented to transform various historical sources into data`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/modele-navigocorpus.png`,
+              `${process.env.BASE_PATH}/assets/modele-toflit18.png`,
+              `${process.env.BASE_PATH}/assets/modele-pointcall.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'processus-maj-automatique':
+        commentedImageLegend = {
+          fr: `Schématisation de l'infrastructure de mise à jour simultanée des contenus permettant une écriture collective des textes, des données et des visualisations`,
+          en: `Diagram of the simultaneous content update infrastructure enabling collective writing of texts, data, and visualizations`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/processus-maj-automatique.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'making-of-alignement-tonneaux':
+        commentedImageLegend = {
+          fr: `Schémas et visualisations exploratoires réalisées pour l'alignement des données dans le cadre des calculs finaux de la troisième partie`,
+          en: `Diagrams and exploratory visualizations created for data alignment in the final calculations of the third part`
+        };
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/making-of-tonneaux.png`, 
+              `${process.env.BASE_PATH}/assets/alignement-tonneaux-bonus.png`, 
+              `${process.env.BASE_PATH}/assets/valeur-par-tonneau.jpg`
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'datasprint-explorer':
+        commentedImageLegend = {
+          fr: `Application "navigo datasprint explorer", développée par Guillaume Brioude`,
+          en: `Application "navigo datasprint explorer", developed by Guillaume Brioude`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/datasprint-explorer-3.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-explorer-2.png`,
+              `${process.env.BASE_PATH}/assets/datasprint-explorer-1.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
+          />
+        );
+      case 'frise-maxime':
+        commentedImageLegend = {
+          fr: `Travail de design graphique réalisé par Maxime Zoffoli pour la réalisation de la frise interactive visible en partie 1 du site, et le graphique d'explication sur l'estimation des nombres de départ de Dunkerque à partir des données du pilotage, visible en partie 1 également.`,
+          en: `Graphic design work by Maxime Zoffoli for the creation of the interactive timeline visible in part 1 of the site, and the explanatory chart on estimating the number of departures from Dunkirk based on piloting data, also visible in part 1.`
+        }
+        return (
+          <CommentedImage
+            lang={lang}
+            src={[
+              `${process.env.BASE_PATH}/assets/maxime-1.png`,
+              `${process.env.BASE_PATH}/assets/maxime-2.png`,
+              `${process.env.BASE_PATH}/assets/maxime-3.png`,
+              `${process.env.BASE_PATH}/assets/maxime-4.png`,
+              `${process.env.BASE_PATH}/assets/maxime-5.png`,
+            ]}
+            width={width}
+            height={height}
+            legend={commentedImageLegend[lang]}
           />
         );
       default:

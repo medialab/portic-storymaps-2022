@@ -34,6 +34,7 @@ export default function App() {
                                         Component: ThatComponent,
                                     }, index) => {
                                         const path = `${inputRoutes[lang]}`;
+                                        
                                         return (
                                             <Route key={index} path={path} exact
                                                 element={

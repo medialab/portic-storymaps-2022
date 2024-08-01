@@ -2,6 +2,8 @@
 import { useRef, useState } from 'react';
 import Md from 'react-markdown';
 import Measure from 'react-measure';
+import translate from '../../utils/translate';
+
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
@@ -17,7 +19,8 @@ function CommentedImage({
   src,
   width,
   height,
-  legend
+  legend,
+  lang
 }) {
   const [captionDimensions, setCaptionDimensions] = useState({
     width: 100,
@@ -43,6 +46,9 @@ function CommentedImage({
         <figcaption ref={measureRef}>
           <Md>{legend}</Md>
         </figcaption>
+        <div className="click-prompt" style={{height: `calc(100% - ${captionDimensions.height}px)`}}>
+          <span>{translate('CommentedImage', 'click-prompt', lang)}</span>
+        </div>
         </>
       )}
     </Measure>

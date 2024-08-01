@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useEffect, useState, useReducer, useRef } from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import visualizationsMetas from '../../data/viz';
 // import Caller from '../../components/Caller';
@@ -13,7 +14,7 @@ import './PlainPage.scss';
 import VisualizationController from '../../visualizations';
 import Measure from 'react-measure';
 
-const PlainPageVisualization = ({ id }) => {
+const PlainPageVisualization = ({ id, lang }) => {
   const [dimensions, setDimensions] = useState({
     width: 100,
     height: 100,
@@ -28,6 +29,7 @@ const PlainPageVisualization = ({ id }) => {
     >
       {({ measureRef }) => (
         <div className="PlainPageVisualization" ref={measureRef}>
+        <ReactTooltip id="contents-tooltip" />
           <VisualizationController
             {
             ...{
@@ -35,7 +37,7 @@ const PlainPageVisualization = ({ id }) => {
               datasets: new Set(),
               ref,
               dimensions,
-              lang: 'fr',
+              lang,
               callerProps: {},
               atlasMode: false,
             }
@@ -131,7 +133,7 @@ export default function PlainPage({
           activeCallerId: undefined,
         }}>
           <h1>{sectionTitle}</h1>
-          <Content components={{ Caller: PlainPageVisualization, Link }} />
+          <Content components={{ Caller: ({id}) => <PlainPageVisualization {...{id, lang}} />, Link }} />
         </VisualisationContext.Provider>
         {/* <Content components={{ Caller, Link }} /> */}
       </div>
