@@ -539,8 +539,8 @@ DestinationsGbVersGb:
     fr: Destinations des navires britanniques partis de Dunkerque en 1787
     en: Destinations of british ships which left Dunkirk in 1787
   tooltip:
-    fr: ${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1789)
-    en: ${port} (${nb_pointcalls} travels of british ships from Dunkirk in 1789)
+    fr: ${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1787)
+    en: ${port} (${nb_pointcalls} travels of british ships from Dunkirk in 1787)
 ExportsVsSmogglage:
   title:
     fr: Produits smogglés par port d'attache des smoggleurs (1781-1790)
