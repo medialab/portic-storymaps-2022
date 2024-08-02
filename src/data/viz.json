@@ -845,5 +845,22 @@
         "description_fr": "Proportions des départs de bateaux en fonction de leur statut de smoggleur ou non-smoggleur.",
         "description_en": "Proportions of boat departures according to their smoggler or non-smoggler status.",
         "comment_cest_fait_fr_tech": ""
+    },
+    "top-ten-gb": {
+        "id": "top-ten-gb",
+        "n_chapitre": "5",
+        "lien_permanent_visualisation": "https://medialab.github.io/portic-storymaps-2022/#/fr/visualization/top-ten-gb",
+        "titre_fr": "Les plus grands ports de départ vers le RU",
+        "titre_en": "Biggest departure ports toward the UK",
+        "comment_lire_fr": "",
+        "comment_lire_en": "",
+        "comment_cest_fait_fr": "",
+        "comment_cest_fait_en": "",
+        "inputs": [],
+        "outputs": [],
+        "cacher_atlas": "oui",
+        "description_fr": "",
+        "description_en": "",
+        "comment_cest_fait_fr_tech": ""
     }
 }

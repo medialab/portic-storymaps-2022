@@ -478,6 +478,22 @@ export default function VisualizationController({
             legend={commentedImageLegend[lang]}
           />
         );
+        case 'top-ten-gb':
+          commentedImageLegend = {
+            fr: `Fichier de données représentant les dix ports enregistrant le plus de départs vers le Royaume Uni`,
+            en: `Data file representing the ten ports recording the biggest share of travels to the United Kingdom`
+          }
+          return (
+            <CommentedImage
+              lang={lang}
+              src={[
+                `${process.env.BASE_PATH}/assets/top-ten-gb.png`,
+              ]}
+              width={width}
+              height={height}
+              legend={commentedImageLegend[lang]}
+            />
+          );
       default:
         return (
           <img
