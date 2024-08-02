@@ -29,7 +29,7 @@
   }
 
   .Contents {
-    padding-bottom: 10rem;
+    padding-bottom: $medium-gutter * 20;
   }
   .switch-btn {
     visibility: hidden;
@@ -116,11 +116,13 @@
     bottom: 0;
     width: 60%;
     height: calc(100vh - #{$header_height});
+    padding-bottom: $medium-gutter * 5;
     box-sizing: border-box;
 
     > h3 {
       margin: 0;
       position: relative;
+      padding: $medium-gutter 0;
       // top: -1em;
     }
     display: flex;
@@ -128,6 +130,7 @@
     justify-content: stretch;
     .VisualizationContainer {
       flex: 1;
+      position: relative;
     }
   }
 

@@ -889,6 +889,7 @@ tspan {
   bottom: 0;
   left: 0;
   z-index: 3;
+  position: relative;
   background: linear-gradient(to bottom, $color-accent-background 10%, #5d4832 90%);
   width: 100%;
   box-sizing: border-box;

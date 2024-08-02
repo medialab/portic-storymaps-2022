@@ -52,10 +52,10 @@ export default function VisualizationContainer({
         bounds
         onResize={contentRect => {
           const { width, height, top } = contentRect.bounds;
-
+          
           setDimensions({
             width,
-            height: introMode ? height : height - top
+            height //introMode === true ? height : height - top
           })
         }}
       >
