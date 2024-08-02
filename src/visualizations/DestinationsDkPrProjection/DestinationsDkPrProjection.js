@@ -27,20 +27,20 @@ const DestinationsDkPrProjection = ({
       orientation='vertical'
       x={{
         field: 'tonnage',
-        tickFormat: d => `${formatNumber(d)} tx`,
-        title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
+        tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+        title: translate('DestinationsDkPrProjection', 'x', lang), // translate('TonnagesF12', 'with_lest_title', lang)
       }}
       y={{
         field: 'destination',
-        title: 'destination', // translate('TonnagesF12', 'destination', lang)
+        title: translate('DestinationsDkPrProjection', 'y', lang), // translate('TonnagesF12', 'destination', lang)
       }}
-    // color={{
-    // field: 'tonnage',
-    // title:  // translate('PecheTypeValue', 'color', lang)
-    // }}
 
     tooltip={
-      (d) => `${formatNumber(parseInt(d.tonnage))} tonneaux cumulés pour la destination ${d.destination}`
+      (d) => 
+        translate('DestinationsDkPrProjection', 'tooltip', lang, {
+          tonnage: formatNumber(parseInt(d.tonnage)),
+          destination: d.destination
+        })
     }
     />
 

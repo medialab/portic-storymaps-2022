@@ -1,4 +1,4 @@
-
+@import '../../styles/variables.scss';
 
 .TonnageF12 {
   box-sizing: border-box;
@@ -6,6 +6,8 @@
   .buttons-container {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: $medium-gutter;
     button {
       font-size: .8rem;
       text-align: left;

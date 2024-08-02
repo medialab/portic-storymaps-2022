@@ -1,9 +1,13 @@
-
-
-
+@import '../../styles/variables.scss';
 
 .ValeurParTonneau {
   box-sizing: border-box;
+  .buttons-container {
+    justify-content: center;
+    display: flex;
+    flex-flow: row nowrap;
+    padding-bottom: $medium-gutter * 3;
+  }
   .columns-container {
     display: flex;
     flex-flow: row nowrap;

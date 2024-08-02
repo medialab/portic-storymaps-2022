@@ -3,12 +3,14 @@ import { useSpring, animated } from "react-spring";
 import { G } from "../../components/animatedPrimitives";
 import { AnimatedCircle, AnimatedForeignObject } from "../../components/AnimatedSvgElements";
 import colorsPalettes from "../../utils/colorPalettes";
+import translate from "../../utils/translate";
 
 
 export default function DunkerqueDisplay({
   projection,
   width,
   height,
+  lang,
   step
 }) {
   const scale = useMemo(() => projection.scale(), [projection]);
@@ -83,17 +85,15 @@ export default function DunkerqueDisplay({
                 {
                   +step === 3 ?
                   <>
-                    <span>Port franc </span>
+                    <span>{translate('Intro', 'free_port_1', lang)}</span>
                     <br/>
-                    <span>de Dunkerque</span>
+                    <span>{translate('Intro', 'free_port_2', lang)}</span>
                   </>
                   :
                   <>
-                    <span>Sources</span>
+                    <span>{translate('Intro', 'sources_1_1', lang)}</span>
                     <br/>
-                    <span>relatives à la navigation</span>
-                    <br/>
-                    <span>à la navigation</span>
+                    <span>{translate('Intro', 'sources_1_2', lang)}</span>
                   </>
                 }
               </div>
@@ -108,15 +108,15 @@ export default function DunkerqueDisplay({
                 {
                   +step === 3 ?
                   <>
-                    <span>Royaume</span>
+                    <span>{translate('Intro', 'france_1', lang)}</span>
                     <br/>
-                    <span>de France</span>
+                    <span>{translate('Intro', 'france_2', lang)}</span>
                   </>
                   :
                   <>
-                    <span>Sources</span>
+                    <span>{translate('Intro', 'sources_2_1', lang)}</span>
                     <br/>
-                    <span>relatives au commerce</span>
+                    <span>{translate('Intro', 'sources_2_2', lang)}</span>
                   </>
                 }
                

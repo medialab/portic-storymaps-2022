@@ -89,18 +89,34 @@ const colorsPalettes = {
   },
   importsExports: {
     'Café': '#41BEA3',
+    'Coffee': '#41BEA3',
+
     'Sucre': '#A07BEE',
+    'Sugar': '#A07BEE',
+
     'Coton non transformé': '#98a9d9',
+    'Unprocessed coton': '#98a9d9',
+
     'Subsistances diverses et mélangées': '#a42e0d',
+    'Diverse and mixed subsistence': '#a42e0d',
+
     'Sirop et mélasse': '#FED63B',
+    'Syrup and molasses': '#FED63B',
   
     'Monde': '#EBB2AD',
+    'World': '#EBB2AD',
+
     'Colonies': '#e35027',
     'France': '#627FEE',
 
     'Produits primaires': '#41BEA3',
+    'Primary products': '#41BEA3',
+
     'Produits manufacturés': '#A07BEE',
+    'Manufactured products': '#A07BEE',
+
     'Produits agricoles': '#98a9d9',
+    'Agricultural products': '#98a9d9',
 
 
     // 'Lubeck': '#E7A39C',

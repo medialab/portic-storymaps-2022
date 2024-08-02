@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import BarChart from '../../components/BarChart';
+import translate from '../../utils/translate';
 
 /**
  * Header contains navigation and…
@@ -33,15 +34,20 @@ export default function SmogglagePortsStats ({
                 /** @todo translate this */
                 x={{
                     field: 'port de départ',
-                    title: 'port de départ'
+                    title: translate('SmogglagePortsStats', 'x1', lang),
                 }}
                 y={{
                     field: 'total des trajets anglais',
-                    title: 'nombre de départs de britanniques',
+                    title: translate('SmogglagePortsStats', 'y1', lang),
                     // domain: [0, 100],
-                    tickFormat: f => f + ' trajets'
+                    tickFormat: f => translate('SmogglagePortsStats', 'y1_ticks', lang, {value: f})
                 }}
-                tooltip={item => item['total des trajets anglais'] + ' trajets de navires anglais depuis le port de ' + item['port de départ']}
+                tooltip={item => 
+                  translate('SmogglagePortsStats', 'tooltip', lang, {
+                    travels: item['total des trajets anglais'],
+                    port: item['port de départ']
+                  })
+                }
                 
             />
             <BarChart
@@ -59,15 +65,20 @@ export default function SmogglagePortsStats ({
                 /** @todo translate this */
                 x={{
                     field: 'port de départ',
-                    title: 'port de départ'
+                    title: translate('SmogglagePortsStats', 'x2', lang)
                 }}
                 y={{
                     field: '% de trajets anglais smoggleurs',
-                    title: 'part des smoggleurs dans les trajets anglais',
+                    title: translate('SmogglagePortsStats', 'y2', lang),
                     domain: [0, 100],
                     tickFormat: f => f + '%'
                 }}
-                tooltip={item => item['total des trajets anglais'] + ' trajets de navires anglais depuis le port de ' + item['port de départ']}
+                tooltip={item => 
+                  translate('SmogglagePortsStats', 'tooltip', lang, {
+                    travels: item['total des trajets anglais'],
+                    port: item['port de départ']
+                  })
+                }
                 
             />
         </>

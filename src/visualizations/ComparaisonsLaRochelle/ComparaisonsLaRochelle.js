@@ -35,16 +35,16 @@ const ComparaisonsLaRochelle = ({
   const estimationSettings = {
     'vraie valeur dans toflit18 (pondéré avec terre-mer)': {
       color: '#e93d15',
-      label: 'valeur observée dans toflit18 (pondérée avec les ratios terre-mer)'
+      label: translate('ComparaisonLaRochelle', 'estimation_type_1', lang)
     },
     // 'vraie valeur dans toflit18 (non pondéré)': 'lightblue',
     'estimation par tonnage x prix par tonneau F12/1787': {
       color: '#514EEE',
-      label: 'estimation basse (hyp. F12 inclut lest)'
+      label: translate('ComparaisonLaRochelle', 'estimation_type_2', lang)
     },
     'estimation par tonnage x prix par tonneau F12/1787 (sans lest)': {
       color: '#2926B0',
-      label: 'estimation haute (hyp. F12 exclut lest)'
+      label: translate('ComparaisonLaRochelle', 'estimation_type_3', lang)
     },
   }
   const estimationColorLegend = Object.entries(estimationSettings)
@@ -76,7 +76,7 @@ const ComparaisonsLaRochelle = ({
     <div className="ComparaisonsLaRochelle">
       <div className="columns-container">
         <div className="column">
-          <h2>Exports toflit18 de la Direction des Fermes (DF) de La Rochelle en 1789</h2>
+          <h2>{translate('ComparaisonLaRochelle', 'title1', lang)}</h2>
           <BarChart
             {...{
               data: [
@@ -112,12 +112,16 @@ const ComparaisonsLaRochelle = ({
             // }}
 
             tooltip={
-              (d) => `${formatNumber(parseInt(d.valeur))} lt pour ${d.partenaire}`
+              (d) => 
+                translate('ComparaisonLaRochelle', 'tooltip1', lang, {
+                  value: formatNumber(parseInt(d.valeur)),
+                  partner: d.partenaire
+                })
             }
           />
         </div>
         <div className="column">
-          <h2>Destinations navigo au départ des ports de la DF de La Rochelle en 1789</h2>
+          <h2>{translate('ComparaisonLaRochelle', 'title2', lang)}</h2>
           <BarChart
             {...{
               data: [
@@ -139,7 +143,7 @@ const ComparaisonsLaRochelle = ({
             x={{
               'field': 'tonnage',
               // field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d)} tx`,
+              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 5000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 15001]
@@ -154,14 +158,23 @@ const ComparaisonsLaRochelle = ({
             // }}
 
             tooltip={
-              (d) => `${formatNumber(parseInt(d.tonnage))} lt/tonneau pour ${d.destination}`
+              (d) =>
+                translate('ComparaisonLaRochelle', 'tooltip2', lang, {
+                  value: formatNumber(parseInt(d.tonnage)),
+                  partner: d.destination
+                })
             }
           />
         </div>
       </div>
       <div className="columns-container">
         <div className="column">
-          <h2>Vérification de la projection : dans la source = {formatNumber(parseInt(totaux.find(d => d.group === "vraie valeur dans toflit18 (pondéré avec terre-mer)").value))} lt., projeté = {formatNumber(parseInt(totaux.find(d => withLest ? d.group === "estimation par tonnage x prix par tonneau F12/1787" : d.group === "estimation par tonnage x prix par tonneau F12/1787 (sans lest)").value))} lt.</h2>
+          <h2>
+          {translate('ComparaisonLaRochelle', 'title3', lang, {
+            source_value: formatNumber(parseInt(totaux.find(d => d.group === "vraie valeur dans toflit18 (pondéré avec terre-mer)").value)),
+            projected_value: formatNumber(parseInt(totaux.find(d => withLest ? d.group === "estimation par tonnage x prix par tonneau F12/1787" : d.group === "estimation par tonnage x prix par tonneau F12/1787 (sans lest)").value))
+          })}
+          </h2>
           <BarChart
             {...{
               data: [
@@ -187,7 +200,7 @@ const ComparaisonsLaRochelle = ({
                   {
                     partner: 'Partenaires indéfinis',
                     value: exportsMonde,
-                    group: 'valeur observée dans toflit18 (pondérée avec les ratios terre-mer)'
+                    group: translate('ComparaisonLaRochelle', 'estimation_type_1', lang)
                   }
                 // { partenaire: 'Outre-mers', valeur: 0 }
               ]
@@ -217,12 +230,17 @@ const ComparaisonsLaRochelle = ({
             }}
             color={{
               field: 'group',
-              title: 'type de métrique', // translate('PecheTypeValue', 'color', lang)
+              title: translate('ComparaisonLaRochelle', 'color3', lang), // translate('PecheTypeValue', 'color', lang)
               palette: estimationColorLegend
             }}
 
             tooltip={
-              (d) => `${formatNumber(parseInt(d.value))} lt pour ${d.partner} (${d.group})`
+              (d) => 
+                translate('ComparaisonLaRochelle', 'tooltip3', lang, {
+                  value: formatNumber(parseInt(d.value)),
+                  partner: d.partner,
+                  unit: d.group
+                })
             }
           />
         </div>

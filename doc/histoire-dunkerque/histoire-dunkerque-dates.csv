@@ -6,13 +6,13 @@ year_start,year_end,head_fr,head_en,interests,legend_square_port_free,legend_squ
 1662,,"Dunkerque est rachetée par le Royaume de France.
 Obtention  de la franchise complète du Port.","Dunkirk is bought by the Kingdom of France.
 Obtaining the full Port franchise.",port_interests,1,1,0,0,0,tax-free,tax-free,1,0,1
-1662,1700,,#VALUE!,,1,1,0,0,0,tax-free,tax-free,1,0,1
+1662,1700,,,,1,1,0,0,0,tax-free,tax-free,1,0,1
 1700,,Création de la chambre du commerce qui défendra la franchise du port avec acharnement.,Creation of the Chamber of Commerce which will fiercely defend the port franchise.,port_interests,1,1,1,0,0,tax-free,tax-free,1,0,1
-1700,1713,,#VALUE!,,1,1,1,0,0,tax-free,tax-free,1,0,1
+1700,1713,,,,1,1,1,0,0,tax-free,tax-free,1,0,1
 1713,,"La Basse-Ville est intégrée au Royaume de France.
 Les postes de douanes sont transférés aux portes de la Vielle-Ville","The Lower Town is integrated into the Kingdom of France.
 Customs posts are transferred to the gates of the Old Town",kingdom_interests,1,1,1,1,0,tax-free,France,1,0,1
-1713,1800,,#VALUE!,,1,1,1,1,1,tax-free,France,1,0,1
+1713,1800,,,,1,1,1,1,1,tax-free,France,1,0,1
 1729,,"Création du service de pilotage suite, contrôlé par l’Amirauté.","Creation of the suite pilotage service, controlled by the Admiralty.",kingdom_interests,1,1,1,1,1,tax-free,France,1,0,1
 1731,,"Construction de l'Entrepot colonial, placé sous la direction de la chambre du commerce","Construction of the Colonial Warehouse, placed under the direction of the Chamber of Commerce",port_interests,1,1,1,1,1,tax-free,France,1,0,1
 1750,,Création de la Bourse et transfert de la Chambre de Commerce dans un nouvel édifice,Creation of the Stock Exchange and transfer of the Chamber of Commerce to a new building,port_interests,1,1,1,1,1,tax-free,France,1,0,1

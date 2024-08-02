@@ -42,7 +42,13 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
     <div className="ComparaisonProjectionDestinationProduitsColoniauxDk">
       <div className="columns-container">
         <div className="column">
-          <h2>Estimation des exports hors smogglage/pêche (total : {formatNumber(parseInt(total))} lt.)</h2>
+          <h2>
+            {
+              translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'title1', lang, {
+                value: formatNumber(parseInt(total))
+              })
+            }
+          </h2>
           <BarChart
             {...{
               data: actualData,
@@ -69,12 +75,23 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             // }}
 
             tooltip={
-              (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field]))} lt. (pour ${formatNumber(parseInt(d.tonnage))} tonneaux cumulés)`
+              (d) => 
+                translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip1', lang, {
+                  partner: d.partenaire,
+                  value: formatNumber(parseInt(d[field])),
+                  tonnage: formatNumber(parseInt(d.tonnage)),
+                })
             }
           />
         </div>
         <div className="column">
-          <h2>Observation des imports pour les partenaires correspondant (total : {formatNumber(totalImports)} lt.)</h2>
+          <h2>
+          {
+              translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'title2', lang, {
+                value: formatNumber(totalImports)
+              })
+            }
+          </h2>
           <BarChart
             {...{
               data: actualData,
@@ -101,7 +118,11 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             // }}
 
             tooltip={
-              (d) => `imports du BF de Dunkerque pour ${d.partenaire} : ${formatNumber(parseInt(d.imports_toflit18))} lt.`
+              (d) => 
+                translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip2', lang, {
+                  partner: d.partenaire,
+                  value: formatNumber(parseInt(d.imports_toflit18)),
+                })
             }
           />
         </div>

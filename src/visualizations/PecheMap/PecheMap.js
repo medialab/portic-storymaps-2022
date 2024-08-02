@@ -28,36 +28,46 @@ export default function PecheMap({
   // },
   ...props
 }) {
-  const zones = ['Islande', 'Terre-Neuve', 'Hitlande', 'Hareng', 'Dogre Banc'];
-  const colors = Object.values(somePalette);
-  const colorPalette = zones.reduce((cur, key, index) => ({
-    ...cur,
-    [key]: colors[index]
-  }), {});
+  const zones = useMemo(() => ['Islande', 'Terre-Neuve', 'Hitlande', 'Hareng', 'Dogre Banc']
+  .map(d => translate('PecheMap', d, lang))
+  , [data, lang, translate]);
+  const colorPalette = useMemo(() => {
+    const colors = Object.values(somePalette);
+    return zones.reduce((cur, key, index) => ({
+      ...cur,
+      [key]: colors[index]
+    }), {});
+  }
+  , [zones])
+  
   const { width = 100, height = 100 } = dimensions;
   // const [brush, setBrush] = useReducer(reducerBrush, [undefined, undefined, undefined]);
-  const dataMap = data.get('map_backgrounds/physical_world_map.geojson');
-  // const dataMap = data.get('map_backgrounds/physical_world_map_light.geojson');
+  const dataMap = useMemo(() => data.get('map_backgrounds/physical_world_map.geojson'), [data]);
+  const zonesMapData = useMemo(() => {
+    const feature = data.get('evolution-peche-zones.geojson');
+    return {
+      ...feature,
+      features: feature.features
+      .map(d => ({
+        ...d,
+        properties: {
+          ...d.properties,
+          shortname: translate('PecheMap', d.properties.shortname, lang)
+        }
+      }))
+    }
+  }, [data, lang, translate]);
+  
   const dataStats = useMemo(function prepareData() {
     return data.get('peche-map-stats.csv').map(row => {
       return {
         ...row,
-        value: row['value'] === '' ? 0 : +row['value']
+        value: row['value'] === '' ? 0 : +row['value'],
+        type_zone_peche: translate('PecheMap', row.type_zone_peche, lang)
       }
     })
   }, [data]);
-
-  // dynamic colors
-  // const colors = useMemo(function scaleColors() {
-  //   const colorsScale = {};
-  //   for (const [zone, color] of Object.entries(colorPalette)) {
-  //     const maxValueForTypeZone = max(dataStats.filter(({ type_zone_peche }) => type_zone_peche === type_zone_peche), d => d['value'])
-  //     colorsScale[zone] = scaleLinear().domain([1, maxValueForTypeZone]).range(["white", color])
-  //   }
-  //   return colorsScale;
-  // }, [data]);
-
-
+  
   const graphHeight = 200;
   return (
     <div className="PecheMap">
@@ -77,7 +87,7 @@ export default function PecheMap({
             type: 'choropleth',
             animated: false,
             showAllParts: false,
-            data: data.get('evolution-peche-zones.geojson'),
+            data: zonesMapData,
             tooltip: (d) => d.properties.shortname,
             className: 'peche-zones',
             color: {

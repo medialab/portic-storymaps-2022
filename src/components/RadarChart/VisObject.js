@@ -93,7 +93,11 @@ const VisObject = ({
       onMouseOut={() => onMouseOut(name)}
       data-tip={`
       <p>
-      ${name/* === 'Tous les bureaux' ? translate('viz-principale-partie-2', 'radar_tip_region', lang) : translate('viz-principale-partie-2', 'radar_tip_office', lang, { name: name })*/} - estimation de la valeur à partir des quantités :
+      ${
+        translate('ExportsVsSmogglage', 'tooltip_radar', lang, {
+        port: name
+        })
+      } :
       </p>
       <ol>
         ${

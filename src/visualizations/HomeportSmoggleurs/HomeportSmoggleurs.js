@@ -138,7 +138,7 @@ export default function HomeportSmoggleurs({
   return (
     <div className="HomeportSmoggleurs">
       <GeographicMapChart
-        title={'Carte des ports d\'attache des smoggleurs'}
+        title={translate('HomeportSmoggleurs', 'title', lang)}
         hideTitle={!atlasMode}
         projectionTemplate={'England'}
         // projectionTemplate={'south of England'}
@@ -277,8 +277,9 @@ export default function HomeportSmoggleurs({
           },
           y: {
             field: 'total',
-            title: 'nombre de trajets',
-            domain: [0, maxTotal]
+            title: translate('HomeportSmoggleurs', 'y', lang),
+            domain: [0, maxTotal],
+            tickSpan: 200
           }
         }
         }

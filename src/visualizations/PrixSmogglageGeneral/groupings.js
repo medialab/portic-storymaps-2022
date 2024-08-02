@@ -7,7 +7,7 @@ export const productsQuantiFields = {
     domain: [0, 1250001],
     labels: {
       fr: "Estimation de la valeur à partir des quantités",
-      en: "Estimation de la valeur à partir des quantités"
+      en: "Value estimate made according to quantities"
     }
   },
   // "estimation_prix2_moyenne": {
@@ -28,7 +28,7 @@ export const productsQuantiFields = {
     tickSpan: 10,
     labels: {
       fr: "Nombre d'observations avec unité exacte toutes directions de fermes",
-      en: "Nombre d'observations avec unité exacte toutes directions de fermes",
+      en: "Number of observations with exact units for all directions de fermes",
     }
   },
   "nombre_observations_versAngleterre": {
@@ -36,7 +36,7 @@ export const productsQuantiFields = {
     tickSpan: 1,
     labels: {
       fr: "Nombre d'observations vers l'Angleterre",
-      en: "Nombre d'observations vers l'Angleterre"
+      en: "Number of observations towards England"
     }
   },
   // "estimation_prix1_moyenne": {

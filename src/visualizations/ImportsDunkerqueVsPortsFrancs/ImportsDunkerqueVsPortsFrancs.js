@@ -14,6 +14,7 @@ const colors = [
 import './ImportsDunkerqueVsPortsFrancs.scss';
 import { formatNumber } from "../../utils/misc";
 import ReactTooltip from "react-tooltip";
+import translate from "../../utils/translate";
 
 export default function ImportsDunkerqueVsPortsFrancs({
   data,
@@ -93,7 +94,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
     }
 
     const leftProducts = data.filter(({ port }) => port === 'Dunkerque');
-    const rightProducts = data.filter(({ port }) => rightColumnFilter ? port === rightColumnFilter : port !== 'Dunkerque');
+    const rightProducts = data.filter(({ port }) => rightColumnFilter && rightColumnFilter !== translate('ImportsDunkerqueVsPortsFrancs', 'all_other_free_ports', lang) ? port === rightColumnFilter : port !== 'Dunkerque');
 
     const leftGroups = computeSums(leftProducts);
     const rightGroups = computeSums(rightProducts);
@@ -170,7 +171,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
 
   const selectFilterItems = [
     {
-      label: 'tous les autres ports francs',
+      label: translate('ImportsDunkerqueVsPortsFrancs', 'all_other_free_ports', lang),
       value: undefined,
     },
     ...['Bayonne', 'Lorient', 'Marseille']
@@ -178,7 +179,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
         label: name,
         value: name
       }))
-  ]
+  ];
 
   return (
     <div className={`ImportsDunkerqueVsPortsFrancs ${highlightedProduct ? 'has-highlights' : ''}`}>
@@ -191,16 +192,16 @@ export default function ImportsDunkerqueVsPortsFrancs({
         {({ measureRef }) => (
           <div className="ui-row" ref={measureRef} style={{ padding: `0 ${barWidth}px` }}>
             <div className="ui-column">
-              <h3>Top 20 produits des imports de Dunkerque</h3>
+              <h3>{translate('ImportsDunkerqueVsPortsFrancs', 'title_left', lang)}</h3>
             </div>
             <div className="ui-column">
               <button onClick={() => setUseTotal(!useTotal)} className={useTotal ? 'is-active' : ''}>
-                Montrer le total des produits importés
+              {translate('ImportsDunkerqueVsPortsFrancs', 'toggle_total', lang)}
               </button>
             </div>
             <div className="ui-column">
-              <h3><span>Top 20 produits des imports de </span>
-                <select value={rightColumnFilter} onChange={e => e.target.value === 'tous les ports francs' ? setRightColumnFilter() : setRightColumnFilter(e.target.value)}>
+              <h3><span>{translate('ImportsDunkerqueVsPortsFrancs', 'title_right', lang)} </span>
+                <select value={rightColumnFilter} onChange={e => e.target.value === 'tous les autres ports francs' ? setRightColumnFilter() : setRightColumnFilter(e.target.value)}>
                   {
                     selectFilterItems.map(({ label, value }) => (
                       <option key={value} value={value}>{label}</option>
@@ -246,7 +247,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
                   }}
                 >
                   {
-                    columnData.map(({ product, totalHeight, y, items, totalValue }) => {
+                    columnData.map(({ product, totalHeight, y, items, totalValue, }) => {
                       const onHover = () => {
                         setHighlightedProduct(product)
                       }
@@ -291,7 +292,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
                             textAnchor={columnType === 'left' ? 'start' : 'end'}
                             fontSize={fontSize}
                           >
-                            {product}
+                            {translate('AlluvialImportExport', product, lang)}
                           </AnimatedText>
                           {
                             totalHeight > 10 ?

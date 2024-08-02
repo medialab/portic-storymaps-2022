@@ -43,7 +43,10 @@ const ExportsFr1787 = ({
     // }}
 
     tooltip={
-      (d) => `${formatNumber(parseInt(d.value))} lt. exportés vers le partenaire ${d.partner}`
+      (d) => translate('ExportsFr1787', 'tooltip', lang, {
+        value: formatNumber(parseInt(d.value)),
+        partner: d.partner
+      })
     }
     />
 

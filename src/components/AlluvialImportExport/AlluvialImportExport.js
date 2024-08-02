@@ -8,6 +8,7 @@ import iwanthue from 'iwanthue';
 // import { path, g, rect } from '../AnimatedSvgElements';
 
 import './AlluvialImportExport.scss';
+import translate from "../../utils/translate";
 
 function pickTextColor(bgColor, lightColor = 'white', darkColor = 'black') {
   const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
@@ -54,6 +55,7 @@ export default function AlluvialImportExport({
   atlasMode,
   notDunkerque,
   hideArrows = false,
+  lang,
   ...props
 }) {
   const [highlightedItem, setHighlightedItem] = useState();
@@ -243,12 +245,12 @@ export default function AlluvialImportExport({
       if (product === '') {
         continue;
       }
-      console.log({
-        displacement,
-        value,
-        y: scaleValue(displacement),
-        product,
-      })
+      // console.log({
+      //   displacement,
+      //   value,
+      //   y: scaleValue(displacement),
+      //   product,
+      // })
       const item = {
         product,
         barHeight: scaleValue(Math.abs(value)),
@@ -748,7 +750,7 @@ export default function AlluvialImportExport({
             style={{ fontStyle: 'italic', fontSize: 10 }}
             textAnchor='end'
           >
-            Imports
+            {translate('AlluvialImportExport', 'imports', lang)}
           </text>
         </g>
         <g
@@ -774,7 +776,7 @@ export default function AlluvialImportExport({
             style={{ fontStyle: 'italic', fontSize: 10 }}
             textAnchor='end'
           >
-            Exports
+            {translate('AlluvialImportExport', 'exports', lang)}
           </text>
         </g>
       </g>
@@ -800,7 +802,11 @@ export default function AlluvialImportExport({
           xmlns="http://www.w3.org/1999/xhtml"
           style={{fontSize: 12, textAlign: 'right'}}
         >
-        {`Valeur manquante dans les exports par rapport aux imports : ${formatNumber(Math.abs(sumFraudeExports - sumFraudeImports))} lt.`}
+        {
+          translate('AlluvialImportExport', 'missing_value_summary', lang, {
+            value: formatNumber(Math.abs(sumFraudeExports - sumFraudeImports))
+          })
+        }
           </div>
       </foreignObject>
     </svg>

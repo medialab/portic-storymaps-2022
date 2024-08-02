@@ -14,7 +14,7 @@ const DebouncedSlider = ({
   min,
   max,
   value,
-  onChange
+  onChange,
 }) => {
   const [localMin, setLocalMin] = useState(min);
   useEffect(() => {
@@ -280,7 +280,7 @@ const Legend = ({
                     y={8}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage)} tx.
+                    {formatNumber(maxDestinationTonnage)} {lang === 'fr' ? 'tx' : 'b'}.
                   </text>
                   {/* small mark */}
                   <circle
@@ -305,7 +305,7 @@ const Legend = ({
                     y={maxSizeRadius * 2 - minSizeRadius}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage / 10)} tx.
+                    {formatNumber(maxDestinationTonnage / 10)} {lang === 'fr' ? 'tx' : 'b'}.
                   </text>
                 </svg>
               </div>

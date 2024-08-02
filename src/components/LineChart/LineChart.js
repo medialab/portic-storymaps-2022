@@ -207,8 +207,19 @@ const LineChart = ({
         {
           (brushState !== false && brushState[0]['mouse'] === 'up') &&
           <div className="zoom-info-container">
-            Vous zoomez actuellement sur les années <strong>{brushState[0].start}</strong> à <strong>{brushState[0].end}</strong>.
-            <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Revenir à l'ensemble de la série</button>
+            {
+              lang === 'fr' ?
+              <>
+              Vous zoomez actuellement sur les années <strong>{brushState[0].start}</strong> à <strong>{brushState[0].end}</strong>.
+              <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Revenir à l'ensemble de la série</button>
+              </>
+              :
+              <>
+              You actually focus on the year span <strong>{brushState[0].start}</strong> - <strong>{brushState[0].end}</strong>.
+              <button onClick={(e) => { brushState[1]({ mode: 'reset' }) }}>Display the whole series</button>
+              </>
+            }
+            
           </div>
           
         }

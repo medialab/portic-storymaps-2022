@@ -17,7 +17,11 @@ export default function EvolutionBudgetDunkerque({
         if (mouse !== undefined && mouse !== 'up') {
             return inputData.filter((row) => +row['Années comptables'] < 1793);
         }
-        return inputData.filter((row) => +row['Années comptables'] < 1793 && +row['Années comptables'] >= start && +row['Années comptables'] <= end);
+        return inputData.filter((row) => +row['Années comptables'] < 1793 && +row['Années comptables'] >= start && +row['Années comptables'] <= end)
+        .map(datum => ({
+          ...datum,
+          référence: translate('EvolutionBudgetDunkerque', datum['référence'], lang)
+        }))
     }, [inputData, brush])
 
     return (
@@ -44,19 +48,19 @@ export default function EvolutionBudgetDunkerque({
                 axis: 'x',
                 start: 1740,
                 end: 1748,
-                label: 'Guerre de succession d\'Autriche',
+                label: translate('EvolutionBudgetDunkerque', 'succession_autriche', lang),
               },
               {
                 axis: 'x',
                 start: 1701,
                 end: 1713,
-                label: 'Guerre de succession d\'Espagne',
+                label: translate('EvolutionBudgetDunkerque', 'succession_espagne', lang),
               },
               {
                 axis: 'x',
                 start: 1756,
                 end: 1763,
-                label: 'Guerre de sept ans',
+                label: translate('EvolutionBudgetDunkerque', 'seven_years_war', lang),
                 labelPosition: dimensions.height / 7
               },
               
@@ -64,7 +68,7 @@ export default function EvolutionBudgetDunkerque({
                 axis: 'x',
                 start: 1778,
                 end: 1783,
-                label: 'Guerre d\'indépendance américaine',
+                label: translate('EvolutionBudgetDunkerque', 'seven_years_war', lang),
                 labelPosition: dimensions.height / 5 * 2.5
               }
             ]}

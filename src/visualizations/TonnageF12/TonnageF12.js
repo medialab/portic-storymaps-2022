@@ -34,7 +34,7 @@ const TonnageF12 = ({
     <div className="TonnageF12">
       <div className="columns-container">
         <div className="column">
-          <h2>Partenaires de la source F12</h2>
+          <h2>{translate('TonnagesF12', 'title_left', lang)}</h2>
           <BarChart
             {...{
               data: actualData.original,
@@ -47,7 +47,7 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 120000],
-              tickFormat: d => `${formatNumber(d)} tx`,
+              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 20000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -57,8 +57,10 @@ const TonnageF12 = ({
             }}
 
             tooltip={
-              // @todo translate
-              (d) => `${formatNumber(d[field])} tonneaux envoyé au partenaire ${d.destination} en 1787`
+              (d) => translate('TonnagesF12', 'tooltip', lang, {
+                tx: formatNumber(d[field]),
+                destination: d.destination
+              })
             }
           />
         </div>
@@ -68,7 +70,7 @@ const TonnageF12 = ({
           </div>
         </div>
         <div className="column">
-          <h2>Partenaires F12 alignés sur toflit18 "grouping"</h2>
+          <h2>{translate('TonnagesF12', 'title_right', lang)}</h2>
           <BarChart
             {...{
               data: actualData.aggregated,
@@ -81,7 +83,7 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 270000],
-              tickFormat: d => `${formatNumber(d)} tx`,
+              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 50000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -91,8 +93,10 @@ const TonnageF12 = ({
             }}
 
             tooltip={
-              // @todo translate
-              (d) => `${formatNumber(d[field])} tonneaux envoyé au partenaire ${d.destination} en 1787`
+              (d) => translate('TonnagesF12', 'tooltip', lang, {
+                tx: formatNumber(d[field]),
+                destination: d.destination
+              })
             }
           />
         </div>

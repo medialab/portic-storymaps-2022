@@ -8,6 +8,21 @@ import Timeline from './Timeline';
 
 import './TonnageMoyenMois.scss';
 
+const MONTH_MAP_EN = {
+  'Janvier': 'January',
+  'Février': 'February',
+  'Mars': 'March',
+  'Avril': 'April',
+  'Mai': 'May',
+  'Juin': 'June',
+  'Juillet': 'Jully',
+  'Août': 'August',
+  'Septembre': 'September',
+  'Octobre': 'October',
+  'Novembre': 'November',
+  'Décembre': 'December',
+}
+
 export default function TonnageMoyenMois({
     data: inputData,
     dimensions,
@@ -29,13 +44,14 @@ export default function TonnageMoyenMois({
     const data = useMemo(() => {
         return inputData
         .filter(({ year: rowYear }) => yearBrush.includes(rowYear))
-        .map(({ value, ...rest }) => {
+        .map(({ value, month, ...rest }) => {
             return {
                 ...rest,
-                value: +value
+                value: +value,
+                month: lang === 'fr' ? month : MONTH_MAP_EN[month]
             }
         })
-    }, [inputData, yearBrush]);
+    }, [inputData, yearBrush, lang]);
 
     const monthsValue = useMemo(function groupMonths() {
         const monthGroup = groups(data, d => d.month);
@@ -76,7 +92,7 @@ export default function TonnageMoyenMois({
                     field: 'value',
                     title: translate('TonnageMoyenMois', 'x', lang),
                     tickSpan: width > 600 ? 1000 : 5000,
-                    tickFormat: (value, valueIndex) => formatNumber(value) + ' tx',
+                    tickFormat: (value, valueIndex) => formatNumber(value) + (lang === 'fr' ? ' tx' : ' b'),
                     domain: [0, max(monthsValue.map(d => d.value))]
                 }}
                 y={{

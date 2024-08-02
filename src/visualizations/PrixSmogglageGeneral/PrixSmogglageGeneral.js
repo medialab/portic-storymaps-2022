@@ -7,6 +7,7 @@ import './PrixSmogglageGeneral.scss';
 import {
   productsQuantiFields,
 } from './groupings';
+import translate from "../../utils/translate";
 
 
 const unitsSup = {
@@ -45,7 +46,7 @@ export default function PrixSmogglageGeneral({
       })
       .map(obj => ({
         ...obj,
-        unité: obj.unité.length ? obj.unité : unitsSup[obj.produit_smogglé] || 'unité inconnue'
+        unité: obj.unité.length ? obj.unité === 'livre tournois' ? 'livres tournois' : obj.unité : unitsSup[obj.produit_smogglé] || 'unité inconnue'
       }))
       .sort((a, b) => {
         if (+a.valeur_smogglé1 > +b.valeur_smogglé1) {
@@ -60,7 +61,7 @@ export default function PrixSmogglageGeneral({
   const quantiFieldOptions = productsQuantiFields[selectedQuantiField]
 
   return (
-    <div className='PrixSmogglageGeneral'>
+    <div className={`PrixSmogglageGeneral ${atlasMode ? 'is-atlas-mode' : ''}`}>
 
       <div>
         <BarChart
@@ -93,7 +94,7 @@ export default function PrixSmogglageGeneral({
 
           color={{
             field: 'unité',
-            title: 'Unité de mesure'
+            title: translate('PrixSmogglageGeneral', 'color_title', lang)
             // title:  // translate('PecheTypeValue', 'color', lang)
           }}
 
@@ -104,7 +105,7 @@ export default function PrixSmogglageGeneral({
       </div>
       <div className="legend-container">
         <h4>
-          Sélectionner la grandeur à visualiser
+          {translate('PrixSmogglageGeneral', 'select_prompt', lang)}
         </h4>
         <ul>
           {

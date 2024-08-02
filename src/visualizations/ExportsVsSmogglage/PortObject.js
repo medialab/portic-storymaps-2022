@@ -1,5 +1,7 @@
+import { useEffect } from "react";
+import ReactTooltip from "react-tooltip";
 import { AnimatedCircle, AnimatedGroup, AnimatedLine, AnimatedText } from "../../components/AnimatedSvgElements";
-
+import translate from "../../utils/translate";
 
 export default function PortObject({
   labelGroup,
@@ -16,7 +18,8 @@ export default function PortObject({
   isDimmed,
   isHidden,
   onMouseOver,
-  onMouseOut
+  onMouseOut,
+  lang = 'fr'
 }) {
   let fontSize = inputFontSize;
   let textAnchor = 'start';
@@ -39,6 +42,10 @@ export default function PortObject({
     labelX = x;
     labelY = y + radius + fontSize * 4;
   }
+
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, [translate])
   return (
     <g  
       className={`PortObject ${isDimmed ? 'is-dimmed': ''} ${isHidden ? 'is-hidden': ''} ${isActive ? 'is-active': ''}`} 
@@ -68,7 +75,7 @@ export default function PortObject({
           }}
           title={label}
           data-for="smogglage-tip"
-          data-tip={isActive ? undefined : "Cliquer pour voir le détail du port de " + label}
+          data-tip={translate('ExportsVsSmogglage', 'tooltip_prompt', lang, {port: label})}
         />
 
       </AnimatedGroup>

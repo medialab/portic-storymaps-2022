@@ -2,7 +2,7 @@ import { scaleLinear } from "d3-scale";
 import { useMemo } from "react";
 import { formatNumber } from "../../utils/misc";
 
-
+import translate from "../../utils/translate";
 
 function ColumnsComparison({
   width,
@@ -12,6 +12,7 @@ function ColumnsComparison({
   right,
   style = {},
   data: inputData,
+  lang,
 }) {
   const {
     title: leftTitle,
@@ -46,9 +47,15 @@ function ColumnsComparison({
     let finalLeftItems = leftItems;
     let finalRightItems = rightItems;
     if (sums[0] < sums[1]) {
-      finalLeftItems = [...leftItems, { field: 'diff', title: 'différentiel entre imports et exports' }]
+      finalLeftItems = [...leftItems, { 
+        field: 'diff', 
+        title: translate('EstimationImportsExports', 'differential_imports_exports', lang)
+      }]
     } else {
-      finalRightItems = [...rightItems, { field: 'diff', title: 'différentiel entre imports et exports' }]
+      finalRightItems = [...rightItems, { 
+        field: 'diff', 
+        title: translate('EstimationImportsExports', 'differential_imports_exports', lang)
+      }]
     }
 
     const max = Math.max(...sums);
@@ -118,7 +125,7 @@ function ColumnsComparison({
         }
       }, { displace: 0, displaceSource: 0, items: [] }).items,
     }
-  }, [leftItems, rightItems, inputData]);
+  }, [leftItems, rightItems, inputData, lang, translate]);
 
   const minLabelHeight = 50;
   return (
@@ -252,15 +259,15 @@ function ColumnsComparison({
           [
             {
               color: '#e93d15',
-              label: 'Sources'
+              label: translate('EstimationImportsExports', 'legend_sources', lang)
             },
             {
               color: '#514EEE',
-              label: 'Projections'
+              label: translate('EstimationImportsExports', 'legend_projections', lang)
             },
             {
               color: '#34495e',
-              label: 'Différentiels entre sources et projections'
+              label: translate('EstimationImportsExports', 'legend_differential', lang)
             },
           ]
             .map(({ color, label }, index) => {

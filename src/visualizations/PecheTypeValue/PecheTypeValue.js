@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import BarChart from '../../components/BarChart';
 import { formatNumber } from '../../utils/misc';
@@ -12,12 +12,15 @@ import translate from '../../utils/translate';
  */
 
 export default function PecheTypeValue({
-    data,
+    data: inputData,
     lang,
     dimensions
 }) {
     const { width, height } = dimensions;
-
+    const data = useMemo(() => inputData.map(datum => ({
+      ...datum,
+      type_zone_peche: translate('PecheMap', datum.type_zone_peche, lang)
+    })), [inputData, translate, lang])
     return (
         <BarChart
             { ...{
@@ -27,6 +30,9 @@ export default function PecheTypeValue({
             }}
 
             layout='stack'
+            margins={{
+              left: 150
+            }}
             x={{
                 field: 'annee',
                 tickSpan: 2,
@@ -35,6 +41,7 @@ export default function PecheTypeValue({
             }}
             y={{
                 field: 'value',
+                tickFormat: d => formatNumber(d),
                 title: translate('PecheTypeValue', 'y', lang)
             }}
             color={{
@@ -45,7 +52,8 @@ export default function PecheTypeValue({
             tooltip={
                 (d) => translate('PecheTypeValue', 'tooltip', lang, {
                     value: formatNumber(d['value']),
-                    year: d['annee']
+                    year: d['annee'],
+                    zone: d['type_zone_peche']
                 })
             }
         />

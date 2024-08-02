@@ -27,8 +27,8 @@ const matchDollarBracket = new RegExp(/\$\{(\w+)\}/g)
  */
 
 export default function translate (element, label, lang, remplacements) {
-    const error = `no translate for '${label}' in '${element}'`;
-
+    const error = `no translation found for '${label}' in '${element}'`;
+    
     if (
         catalog[element] === undefined ||
         catalog[element][label] === undefined ||
@@ -38,6 +38,7 @@ export default function translate (element, label, lang, remplacements) {
     }
 
     let result = catalog[element][label][lang];
+    
 
     if (!!result === false) {
         return error;
@@ -47,6 +48,5 @@ export default function translate (element, label, lang, remplacements) {
         if (remplacements === undefined) { return ''; }
         return (remplacements[key] + '') || ''
     })
-
     return result;
 }

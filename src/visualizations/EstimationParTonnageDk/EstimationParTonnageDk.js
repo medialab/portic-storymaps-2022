@@ -11,7 +11,7 @@ const EstimationParTonnageDk = ({
   height: inputHeight,
   lang,
 }) => {
-  const height = inputHeight - 100;
+  const height = inputHeight - 150;
   const [withLest, setWithLest] = useState(true);
   const field = useMemo(() => withLest ? 'estimate' : 'estimate_without_lest', [withLest]);
   const actualData = useMemo(() => {
@@ -34,7 +34,7 @@ const EstimationParTonnageDk = ({
     <div className="EstimationParTonnageDk">
       <div className="columns-container">
         <div className="column">
-          <h2>Tonnages cumulés</h2>
+          <h2>{translate('EstimationParTonnageDk', 'title1', lang)}</h2>
           <BarChart
             {...{
               data: actualData,
@@ -46,7 +46,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: 'tonnage',
-              tickFormat: d => `${formatNumber(d)} tx.`,
+              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}.`,
               tickSpan: 20000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 31001]
@@ -55,13 +55,13 @@ const EstimationParTonnageDk = ({
               field: 'partenaire',
               title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
             }}
-            // color={{
-            // field: 'tonnage',
-            // title:  // translate('PecheTypeValue', 'color', lang)
-            // }}
 
             tooltip={
-              (d) => `${formatNumber(parseInt(d.tonnage))} tonneaux cumulés pour ${d.partenaire}`
+              (d) => 
+                translate('EstimationParTonnageDk', 'tooltip1', lang, {
+                  value: formatNumber(parseInt(d.tonnage)),
+                  partner: d.partenaire
+                })
             }
           />
         </div>
@@ -71,7 +71,7 @@ const EstimationParTonnageDk = ({
           </div>
         </div>
         <div className="column">
-          <h2>Prix par tonneau</h2>
+          <h2>{translate('EstimationParTonnageDk', 'title1', lang)}</h2>
           <BarChart
             {...{
               data: actualData,
@@ -83,7 +83,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d)} lt./tx`,
+              tickFormat: d => `${formatNumber(d)} lt./${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan : 500,
               title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 1001]
@@ -98,7 +98,11 @@ const EstimationParTonnageDk = ({
             // }}
 
             tooltip={
-              (d) => `${formatNumber(parseInt(d[withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest']))} lt/tonneau pour ${d.partenaire}`
+              (d) => 
+                translate('EstimationParTonnageDk', 'tooltip2', lang, {
+                  value: formatNumber(parseInt(d[withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest'])),
+                  partner: d.partenaire
+                })
             }
           />
         </div>
@@ -108,7 +112,13 @@ const EstimationParTonnageDk = ({
           </div>
         </div>
         <div className="column" style={{flex: 2}}>
-          <h2>Estimation des exports (total : {formatNumber(parseInt(total))} lt.)</h2>
+          <h2>
+            {
+              translate('EstimationParTonnageDk', 'title3', lang, {
+                value: formatNumber(parseInt(total))
+              })
+            }
+          </h2>
           <BarChart
             {...{
               data: actualData,
@@ -135,12 +145,17 @@ const EstimationParTonnageDk = ({
             // }}
 
             tooltip={
-              (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field]))} lt. (pour ${formatNumber(parseInt(d.tonnage))} tonneaux cumulés)`
+              (d) => 
+                translate('EstimationParTonnageDk', 'tooltip3', lang, {
+                  value: formatNumber(parseInt(d[field])),
+                  partner: d.partenaire,
+                  tonnage: d.tonnage
+                })
             }
           />
         </div>
       </div>
-      <div className="buttons-container" style={{ margin: '1rem' }}>
+      <div className="buttons-container">
         <button className={`Button ${withLest ? 'is-active' : ''}`} onClick={() => setWithLest(true)}>
           {translate('TonnagesF12', 'hyp_with_lest', lang)}
         </button>

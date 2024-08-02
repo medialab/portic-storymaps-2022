@@ -3,7 +3,8 @@ import svg from './svgAsStr';
 export default function SchemaSources({
   width,
   height,
-  atlasMode
+  atlasMode,
+  lang
 }) {
   return (
     <div 
@@ -14,7 +15,7 @@ export default function SchemaSources({
         justifyContent: 'center'
       }}
       dangerouslySetInnerHTML={{
-        __html: svg({width, height: atlasMode ? window.innerHeight : height})
+        __html: svg({width, height: atlasMode ? window.innerHeight : height, lang})
       }}
     />
   )

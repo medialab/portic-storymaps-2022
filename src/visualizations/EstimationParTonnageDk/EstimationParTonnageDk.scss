@@ -1,16 +1,21 @@
 
-
+@import "../../styles/variables.scss";
 
 
 .EstimationParTonnageDk {
   box-sizing: border-box;
+  .buttons-container {
+    margin: $medium-gutter;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    box-sizing: border-box;
+  }
   .columns-container {
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;
     .column {
-
-     
       flex: 1;
       box-sizing: border-box;
 

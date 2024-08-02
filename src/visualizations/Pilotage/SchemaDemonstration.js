@@ -188,7 +188,7 @@ export default function SchemaDemonstration({
           >
             <g className='bar-combined'>
               <circle cx={0} cy={scaleProjection(0)} r={5} />
-              <text x={7} y={scaleProjection(0)} fontSize={12}>Moyenne</text>
+              <text x={7} y={scaleProjection(0)} fontSize={12}>{translate('Pilotage', 'mean', lang)}</text>
               {
                 projectionPerYear.map(({ realityGapPourcentage }, projectionIndex) => {
                   if (realityGapPourcentage >= 0) {

@@ -4,6 +4,8 @@ import colorsPalettes from "../../utils/colorPalettes";
 
 import AlluvialImportExport from "../../components/AlluvialImportExport";
 
+import translate from "../../utils/translate";
+
 import './FraudeExportPortFranc.scss';
 
 const {importsExports: palette} = colorsPalettes;
@@ -17,6 +19,7 @@ export default function FraudeExportPortFranc({
     data: inputData,
     dimensions,
     atlasMode,
+    lang,
     showPorts = AVAILABLE_PORTS,// Lorient also available
     ...props
 }) {
@@ -35,12 +38,16 @@ export default function FraudeExportPortFranc({
 
     /** @type {Object[]} */
     const data = useMemo(function prepareData() {
+ 
         let preparedData = inputData
             // .filter(({ aggregate_type }) => aggregate_type === 'detail_products')
-            .map(({ value, ...rest }) => {
+            .map(({ value, partner_type, product_type, ...rest }) => {
                 return {
+                  ...rest,
                     value: +value, // string to number
-                    ...rest
+
+                    partner_type: translate('AlluvialImportExport', partner_type, lang),
+                    product_type: product_type ? translate('AlluvialImportExport', product_type, lang) : product_type,
                 }
             });
         return preparedData;
@@ -74,6 +81,7 @@ export default function FraudeExportPortFranc({
                                 // height:  (atlasMode ? refDimension / (visiblePorts.length > 1 ? 2 : 1) * .6 - margin : refDimension / visiblePorts.length - 10)
                             }}
                             colorPalette={palette}
+                            lang={lang}
                             notDunkerque
                             data={
                               data.filter(({ port: thatPort, aggregate_type }) => thatPort === port && aggregate_type === 'detail_products')}

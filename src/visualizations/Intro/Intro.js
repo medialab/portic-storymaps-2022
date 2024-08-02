@@ -110,6 +110,7 @@ export default function Intro({
                     step={step}
                     width={width}
                     height={height}
+                    lang={lang}
                   />
                 </G>
               )

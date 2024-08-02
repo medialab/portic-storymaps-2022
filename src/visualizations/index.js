@@ -38,6 +38,7 @@ import SchemaSources from './SchemaSources';
 import ResumeActivitesDunkerquois from './ResumeActivitesDunkerquois';
 import ImportsDunkerqueVsPortsFrancs from './ImportsDunkerqueVsPortsFrancs';
 import EstimationExportsDkSnail from './EstimationExportsDkSnail/EstimationExportsDkSnail';
+import translate from '../utils/translate';
 
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
@@ -192,23 +193,21 @@ export default function VisualizationController({
               height: dimensions.height,
               atlasMode,
               lang,
-              title: `Tonnage agrégé des navires partis de Dunkerque en 1789, par port d’attache`,
-              tooltip: d => `En 1789, ${formatNumber(parseInt(d.tonnage))} tx de bateaux partis de Dunkerque étaient rattachés au port de ${d.homeport_fr} (${d.homeport_state_fr})`,
-              // tooltip: d => translate('partie-1-ports-dattache', 'tooltip', props.lang, { 
-              //   tonnage: formatNumber(d.tonnage), 
-              //   homeport: d[`homeport_${props.lang}`], 
-              //   category: props.lang === 'fr' ? d.category_2 : d.category_2_en 
-              // }),
+              title: translate('HomeportsFromDunkerque', 'title', lang),
+              tooltip: d => translate('HomeportsFromDunkerque', 'tooltip', lang, {
+                tonnage: formatNumber(parseInt(d.tonnage)),
+                homeport: lang === 'fr' ? d.homeport_fr : d.homeport_en,
+                state: lang === 'fr' ? d.homeport_state_fr : d.homeport_state_en
+              }),
               fieldsHierarchy: ['state_category', 'homeport', 'homeport_state_fr'],
               // fieldsHierarchy: ['state_category', 'homeport', 'homeport_state_fr', ],
               color: {
                 field: lang === 'fr' ? 'homeport_state_fr' : 'homeport_state_en',
-                // palette: props.lang === 'fr' ? colorPalettes.portsTreemaps :  colorPalettes.portsTreemapsEn
               },
               leaf: {
                 labelField: 'homeport_' + lang,
                 countField: 'tonnage',
-                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage))} tx)`
+                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage))} ${lang === 'fr' ? 'tx' : 'b'})`
               }
             }
             }
@@ -229,7 +228,7 @@ export default function VisualizationController({
       case 'estimation-imports-exports':
         return <EstimationImportsExports {...{ data, width, height, atlasMode, lang }} />;
       case 'comparaisons-la-rochelle':
-        return <ComparaisonsLaRochelle {...{ data, width, height, lang, atlasMode, callerProps }} />;
+        return <ComparaisonsLaRochelle {...{ data, width, height: atlasMode ? height * 1.5 : height, lang, atlasMode, callerProps }} />;
       case 'intro':
         return <Intro {...{ data, width, height, lang, atlasMode, callerProps }} />;
       case 'exports-vs-smogglage':

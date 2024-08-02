@@ -1,10 +1,10 @@
 site:
   title:
-    fr: 'Commerce, contrebande et ports francs : le cas de Dunkerque au XVIIIe siècle'
-    en: Trade around the port of Dunkerque in the 18th century
+    fr: "Commerce, contrebande et ports francs : le cas de Dunkerque au XVIIIe siècle"
+    en: "Trade, smuggling and free ports: the case of 18th-century Dunkirk"
   titleHTML:
-    fr: 'Commerce, contrebande et ports francs&nbsp;: le cas de Dunkerque au&nbsp;<span>XVIII</span><sup>e</sup>&nbsp;siècle'
-    en: Trade around the port of Dunkerque in the 18th century
+    fr: "Commerce, contrebande et ports francs&nbsp;: le cas de Dunkerque au&nbsp;<span>XVIII</span><sup>e</sup>&nbsp;siècle"
+    en: "Trade, smuggling and free ports: the case of 18<sup>th</sup>-century Dunkirk"
   subtitle:
     fr: Une étude de cas du programme de recherche interdisciplinaire PORTIC
     en: A case study of the PORTIC interdisciplinary research program
@@ -55,27 +55,79 @@ vizContainer:
 EvolutionBudgetDunkerque:
   tooltip:
     fr: ${reference} d'une valeur de ${value} livres tournois en ${year}
-    en:
+    en: ${reference} of a value of ${value} livres tournois in ${year}
   x:
     fr: Année comptable
-    en: 
+    en: Accounting year
   y:
     fr: Valeur en livres tournois
-    en: 
+    en: Value in livres tournois
+  succession_autriche:
+    fr: Guerre de succession d'Autriche
+    en: Franco-British conflict within the War of Jenkins's Ear
+  succession_espagne:
+    fr: Guerre de succession d'Espagne
+    en: Spanish succession war
+  seven_years_war:
+    fr: Guerre de sept ans
+    en: Seven years war
+  us_war:
+    fr: Guerre d'indépendance américaine
+    en: American War of Independence
+  Recettes:
+    fr: Recettes
+    en: Revenues
+  Dépenses:
+    fr: Dépenses
+    en: Expenses
+  Soldes comptables:
+    fr: Soldes comptables
+    en: Book balances
 EvolutionTypeConges:
   tooltip:
     fr: En ${year}, ${value} congés de type ${type} ont été délivrés
-    en:
+    en: In ${year}, ${value} congés of type ${type} were delivered
   x:
     fr: Année
     en: Year
   y:
     fr: Nombre de congés
-    en: 
+    en: Number of congés
+  us_war:
+    fr: Guerre d'indépendance américaine
+    en: American War of Independence
+  pêche:
+    fr: pêche
+    en: fishing
+    color: "rgb(238, 222, 113)"
+  cabotage (pav. fr):
+    fr: cabotage (pav. fr)
+    en: cabotage (french flag)
+    color: "#668EDB"
+  Isles (pav. fr):
+    fr: Isles (pav. fr)
+    en: Isles (french flag)
+    color: "#41BEA3"
+  long-cours (pav. fr):
+    fr: long-cours (pav. fr)
+    en: long distance (french flag)
+    color: "#A7E6F9"
+  guerre et marchandises (pav. fr):
+    fr: guerre et marchandises (pav. fr)
+    en: war and goods (french flag)
+    color: "#514EEE"
+  cabotage (étrangers):
+    fr: cabotage (étrangers)
+    en: cabotage (strangers)
+    color: "#E5881A"
+  long-cours (étrangers):
+    fr: long-cours (étrangers)
+    en: long-distance (strangers)
+    color: "#875E2E"
 PecheTypeValue:
   tooltip:
-    fr: Valeur de ${value} livres tournois en ${year}
-    en:
+    fr: Valeur de ${value} livres tournois en ${year} pour ${zone}
+    en: Value of ${value} livres tournois in ${year} for ${zone}
   x:
     fr: Année
     en: Year
@@ -87,8 +139,8 @@ PecheTypeValue:
     en: Fishing activities localization
 TonnageMoyenMois:
   tooltip:
-    fr: En  ${month} ${period}, le tonnage moyen au départ de Dunkerque était de ${value} tonneaux
-    en: 
+    fr: En ${month} ${period}, le tonnage moyen au départ de Dunkerque était de ${value} tonneaux
+    en: In ${month} ${period}, the mean tonnage for ships leaving Dunkirk was of ${value} barrels
   x:
     fr: Tonnage moyen
     en: Mean tonnage
@@ -97,46 +149,67 @@ TonnageMoyenMois:
     en: Months
   brush_prompt:
     fr: "Sélectionner une ou plusieurs années à prendre en compte en dessinant un rectangle ci-dessous :"
-    en: "Select one or several years to take into account by brushing a rectangle:"
+    en: "Select one or several years to take into account by drawing a rectangle in the visualization below:"
 PecheMap:
   tooltip:
     fr: En ${year}, la pêche en ${type} a généré une valeur de ${value} livres tournois
-    en: 
+    en: In ${year}, fishing in ${type} generated ${value} livres tournois of value
   y:
     fr: Valeur des pêches dunkerquoises
     en: Value
   x:
     fr: Année
     en: Year
+  Islande:
+    fr: Islande
+    en: Island
+  Terre-Neuve:
+    fr: Terre-Neuve
+    en: Newfoundland
+  Hitlande:
+    fr: Hitlande
+    en: Hitland
+  Hareng:
+    fr: Hareng
+    en: Herring
+  Dogre Banc:
+    fr: Dogre Banc
+    en: Dogre Banc
 HistoireDunkerque:
   legend_square_port_free:
     fr: Port franc
-    en: 
+    en: Free port
   legend_square_kingdom_france:
     fr: Royaume de France
-    en: 
+    en: Kingdom of France
   legend_point_port_interests:
     fr: Défend les intérêts du Port Franc
-    en: 
+    en: Defends Free Port interests
   legend_point_guard:
-    fr: Poste de garde
-    en: 
+    fr: Poste de douane
+    en: Customs post
   legend_point_kingdom_dependency:
     fr: Dépend du Royaume de France
-    en: 
+    en: Depends on the Kingdom of France
   btn_previous_step:
-      fr: Étape précédente
-      en: Previous step
+    fr: Étape précédente
+    en: Previous step
   btn_next_step:
     fr: Étape suivante
     en: Next step
   assise_title:
     fr: Évolution de la part de l'assise dans les recettes de Dunkerque
-    en:
+    en: Evolution of the share of the "assise" in Dunkirk revenues
 TonnagesF12:
   destination:
     fr: destination
     en: destination
+  title_left:
+    fr: Partenaires de la source F12
+    en: Partners from the F12 source
+  title_right:
+    fr: Partenaires F12 alignés sur la classification toflit18 "grouping"
+    en: F12 Partners aligned on toflit18 "grouping" classification
   hyp_with_lest:
     fr: En supposant que la source F12 n’inclut pas les navires partis sur lest (estimation de référence)
     en: suppose source counts ships which left with ballast
@@ -149,7 +222,85 @@ TonnagesF12:
   without_lest_title:
     fr: tonnage cumulé (hypothèse selon laquelle la source ne contient pas le lest)
     en: cumulated tonnage (we suppose the source does not contains ballast)
+  tooltip:
+    fr: ${tx} tonneaux envoyé au partenaire ${destination} en 1787
+    en: ${tx} barrels sent to partner ${destination} in 1787
 CarteDestinations:
+  dunkerquois:
+    fr: dunkerquois
+    en: dunkirk
+  étranger:
+    fr: étranger
+    en: stranger
+  brémois:
+    fr: brémois
+    en: bremish
+  hambourgeois:
+    fr: hambourgeois
+    en: hamburger
+  suédois:
+    fr: suédois
+    en: swedish
+  papenbourgeois:
+    fr: papenbourgeois
+    en: papenburger
+  espagnol:
+    fr: espagnol
+    en: spanish
+  oldenbourgeois:
+    fr: oldenbourgeois
+    en: oldenburger
+  inconnu:
+    fr: inconnu
+    en: unknown
+  meckelmbourgeois:
+    fr: meckelmbourgeois
+    en: mecklenburger
+  prussien:
+    fr: prussien
+    en: prussian
+  danois:
+    fr: danois
+    en: danish
+  pays-bas autrichien:
+    fr: pays-bas autrichien
+    en: austrian netherlands
+  étasunien:
+    fr: étasunien
+    en: american
+  autres français:
+    fr: autres français
+    en: other french
+  hollandais:
+    fr: hollandais
+    en: dutch
+  britannique:
+    fr: britannique
+    en: british
+  map_position_fr_to_en:
+    fr: De la France à l'Angleterre
+    en: From France to England
+  map_position_france:
+    fr: France
+    en: France
+  map_position_world_north:
+    fr: Atlantique
+    en: Atlantlic ocean
+  map_position_flanders_britonny:
+    fr: De la Bretagne à la Flandre
+    en: From Bretagne to Flanders
+  map_position_world:
+    fr: Monde
+    en: World
+  map_position_south_europe:
+    fr: Europe du Sud
+    en: South Europe
+  map_position_north_europe:
+    fr: Europe du Nord
+    en: North Europe
+  tooltip:
+    fr: ${destination} - ${tonnage} tx. Le pavillon dominant est ${dominantFlag} à ${pct}%
+    en: ${destination} - ${tonnage} barrels. The dominant flag is ${dominantFlag} for ${pct}% of travels
   map_position:
     fr: Position de la carte
     en: Map position
@@ -200,70 +351,693 @@ CarteDestinations:
     en: hide
   tonnage_for_destination_and_flag:
     fr: Les navires au départ de Dunkerque de pavillon ${flag} et à destination de ${destination} représentaient ${tonnage} tonneaux cumulés
-    en:
+    en: Ships leaving Dunkirk with a ${flag} flag and going toward ${destination} represented a cumulated tonnage of ${tonnage}
 Pilotage:
   title_comparaison:
     fr: Comparaison entre les données du pilotage <br/>et le registre des congés
-    en: 
+    en: Comparison between pilotage data <br/>and registre des congés
   title_estimation:
     fr: Évolution (projetée puis observée) du nombre de sorties de Dunkerque de 1730 à 1791
-    en: 
+    en: Evolution (projected, then observed) of the number of ships leaving Dunkirk from 1830 to 1791
   title_evaluation:
     fr: Évaluation du nombre de sorties
-    en: 
+    en: Estimation of the number of departures
   legend_pilotage:
     fr: Navires sortant du port de Dunkerque avec du pilotage
-    en: 
+    en: Ships leaving Dunkirk harbor with pilotage
   legend_total:
     fr: Navires quittant le port de Dunkerque selon le registre des congés
-    en: 
+    en: Ships leaving Dunkirk harbor according to the registre des congés
   footer_projection:
     fr: Projection à partir des rapports entre pilotage et sorties sur ${year_start}/${year_end}
-    en: 
+    en: Projection based on the relationship between pilotage and departures in ${year_start}/${year_end}
   footer_register:
     fr: Données issues des registres
-    en: 
+    en: Data from registers
+  mean:
+    fr: Moyenne
+    en: Mean
   description_demonstration:
     fr: >-
       À partir de la moyenne des rapports entre nombre de sorties avec un pilote et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec un pilotage).
       La comparaison avec les données des congés permet de constater une marge de variation entre <i>+${value_max} points de pourcentage</i> et <i>${value_min} points de pourcentage</i> par rapport à la moyenne de ${mean}%.
-    en: 
+    en: >-
+      From the average of the ratios between number of departures with a pilot and number of total departures for 1765-1791, we can estimate the number of ships leaving Dunkirk for 1730-1765 (where we only have the number of sorties with pilotage).
+      Comparison with <i>congés</i> data shows a margin of variation between <i>+${value_max} percentage points</i> and <i>${value_min} percentage points</i> compared to the average of ${mean}%.
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
-    en: 
+    en: Between 1765 and 1791, on average ${mean}% of ships leaving Dunkirk used pilotage each year
   tooltip_total:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque
-    en:
+    en: In ${year}, ${value} ships left the port of Dunkirk
   tooltip_pilotage:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque avec un pilote
-    en:
+    en: In ${year}, ${value} ships left the port of Dunkirk with a pilot
   tooltip_estimation:
     fr: En ${year}, on estime qu'entre ${value_min} et ${value_max} navires sont sortis du port de Dunkerque
-    en:
+    en: In ${year}, it is estimated that between ${value_min} and ${value_max} ships left the port of Dunkirk
   tooltip_projection_positive:
     fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage supérieur au rapport moyen de 1765 à 1791
-    en:
+    en: In ${year}, the ratio between pilotage and sorties was ${proportion}%, corresponding to ${value} percentage points higher than the average ratio from 1765 to 1791
   tooltip_projection_negative:
     fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage inférieur au rapport moyen de 1765 à 1791
-    en:
+    en: In ${year}, the ratio between pilotage and sorties was ${proportion}%, corresponding to ${value} percentage points lower than the average ratio from 1765 to 1791
   note_schema_mean:
     fr: Moyenne du rapport entre nombre de pilotages et nombre de sorties
-    en: 
+    en: Average of the ratio between number of pilotages and number of ships leaving Dunkirk
   note_schema_sup:
     fr: Plus de bateaux avec pilote que la moyenne
-    en: 
+    en: More ships with a pilot than average
   note_schema_inf:
     fr: Moins de bateaux avec pilote que la moyenne
-    en: 
+    en: Less ships with a pilot than average
   note_demonstration_pilotage:
     fr: Navires sortis avec un pilote
-    en: 
+    en: Ships leaving Dunkirk with a pilot
   note_demonstration_margin:
     fr: Marge de variation de la projection
-    en: 
+    en: Projection variation margin
   note_demonstration_projection:
     fr: Projection du nombre total de sorties
-    en: 
+    en: Projection of the total number of ships leaving
 CommentedImage:
   click-prompt:
     fr: Cliquer pour consulter
+    en: Click to expand
+SmogglageStatus:
+  left_title:
+    fr: port de départ (en nombre de départs)
+    en: departure port (in number of departures)
+  right_title:
+    fr: type de trajet des navires anglais
+    en: type of travel for english ships
+  port_label:
+    fr: ${port} (${pct}% de smoggleurs)
+    en: ${port} (${pct}% smogglers)
+  smoggler:
+    fr: smoggleur
+    en: smoggler
+  non_smoggler:
+    fr: non-smoggleur
+    en: non-smoggler
+HomeportSmoggleurs:
+  title:
+    fr: Carte des ports d'attache des smoggleurs
+    en: Map of smogglers home ports
+  y:
+    fr: nombre de trajets
+    en: number of travels
+ResumeActivitesDunkerquois:
+  step_1_title:
+    fr: classe de tonnage du navire
+    en: ship tonnage class
+  step_2_title:
+    fr: port de départ
+    en: departure
+  step_3_title:
+    fr: port de destination
+    en: destination
+  step_4_title:
+    fr: type de cargaison
+    en: type of cargo
+  Matières premières:
+    fr: Matières premières
+    en: Raw materials
+  Pêche:
+    fr: Pêche
+    en: Fishing
+  Subsistances:
+    fr: Subsistances
+    en: Food
+  [vide]:
+    fr: Vide
+    en: Empty
+  Objets manufacturés:
+    fr: Objets manufacturés
+    en: Manufactured objects
+  cargaison inconnue:
+    fr: cargaison inconnue
+    en: unknown cargo
+  Divers:
+    fr: Divers
+    en: Miscellaneous
+  Industrie française et étrangère:
+    fr: Industrie française et étrangère
+    en: French and foreign industry
+  Bêtes de somme:
+    fr: Bêtes de somme
+    en: Beasts of burden
+  Drogues:
+    fr: Drogues
+    en: Drugs
+  Métaux:
+    fr: Métaux
+    en: Metals
+StigmatesSmoggleurs:
+  step_1_title:
+    fr: tonnage déclaré
+    en: declared tonnage
+  step_2_title:
+    fr: destination déclarée
+    en: declared destination
+  unknown:
+    fr: inconnu
+    en: unknown
+  Lisbonne ou Bergen:
+    fr: Lisbonne ou Bergen
+    en: Lisbon or Bergen
+  Angleterre:
+    fr: Angleterre
+    en: England
+DepartsFrVersAngleterre:
+  title:
+    fr: Les départs depuis la France vers l'Angleterre en 1787, par provinces
+    en: Departures from France to England in 1787, by provinces
+  legend_left:
+    fr: départs vers la Grande-Bretagne
+    en: departures to England
+  legend_right:
+    fr: départs vers d'autres directions
+    en: departures to other directions
+  gb_pct:
+    fr: ${pct}% vers la GB
+    en: ${pct}% towards England
+  single_port_tooltip_left:
+    fr: En 1787, ${tonnage} tx partaient du port de ${port}
+    en: In 1787, ${tonnage} tx left the port of ${port}
+  multiple_ports_tooltip_left:
+    fr: En 1787, ${tonnage} tx partaient des ports de ${port} vers des ports de Grande-Bretagne (les ports concernés sont ${ports})
+    en: In 1787, ${tonnage} tx left ports from ${port} towards british ports (related french ports are ${ports})
+  single_port_tooltip_right:
+    fr: En 1787, ${tonnage} tx partaient du port de ${port}
+    en: In 1787, ${tonnage} tx left the port of ${port}
+  multiple_ports_tooltip_right:
+    fr: En 1787, ${tonnage} tx partaient des ports de ${port} vers des ports hors Grande-Bretagne (les ports concernés sont ${ports})
+    en: In 1787, ${tonnage} tx left ports from ${port} towards non-british ports (related french ports are ${ports})
+DestinationsGbVersGb:
+  title:
+    fr: Destinations des navires britanniques partis de Dunkerque en 1787
+    en: Destinations of british ships which left Dunkirk in 1787
+  tooltip:
+    fr: ${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1789)
+    en: ${port} (${nb_pointcalls} travels of british ships from Dunkirk in 1789)
+ExportsVsSmogglage:
+  title:
+    fr: Produits smogglés par port d'attache des smoggleurs (1781-1790)
+    en: Smoggled products by home port of smogglers (1781-1790)
+  legend_toggle_title:
+    fr: Dimensionner les ports sur la carte par
+    en: Dimension ports by
+  legend_travels:
+    fr: nombre de voyages
+    en: number of travels
+  legend_price:
+    fr: prix de la cargaison
+    en: price of the cargo
+  legend_howto:
+    fr: Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquer dessus pour voir les parts de produits smogglés localement.
+    en: Hover over an item to see the details compared to all ports, click on it to see the shares of locally smogged products
+  tooltip_prompt:
+    fr: Cliquer pour voir le détail du port de ${port}
+    en: Click to see details for the port of ${port}
+  tooltip_radar:
+    fr: ${port} - estimation de la valeur à partir des quantités
+    en: ${port} - value estimate made according to quantities
+  Varia:
+    fr: Varia
+    en: Varia
+  Thés:
+    fr: Thés
+    en: Teas
+  Vins:
+    fr: Vins
+    en: Wines
+  Textiles:
+    fr: Textiles
+    en: Textiles
+  Eaux-de-vie et liqueurs:
+    fr: Eaux-de-vie et liqueurs
+    en: Brandies and liqueurs
+  Tabac:
+    fr: Tabac
+    en: Tobacco
+  Café:
+    fr: Café
+    en: Coffee
+  Sucre:
+    fr: Sucre
+    en: Sugar
+PrixSmogglageGeneral:
+  select_prompt:
+    fr: Sélectionner la grandeur à visualiser
+    en: Select the quantity to visualize
+  color_title:
+    fr: Unité de mesure
+    en: Measure unit
+HomeportsFromDunkerque:
+  title:
+    fr: Tonnage agrégé des navires partis de Dunkerque en 1789, par port d’attache
+    en: Aggregated tonnage of ships leaving Dunkirk in 1789, by home port
+  tooltip:
+    fr: En 1789, ${tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${homeport} (${state})
+    en: In 1789, ${tonnage} barrels of ships leaving from Dunkirk were attached to the port of ${homeport} (${state})
+ExportsFr1787:
+  tooltip:
+    fr: ${value} lt. exportés vers le partenaire ${partner}
+    en: ${value} lt. exported to the partner ${partner}
+TonnageF12:
+  title1:
+    fr: Exportations selon toflit18
+    en: Exports according to toflit18
+  x1:
+    fr: somme des exports
+    en: sum of exports
+  y1:
+    fr: partenaire
+    en: partner
+  tooltip1:
+    fr: ${value} lt exportés vers le partenaire ${partner}
+    en: ${value} lt exported to the partner ${partner}
+  title2:
+    fr: Tonnages selon F12
+    en: Tonnages according to F12
+  x2:
+    fr: somme des tonnages
+    en: tonnages sum
+  y2:
+    fr: partenaire
+    en: partner
+  tooltip2:
+    fr: ${value} tonneaux cumulés envoyés vers le partenaire ${partner}
+    en: ${value} barrels ("tonneaux") sent to the partner ${partner}
+  title3:
+    fr: Valeur par tonneau
+    en: Value per barrel
+  x3:
+    fr: prix par tonneau
+    en: price per barrel
+  y3:
+    fr: partenaire
+    en: partner
+  tooltip3:
+    fr: ${value} lt par tonneau pour le partenaire ${partner}
+    en: ${value} lt per barrel ("tonneau") for the partner ${partner}
+ComparaisonLaRochelle:
+  title1:
+    fr: Exportations toflit18 de la Direction des Fermes (DF) de La Rochelle en 1789
+    en: Toflit18 exports for the Direction des Fermes (DF) of La Rochelle in 1789
+  tooltip1:
+    fr: ${value} lt d'exportation pour le partenaire ${partner}
+    en: ${value} lt of exports for the partner ${partner}
+  title2:
+    fr: Destinations navigocorpus au départ des ports de la DF de La Rochelle en 1789
+    en: Navigocorpus destinations from La Rochelle DF ports in 1789
+  tooltip2:
+    fr: ${value} tonneaux pour le partenaire ${partner}
+    en: ${value} barrels for partner ${partner}
+  title3:
+    fr: "Vérification de la projection : dans la source = ${source_value} lt., projeté = ${projected_value} lt."
+    en: "Verification of the projection: in source = ${source_value} lt., projected = ${projected_value} lt."
+  tooltip3:
+    fr: ${value} pour le partenaire ${partner} (${unit})
+    en: ${value} for the partner ${partner} (${unit})
+  color3:
+    fr: Type de métrique
+    en: Type of metric
+  estimation_type_1:
+    fr: valeur observée dans toflit18 (pondérée avec les ratios terre-mer)
+    en: value observed in toflit18 (weighted with land-sea ratios)
+  estimation_type_2:
+    fr: estimation basse (hyp. F12 inclut lest)
+    en: low estimate (supposing F12 includes ballast)
+  estimation_type_3:
+    fr: estimation haute (hyp. F12 exclut lest)
+    en: low estimate (supposing F12 excludes ballast)
+DestinationsDkPrProjection:
+  x:
+    fr: tonnage
+    en: tonnage
+  y:
+    fr: destination
+    en: destination
+  tooltip:
+    fr: ${tonnage} tonneaux cumulés pour la destination ${destination}
+    en: ${tonnage} cumulated barrels for the destination ${destination}
+EstimationParTonnageDk:
+  title1:
+    fr: Tonnages cumulés
+    en: Cumulated tonnages
+  tooltip1:
+    fr: ${value} tonneaux cumulés pour le partenaire ${partner}
+    en: ${value} cumulated barrels for the partner ${partner}
+  title2:
+    fr: Prix par tonneau
+    en: Price per barrel
+  tooltip2:
+    fr: ${value} lt/tonneau pour le partenaire ${partner}
+    en: ${value} lt/barrel for the partner ${partner}
+  title3:
+    fr: "Estimation des exportations (total : ${value} lt.)"
+    en: "Exports estimation (total : ${value} lt.)"
+  tooltip3:
+    fr: "Estimation des exportations pour le partenaire ${partner} : ${value} lt. (pour ${tonnage} tonneaux cumulés)"
+    en: "Estimation of exports for the partner ${partner} : ${value} lt. (for ${tonnage} cumulated barrels)"
+ComparaisonProjectionDestinationProduitsColoniauxDk:
+  title1:
+    fr: "Estimation des exportations hors smogglage/pêche (total : ${value} lt.)"
+    en: "Estimation of exports excluding smuggling & fishing (total : ${value} lt.)"
+  tooltip1:
+    fr: "Estimation des exportations pour le partenaire ${partner} : ${value} lt. (pour ${tonnage} tonneaux cumulés)"
+    en: "Estimation of exports for the partner ${partner}: ${value} lt. (for ${tonnage} cumulated barrels)"
+  title2:
+    fr: "Observation des importations pour les partenaires correspondant (total : ${value} lt.)"
+    en: "Observation of imports for corresponding partners (total : ${value} lt.)"
+  tooltip2:
+    fr: "Importations du BF de Dunkerque depuis le partenaire ${partner} : ${value} lt."
+    en: "Imports of Dunkerque Bureau des Fermes for the partner ${partner}: ${value} lt."
+EstimationImportsExports:
+  title_left_general:
+    fr: Estimation des exportations de Dunkerque
+    en: Estimation of Dunkerque exports
+  title_left_left:
+    fr: Importations connues
+    en: Known imports
+  title_left_right:
+    fr: Exportations connues et estimées
+    en: Known and estimated exports
+  title_right_general:
+    fr: Focus sur le Royaume Uni
+    en: Focus on the United Kingdom
+  title_right_left:
+    fr: Vu par le Royaume Uni
+    en: Seen by the United Kingdom
+  title_right_right:
+    fr: Vu par la Royaume de France
+    en: Seen by the Kingdom of France
+  imports_bf_dk:
+    fr: importations du bureau des fermes de Dunkerque
+    en: imports from the bureau des fermes of Dunkerque
+  known_exports_to_france:
+    fr: exportations connues de Dunkerque vers la France
+    en: known exports to France from the bureau des fermes of Dunkerque
+  known_colonial_exports:
+    fr: exportations connues de produits coloniaux depuis Dunkerque vers l'étranger
+    en: known exports of colonial products from Dunkirk to foreign countries
+  estimation_total_exports:
+    fr: estimation des exportations totales
+    en: estimation of total exports
+  estimation_smogglage:
+    fr: estimation du smogglage
+    en: estimation of smuggling
+  imports_cust:
+    fr: importations au RU depuis Flandres françaises selon les royal customs
+    en: UK imports from French Flanders according to the royal customs
+  known_uk_exports:
+    fr: exportations déclarées vers le RU
+    en: declared exports to the UK
+  estimated_uk_exports:
+    fr: estimation des exportations vers le RU
+    en: estimation of exports towards the UK
+  estimated_smuggling:
+    fr: estimation du smogglage
+    en: estimation of smuggling
+  differential_imports_exports:
+    fr: différentiel entre importations et exportations
+    en: difference between imports and exports
+  legend_sources:
+    fr: Sources
+    en: Sources
+  legend_projections:
+    fr: Projections
+    en: Projections
+  legend_differential:
+    fr: Différentiel entre sources et projections
+    en: Difference between sources and projections
+AlluvialImportExport:
+  imports:
+    fr: import.
+    en: imports
+  exports:
+    fr: export.
+    en: exports
+  missing_value_summary:
+    fr: "Valeur manquante dans les exportations par rapport aux importations : ${value} lt."
+    en: "Missing value in exports compared to imports: ${value} lt."
+  Monde:
+    fr: Monde
+    en: World
+  Colonies:
+    fr: Colonies
+    en: Colonies
+  Fraude:
+    fr: Fraude
+    en: Fraude
+  France:
+    fr: France
+    en: France
+  Café:
+    fr: Café
+    en: Coffee
+  Coton non transformé:
+    fr: Coton non transformé
+    en: Unprocessed cotton
+  Indigo:
+    fr: Indigo
+    en: Indigo
+  Sucre:
+    fr: Sucre
+    en: Sugar
+  Cacao et chocolat:
+    fr: Cacao et chocolat
+    en: Cacao and chocolate
+  Bois divers hors combustible:
+    fr: Bois divers hors combustible
+    en: Miscellaneous wood excluding fuel
+  Matières brutes et transformées pour teinture:
+    fr: Matières brutes et transformées pour teinture
+    en: Raw and processed materials for dyeing
+  Fils divers:
+    fr: Fils divers
+    en: Various threads
+  Subsistances diverses et mélangées:
+    fr: Subsistances diverses et mélangées
+    en: Diverse and mixed subsistence
+  Cuirs, peaux et pelleterie:
+    fr: Cuirs, peaux et pelleterie
+    en: Hides, skins and furs
+  Eaux-de-vie et liqueurs:
+    fr: Eaux-de-vie et liqueurs
+    en: Brandies and liqueurs
+  Sirop et mélasse:
+    fr: Sirop et mélasse
+    en: Syrup and molasses
+  Tabac:
+    fr: Tabac
+    en: Tobacco
+  Divers mélangés:
+    fr: Divers mélangés
+    en: Various mixed
+  Produits manufacturés:
+    fr: Produits manufacturés
+    en: Manufactured products
+  Produits primaires:
+    fr: Produits primaires
+    en: Primary products
+  Produits agricoles:
+    fr: Produits agricoles
+    en: Agricultural products
+  Inconnus:
+    fr: Inconnus
+    en: Unknowns
+  Toiles diverses:
+    fr: Toiles diverses
+    en: Various canvases
+  Blé et autres grains comestibles:
+    fr: Blé et autres grains comestibles
+    en: Wheat and other edible grains
+  Toiles de coton:
+    fr: Toiles de coton
+    en: Cotton canvasses
+  Étoffes de laine:
+    fr: Étoffes de laine
+    en: Woolen fabrics
+  Châles et mouchoirs hors soie:
+    fr: Châles et mouchoirs hors soie
+    en: Non-silk shawls and handkerchiefs
+  Ouvrages métalliques:
+    fr: Ouvrages métalliques
+    en: Metal works
+  Thé:
+    fr: Thé
+    en: Tea
+  Gravelée, potasse et védasse:
+    fr: Gravelée, potasse et védasse
+    en: Gravel, potash and vedasse
+  Soie:
+    fr: Soie
+    en: Silk
+  Toiles de chanvre et de lin:
+    fr: Toiles de chanvre et de lin
+    en: Hemp and linen fabrics
+  Étoffes de soie:
+    fr: Étoffes de soie
+    en: Silk fabrics
+  Quincaillerie:
+    fr: Quincaillerie
+    en: Ironsmith
+  Fruits frais:
+    fr: Fruits frais
+    en: Fresh fruits
+  Sel:
+    fr: Sel
+    en: Salt
+  Farine, gruau, biscuits et pâtes:
+    fr: Farine, gruau, biscuits et pâtes
+    en: Flour, oatmeal, cookies and pasta
+  Huiles diverses:
+    fr: Huiles diverses
+    en: Various oils
+  Soieries diverses:
+    fr: Soieries diverses
+    en: Various silks
+  Laines non transformées diverses:
+    fr: Laines non transformées diverses
+    en: Miscellaneous unprocessed wools
+  Vins divers:
+    fr: Vins divers
+    en: Diverse wines
+  Cochenille:
+    fr: Cochenille
+    en: Cochineal
+  Huile d'olive à manger:
+    fr: Huile d'olive à manger
+    en: Olive oil to eat
+  Chanvre:
+    fr: Chanvre
+    en: Hemp
+  Cendres diverses:
+    fr: Cendres diverses
+    en: Various ashes
+  Animaux:
+    fr: Animaux
+    en: Animals
+  Poissons et fruits de mer:
+    fr: Poissons et fruits de mer
+    en: Fish and seafood
+  Brai, goudron et résines:
+    fr: Brai, goudron et résines
+    en: Pitch, tar and resins
+  Étoffes diverses:
+    fr: Étoffes diverses
+    en: Various fabrics
+  Légumes:
+    fr: Légumes
+    en: Vegetables
+  Ouvrages de bois, liège et jonc:
+    fr: Ouvrages de bois, liège et jonc
+    en: Works of wood, cork and rush
+  Savon:
+    fr: Savon
+    en: Soap
+  
+  Mercerie:
+    fr: Mercerie
+    en: Dry goods
+  Vins de Bordeaux:
+    fr: Vins de Bordeaux
+    en: Bordeaux Wines
+  Huile de poisson:
+    fr: Huile de poisson
+    en: Fish oil
+  Porcelaine, poterie, faïence et ouvrages de terre:
+    fr: Porcelaine, poterie, faïence et ouvrages de terre
+    en: Porcelain, pottery, earthenware
+  Bâtiments de mer et apparaux:
+    fr: Bâtiments de mer et apparaux
+    en: Sea vessels and equipment
+  Riz:
+    fr: Riz
+    en: Rice
+  others:
+    fr: Autres
+    en: Others
+  Matières premières diverses:
+    fr: Matières premières diverses
+    en: Various raw materials
+  Combustibles dont charbons et bois:
+    fr: Combustibles dont charbons et bois
+    en: Fuels including coal and wood
+
+  bureau des fermes de Dunkerque:
+    fr: Bureau des fermes de Dunkerque
+    en: Bureau des fermes of Dunkerque
+  Exports connus de Dunkerque:
+    fr: Exports connus de Dunkerque
+    en: Known exports of Dunkerque
+  Estimation du smogglage:
+    fr: Estimation du smogglage
+    en: Estimation of smuggling
+  Exports de produits coloniaux:
+    fr: Exportations de produits coloniaux
+    en: Exports of colonial products
+  Estimation exports hors col.:
+    fr: Estimation exportations hors col.
+    en: Estimation of exports excl. col.
+ImportsDunkerqueVsPortsFrancs:
+  title_left:
+    fr: Top 20 des produits importés par Dunkerque
+    en: Top 20 of products imported by Dunkirk
+  title_right:
+    fr: Top 20 des produits importés par
+    en: Top 20 of products imported by
+  toggle_total:
+    fr: Montrer le total des produits importés
+    en: Show the total of imported products
+  all_other_free_ports:
+    fr: tous les autres ports francs
+    en: all other free ports
+SmogglagePortsStats:
+  x1:
+    fr: port de départ
+    en: departure port
+  y1:
+    fr: nombre de départs de britanniques
+    en: number of british departures
+  y1_ticks:
+    fr: ${value} trajets
+    en: ${value} travels
+  tooltip:
+    fr: ${travels} trajets de navires anglais depuis le port de ${port}
+    en: ${travels} travels of british ships from the port of ${port}
+  x2:
+    fr: port de départ
+    en: departure port
+  y2:
+    fr: part des smoggleurs dans les trajets anglais
+    en: share of smogglers in british travels
+Intro:
+  free_port_1:
+    fr: Port franc
+    en: Free port
+  free_port_2:
+    fr: de Dunkerque
+    en: of Dunkirk
+  sources_1_1:
+    fr: Sources
+    en: Navigation-related
+  sources_1_2:
+    fr: relatives à la navigation
+    en: sources
+  france_1:
+    fr: Royaume
+    en: Kingdom
+  france_2:
+    fr: de France
+    en: of France
+  sources_2_1:
+    fr: Sources
+    en: Trade-related
+  sources_2_2:
+    fr: relatives au commerce
+    en: sources
+  

@@ -28,7 +28,7 @@ const ValeurParTonneau = ({
     <div className="ValeurParTonneau">
       <div className="columns-container">
         <div className="column">
-          <h2>Exports selon toflit18</h2>
+          <h2>{translate('TonnageF12', 'title1', lang)}</h2>
           <BarChart
             {...{
               data: actualData,
@@ -43,19 +43,23 @@ const ValeurParTonneau = ({
               domain: [0, 110000000],
               tickSpan: 50000000,
               tickFormat: d => `${formatNumber(d)} lt`,
-              title: 'somme des exports', // translate('TonnagesF12', 'with_lest_title', lang)
+              title: translate('TonnageF12', 'x1', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
               field: 'partner',
-              title: 'partenaire', //  translate('TonnagesF12', 'destination', lang)
+              title: translate('TonnageF12', 'y1', lang),
             }}
             tooltip={
-              (d) => `${formatNumber(parseInt(+d.sum_exports))} lt exportés vers le partenaire ${d.partner}`
+              (d) => 
+                translate('TonnageF12', 'tooltip1', lang, {
+                  value: formatNumber(parseInt(+d.sum_exports)),
+                  partner: d.partner
+                })
             }
           />
         </div>
         <div className="column">
-          <h2>Tonnages selon F12</h2>
+          <h2>{translate('TonnageF12', 'title2', lang)}</h2>
           <BarChart
             {...{
               data: actualData,
@@ -69,20 +73,24 @@ const ValeurParTonneau = ({
               field: withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest',
               domain: [0, 400001],
               tickSpan: 200000,
-              tickFormat: d => `${formatNumber(d)} tx`,
-              title: 'somme des tonnages', // translate('TonnagesF12', 'with_lest_title', lang)
+              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              title: translate('TonnageF12', 'x2', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
               field: 'partner',
-              title: 'partenaire', //  translate('TonnagesF12', 'destination', lang)
+              title: translate('TonnageF12', 'y2', lang), //  translate('TonnagesF12', 'destination', lang)
             }}
             tooltip={
-              (d) => `${formatNumber(d[withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest'])} tonneaux cumulés envoyés vers le partenaire ${d.partner}`
+              (d) => 
+                translate('TonnageF12', 'tooltip2', lang, {
+                  value: formatNumber(d[withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest']),
+                  partner: d.partner
+                })
             }
           />
         </div>
         <div className="column">
-           <h2>Valeur par tonneau</h2>
+           <h2>{translate('TonnageF12', 'title3', lang)}</h2>
           <BarChart
             {...{
               data: actualData,
@@ -96,12 +104,12 @@ const ValeurParTonneau = ({
               field: field,
               domain: [0, 1001],
               tickSpan: 300,
-              tickFormat: d => `${d} lt./t`,
-              title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
+              tickFormat: d => `${d} lt./${lang === 'fr' ? 't' : 'b'}`,
+              title: translate('TonnageF12', 'x3', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
               field: 'partner',
-              title: 'partenaire', //  translate('TonnagesF12', 'destination', lang)
+              title: translate('TonnageF12', 'y3', lang), //  translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
             // field: 'tonnage_hypothese_avec_lest',
@@ -109,7 +117,11 @@ const ValeurParTonneau = ({
             // }}
 
             tooltip={
-              (d) => `${d[field].toFixed(2)} lt par tonneau pour le partenaire ${d.partner}`
+              (d) => 
+                translate('TonnageF12', 'tooltip3', lang, {
+                  value: d[field].toFixed(2),
+                  partner: d.partner
+                })
             }
           />
         </div>

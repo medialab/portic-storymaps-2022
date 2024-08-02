@@ -3,23 +3,25 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import AlluvialChart from '../../components/AlluvialChart'
 
 import './SmogglageStatus.scss';
+import translate from '../../utils/translate';
 
 export default function SmogglageStatus({
   data,
   width,
-  height
+  height,
+  lang
 }) {
   const steps = [
     {
       field: 'departure_fr',
-      title: 'port de départ (en nombre de départs)',
+      title: translate('SmogglageStatus', 'left_title', lang),
       sortOrder: 'descending',
       label: 'portLabel'
     },
     {
       field: 'is_smoggleur',
       label: 'smoggleurLabel',
-      title: 'type de trajet des navires anglais',
+      title: translate('SmogglageStatus', 'right_title', lang),
       sortOrder: 'descending'
     },
   ];
@@ -45,11 +47,14 @@ export default function SmogglageStatus({
       const pctSmoggleurs = parseInt(pctMap[d.departure_fr].smogglers / (pctMap[d.departure_fr].smogglers + pctMap[d.departure_fr].normals) * 100);
       return {
       ...d,
-      portLabel: `${d.departure_fr} (${pctSmoggleurs}% de smoggleurs)`,
-      smoggleurLabel: d.is_smoggleur === '0' ? 'non-smoggleur' : 'smoggleur'
+      portLabel: translate('SmogglageStatus', 'port_label', lang, {
+        port: d.departure_fr,
+        pct: pctSmoggleurs
+      }),
+      smoggleurLabel: d.is_smoggleur === '0' ? translate('SmogglageStatus', 'non_smoggler', lang) : translate('SmogglageStatus', 'smoggler', lang)
     }
   });
-  }, [data])
+  }, [data, lang, translate])
   return (
     <>
       <AlluvialChart 

@@ -95,7 +95,7 @@ export default function DestinationsGbVersGb({
   return (
     <div className="DestinationsGbVersGb">
       <GeographicMapChart
-        title={'Destinations des navires britanniques partis de Dunkerque en 1787'}
+        title={translate('DestinationsGbVersGb', 'title', lang)}
         hideTitle={!atlasMode}
         // projectionTemplate={'Angleterre'}
         projectionTemplate={'England'}
@@ -139,9 +139,18 @@ export default function DestinationsGbVersGb({
                 }
                 const color = colorMap[category];
                 const messages = {
-                  'port_specifie': 'port spécifié',
-                  'fausse_destination': 'fausse destination',
-                  'gb_no_port': 'GB sans port'
+                  'port_specifie': {
+                    fr: 'port spécifié',
+                    en: 'specified port'
+                  },
+                  'fausse_destination': {
+                    fr: 'fausse destination',
+                    en: 'false destination'
+                  },
+                  'gb_no_port': {
+                    fr: 'GB sans port',
+                    en: 'No ports but GB'
+                  }
                 }
                 return (
                   <g className="port-group"
@@ -149,7 +158,13 @@ export default function DestinationsGbVersGb({
 
                     title={port}
                     data-for="map-tooltip"
-                    data-tip={`${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1789)`}
+                    data-tip={
+                      translate('DestinationsGbVersGb', 'tooltip', lang, {
+                        port,
+                        nb_pointcalls
+                      })
+                      // `${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1789)`
+                    }
                   >
                     <rect
                       fill={color}
@@ -187,7 +202,7 @@ export default function DestinationsGbVersGb({
                         y={barY + barHeight / 2 + fontSize / 2}
                         style={{fontSize}}
                       >
-                        {messages[category]}
+                        {messages[category][lang]}
                       </text>
                       : null
                     }

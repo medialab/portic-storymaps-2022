@@ -120,8 +120,9 @@ export default function FraudeExportDunkerque({
       // list flag groups
       const isDunkerquois = travel.homeport == 'Dunkerque';
       let flagGroup = isDunkerquois ? 'dunkerquois' : groupStrangers ? travel.flag_fr === 'français' ? 'autres français' : 'étranger' : travel.flag_fr === 'français' ? 'autres français' : travel.flag_fr;
-      if (!flagGroupModalitiesTemp.has(flagGroup)) {
-        flagGroupModalitiesTemp.add(flagGroup)
+      const flagGroupTranslated = translate('CarteDestinations', flagGroup, lang);
+      if (!flagGroupModalitiesTemp.has(flagGroupTranslated)) {
+        flagGroupModalitiesTemp.add(flagGroupTranslated)
       }
       // first filter tonnage
       if (tonnage >= minTonnage && tonnage <= maxTonnage) {
@@ -161,6 +162,7 @@ export default function FraudeExportDunkerque({
       } else {
         flagGroup = travel.flag_fr;
       }
+      flagGroup = translate('CarteDestinations', flagGroup, lang);
       // let flagGroup = isDunkerquois ? 'dunkerquois' : groupStrangers ? travel.flag_fr === 'français' ? 'français' : 'étranger' : travel.flag_fr;
       const destination = travel.destination;
       res.totalTonnage += +travel.tonnage;
@@ -213,8 +215,7 @@ export default function FraudeExportDunkerque({
       flagGroupModalities: Array.from(flagGroupModalitiesTemp).reverse(),
       vizData
     }
-  }, [travels, minTonnage, maxTonnage, flagGroupFilters, groupStrangers, longCoursOnly]);
-
+  }, [travels, minTonnage, maxTonnage, flagGroupFilters, groupStrangers, longCoursOnly, lang, translate]);
 
   const maxCircleArea = useMemo(() => {
     const maxDimension = max([width, height]);
@@ -334,31 +335,31 @@ export default function FraudeExportDunkerque({
             [
               {
                 id: 'from France to England',
-                title: 'De la France à l\'Angleterre',
+                title: translate('CarteDestinations', 'map_position_fr_to_en', lang),
               },
               {
                 id: 'France',
-                title: 'France',
+                title: translate('CarteDestinations', 'map_position_france', lang),
               },
               {
                 id: 'world north',
-                title: 'Atlantique',
+                title: translate('CarteDestinations', 'map_position_world_north', lang),
               },
               {
                 id: 'coast from Bretagne to Flandres',
-                title: 'De la Bretagne à la Flandre',
+                title: translate('CarteDestinations', 'map_position_flanders_britonny', lang),
               },
               {
                 id: 'World',
-                title: 'Monde',
+                title: translate('CarteDestinations', 'map_position_world', lang),
               },
               {
                 id: 'South Europe',
-                title: 'Europe du Sud'
+                title: translate('CarteDestinations', 'map_position_north_europe', lang),
               },
               {
                 id: 'North Europe',
-                title: 'Europe du Nord'
+                title: translate('CarteDestinations', 'map_position_south_europe', lang),
               },
               
             ]

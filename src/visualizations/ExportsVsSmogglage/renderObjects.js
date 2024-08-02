@@ -109,7 +109,7 @@ const renderObjects = ({
     onMouseOver,
     onMouseOut,
     highlightedPort,
-    // lang,
+    lang,
   } = data;
   const maxSizeValue = useMemo(() => {
     return max(homeportsData.map(d => +d[circleSizeVariable]))
@@ -208,6 +208,7 @@ const renderObjects = ({
                 labelGroup='right'
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
+                lang={lang}
                 {...{ label, x, y }}
                 radius={isActive ? height * .33 : radius}
                 fontSize={labelsFontSize}
@@ -237,6 +238,7 @@ const renderObjects = ({
                 labelGroup='left'
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
+                lang={lang}
                 {...{ label, x, y }}
                 radius={isActive ? height * .33 : radius}
                 fontSize={labelsFontSize}

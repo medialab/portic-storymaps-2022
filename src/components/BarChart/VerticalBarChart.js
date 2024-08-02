@@ -271,7 +271,7 @@ const VerticalBarChart = ({
                           width={margins.left}
                           height={rowHeight * 2}
                         >
-                          <div className="vertical-bar-label">
+                          <div className="vertical-bar-label" style={{height: bandHeight}}>
                             <div>{typeof formatLabel === 'function' ? formatLabel(yModality, groupIndex) : yModality}</div>
                           </div>
                         </foreignObject>

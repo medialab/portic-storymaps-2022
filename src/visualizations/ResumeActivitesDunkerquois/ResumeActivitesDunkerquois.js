@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
+import translate from "../../utils/translate";
 import AlluvialChart from "../../components/AlluvialChart";
 
 
 export default function ResumeActivitesDunkerquois({
-  data,
+  data: inputData,
   width,
   height,
   lang,
@@ -24,7 +25,7 @@ export default function ResumeActivitesDunkerquois({
   const steps = [
     {
       field: 'ship_tonnage_class',
-      title: 'classe de tonnage du navire',
+      title: translate('ResumeActivitesDunkerquois', 'step_1_title', lang),
       sortType: 'field',
       sortField: 'ship_tonnage_class_ranking',
       // label: 'smoggleurLabel',
@@ -32,25 +33,32 @@ export default function ResumeActivitesDunkerquois({
     },
     {
       field: 'departure',
-      title: 'port de départ',
+      title: translate('ResumeActivitesDunkerquois', 'step_2_title', lang),
       // label: 'smoggleurLabel',
       sortOrder: 'descending'
     },
     {
       field: 'destination_state',
-      title: 'port de destination',
+      title: translate('ResumeActivitesDunkerquois', 'step_3_title', lang),
       sortOrder: 'descending',
       // label: 'portLabel'
     },
     {
       field: 'cargo_type',
-      title: 'type de cargaison',
+      title: translate('ResumeActivitesDunkerquois', 'step_4_title', lang),
       // sortOrder: 'descending',
       // label: 'portLabel'
     },
 
   ];
 
+  const data = useMemo(() => {
+    return inputData.map(datum => ({
+      ...datum,
+      cargo_type: translate('ResumeActivitesDunkerquois', datum.cargo_type, lang)
+    }))
+  }, [inputData, lang]);
+  
   return (
     <div className="ResumeActivitesDunkerquois">
       <AlluvialChart

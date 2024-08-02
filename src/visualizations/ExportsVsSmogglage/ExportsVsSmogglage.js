@@ -1,7 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { max, min } from 'd3-array';
 
-import BarChart from '../../components/BarChart';
 import GeographicMapChart from '../../components/GeographicMapChart'
 import renderObjects from './renderObjects';
 
@@ -16,7 +15,7 @@ import {
 import RadarChart from "../../components/RadarChart";
 import { formatNumber } from "../../utils/misc";
 import ReactTooltip from "react-tooltip";
-
+import translate from "../../utils/translate";
 
 export default function ExportsVsSmogglage({
   width,
@@ -57,7 +56,7 @@ export default function ExportsVsSmogglage({
     }
   }, [data]);
 
-  const radarAxis = Object.keys(portsProductsGroups)
+  const radarAxis = Object.keys(portsProductsGroups).map(p => translate('ExportsVsSmogglage', p, lang))
   const radarData = useMemo(() => {
     let absoluteMaxValue = -Infinity;
     let output = homeportsData.map((port) => {
@@ -66,7 +65,7 @@ export default function ExportsVsSmogglage({
         const value = children.reduce((sum, childKey) => sum + +port[childKey], 0);
         return {
           ...current,
-          [groupKey]: value
+          [translate('ExportsVsSmogglage', groupKey, lang)]: value
         }
       }, {});
       const maxValue = max(Object.values(values));
@@ -114,24 +113,23 @@ export default function ExportsVsSmogglage({
       }
     })
     return output;
-  }, [homeportsData, selectedPort]);
-
-  const detailsData = useMemo(() => {
-    if (homeportsData) {
-      const port = homeportsData.find(p => p.port === selectedPort);
-      if (port) {
-        return portsQuantiFields.map((field) => {
-          const unit = field.split('(').length > 1 ? field.split('(').pop().replace(')', '') : 'indéfini';
-          return {
-            field: field.split('(')[0],
-            quantity: +port[field],
-            group: unit
-          }
-        })
-      }
-    }
-    return undefined;
-  }, [selectedPort, data]);
+  }, [homeportsData, selectedPort, lang, translate]);
+  // const detailsData = useMemo(() => {
+  //   if (homeportsData) {
+  //     const port = homeportsData.find(p => p.port === selectedPort);
+  //     if (port) {
+  //       return portsQuantiFields.map((field) => {
+  //         const unit = field.split('(').length > 1 ? field.split('(').pop().replace(')', '') : 'indéfini';
+  //         return {
+  //           field: field.split('(')[0],
+  //           quantity: +port[field],
+  //           group: unit
+  //         }
+  //       })
+  //     }
+  //   }
+  //   return undefined;
+  // }, [selectedPort, data, lang, translate]);
 
   const [projectionLatitude, projectionLongitude] = useMemo(() => {
     if (selectedPort && homeportsData) {
@@ -153,11 +151,11 @@ export default function ExportsVsSmogglage({
     // },
     {
       field: 'nb_pointcalls',
-      label: 'nombre de voyages'
+      label: translate('ExportsVsSmogglage', 'legend_travels', lang)
     },
     {
       field: 'shipment_price',
-      label: 'prix de la cargaison'
+      label: translate('ExportsVsSmogglage', 'legend_price', lang)
     }
     // 'tonnage',
     // 'nb_pointcalls',
@@ -172,11 +170,12 @@ export default function ExportsVsSmogglage({
       features: obj.features.filter(({ properties }) => properties.dominant === 'Grande-Bretagne' || properties.shortname === 'Grande-Bretagne')
     }
   }, [data]);
+
   const radarSize = selectedPort ? width / 2 : width / 3;
   return (
     <div className='ExportsVsSmogglage'>
       <GeographicMapChart
-        title={'Produits smogglés par port d\'attache des smoggleurs (1781-1790)'}
+        title={translate('ExportsVsSmogglage', 'title', lang)}
         hideTitle={!atlasMode}
         projectionTemplate={'England'}
         projectionConfig={selectedPort ? {
@@ -240,7 +239,7 @@ export default function ExportsVsSmogglage({
 
 
         {/* <div>Quantifier la visualisation suivante (faite à partir de <a href="https://github.com/medialab/portic-datasprint-2022/blob/main/productions/module_05/data/dunkerque_smugglers_shipmentvalues.csv" target="blank">ces données</a>) par :</div> */}
-        <div>Représenter les ports sur la carte par :</div>
+        <div>{translate('ExportsVsSmogglage', 'legend_toggle_title', lang)} :</div>
         <ul>
           {
             portsOverviewFieldsChoices
@@ -268,7 +267,7 @@ export default function ExportsVsSmogglage({
         {atlasMode ?
             <p>
               <i>
-                Survoler un élément pour en voir le détail comparé à l'ensemble des ports, cliquez dessus pour voir les parts de produits smogglés localement.
+                {translate('ExportsVsSmogglage', 'legend_howto', lang)}
               </i>
             </p>
             : null}

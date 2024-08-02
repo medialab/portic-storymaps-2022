@@ -9,7 +9,7 @@ import './DepartsFrVersAngleterre.scss'
 import ReactTooltip from 'react-tooltip';
 import { formatNumber } from '../../utils/misc';
 
-const Legend = ({ projection, width, height, atlasMode }) => {
+const Legend = ({ projection, width, height, atlasMode, lang }) => {
   const index = 'legend';
   const fontSize = 10;
   const leftRadius = width / 30;
@@ -32,7 +32,7 @@ const Legend = ({ projection, width, height, atlasMode }) => {
         y={fontSize / 2}
         textAnchor="end"
       >
-        {'départs vers la Grande-Bretagne'}
+        {translate('DepartsFrVersAngleterre', 'legend_left', lang)}
       </text>
       <text
         style={{ fontSize }}
@@ -40,7 +40,7 @@ const Legend = ({ projection, width, height, atlasMode }) => {
         y={fontSize / 2}
         textAnchor="start"
       >
-        {'départs vers d\'autres directions'}
+        {translate('DepartsFrVersAngleterre', 'legend_right', lang)}
       </text>
 
       <circle
@@ -132,7 +132,7 @@ export default function DepartsFrVersAngleterre({
   return (
     <div className="DepartsFrVersAngleterre">
       <GeographicMapChart
-        title={'Les départs depuis la France vers l\'Angleterre en 1787, par provinces'}
+        title={translate('DepartsFrVersAngleterre', 'title', lang)}
         hideTitle={!atlasMode}
         projectionTemplate={'France'}
         projectionConfig={{
@@ -175,8 +175,29 @@ export default function DepartsFrVersAngleterre({
                 const fontSize = fontSizeScale(parseInt(departs_vers_gb_tonnage) + parseInt(departs_hors_gb_tonnage));
                 const leftRadius = Math.sqrt((areaScale(departs_vers_gb_tonnage) / Math.PI));
                 const rightRadius = Math.sqrt((areaScale(departs_hors_gb_tonnage) / Math.PI));
-                const leftTooltip = port === 'Saint-Tropez' ? `En 1787, ${formatNumber(parseInt(departs_vers_gb_tonnage))} tx partaient du port de ${port}` : `En 1787, ${formatNumber(parseInt(departs_vers_gb_tonnage))} tx partaient des ports de ${port} vers des ports de Grande-Bretagne (ports concernés : ${ports})`
-                const rightTooltip = port === 'Saint-Tropez' ? `En 1787, ${formatNumber(parseInt(departs_hors_gb_tonnage))} tx partaient du port de ${port}` : `En 1787, ${formatNumber(parseInt(departs_hors_gb_tonnage))} tx partaient des ports de ${port} vers des ports hors Grande-Bretagne (ports concernés : ${ports})`
+                const leftTooltip = port === 'Saint-Tropez' ?
+                  translate('DepartsFrVersAngleterre', 'single_port_tooltip_left', lang, {
+                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage)),
+                    port
+                  })
+                  :
+                  translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_left', lang, {
+                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage)),
+                    port,
+                    ports
+                  })
+                const rightTooltip = port === 'Saint-Tropez' ?
+                translate('DepartsFrVersAngleterre', 'single_port_tooltip_right', lang, {
+                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage)),
+                  port
+                })
+                :
+                translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_right', lang, {
+                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage)),
+                  port,
+                  ports
+                })
+                
                 return (
                   <g className="port-group"
                     transform={`translate(${x}, ${y})`}
@@ -196,7 +217,11 @@ export default function DepartsFrVersAngleterre({
                       y={fontSize / 2 + fontSize * 1.1}
                       textAnchor="end"
                     >
-                      ({parseInt(parseInt(departs_vers_gb_tonnage) / (parseInt(departs_vers_gb_tonnage) + parseInt(departs_hors_gb_tonnage)) * 100)}% vers la GB)
+                      ({
+                        translate('DepartsFrVersAngleterre', 'gb_pct', lang, {
+                          pct: parseInt(parseInt(departs_vers_gb_tonnage) / (parseInt(departs_vers_gb_tonnage) + parseInt(departs_hors_gb_tonnage)) * 100)
+                        })
+                      })
                     </text>
 
                     <circle
@@ -234,7 +259,7 @@ export default function DepartsFrVersAngleterre({
           {
             type: 'custom',
             renderObjects: (props) => {
-              return <Legend {...props} />
+              return <Legend {...props} lang={lang} />
             }
           }
         ]}

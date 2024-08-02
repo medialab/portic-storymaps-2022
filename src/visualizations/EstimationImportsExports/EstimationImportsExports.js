@@ -11,73 +11,74 @@ const EstimationImportsExports = ({
   height,
   lang,
 }) => {
-
   const [withLest, setWithLest] = useState(true);
   const globalModel = {
-    title: 'Estimation des exports de Dunkerque',
+    title: translate('EstimationImportsExports', 'title_left_general', lang),
     left: {
-      title: 'Imports connus',
+      title: translate('EstimationImportsExports', 'title_left_left', lang),
       items: [
         {
           field: 'imports du bf de Dunkerque',
-          title: 'imports du bureau des fermes de Dunkerque',
+          title: translate('EstimationImportsExports', 'imports_bf_dk', lang),
           isSource: true
         }
       ]
     },
     right: {
-      title: 'Exports connus et estimés',
+      title: translate('EstimationImportsExports', 'title_left_right', lang),
       items: [
         {
           field: 'toflit18 flux mirroir : dk > france',
-          title: 'exports connus de Dunkerque vers la France',
+          title: translate('EstimationImportsExports', 'known_exports_to_france', lang),
           // title: 'imports déclarés par la France avec le partenaire Dunkerque (toflit18)',
           isSource: true,
           isCounted: true,
         },
         {
           field: 'toflit18 exports produits coloniaux (monde...)',
-          title: 'exports connus de produits coloniaux depuis Dunkerque vers l\'étranger',
+          title: translate('EstimationImportsExports', 'known_colonial_exports', lang),
           isSource: true,
           displaceValue: 3734878,
         },
         {
           field: withLest ? 'estimation des exports par projection (hyp. lest)' : 'estimation des exports par projection (hyp. sans lest)',
           // title: 'estimation des exports totaux (hors smogglage) par projection tonnage/prix'
-          title: 'estimation des exports totaux'
+          title: translate('EstimationImportsExports', 'estimation_total_exports', lang)
         },
         {
-          field: 'estimation smogglage'
+          field: 'estimation smogglage',
+          title: translate('EstimationImportsExports', 'estimation_smogglage', lang)
         },
       ]
     }
   }
   const englandZoomModel = {
-    title: 'Zoom sur le Royaume Uni',
+    title: translate('EstimationImportsExports', 'title_right_general', lang),
     left: {
-      title: 'Vu par le Royaume Uni',
+      title: translate('EstimationImportsExports', 'title_right_left', lang),
       items: [
         {
-          title: 'imports au RU depuis Flandres françaises selon les royal customs',
+          title: translate('EstimationImportsExports', 'imports_cust', lang),
           field: 'CUST Flandres > GB',
           isSource: true,
         }
       ]
     },
     right: {
-      title: 'Vu par la France',
+      title: translate('EstimationImportsExports', 'title_right_right', lang),
       items: [
         {
           field: 'toflit18 exports légitimes dk > angleterre',
-          title: 'exports connus vers le RU déclarés',
+          title: translate('EstimationImportsExports', 'known_uk_exports', lang),
           isSource: true,
         },
         {
           field: withLest ? 'projection angleterre uniquement (hyp lest)' : 'projection angleterre uniquement (hyp sans lest)',
-          title: 'estimation des exports vers le RU uniquement'
+          title: translate('EstimationImportsExports', 'estimated_uk_exports', lang)
         },
         {
-          field: 'estimation smogglage'
+          field: 'estimation smogglage',
+          title: translate('EstimationImportsExports', 'estimated_smuggling', lang)
         },
         
       ]
@@ -124,6 +125,7 @@ const EstimationImportsExports = ({
             height: height,
             data,
             ...globalModel,
+            lang,
           }
         }
       />
@@ -134,6 +136,7 @@ const EstimationImportsExports = ({
             height: height,
             data,
             ...englandZoomModel,
+            lang,
           }
         }
       />
