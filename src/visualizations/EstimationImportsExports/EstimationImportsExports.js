@@ -100,7 +100,7 @@ const EstimationImportsExports = ({
         }}
         x={{
           field: 'valeur',
-          tickFormat: d => `${formatNumber(d)} lt.`,
+          tickFormat: d => `${formatNumber(d, lang)} lt.`,
           // tickSpan: 5000000,
           // domain: [0, 15000001],
           title: 'valeur', // translate('TonnagesF12', 'with_lest_title', lang)
@@ -115,7 +115,7 @@ const EstimationImportsExports = ({
         }}
 
         tooltip={
-          (d) => `métrique pour ${d.label} : ${formatNumber(parseInt(d.valeur))} lt.`
+          (d) => `métrique pour ${d.label} : ${formatNumber(parseInt(d.valeur, lang))} lt.`
         }
       /> */}
       <ColumnsComparison

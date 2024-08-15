@@ -33,7 +33,7 @@ export default function EvolutionTypeConges({
             y={{
                 field: 'valeur',
                 title: translate('EvolutionTypeConges', 'y', lang),
-                tickFormat: (value, valueIndex) => formatNumber(value)
+                tickFormat: (value, valueIndex) => formatNumber(value, lang)
             }}
 
             annotations={[
@@ -69,11 +69,12 @@ export default function EvolutionTypeConges({
                 // }
             }}
             tooltip={
-                (d) => translate('EvolutionTypeConges', 'tooltip', lang, {
-                    value: formatNumber(d['valeur']),
-                    year: d['année'],
-                    type: d['type']
-                })
+              d => formatNumber(d['valeur'], lang)
+                // (d) => translate('EvolutionTypeConges', 'tooltip', lang, {
+                //     value: formatNumber(d['valeur'], lang),
+                //     year: d['année'],
+                //     type: d['type']
+                // })
             }
         />
     )

@@ -27,7 +27,7 @@ const DestinationsDkPrProjection = ({
       orientation='vertical'
       x={{
         field: 'tonnage',
-        tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+        tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
         title: translate('DestinationsDkPrProjection', 'x', lang), // translate('TonnagesF12', 'with_lest_title', lang)
       }}
       y={{
@@ -38,7 +38,7 @@ const DestinationsDkPrProjection = ({
     tooltip={
       (d) => 
         translate('DestinationsDkPrProjection', 'tooltip', lang, {
-          tonnage: formatNumber(parseInt(d.tonnage)),
+          tonnage: formatNumber(parseInt(d.tonnage, lang)),
           destination: d.destination
         })
     }

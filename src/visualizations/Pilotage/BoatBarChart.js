@@ -235,7 +235,7 @@ export default function BoatBarChart({
                                             x={-2}
                                             y={3}
                                             textAnchor='end'
-                                        >{formatNumber(value)}</text>
+                                        >{formatNumber(value, lang)}</text>
                                     }
                                 </g>
                             )

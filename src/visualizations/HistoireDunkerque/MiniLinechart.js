@@ -7,6 +7,7 @@ const MiniLinechart = ({
   data: inputData,
   width = 200,
   height = 100,
+  lang,
   x,
   y,
 }) => {
@@ -56,7 +57,7 @@ const MiniLinechart = ({
                     fontSize={8}
                     textAnchor={'end'}
                   >
-                    {formatNumber(pct)} lt.
+                    {formatNumber(pct, lang)} lt.
                   </text>
                   <line
                     x1={xAxisWidth - 5}
@@ -132,7 +133,7 @@ const MiniLinechart = ({
                 r={radius * 3}
                 fill="transparent"
                 data-for="histoire-dunkerque-tooltip"
-                data-tip={`${datum[x.field]} : ${formatNumber(datum[y.field])} lt`}
+                data-tip={`${datum[x.field]} : ${formatNumber(datum[y.field], lang)} lt`}
                 key={`${index}-tip`}
               />
 

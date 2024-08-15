@@ -269,7 +269,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
                                 },
 
                               }
-                              const tooltipText = `${tooltipLabels[type][lang]} : ${formatNumber(parseInt(absVal))} lt. (${product})`;
+                              const tooltipText = `${tooltipLabels[type][lang]} : ${formatNumber(parseInt(absVal), lang)} lt. (${product})`;
                               return (
                                 <AnimatedRect
                                   key={type}
@@ -303,7 +303,7 @@ export default function ImportsDunkerqueVsPortsFrancs({
                                 fontSize={fontSize * .6}
                                 fontStyle={'italic'}
                               >
-                                {formatNumber(parseInt(totalValue))} lt.
+                                {formatNumber(parseInt(totalValue), lang)} lt.
                               </AnimatedText>
                               : null
                           }

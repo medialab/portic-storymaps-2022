@@ -195,7 +195,7 @@ export default function VisualizationController({
               lang,
               title: translate('HomeportsFromDunkerque', 'title', lang),
               tooltip: d => translate('HomeportsFromDunkerque', 'tooltip', lang, {
-                tonnage: formatNumber(parseInt(d.tonnage)),
+                tonnage: formatNumber(parseInt(d.tonnage), lang),
                 homeport: lang === 'fr' ? d.homeport_fr : d.homeport_en,
                 state: lang === 'fr' ? d.homeport_state_fr : d.homeport_state_en
               }),
@@ -207,7 +207,7 @@ export default function VisualizationController({
               leaf: {
                 labelField: 'homeport_' + lang,
                 countField: 'tonnage',
-                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage))} ${lang === 'fr' ? 'tx' : 'b'})`
+                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage), lang)} ${lang === 'fr' ? 'tx' : 'b'})`
               }
             }
             }

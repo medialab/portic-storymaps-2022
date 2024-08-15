@@ -47,7 +47,7 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 120000],
-              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 20000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -58,7 +58,7 @@ const TonnageF12 = ({
 
             tooltip={
               (d) => translate('TonnagesF12', 'tooltip', lang, {
-                tx: formatNumber(d[field]),
+                tx: formatNumber(d[field], lang),
                 destination: d.destination
               })
             }
@@ -83,7 +83,7 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 270000],
-              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 50000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -94,7 +94,7 @@ const TonnageF12 = ({
 
             tooltip={
               (d) => translate('TonnagesF12', 'tooltip', lang, {
-                tx: formatNumber(d[field]),
+                tx: formatNumber(d[field], lang),
                 destination: d.destination
               })
             }

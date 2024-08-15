@@ -160,7 +160,7 @@ export default function AlluvialImportExport({
     const sumOfImports = sum(productsImportValue.filter(d => d[0] !== ''), d => d[1]);
    
     const productsTotalImportValue = globalImport && globalImport[1] > sumOfImports ? globalImport[1] : sum(productsImportValue, d => d[1]);
-    // console.log('comparison', {global: formatNumber(globalImport[1]), sum: formatNumber(sum(productsImportValue.filter(d => d[0] !== ''), d => d[1]))})
+    // console.log('comparison', {global: formatNumber(globalImport[1], lang), sum: formatNumber(sum(productsImportValue.filter(d => d[0] !== '', lang), d => d[1]))})
     if (globalImport && globalImport[1] > sumOfImports) {
       sumFraudeExports = globalImport[1] - sum(products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports')], []).map(d => d.value));
     }
@@ -628,8 +628,8 @@ export default function AlluvialImportExport({
                                       }
                                       fill={'url(#diagonalHatch)'}
                                     />
-                                    {/* <text x={-5} y={10} className="number-label right">{`${formatNumber(value)} lt. (fraude ?)`}</text> */}
-                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value)} lt. (${notDunkerque ? 'fraude ou consommation' : 'fraude ?'})`}</text>
+                                    {/* <text x={-5} y={10} className="number-label right">{`${formatNumber(value, lang)} lt. (fraude ?)`}</text> */}
+                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value, lang)} lt. (${notDunkerque ? 'fraude ou consommation' : 'fraude ?'})`}</text>
 
                                   </g>
                                   :
@@ -657,7 +657,7 @@ export default function AlluvialImportExport({
                                       }
                                       fill={'url(#diagonalHatch)'}
                                     />
-                                    <text x={5} y={5} className="number-label right">{`${formatNumber(value)} lt. (fraude ?)`}</text>
+                                    <text x={5} y={5} className="number-label right">{`${formatNumber(value, lang)} lt. (fraude ?)`}</text>
                                   </g>
                                 :
                                 // not fraude
@@ -708,7 +708,7 @@ export default function AlluvialImportExport({
                                     x={linkType === 'Imports' ? -5 : 5}
                                     y={endY + strokeWidth / 2 - 2}
                                     className={`number-label ${linkType === 'Imports' ? 'left' : 'right'}`}>
-                                    {formatNumber(value) + ' lt.'}
+                                    {formatNumber(value, lang) + ' lt.'}
                                   </text>
                                 </g>
                             }
@@ -804,7 +804,7 @@ export default function AlluvialImportExport({
         >
         {
           translate('AlluvialImportExport', 'missing_value_summary', lang, {
-            value: formatNumber(Math.abs(sumFraudeExports - sumFraudeImports))
+            value: formatNumber(Math.abs(sumFraudeExports - sumFraudeImports), lang)
           })
         }
           </div>

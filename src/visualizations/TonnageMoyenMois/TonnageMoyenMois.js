@@ -92,7 +92,7 @@ export default function TonnageMoyenMois({
                     field: 'value',
                     title: translate('TonnageMoyenMois', 'x', lang),
                     tickSpan: width > 600 ? 1000 : 5000,
-                    tickFormat: (value, valueIndex) => formatNumber(value) + (lang === 'fr' ? ' tx' : ' b'),
+                    tickFormat: (value, valueIndex) => formatNumber(value, lang) + (lang === 'fr' ? ' tx' : ' b'),
                     domain: [0, max(monthsValue.map(d => d.value))]
                 }}
                 y={{
@@ -106,7 +106,7 @@ export default function TonnageMoyenMois({
                 margins={margins}
                 tooltip={
                     (d) => translate('TonnageMoyenMois', 'tooltip', lang, {
-                        value: formatNumber(Math.round(d['value'])),
+                        value: formatNumber(Math.round(d['value']), lang),
                         month: d['month'],
                         period: (yearBrush[0] === yearBrush[1]) ? yearBrush[0] : extent(yearBrush).join('-')
                     })

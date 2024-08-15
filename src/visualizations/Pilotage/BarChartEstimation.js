@@ -108,7 +108,7 @@ export default function PilotageLegend({
                     stroke={colorPalette['total']}
                     strokeWidth={barFromBarChartWidth}
                     data-for="bar-tooltip"
-                    data-tip={translate('Pilotage', 'tooltip_total', lang, { value: total, year })}
+                    data-tip={translate('Pilotage', 'tooltip_total', lang, { value: formatNumber(total, lang), year })}
                   />
                   <path
                     d={`
@@ -126,8 +126,8 @@ export default function PilotageLegend({
                       <g
                         data-for="bar-tooltip"
                         data-tip={translate('Pilotage', 'tooltip_estimation', lang, {
-                          value_min: formatNumber(Math.round(sorties_pilotage / maxPilotage)),
-                          value_max: formatNumber(Math.round(sorties_pilotage / minPilotage)),
+                          value_min: formatNumber(Math.round(sorties_pilotage / maxPilotage), lang),
+                          value_max: formatNumber(Math.round(sorties_pilotage / minPilotage), lang),
                           year
                         }
                         )}
@@ -212,7 +212,7 @@ export default function PilotageLegend({
                     x={-2}
                     y={3}
                     textAnchor='end'
-                  >{formatNumber(value)}</text>
+                  >{formatNumber(value, lang)}</text>
                 </g>
               )
             })

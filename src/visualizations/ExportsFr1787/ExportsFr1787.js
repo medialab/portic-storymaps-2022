@@ -27,7 +27,7 @@ const ExportsFr1787 = ({
       orientation='vertical'
       x={{
         field: 'value',
-        tickFormat: d => `${formatNumber(d)} lt.`,
+        tickFormat: d => `${formatNumber(d, lang)} lt.`,
         tickSpan: 10000000,
         domain: [0, 100000000],
         title: 'valeur', // translate('TonnagesF12', 'with_lest_title', lang)
@@ -44,7 +44,7 @@ const ExportsFr1787 = ({
 
     tooltip={
       (d) => translate('ExportsFr1787', 'tooltip', lang, {
-        value: formatNumber(parseInt(d.value)),
+        value: formatNumber(parseInt(d.value, lang)),
         partner: d.partner
       })
     }

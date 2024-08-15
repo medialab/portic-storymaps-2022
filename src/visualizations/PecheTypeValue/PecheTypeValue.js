@@ -41,7 +41,7 @@ export default function PecheTypeValue({
             }}
             y={{
                 field: 'value',
-                tickFormat: d => formatNumber(d),
+                tickFormat: d => formatNumber(d, lang) + ' lt.',
                 title: translate('PecheTypeValue', 'y', lang)
             }}
             color={{
@@ -51,7 +51,7 @@ export default function PecheTypeValue({
 
             tooltip={
                 (d) => translate('PecheTypeValue', 'tooltip', lang, {
-                    value: formatNumber(d['value']),
+                    value: formatNumber(d['value'], lang),
                     year: d['annee'],
                     zone: d['type_zone_peche']
                 })

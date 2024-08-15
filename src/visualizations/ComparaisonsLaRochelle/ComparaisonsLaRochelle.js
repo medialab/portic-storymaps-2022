@@ -97,7 +97,7 @@ const ComparaisonsLaRochelle = ({
             orientation='vertical'
             x={{
               field: 'valeur',
-              tickFormat: d => `${formatNumber(d)} lt.`,
+              tickFormat: d => `${formatNumber(d, lang)} lt.`,
               tickSpan: 2000000,
               title: 'valeur', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 6000001]
@@ -114,7 +114,7 @@ const ComparaisonsLaRochelle = ({
             tooltip={
               (d) => 
                 translate('ComparaisonLaRochelle', 'tooltip1', lang, {
-                  value: formatNumber(parseInt(d.valeur)),
+                  value: formatNumber(parseInt(d.valeur, lang)),
                   partner: d.partenaire
                 })
             }
@@ -143,7 +143,7 @@ const ComparaisonsLaRochelle = ({
             x={{
               'field': 'tonnage',
               // field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan: 5000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 15001]
@@ -160,7 +160,7 @@ const ComparaisonsLaRochelle = ({
             tooltip={
               (d) =>
                 translate('ComparaisonLaRochelle', 'tooltip2', lang, {
-                  value: formatNumber(parseInt(d.tonnage)),
+                  value: formatNumber(parseInt(d.tonnage, lang)),
                   partner: d.destination
                 })
             }
@@ -171,8 +171,8 @@ const ComparaisonsLaRochelle = ({
         <div className="column">
           <h2>
           {translate('ComparaisonLaRochelle', 'title3', lang, {
-            source_value: formatNumber(parseInt(totaux.find(d => d.group === "vraie valeur dans toflit18 (pondéré avec terre-mer)").value)),
-            projected_value: formatNumber(parseInt(totaux.find(d => withLest ? d.group === "estimation par tonnage x prix par tonneau F12/1787" : d.group === "estimation par tonnage x prix par tonneau F12/1787 (sans lest)").value))
+            source_value: formatNumber(parseInt(totaux.find(d => d.group === "vraie valeur dans toflit18 (pondéré avec terre-mer)").value), lang),
+            projected_value: formatNumber(parseInt(totaux.find(d => withLest ? d.group === "estimation par tonnage x prix par tonneau F12/1787" : d.group === "estimation par tonnage x prix par tonneau F12/1787 (sans lest)").value), lang)
           })}
           </h2>
           <BarChart
@@ -219,7 +219,7 @@ const ComparaisonsLaRochelle = ({
             orientation='vertical'
             x={{
               field: 'value',
-              tickFormat: d => `${formatNumber(d)} lt.`,
+              tickFormat: d => `${formatNumber(d, lang)} lt.`,
               tickSpan: 2000000,
               title: 'valeur', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 10000001]
@@ -237,7 +237,7 @@ const ComparaisonsLaRochelle = ({
             tooltip={
               (d) => 
                 translate('ComparaisonLaRochelle', 'tooltip3', lang, {
-                  value: formatNumber(parseInt(d.value)),
+                  value: formatNumber(parseInt(d.value, lang)),
                   partner: d.partner,
                   unit: d.group
                 })

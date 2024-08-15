@@ -56,7 +56,7 @@ export default function PrixSmogglageGeneral({
       })
   }, [data]);
 
-  console.log(productsData.filter(p => p.unité === 'unité inconnue'))
+  // console.log(productsData.filter(p => p.unité === 'unité inconnue'))
 
   const quantiFieldOptions = productsQuantiFields[selectedQuantiField]
 
@@ -79,7 +79,7 @@ export default function PrixSmogglageGeneral({
 
           y={{
             field: 'produit_smogglé',
-            // tickFormat: d => `${formatNumber(d)} lt.`,
+            // tickFormat: d => `${formatNumber(d, lang)} lt.`,
             // tickSpan: 5000000,
             // domain: [0, 15000001],
             // title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
@@ -87,7 +87,7 @@ export default function PrixSmogglageGeneral({
           x={{
             field: selectedQuantiField,
             title: selectedQuantiField, // translate('TonnagesF12', 'destination', lang),
-            tickFormat: quantiFieldOptions.tickFormat,
+            tickFormat: (d) => quantiFieldOptions.tickFormat(d, lang),
             tickSpan: quantiFieldOptions.tickSpan,
             domain: quantiFieldOptions.domain,
           }}
@@ -99,7 +99,7 @@ export default function PrixSmogglageGeneral({
           }}
 
         // tooltip={
-        //   (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field]))} lt. (pour ${formatNumber(parseInt(d.tonnage))} tonneaux cumulés)`
+        //   (d) => `estimation d'exports pour ${d.partenaire} : ${formatNumber(parseInt(d[field], lang))} lt. (pour ${formatNumber(parseInt(d.tonnage, lang))} tonneaux cumulés)`
         // }
         />
       </div>

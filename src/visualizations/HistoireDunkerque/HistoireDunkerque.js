@@ -274,6 +274,7 @@ export default function HistoireDunkerque({
                   field: 'assise'
                   // field: 'rapport_assise_recettes'
                 }}
+                lang={lang}
               />
             </div>
             : null

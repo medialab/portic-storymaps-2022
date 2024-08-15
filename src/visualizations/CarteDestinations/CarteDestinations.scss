@@ -149,6 +149,9 @@
     max-width: 100rem;
     overflow: hidden;
     transition: 1s ease all;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     &.is-hidden {
       max-width: 0;
     }

@@ -45,7 +45,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
           <h2>
             {
               translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'title1', lang, {
-                value: formatNumber(parseInt(total))
+                value: formatNumber(parseInt(total, lang))
               })
             }
           </h2>
@@ -60,7 +60,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             orientation='vertical'
             x={{
               field: field,
-              tickFormat: d => `${formatNumber(d)} lt.`,
+              tickFormat: d => `${formatNumber(d, lang)} lt.`,
               tickSpan: 5000000,
               domain: [0, maxDomain],
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
@@ -78,8 +78,8 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
               (d) => 
                 translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip1', lang, {
                   partner: d.partenaire,
-                  value: formatNumber(parseInt(d[field])),
-                  tonnage: formatNumber(parseInt(d.tonnage)),
+                  value: formatNumber(parseInt(d[field], lang)),
+                  tonnage: formatNumber(parseInt(d.tonnage, lang)),
                 })
             }
           />
@@ -88,7 +88,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
           <h2>
           {
               translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'title2', lang, {
-                value: formatNumber(totalImports)
+                value: formatNumber(totalImports, lang)
               })
             }
           </h2>
@@ -103,7 +103,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             orientation='vertical'
             x={{
               field: 'imports_toflit18',
-              tickFormat: d => `${formatNumber(d)} lt.`,
+              tickFormat: d => `${formatNumber(d, lang)} lt.`,
               tickSpan: 5000000,
               domain: [0, maxDomain],
               title: 'imports toflit18', // translate('TonnagesF12', 'with_lest_title', lang)
@@ -121,7 +121,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
               (d) => 
                 translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip2', lang, {
                   partner: d.partenaire,
-                  value: formatNumber(parseInt(d.imports_toflit18)),
+                  value: formatNumber(parseInt(d.imports_toflit18, lang)),
                 })
             }
           />

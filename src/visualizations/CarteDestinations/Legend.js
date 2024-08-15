@@ -255,7 +255,7 @@ const Legend = ({
               <div className={`scale-indication-container ${dominantMode ? '' : 'is-hidden'}`}>
                 <svg 
                   className="scale-indication"
-                  width={maxSizeRadius * 5 + 10}
+                  width={svgDimension}
                   height={maxSizeRadius * 2 + 10}
                 >
                   <circle
@@ -270,42 +270,44 @@ const Legend = ({
                     y1={5}
                     y2={5}
                     x1={maxSizeRadius + 5}
-                    x2={maxSizeRadius * 3}
+                    x2={svgDimension - 40}
                     stroke="grey"
                     strokeDasharray={'2 2'}
                   />
                   <text
                     textAnchor="end"
-                    x={maxSizeRadius * 5 - 10}
+                    // x={maxSizeRadius * 5 - 10}
+                    x={svgDimension}
                     y={8}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage)} {lang === 'fr' ? 'tx' : 'b'}.
+                    {formatNumber(maxDestinationTonnage, lang)} {lang === 'fr' ? 'tx' : 'b'}.
                   </text>
                   {/* small mark */}
                   <circle
                     cx={5 + maxSizeRadius}
-                    cy={maxSizeRadius * 2 - minSizeRadius / 2}
+                    cy={maxSizeRadius * 2 - minSizeRadius / 2 + 1}
                     r={minSizeRadius}
                     fill="transparent"
                     stroke="grey"
                     strokeDasharray={'2 2'}
                   />
                   <line
-                    y1={maxSizeRadius * 2 - minSizeRadius - 4}
-                    y2={maxSizeRadius * 2 - minSizeRadius - 4}
+                    y1={maxSizeRadius * 2 - minSizeRadius - 4 + 1}
+                    y2={maxSizeRadius * 2 - minSizeRadius - 4 + 1}
                     x1={maxSizeRadius + 5}
-                    x2={maxSizeRadius * 3}
+                    x2={svgDimension - 40}
                     strokeDasharray={'2 2'}
                     stroke="grey"
                   />
                   <text
                     textAnchor="end"
-                    x={maxSizeRadius * 5 - 10}
-                    y={maxSizeRadius * 2 - minSizeRadius}
+                    x={svgDimension}
+                    // x={maxSizeRadius * 5 - 10}
+                    y={maxSizeRadius * 2 - minSizeRadius + 1}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage / 10)} {lang === 'fr' ? 'tx' : 'b'}.
+                    {formatNumber(maxDestinationTonnage / 10, lang)} {lang === 'fr' ? 'tx' : 'b'}.
                   </text>
                 </svg>
               </div>

@@ -46,7 +46,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: 'tonnage',
-              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}.`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}.`,
               tickSpan: 20000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 31001]
@@ -59,7 +59,7 @@ const EstimationParTonnageDk = ({
             tooltip={
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip1', lang, {
-                  value: formatNumber(parseInt(d.tonnage)),
+                  value: formatNumber(parseInt(d.tonnage, lang)),
                   partner: d.partenaire
                 })
             }
@@ -83,7 +83,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d)} lt./${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} lt./${lang === 'fr' ? 'tx' : 'b'}`,
               tickSpan : 500,
               title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 1001]
@@ -100,7 +100,7 @@ const EstimationParTonnageDk = ({
             tooltip={
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip2', lang, {
-                  value: formatNumber(parseInt(d[withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest'])),
+                  value: formatNumber(parseInt(d[withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest'], lang)),
                   partner: d.partenaire
                 })
             }
@@ -115,7 +115,7 @@ const EstimationParTonnageDk = ({
           <h2>
             {
               translate('EstimationParTonnageDk', 'title3', lang, {
-                value: formatNumber(parseInt(total))
+                value: formatNumber(parseInt(total, lang))
               })
             }
           </h2>
@@ -130,7 +130,7 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: field,
-              tickFormat: d => `${formatNumber(d)} lt.`,
+              tickFormat: d => `${formatNumber(d, lang)} lt.`,
               tickSpan: 5000000,
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 15000001]
@@ -147,7 +147,7 @@ const EstimationParTonnageDk = ({
             tooltip={
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip3', lang, {
-                  value: formatNumber(parseInt(d[field])),
+                  value: formatNumber(parseInt(d[field], lang)),
                   partner: d.partenaire,
                   tonnage: d.tonnage
                 })

@@ -42,7 +42,7 @@ const ValeurParTonneau = ({
               field: 'sum_exports',
               domain: [0, 110000000],
               tickSpan: 50000000,
-              tickFormat: d => `${formatNumber(d)} lt`,
+              tickFormat: d => `${formatNumber(d, lang)} lt`,
               title: translate('TonnageF12', 'x1', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -52,7 +52,7 @@ const ValeurParTonneau = ({
             tooltip={
               (d) => 
                 translate('TonnageF12', 'tooltip1', lang, {
-                  value: formatNumber(parseInt(+d.sum_exports)),
+                  value: formatNumber(parseInt(+d.sum_exports, lang)),
                   partner: d.partner
                 })
             }
@@ -73,7 +73,7 @@ const ValeurParTonneau = ({
               field: withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest',
               domain: [0, 400001],
               tickSpan: 200000,
-              tickFormat: d => `${formatNumber(d)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
               title: translate('TonnageF12', 'x2', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
@@ -83,7 +83,7 @@ const ValeurParTonneau = ({
             tooltip={
               (d) => 
                 translate('TonnageF12', 'tooltip2', lang, {
-                  value: formatNumber(d[withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest']),
+                  value: formatNumber(d[withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest'], lang),
                   partner: d.partner
                 })
             }

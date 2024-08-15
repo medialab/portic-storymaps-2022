@@ -300,7 +300,7 @@ export default function ExportsVsSmogglage({
         //   }}
         //   x={{
         //     field: 'quantity',
-        //     tickFormat: d => `${formatNumber(d)} lt`,
+        //     tickFormat: d => `${formatNumber(d, lang)} lt`,
         //     title: 'quantity', // translate('TonnagesF12', 'destination', lang)
         //   }}
 

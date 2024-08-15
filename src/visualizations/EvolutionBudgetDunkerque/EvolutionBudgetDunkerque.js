@@ -38,7 +38,7 @@ export default function EvolutionBudgetDunkerque({
             y={{
                 field: 'valeur',
                 title: translate('EvolutionBudgetDunkerque', 'y', lang),
-                tickFormat: v => formatNumber(v),
+                tickFormat: v => formatNumber(v, lang) + ' lt.',
             }}
             color={{
                 field: 'référence'
@@ -75,7 +75,7 @@ export default function EvolutionBudgetDunkerque({
             tooltip={
                 (d) => translate('EvolutionBudgetDunkerque', 'tooltip', lang, {
                     reference: d['référence'],
-                    value: formatNumber(d['valeur']),
+                    value: formatNumber(d['valeur'], lang),
                     year: d['Années comptables']
                 })
             }

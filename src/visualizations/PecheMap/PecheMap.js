@@ -118,7 +118,7 @@ export default function PecheMap({
           field: 'value',
           title: translate('PecheMap', 'y', lang),
           tickSpan: 250000,
-          tickFormat: d => `${formatNumber(d)} lt.`
+          tickFormat: d => `${formatNumber(d, lang)} lt.`
         }}
         color={{
           field: 'type_zone_peche',
@@ -127,7 +127,7 @@ export default function PecheMap({
         tooltip={
           (d) => translate('PecheMap', 'tooltip', lang, {
             type: d['type_zone_peche'],
-            value: formatNumber(d['value']),
+            value: formatNumber(d['value'], lang),
             year: d['annee']
           })
         }

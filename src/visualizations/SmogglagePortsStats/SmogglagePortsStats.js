@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import BarChart from '../../components/BarChart';
 import translate from '../../utils/translate';
+import { formatNumber } from '../../utils/misc';
 
 /**
  * Header contains navigation and…
@@ -40,7 +41,7 @@ export default function SmogglagePortsStats ({
                     field: 'total des trajets anglais',
                     title: translate('SmogglagePortsStats', 'y1', lang),
                     // domain: [0, 100],
-                    tickFormat: f => translate('SmogglagePortsStats', 'y1_ticks', lang, {value: f})
+                    tickFormat: f => translate('SmogglagePortsStats', 'y1_ticks', lang, {value: formatNumber(f, lang)})
                 }}
                 tooltip={item => 
                   translate('SmogglagePortsStats', 'tooltip', lang, {

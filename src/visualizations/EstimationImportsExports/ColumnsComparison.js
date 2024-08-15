@@ -186,7 +186,7 @@ function ColumnsComparison({
                 >
                   <div className={`label-container ${type === 'diff' ? 'align-top' : ''} ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
                     <p>
-                      {title} <i>({formatNumber(parseInt(value))} lt.)</i>
+                      {title} <i>({formatNumber(parseInt(value), lang)} lt.)</i>
                     </p>
                   </div>
 
@@ -236,7 +236,7 @@ function ColumnsComparison({
                 >
                   <div className={`label-container ${type === 'estimation' && index !== vizRightItems.length - 1 ? 'align-bottom' : ''} ${height < minLabelHeight ? 'is-overflowing' : ''}`}>
                     <p >
-                      {title} <i>({formatNumber(parseInt(value))} lt.)</i>
+                      {title} <i>({formatNumber(parseInt(value), lang)} lt.)</i>
                     </p>
                   </div>
 

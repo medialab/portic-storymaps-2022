@@ -164,11 +164,11 @@ const Destination = ({
         data-tip={
           translate("CarteDestinations", 'tooltip', lang, {
             destination,
-            tonnage: formatNumber(sumTonnage),
+            tonnage: formatNumber(sumTonnage, lang),
             dominantFlag,
             pct: parseInt(maxTonnage / sumTonnage * 100)
           })
-          // `${destination} - ${formatNumber(sumTonnage)} tx - pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%`
+          // `${destination} - ${formatNumber(sumTonnage, lang)} tx - pavillon dominant : ${dominantFlag} à ${parseInt(maxTonnage / sumTonnage * 100)}%`
         }
         style={{
           fill: dominantMode ? dominantColor : undefined,
@@ -277,7 +277,7 @@ const Destination = ({
               className="radar-point"
               style={{fill: generic20colors[pointIndex]}}
               data-for="destinations-tooltip"
-              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage: formatNumber(tonnage)}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
+              data-tip={translate('CarteDestinations', 'tonnage_for_destination_and_flag', lang, {destination, flag, tonnage: formatNumber(tonnage, lang)}) + ` (${parseInt(tonnage / sumTonnage * 100)}%)`}
             />
           )
         })
