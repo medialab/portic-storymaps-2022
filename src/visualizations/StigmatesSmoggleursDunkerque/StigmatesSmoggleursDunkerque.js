@@ -5,6 +5,7 @@ import AlluvialChart from '../../components/AlluvialChart';
 import translate from '../../utils/translate';
 
 import './StigmatesSmoggleursDunkerque.scss';
+import Measure from 'react-measure';
 
 /**
  * @param {Object} props
@@ -19,10 +20,11 @@ export default function StigmatesSmoggleursDunkerque({
   data: inputData,
   dimensions,
   lang,
+  atlasMode,
   ...props
 }) {
+  const [buttonsDimensions, setButtonsDimensions] = useState({width: 0, height: 0})
   const [year, setYear] = useState('1787');
-  const buttonsRef = useRef(null);
 
   const tonnageLabels = {
     '12': {
@@ -99,9 +101,9 @@ export default function StigmatesSmoggleursDunkerque({
 
   const { chartHeight, formHeight } = useMemo(() => {
     return {
-      chartHeight: height - (buttonsRef.current ? buttonsRef.current.getBoundingClientRect().height : 0)
+      chartHeight: height - buttonsDimensions.height
     }
-  }, [height, buttonsRef]);
+  }, [height, buttonsDimensions]);
 
   function onInputChange(e) {
     const { target } = e;
@@ -113,7 +115,7 @@ export default function StigmatesSmoggleursDunkerque({
     <div className="StigmatesSmoggleursDunkerque">
       <AlluvialChart
         dimensions={{
-          width,
+          width: atlasMode ? width : width - 10,
           height: chartHeight
         }}
         {...{
@@ -133,7 +135,14 @@ export default function StigmatesSmoggleursDunkerque({
           }
         }}
       />
-      <div className="buttons-container" ref={buttonsRef}>
+      <Measure
+      bounds
+      onResize={contentRect => {
+        setButtonsDimensions(contentRect.bounds)
+      }}
+    >
+      {({ measureRef }) => (
+        <div className="buttons-container" ref={measureRef}>
         {
           years.map((inputYear, i) => (
             <button key={i} className={`Button ${year === inputYear ? 'is-active' : ''}`} onClick={() => setYear(inputYear)}>
@@ -142,6 +151,9 @@ export default function StigmatesSmoggleursDunkerque({
           ))
         }
       </div>
+      )}
+    </Measure>
+      
     </div>
   )
 }

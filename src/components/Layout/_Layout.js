@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
-import { SettingsContext } from "../../utils/contexts";
+import { HeaderDimensionsContext, SettingsContext } from "../../utils/contexts";
 
 import Header from './Header';
 import Footer from './Footer';
 
 import routes from '../../summary';
 
-export default function Layout ({
+export default function Layout({
   ...props
 }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const {lang} = useParams();
+  const { lang } = useParams();
+  const [headerDimensions, setHeaderDimensions] = useState({ width: 0, height: 0 });
   const onLangChange = () => {
     const otherLang = lang === 'fr' ? 'en' : 'fr';
 
@@ -34,13 +35,15 @@ export default function Layout ({
     }
   }
   return (
-      <SettingsContext.Provider value={{lang}}>
-        <Header lang={lang} onLangChange={onLangChange} {...props} />
-        
+    <HeaderDimensionsContext.provider value={{ headerDimensions }}>
+      <SettingsContext.Provider value={{ lang }}>
+        <Header lang={lang} onDimensionsChange={dim => setHeaderDimensions(dim)} onLangChange={onLangChange} {...props} />
+
         <main className="wrapper">
           <Outlet />
         </main>
         <Footer />
       </SettingsContext.Provider>
+    </HeaderDimensionsContext.provider>
   );
 }

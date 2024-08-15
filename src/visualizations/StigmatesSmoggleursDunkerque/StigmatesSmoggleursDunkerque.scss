@@ -2,7 +2,8 @@
 @import '../../styles/variables.scss';
 
 .StigmatesSmoggleursDunkerque {
-  padding-top: $small-gutter * 3;
+  // padding-top: $small-gutter * 3;
+  box-sizing: border-box;
   .buttons-container {
     display: flex;
     flex-flow: row nowrap;

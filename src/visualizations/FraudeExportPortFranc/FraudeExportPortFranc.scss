@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .FraudeExportPortFranc {
     display: flex;
     flex-direction: column;
@@ -9,6 +11,8 @@
             position: absolute;
             margin: 0;
             float: left;
+            left: $medium-gutter;
+            top: $medium-gutter;
         }
       transition: .5s ease all;
       opacity: 0;

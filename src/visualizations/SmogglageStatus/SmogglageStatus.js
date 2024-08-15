@@ -9,6 +9,7 @@ export default function SmogglageStatus({
   data,
   width,
   height,
+  atlasMode,
   lang
 }) {
   const steps = [
@@ -62,7 +63,10 @@ export default function SmogglageStatus({
       {...{
         data: vizData,
         steps,
-        dimensions: { width, height },
+        dimensions: { 
+          width: atlasMode ? width : width - 10, 
+          height 
+        },
         colorPalette: {
           '0': '#336D7C',
           '1': 'red',

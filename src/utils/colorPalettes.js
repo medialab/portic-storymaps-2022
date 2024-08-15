@@ -1,6 +1,8 @@
 
 
 const colorsPalettes = {
+  dunkerqueColor: '#ce4436', // #0030c4
+  britishColor: '#cf142b',
   'ui': {
     'colorText': '#403d3d',
     'colorAccent': '#34495e',

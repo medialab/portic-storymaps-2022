@@ -31,6 +31,8 @@
     overflow: hidden;
     max-height: 100%;
     opacity: 1;
+    box-sizing: border-box;
+    position: relative;
   }
 
   .upper-row {

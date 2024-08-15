@@ -90,7 +90,7 @@ const ComparaisonsLaRochelle = ({
                   return -1;
                 }),
               width: width / 2,
-              height: height / 2,
+              height: height / 3 * 2,
             }}
 
             layout='stack'
@@ -135,7 +135,7 @@ const ComparaisonsLaRochelle = ({
                   return -1;
                 }),
               width: width / 2,
-              height: height / 2,
+              height: height / 3 * 2,
             }}
 
             layout='stack'

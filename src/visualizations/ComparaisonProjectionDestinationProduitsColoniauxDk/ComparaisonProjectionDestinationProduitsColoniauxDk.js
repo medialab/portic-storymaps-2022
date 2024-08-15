@@ -53,7 +53,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             {...{
               data: actualData,
               width: width / 2,
-              height,
+              height: height - 50
             }}
 
             layout='stack'
@@ -61,7 +61,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             x={{
               field: field,
               tickFormat: d => `${formatNumber(d, lang)} lt.`,
-              tickSpan: 5000000,
+              tickSpan: width < 900 ? 100000000 : 10000000,
               domain: [0, maxDomain],
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
@@ -96,7 +96,7 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             {...{
               data: actualData,
               width: width / 2,
-              height,
+              height: height - 50,
             }}
 
             layout='stack'

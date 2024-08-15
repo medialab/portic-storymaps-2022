@@ -66,7 +66,10 @@ export default function ResumeActivitesDunkerquois({
           data: data.filter(d => d.year === year),
           steps,
           quantifierField: 'rel_tonnage',
-          dimensions: { width, height },
+          dimensions: { 
+            width: atlasMode ? width : width - 10, 
+            height 
+          },
           colorPalette: {
             ...Array.from(new Set(data
               .sort((a, b) => {

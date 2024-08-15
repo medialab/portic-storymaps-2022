@@ -68,8 +68,9 @@ export default function PrixSmogglageGeneral({
           {...{
             data: productsData,
             width: width * .8,
-            height,
+            height: height,
           }}
+          fitHeight={!atlasMode}
 
           // layout='stack'
           orientation='vertical'

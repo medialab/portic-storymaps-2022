@@ -3,8 +3,17 @@
 .PrixSmogglageGeneral {
   display: flex;
   flex-flow: row nowrap;
-  margin-top: 1rem;
+  // margin-top: 1rem;
   position: relative;
+  max-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &.is-atlas-mode {
+    max-height: unset;
+    box-sizing: border-box;
+    overflow: unset;
+  }
 
   .legend-container {
     width: 32%;
@@ -13,7 +22,7 @@
     top: 33%;
     h4 {
       margin: 0;
-      font-size: .85rem;
+      font-size: 0.85rem;
     }
     ul {
       list-style-type: none;
@@ -23,8 +32,8 @@
         align-items: start;
         margin-bottom: 0.5rem;
         font-family: $font-family-1;
-      font-size: .85rem;
-      cursor: pointer;
+        font-size: 0.85rem;
+        cursor: pointer;
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, useRef, useContext, useMemo } from 'react';
+import React, { useState, useReducer, useEffect, useRef, useContext } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useScrollYPosition } from 'react-use-scroll-position';
@@ -16,6 +16,8 @@ import VisualizationFocus from '../../components/VisualizationFocus';
 
 import { buildPageTitle } from '../../utils/misc';
 import visualizationsMetas from '../../data/viz';
+
+import { HeaderDimensionsContext } from '../../utils/contexts';
 
 const CENTER_FRACTION = 0.6;
 
@@ -77,6 +79,7 @@ export default function ScrollyPage({
   /** @type {['content'|'viz', Function]} */
   const [activeSideOnResponsive, setActiveSideOnResponsive] = useState('content');
 
+  const {headerDimensions} = useContext(HeaderDimensionsContext);
   /**
    * Register a new viz to the page list
    * @param {Object} params
@@ -301,6 +304,7 @@ export default function ScrollyPage({
   // if (loadingState === 'failed') {
   //     return <Loader message='Échec du chargement' />
   // }
+  const vizSpaceHeight = window.innerHeight - headerDimensions.top - headerDimensions.height;
   return (
     <>
       <Helmet>
@@ -327,7 +331,12 @@ export default function ScrollyPage({
             <Content components={{ Caller, Link }} />
           </VisualisationContext.Provider>
         </section>
-        <aside className={cx({ 'is-focused': activeSideOnResponsive === 'viz' })}>
+        <aside 
+          className={cx({ 'is-focused': activeSideOnResponsive === 'viz' })}
+          style={{
+            height: vizSpaceHeight
+          }}
+        >
           {
             displayViz &&
             <VisualizationContainer

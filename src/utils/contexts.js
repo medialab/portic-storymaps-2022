@@ -23,3 +23,10 @@ export const VisualizationControlContext = React.createContext({})
  export const DatasetsContext = React.createContext({
 
 })
+
+/**
+ * Context used for aside dimensionning values passing
+ */
+export const HeaderDimensionsContext = React.createContext({
+
+})

@@ -73,6 +73,7 @@ const VerticalBarChart = ({
   x,
   tooltip,
   margins: inputMargins = {},
+  fitHeight,
 }) => {
   const [headersHeight, setHeadersHeight] = useState(0);
   const [legendWidth, setLegendWidth] = useState(0);
@@ -83,7 +84,6 @@ const VerticalBarChart = ({
 
   const width = fixSvgDimension(initialWidth - legendWidth);
   const height = fixSvgDimension(initialHeight - headersHeight);
-
   useEffect(() => {
     Tooltip.rebuild();
   })
@@ -145,8 +145,7 @@ const VerticalBarChart = ({
   }
   let yValues = uniq(data.map(d => d[y.field]));
   let bandsNb = yValues.length;
-  let vizHeight = (fixedRowHeight ? fixedRowHeight * (bandsNb) : height - headersHeight);
-
+  let vizHeight = (fixedRowHeight ? fixedRowHeight * (bandsNb) : height - headersHeight - margins.top - margins.bottom);
   let rowHeight = fixSvgDimension(fixedRowHeight || vizHeight / bandsNb);
 
   const groups = useMemo(() => 
@@ -224,8 +223,9 @@ const VerticalBarChart = ({
     xScale.domain(xDomain);
   }
   const svgHeight = vizHeight + margins.top + margins.bottom;
-  const finalHeight = initialHeight > (svgHeight + headersHeight) ? initialHeight : svgHeight + headersHeight;
-
+  const finalHeight = fitHeight ? initialHeight : initialHeight > (svgHeight + headersHeight) ? initialHeight : svgHeight + headersHeight;
+  console.log( {initialHeight, finalHeight, headersHeight, vizHeight, svgHeight, finalHeight, ...margins});
+  console.log('svg height', svgHeight)
   return (
     <>
       <figure style={{ width: initialWidth, height: finalHeight }} className="BarChart is-vertical GenericVisualization">
@@ -264,7 +264,7 @@ const VerticalBarChart = ({
                   .map(([yModality, items], groupIndex) => {
                     let stackDisplaceX = margins.left;
                     return (
-                      <g key={groupIndex} transform={`translate(0, ${margins.top + rowHeight * groupIndex})`}>
+                      <g className="bar-group" key={groupIndex} transform={`translate(0, ${margins.top + rowHeight * groupIndex})`}>
                         <foreignObject
                           x={0}
                           y={layout === 'stack' ? bandHeight / 2 - 4 : bandHeight / 2 /* + bandHeight * (items.length / 2)*/}

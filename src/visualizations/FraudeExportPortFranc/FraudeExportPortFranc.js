@@ -65,7 +65,7 @@ export default function FraudeExportPortFranc({
                 AVAILABLE_PORTS.map((port) => {
                   const isVisible = visiblePorts.includes(port);
                   // const vizHeight = (visiblePorts.length > 1 ? height / 2 + margin : height);
-                  const vizHeight = (visiblePorts.length > 1 ? height / 2 + margin : height);
+                  const vizHeight = (visiblePorts.length > 1 ? height / 2 : height);
                   return (
                     <div 
                       key={port} 
@@ -99,12 +99,12 @@ export default function FraudeExportPortFranc({
                   AVAILABLE_PORTS
                   .map(port => {
                     const handleClick = () => {
-                      if (visiblePorts.includes(port)) {
+                      if (visiblePorts.includes(port) && visiblePorts.length > 1) {
                         setVisiblePorts(
                           visiblePorts.filter(p => p !== port)
                           .sort()
                         )
-                      } else {
+                      } else if (!visiblePorts.includes(port)) {
                         setVisiblePorts([...visiblePorts, port])
                         .sort()
                       }

@@ -116,30 +116,39 @@
     bottom: 0;
     width: 60%;
     height: calc(100vh - #{$header_height});
-    padding-bottom: $medium-gutter * 5;
+    padding-bottom: $medium-gutter;
     box-sizing: border-box;
 
     > h3 {
       margin: 0;
       position: relative;
-      padding: $medium-gutter 0;
+      // padding: $medium-gutter 0;
+      padding: 0 $medium-gutter 0 0;
       // top: -1em;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .viz-title {
+        flex: 1;
+      }
     }
     display: flex;
     flex-flow: column nowrap;
     justify-content: stretch;
     .VisualizationContainer {
+      height: 100%;
       flex: 1;
       position: relative;
     }
   }
 
   .option-buttons-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: $medium-gutter;
-    padding-top: calc($medium-gutter / 4);
+    // position: absolute;
+    // top: -$medium-gutter * 1.5;
+    // right: 0;
+    // padding: $medium-gutter;
+    // padding-top: calc($medium-gutter / 4);
     z-index: 100;
     display: flex;
     flex-flow: row nowrap;

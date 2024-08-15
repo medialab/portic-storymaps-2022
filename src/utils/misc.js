@@ -117,7 +117,7 @@ export const formatNumber = (n, style = 'fr') => {
   if (n === 0) {
     return '0'
   }
-  return ('' + n)
+  return ('' + n).trim()
     .split('')
     .reverse()
     .reduce(({ count, result }, digit, index) => {

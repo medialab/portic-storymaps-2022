@@ -12,7 +12,8 @@ export default function SchemaSources({
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: '100%'
       }}
       dangerouslySetInnerHTML={{
         __html: svg({width, height: atlasMode ? window.innerHeight : height, lang})

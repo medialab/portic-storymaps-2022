@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
+import { HeaderDimensionsContext } from "../../utils/contexts";
 
 import Header from './Header';
 import Footer from './Footer';
@@ -12,6 +13,7 @@ export default function Layout({
   const { lang } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const [headerDimensions, setHeaderDimensions] = useState({ width: 0, height: 0 });
 
   const pageType = useMemo(() => {
     let { pathname } = location;
@@ -60,16 +62,25 @@ export default function Layout({
     }
   }
   return (
+    <HeaderDimensionsContext.Provider value={{ headerDimensions }}>
+
     <>
       <main className="wrapper">
         <Outlet />
       </main>
       {['visualization'].includes(pageType) === false ?
         <>
-          <Header lang={lang} onLangChange={onLangChange} pageType={pageType} {...props} />
+          <Header 
+            lang={lang} 
+            onLangChange={onLangChange} 
+            onDimensionsChange={dim => setHeaderDimensions(dim)}
+            pageType={pageType} 
+            {...props} 
+          />
           <Footer />
         </>
         : null}
     </>
+    </HeaderDimensionsContext.Provider>
   );
 }

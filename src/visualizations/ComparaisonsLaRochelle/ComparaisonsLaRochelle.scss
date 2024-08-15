@@ -4,10 +4,13 @@
 
 .ComparaisonsLaRochelle {
   box-sizing: border-box;
+  height: 100%;
   .columns-container {
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;
+    
+    // height: 50%;
     .column {
 
      

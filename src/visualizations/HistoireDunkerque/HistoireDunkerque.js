@@ -31,7 +31,8 @@ export default function HistoireDunkerque({
   callerProps = {},
   ...props
 }) {
-  const { width, height } = dimensions;
+  const { width, height: initialHeight } = dimensions;
+  const height = initialHeight;
   const imgBasePath = `${process.env.BASE_PATH}/assets/`;
 
   const minTimelineHeight = 50;

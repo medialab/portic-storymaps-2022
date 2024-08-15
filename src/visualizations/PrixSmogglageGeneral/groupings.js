@@ -24,7 +24,7 @@ export const productsQuantiFields = {
   // },
   // "quantité_smogglée",
   "nombre_observations_avec_unité_exacte_toutes_custom_regions": {
-    tickFormat: (d, lang) => `${formatNumber(d, lang)} obs.`,
+    tickFormat: (d, lang) => `${d} obs.`,
     tickSpan: 10,
     labels: {
       fr: "Nombre d'observations avec unité exacte toutes directions de fermes",
@@ -32,7 +32,7 @@ export const productsQuantiFields = {
     }
   },
   "nombre_observations_versAngleterre": {
-    tickFormat: (d, lang) => `${formatNumber(d, lang)} obs.`,
+    tickFormat: (d, lang) => `${d} obs.`,
     tickSpan: 1,
     labels: {
       fr: "Nombre d'observations vers l'Angleterre",

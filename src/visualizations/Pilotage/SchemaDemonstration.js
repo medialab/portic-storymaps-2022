@@ -272,9 +272,9 @@ export default function SchemaDemonstration({
               textWidth={130}
               textHeight={height / 4}
               x1={0}
-              y1={240}
+              y1={200}
               x2={scaleYear(1774)}
-              y2={230}
+              y2={220}
               text={translate('Pilotage', 'note_schema_inf', lang)}
               textAlign='right'
               arrowPosition={'top right'}
