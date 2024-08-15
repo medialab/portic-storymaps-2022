@@ -68,7 +68,7 @@ export default function EvolutionBudgetDunkerque({
                 axis: 'x',
                 start: 1778,
                 end: 1783,
-                label: translate('EvolutionBudgetDunkerque', 'seven_years_war', lang),
+                label: translate('EvolutionBudgetDunkerque', 'us_war', lang),
                 labelPosition: dimensions.height / 5 * 2.5
               }
             ]}
