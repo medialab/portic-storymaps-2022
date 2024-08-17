@@ -71,7 +71,7 @@ const EstimationParTonnageDk = ({
           </div>
         </div>
         <div className="column">
-          <h2>{translate('EstimationParTonnageDk', 'title1', lang)}</h2>
+          <h2>{translate('EstimationParTonnageDk', 'title2', lang)}</h2>
           <BarChart
             {...{
               data: actualData,

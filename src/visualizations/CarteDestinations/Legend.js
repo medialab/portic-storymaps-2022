@@ -8,7 +8,7 @@ import translate from '../../utils/translate';
 import { formatNumber } from '../../utils/misc';
 import { debounce } from 'lodash';
 
-const { generic20colors } = palettes;
+const { generic20colors, dunkerqueColor } = palettes;
 
 const DebouncedSlider = ({
   min,
@@ -230,11 +230,12 @@ const Legend = ({
                           setFlagGroupFilters(`${flagGroupFilters},${id}`);
                         }
                       }
+                      const color = ['dunkerque', 'dunkirk'].includes(id) ? dunkerqueColor : generic20colors[modalityIndex];
                       return (
                         <li key={id} className={`flag-group-modality-item ${isIncluded ? 'is-visible' : 'is-hidden'}`}>
                           <span className="number" style={{
-                            background: generic20colors[modalityIndex],
-                            color: dominantMode ? generic20colors[modalityIndex] : undefined,
+                            background: color,
+                            color: dominantMode ? color : undefined,
                           }}>
                             <span>
                               {modalityIndex + 1}

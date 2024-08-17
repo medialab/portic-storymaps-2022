@@ -34,12 +34,12 @@ const ComparaisonsLaRochelle = ({
 
   const estimationSettings = {
     'vraie valeur dans toflit18 (pondéré avec terre-mer)': {
-      color: '#e93d15',
+      color: '#ff493b',
       label: translate('ComparaisonLaRochelle', 'estimation_type_1', lang)
     },
     // 'vraie valeur dans toflit18 (non pondéré)': 'lightblue',
     'estimation par tonnage x prix par tonneau F12/1787': {
-      color: '#514EEE',
+      color: '#133db2',
       label: translate('ComparaisonLaRochelle', 'estimation_type_2', lang)
     },
     'estimation par tonnage x prix par tonneau F12/1787 (sans lest)': {

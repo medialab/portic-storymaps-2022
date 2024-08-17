@@ -375,7 +375,7 @@ export default function AlluvialChart({
             >
               <text
                 className="step-title"
-                y={height}
+                y={height - 5}
                 x={0}
                 textAnchor={labelsPosition === 'left' ? 'end' : 'start'}
               >

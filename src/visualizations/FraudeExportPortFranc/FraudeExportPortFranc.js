@@ -74,7 +74,7 @@ export default function FraudeExportPortFranc({
                         <h3 
                           onClick={() => setFocus(port)}
                           style={{
-                            right: width * .75
+                            right: width * .8
                           }}
                         >{port}</h3>
                        

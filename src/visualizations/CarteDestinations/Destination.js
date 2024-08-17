@@ -9,7 +9,7 @@ import { axisPropsFromTickScale } from 'react-d3-axis';
 import { partialCirclePathD } from '../../utils/misc';
 import CarteDestinations from '.';
 
-const {generic20colors} = palettes;
+const {generic20colors, dunkerqueColor} = palettes;
 
 const G = ({ children, className, onClick, ...inputProps }) => {
   const props = useSpring(inputProps);
@@ -81,6 +81,11 @@ const Destination = ({
     ...obj,
     [modality]: generic20colors[index]
   }), {});
+  if (groupModalityToColor['dunkerque']) {
+    groupModalityToColor['dunkerque'] = dunkerqueColor;
+  } else if (groupModalityToColor['dunkirk']) {
+    groupModalityToColor['dunkirk'] = dunkerqueColor;
+  } 
   
   const sumTonnage = Object.values(flagGroups).reduce((sum, g) => sum + g.tonnage, 0);
   // const maxTonnage = max(Object.values(flagGroups).map(g => g.tonnage));
