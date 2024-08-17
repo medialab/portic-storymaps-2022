@@ -3,6 +3,8 @@
 const colorsPalettes = {
   dunkerqueColor: '#ce4436', // #0030c4
   britishColor: '#cf142b',
+  importantColor: '#ff493b', // orange
+  franceColor: '#ffcc00',// jaune
   'ui': {
     'colorText': '#403d3d',
     'colorAccent': '#34495e',
@@ -65,29 +67,44 @@ const colorsPalettes = {
     'France': '#41BEA3',
   },
   portsTreemaps: {
-    'France (région PASA)': '#41BEA3',
-    'Indéterminé': 'rgb(240,240,240)',
-    'zone maritime': '#98a9d9',
-    'multi-Etat': '#a42e0d',
-    'France (hors région PASA)': '#FED63B',
+    'France': '#ffcc00',
+    'Grande-Bretagne': '#cf142b',
+    'Provinces-Unies': '#133db2',
+    'Danemark': '#8e7bee',
+    'Autriche': '#bd6a62',
 
     'Hambourg': '#F7E0DE',
     'Duché d\'Oldenbourg': '#F3D1CE',
     'Prusse': '#EFC1BD',
-    'Lubeck': '#E7A39C',
     'Brême': '#EBB2AD',
-    'Mecklenbourg': '#E3938C',
-    'Autriche': '#bd6a62',
+    'Duché de Mecklenbourg': '#E3938C',
+    'Evêché de Münster': '#E3938C',
 
-    'Grande-Bretagne': '#A07BEE',
-    'Provinces-Unies': '#2759e3',
-    'Danemark': '#8e7bee',
+    'Suède': '#482fc6',
 
     'Etats-Unis d\'Amérique': '#EBB2AD',
-    'Pologne': '#804a45',
-    'Russie': '#804a45',
     'Espagne': '#e35027',
-    'Portugal': '#e35027',
+    'Indéterminé': 'rgb(240,240,240)',
+  },
+  portsTreemapsEn: {
+    'France': '#ffcc00',
+    'Great Britain': '#cf142b',
+    'United Provinces': '#133db2',
+    'Denmark': '#8e7bee',
+    'Austria': '#bd6a62',
+
+    'Hamburg': '#F7E0DE',
+    'Duchy of Oldenburg': '#F3D1CE',
+    'Prussia': '#EFC1BD',
+    'Bremen': '#EBB2AD',
+    'Mecklenburg': '#E3938C',
+    'Prince-Bishopric of Münster': '#E3938C',
+
+    'Sweden': '#482fc6',
+
+    'United States': '#EBB2AD',
+    'Spain': '#e35027',
+    'Undefined': 'rgb(240,240,240)',
   },
   importsExports: {
     'Café': '#41BEA3',

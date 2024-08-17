@@ -10,6 +10,9 @@ import { scaleLinear } from 'd3-scale';
 import './HomeportSmoggleurs.scss'
 import { AnimatedCircle } from '../../components/AnimatedSvgElements';
 import { G, Line, Text } from '../../components/animatedPrimitives';
+import colorsPalettes from '../../utils/colorPalettes';
+
+const {britishColor} = colorsPalettes;
 
 export default function HomeportSmoggleurs({
   data: inputData,
@@ -228,7 +231,7 @@ export default function HomeportSmoggleurs({
                             y2={y}
                           />
                           <AnimatedCircle
-                            fill="red"
+                            fill={britishColor}
                             stroke="white"
                             cx={x}
                             cy={y}

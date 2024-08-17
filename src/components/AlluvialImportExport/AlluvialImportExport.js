@@ -9,6 +9,7 @@ import iwanthue from 'iwanthue';
 
 import './AlluvialImportExport.scss';
 import translate from "../../utils/translate";
+import ReactTooltip from "react-tooltip";
 
 function pickTextColor(bgColor, lightColor = 'white', darkColor = 'black') {
   const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
@@ -383,6 +384,7 @@ export default function AlluvialImportExport({
   const labelMargin = 2;
   const arrowSize = 20;
   return (
+    <>
     <svg
       {...{
         width,
@@ -460,6 +462,8 @@ export default function AlluvialImportExport({
                   height={barHeight - 1}
                   fill={color}
                   className="modality-rect"
+                  data-for="alluvial-tooltip"
+                  data-tip={barHeight < 10 ? product : undefined}
                 />
                 <foreignObject
                   x={0}
@@ -511,6 +515,8 @@ export default function AlluvialImportExport({
                   height={barHeight - 1}
                   fill={color}
                   className="modality-rect"
+                  data-for="alluvial-tooltip"
+                  data-tip={barHeight < 10 ? partner : undefined}
                 />
                 {
                   partner !== 'Fraude' &&
@@ -794,13 +800,15 @@ export default function AlluvialImportExport({
 
       <foreignObject
         x={width - barWidth * 4}
-        y={height * .8}
+        y={0}
         width={barWidth * 2}
-        height={centerCircleHeight * 3}
+        height={height}
       >
-        <div
+        <div className="valeur-manquante-container"
           xmlns="http://www.w3.org/1999/xhtml"
-          style={{fontSize: 12, textAlign: 'right'}}
+        >
+          <div
+          className="valeur-manquante"
         >
         {
           translate('AlluvialImportExport', 'missing_value_summary', lang, {
@@ -808,7 +816,10 @@ export default function AlluvialImportExport({
           })
         }
           </div>
+          </div>
       </foreignObject>
     </svg>
+    <ReactTooltip id="alluvial-tooltip" />
+    </>
   )
 }

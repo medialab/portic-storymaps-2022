@@ -71,7 +71,12 @@ export default function FraudeExportPortFranc({
                       key={port} 
                       
                       className={cx('FraudeExportPortFranc-box', {'is-visible': isVisible})}>
-                        <h3 onClick={() => setFocus(port)}>{port}</h3>
+                        <h3 
+                          onClick={() => setFocus(port)}
+                          style={{
+                            right: width * .75
+                          }}
+                        >{port}</h3>
                        
                         <AlluvialImportExport
                             dimensions={{

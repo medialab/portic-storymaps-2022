@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 
 import AlluvialChart from '../../components/AlluvialChart'
+import colorsPalettes from '../../utils/colorPalettes';
 
 import './SmogglageStatus.scss';
 import translate from '../../utils/translate';
+
+const {dunkerqueColor, britishColor} = colorsPalettes;
 
 export default function SmogglageStatus({
   data,
@@ -69,14 +72,14 @@ export default function SmogglageStatus({
         },
         colorPalette: {
           '0': '#336D7C',
-          '1': 'red',
+          '1': britishColor,
 
           'Lorient': 'lightgrey',
           'Roscoff': 'lightgrey',
           'Bordeaux': 'lightgrey',
           'Calais': 'grey',
           'Boulogne-sur-Mer': 'grey',
-          'Dunkerque': 'red',
+          'Dunkerque': dunkerqueColor,
         }
       }} />
       {/* <img

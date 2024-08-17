@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import ReactTooltip from "react-tooltip";
 import { AnimatedCircle, AnimatedGroup, AnimatedLine, AnimatedText } from "../../components/AnimatedSvgElements";
 import translate from "../../utils/translate";
+import colorsPalettes from "../../utils/colorPalettes";
+
+const {britishColor} = colorsPalettes;
 
 export default function PortObject({
   labelGroup,
@@ -68,7 +71,7 @@ export default function PortObject({
           r={radius}
           cx={0}
           cy={0}
-          fill={"red"}
+          fill={britishColor}
           stroke={"white"}
           style={{
             opacity: isActive ? 0 : 1

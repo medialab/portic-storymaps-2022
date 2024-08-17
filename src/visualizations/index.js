@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import visualizationsMetas from '../data/viz';
 
 import { formatNumber } from '../utils/misc';
+import colorsPalettes from '../utils/colorPalettes';
 
 import SmogglagePortsStats from './SmogglagePortsStats';
 import PecheTypeValue from './PecheTypeValue';
@@ -40,6 +41,8 @@ import ImportsDunkerqueVsPortsFrancs from './ImportsDunkerqueVsPortsFrancs';
 import EstimationExportsDkSnail from './EstimationExportsDkSnail/EstimationExportsDkSnail';
 import translate from '../utils/translate';
 
+
+const {portsTreemaps, portsTreemapsEn} = colorsPalettes;
 /**
  * This script is the bridge between visualization code, visualizations list, and visualization callers in contents.
  * It returns a visualization component depending on the provided id
@@ -203,6 +206,7 @@ export default function VisualizationController({
               // fieldsHierarchy: ['state_category', 'homeport', 'homeport_state_fr', ],
               color: {
                 field: lang === 'fr' ? 'homeport_state_fr' : 'homeport_state_en',
+                palette: lang === 'fr' ? portsTreemaps : portsTreemapsEn
               },
               leaf: {
                 labelField: 'homeport_' + lang,

@@ -1,11 +1,15 @@
 import React, { useMemo, useState, useRef } from 'react';
+import Measure from 'react-measure';
 
 import AlluvialChart from '../../components/AlluvialChart';
 
 import translate from '../../utils/translate';
 
+import colorsPalettes from '../../utils/colorPalettes';
+
 import './StigmatesSmoggleursDunkerque.scss';
-import Measure from 'react-measure';
+
+const {britishColor} = colorsPalettes;
 
 /**
  * @param {Object} props
@@ -123,14 +127,14 @@ export default function StigmatesSmoggleursDunkerque({
           steps,
           displayCounts: d => ` - ${d} ${lang === 'fr' ? 'trajets' : 'travels'}`,
           colorPalette: {
-            '12': 'red',
+            '12': britishColor,
             '[21-50]': 'lightgrey',
             '[51-100]': 'grey',
             '[101-200]': 'darkgrey',
             'Angleterre': 'grey',
-            'Lisbonne ou Bergen': 'red',
+            'Lisbonne ou Bergen': britishColor,
             'England': 'grey',
-            'Lisbon or Bergen': 'red',
+            'Lisbon or Bergen': britishColor,
              
           }
         }}

@@ -16,6 +16,9 @@ import RadarChart from "../../components/RadarChart";
 import { formatNumber } from "../../utils/misc";
 import ReactTooltip from "react-tooltip";
 import translate from "../../utils/translate";
+import colorsPalettes from "../../utils/colorPalettes";
+
+const {britishColor} = colorsPalettes;
 
 export default function ExportsVsSmogglage({
   width,
@@ -80,7 +83,7 @@ export default function ExportsVsSmogglage({
       return {
         meta: {
           name: port.port,
-          color: 'rgba(255,0,0,0.5)',
+          color: britishColor  // 'rgba(255,0,0,0.5)',
         },
         data: values,
         normalizedData

@@ -2,6 +2,9 @@ import { useState, useEffect, useMemo } from "react";
 
 import translate from "../../utils/translate";
 import AlluvialChart from "../../components/AlluvialChart";
+import colorsPalettes from "../../utils/colorPalettes";
+
+const {dunkerqueColor, franceColor} = colorsPalettes;
 
 
 export default function ResumeActivitesDunkerquois({
@@ -86,8 +89,8 @@ export default function ResumeActivitesDunkerquois({
             ...Array.from(new Set(data.map(d => d.destination_state)))
               .reduce((res, port) => ({ ...res, [port]: 'grey' }), {}),
 
-            'Dunkerque': 'red',
-            'France': 'red',
+            'Dunkerque': dunkerqueColor,
+            'France': franceColor,
           }
         }}
       />

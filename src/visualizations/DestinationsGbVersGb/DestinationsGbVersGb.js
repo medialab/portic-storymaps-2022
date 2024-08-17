@@ -8,6 +8,9 @@ import { scaleLinear } from 'd3-scale';
 import './DestinationsGbVersGb.scss'
 import ReactTooltip from 'react-tooltip';
 import { formatNumber } from '../../utils/misc';
+import colorsPalettes from '../../utils/colorPalettes';
+
+const {britishColor} = colorsPalettes;
 
 export default function DestinationsGbVersGb({
   data: inputData,
@@ -133,7 +136,7 @@ export default function DestinationsGbVersGb({
                 const [x, y] = projection([+longitude, +latitude]);
                 const radius = Math.sqrt((areaScale(+nb_pointcalls) / Math.PI));
                 const colorMap ={
-                  'port_specifie': 'red',
+                  'port_specifie': britishColor,
                   'fausse_destination': 'grey',
                   'gb_no_port': 'lightgrey'
                 }

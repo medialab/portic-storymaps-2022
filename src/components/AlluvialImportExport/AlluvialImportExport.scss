@@ -46,6 +46,17 @@
     }
   }
 
+  .valeur-manquante-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: end;
+    height: 100%;
+    .valeur-manquante {
+      text-align: right;
+      font-size: 12px;
+    }
+  }
+
   &.has-highlights {
     .modality-group,
     .flow-group {

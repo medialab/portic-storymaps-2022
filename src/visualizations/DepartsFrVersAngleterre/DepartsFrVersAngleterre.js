@@ -8,6 +8,9 @@ import { scaleLinear } from 'd3-scale';
 import './DepartsFrVersAngleterre.scss'
 import ReactTooltip from 'react-tooltip';
 import { formatNumber } from '../../utils/misc';
+import colorsPalettes from '../../utils/colorPalettes';
+
+const {britishColor, ui: {colorAccent}} = colorsPalettes;
 
 const Legend = ({ projection, width, height, atlasMode, lang }) => {
   const index = 'legend';
@@ -44,7 +47,7 @@ const Legend = ({ projection, width, height, atlasMode, lang }) => {
       </text>
 
       <circle
-        stroke="red"
+        stroke={britishColor}
         fill="rgba(255,255,255,0.5)"
         strokeDasharray="2, 4"
         cx={-1}
@@ -57,7 +60,7 @@ const Legend = ({ projection, width, height, atlasMode, lang }) => {
         x2={-1}
         y1={-leftRadius}
         y2={leftRadius}
-        stroke="red"
+        stroke={britishColor}
         fill="rgba(255,255,255,0.5)"
         strokeDasharray="2, 4"
       />
@@ -65,7 +68,7 @@ const Legend = ({ projection, width, height, atlasMode, lang }) => {
         <rect x={-leftRadius - 2} y={-leftRadius - 2} width={leftRadius + 1} height={leftRadius * 2 + 4} />
       </clipPath>
       <circle
-        stroke="grey"
+        stroke={colorAccent}
         fill="rgba(255,255,255,0.5)"
         strokeDasharray="2, 4"
         cx={1}
@@ -78,7 +81,7 @@ const Legend = ({ projection, width, height, atlasMode, lang }) => {
         x2={1}
         y1={-rightRadius}
         y2={rightRadius}
-        stroke="grey"
+        stroke={colorAccent}
         fill="rgba(255,255,255,0.5)"
         strokeDasharray="2, 4"
       />
@@ -225,7 +228,7 @@ export default function DepartsFrVersAngleterre({
                     </text>
 
                     <circle
-                      fill="red"
+                      fill={britishColor}
                       stroke="white"
                       cx={-1}
                       cy={0}
@@ -238,7 +241,7 @@ export default function DepartsFrVersAngleterre({
                       <rect x={-leftRadius - 2} y={-leftRadius - 2} width={leftRadius + 1} height={leftRadius * 2 + 4} />
                     </clipPath>
                     <circle
-                      fill="grey"
+                      fill={colorAccent}
                       stroke="white"
                       cx={1}
                       cy={0}
