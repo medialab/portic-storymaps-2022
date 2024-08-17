@@ -12,7 +12,7 @@ import palettes from '../../utils/colorPalettes.js';
 
 import './PecheMap.scss';
 
-const {importsExports: somePalette} = palettes;
+const {importsExports: somePalette, fishingPalettes} = palettes;
 
 export default function PecheMap({
   data,
@@ -92,7 +92,7 @@ export default function PecheMap({
             className: 'peche-zones',
             color: {
               field: 'shortname',
-              palette: colorPalette,
+              palette: fishingPalettes[lang],
               // palette: {
               //   'Islande': 'red',
               //   'Terre-Neuve': 'blue',
@@ -122,7 +122,7 @@ export default function PecheMap({
         }}
         color={{
           field: 'type_zone_peche',
-          palette: colorPalette
+          palette: fishingPalettes[lang]
         }}
         tooltip={
           (d) => translate('PecheMap', 'tooltip', lang, {

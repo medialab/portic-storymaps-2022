@@ -3,6 +3,9 @@ import React, { useContext, useMemo } from 'react';
 import BarChart from '../../components/BarChart';
 import { formatNumber } from '../../utils/misc';
 import translate from '../../utils/translate';
+import colorsPalettes from '../../utils/colorPalettes';
+
+const {fishingPalettes} = colorsPalettes;
 
 /**
  * Header contains navigation and…
@@ -46,7 +49,8 @@ export default function PecheTypeValue({
             }}
             color={{
                 field: 'type_zone_peche',
-                title: translate('PecheTypeValue', 'color', lang)
+                title: translate('PecheTypeValue', 'color', lang),
+                palette: fishingPalettes[lang]
             }}
 
             tooltip={

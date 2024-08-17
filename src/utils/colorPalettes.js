@@ -106,6 +106,22 @@ const colorsPalettes = {
     'Spain': '#e35027',
     'Undefined': 'rgb(240,240,240)',
   },
+  fishingPalettes: {
+    en: {
+      'Island': 'rgb(134, 198, 255)',
+      'Hitland': 'rgb(183, 245, 166)',
+      'Herring': 'rgb(66, 165, 106)',
+      'Newfoundland': 'rgb(143, 177, 138)',
+      'Dogre Banc': 'rgb(0, 203, 208)',
+    },
+    fr: {
+      'Islande': 'rgb(134, 198, 255)',
+      'Hitlande': 'rgb(183, 245, 166)',
+      'Hareng': 'rgb(66, 165, 106)',
+      'Terre-Neuve': 'rgb(143, 177, 138)',
+      'Dogre Banc': 'rgb(0, 203, 208)',
+    }
+  },
   importsExports: {
     'Café': '#41BEA3',
     'Coffee': '#41BEA3',
