@@ -10,6 +10,7 @@ const EstimationImportsExports = ({
   width,
   height,
   lang,
+  atlasMode,
 }) => {
   const [withLest, setWithLest] = useState(true);
   const globalModel = {
@@ -84,6 +85,7 @@ const EstimationImportsExports = ({
       ]
     }
   }
+  const columnWidth = atlasMode && width < 950 ? width : width / 2;
   return (
     <div className="EstimationImportsExports">
       {/* <BarChart
@@ -121,7 +123,7 @@ const EstimationImportsExports = ({
       <ColumnsComparison
         {
           ...{
-            width: width / 2,
+            width: columnWidth,
             height: height,
             data,
             ...globalModel,
@@ -132,7 +134,7 @@ const EstimationImportsExports = ({
       <ColumnsComparison
         {
           ...{
-            width: width / 2,
+            width: columnWidth,
             height: height,
             data,
             ...englandZoomModel,

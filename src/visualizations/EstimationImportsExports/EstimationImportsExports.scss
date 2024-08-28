@@ -94,4 +94,12 @@
     &.right-group {
     }
   }
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    .ColumnsComparison {
+      width: 100%;
+    }
+  }
 }

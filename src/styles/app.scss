@@ -123,10 +123,10 @@ input[type="radio"] {
   }
   
   &:checked{
-    background: red;
+    background: rgb(255, 73, 59);
     &::before {
       transform: scale(1);
-      background: red;
+      background: rgb(255, 73, 59);
     }
   }
   

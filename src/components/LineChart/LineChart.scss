@@ -48,4 +48,25 @@
     font-style: italic;
     }
   }
+  @include tablet {
+    .row.vis-row {
+      position: relative;
+      // flex-direction: column!important;
+      min-width: 100%;
+      .annotation line, .annotation foreignObject {
+        display: none;
+      }
+      // svg {
+      //   min-width: 100%;
+      // }
+    }
+  }
+}
+
+.lightbox-contents .LineChart {
+  @include tablet {
+    .row.vis-row {
+      background: white;
+    }
+  }
 }

@@ -13,6 +13,9 @@
             // float: left;
             // left: $medium-gutter;
             top: calc(50% - $medium-gutter / 2);
+            @include tablet {
+              top: $medium-gutter;
+            }
         }
       transition: .5s ease all;
       opacity: 0;
@@ -20,7 +23,7 @@
       max-height: 0;
       &.is-visible {
         opacity: 1;
-        max-height: 100vh;
+        max-height: 1000vh;
       }
     }
 

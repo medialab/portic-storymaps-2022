@@ -16,4 +16,20 @@
     // align-items: center;
     overflow: visible;
   }
+  @include tablet {
+    .row.vis-row {
+      // flex-direction: column!important;
+      .annotation line, .annotation foreignObject {
+        display: none;
+      }
+    }
+  }
+}
+
+.lightbox-contents .BarChart {
+  @include tablet {
+    .row.vis-row {
+      background: white;
+    }
+  }
 }
