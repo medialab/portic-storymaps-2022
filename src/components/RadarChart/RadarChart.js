@@ -24,6 +24,7 @@ const RadarChart= ({
   highlightedObjectName,
   onMouseOverObject,
   onMouseOutObject,
+  colorScale,
 }) => {
 
   useEffect(() => {

@@ -355,11 +355,11 @@ export default function FraudeExportDunkerque({
               },
               {
                 id: 'South Europe',
-                title: translate('CarteDestinations', 'map_position_north_europe', lang),
+                title: translate('CarteDestinations', 'map_position_south_europe', lang),
               },
               {
                 id: 'North Europe',
-                title: translate('CarteDestinations', 'map_position_south_europe', lang),
+                title: translate('CarteDestinations', 'map_position_north_europe', lang),
               },
               
             ]

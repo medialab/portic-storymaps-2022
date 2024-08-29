@@ -59,7 +59,7 @@ export default function Pilotage({
     const pilotageOnTotalPourcentagePerYearMean = mean(pilotageOnTotalPourcentagePerYear);
     const projectionPerYear = dataForProjection.map(({ sorties_pilotage, total, year }) => {
       const proportion = (sorties_pilotage / total) * 100;
-      console.log(year, proportion + '%', ', mean : ', pilotageOnTotalPourcentagePerYearMean, pilotageOnTotalPourcentagePerYearMean - proportion)
+      // console.log(year, proportion + '%', ', mean : ', pilotageOnTotalPourcentagePerYearMean, pilotageOnTotalPourcentagePerYearMean - proportion)
       const pilotageByProjection = (sorties_pilotage * 100) / pilotageOnTotalPourcentagePerYearMean;
       const realityGap = total - pilotageByProjection;
       const realityGapPourcentage = (realityGap / pilotageByProjection) * 100;
@@ -81,16 +81,20 @@ export default function Pilotage({
       meanProjectionPerYear: pilotageOnTotalPourcentagePerYearMean
     };
   }, [dataForProjection]);
-
+  console.log({methodo_uniquement, resultat_uniquement})
   return (
-    <div className={`Pilotage ${isSlim ? 'is-slim' : ''} ${atlasMode ? 'is-atlas-mode' : 'is-scrolly-mode'} ${methodo_uniquement !== undefined ? 'methodo-only' : ''} ${resultat_uniquement !== undefined ? 'result-only' : ''}`}
+    <div className={`Pilotage ${isSlim ? 'is-slim' : ''}${atlasMode ? ' is-atlas-mode' : ' is-scrolly-mode'} ${methodo_uniquement !== undefined ? ' methodo-only' : ''}${resultat_uniquement !== undefined ? ' result-only' : ''}`}
       style={{
         maxWidth: width,
-        maxHeight: atlasMode ? undefined : height
+        maxHeight: atlasMode ? undefined : height,
+        height: atlasMode ? undefined : height
       }}
     >
       <div
         className="row upper-row"
+        style={{
+          maxHeight: atlasMode ? undefined : (methodo_uniquement === undefined && resultat_uniquement === undefined) ? height / 2 : methodo_uniquement !== undefined ? height :  0
+        }}
       >
         <div
           className="explanation-left"
@@ -135,7 +139,12 @@ export default function Pilotage({
           />
         </div>
       </div>
-      <div className="row lower-row">
+      <div 
+        className="row lower-row"
+        style={{
+          maxHeight: atlasMode ? undefined : (methodo_uniquement === undefined && resultat_uniquement === undefined) ? height / 2 : resultat_uniquement !== undefined ? height :  0
+        }}
+      >
         <h3>{translate('Pilotage', 'title_estimation', lang)}</h3>
         {
           !resultat_uniquement ?

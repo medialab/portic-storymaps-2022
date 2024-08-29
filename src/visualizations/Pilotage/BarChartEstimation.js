@@ -157,9 +157,9 @@ export default function PilotageLegend({
                       >
                         {
                           projectionPerYear.map(({ realityGapPourcentage, proportion }, projectionIndex) => {
-                            console.log(sorties_pilotage, realityGapPourcentage)
+                            // console.log(sorties_pilotage, realityGapPourcentage)
                             const estimateAbs = (sorties_pilotage * 100) / proportion // 
-                            console.log({sorties_pilotage, realityGapPourcentage, estimateAbs})
+                            // console.log({sorties_pilotage, realityGapPourcentage, estimateAbs})
                             // const estimateAbs = sorties_pilotage / meanPilotage + (realityGapPourcentage / 100) * (sorties_pilotage / meanPilotage);
 
                             return (

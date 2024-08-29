@@ -1,4 +1,4 @@
-import { max, min } from "d3-array";
+import { extent, max, min } from "d3-array";
 import { useMemo } from 'react';
 import { scaleLinear } from "d3-scale";
 import PortObject from "./PortObject";
@@ -109,6 +109,7 @@ const renderObjects = ({
     onMouseOver,
     onMouseOut,
     highlightedPort,
+    colorScale,
     lang,
   } = data;
   const maxSizeValue = useMemo(() => {
@@ -146,7 +147,9 @@ const renderObjects = ({
         x,
         y,
         fontSize,
-        radius
+        radius,
+        latitude: +latitude,
+        longitude: +longitude,
       }
     })
   }, [areaScale, fontSizeScale, circleSizeVariable, homeportsData, projection]);
@@ -199,9 +202,12 @@ const renderObjects = ({
             label,
             x,
             y,
-            radius
+            radius,
+            latitude,
+            longitude,
           }, i) => {
             const isActive = label === selectedPort;
+            // console.log(latitude, longitude, colorScale(latitude * longitude))
             return (
               <PortObject
                 key={i}
@@ -212,6 +218,7 @@ const renderObjects = ({
                 {...{ label, x, y }}
                 radius={isActive ? height * .33 : radius}
                 fontSize={labelsFontSize}
+                color={colorScale(latitude * longitude)}
                 labelX={width - 50}
                 labelY={i * rightRowHeight + height / 4}
                 onSelect={port => setSelectedPort(port)}
@@ -229,7 +236,9 @@ const renderObjects = ({
             label,
             x,
             y,
-            radius
+            radius,
+            latitude,
+            longitude,
           }, i) => {
             const isActive = label === selectedPort;
             return (
@@ -241,6 +250,7 @@ const renderObjects = ({
                 lang={lang}
                 {...{ label, x, y }}
                 radius={isActive ? height * .33 : radius}
+                color={colorScale(latitude * longitude)}
                 fontSize={labelsFontSize}
                 labelX={50}
                 labelY={i * leftRowHeight + height / 4}
@@ -259,7 +269,9 @@ const renderObjects = ({
             label,
             x,
             y,
-            radius
+            radius,
+            latitude,
+            longitude
           }, i) => {
             const isActive = label === selectedPort;
             return (
@@ -272,6 +284,7 @@ const renderObjects = ({
                 radius={isActive ? height * .33 : radius}
                 fontSize={labelsFontSize}
                 labelX={i * bottomColumnWidth + width * 0.05}
+                color={colorScale(latitude * longitude)}
                 labelY={height - 20}
                 onSelect={port => setSelectedPort(port)}
                 onDeselect={() => setSelectedPort()}

@@ -39,6 +39,7 @@ import Legend from './Legend';
 import './GeographicMapChart.scss'
 import { fixSvgDimension } from '../../utils/misc';
 import SVGLayer from './SVGLayer';
+import { max } from 'd3-array';
 
 
 /**
@@ -103,7 +104,7 @@ const GeographicMapChart = ({
       rotationDegree: 0,
       centerX: 2.4486203,
       centerY: 46.8576176,
-      scale: height * 5
+      scale: max([width, height]) * 3
     };
   }, [height]) // repsonsive : se fait en fonction de la height de l'écran
 

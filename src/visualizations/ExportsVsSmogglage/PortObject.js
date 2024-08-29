@@ -22,7 +22,8 @@ export default function PortObject({
   isHidden,
   onMouseOver,
   onMouseOut,
-  lang = 'fr'
+  lang = 'fr',
+  color,
 }) {
   let fontSize = inputFontSize;
   let textAnchor = 'start';
@@ -48,7 +49,8 @@ export default function PortObject({
 
   useEffect(() => {
     ReactTooltip.rebuild();
-  }, [translate])
+  }, [translate]);
+
   return (
     <g  
       className={`PortObject ${isDimmed ? 'is-dimmed': ''} ${isHidden ? 'is-hidden': ''} ${isActive ? 'is-active': ''}`} 
@@ -71,7 +73,8 @@ export default function PortObject({
           r={radius}
           cx={0}
           cy={0}
-          fill={britishColor}
+          // fill={britishColor}
+          fill={color}
           stroke={"white"}
           style={{
             opacity: isActive ? 0 : 1

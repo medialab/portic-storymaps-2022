@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { max, min } from 'd3-array';
+import { extent, max, min } from 'd3-array';
 
 import GeographicMapChart from '../../components/GeographicMapChart'
 import renderObjects from './renderObjects';
@@ -17,6 +17,7 @@ import { formatNumber } from "../../utils/misc";
 import ReactTooltip from "react-tooltip";
 import translate from "../../utils/translate";
 import colorsPalettes from "../../utils/colorPalettes";
+import { scaleLinear } from "d3-scale";
 
 const {britishColor} = colorsPalettes;
 
@@ -59,6 +60,14 @@ export default function ExportsVsSmogglage({
     }
   }, [data]);
 
+  const colorScale = useMemo(() => {
+    const positionsExtent = extent(
+      homeportsData.map(port => +port.latitude * +port.longitude)
+    );
+    const s = scaleLinear().domain(positionsExtent).range([0, 360]);
+    return d =>  `hsl(${s(d)} 100% 40%)`
+  }, [homeportsData]);
+
   const radarAxis = Object.keys(portsProductsGroups).map(p => translate('ExportsVsSmogglage', p, lang))
   const radarData = useMemo(() => {
     let absoluteMaxValue = -Infinity;
@@ -83,7 +92,7 @@ export default function ExportsVsSmogglage({
       return {
         meta: {
           name: port.port,
-          color: britishColor  // 'rgba(255,0,0,0.5)',
+          color: colorScale(+port.latitude * +port.longitude) // britishColor  // 'rgba(255,0,0,0.5)',
         },
         data: values,
         normalizedData
@@ -116,7 +125,7 @@ export default function ExportsVsSmogglage({
       }
     })
     return output;
-  }, [homeportsData, selectedPort, lang, translate]);
+  }, [homeportsData, selectedPort, lang, translate, colorScale]);
   // const detailsData = useMemo(() => {
   //   if (homeportsData) {
   //     const port = homeportsData.find(p => p.port === selectedPort);
@@ -202,6 +211,7 @@ export default function ExportsVsSmogglage({
               selectedPort,
               setSelectedPort,
               highlightedPort,
+              colorScale,
               onMouseOver: (port) => setHighlightedPort(port),
               onMouseOut: () => setHighlightedPort(),
               // flagGroupModalities,
@@ -236,6 +246,7 @@ export default function ExportsVsSmogglage({
           highlightedObjectName={highlightedPort}
           onMouseOverObject={(port) => setHighlightedPort(port)}
           onMouseOutObject={() => setHighlightedPort()}
+          colorScale={colorScale}
         />
       </div>
       <div className={`legend-container ${selectedPort ? 'is-hidden' : ''}`}>
