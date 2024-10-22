@@ -96,11 +96,11 @@ export default [
   {
     routes: {
       fr: 'methodologie',
-      en: 'methodology'
+      en: 'appendix'
     },
     titles: {
       fr: 'Méthodologie',
-      en: 'Methodology'
+      en: 'Appendix'
     },
     contents: {
       fr: frMethodo,
