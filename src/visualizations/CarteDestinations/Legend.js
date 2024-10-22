@@ -282,7 +282,7 @@ const Legend = ({
                     y={8}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage, lang)} {lang === 'fr' ? 'tx' : 'b'}.
+                    {formatNumber(maxDestinationTonnage, lang)} {lang === 'fr' ? 'tx' : 'tx'}.
                   </text>
                   {/* small mark */}
                   <circle
@@ -308,7 +308,7 @@ const Legend = ({
                     y={maxSizeRadius * 2 - minSizeRadius + 1}
                     fontSize={8}
                   >
-                    {formatNumber(maxDestinationTonnage / 10, lang)} {lang === 'fr' ? 'tx' : 'b'}.
+                    {formatNumber(maxDestinationTonnage / 10, lang)} {lang === 'fr' ? 'tx' : 'tx'}.
                   </text>
                 </svg>
               </div>
