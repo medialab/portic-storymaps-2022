@@ -180,23 +180,23 @@ export default function DepartsFrVersAngleterre({
                 const rightRadius = Math.sqrt((areaScale(departs_hors_gb_tonnage) / Math.PI));
                 const leftTooltip = port === 'Saint-Tropez' ?
                   translate('DepartsFrVersAngleterre', 'single_port_tooltip_left', lang, {
-                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage, lang)),
+                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage), lang),
                     port
                   })
                   :
                   translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_left', lang, {
-                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage, lang)),
+                    tonnage: formatNumber(parseInt(departs_vers_gb_tonnage), lang),
                     port,
                     ports
                   })
                 const rightTooltip = port === 'Saint-Tropez' ?
                 translate('DepartsFrVersAngleterre', 'single_port_tooltip_right', lang, {
-                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage, lang)),
+                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage), lang),
                   port
                 })
                 :
                 translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_right', lang, {
-                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage, lang)),
+                  tonnage: formatNumber(parseInt(departs_hors_gb_tonnage), lang),
                   port,
                   ports
                 })
