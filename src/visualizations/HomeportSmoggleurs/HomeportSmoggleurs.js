@@ -11,6 +11,7 @@ import './HomeportSmoggleurs.scss'
 import { AnimatedCircle } from '../../components/AnimatedSvgElements';
 import { G, Line, Text } from '../../components/animatedPrimitives';
 import colorsPalettes from '../../utils/colorPalettes';
+import { formatNumber } from '../../utils/misc';
 
 const {britishColor} = colorsPalettes;
 
@@ -282,6 +283,7 @@ export default function HomeportSmoggleurs({
             field: 'total',
             title: translate('HomeportSmoggleurs', 'y', lang),
             domain: [0, maxTotal],
+            tickFormat: d => formatNumber(d, lang),
             tickSpan: 200
           }
         }
