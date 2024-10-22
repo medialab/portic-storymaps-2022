@@ -6,6 +6,7 @@ export default function SchemaSources({
   atlasMode,
   lang
 }) {
+  // console.log({width, height})
   return (
     <div 
       className="SchemaSources"
@@ -13,7 +14,7 @@ export default function SchemaSources({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100%'
+        // height: '100%'
       }}
       dangerouslySetInnerHTML={{
         __html: svg({width, height: atlasMode ? window.innerHeight : height, lang})
