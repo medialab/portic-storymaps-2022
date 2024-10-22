@@ -3,8 +3,10 @@ import { formatNumber } from "../../utils/misc";
 export const productsQuantiFields = {
   "valeur_smogglé1": {
     tickFormat: (d, lang) => `${formatNumber(d, lang)} lt`,
-    tickSpan: 250000,
-    domain: [0, 1250001],
+    // tickSpan: 250000,
+    // domain: [0, 1250001],
+    tickSpan: 500000,
+    domain: [0, 1000001],
     labels: {
       fr: "Estimation de la valeur à partir des quantités",
       en: "Value estimate made according to quantities"
