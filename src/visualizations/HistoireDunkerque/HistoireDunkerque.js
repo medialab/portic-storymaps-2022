@@ -99,7 +99,7 @@ export default function HistoireDunkerque({
         }
       }
     })
-  }, [inputData]);
+  }, [inputData, lang]);
 
   const events = data.filter(({ type }) => type === 'event').sort(({ year_start: aYear }, { year_start: bYear }) => {
     if (aYear < bYear) { return -1; }
