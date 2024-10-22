@@ -668,10 +668,10 @@ ComparaisonLaRochelle:
     fr: valeur observée dans toflit18 (pondérée avec les ratios terre-mer)
     en: value observed in toflit18 (weighted with land-sea ratios)
   estimation_type_2:
-    fr: estimation basse (hyp. F12 inclut lest)
-    en: low estimate (supposing F12 includes ballast)
+    fr: estimation haute (hyp. F12 inclut lest)
+    en: high estimate (supposing F12 includes ballast)
   estimation_type_3:
-    fr: estimation haute (hyp. F12 exclut lest)
+    fr: estimation basse (hyp. F12 exclut lest)
     en: low estimate (supposing F12 excludes ballast)
 DestinationsDkPrProjection:
   x:
