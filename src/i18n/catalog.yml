@@ -47,7 +47,7 @@ vizContainer:
     fr: voir le texte associé
     en: see associated text
   goToFullScreen:
-    fr: En savoir plus sur cette visualization
+    fr: En savoir plus sur cette visualisation
     en: Learn more about this visualization
   backToMainViz:
     fr: Revenir à la visualisation principale
@@ -958,6 +958,9 @@ AlluvialImportExport:
   Riz:
     fr: Riz
     en: Rice
+  autres:
+    fr: Autres
+    en: Others
   others:
     fr: Autres
     en: Others
