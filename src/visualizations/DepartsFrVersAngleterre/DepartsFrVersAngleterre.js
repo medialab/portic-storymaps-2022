@@ -110,7 +110,7 @@ export default function DepartsFrVersAngleterre({
       }
       return 1;
     })
-  console.log(data.filter(({ port }) => port === 'Dunkerque'))
+  // console.log(data.filter(({ port }) => port === 'Dunkerque'))
 
   const height = atlasMode ? window.innerHeight * .95 : initialHeight;
 
