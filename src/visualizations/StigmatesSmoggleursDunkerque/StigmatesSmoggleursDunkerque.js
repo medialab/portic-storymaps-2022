@@ -117,7 +117,7 @@ export default function StigmatesSmoggleursDunkerque({
   console.log('in StigmatesSmoggleursDunkerque')
   return (
     <div className="StigmatesSmoggleursDunkerque">
-      {/*<AlluvialChart
+      <AlluvialChart
         dimensions={{
           width: atlasMode ? width : width - 10,
           height: chartHeight
@@ -138,7 +138,7 @@ export default function StigmatesSmoggleursDunkerque({
              
           }
         }}
-      />*/}
+      />
       <Measure
       bounds
       onResize={contentRect => {
