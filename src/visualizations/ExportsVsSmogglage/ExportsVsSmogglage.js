@@ -40,6 +40,12 @@ export default function ExportsVsSmogglage({
     return Math.PI * maxObjectRadius * maxObjectRadius;
   }, [width, height]);
 
+  const translationMap = {
+    'Ile de Whigt': 'Isle of Whigt',
+    'Londres': 'London',
+    'Douvres': 'Dover'
+  }
+
   const {
     // productsData,
     homeportsData,
@@ -55,7 +61,11 @@ export default function ExportsVsSmogglage({
       //       }
       //     }, {})
       //   }),
-      homeportsData: data.get('smogglage-vs-exports-par-homeport.csv'),
+      homeportsData: data.get('smogglage-vs-exports-par-homeport.csv')
+      .map(datum => ({
+        ...datum,
+        label: lang === 'en' && datum.port in translationMap ? translationMap[datum.port] : datum.port
+      })),
       // portsList: data.get('smogglage-vs-exports-par-homeport.csv').map(p => p.port)
     }
   }, [data]);

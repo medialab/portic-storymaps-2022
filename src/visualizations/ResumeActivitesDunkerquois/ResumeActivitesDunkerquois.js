@@ -24,7 +24,6 @@ export default function ResumeActivitesDunkerquois({
   useEffect(() => {
     setYear(inputYear)
   }, [inputYear]);
-
   const steps = [
     {
       field: 'ship_tonnage_class',
@@ -35,13 +34,13 @@ export default function ResumeActivitesDunkerquois({
       // sortOrder: 'descending'
     },
     {
-      field: 'departure',
+      field: lang === 'fr' ? 'departure' : 'departure_en',
       title: translate('ResumeActivitesDunkerquois', 'step_2_title', lang),
       // label: 'smoggleurLabel',
       sortOrder: 'descending'
     },
     {
-      field: 'destination_state',
+      field: lang === 'fr' ? 'destination_state' : 'destination_state_en',
       title: translate('ResumeActivitesDunkerquois', 'step_3_title', lang),
       sortOrder: 'descending',
       // label: 'portLabel'
@@ -90,6 +89,7 @@ export default function ResumeActivitesDunkerquois({
               .reduce((res, port) => ({ ...res, [port]: 'grey' }), {}),
 
             'Dunkerque': dunkerqueColor,
+            'Dunkirk': dunkerqueColor,
             'France': franceColor,
           }
         }}

@@ -25,7 +25,9 @@ with open(input, "r") as fr:
     with open(output, "w") as fw:
       fieldnames = [
         "destination",
+        "destination_en",
         "destination_state",
+        "destination_state_en",
         "destination_latitude",
         "destination_longitude",
         "homeport",
@@ -49,7 +51,9 @@ with open(input, "r") as fr:
           is_long_cours = "long cours" in row["all_taxes"]
           writer.writerow({
             "destination": destination,
+            "destination_en": row["destination_en"],
             "destination_state": destination_state,
+            "destination_state_en": row['destination_state_1789_en'],
             "destination_latitude": row["destination_latitude"],
             "destination_longitude": row["destination_longitude"],
             "homeport": homeport,

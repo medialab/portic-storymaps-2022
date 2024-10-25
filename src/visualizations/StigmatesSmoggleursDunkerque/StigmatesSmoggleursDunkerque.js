@@ -114,7 +114,6 @@ export default function StigmatesSmoggleursDunkerque({
     const { value } = target;
     setYear(value);
   }
-  console.log('in StigmatesSmoggleursDunkerque')
   return (
     <div className="StigmatesSmoggleursDunkerque">
       <AlluvialChart

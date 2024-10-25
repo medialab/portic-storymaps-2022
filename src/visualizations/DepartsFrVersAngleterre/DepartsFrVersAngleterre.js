@@ -111,7 +111,6 @@ export default function DepartsFrVersAngleterre({
       return 1;
     })
   // console.log(data.filter(({ port }) => port === 'Dunkerque'))
-
   const height = atlasMode ? window.innerHeight * .95 : initialHeight;
 
   const backgroundMap = useMemo(() => {
@@ -173,7 +172,7 @@ export default function DepartsFrVersAngleterre({
               // showDetailsInMap
             },
             renderObjects: ({ projection, width, height, atlasMode }) => {
-              return data.map(({ port, ports, latitude, longitude, departs_vers_gb_tonnage, departs_hors_gb_tonnage }, index) => {
+              return data.map(({ port, ports, ports_en, latitude, longitude, departs_vers_gb_tonnage, departs_hors_gb_tonnage }, index) => {
                 const [x, y] = projection([longitude, latitude]);
                 const fontSize = fontSizeScale(parseInt(departs_vers_gb_tonnage) + parseInt(departs_hors_gb_tonnage));
                 const leftRadius = Math.sqrt((areaScale(departs_vers_gb_tonnage) / Math.PI));
@@ -186,8 +185,8 @@ export default function DepartsFrVersAngleterre({
                   :
                   translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_left', lang, {
                     tonnage: formatNumber(parseInt(departs_vers_gb_tonnage), lang),
-                    port,
-                    ports
+                    port: translate('DepartsFrVersAngleterre', port, lang),
+                    ports: lang === 'fr' ? ports : ports_en
                   })
                 const rightTooltip = port === 'Saint-Tropez' ?
                 translate('DepartsFrVersAngleterre', 'single_port_tooltip_right', lang, {
@@ -197,8 +196,8 @@ export default function DepartsFrVersAngleterre({
                 :
                 translate('DepartsFrVersAngleterre', 'multiple_ports_tooltip_right', lang, {
                   tonnage: formatNumber(parseInt(departs_hors_gb_tonnage), lang),
-                  port,
-                  ports
+                  port: translate('DepartsFrVersAngleterre', port, lang),
+                  ports: lang === 'fr' ? ports : ports_en
                 })
                 
                 return (
@@ -212,7 +211,7 @@ export default function DepartsFrVersAngleterre({
                       y={fontSize / 2}
                       textAnchor="end"
                     >
-                      {port}
+                      {translate('DepartsFrVersAngleterre', port, lang)}
                     </text>
                     <text
                       style={{ fontSize }}

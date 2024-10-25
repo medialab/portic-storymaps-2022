@@ -32,7 +32,6 @@ const renderObjects = ({
     }
   }, [maxDestinationTonnage, maxCircleArea]);
 
-
   const destinations = useMemo(() => {
     return initialDestinations.map(({ longitude, latitude, tonnage, ...destination }) => {
       const [initialX, initialY] = projection([longitude, latitude]);
@@ -74,7 +73,7 @@ const renderObjects = ({
         arrowDirection,
       }
     })
-  }, [initialDestinations, areaScale, fontSizeScale, projection])
+  }, [initialDestinations, areaScale, fontSizeScale, projection]);
   return (
     <>
       {

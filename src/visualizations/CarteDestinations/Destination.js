@@ -59,6 +59,7 @@ const Path = ({ children, className, onClick, ...inputProps }) => {
 
 const Destination = ({
   destination, 
+  destination_en,
   // travels, 
   // tonnage, 
   flagGroups, 
@@ -293,7 +294,7 @@ const Destination = ({
         fontSize={fontSize}
         className="radar-label"
       >
-        {destination}
+        {lang === 'fr' ? destination : destination_en}
       </text>
       {
         overflowing ?

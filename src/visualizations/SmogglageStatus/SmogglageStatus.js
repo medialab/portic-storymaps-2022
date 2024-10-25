@@ -17,7 +17,7 @@ export default function SmogglageStatus({
 }) {
   const steps = [
     {
-      field: 'departure_fr',
+      field: lang === 'fr' ? 'departure_fr' : 'departure_en',
       title: translate('SmogglageStatus', 'left_title', lang),
       sortOrder: 'descending',
       label: 'portLabel'
@@ -52,7 +52,7 @@ export default function SmogglageStatus({
       return {
       ...d,
       portLabel: translate('SmogglageStatus', 'port_label', lang, {
-        port: d.departure_fr,
+        port: lang === 'fr' ? d.departure_fr : d.departure_en,
         pct: pctSmoggleurs
       }),
       smoggleurLabel: d.is_smoggleur === '0' ? translate('SmogglageStatus', 'non_smoggler', lang) : translate('SmogglageStatus', 'smoggler', lang)
@@ -80,6 +80,7 @@ export default function SmogglageStatus({
           'Calais': 'grey',
           'Boulogne-sur-Mer': 'grey',
           'Dunkerque': dunkerqueColor,
+          'Dunkirk': dunkerqueColor,
         }
       }} />
       {/* <img

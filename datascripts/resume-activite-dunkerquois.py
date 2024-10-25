@@ -100,9 +100,12 @@ for year in years:
                     # print('go', str(year), len(cargos), j, i)
                     output_data.append({
                         'departure': flow['departure'],
+                        'departure_en': flow['departure_en'],
                         'departure_state': flow['departure_state_1789_fr'] or 'inconnu',
                         'destination': flow['destination'],
+                        'destination_en': flow['destination_en'],
                         'destination_state': flow['destination_state_1789_fr'] or 'inconnu',
+                        'destination_state_en': flow['destination_state_1789_en'] or 'unknown',
                         'rel_tonnage': str(int(ship_tonnage) / len(cargos)),
                         'cargo_type': cargo,
                         'ship_tonnage': ship_tonnage,

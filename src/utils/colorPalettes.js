@@ -108,7 +108,7 @@ const colorsPalettes = {
   },
   fishingPalettes: {
     en: {
-      'Island': 'rgb(134, 198, 255)',
+      'Iceland': 'rgb(134, 198, 255)',
       'Hitland': 'rgb(183, 245, 166)',
       'Herring': 'rgb(66, 165, 106)',
       'Newfoundland': 'rgb(143, 177, 138)',

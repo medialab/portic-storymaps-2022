@@ -24,7 +24,18 @@ export default function HomeportSmoggleurs({
   callerProps = {},
   ...props
 }) {
-  const data = inputData.get('homeport-smoggleurs.csv');
+
+  const translationMap = {
+    'Ile de Whigt': 'Isle of Whigt',
+    'Londres': 'London'
+  }
+  const data = useMemo(() => 
+    inputData.get('homeport-smoggleurs.csv')
+  .map(datum => ({
+    ...datum,
+    destination: lang === 'en' && datum.destination in translationMap ? translationMap[datum.destination] : datum.destination
+  }))
+    , [inputData, lang, translate]);
 
   const [highlightedDestination, setHighlightedDestination] = useState(callerProps.port);
 

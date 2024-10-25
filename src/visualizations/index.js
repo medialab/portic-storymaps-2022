@@ -211,7 +211,7 @@ export default function VisualizationController({
               leaf: {
                 labelField: 'homeport_' + lang,
                 countField: 'tonnage',
-                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage), lang)} ${lang === 'fr' ? 'tx' : 'b'})`
+                labelFormat: d => `${d['homeport_' + lang]} (${formatNumber(parseInt(d.tonnage), lang)} ${lang === 'fr' ? 'tx' : 'tx'})`
               }
             }
             }

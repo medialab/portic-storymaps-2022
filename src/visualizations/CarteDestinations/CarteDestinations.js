@@ -170,6 +170,7 @@ export default function FraudeExportDunkerque({
       if (!res.destinations[destination]) {
         res.destinations[destination] = {
           destination,
+          destination_en: travel.destination_en,
           travels: 0,
           tonnage: 0,
           latitude: travel.destination_latitude,
@@ -226,7 +227,6 @@ export default function FraudeExportDunkerque({
     return Math.PI * maxObjectRadius * maxObjectRadius;
   }, [width, height, projectionTemplate]);
 
-
   return (
     <div
       className="CarteDestinations"
@@ -236,7 +236,7 @@ export default function FraudeExportDunkerque({
       }}
     >
       <GeographicMapChart
-        title={'Carte des destinations des navires partis de Dunkerque en 1789'}
+        title={translate('CarteDestinations', 'title', lang)}
         projectionTemplate={projectionTemplate}
         hideTitle={!atlasMode}
         layers={[

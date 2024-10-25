@@ -132,7 +132,7 @@ export default function DestinationsGbVersGb({
               // showDetailsInMap
             },
             renderObjects: ({ projection, width, height, atlasMode }) => {
-              return vizData.map(({ port, latitude, longitude, nb_pointcalls, barY, barHeight, category }, index) => {
+              return vizData.map(({ port, port_en, latitude, longitude, nb_pointcalls, barY, barHeight, category }, index) => {
                 const [x, y] = projection([+longitude, +latitude]);
                 const radius = Math.sqrt((areaScale(+nb_pointcalls) / Math.PI));
                 const colorMap ={
@@ -163,7 +163,7 @@ export default function DestinationsGbVersGb({
                     data-for="map-tooltip"
                     data-tip={
                       translate('DestinationsGbVersGb', 'tooltip', lang, {
-                        port,
+                        port: lang === 'fr' ? port : port_en,
                         nb_pointcalls
                       })
                       // `${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1789)`

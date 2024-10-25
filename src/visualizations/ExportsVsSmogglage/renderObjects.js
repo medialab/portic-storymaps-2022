@@ -135,6 +135,7 @@ const renderObjects = ({
       latitude,
       longitude,
       port,
+      label,
       ...otherData
     }) => {
       const quantiField = +otherData[circleSizeVariable]
@@ -144,6 +145,7 @@ const renderObjects = ({
       const radius = Math.sqrt((area / Math.PI));
       return {
         label: port,
+        labelD: label,
         x,
         y,
         fontSize,
@@ -200,6 +202,7 @@ const renderObjects = ({
         objectsGroups.right
           .map(({
             label,
+            labelD,
             x,
             y,
             radius,
@@ -215,7 +218,7 @@ const renderObjects = ({
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
                 lang={lang}
-                {...{ label, x, y }}
+                {...{ label: labelD, x, y }}
                 radius={isActive ? height * .33 : radius}
                 fontSize={labelsFontSize}
                 color={colorScale(latitude * longitude)}

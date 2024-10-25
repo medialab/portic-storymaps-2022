@@ -106,7 +106,7 @@ EvolutionTypeConges:
     color: "#668EDB"
   Isles (pav. fr):
     fr: Isles (pav. fr)
-    en: Isles (french flag)
+    en: Islands (french flag)
     color: "#41BEA3"
   long-cours (pav. fr):
     fr: long-cours (pav. fr)
@@ -118,11 +118,11 @@ EvolutionTypeConges:
     color: "#514EEE"
   cabotage (étrangers):
     fr: cabotage (étrangers)
-    en: cabotage (strangers)
+    en: cabotage (freign flags)
     color: "#E5881A"
   long-cours (étrangers):
     fr: long-cours (étrangers)
-    en: long-distance (strangers)
+    en: long-distance (foreign flags)
     color: "#875E2E"
 PecheTypeValue:
   tooltip:
@@ -162,7 +162,7 @@ PecheMap:
     en: Year
   Islande:
     fr: Islande
-    en: Island
+    en: Iceland
   Terre-Neuve:
     fr: Terre-Neuve
     en: Newfoundland
@@ -226,12 +226,15 @@ TonnagesF12:
     fr: ${tx} tonneaux envoyé au partenaire ${destination} en 1787
     en: ${tx} barrels sent to partner ${destination} in 1787
 CarteDestinations:
+  title:
+    fr: Carte des destinations des navires partis de Dunkerque en 1789
+    en: Map of destinations of ships leaving from Dunkirk
   dunkerquois:
     fr: dunkerquois
     en: dunkirk
   étranger:
     fr: étranger
-    en: stranger
+    en: foreign
   brémois:
     fr: brémois
     en: bremish
@@ -300,7 +303,7 @@ CarteDestinations:
     en: North Europe
   tooltip:
     fr: ${destination} - ${tonnage} tx. Le pavillon dominant est ${dominantFlag} à ${pct}%
-    en: ${destination} - ${tonnage} barrels. The dominant flag is ${dominantFlag} for ${pct}% of travels
+    en: ${destination} - ${tonnage} tx. The dominant flag is ${dominantFlag} for ${pct}% of travels
   map_position:
     fr: Position de la carte
     en: Map position
@@ -355,22 +358,28 @@ CarteDestinations:
 Pilotage:
   title_comparaison:
     fr: Comparaison entre les données du pilotage <br/>et le registre des congés
-    en: Comparison between pilotage data <br/>and registre des congés
+    en: Comparison between piloting data <br/>and congés register
   title_estimation:
     fr: Évolution (projetée puis observée) du nombre de sorties de Dunkerque de 1730 à 1791
     en: Evolution (projected, then observed) of the number of ships leaving Dunkirk from 1830 to 1791
   title_evaluation:
     fr: Évaluation du nombre de sorties
     en: Estimation of the number of departures
+  annotation_hors_pilotage:
+    fr: hors pilotage
+    en: without a pilot
+  annotation_avec_pilotage:
+    fr: avec pilotage
+    en: with a pilot
   legend_pilotage:
     fr: Navires sortant du port de Dunkerque avec du pilotage
-    en: Ships leaving Dunkirk harbor with pilotage
+    en: Ships leaving Dunkirk harbor with a pilot
   legend_total:
     fr: Navires quittant le port de Dunkerque selon le registre des congés
-    en: Ships leaving Dunkirk harbor according to the registre des congés
+    en: Ships leaving Dunkirk harbor according to the congés register
   footer_projection:
     fr: Projection à partir des rapports entre pilotage et sorties sur ${year_start}/${year_end}
-    en: Projection based on the relationship between pilotage and departures in ${year_start}/${year_end}
+    en: Projection based on the relationship between piloting and departures in ${year_start}/${year_end}
   footer_register:
     fr: Données issues des registres
     en: Data from registers
@@ -382,11 +391,11 @@ Pilotage:
       À partir de la moyenne des rapports entre nombre de sorties avec un pilote et nombre de sorties totales pour 1765-1791, on peut estimer le nombre de navires quittant Dunkerque pour 1730-1765 (où l'on ne dispose que du nombre de sorties avec un pilotage).
       La comparaison avec les données des congés permet de constater une marge de variation entre <i>+${value_max} points de pourcentage</i> et <i>${value_min} points de pourcentage</i> par rapport à la moyenne de ${mean}%.
     en: >-
-      From the average of the ratios between number of departures with a pilot and number of total departures for 1765-1791, we can estimate the number of ships leaving Dunkirk for 1730-1765 (where we only have the number of sorties with pilotage).
+      From the average of the ratios between number of departures with a pilot and number of total departures for 1765-1791, we can estimate the number of ships leaving Dunkirk for 1730-1765 (where we only have the number of departures with a pilot).
       Comparison with <i>congés</i> data shows a margin of variation between <i>+${value_max} percentage points</i> and <i>${value_min} percentage points</i> compared to the average of ${mean}%.
   description_pilotage:
     fr: Entre 1765 et 1791, en moyenne ${mean}% des navires sortants font usage du pilotage chaque année
-    en: Between 1765 and 1791, on average ${mean}% of ships leaving Dunkirk used pilotage each year
+    en: Between 1765 and 1791, on average ${mean}% of ships leaving Dunkirk took a pilot each year
   tooltip_total:
     fr: En ${year}, ${value} navires sont sortis du port de Dunkerque
     en: In ${year}, ${value} ships left the port of Dunkirk
@@ -398,13 +407,13 @@ Pilotage:
     en: In ${year}, it is estimated that between ${value_min} and ${value_max} ships left the port of Dunkirk
   tooltip_projection_positive:
     fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage supérieur au rapport moyen de 1765 à 1791
-    en: In ${year}, the ratio between pilotage and sorties was ${proportion}%, corresponding to ${value} percentage points higher than the average ratio from 1765 to 1791
+    en: In ${year}, the ratio between piloting and departures was ${proportion}%, corresponding to ${value} percentage points higher than the average ratio from 1765 to 1791
   tooltip_projection_negative:
     fr: En ${year}, le rapport entre pilotage et sorties était de ${proportion}%, soit ${value} points de pourcentage inférieur au rapport moyen de 1765 à 1791
-    en: In ${year}, the ratio between pilotage and sorties was ${proportion}%, corresponding to ${value} percentage points lower than the average ratio from 1765 to 1791
+    en: In ${year}, the ratio between piloting and departures was ${proportion}%, corresponding to ${value} percentage points lower than the average ratio from 1765 to 1791
   note_schema_mean:
     fr: Moyenne du rapport entre nombre de pilotages et nombre de sorties
-    en: Average of the ratio between number of pilotages and number of ships leaving Dunkirk
+    en: Average of the ratio between number of ships with a pilot and number of ships leaving Dunkirk
   note_schema_sup:
     fr: Plus de bateaux avec pilote que la moyenne
     en: More ships with a pilot than average
@@ -430,7 +439,7 @@ SmogglageStatus:
     en: departure port (in number of departures)
   right_title:
     fr: type de trajet des navires anglais
-    en: type of travel for english ships
+    en: type of travel for British ships
   port_label:
     fr: ${port} (${pct}% de smoggleurs)
     en: ${port} (${pct}% smogglers)
@@ -512,10 +521,10 @@ StigmatesSmoggleurs:
 DepartsFrVersAngleterre:
   title:
     fr: Les départs depuis la France vers l'Angleterre en 1787, par provinces
-    en: Departures from France to England in 1787, by provinces
+    en: Departures from France to Great-Britain in 1787, by provinces
   legend_left:
     fr: départs vers la Grande-Bretagne
-    en: departures to England
+    en: departures to Great-Britain
   legend_right:
     fr: départs vers d'autres directions
     en: departures to other directions
@@ -534,20 +543,41 @@ DepartsFrVersAngleterre:
   multiple_ports_tooltip_right:
     fr: En 1787, ${tonnage} tx partaient des ports de ${port} vers des ports hors Grande-Bretagne (les ports concernés sont ${ports})
     en: In 1787, ${tonnage} tx left ports from ${port} towards non-british ports (related french ports are ${ports})
+  Normandie:
+    fr: Normandie
+    en: Normandy
+  Flandre:
+    fr: Flandre
+    en: Flanders
+  Picardie:
+    fr: Picardie
+    en: Picardy
+  Bretagne:
+    fr: Bretagne
+    en: Britony
+  Aunis, Poitou, Saintonge:
+    fr: Aunis, Poitou, Saintonge
+    en: Aunis, Poitou, Saintonge
+  Guyenne:
+    fr: Guyenne
+    en: Guyenne
+  Saint-Tropez:
+    fr: Saint-Tropez
+    en: Saint-Tropez
 DestinationsGbVersGb:
   title:
     fr: Destinations des navires britanniques partis de Dunkerque en 1787
-    en: Destinations of british ships which left Dunkirk in 1787
+    en: Destinations of British ships which left Dunkirk in 1787
   tooltip:
     fr: ${port} (${nb_pointcalls} voyages de navires britanniques depuis Dunkerque en 1787)
-    en: ${port} (${nb_pointcalls} travels of british ships from Dunkirk in 1787)
+    en: ${port} (${nb_pointcalls} travels of British ships from Dunkirk in 1787)
 ExportsVsSmogglage:
   title:
-    fr: Produits smogglés par port d'attache des smoggleurs (1781-1790)
-    en: Smoggled products by home port of smogglers (1781-1790)
+    fr: Produits smogglés par port d'attache des smoggleurs en 1787
+    en: Smoggled products by home port of smogglers in 1787
   legend_toggle_title:
     fr: Dimensionner les ports sur la carte par
-    en: Dimension ports by
+    en: Ports dimensioned by
   legend_travels:
     fr: nombre de voyages
     en: number of travels
@@ -593,14 +623,173 @@ PrixSmogglageGeneral:
     en: Select the quantity to visualize
   color_title:
     fr: Unité de mesure
-    en: Measure unit
+    en: Unit of measurement
+  eau de vie, taffia, genieve:
+    fr: eau de vie, taffia, genieve
+    en: eau de vie, taffia, genieve
+  mouchoirs de soie:
+    fr: mouchoirs de soie
+    en: silk handkerchiefs
+  tabac en feuilles:
+    fr: tabac en feuilles
+    en: leaf tobacco
+  mousseline:
+    fr: mousseline
+    en: muslin
+  Gauzes:
+    fr: Gauzes
+    en: Gauzes
+  mousselines et mouchoirs:
+    fr: mousselines et mouchoirs
+    en: muslin and handkerchiefs
+  marchandises des Indes:
+    fr: marchandises des Indes
+    en: Indian goods
+  Taffetas:
+    fr: Taffetas
+    en: Taffetas
+  nankins:
+    fr: nankins
+    en: nankins
+  bandanoes:
+    fr: bandanoes
+    en: bandanoes
+  perses:
+    fr: perses
+    en: persians
+  cambray:
+    fr: cambray
+    en: cambray
+  mouchoirs de Bandannoes:
+    fr: mouchoirs de Bandannoes
+    en: Bandannoes handkerchiefs
+  tabac en poudre:
+    fr: tabac en poudre
+    en: powdered tobacco
+  Bandanoes:
+    fr: Bandanoes
+    en: Bandanoes
+  café:
+    fr: café
+    en: coffee
+  thé:
+    fr: thé
+    en: thea
+  mousseline des Indes:
+    fr: mousseline des Indes
+    en: Indian muslin
+  Jalap:
+    fr: Jalap
+    en: Jalap
+  tabac fabriqué:
+    fr: tabac fabriqué
+    en: manufactured tobbaco
+  Soie des Indes:
+    fr: Soie des Indes
+    en: Indian Silk
+  mercerie fine:
+    fr: mercerie fine
+    en: fine haberdashery
+  mouchoirs de mousselin:
+    fr: mouchoirs de mousselin
+    en: muslin handkerchiefs
+  rhubarbre:
+    fr: rhubarbre
+    en: rhubarb
+  sucre brut:
+    fr: sucre brut
+    en: raw sugar
+  soie et mousseline:
+    fr: soie et mousseline
+    en: silk and muslin
+  vins:
+    fr: vins
+    en: wines
+  corinthes:
+    fr: corinthes
+    en: corinthes
+  sené:
+    fr: sené
+    en: senna
+  drogues:
+    fr: drogues
+    en: drugs
+  voiture:
+    fr: voiture
+    en: car
+  Dimity (?):
+    fr: Dimity (?)
+    en: Dimity (?)
+  amidon:
+    fr: amidon
+    en: starch
+  porcelaine:
+    fr: porcelaine
+    en: porcelain
+  sucre en pain:
+    fr: sucre en pain
+    en: sugar in loaves
+  nacres de perles:
+    fr: nacres de perles
+    en: pearl nacres
+  mouchoirs de mousseline:
+    fr: mouchoirs de mousseline
+    en: muslin handkerchiefs
+  liqueurs:
+    fr: liqueurs
+    en: liquors
+  poudre à poudrer:
+    fr: poudre à poudrer
+    en: dusting powder
+  crêpes:
+    fr: crêpes
+    en: crêpes
+  Chocolat:
+    fr: Chocolat
+    en: Chocolate
+  cartes à jouer:
+    fr: cartes à jouer
+    en: playing cards
+  sucre rafiné:
+    fr: sucre rafiné
+    en: refined sugar
+  tabac en côtes:
+    fr: tabac en côtes
+    en: ribbed tobacco
+  pots de vess / potjevleesch???:
+    fr: pots de vess / potjevleesch???
+    en: vess pots / potjevleesch???
+  pintes:
+    fr: pintes
+    en: pints
+  livres poids:
+    fr: livres poids
+    en: French pound (weight)
+  livre tournois:
+    fr: livres tournois
+    en: livres tournois
+  livres tournois:
+    fr: livres tournois
+    en: livres tournois
+  livres sterling:
+    fr: livres sterling
+    en: pond sterling
+  pièces:
+    fr: pièces
+    en: pieces
+  nombre:
+    fr: nombre
+    en: units
+  bouteilles:
+    fr: bouteilles
+    en: bottles
 HomeportsFromDunkerque:
   title:
     fr: Tonnage agrégé des navires partis de Dunkerque en 1789, par port d’attache
     en: Aggregated tonnage of ships leaving Dunkirk in 1789, by home port
   tooltip:
     fr: En 1789, ${tonnage} tx de bateaux partis de Dunkerque étaient rattachés au port de ${homeport} (${state})
-    en: In 1789, ${tonnage} barrels of ships leaving from Dunkirk were attached to the port of ${homeport} (${state})
+    en: In 1789, ${tonnage} tx of ships leaving from Dunkirk were registered in the port of ${homeport} (${state})
 ExportsFr1787:
   tooltip:
     fr: ${value} lt. exportés vers le partenaire ${partner}

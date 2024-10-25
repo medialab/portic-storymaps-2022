@@ -116,6 +116,7 @@ VIZ_METAS = get_viz_metas('smoggleur-statut')
 with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
     fieldnames = [
         'departure_fr',
+        'departure_en',
         'departure_longitude',
         'departure_latitude',
         'destination_fr',
@@ -145,6 +146,7 @@ with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
             #     continue
             writer.writerow({
                 'departure_fr': flow['departure_fr'],
+                'departure_en': flow['departure_en'],
                 'departure_longitude': flow['departure_longitude'],
                 'departure_latitude': flow['departure_latitude'],
                 'destination_fr': flow['destination_fr'],

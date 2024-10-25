@@ -20,6 +20,7 @@ with open(flows1787, "r") as muerte:
         :
             destination_state = row['destination_state_1789_fr']
             port = row["destination"]
+            port_en = row["destination_en"]
             category = "port_specifie"
             if port in ["Lisbonne [mais: Angleterre]", "Bergen"]:
                 category = "fausse_destination"
@@ -38,6 +39,7 @@ with open(flows1787, "r") as muerte:
                     "latitude": latitude,
                     "longitude": longitude,
                     "category": category,
+                    "port_en": port_en,
                     "nb_pointcalls": 0,
                     "tonnage": 0
                 }
@@ -49,6 +51,7 @@ csv_data = []
 for port, data in ports.items():
     csv_data.append({
         "port": port,
+        "port_en": data["port_en"] if data["port_en"] != "England (fake destination for)" else "Lisbon [but : England]",
         "latitude": data["latitude"],
         "longitude": data["longitude"],
         "nb_pointcalls": data["nb_pointcalls"],

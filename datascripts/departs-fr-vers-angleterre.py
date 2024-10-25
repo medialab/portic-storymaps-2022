@@ -20,6 +20,7 @@ with open(flows1787, "r") as muerte:
         and row["departure_function"] == "O" \
         :
             port_detail = row["departure_fr"]
+            port_detail_en = row["departure_en"]
             departure_province = row["departure_province"]
             if departure_province == 'Provence':
                 if port_detail == 'Marseille':
@@ -40,6 +41,7 @@ with open(flows1787, "r") as muerte:
                     "latitude": latitude,
                     "longitude": longitude,
                     "ports": [port_detail],
+                    "ports_en": [port_detail_en],
                     "departs_vers_gb": {
                         "nb_pointcalls": 0,
                         "tonnage": 0
@@ -51,6 +53,8 @@ with open(flows1787, "r") as muerte:
                 }
             if port_detail not in ports[port]["ports"]:
                 ports[port]["ports"].append(port_detail)
+            if port_detail_en not in ports[port]["ports_en"]:
+                ports[port]["ports_en"].append(port_detail_en)
             if row["destination_state_1789_fr"] == "Grande-Bretagne" \
             and "colonies britanniques" not in row['destination_substate_1789_fr']\
             :
@@ -70,7 +74,8 @@ for port, data in ports.items():
         "departs_vers_gb_tonnage": data["departs_vers_gb"]["tonnage"],
         "departs_hors_gb_nb_pointcalls": data["departs_hors_gb"]["nb_pointcalls"],
         "departs_hors_gb_tonnage": data["departs_hors_gb"]["tonnage"],
-        "ports": ", ".join(data["ports"])
+        "ports": ", ".join(data["ports"]),
+        "ports_en": ", ".join(data["ports_en"]),
     })
 
 with open(output, "w") as muerte:

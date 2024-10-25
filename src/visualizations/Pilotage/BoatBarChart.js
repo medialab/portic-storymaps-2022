@@ -108,7 +108,9 @@ export default function BoatBarChart({
                             transform={`translate(${10}, ${20}) rotate(-90)`}
                             fontSize={11}
                             textAnchor='end'
-                        >hors pilotage</text>
+                        >
+                          {translate('Pilotage', 'annotation_hors_pilotage', lang)}
+                          </text>
                     </g>
                     <g>
                         <path
@@ -127,7 +129,9 @@ export default function BoatBarChart({
                             transform={`translate(${10}, ${maxValueScalePilotage + 20}) rotate(-90)`}
                             fontSize={11}
                             textAnchor='end'
-                        >pilotage</text>
+                        >
+                           {translate('Pilotage', 'annotation_avec_pilotage', lang)}
+                        </text>
                     </g>
                     <path
                         className='description-pilotage-queue'

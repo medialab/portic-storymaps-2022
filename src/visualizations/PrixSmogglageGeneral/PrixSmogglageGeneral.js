@@ -26,13 +26,22 @@ const unitsSup = {
 export default function PrixSmogglageGeneral({
   width,
   height,
-  data,
+  data: inputData,
   atlasMode,
   lang,
 }) {
 
-
   const [selectedQuantiField, setSelectedQuantiField] = useState('valeur_smogglé1');
+
+  const data = useMemo(() => {
+    return inputData.map(datum => {
+      return {
+        ...datum,
+        produit_smogglé: translate('PrixSmogglageGeneral', datum.produit_smogglé, lang),
+        unité: translate('PrixSmogglageGeneral', datum.unité || 'pintes', lang),
+      }
+    })
+  }, [lang, inputData, translate])
 
   const productsData = useMemo(() => {
     return data
