@@ -31,6 +31,9 @@ export default function SchemaDemonstration({
   } = projectionStats;
 
   const [minYear, maxYear] = useMemo(() => extent(data, d => d['year']), [data]);
+
+  const noteTextWidth = margin.left - width / 10;
+
   const scaleYear = useMemo(function computeScaleFromYear() {
     return scaleLinear()
       .domain([minYear, maxYear])
@@ -49,6 +52,7 @@ export default function SchemaDemonstration({
   useEffect(() => {
     Tooltip.rebuild();
   });
+
 
   return (
 
@@ -244,37 +248,38 @@ export default function SchemaDemonstration({
             }
           </g>
           <g className='notes'>
-            <ArrowNote
+          <ArrowNote
               arrowId='arrow-note-head'
-              textWidth={130}
+              textWidth={noteTextWidth}
               textHeight={height / 4}
               x1={0}
-              y1={150}
-              x2={margin.left - 20}
-              y2={scaleProjection(0)}
-              text={translate('Pilotage', 'note_schema_mean', lang)}
-              arrowPosition={'top right'}
-            />
-            <ArrowNote
-              arrowId='arrow-note-head'
-              textWidth={120}
-              textHeight={height / 4}
-              x1={10}
-              y1={40}
+              y1={height / 10}
               x2={scaleYear(1764)}
-              y2={50}
+              y2={height / 5}
               text={translate('Pilotage', 'note_schema_sup', lang)}
               arrowPosition={'middle right'}
               textAlign='left'
             />
             <ArrowNote
               arrowId='arrow-note-head'
-              textWidth={130}
+              textWidth={noteTextWidth}
               textHeight={height / 4}
               x1={0}
-              y1={200}
+              y1={height / 3}
+              x2={margin.left - 20}
+              y2={scaleProjection(0)}
+              text={translate('Pilotage', 'note_schema_mean', lang)}
+              arrowPosition={'center right'}
+            />
+            
+            <ArrowNote
+              arrowId='arrow-note-head'
+              textWidth={noteTextWidth}
+              textHeight={height / 4}
+              x1={0}
+              y1={height * .8}
               x2={scaleYear(1774)}
-              y2={220}
+              y2={height * .85}
               text={translate('Pilotage', 'note_schema_inf', lang)}
               textAlign='right'
               arrowPosition={'top right'}

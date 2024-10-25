@@ -1,5 +1,7 @@
 @import "../../styles/variables.scss";
 
+$small-text: .6rem;
+
 .Pilotage {
   box-sizing: border-box;
   font-family: $font-family-1;
@@ -8,7 +10,7 @@
 
   .ArrowNote {
     p {
-      font-size: 1.3vmin;
+      font-size: $small-text;
     }
 
     line,
