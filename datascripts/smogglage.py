@@ -67,6 +67,7 @@ for source in VIZ_METAS['inputs']:
 with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
     fieldnames = [
         'port de départ',
+        'port de départ en anglais',
         'total des trajets anglais',
         'trajets anglais smoggleurs',
         '% de trajets anglais smoggleurs',
@@ -92,7 +93,10 @@ with open(VIZ_METAS['outputs'][0], 'w', newline='') as csvfile:
             0 # initial value for all fields
         )
 
-        row['port de départ'] = port
+        first_flow = ports[port][0]
+
+        row['port de départ'] = first_flow['departure_fr']
+        row['port de départ en anglais'] = first_flow['departure_en']
         row['total des trajets anglais'] = len(flows)
         row['trajets anglais smoggleurs'] = len([flow for flow in ports[port] if flow['is_smoggleur'] == True])
         row['% de trajets anglais smoggleurs'] = (row['trajets anglais smoggleurs'] / row['total des trajets anglais']) * 100 if row['total des trajets anglais'] > 0 else 0

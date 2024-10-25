@@ -18,6 +18,7 @@ export default function SmogglagePortsStats ({
     dimensions
 }) {
     const { width, height } = dimensions;
+    console.log(data)
     return (
         <>
         <BarChart
@@ -32,9 +33,8 @@ export default function SmogglagePortsStats ({
                     width,
                     height: height / 2
                 }}
-                /** @todo translate this */
                 x={{
-                    field: 'port de départ',
+                    field: lang === 'fr' ? 'port de départ' : 'port de départ en anglais',
                     title: translate('SmogglagePortsStats', 'x1', lang),
                 }}
                 y={{
@@ -46,7 +46,7 @@ export default function SmogglagePortsStats ({
                 tooltip={item => 
                   translate('SmogglagePortsStats', 'tooltip', lang, {
                     travels: item['total des trajets anglais'],
-                    port: item['port de départ']
+                    port: lang === 'fr' ? item['port de départ'] : item['port de départ en anglais']
                   })
                 }
                 
@@ -63,9 +63,8 @@ export default function SmogglagePortsStats ({
                     width,
                     height: height / 2
                 }}
-                /** @todo translate this */
                 x={{
-                    field: 'port de départ',
+                    field: lang === 'fr' ? 'port de départ' : 'port de départ en anglais',
                     title: translate('SmogglagePortsStats', 'x2', lang)
                 }}
                 y={{
@@ -77,7 +76,7 @@ export default function SmogglagePortsStats ({
                 tooltip={item => 
                   translate('SmogglagePortsStats', 'tooltip', lang, {
                     travels: item['total des trajets anglais'],
-                    port: item['port de départ']
+                    port: lang === 'fr' ? item['port de départ'] : item['port de départ en anglais']
                   })
                 }
                 
