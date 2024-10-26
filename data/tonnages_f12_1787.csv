@@ -1,22 +1,22 @@
-destination,tonnage_hypothese_avec_lest,tonnage_hypothese_sans_lest
-Danemark,33049,17384
-Angleterre,87563,48046
-Russie,14848,14521
-Espagne,59250,50310
-Hollande,78214,73918
-Portugal,14007,12727
-Villes hanséatiques,68277,66507
-Suède,14161,11428
-États-Unis d'Amérique,22271,16362
-Etats de l'Empereur,28703,27494
-Prusse,20644,17365
-Piémont et Sardaigne,18869,12642
-Gênes,38779,36030
-Toscane et Lucques,10210,9653
-Etat ecclésiastique,3531,3400
-Naples et Sicile,21383,20253
-Venise,1161,1161
-Levant et Etats du Grand Seigneur et de Barbarie,45285,43525
-"Prusse+ Courlande, Mecklenbourg, Oldenboug + Pologne - Dantzig",0,0
-"vers la ""Mer Baltique""",0,0
-Prusse etc + Russie + Suède + mer Baltique,82702,60698
+destination,tonnage_hypothese_avec_lest,tonnage_hypothese_sans_lest,destination_en
+Danemark,33049,17384,Denmark
+Angleterre,87563,48046,England
+Russie,14848,14521,Russia
+Espagne,59250,50310,Spain
+Hollande,78214,73918,Holland
+Portugal,14007,12727,Portugal
+Villes hanséatiques,68277,66507,Hanseatic cities
+Suède,14161,11428,Sweden
+États-Unis d'Amérique,22271,16362,United States of America
+Etats de l'Empereur,28703,27494,States of the Emperor
+Prusse,20644,17365,Prussia
+Piémont et Sardaigne,18869,12642,Piedmont and Sardinia
+Gênes,38779,36030,Genoa
+Toscane et Lucques,10210,9653,Tuscany and Lucca
+Etat ecclésiastique,3531,3400,Ecclesiastic State
+Naples et Sicile,21383,20253,Naples and Sicily
+Venise,1161,1161,Venice
+Levant et Etats du Grand Seigneur et de Barbarie,45285,43525,Levant and States of the Grand Seigneur and Barbarie
+"Prusse+ Courlande, Mecklenbourg, Oldenboug + Pologne - Dantzig",0,0,"Prussia + Courland, Mecklenburg, Oldenburg + Poland - Danzig"
+"vers la ""Mer Baltique""",0,0,"towards the ""Baltic sea"""
+Prusse etc + Russie + Suède + mer Baltique,82702,60698,Prussia etc + Russia + Sweden + Baltic Sea
