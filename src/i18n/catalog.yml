@@ -140,7 +140,7 @@ PecheTypeValue:
 TonnageMoyenMois:
   tooltip:
     fr: En ${month} ${period}, le tonnage moyen au départ de Dunkerque était de ${value} tonneaux
-    en: In ${month} ${period}, the mean tonnage for ships leaving Dunkirk was of ${value} barrels
+    en: In ${month} ${period}, the mean tonnage for ships leaving Dunkirk was of ${value} tx
   x:
     fr: Tonnage moyen
     en: Mean tonnage
@@ -212,10 +212,10 @@ TonnagesF12:
     en: F12 Partners aligned on toflit18 "grouping" classification
   hyp_with_lest:
     fr: En supposant que la source F12 n’inclut pas les navires partis sur lest (estimation de référence)
-    en: suppose source counts ships which left with ballast
+    en: suppose source counts ships which left in ballast
   hyp_without_lest:
     fr: En supposant que la source F12 inclut les navires partis sur lest (le lest est donc soustrait)
-    en: suppose source does not count ships which left with ballast (substract ballast)
+    en: suppose source does not count ships which left in ballast (substract ballast)
   with_lest_title:
     fr: tonnage cumulé (hypothèse selon laquelle la source contient le lest)
     en: cumulated tonnage (we suppose the source does contains ballast)
@@ -224,7 +224,7 @@ TonnagesF12:
     en: cumulated tonnage (we suppose the source does not contains ballast)
   tooltip:
     fr: ${tx} tonneaux envoyé au partenaire ${destination} en 1787
-    en: ${tx} barrels sent to partner ${destination} in 1787
+    en: ${tx} tx sent to partner ${destination} in 1787
 CarteDestinations:
   title:
     fr: Carte des destinations des navires partis de Dunkerque en 1789
@@ -818,19 +818,19 @@ TonnageF12:
     en: partner
   tooltip2:
     fr: ${value} tonneaux cumulés envoyés vers le partenaire ${partner}
-    en: ${value} barrels ("tonneaux") sent to the partner ${partner}
+    en: ${value} tx sent to the partner ${partner}
   title3:
     fr: Valeur par tonneau
-    en: Value per barrel
+    en: Value per tonneau
   x3:
     fr: prix par tonneau
-    en: price per barrel
+    en: price per tonneau
   y3:
     fr: partenaire
     en: partner
   tooltip3:
     fr: ${value} lt par tonneau pour le partenaire ${partner}
-    en: ${value} lt per barrel ("tonneau") for the partner ${partner}
+    en: ${value} lt per tx for the partner ${partner}
 ComparaisonLaRochelle:
   title1:
     fr: Exportations toflit18 de la Direction des Fermes (DF) de La Rochelle en 1789
@@ -843,7 +843,7 @@ ComparaisonLaRochelle:
     en: Navigocorpus destinations from La Rochelle DF ports in 1789
   tooltip2:
     fr: ${value} tonneaux pour le partenaire ${partner}
-    en: ${value} barrels for partner ${partner}
+    en: ${value} tx for partner ${partner}
   title3:
     fr: "Vérification de la projection : dans la source = ${source_value} lt., projeté = ${projected_value} lt."
     en: "Verification of the projection: in source = ${source_value} lt., projected = ${projected_value} lt."
@@ -871,33 +871,33 @@ DestinationsDkPrProjection:
     en: destination
   tooltip:
     fr: ${tonnage} tonneaux cumulés pour la destination ${destination}
-    en: ${tonnage} cumulated barrels for the destination ${destination}
+    en: ${tonnage} cumulated tonneaux for the destination ${destination}
 EstimationParTonnageDk:
   title1:
     fr: Tonnages cumulés
     en: Cumulated tonnages
   tooltip1:
     fr: ${value} tonneaux cumulés pour le partenaire ${partner}
-    en: ${value} cumulated barrels for the partner ${partner}
+    en: ${value} cumulated tonneaux for the partner ${partner}
   title2:
     fr: Prix par tonneau
-    en: Price per barrel
+    en: Price per tonneau
   tooltip2:
     fr: ${value} lt/tonneau pour le partenaire ${partner}
-    en: ${value} lt/barrel for the partner ${partner}
+    en: ${value} lt/tonneau for the partner ${partner}
   title3:
     fr: "Estimation des exportations (total : ${value} lt.)"
     en: "Exports estimation (total : ${value} lt.)"
   tooltip3:
     fr: "Estimation des exportations pour le partenaire ${partner} : ${value} lt. (pour ${tonnage} tonneaux cumulés)"
-    en: "Estimation of exports for the partner ${partner} : ${value} lt. (for ${tonnage} cumulated barrels)"
+    en: "Estimation of exports for the partner ${partner} : ${value} lt. (for ${tonnage} cumulated tonneaux)"
 ComparaisonProjectionDestinationProduitsColoniauxDk:
   title1:
     fr: "Estimation des exportations hors smogglage/pêche (total : ${value} lt.)"
     en: "Estimation of exports excluding smuggling & fishing (total : ${value} lt.)"
   tooltip1:
     fr: "Estimation des exportations pour le partenaire ${partner} : ${value} lt. (pour ${tonnage} tonneaux cumulés)"
-    en: "Estimation of exports for the partner ${partner}: ${value} lt. (for ${tonnage} cumulated barrels)"
+    en: "Estimation of exports for the partner ${partner}: ${value} lt. (for ${tonnage} cumulated tonneaux)"
   title2:
     fr: "Observation des importations pour les partenaires correspondant (total : ${value} lt.)"
     en: "Observation of imports for corresponding partners (total : ${value} lt.)"

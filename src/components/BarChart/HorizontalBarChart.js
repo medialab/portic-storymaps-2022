@@ -14,12 +14,13 @@ import { fixSvgDimension, generatePalette } from '../../utils/misc';
 const { generic } = colorsPalettes;
 
 function Rect({
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-      <animated.rect {...animatedProps} />
+      <animated.rect className={className} {...animatedProps} />
   )
 }
 

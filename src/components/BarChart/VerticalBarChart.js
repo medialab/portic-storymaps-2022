@@ -129,7 +129,7 @@ const VerticalBarChart = ({
     type: sortXType = 'number'
   } = sortX;
   let colorPalette;
-  let colorModalities;
+  let colorModalities = [];
   if (color) {
     colorModalities = uniq(data.map(d => d[color.field]))
   }

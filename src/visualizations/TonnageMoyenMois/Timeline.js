@@ -16,12 +16,13 @@ import translate from '../../utils/translate';
  */
 
  export function Rect({
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-      <animated.rect {...animatedProps} />
+      <animated.rect className={className}  {...animatedProps} />
   )
 }
 

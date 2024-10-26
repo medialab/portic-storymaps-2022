@@ -13,6 +13,7 @@ const ValeurParTonneau = ({
   const height = inputHeight - 100;
   const [withLest, setWithLest] = useState(true);
   const field = withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest';
+  console.log('data', data);
   const actualData = useMemo(() => {
     return data.sort((a, b) => {
       if (a['partner'] > b['partner']) {
@@ -46,14 +47,14 @@ const ValeurParTonneau = ({
               title: translate('TonnageF12', 'x1', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'partner',
+              field: lang === 'fr' ? 'partner' : 'partner_en',
               title: translate('TonnageF12', 'y1', lang),
             }}
             tooltip={
               (d) => 
                 translate('TonnageF12', 'tooltip1', lang, {
                   value: formatNumber(parseInt(+d.sum_exports, lang)),
-                  partner: d.partner
+                  partner: lang === 'fr' ? d.partner : d.partner_en
                 })
             }
           />
@@ -73,18 +74,18 @@ const ValeurParTonneau = ({
               field: withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest',
               domain: [0, 400001],
               tickSpan: 200000,
-              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}`,
               title: translate('TonnageF12', 'x2', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'partner',
+              field: lang === 'fr' ? 'partner' : 'partner_en',
               title: translate('TonnageF12', 'y2', lang), //  translate('TonnagesF12', 'destination', lang)
             }}
             tooltip={
               (d) => 
                 translate('TonnageF12', 'tooltip2', lang, {
                   value: formatNumber(d[withLest ? 'sum_tonnage' : 'sum_tonnage_without_lest'], lang),
-                  partner: d.partner
+                  partner: lang === 'fr' ? d.partner : d.partner_en
                 })
             }
           />
@@ -104,11 +105,11 @@ const ValeurParTonneau = ({
               field: field,
               domain: [0, 1001],
               tickSpan: 300,
-              tickFormat: d => `${d} lt./${lang === 'fr' ? 't' : 'b'}`,
+              tickFormat: d => `${d} lt./${lang === 'fr' ? 't' : 't'}`,
               title: translate('TonnageF12', 'x3', lang), // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'partner',
+              field: lang === 'fr' ? 'partner' : 'partner_en',
               title: translate('TonnageF12', 'y3', lang), //  translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
@@ -120,7 +121,7 @@ const ValeurParTonneau = ({
               (d) => 
                 translate('TonnageF12', 'tooltip3', lang, {
                   value: d[field].toFixed(2),
-                  partner: d.partner
+                  partner: lang === 'fr' ? d.partner : d.partner_en
                 })
             }
           />

@@ -69,19 +69,19 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 120000],
-              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}`,
               tickSpan: 20000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'destination',
+              field: lang === 'fr' ? 'destination' : 'destination_en',
               title: translate('TonnagesF12', 'destination', lang)
             }}
 
             tooltip={
               (d) => translate('TonnagesF12', 'tooltip', lang, {
                 tx: formatNumber(d[field], lang),
-                destination: d.destination
+                destination: lang === 'fr' ? d.destination : d.destination_en
               })
             }
           />
@@ -116,19 +116,19 @@ const TonnageF12 = ({
             x={{
               field: field,
               domain: [0, 270000],
-              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}`,
               tickSpan: 50000,
               title: translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'destination',
+              field: lang === 'fr' ? 'destination' : 'destination_en',
               title: translate('TonnagesF12', 'destination', lang)
             }}
 
             tooltip={
               (d) => translate('TonnagesF12', 'tooltip', lang, {
                 tx: formatNumber(d[field], lang),
-                destination: d.destination
+                destination: lang === 'fr' ? d.destination : d.destination_en
               })
             }
           />

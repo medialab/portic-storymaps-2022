@@ -20,12 +20,13 @@ export function AnimatedGroup({
 export function AnimatedForeignObject({
   children,
   style,
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-    <animated.foreignObject {...animatedProps} style={style}>
+    <animated.foreignObject className={className} {...animatedProps} style={style}>
       {children}
     </animated.foreignObject>
   )
@@ -51,12 +52,13 @@ export function AnimatedText({
 export function AnimatedCircle({
   children,
   style,
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-    <animated.circle {...animatedProps} style={style}>
+    <animated.circle className={className} {...animatedProps} style={style}>
       {children}
     </animated.circle>
   )
@@ -66,12 +68,13 @@ export function AnimatedCircle({
 export function AnimatedLine({
   children,
   style,
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-    <animated.line {...animatedProps} style={style}>
+    <animated.line className={className} {...animatedProps} style={style}>
       {children}
     </animated.line>
   )
@@ -92,11 +95,12 @@ export function AnimatedPath({
 }
 
 export function AnimatedRect({
+  className,
   ...props
 }) {
   const animatedProps = useSpring(props);
 
   return (
-    <animated.rect {...animatedProps} />
+    <animated.rect className={className} {...animatedProps} />
   )
 }

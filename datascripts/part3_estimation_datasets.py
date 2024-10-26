@@ -138,6 +138,21 @@ navigo_divers_to_toflit18_grouping = {
    'Empire ottoman': 'Levant et Barbarie'
 }
 
+partner_translations = {
+  "Allemagne": "Germany",
+  "Angleterre": "England",
+  "Espagne": "Spain",
+  "Flandre et autres états de l'Empereur": "Flanders and other states of the Emperor",
+  "Hollande": "Holland",
+  "Italie": "Italy",
+  "Levant et Barbarie": "Levant and Barbary",
+  "Nord": "North",
+  "Portugal": "Portugal",
+  "Suisse": "Switzerland",
+  "États-Unis d'Amérique": "United States of America",
+}
+
+
 """
 0 - lib
 """
@@ -311,6 +326,7 @@ def compute_price_per_barrel_per_destination(method="résumé", verbose = False)
         # tonnage_without_lest = destinations_navigo_national_without_lest[destination]
         correspondance.append({
           "partner": destination,
+          "partner_en": partner_translations[destination],
           "sum_tonnage": tonnages['tonnage_hypothese_avec_lest'],
           "sum_tonnage_without_lest":  tonnages['tonnage_hypothese_sans_lest'],
           "sum_exports": value,
@@ -399,11 +415,12 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
           destinations_navigo[destination] += tonnage
           sum_tonnage +=  tonnage
           sum_travels += 1
+
+        # for translations
   # print('Destinations selon navigo (en tonneaux) : ')
   # print([{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()])
   # print('Ports pris en compte pour le bureau : ' + ', '.join(list(ports)))
   # print('Tonnage moyen des navires : ' + str(sum_tonnage / sum_travels))
-
   destinations_navigo_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo.items()]
   # print('===')
   # for p in destinations_navigo_arr:
@@ -633,7 +650,7 @@ with open(INPUT, "r") as fr:
         national_partners[partner] = 0
       national_partners[partner] += value
 
-national_partners_arr = [{"partner": partner, "value": value} for partner, value in national_partners.items()]
+national_partners_arr = [{"partner": partner, "partner_en": partner_translations[partner], "value": value} for partner, value in national_partners.items()]
 
 # print('===')
 # print('Partenaires toflit18 : exports ; 1787 ; != "Colonies françaises"; best_guess_national_prodxpart=1  (simplification)')
@@ -641,7 +658,7 @@ national_partners_arr = [{"partner": partner, "value": value} for partner, value
 #   print(p['partner'])
 # print('===')
 with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = ['partner', 'value']
+  fieldnames = ['partner', 'partner_en', 'value']
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(national_partners_arr)
@@ -651,6 +668,39 @@ with open(OUTPUT, 'w', newline='') as csvfile:
 Visualisations : valeur-par-tonneau, tonnages-1787-f12
 Output : tonnages_f12_1787.csv
 """
+
+states_translation = {
+   'vers la "Mer Baltique"': 'towards the "Baltic sea"',
+   'Russie': 'Russia' ,
+   'Hollande': 'Holland',
+   'Toscane et Lucques': 'Tuscany and Lucca',
+   'Prusse+ Courlande, Mecklenbourg, Oldenboug + Pologne - Dantzig': 'Prussia + Courland, Mecklenburg, Oldenburg + Poland - Danzig',
+   'Levant et Etats du Grand Seigneur et de Barbarie': 'Levant and States of the Grand Seigneur and Barbarie',
+   'Prusse etc + Russie + Suède + mer Baltique': 'Prussia etc + Russia + Sweden + Baltic Sea',
+   'Venise': 'Venice', 
+   'Angleterre': 'England', 
+   "Etats de l'Empereur": 'States of the Emperor', 
+   'Etat ecclésiastique': 'Ecclesiastic State', 
+   'Gênes': 'Genoa', 
+   'Naples et Sicile': 'Naples and Sicily', 
+   'Villes hanséatiques': 'Hanseatic cities', 
+   "États-Unis d'Amérique": 'United States of America', 
+   'Piémont et Sardaigne': 'Piedmont and Sardinia',
+   "Nord": "North",
+   "Flandre et autres états de l'Empereur": "Flanders and other states of the Emperor",
+   "Italie": "Italy",
+   "Levant et Barbarie": "Levant and Barbary"
+}
+with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
+    flows = csv.DictReader(csvfile)
+    for flow in flows:
+      destination = flow["destination"]
+      if flow['departure_function'] == 'O' \
+        and destination != '' \
+        and destination != 'France' \
+        and flow['destination_state_1789_fr'] != 'France' :
+        states_translation[flow['destination_state_1789_fr']] = flow['destination_state_1789_en']
+
 INPUT = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHqTGjTMavPEw0Mf4RBjvXz5qhBjWV7a1gYuokEvaKRP-HzBSURdpCozaXzHHySXLKQWrQcO7LGk2K/pub?output=csv'
 OUTPUT = "../public/data/tonnages_f12_1787.csv";
 
@@ -680,8 +730,10 @@ for item in results:
         el[to] = val
       else:
         el[to] = int(val) if len(val) else 0
+    el["destination_en"] = states_translation[el["destination"]] if el["destination"] in states_translation else el["destination"]
+    # if el["destination"] not in states_translation:
+    #    states_not_translated.add(el["destination"])
     destinations_f12_arr.append(el)
-
 # print('===')
 # print('Partenaires F12')
 # for p in data:
@@ -689,7 +741,7 @@ for item in results:
 # print('===')
 
 with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = transpal.values();
+  fieldnames = destinations_f12_arr[0].keys() # transpal.values();
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(destinations_f12_arr)
@@ -707,14 +759,15 @@ for d in destinations_f12_arr:
   if destination_grouping not in destinations_f12_grouping_map:
     destinations_f12_grouping_map[destination_grouping] = {
       "tonnage_hypothese_avec_lest": 0,
-      "tonnage_hypothese_sans_lest": 0
+      "tonnage_hypothese_sans_lest": 0,
+      "destination_en": states_translation[destination_grouping]
     }
   destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_avec_lest"] += tonnage_hypothese_avec_lest
   destinations_f12_grouping_map[destination_grouping]["tonnage_hypothese_sans_lest"] += tonnage_hypothese_sans_lest
 destinations_f12_grouping_arr = [{"destination": destination, **vals} for destination, vals in destinations_f12_grouping_map.items()]
 
 with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = transpal.values();
+  fieldnames = destinations_f12_grouping_arr[0].keys() # transpal.values();
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(destinations_f12_grouping_arr)
@@ -971,6 +1024,7 @@ for destination in destinations_navigo_dk.keys():
   cor = correspondance_map[destination]
   estimates_resume.append({
       "partenaire": destination,
+      "partenaire_en": partner_translations[destination],
       "tonnage": tonnage,
       "exports_toflit18" : exports_toflit18[destination] if destination in exports_toflit18 else 0,
       "imports_toflit18" : imports_toflit18[destination] if destination in imports_toflit18 else 0,
@@ -985,7 +1039,7 @@ for destination in destinations_navigo_dk.keys():
 
 OUTPUT = "../public/data/estimation-exports-dk-1789-par-partenaire.csv";
 with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = ['partenaire', 'tonnage', 'estimate', 'estimate_without_lest', 'price_per_barrel', 'price_per_barrel_without_lest', 'exports_toflit18', 'imports_toflit18'];
+  fieldnames = ['partenaire', 'partenaire_en', 'tonnage', 'estimate', 'estimate_without_lest', 'price_per_barrel', 'price_per_barrel_without_lest', 'exports_toflit18', 'imports_toflit18'];
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(estimates_resume)

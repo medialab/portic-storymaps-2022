@@ -34,7 +34,7 @@ const ExportsFr1787 = ({
         
       }}
       y={{
-        field: 'partner',
+        field: lang === 'fr' ? 'partner' : 'partner_en',
         title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
       }}
     // color={{
