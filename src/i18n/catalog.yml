@@ -871,14 +871,14 @@ DestinationsDkPrProjection:
     en: destination
   tooltip:
     fr: ${tonnage} tonneaux cumulés pour la destination ${destination}
-    en: ${tonnage} cumulated tonneaux for the destination ${destination}
+    en: ${tonnage} total tx for the destination ${destination}
 EstimationParTonnageDk:
   title1:
     fr: Tonnages cumulés
     en: Cumulated tonnages
   tooltip1:
     fr: ${value} tonneaux cumulés pour le partenaire ${partner}
-    en: ${value} cumulated tonneaux for the partner ${partner}
+    en: ${value} total tx for the partner ${partner}
   title2:
     fr: Prix par tonneau
     en: Price per tonneau
@@ -897,13 +897,13 @@ ComparaisonProjectionDestinationProduitsColoniauxDk:
     en: "Estimation of exports excluding smuggling & fishing (total : ${value} lt.)"
   tooltip1:
     fr: "Estimation des exportations pour le partenaire ${partner} : ${value} lt. (pour ${tonnage} tonneaux cumulés)"
-    en: "Estimation of exports for the partner ${partner}: ${value} lt. (for ${tonnage} cumulated tonneaux)"
+    en: "Estimation of exports to the partner ${partner}: ${value} lt. (for ${tonnage} cumulated tonneaux)"
   title2:
     fr: "Observation des importations pour les partenaires correspondant (total : ${value} lt.)"
-    en: "Observation of imports for corresponding partners (total : ${value} lt.)"
+    en: "Observation of imports from corresponding partners (total : ${value} lt.)"
   tooltip2:
     fr: "Importations du BF de Dunkerque depuis le partenaire ${partner} : ${value} lt."
-    en: "Imports of Dunkerque Bureau des Fermes for the partner ${partner}: ${value} lt."
+    en: "Imports of Dunkerque Bureau des Fermes from the partner ${partner}: ${value} lt."
 EstimationImportsExports:
   title_left_general:
     fr: Estimation des exportations de Dunkerque
@@ -919,10 +919,10 @@ EstimationImportsExports:
     en: Focus on the United Kingdom
   title_right_left:
     fr: Vu par le Royaume Uni
-    en: Seen by the United Kingdom
+    en: Seen from the United Kingdom
   title_right_right:
     fr: Vu par la Royaume de France
-    en: Seen by the Kingdom of France
+    en: Seen from the Kingdom of France
   imports_bf_dk:
     fr: importations du bureau des fermes de Dunkerque
     en: imports from the bureau des fermes of Dunkerque
@@ -969,6 +969,12 @@ AlluvialImportExport:
   exports:
     fr: export.
     en: exports
+  fraude ou consommation:
+    fr: fraude ou consommation
+    en: fraud or consumption
+  fraude ?:
+    fr: fraude ?
+    en: fraud?
   missing_value_summary:
     fr: "Valeur manquante dans les exportations par rapport aux importations : ${value} lt."
     en: "Missing value in exports compared to imports: ${value} lt."
@@ -980,7 +986,7 @@ AlluvialImportExport:
     en: Colonies
   Fraude:
     fr: Fraude
-    en: Fraude
+    en: Fraud
   France:
     fr: France
     en: France
@@ -1178,10 +1184,10 @@ AlluvialImportExport:
 ImportsDunkerqueVsPortsFrancs:
   title_left:
     fr: Top 20 des produits importés par Dunkerque
-    en: Top 20 of products imported by Dunkirk
+    en: Top 20 products imported by Dunkirk
   title_right:
     fr: Top 20 des produits importés par
-    en: Top 20 of products imported by
+    en: Top 20 products imported by
   toggle_total:
     fr: Montrer le total des produits importés
     en: Show the total of imported products

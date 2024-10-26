@@ -269,7 +269,8 @@ export default function ImportsDunkerqueVsPortsFrancs({
                                 },
 
                               }
-                              const tooltipText = `${tooltipLabels[type][lang]} : ${formatNumber(parseInt(absVal), lang)} lt. (${product})`;
+                              
+                              const tooltipText = `${tooltipLabels[type][lang]} : ${formatNumber(parseInt(absVal), lang)} lt. (${translate('AlluvialImportExport', product, lang)})`;
                               return (
                                 <AnimatedRect
                                   key={type}

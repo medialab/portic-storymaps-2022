@@ -27,11 +27,11 @@ const DestinationsDkPrProjection = ({
       orientation='vertical'
       x={{
         field: 'tonnage',
-        tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
+        tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}`,
         title: translate('DestinationsDkPrProjection', 'x', lang), // translate('TonnagesF12', 'with_lest_title', lang)
       }}
       y={{
-        field: 'destination',
+        field: lang === 'fr' ? 'destination' : 'destination_en',
         title: translate('DestinationsDkPrProjection', 'y', lang), // translate('TonnagesF12', 'destination', lang)
       }}
 
@@ -39,7 +39,7 @@ const DestinationsDkPrProjection = ({
       (d) => 
         translate('DestinationsDkPrProjection', 'tooltip', lang, {
           tonnage: formatNumber(parseInt(d.tonnage, lang)),
-          destination: d.destination
+          destination: lang === 'fr' ? d.destination : d.destination_en
         })
     }
     />

@@ -61,13 +61,15 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             x={{
               field: field,
               tickFormat: d => `${formatNumber(d, lang)} lt.`,
-              tickSpan: width < 900 ? 100000000 : 10000000,
+              // tickSpan: width < 900 ? 100000000 : 10000000,
+              // domain: [0, maxDomain],
+              tickSpan: 5000000,
               domain: [0, maxDomain],
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'partenaire',
-              title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
+              title: lang === 'fr' ? 'partenaire' : 'partner', // translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
             // field: 'tonnage',
@@ -77,9 +79,9 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             tooltip={
               (d) => 
                 translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip1', lang, {
-                  partner: d.partenaire,
-                  value: formatNumber(parseInt(d[field], lang)),
-                  tonnage: formatNumber(parseInt(d.tonnage, lang)),
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en,
+                  value: formatNumber(parseInt(d[field]), lang),
+                  tonnage: formatNumber(parseInt(d.tonnage), lang),
                 })
             }
           />
@@ -109,8 +111,8 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
               title: 'imports toflit18', // translate('TonnagesF12', 'with_lest_title', lang)
             }}
             y={{
-              field: 'partenaire',
-              title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
+              title: lang === 'fr' ? 'partenaire' : 'partner',
             }}
             // color={{
             // field: 'tonnage',
@@ -120,8 +122,8 @@ const ComparaisonProjectionDestinationProduitsColoniauxDk = ({
             tooltip={
               (d) => 
                 translate('ComparaisonProjectionDestinationProduitsColoniauxDk', 'tooltip2', lang, {
-                  partner: d.partenaire,
-                  value: formatNumber(parseInt(d.imports_toflit18, lang)),
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en,
+                  value: formatNumber(parseInt(d.imports_toflit18), lang),
                 })
             }
           />

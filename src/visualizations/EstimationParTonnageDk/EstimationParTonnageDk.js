@@ -46,21 +46,21 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: 'tonnage',
-              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}.`,
-              tickSpan: 20000,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}.`,
+              tickSpan: 2500,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
-              domain: [0, 31001]
+              domain: [0, 5001]
             }}
             y={{
-              field: 'partenaire',
-              title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
+              title: lang === 'fr' ? 'partenaire' : 'partner', // translate('TonnagesF12', 'destination', lang)
             }}
 
             tooltip={
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip1', lang, {
                   value: formatNumber(parseInt(d.tonnage, lang)),
-                  partner: d.partenaire
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en
                 })
             }
           />
@@ -83,14 +83,14 @@ const EstimationParTonnageDk = ({
             orientation='vertical'
             x={{
               field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d, lang)} lt./${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} lt./t`,
               tickSpan : 500,
               title: 'prix par tonneau', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 1001]
             }}
             y={{
-              field: 'partenaire',
-              title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
+              title: lang === 'fr' ? 'partenaire' : 'partner', // translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
             // field: 'tonnage',
@@ -101,7 +101,7 @@ const EstimationParTonnageDk = ({
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip2', lang, {
                   value: formatNumber(parseInt(d[withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest'], lang)),
-                  partner: d.partenaire
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en
                 })
             }
           />
@@ -131,13 +131,13 @@ const EstimationParTonnageDk = ({
             x={{
               field: field,
               tickFormat: d => `${formatNumber(d, lang)} lt.`,
-              tickSpan: 5000000,
+              tickSpan: 1000000,
+              domain: [0, 3000001],
               title: 'estimation en livres tournois', // translate('TonnagesF12', 'with_lest_title', lang)
-              domain: [0, 15000001]
             }}
             y={{
-              field: 'partenaire',
-              title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
+              title: lang === 'fr' ? 'partenaire' : 'partner', // translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
             // field: 'tonnage',
@@ -147,9 +147,9 @@ const EstimationParTonnageDk = ({
             tooltip={
               (d) => 
                 translate('EstimationParTonnageDk', 'tooltip3', lang, {
-                  value: formatNumber(parseInt(d[field], lang)),
-                  partner: d.partenaire,
-                  tonnage: d.tonnage
+                  value: formatNumber(parseInt(d[field]), lang),
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en,
+                  tonnage: formatNumber(parseInt(d.tonnage), lang)
                 })
             }
           />

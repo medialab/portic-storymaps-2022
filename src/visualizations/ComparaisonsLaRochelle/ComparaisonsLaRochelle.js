@@ -58,18 +58,27 @@ const ComparaisonsLaRochelle = ({
       }
     })
     .reduce((res, [key, { color, label }]) => ({ ...res, [label]: color }), {})
-  const fixLabels = (items, field) => items.map(item => {
-    let label = item[field];
-    if (label === 'Flandre et autres états de l\'Empereur') {
-      label = 'Flandre et autres ...'
-    } else if (label === 'Monde') {
-      label = 'Partenaires indéfinis'
-    }
-    return {
-      ...item,
-      [field]: label
-    }
-  })
+  const fixLabels = (items, fields) => 
+    fields.reduce((cur, field) => {
+      return cur.map(item => {
+        let label = item[field] + '';
+        if (label === 'Flandre et autres états de l\'Empereur') {
+          label = 'Flandre et autres ...';
+        } else if (label === 'Monde') {
+          label = 'Partenaires indéfinis';
+        } else if (label === 'Flanders and other states of the Emperor') {
+          label = 'Flanders et others ...';
+        } else if (label === 'World') {
+          label = 'Undefined partners';
+        } else if (label === 'undefined') {
+          label = 'Undefined partners';
+        }
+        return {
+          ...item,
+          [field]: label
+        }
+      })
+    }, items)
 
   const exportsMonde = +data.get('comparaisons-la-rochelle-toflit18.csv').find(d => d.partenaire === 'Monde').valeur;
   return (
@@ -80,7 +89,7 @@ const ComparaisonsLaRochelle = ({
           <BarChart
             {...{
               data: [
-                ...fixLabels(data.get('comparaisons-la-rochelle-toflit18.csv'), 'partenaire'),
+                ...fixLabels(data.get('comparaisons-la-rochelle-toflit18.csv'), ['partenaire', 'partenaire_en']),
                 { partenaire: 'Outre-mers', valeur: 0, group: 'defined' }
               ]
                 .sort((a, b) => {
@@ -103,7 +112,7 @@ const ComparaisonsLaRochelle = ({
               domain: [0, 6000001]
             }}
             y={{
-              field: 'partenaire',
+              field: lang === 'fr' ? 'partenaire' : 'partenaire_en',
               title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
@@ -115,7 +124,7 @@ const ComparaisonsLaRochelle = ({
               (d) => 
                 translate('ComparaisonLaRochelle', 'tooltip1', lang, {
                   value: formatNumber(parseInt(d.valeur, lang)),
-                  partner: d.partenaire
+                  partner: lang === 'fr' ? d.partenaire : d.partenaire_en
                 })
             }
           />
@@ -125,8 +134,8 @@ const ComparaisonsLaRochelle = ({
           <BarChart
             {...{
               data: [
-                ...fixLabels(data.get('comparaisons-la-rochelle-navigo.csv'), 'destination'),
-                { destination: 'Partenaires indéfinis', tonnage: 0, group: 'undefined' }
+                ...fixLabels(data.get('comparaisons-la-rochelle-navigo.csv'), ['destination', 'destination_en']),
+                { destination: 'Partenaires indéfinis', destination_en: 'Undefined partners', tonnage: 0, group: 'undefined' }
               ]
                 .sort((a, b) => {
                   if (a.destination.toLowerCase().replace('é', 'e') > b.destination.toLowerCase().replace('é', 'e')) {
@@ -143,13 +152,13 @@ const ComparaisonsLaRochelle = ({
             x={{
               'field': 'tonnage',
               // field: withLest ? 'price_per_barrel' : 'price_per_barrel_without_lest',
-              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'b'}`,
+              tickFormat: d => `${formatNumber(d, lang)} ${lang === 'fr' ? 'tx' : 'tx'}`,
               tickSpan: 5000,
               title: 'tonnage', // translate('TonnagesF12', 'with_lest_title', lang)
               domain: [0, 15001]
             }}
             y={{
-              field: 'destination',
+              field: lang === 'fr' ? 'destination' : 'destination_en',
               title: 'destination', // translate('TonnagesF12', 'destination', lang)
             }}
             // color={{
@@ -161,7 +170,7 @@ const ComparaisonsLaRochelle = ({
               (d) =>
                 translate('ComparaisonLaRochelle', 'tooltip2', lang, {
                   value: formatNumber(parseInt(d.tonnage, lang)),
-                  partner: d.destination
+                  partner: lang === 'fr' ? d.destination : d.destination_en
                 })
             }
           />
@@ -178,7 +187,7 @@ const ComparaisonsLaRochelle = ({
           <BarChart
             {...{
               data: [
-                ...fixLabels(data.get('comparaisons-la-rochelle-projection.csv'), 'partner')
+                ...fixLabels(data.get('comparaisons-la-rochelle-projection.csv'), ['partner', 'partner_en'])
                   .filter(({ group }) => {
                     if (group.includes('(non pondéré)')) {
                       return false;
@@ -199,6 +208,7 @@ const ComparaisonsLaRochelle = ({
                   }),
                   {
                     partner: 'Partenaires indéfinis',
+                    partner_en: 'Undefined partners',
                     value: exportsMonde,
                     group: translate('ComparaisonLaRochelle', 'estimation_type_1', lang)
                   }
@@ -225,7 +235,7 @@ const ComparaisonsLaRochelle = ({
               domain: [0, 10000001]
             }}
             y={{
-              field: 'partner',
+              field: lang === 'fr' ? 'partner' : 'partner_en',
               title: 'partenaire', // translate('TonnagesF12', 'destination', lang)
             }}
             color={{
@@ -238,7 +248,7 @@ const ComparaisonsLaRochelle = ({
               (d) => 
                 translate('ComparaisonLaRochelle', 'tooltip3', lang, {
                   value: formatNumber(parseInt(d.value, lang)),
-                  partner: d.partner,
+                  partner: lang === 'fr' ? d.partner : d.partner_en,
                   unit: d.group
                 })
             }

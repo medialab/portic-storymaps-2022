@@ -477,7 +477,9 @@ export default function AlluvialImportExport({
                     style={{
                       color: pickTextColor(color)
                     }}
-                  >{product}</div>
+                  >
+                    {product === 'Fraude' && lang !== 'fr' ? 'Fraud' : product}
+                  </div>
                 </foreignObject>
               </g>
             )
@@ -635,7 +637,10 @@ export default function AlluvialImportExport({
                                       fill={'url(#diagonalHatch)'}
                                     />
                                     {/* <text x={-5} y={10} className="number-label right">{`${formatNumber(value, lang)} lt. (fraude ?)`}</text> */}
-                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value, lang)} lt. (${notDunkerque ? 'fraude ou consommation' : 'fraude ?'})`}</text>
+                                    <text x={-width/50} y={strokeWidth + 5} className="number-label left">{`${formatNumber(value, lang)} lt. (${
+                                      notDunkerque ? translate('AlluvialImportExport', 'fraude ou consommation', lang)
+                                       : translate('AlluvialImportExport', 'fraude ?', lang)
+                                    })`}</text>
 
                                   </g>
                                   :
@@ -663,7 +668,7 @@ export default function AlluvialImportExport({
                                       }
                                       fill={'url(#diagonalHatch)'}
                                     />
-                                    <text x={5} y={5} className="number-label right">{`${formatNumber(value, lang)} lt. (fraude ?)`}</text>
+                                    <text x={5} y={5} className="number-label right">{`${formatNumber(value, lang)} lt. (${translate('AlluvialImportExport', 'fraude ?', lang)})`}</text>
                                   </g>
                                 :
                                 // not fraude

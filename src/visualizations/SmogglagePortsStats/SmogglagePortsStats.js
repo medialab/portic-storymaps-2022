@@ -18,7 +18,6 @@ export default function SmogglagePortsStats ({
     dimensions
 }) {
     const { width, height } = dimensions;
-    console.log(data)
     return (
         <>
         <BarChart
@@ -45,7 +44,7 @@ export default function SmogglagePortsStats ({
                 }}
                 tooltip={item => 
                   translate('SmogglagePortsStats', 'tooltip', lang, {
-                    travels: item['total des trajets anglais'],
+                    travels: formatNumber(item['total des trajets anglais'], lang),
                     port: lang === 'fr' ? item['port de départ'] : item['port de départ en anglais']
                   })
                 }

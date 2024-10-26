@@ -150,6 +150,11 @@ partner_translations = {
   "Portugal": "Portugal",
   "Suisse": "Switzerland",
   "États-Unis d'Amérique": "United States of America",
+   "Monde": "World",
+   "Asie": "Asia",
+   "total": "total",
+   "Divers": "Diverse",
+   "Outre-mers": "Overseas"
 }
 
 
@@ -617,14 +622,13 @@ def project_for_bureau (ferme_bureau, ferme_key = 'departure_ferme_bureau', verb
   print("Total des exports en lt selon toflit18 : " + f'{int(sum_toflit18_raw):,}' + " lt")
   print("Total des exports en lt selon toflit18 (corrigé avec ratios terre-mer) : " + f'{int(sum_toflit18_corrected):,}' + " lt")
   print('Méthode \'résumé\' - rapport projection/réalité : facteur de ' + str(sum_projection_resume / sum_toflit18_corrected))
-  
+  print(set([t["partenaire"] for t in partners_toflit18_arr]))
   return {
-    "partners_toflit18": partners_toflit18_arr,
-    "destinations_navigo": destinations_navigo_arr,
-    "correspondance": correspondance_resume,
-    "projection": projection_resume
+    "partners_toflit18": [{**p, "partenaire_en": partner_translations[p["partenaire"]]} for p in partners_toflit18_arr],
+    "destinations_navigo": [{**p, "destination_en": partner_translations[p["destination"]]} for p in destinations_navigo_arr],
+    "correspondance": [{**p, "partner_en": partner_translations[p["partner"]]} for p in correspondance_resume],
+    "projection": [{**p, "partner_en": partner_translations[p["partner"]]} for p in projection_resume]
   }
-
 
 """
 1 - toflit18 partners in 1787
@@ -900,7 +904,7 @@ with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
               nb_tonnage_angleterre += tonnage
               if len(commodities_ids) > 0:
                     nb_trajets_angleterre_avec_cargo += 1
-destinations_arr = [{"destination": destination, "tonnage": tonnage} for destination, tonnage in destinations_navigo_dk.items()]
+destinations_arr = [{"destination": destination, "destination_en": partner_translations[destination], "tonnage": tonnage} for destination, tonnage in destinations_navigo_dk.items()]
 # print('===')
 # print('Destinations Dunkerque 1789 : ')
 # for el in destinations_arr:
@@ -908,7 +912,7 @@ destinations_arr = [{"destination": destination, "tonnage": tonnage} for destina
 # print('===')
 OUTPUT = "../public/data/destinations-dk-pour-projection.csv";
 with open(OUTPUT, 'w', newline='') as csvfile:
-  fieldnames = ['destination', 'tonnage']
+  fieldnames = ['destination', 'destination_en', 'tonnage']
   writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
   writer.writeheader()
   writer.writerows(destinations_arr)
