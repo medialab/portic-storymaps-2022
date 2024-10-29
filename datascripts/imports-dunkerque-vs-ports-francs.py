@@ -5,7 +5,7 @@ input = '../data/toflit18_all_flows.csv';
 
 ports_francs_partners = ['Dunkerque', 'Bayonne','Lorient','Marseille','Noirmoutier','Yeu','Bouin']
 # ports_francs_offices = [['Dunkerque', 'Port franc de Dunkerque'], ['Bayonne', 'Port franc de Bayonne'], ['Lorient'], ['Marseille']]
-ports_francs_offices = [['Dunkerque', 'Port franc de Dunkerque'], ['Bayonne', 'Port franc de Bayonne'], ['Lorient'], ['Marseille']]
+ports_francs_offices = [['Dunkerque', 'Port franc de Dunkerque'], ['Bayonne', 'Port franc de Bayonne', 'Port franc de Bayonne et Saint Jean de Luz'], ['Lorient'], ['Marseille']]
 
 products_map = {}
 for p in ports_francs_partners:
@@ -15,18 +15,22 @@ with open(input, 'r') as muerte:
     reader = csv.DictReader(muerte)
     for flow in reader:
         # select imports 1789
+        # @todo add source ?
         if  flow['year'] == '1789' \
+        and flow['best_guess_region_prodxpart'] \
         :
           value = float(flow['value'] or 0)
           product = flow['product_revolutionempire']
           port = None
           source_import = None
+
           # France to Port Franc
           if flow['export_import'] == 'Exports' \
           and flow['partner_simplification'] in ports_francs_partners \
           :
               source_import = 'france'
               port = flow['partner_simplification']
+          # BF imports
           elif flow['export_import'] == 'Imports' \
           and len([arr for arr in ports_francs_offices if flow['customs_office'] in arr]) \
           :

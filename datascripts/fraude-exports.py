@@ -62,6 +62,7 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
             if row["customs_office"] != "Port franc de Bayonne et Saint Jean de Luz"
             else "Bayonne"
         )
+
         product = row[product_classification]
         partner_type = import_partner_class(row["partner_grouping"])
 
