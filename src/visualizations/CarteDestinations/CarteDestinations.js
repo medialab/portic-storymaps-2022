@@ -264,7 +264,7 @@ export default function FraudeExportDunkerque({
               highlightedDestination,
               setHighlightedDestination,
               containerWidth: width,
-              containerHeight: height,
+              containerHeight: atlasMode ? window.innerHeight * .9 : height,
               showOffscreenPorts,
               showDetailsInMap,
             },
@@ -304,7 +304,7 @@ export default function FraudeExportDunkerque({
           setMinTonnage,
           setMaxTonnage,
           containerWidth: width,
-          containerHeight: height,
+          containerHeight: atlasMode ? window.innerHeight * .9 : height,
           lang,
           atlasMode,
         }

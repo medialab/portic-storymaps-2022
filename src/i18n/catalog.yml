@@ -1200,7 +1200,7 @@ SmogglagePortsStats:
     en: departure port
   y1:
     fr: nombre de départs de britanniques
-    en: number of british departures
+    en: number of British departures
   y1_ticks:
     fr: ${value} trajets
     en: ${value} travels
@@ -1212,7 +1212,7 @@ SmogglagePortsStats:
     en: departure port
   y2:
     fr: part des smoggleurs dans les trajets anglais
-    en: share of smogglers in british travels
+    en: share of smogglers in British travels
 Intro:
   free_port_1:
     fr: Port franc

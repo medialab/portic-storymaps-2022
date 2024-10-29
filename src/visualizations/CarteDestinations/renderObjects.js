@@ -83,6 +83,7 @@ const renderObjects = ({
           y={0} 
           width={containerWidth}
           height={containerHeight}
+          className="background-rect"
           fill={'rgba(0,0,0,0.2)'}
           style={{cursor: 'pointer'}}
           onClick={() => setHighlightedDestination()}

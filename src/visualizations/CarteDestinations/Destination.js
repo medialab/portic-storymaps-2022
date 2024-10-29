@@ -236,7 +236,7 @@ const Destination = ({
                     x={-5}
                     y={-radarScale(tickValue) + 5}
                   >
-                    {`${tickValue} ${lang === 'fr' ? 'tx' : 'b'}.`}
+                    {`${tickValue} ${lang === 'fr' ? 'tx' : 'tx'}.`}
                   </Text>
                 </g>
               )
