@@ -66,8 +66,8 @@ const ComparaisonsLaRochelle = ({
           label = 'Flandre et autres ...';
         } else if (label === 'Monde') {
           label = 'Partenaires indéfinis';
-        } else if (label === 'Flanders and other states of the Emperor') {
-          label = 'Flanders et others ...';
+        } else if (label === 'Flanders and other estates of the Emperor') {
+          label = 'Flanders et other ...';
         } else if (label === 'World') {
           label = 'Undefined partners';
         } else if (label === 'undefined') {

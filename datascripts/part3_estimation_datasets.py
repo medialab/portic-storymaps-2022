@@ -142,10 +142,10 @@ partner_translations = {
   "Allemagne": "Germany",
   "Angleterre": "England",
   "Espagne": "Spain",
-  "Flandre et autres états de l'Empereur": "Flanders and other states of the Emperor",
+  "Flandre et autres états de l'Empereur": "Flanders and other estates of the Emperor",
   "Hollande": "Holland",
   "Italie": "Italy",
-  "Levant et Barbarie": "Levant and Barbary",
+  "Levant et Barbarie": "Levant and Barbary states",
   "Nord": "North",
   "Portugal": "Portugal",
   "Suisse": "Switzerland",
@@ -691,9 +691,9 @@ states_translation = {
    "États-Unis d'Amérique": 'United States of America', 
    'Piémont et Sardaigne': 'Piedmont and Sardinia',
    "Nord": "North",
-   "Flandre et autres états de l'Empereur": "Flanders and other states of the Emperor",
+   "Flandre et autres états de l'Empereur": "Flanders and other estates of the Emperor",
    "Italie": "Italy",
-   "Levant et Barbarie": "Levant and Barbary"
+   "Levant et Barbarie": "Levant and Barbary States"
 }
 with open('../data/navigo_all_flows_1789.csv', newline='') as csvfile:
     flows = csv.DictReader(csvfile)
