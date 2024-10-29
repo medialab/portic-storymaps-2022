@@ -90,7 +90,7 @@ const ComparaisonsLaRochelle = ({
             {...{
               data: [
                 ...fixLabels(data.get('comparaisons-la-rochelle-toflit18.csv'), ['partenaire', 'partenaire_en']),
-                { partenaire: 'Outre-mers', valeur: 0, group: 'defined' }
+                { partenaire: 'Outre-mers', partenaire_en: 'Overseas', valeur: 0, group: 'defined' }
               ]
                 .sort((a, b) => {
                   if (a.partenaire.toLowerCase().replace('é', 'e') > b.partenaire.toLowerCase().replace('é', 'e')) {
