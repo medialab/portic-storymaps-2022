@@ -40,7 +40,7 @@ export default function EstimationExportsDkSnail({
             colorPalette={{
               ...palette,
               'Fraude': 'grey',
-              'Fraud': 'grey',
+              // 'Fraud': 'grey',
               [translate('AlluvialImportExport', 'bureau des fermes de Dunkerque', lang)]: '#082d45',
               '': '#9bb5c6'
             }}

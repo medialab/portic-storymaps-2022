@@ -141,8 +141,8 @@ export default function AlluvialImportExport({
     /**
      * Isolate fraude imports and exports
      */
-    const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && (p.partner_type === 'Fraude'))], []);
-    const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && (p.partner_type === 'Fraude'))], []);
+    const fraudeImports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Imports' && (p.partner_type === 'Fraude' || p.partner_type === 'Fraud'))], []);
+    const fraudeExports = products.reduce((res, p) => [...res, ...p[1].filter(p => p['importsexports'] === 'Exports' && (p.partner_type === 'Fraude' || p.partner_type === 'Fraud'))], []);
     const sumFraudeImports = sum(
       fraudeImports
     , d => d.value);
@@ -171,7 +171,7 @@ export default function AlluvialImportExport({
      * need for each partner the max value between imports and exports
      */
     let partnersMaxValue = partners.map(([partner, partnerArray]) => {
-      if (partner === 'Fraude') { 
+      if (partner === 'Fraude' || partner === 'Fraud') { 
         return [partner, 0]; 
       }
       let partnerImportArray = [];
@@ -240,7 +240,7 @@ export default function AlluvialImportExport({
     }
     const sumOfImports = sum(productsImportSorted.filter(d => d[0] !== ''), d => d[1]);
     const importGap = (globalImport && globalImport > sumOfImports ? globalImport : sumOfImports) - sum(productsImportSorted.filter(d => d[0] !== '').map(d => d[1]));// : 0;
-    productsImportSorted = importGap ? [['Fraude', importGap], ...productsImportSorted.filter(d => d[0] !== "")] : productsImportSorted;
+    productsImportSorted = importGap ? [[lang === 'fr' ? 'Fraude' : 'Fraud', importGap], ...productsImportSorted.filter(d => d[0] !== "")] : productsImportSorted;
     let displacement = 0;
     for (const [product, value] of productsImportSorted) {
       if (product === '') {
@@ -283,7 +283,7 @@ export default function AlluvialImportExport({
     if (globalImport && importGap) {
       usableProducts = [...products, 
         [
-          'Fraude',
+          lang === 'fr' ? 'Fraude' : 'Fraud',
           [{
             aggregate_type: '',
             importsexports: 'Exports',
@@ -315,7 +315,7 @@ export default function AlluvialImportExport({
             //   return -1;
             // }
             // else 
-            if (a.partner_type === 'Fraude') {
+            if (a.partner_type === 'Fraude' || a.partner_type === 'Fraud') {
               return -1;
             } else if (product === '') {
               return -1;
@@ -336,7 +336,7 @@ export default function AlluvialImportExport({
             if (displacementsMaps[importsexports][product] === undefined) {
               displacementsMaps[importsexports][product] = 0;
             }
-            const isFraude = partner_type === 'Fraude' || product === 'Fraude';
+            const isFraude = partner_type === 'Fraude' || product === 'Fraude' || partner_type === 'Fraud' || product === 'Fraud';
             const arrKey = importsexports === 'Exports' ? 'exportsLinks' : 'importsLinks';
             const fromKey = importsexports === 'Exports' ? partner_type : product;
             const toKey = importsexports === 'Exports' ? product : partner_type;
@@ -521,7 +521,7 @@ export default function AlluvialImportExport({
                   data-tip={barHeight < 10 ? partner : undefined}
                 />
                 {
-                  partner !== 'Fraude' &&
+                  partner !== 'Fraude' && partner !== 'Fraud' &&
                   <foreignObject
                     x={0}
                     y={barHeight / 2 - labelNbLines * 5 - 5}

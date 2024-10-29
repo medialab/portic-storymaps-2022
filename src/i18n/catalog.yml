@@ -554,7 +554,7 @@ DepartsFrVersAngleterre:
     en: Picardy
   Bretagne:
     fr: Bretagne
-    en: Britony
+    en: Britanny
   Aunis, Poitou, Saintonge:
     fr: Aunis, Poitou, Saintonge
     en: Aunis, Poitou, Saintonge
@@ -626,7 +626,7 @@ PrixSmogglageGeneral:
     en: Unit of measurement
   eau de vie, taffia, genieve:
     fr: eau de vie, taffia, genieve
-    en: eau de vie, taffia, genieve
+    en: spirits, tafia and gin
   mouchoirs de soie:
     fr: mouchoirs de soie
     en: silk handkerchiefs
@@ -674,7 +674,7 @@ PrixSmogglageGeneral:
     en: coffee
   thé:
     fr: thé
-    en: thea
+    en: tea
   mousseline des Indes:
     fr: mousseline des Indes
     en: Indian muslin
@@ -686,7 +686,7 @@ PrixSmogglageGeneral:
     en: manufactured tobbaco
   Soie des Indes:
     fr: Soie des Indes
-    en: Indian Silk
+    en: Indian silk
   mercerie fine:
     fr: mercerie fine
     en: fine haberdashery
@@ -746,7 +746,7 @@ PrixSmogglageGeneral:
     en: crêpes
   Chocolat:
     fr: Chocolat
-    en: Chocolate
+    en: chocolate
   cartes à jouer:
     fr: cartes à jouer
     en: playing cards
@@ -759,6 +759,9 @@ PrixSmogglageGeneral:
   pots de vess / potjevleesch???:
     fr: pots de vess / potjevleesch???
     en: vess pots / potjevleesch???
+  pots de vess / potjevlessesch ???:
+    fr: pots de vess / potjevlessesch ???
+    en: pots de vess / potjevlessesch ???
   pintes:
     fr: pintes
     en: pints
