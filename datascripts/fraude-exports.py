@@ -56,7 +56,9 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
         if row["year"] != "1789":
             continue
         # values correction/normalization
-        value = int(row["value"].split('.')[0] or 0)
+        # print(row["value"])
+        # value = int(row["value"].split('.')[0] or 0)
+        value = float(row["value"] or 0)
         office = (
             row["customs_office"]
             if row["customs_office"] != "Port franc de Bayonne et Saint Jean de Luz"
@@ -315,9 +317,11 @@ with open('../data/toflit18_all_flows.csv', "r") as muerte:
                 row['aggregate_type'] = 'detail_products'
                 row['product_type'] = row['product']
                 row['partner_type'] = normalize_partner_dict[row['partner_type']]
+                row["value"] = round(row["value"])
                 del row['product']
                 writer.writerow(row)
             for row in classification['total_trade']:
                 row['aggregate_type'] = 'total_trade'
                 row['partner_type'] = normalize_partner_dict[row['partner_type']]
+                row["value"] = round(row["value"])
                 writer.writerow(row)
