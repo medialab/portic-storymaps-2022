@@ -100,9 +100,9 @@ export default function FraudeExportDunkerque({
     {
       id: 'group_strangers'
     },
-    {
-      id: 'only_long_cours'
-    },
+    // {
+    //   id: 'only_long_cours'
+    // },
 
     {
       id: 'show_offscreen_ports'
