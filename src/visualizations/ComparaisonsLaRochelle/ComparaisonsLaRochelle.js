@@ -9,9 +9,10 @@ const ComparaisonsLaRochelle = ({
   data,
   width,
   height: inputHeight,
+  atlasMode,
   lang,
 }) => {
-  const height = inputHeight - 250;
+  const height = atlasMode ? inputHeight - 350 : inputHeight - 250;
   const [withLest, setWithLest] = useState(true);
   // const field = useMemo(() => withLest ? 'estimate' : 'estimate_without_lest', [withLest]);
   // const actualData = useMemo(() => {

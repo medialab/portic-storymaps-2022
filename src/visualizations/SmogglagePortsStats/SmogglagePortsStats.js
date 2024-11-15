@@ -73,8 +73,8 @@ export default function SmogglagePortsStats ({
                     tickFormat: f => f + '%'
                 }}
                 tooltip={item => 
-                  translate('SmogglagePortsStats', 'tooltip', lang, {
-                    travels: item['total des trajets anglais'],
+                  translate('SmogglagePortsStats', 'tooltip2', lang, {
+                    travels: (+item['% de trajets anglais smoggleurs'] || 0).toFixed(1),
                     port: lang === 'fr' ? item['port de départ'] : item['port de départ en anglais']
                   })
                 }

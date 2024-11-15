@@ -106,7 +106,7 @@ EvolutionTypeConges:
     color: "#668EDB"
   Isles (pav. fr):
     fr: Isles (pav. fr)
-    en: Islands (french flag)
+    en: West Indies (french flag)
     color: "#41BEA3"
   long-cours (pav. fr):
     fr: long-cours (pav. fr)
@@ -1208,14 +1208,17 @@ SmogglagePortsStats:
     fr: ${value} trajets
     en: ${value} travels
   tooltip:
-    fr: ${travels} trajets de navires anglais depuis le port de ${port}
+    fr: ${travels} trajets de navires britanniques depuis le port de ${port}
     en: ${travels} travels of british ships from the port of ${port}
+  tooltip2:
+    fr: ${travels}% de trajets de navires britanniques depuis le port de ${port}
+    en: ${travels}% of travels of british ships from the port of ${port}
   x2:
     fr: port de départ
     en: departure port
   y2:
-    fr: part des smoggleurs dans les trajets anglais
-    en: share of smogglers in British travels
+    fr: part des smoggleurs dans ces trajets
+    en: share of smogglers in these travels
 Intro:
   free_port_1:
     fr: Port franc

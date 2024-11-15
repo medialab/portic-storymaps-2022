@@ -45,7 +45,7 @@ const ExportsFr1787 = ({
     tooltip={
       (d) => translate('ExportsFr1787', 'tooltip', lang, {
         value: formatNumber(parseInt(d.value, lang)),
-        partner: d.partner
+        partner: lang === 'fr' ? d.partner : d.partner_en
       })
     }
     />
