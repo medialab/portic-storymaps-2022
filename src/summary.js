@@ -116,8 +116,8 @@ export default [
       en: 'sources-and-biblio'
     },
     titles: {
-      fr: 'Sources et références bibliographiques',
-      en: 'Sources and academic references'
+      fr: 'Sources & refs.',
+      en: 'Sources & refs.'
     },
     contents: {
       fr: frBiblio,

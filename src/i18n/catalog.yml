@@ -174,7 +174,7 @@ PecheMap:
     en: Herring
   Dogre Banc:
     fr: Dogre Banc
-    en: Dogre Banc
+    en: Dogger Bank
 HistoireDunkerque:
   legend_square_port_free:
     fr: Port franc
@@ -211,11 +211,11 @@ TonnagesF12:
     fr: Partenaires F12 alignés sur la classification toflit18 "grouping"
     en: F12 Partners aligned on toflit18 "grouping" classification
   hyp_with_lest:
-    fr: En supposant que la source F12 n’inclut pas les navires partis sur lest (estimation de référence)
-    en: suppose source counts ships which left in ballast
+    fr: Estimation basse de référence, en supposant que la source F12 n’inclut pas les navires partis sur lest
+    en: Low reference estimate, supposing source F12 does not include ships which left in ballast
   hyp_without_lest:
-    fr: En supposant que la source F12 inclut les navires partis sur lest (le lest est donc soustrait)
-    en: suppose source does not count ships which left in ballast (substract ballast)
+    fr: Estimation haute, en supposant que la source F12 inclut les navire partis sur lest
+    en: High estimate, supposing source F12 includes ships which left in ballast
   with_lest_title:
     fr: tonnage cumulé (hypothèse selon laquelle la source contient le lest)
     en: cumulated tonnage (we suppose the source does contains ballast)
@@ -862,12 +862,18 @@ ComparaisonLaRochelle:
   estimation_type_1:
     fr: valeur observée dans toflit18 (pondérée avec les ratios terre-mer)
     en: value observed in toflit18 (weighted with land-sea ratios)
+  # estimation_type_2:
+  #   fr: estimation haute (hyp. F12 inclut lest)
+  #   en: high estimate (supposing F12 includes ballast)
+  # estimation_type_3:
+  #   fr: estimation basse (hyp. F12 exclut lest)
+  #   en: low estimate (supposing F12 excludes ballast)
   estimation_type_2:
-    fr: estimation haute (hyp. F12 inclut lest)
-    en: high estimate (supposing F12 includes ballast)
+    fr: estimation
+    en: estimate
   estimation_type_3:
-    fr: estimation basse (hyp. F12 exclut lest)
-    en: low estimate (supposing F12 excludes ballast)
+    fr: estimation
+    en: estimate
 DestinationsDkPrProjection:
   x:
     fr: tonnage
@@ -1052,13 +1058,13 @@ AlluvialImportExport:
     en: Unknowns
   Toiles diverses:
     fr: Toiles diverses
-    en: Various canvases
+    en: Various cloths
   Blé et autres grains comestibles:
     fr: Blé et autres grains comestibles
     en: Wheat and other edible grains
   Toiles de coton:
     fr: Toiles de coton
-    en: Cotton canvasses
+    en: Cotton cloths
   Étoffes de laine:
     fr: Étoffes de laine
     en: Woolen fabrics
