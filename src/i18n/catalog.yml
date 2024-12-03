@@ -757,11 +757,14 @@ PrixSmogglageGeneral:
     fr: tabac en côtes
     en: ribbed tobacco
   pots de vess / potjevleesch???:
-    fr: pots de vess / potjevleesch???
-    en: vess pots / potjevleesch???
-  pots de vess / potjevlessesch ???:
-    fr: pots de vess / potjevlessesch ???
-    en: pots de vess / potjevlessesch ???
+    fr: pots de vess / potjevleesch ?
+    en: vess pots / potjevleesch?
+  "'pots de vess / potjevleesch???'":
+    fr: pots de vess [potjevleesch ?]
+    en: pots de vess [potjevleesch?]
+  pots de vess /  potjevleesch???:
+    fr: pots de vess / potjevleesch?
+    en: vess pots / potjevleesch?
   pintes:
     fr: pintes
     en: pints

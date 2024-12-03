@@ -37,7 +37,7 @@ export default function PrixSmogglageGeneral({
     return inputData.map(datum => {
       return {
         ...datum,
-        produit_smogglé: translate('PrixSmogglageGeneral', datum.produit_smogglé, lang),
+        produit_smogglé: translate('PrixSmogglageGeneral', datum.produit_smogglé.trim(), lang),
         unité: translate('PrixSmogglageGeneral', datum.unité || 'pintes', lang),
       }
     })
