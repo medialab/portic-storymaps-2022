@@ -9,7 +9,6 @@
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;
-    
     // height: 50%;
     .column {
 
@@ -38,4 +37,7 @@
     justify-content: center;
     margin-top: $medium-gutter;
   }
+
+  // &:not(.is-atlas-mode) {
+  // }
 }

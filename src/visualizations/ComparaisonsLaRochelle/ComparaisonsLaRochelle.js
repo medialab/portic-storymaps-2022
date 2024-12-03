@@ -1,5 +1,6 @@
 import { lt } from "lodash";
 import { useState, useMemo } from "react";
+import cx from 'classnames';
 import BarChart from "../../components/BarChart";
 import { formatNumber } from "../../utils/misc";
 import translate from '../../utils/translate';
@@ -12,7 +13,7 @@ const ComparaisonsLaRochelle = ({
   atlasMode,
   lang,
 }) => {
-  const height = atlasMode ? inputHeight - 350 : inputHeight - 250;
+  const height = atlasMode ? inputHeight - 350 : inputHeight - 300;
   const [withLest, setWithLest] = useState(true);
   // const field = useMemo(() => withLest ? 'estimate' : 'estimate_without_lest', [withLest]);
   // const actualData = useMemo(() => {
@@ -83,7 +84,9 @@ const ComparaisonsLaRochelle = ({
 
   const exportsMonde = +data.get('comparaisons-la-rochelle-toflit18.csv').find(d => d.partenaire === 'Monde').valeur;
   return (
-    <div className="ComparaisonsLaRochelle">
+    <div
+     className={cx("ComparaisonsLaRochelle", {'is-atlas-mode': atlasMode})}
+    >
       <div className="columns-container">
         <div className="column">
           <h2>{translate('ComparaisonLaRochelle', 'title1', lang)}</h2>
