@@ -32,8 +32,8 @@ export default function StigmatesSmoggleursDunkerque({
 
   const tonnageLabels = {
     '12': {
-      fr: '12 (smoggleurs)',
-      en: '12 (smogglers)'
+      fr: '12 tx',
+      en: '12 tx'
     },
     '[1-20]': {
       fr: 'entre 1 et 20 tx',
@@ -131,9 +131,9 @@ export default function StigmatesSmoggleursDunkerque({
             '[51-100]': 'grey',
             '[101-200]': 'darkgrey',
             'Angleterre': 'grey',
-            'Lisbonne ou Bergen': britishColor,
+            'Lisbonne ou Bergen (smoggleurs)': britishColor,
             'England': 'grey',
-            'Lisbon or Bergen': britishColor,
+            'Lisbon or Bergen (smogglers)': britishColor,
              
           }
         }}
