@@ -113,11 +113,11 @@ export default [
   {
     routes: {
       fr: 'sources-et-biblio',
-      en: 'sources-and-biblio'
+      en: 'sources-and-ref'
     },
     titles: {
-      fr: 'Sources & refs.',
-      en: 'Sources & refs.'
+      fr: 'Sources & bib.',
+      en: 'Sources & ref.'
     },
     contents: {
       fr: frBiblio,
