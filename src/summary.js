@@ -95,11 +95,11 @@ export default [
   },
   {
     routes: {
-      fr: 'annexe',
+      fr: 'annexes',
       en: 'appendix'
     },
     titles: {
-      fr: 'Annexe',
+      fr: 'Annexes',
       en: 'Appendix'
     },
     contents: {
