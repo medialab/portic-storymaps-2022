@@ -2,6 +2,8 @@
 
 ![Screenshot of the website](https://medialab.github.io/portic-storymaps-2022/thumbnails/dunkerque-rs.png)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14546472.svg)](https://doi.org/10.5281/zenodo.14546472)
+
 This repository hosts the source code of PORTIC research program's second case study (see [PORTIC homepage](https://anr.portic.fr/) for more information). Built by an interdisciplinary team of historians, engineers and designers, it proposes a detailed study of the economic history of the free port of Dunkerque circa 1789.
 
 Through a series of three "storymaps" combining text and visualization, this publication tells the story of the Dunkerque port trade at the dawn of french revolution. It also features an atlas allowing to browse and share individually all the visualizations crafted during this research.
@@ -49,7 +51,6 @@ You can update the thumbnails with the following command :
 yarn thumbnails
 ```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14546472.svg)](https://doi.org/10.5281/zenodo.14546472)
 
 *Warning: thumbnails building can be capricious on some machines. Backup existing screenshots from `public/thumbnails` before re-running this script.*
 
