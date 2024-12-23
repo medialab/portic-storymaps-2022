@@ -49,6 +49,8 @@ You can update the thumbnails with the following command :
 yarn thumbnails
 ```
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14546472.svg)](https://doi.org/10.5281/zenodo.14546472)
+
 *Warning: thumbnails building can be capricious on some machines. Backup existing screenshots from `public/thumbnails` before re-running this script.*
 
 # Contributing
