@@ -1,7 +1,25 @@
 {
   "name": "portic-storymaps-2022",
   "version": "1.0.0",
-  "main": "index.js",
+  "repository": "https://github.com/medialab/portic-storymaps-2022",
+  "homepage": "https://medialab.github.io/portic-storymaps-2022",
+  "license": "GPL-3.0",
+  "contributors": [
+    "Robin de Mourat",
+    "Guillaume Brioudes (https://myllaume.fr/)",
+    "Christine Plumejeaud",
+    "Silvia Marzagalli",
+    "Guillaume Daudin",
+    "Loïc Charles",
+    "Paul Girard",
+    "Maxime Zoffoli",
+    "Diégo Antolinos-Basso",
+    "Kelly Christensen",
+    "Béatrice Mazoyer",
+    "Benjamin Ooghe-Tabanou",
+    "Hélène Herman",
+    "Alain Bouju"
+  ],
   "scripts": {
     "load": "sh install.sh",
     "build": "webpack --config webpack.config.prod.js",
@@ -63,20 +81,6 @@
     "webpack-dev-server": "^4.7.4",
     "yaml-loader": "^0.8.0"
   },
-  "repository": "https://github.com/medialab/portic-storymaps-2022",
-  "contributors": [
-    "Guillaume Brioudes (https://myllaume.fr/)",
-    "Robin de Mourat",
-    "Silvia Marzagalli",
-    "Christine Plumejeaud",
-    "Guillaume Daudin",
-    "Paul Girard",
-    "Maxime Zoffoli",
-    "Loïc Charles",
-    "Thierry Sauzeau"
-  ],
-  "license": "GPL-3.0-or-later",
-  "homepage": "https://medialab.github.io/portic-storymaps-2022",
   "reactSnap": {
     "fixWebpackChunksIssue": false
   }
