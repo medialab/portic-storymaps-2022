@@ -43,6 +43,7 @@ function delay(time) {
     await server.start();
     const browser = await puppeteer.launch({
         // headless: false
+        args: ['--no-sandbox']
     });
 
     console.log('launch');
