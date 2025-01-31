@@ -10,6 +10,11 @@ Through a series of three "storymaps" combining text and visualization, this pub
 
 This project rests on the shoulders of two existing digital history projects : [Toflit18](http://toflit18.medialab.sciences-po.fr/#/home) and [Navigo](http://navigocorpus.org/).
 
+See related case studies of the PORTIC program:
+
+- Multiscale trade in eighteenth-century La Rochelle region - [publication](https://medialab.github.io/portic-storymaps-2021) / [code](https://medialab.github.io/portic-storymaps-2021)
+- Prosperity and resilience of the port of Marseille in the 18th century - [publication](https://medialab.github.io/portic-storymaps-2023) / [code](https://medialab.github.io/portic-storymaps-2023)
+
 # Installation
 
 Prerequisites:
